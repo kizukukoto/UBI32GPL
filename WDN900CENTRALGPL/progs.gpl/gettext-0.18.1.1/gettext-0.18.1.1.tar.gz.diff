@@ -1,0 +1,14 @@
+diff -urN orig/gettext-0.18.1.1/gettext-tools/gnulib-lib/spawn.in.h build/gettext-0.18.1.1/gettext-tools/gnulib-lib/spawn.in.h
+--- orig/gettext-0.18.1.1/gettext-tools/gnulib-lib/spawn.in.h
++++ build/gettext-0.18.1.1/gettext-tools/gnulib-lib/spawn.in.h
+@@ -36,6 +36,10 @@
+ # include <signal.h>
+ #endif
+ 
++#ifdef __UCLIBC__
++# include <sched.h>
++#endif
++
+ #include <sys/types.h>
+ 
+ #ifndef __THROW

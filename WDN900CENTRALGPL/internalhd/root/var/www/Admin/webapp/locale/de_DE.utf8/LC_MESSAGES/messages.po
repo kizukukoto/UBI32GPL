@@ -1,0 +1,73 @@
+# Languate translation
+#
+#, fuzzy
+#: string ""
+msgid ""
+msgstr ""
+
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2010-07-02 10:00-0700\n"
+"PO-Revision-Date: 2010-09-16  17:00\n"
+"Addition of three keys: I accept; Print; and License Agreemeent\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: GERMAN <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+
+#: string "Welcome"
+msgid "WELCOME"
+msgstr "Willkommen"
+
+
+#: string "Network Drive Password:"
+msgid "PASSWORD"
+msgstr "Netzlaufwerkkennwort:"
+
+
+#: string "Remember Me"
+msgid "REMEMBER_ME"
+msgstr "Konto speichern"
+
+
+#: string "Sign in"
+msgid "SIGN_IN"
+msgstr "Anmelden"
+
+
+#: string "Shares"
+msgid "SHARES"
+msgstr "Freigaben"
+
+#: string "Access Denied"
+msgid "ACCESS_DENIED"
+msgstr "Zugriff verweigert"
+
+
+#: string "Access denied content"
+msgid "ACCESS_DENIED_CONTENT"
+msgstr "Um diese Inhalte anzusehen, müssen Sie sich als autorisierter Benutzer anmelden. <a href=$_link_>Zum Anmelden bitte klicken.</a>" 
+
+#: string "Access denied content"
+msgid "AUTH_FAILED"
+msgstr "Ungültige Benutzer-Anmeldeinformationen"
+
+
+#: string "Sign Out"
+msgid "LOGOUT"
+msgstr "Abmelden"
+
+
+#: string "If you leave this page, any mapped shares will remain connected until you manually disconnect them."
+msgid "LOGOUT_WARNING"
+msgstr "Wenn Sie diese Seite verlassen, bleiben alle zugeordneten Freigaben verbunden, bis Sie sie manuell trennen."
+
+#: string "Cancel"
+msgid "CANCEL"
+msgstr "Abbrechen"
+
+#: string "To download and install the latest Java software, go to java.com and follow the onscreen instructions. By default, Java is enabled in your browser. If you have disabled Java, please check your brower's help system for instructions about enabling it."
+msgid "GET_JAVA"
+msgstr "Gehen Sie auf java.com, um die neueste Java-Software herunterzuladen und zu installieren. Befolgen Sie dabei die Anweisungen auf dem Bildschirm. Java ist in Ihrem Browser standardmäßig aktiviert. Wenn Sie Java deaktiviert haben, sehen Sie in der Hilfe Ihres Browsers nach, um Anweisungen zur Aktivierung von Java zu erhalten."

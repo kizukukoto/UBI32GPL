@@ -1,0 +1,10 @@
+# $Id: sample.desc,v 1.1.1.1 2009/10/09 03:04:25 jack Exp $
+
+version 1 {
+	LastName	string
+	FirstName	string
+	BirthDate
+	Color		string index
+	Fruit		string index
+	Age		unsigned_long index
+}

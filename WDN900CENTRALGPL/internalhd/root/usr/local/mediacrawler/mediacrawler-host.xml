@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MediaCrawler>
+  <Version>1.0</Version>
+  <Host>
+    <mediacrawler_enabled>true</mediacrawler_enabled>
+    <last_updated_time>12345</last_updated_time>
+  </Host>
+  <Volumes>
+    <Volume>
+      <Name>Shares</Name>
+      <Root>/shares/</Root>
+      <CrawlPaths>
+	<Path>/Public</Path>
+      </CrawlPaths>
+      <ExcludePaths>
+        <Path>/shares/Public/.miocrawler_cache/</Path>
+      </ExcludePaths>
+    </Volume>
+  </Volumes>
+</MediaCrawler>

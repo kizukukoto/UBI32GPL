@@ -1,0 +1,344 @@
+#!/bin/sh
+#
+# Control script for Communication Manager
+#
+# Command-line switches
+#	-startup    starts Communication Manager if the saved state is 'enabled'
+#	-shutdown   stops Communication Manager if it is running
+#	-enable 	enables Communication Manager (default) and starts it if not running
+# 	-disable	disables Communication Manager. Communication Manager is stopped if it is running
+#               Communication Manager will not start again until this script is called with -enable
+# Update:
+#	10/25/10 - created: Joe Sapsford
+#   10/28/10 - now gets communicationmanager PID from PID file in /tmp/orion_cm_pid
+#	10/29/10 - changed use of awk to sed as WDTV awk implementation causes seg fault
+#   11/05/10 - fixed console hang when startup option is used
+#   11/06/10 - added command line switches to turn file and/or console logging on or off
+#   12/10/10 - set file logging on by default for QA as per Anu's request
+#   12/11/10 - added full path for CM executable so script can be run from any directory 
+#    2/15/11 - modified to run on 3G with Debian
+#    3/18/11 - removed for loops for input param parsing, only checking for $1 
+#			   $1 is always startup/shutdown/enable/disable state and $2 is always logging param
+#	 4/07/11 - changed paths for files that were stored in /tmp to /CacheVolume/.orion
+#	 8/19/11 - added version number to status output
+#	11/03/11 - Created Bali version: uses /usr/local/orion path instead of /usr/orion
+#	03/08/12 - added kill logic of being vpn client connection
+#
+
+UID=0          # Set as root privileges.
+ROOT_UID=0     # Only users with $UID 0 have root privileges.
+E_NOTROOT=87   # Non-root exit error
+
+CM_LOG_FILE="/var/log/orion_cm.log"
+CM_PID_FILE="/tmp/orion_cm_pid"
+CM_FILE_PATH="/usr/local/orion/communicationmanager/communicationmanager"
+CM_LIBS="/usr/lib"
+ENABLE_STATE_FILE="/internalhd/etc/orion/orion_cm_enabled"
+ENABLED="0"
+CMPID=0
+LOG_SWITCH=''
+
+#Path to globalconfig.ini - change this for WDTV
+ORION_STATIC_CONFIG="/var/www/Admin/webapp/config/globalconfig.ini"
+export ORION_STATIC_CONFIG
+
+###################################
+# Set comm mgr PID from PID file, if it exists, else set it to 0
+###################################
+get_cm_pid() {
+	if [ -f "$CM_PID_FILE" ]
+	then
+		CMPID=`cat $CM_PID_FILE` 
+	else
+		CMPID=0
+	fi
+	return 0
+}
+
+###################################                                                                         
+# Kill VPN PID from PID file, if it exists, else set it to 0                                            
+###################################                                                                         
+kill_vpn_client() {
+	local VPNPROC=`ps | grep "openvpn" | grep -v "grep" | sed -e 's/\( \)\([0-9]*\).*/\2/'` 
+       	
+	if [ "$VPNPROC" != '' ] 
+	then
+		`kill -15 $VPNPROC` 
+	fi  
+}
+
+
+###################################
+# Checks that script is being run as root and that Communication Manager 
+# is installed.
+###################################
+validate_environment() {
+  # script must be run as root
+  if [ "$UID" -ne "$ROOT_UID" ]
+  then
+    echo "`date` - %E - communicationmanager - script must be run as root"
+    exit $E_NOTROOT
+  fi  
+
+  # make sure Communication Manager exists
+  
+  if [ "$COMM_MGR_PATH" != '' ]
+  then
+  	CM_FILE_PATH=$COMM_MGR_PATH
+  fi
+  
+  if [ -f "$CM_FILE_PATH" ]
+  then
+  	if [ -f "$ENABLE_STATE_FILE" ]
+  	then
+  		ENABLED=`cat $ENABLE_STATE_FILE`
+  	else
+  		ENABLED="0"
+  	fi
+  else
+	echo "`date` - %E - CommunicationManager - executable file not found, exiting"
+	exit 0
+  fi
+  return 0
+}
+
+###################################
+# Start communication manager if it is not already running
+###################################
+start_comm_mgr() {
+  renice 0 -p $$ >> /dev/null
+
+  if [ "$ENABLED" != "1" ]
+  then
+    echo "`date` - %W - Communication Manager - startup is disabled, use 'enable' to start process"
+  	return
+  fi
+
+  get_cm_pid
+  local CMPROC=`ps  | grep "comm" | grep -v "grep" | sed -e 's/\( \)\([0-9]*\).*/\2/'`
+ 
+  for runpid in $CMPROC
+  do
+  	if [ "$runpid" = "$CMPID" ]
+  	then
+		echo "`date` - %W - Communication Manager - already running, use 'shutdown' to stop process"
+  		return
+  	fi
+  done
+ 
+  echo "`date` - %I - Communication Manager - Start"
+  nice -n 10 $CM_FILE_PATH -f 120 $LOG_SWITCH
+  return 0
+}
+
+###################################
+# Stop communication manager if it is running
+###################################
+stop_comm_mgr() {
+
+  kill_vpn_client
+  
+  get_cm_pid 	  
+  local CMPROC=`ps  | grep "comm" | grep -v "grep" | sed -e 's/\( \)\([0-9]*\).*/\2/'`
+  for runpid in $CMPROC
+  do
+  	if [ "$runpid" = "$CMPID" ]
+  	then
+		`kill -15 $CMPID`
+		echo "`date` - %I - Communication Manager - Stop"
+  		return
+  	fi
+  done
+  
+  echo "`date` - %W - Communication Manager - process is not running"
+  return 0
+}
+
+###################################
+# Enable Communication manager and start it
+###################################
+enable_comm_mgr() {
+  echo "1" > $ENABLE_STATE_FILE
+  ENABLED="1"
+  echo "`date` - %I - Communication Manager - Enabled"
+	
+  start_comm_mgr
+  return 0
+}
+
+###################################
+# Disable communication manager - stops process if is running
+# and prevents it from being started until it is enabled again
+###################################
+disable_comm_mgr() {
+  echo "0" > $ENABLE_STATE_FILE
+  ENABLED="0"
+  echo "`date` - %I - Communication Manager - Disabled"
+  stop_comm_mgr
+  
+  #wait until CM process has exited
+  running="0"
+  trysleft=30
+
+  get_cm_pid
+  while [ $trysleft -gt 0 ]
+	do
+  		local CMPROC=`ps | grep "comm" | grep -v "grep" | sed -e 's/\( \)\([0-9]*\).*/\2/'`
+  		for runpid in $CMPROC
+  		do
+  			if [ "$runpid" = "$CMPID" ]
+  				then
+  				running="1"
+				break
+  			else
+  				running="0"
+  			fi
+	    done 
+	  	if [ "$running" = "0" ]
+	  		then
+	  		break
+	  	fi
+	  	sleep 1
+	  	trysleft=$(( $trysleft - 1 ))
+    done
+  
+  # run CM once with -u switch to un-map ports
+  $CM_FILE_PATH -u $LOG_SWITCH
+  return 0
+}
+
+###################################
+# Echo comm mgr status
+###################################
+comm_mgr_status() {
+  $CM_FILE_PATH -v
+  get_cm_pid
+  local CMPROC=`ps  | grep "comm" | grep -v "grep" | sed -e 's/\( \)\([0-9]*\).*/\2/'`
+ 
+  for runpid in $CMPROC
+  do
+  	if [ "$runpid" = "$CMPID" ]
+  	then
+		echo "running"
+  		return
+  	fi
+  done
+  echo "not running"
+  return 0
+}
+
+###################################
+# Start of Script
+###################################
+
+VALID_CM=0
+
+if [ -z "$LD_LIBRARY_PATH" ] ; then
+   LD_LIBRARY_PATH=${CM_LIBS}
+else
+   LD_LIBRARY_PATH="${CM_LIBS}:${LD_LIBRARY_PATH}"
+fi
+export LD_LIBRARY_PATH
+
+if [ "$1" = "-path" ]
+then
+	COMM_MGR_PATH=$2
+	`export COMM_MGR_PATH=$COMM_MGR_PATH`
+fi
+
+if [ "$2" = "-path" ]
+then
+	COMM_MGR_PATH=$3
+	`export COMM_MGR_PATH=$COMM_MGR_PATH`
+fi
+
+validate_environment
+
+   case "$2" in 
+     -logtofile)
+     	LOG_SWITCH='-l'
+     	;;
+     logtofile)
+     	LOG_SWITCH='-l'
+     	;;
+     -logtoconsole)
+     	LOG_SWITCH='-lc'
+     	;;
+     logtoconsole)
+     	LOG_SWITCH='-lc'
+     	;;
+	 *)
+   esac
+ 
+   case "$1" in 
+     -enable)
+		enable_comm_mgr
+		VALID_CM=1
+        ;;
+     enable)
+		enable_comm_mgr
+		VALID_CM=1
+        ;;
+     -disable)
+     	disable_comm_mgr
+     	VALID_CM=1
+     	;;
+     disable)
+     	disable_comm_mgr
+     	VALID_CM=1
+     	;;
+     -startup)
+     	start_comm_mgr
+     	VALID_CM=1
+     	;;
+     startup)
+     	start_comm_mgr
+     	VALID_CM=1
+     	;;
+     -start)
+     	start_comm_mgr
+     	VALID_CM=1
+     	;;
+     start)
+     	start_comm_mgr
+     	VALID_CM=1
+     	;;
+     -shutdown)
+     	stop_comm_mgr
+     	VALID_CM=1
+     	;;
+     shutdown)
+     	stop_comm_mgr
+     	VALID_CM=1
+     	;;
+     -stop)
+     	stop_comm_mgr
+     	VALID_CM=1
+     	exit 0
+     	;;
+     stop)
+     	stop_comm_mgr
+     	VALID_CM=1
+     	;;
+     -status)
+     	comm_mgr_status
+     	VALID_CM=1
+     	;;
+     status)
+     	comm_mgr_status
+     	VALID_CM=1
+     	;;
+     *)
+   esac
+
+if [ "$VALID_CM" -eq 0 ] 
+then
+	echo "CommunicationManager invalid option(s): $@"
+	echo "usage: communicationmanager {-path (comm mgr file path)|startup|shutdown|enable|disable|status}"
+	exit 1
+fi
+exit 0
+
+
+
+

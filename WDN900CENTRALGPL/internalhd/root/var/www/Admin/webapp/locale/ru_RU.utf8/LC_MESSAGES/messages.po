@@ -1,0 +1,73 @@
+# Languate translation
+#
+#, fuzzy
+#: string ""
+msgid ""
+msgstr ""
+
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2010-07-02 10:00-0700\n"
+"PO-Revision-Date: 2010-09-16  17:00\n"
+"Addition of three keys: I accept; Print; and License Agreemeent\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: RUSSIAN <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+
+#: string "Welcome"
+msgid "WELCOME"
+msgstr "Здравствуйте"
+
+
+#: string "Network Drive Password:"
+msgid "PASSWORD"
+msgstr "Пароль к сетевому накопителю:"
+
+
+#: string "Remember Me"
+msgid "REMEMBER_ME"
+msgstr "Запомнить меня"
+
+
+#: string "Sign in"
+msgid "SIGN_IN"
+msgstr "Войти в систему"
+
+
+#: string "Shares"
+msgid "SHARES"
+msgstr "Папки общего доступа"
+
+#: string "Access Denied"
+msgid "ACCESS_DENIED"
+msgstr "В доступе отказано"
+
+
+#: string "Access denied content"
+msgid "ACCESS_DENIED_CONTENT"
+msgstr "Для просмотра этой информации Вы должны войти в качестве зарегистрированного пользователя. <a href=$_link_>Для входа нажмите здесь.</a>" 
+
+#: string "Access denied content"
+msgid "AUTH_FAILED"
+msgstr "Неверный элемент учетных данных пользователя"
+
+
+#: string "Sign Out"
+msgid "LOGOUT"
+msgstr "Выйти"
+
+
+#: string "If you leave this page, any mapped shares will remain connected until you manually disconnect them."
+msgid "LOGOUT_WARNING"
+msgstr "При уходе с этой страницы соединение со всеми отмеченными папками общего доступа сохранится, пока Вы не отмените его вручную."
+
+#: string "Cancel"
+msgid "CANCEL"
+msgstr "Отмена"
+
+#: string "To download and install the latest Java software, go to java.com and follow the onscreen instructions. By default, Java is enabled in your browser. If you have disabled Java, please check your brower's help system for instructions about enabling it."
+msgid "GET_JAVA"
+msgstr "Для загрузки и установки новейшего программного обеспечения Java перейдите на java.com и следуйте инструкциям на экране. По умолчанию технология Java включена в Вашем браузере. Если Вы отключили Java, пожалуйста, проверьте в системе помощи своего браузера, как включить ее."

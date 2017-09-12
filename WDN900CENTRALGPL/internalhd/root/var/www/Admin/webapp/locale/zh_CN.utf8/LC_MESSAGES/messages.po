@@ -1,0 +1,73 @@
+# Languate translation
+#
+#, fuzzy
+#: string ""
+msgid ""
+msgstr ""
+
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2010-07-02 10:00-0700\n"
+"PO-Revision-Date: 2010-09-16  17:00\n"
+"Addition of three keys: I accept; Print; and License Agreemeent\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: CHINESE SIMPLIFIED <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+
+#: string "Welcome"
+msgid "WELCOME"
+msgstr "欢迎使用"
+
+
+#: string "Network Drive Password:"
+msgid "PASSWORD"
+msgstr "网络硬盘密码："
+
+
+#: string "Remember Me"
+msgid "REMEMBER_ME"
+msgstr "记住密码"
+
+
+#: string "Sign in"
+msgid "SIGN_IN"
+msgstr "登录"
+
+
+#: string "Shares"
+msgid "SHARES"
+msgstr "共享"
+
+#: string "Access Denied"
+msgid "ACCESS_DENIED"
+msgstr "拒绝访问"
+
+
+#: string "Access denied content"
+msgid "ACCESS_DENIED_CONTENT"
+msgstr "要查看内容，必须以授权用户的身份登录。<a href=$_link_>单击以登录。</a>" 
+
+#: string "Access denied content"
+msgid "AUTH_FAILED"
+msgstr "无效的用户凭证"
+
+
+#: string "Sign Out"
+msgid "LOGOUT"
+msgstr "注销"
+
+
+#: string "If you leave this page, any mapped shares will remain connected until you manually disconnect them."
+msgid "LOGOUT_WARNING"
+msgstr "如果退出此页，映射的任何共享都将保持连接状态，直到您手动断开它们。"
+
+#: string "Cancel"
+msgid "CANCEL"
+msgstr "取消"
+
+#: string "To download and install the latest Java software, go to java.com and follow the onscreen instructions. By default, Java is enabled in your browser. If you have disabled Java, please check your brower's help system for instructions about enabling it."
+msgid "GET_JAVA"
+msgstr "要下载并安装最新的 Java 软件，请访问 java.com 并按照屏幕说明操作。您的浏览器默认启用 Java。如果您禁用了 Java，请查看浏览器的帮助文档，了解启用它的相关说明。"

@@ -1,0 +1,28 @@
+diff -urN orig/curl-7.23.1/configure build/curl-7.23.1/configure
+--- orig/curl-7.23.1/configure
++++ build/curl-7.23.1/configure
+@@ -20136,10 +20136,10 @@
+ 
+             LIB_OPENSSL="$PREFIX_OPENSSL/lib$libsuff"
+     if test "$PREFIX_OPENSSL" != "/usr" ; then
+-      SSL_LDFLAGS="-L$LIB_OPENSSL"
+-      SSL_CPPFLAGS="-I$PREFIX_OPENSSL/include"
++      SSL_LDFLAGS="-L$PREFIX_OPENSSL -L$LIB_OPENSSL -lcrypto -lssl"
++      SSL_CPPFLAGS="-I$PREFIX_OPENSSL -I$PREFIX_OPENSSL/include"
+     fi
+-    SSL_CPPFLAGS="$SSL_CPPFLAGS -I$PREFIX_OPENSSL/include/openssl"
++    SSL_CPPFLAGS="$SSL_CPPFLAGS -I$PREFIX_OPENSSL -I$PREFIX_OPENSSL/include/openssl"
+     ;;
+   esac
+ 
+@@ -21349,8 +21349,8 @@
+   fi
+ 
+     if test -n "$OPT_ZLIB"; then
+-     CPPFLAGS="$CPPFLAGS -I$OPT_ZLIB/include"
+-     LDFLAGS="$LDFLAGS -L$OPT_ZLIB/lib$libsuff"
++     CPPFLAGS="$CPPFLAGS -I$OPT_ZLIB -I$OPT_ZLIB/include"
++     LDFLAGS="$LDFLAGS -L$OPT_ZLIB -L$OPT_ZLIB/lib$libsuff"
+   fi
+ 
+   ac_fn_c_check_header_mongrel "$LINENO" "zlib.h" "ac_cv_header_zlib_h" "$ac_includes_default"

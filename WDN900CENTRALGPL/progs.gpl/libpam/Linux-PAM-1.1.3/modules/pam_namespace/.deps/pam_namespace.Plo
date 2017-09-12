@@ -1,0 +1,313 @@
+pam_namespace.lo .libs/pam_namespace.o: pam_namespace.c pam_namespace.h \
+  ../../config.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/libintl.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/features.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/cdefs.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/wordsize.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/gnu/stubs.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/stddef.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/locale.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/locale.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/xlocale.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/stdio.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/types.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/typesizes.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/libio.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/_G_config.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/wchar.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/stdarg.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/stdio_lim.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sys_errlist.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/stdio.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/stdio_ext.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/unistd.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/posix_opt.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/environments.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/confname.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/getopt.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/string.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/string.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/string2.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/stdlib.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/ctype.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/endian.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/endian.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/waitflags.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/waitstatus.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/types.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/time.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/select.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/select.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigset.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/time.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/sysmacros.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/pthreadtypes.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/alloca.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/errno.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/errno.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/linux/errno.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm/errno.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm-generic/errno.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm-generic/errno-base.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/syslog.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/syslog.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/syslog-path.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/dlfcn.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/dlfcn.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/pwd.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/grp.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/limits.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/syslimits.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/limits.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/posix1_lim.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/local_lim.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/linux/limits.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/posix2_lim.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/xopen_lim.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/stat.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/stat.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/resource.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/resource.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/mount.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/ioctl.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/ioctls.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm/ioctls.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm/ioctl.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm-generic/ioctl.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/ioctl-types.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/ttydefaults.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/wait.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/signal.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/signum.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/siginfo.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigaction.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigcontext.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm/sigcontext.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigstack.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/ucontext.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/procfs.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/time.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/user.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigthread.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/libgen.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/fcntl.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/fcntl.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/uio.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sched.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sched.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/glob.h \
+  ../../libpam/include/security/pam_modules.h \
+  ../../libpam/include/security/_pam_types.h \
+  ../../libpam/include/security/_pam_compat.h \
+  ../../libpam/include/security/pam_modutil.h \
+  ../../libpam/include/security/pam_ext.h md5.h argv_parse.h
+
+pam_namespace.h:
+
+../../config.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/libintl.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/features.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/cdefs.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/wordsize.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/gnu/stubs.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/stddef.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/locale.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/locale.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/xlocale.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/stdio.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/types.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/typesizes.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/libio.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/_G_config.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/wchar.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/stdarg.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/stdio_lim.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sys_errlist.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/stdio.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/stdio_ext.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/unistd.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/posix_opt.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/environments.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/confname.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/getopt.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/string.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/string.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/string2.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/stdlib.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/ctype.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/endian.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/endian.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/waitflags.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/waitstatus.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/types.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/time.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/select.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/select.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigset.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/time.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/sysmacros.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/pthreadtypes.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/alloca.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/errno.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/errno.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/linux/errno.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm/errno.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm-generic/errno.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm-generic/errno-base.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/syslog.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/syslog.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/syslog-path.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/dlfcn.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/dlfcn.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/pwd.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/grp.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/limits.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/syslimits.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/limits.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/posix1_lim.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/local_lim.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/linux/limits.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/posix2_lim.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/xopen_lim.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/stat.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/stat.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/resource.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/resource.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/mount.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/ioctl.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/ioctls.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm/ioctls.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm/ioctl.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm-generic/ioctl.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/ioctl-types.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/ttydefaults.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/wait.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/signal.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/signum.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/siginfo.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigaction.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigcontext.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/asm/sigcontext.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigstack.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/ucontext.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/procfs.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/time.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/user.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigthread.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/libgen.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/fcntl.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/fcntl.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/uio.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sched.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sched.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/glob.h:
+
+../../libpam/include/security/pam_modules.h:
+
+../../libpam/include/security/_pam_types.h:
+
+../../libpam/include/security/_pam_compat.h:
+
+../../libpam/include/security/pam_modutil.h:
+
+../../libpam/include/security/pam_ext.h:
+
+md5.h:
+
+argv_parse.h:

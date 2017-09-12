@@ -1,0 +1,41 @@
+libgpg_error_la-code-to-errno.lo: code-to-errno.c ../config.h gpg-error.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../lib/gcc/ubicom32-linux-uclibc/4.4.1/include/stddef.h \
+ code-to-errno.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/errno.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/features.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/bits/uClibc_config.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/bits/uClibc_arch_features.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/sys/cdefs.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/bits/errno.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/linux/errno.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/asm/errno.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/asm-generic/errno.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/asm-generic/errno-base.h
+
+../config.h:
+
+gpg-error.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../lib/gcc/ubicom32-linux-uclibc/4.4.1/include/stddef.h:
+
+code-to-errno.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/errno.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/features.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/bits/uClibc_config.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/bits/uClibc_arch_features.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/sys/cdefs.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/bits/errno.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/linux/errno.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/asm/errno.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/asm-generic/errno.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../ubicom32-linux-uclibc/runtime/usr/include/asm-generic/errno-base.h:

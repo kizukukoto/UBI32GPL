@@ -1,0 +1,73 @@
+# Languate translation
+#
+#, fuzzy
+#: string ""
+msgid ""
+msgstr ""
+
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2010-07-02 10:00-0700\n"
+"PO-Revision-Date: 2010-09-16  17:00\n"
+"Addition of three keys: I accept; Print; and License Agreemeent\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: JAPANESE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+
+#: string "Welcome"
+msgid "WELCOME"
+msgstr "ようこそ"
+
+
+#: string "Network Drive Password:"
+msgid "PASSWORD"
+msgstr "ネットワーク ドライブ パスワード："
+
+
+#: string "Remember Me"
+msgid "REMEMBER_ME"
+msgstr "記憶する"
+
+
+#: string "Sign in"
+msgid "SIGN_IN"
+msgstr "サインイン"
+
+
+#: string "Shares"
+msgid "SHARES"
+msgstr "共有"
+
+#: string "Access Denied"
+msgid "ACCESS_DENIED"
+msgstr "アクセスが拒否されました"
+
+
+#: string "Access denied content"
+msgid "ACCESS_DENIED_CONTENT"
+msgstr "このコンテンツを表示するには、許可されたユーザーとしてログインしなければなりません。<a href=$_link_>[クリックしてログイン。]</a>" 
+
+#: string "Access denied content"
+msgid "AUTH_FAILED"
+msgstr "ユーザー証明が無効"
+
+
+#: string "Sign Out"
+msgid "LOGOUT"
+msgstr "サインアウト"
+
+
+#: string "If you leave this page, any mapped shares will remain connected until you manually disconnect them."
+msgid "LOGOUT_WARNING"
+msgstr "このページから移動すると、マッピングされた共有は手動で切断するまで接続されたままになります。"
+
+#: string "Cancel"
+msgid "CANCEL"
+msgstr "キャンセル"
+
+#: string "To download and install the latest Java software, go to java.com and follow the onscreen instructions. By default, Java is enabled in your browser. If you have disabled Java, please check your brower's help system for instructions about enabling it."
+msgid "GET_JAVA"
+msgstr "最新の Java ソフトウェアをダウンロードしインストールするには、java.com をご覧になり画面の指示に従ってください。デフォルトでは、Java がブラウザで有効になっています。Java を無効にしている場合は、ブラウザのヘルプ システムをご覧になり有効にする説明を参照してください。"

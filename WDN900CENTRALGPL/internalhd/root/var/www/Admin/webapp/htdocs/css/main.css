@@ -1,0 +1,358 @@
+body
+{
+	border:0px;
+	margin:0px;
+	padding:0px;
+	background-color:#1A1A1A;
+	font-family: Arial, regular;
+	font-size: 14px;
+	color: #F0F0F0;
+}
+
+*.contentTables
+{
+	margin-top: 40px;
+	margin-left:95px;
+	color:#ffffff;
+	width: 500px;
+		
+}
+
+*.titleSeperatorSpacing
+{
+	border:0px;
+	margin:0px;
+	padding:0px;
+	padding-top:17px;	
+}
+
+*.titleSeperator
+{
+	border:0px;
+	margin:0 -10px -10px;
+	padding:0px;
+	width:655px;
+	height:1px;
+	background-color:#898989;
+	background-repeat top;
+}
+
+*.title
+{
+	font-family: Arial, regular;
+	font-size: 22px;
+	color: #F0F0F0;
+}
+
+*.topGrad
+{
+	border:0px;
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:137px;
+	background-image:url('../images/WD2go_TopGradient_1pxBG.png');
+	background-repeat top;
+}
+
+*.textInput
+{
+	border:0px;
+}
+
+*.bottomGlow
+{
+	left:0; 
+	position:fixed; 
+	text-align:center; 
+	bottom:0; 
+	width:100%;
+	z-index: -5;
+	
+}
+
+*.linkTitle
+{
+	font-size: 14px;
+	color:#ffffff;
+}
+
+*.normalTitle
+{
+	font-size: 14px;
+}
+
+*.fieldTitle
+{
+	font-size: 14px;
+}	
+
+*.errorAlert
+{
+	font-size: 11px;
+	color:#ff0000;
+}
+
+*.fieldSpacer
+{
+	padding:0px;
+	padding-left:10px;	
+}
+
+
+.roundBox {
+	background-image: url(../images/roundBoxStrip.png); 
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: left  top;
+	height: 42px;  
+	margin:0px;
+	padding:0px;
+}
+
+.roundBoxRight {
+	background-image: url('../images/roundBoxRight.png'); 
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: right top;
+	float: left;
+	font: 12px arial, sans-serif;
+	padding-top: 0px;
+	padding-right: 10px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;	
+	text-decoration: none;
+}
+		
+			
+.roundBox input.textInput {
+	color: #444444;
+	height: 27px;  
+	font-family: Arial, regular;
+	font-size: 14px;	
+	margin-top:8px;
+	margin-right: 0px;
+	margin-bottom: 8px;
+	margin-left: 14px;
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+    line-height: 25px;  /* required for IE to fix vertical alignment issue*/
+	outline-color: #FF921A;
+}
+
+
+
+a.button {
+    
+    background: transparent url('../images/WD2go_ButtonRightUp.png') no-repeat scroll top right;
+    color: #898989;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 28px;
+    margin-right: 6px;
+    padding-right: 9px; /* sliding doors padding */
+    text-decoration: none;
+    outline-color: #FF921A;			
+}
+			
+a.button > span {
+    background: transparent url('../images/WD2go_ButtonLeftUp.png') no-repeat;
+    display: block;
+    line-height: 26px;
+    vertical-align: middle;
+    /*padding: 5px 0 5px 18px;*/
+    padding: 0px 5px 5px 18px;
+}
+
+a.button > span > span {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+a.button:hover {
+    background: transparent url('../images/WD2go_ButtonRightRollover.png') no-repeat scroll top right;	
+    background-position: top right;
+    color: #898989;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:hover span {
+    background: transparent url('../images/WD2go_ButtonLeftRollover.png') no-repeat scroll top right;	
+    background-position: top left;
+    /* padding: 6px 0 4px 18px; */ /* push text down 1px */
+    padding: 0px 5px 5px 18px;
+} 
+
+a.button:active {
+    background: transparent url('../images/WD2go_ButtonRightPressed.png') no-repeat scroll top right;	
+    background-position: top right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background: transparent url('../images/WD2go_ButtonLeftPressed.png') no-repeat scroll top right;	
+    background-position: top left;
+    /* padding: 6px 0 4px 18px; */ /* push text down 1px */
+    padding: 1px 5px 4px 18px;
+} 
+
+
+
+
+
+
+.checkbox_unchecked {
+	width: 20px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	background: url('../images/WD2go_CheckboxUp.png') no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+
+.checkbox_unchecked:hover {
+	width: 20px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	background: url('../images/WD2go_CheckboxRollover.png') no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+
+
+.checkbox_checked {
+	width: 20px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	background: url('../images/WD2go_CheckboxDown.png') no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+
+.checkbox_checked:hover {
+	width: 20px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	background: url('../images/WD2go_CheckboxCheckedRollover.png') no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+
+.vertical_34px {
+	height: 34px;
+}
+
+.formTable {
+	margin-left: 0;
+	margin-top: 15px;	
+}
+
+.deviceImage {
+	width:283px;
+	height:303px;	
+	display: table-cell;
+	vertical-align: bottom;
+}
+
+.deviceImage > img {
+	display:block;
+	margin: auto;	
+	border: none;	
+}
+
+.deviceName {
+	margin-top:30px; 
+	display:block; 
+	text-align:center
+}
+
+.deviceName a {
+	text-decoration: none;
+	color:#ffffff;	
+	font-family: Arial, regular;
+	font-size: 14px;
+}
+
+a {
+	color: #ff9215;
+}
+
+img {
+	border: none;
+	
+}
+
+a.headerLinks {
+	padding-left:10px;
+	padding-right:10px;
+	float:right;
+	color:#898989	
+}
+
+div.header {
+	width:100%;
+	color:#898989;
+	background-color:#000000;
+	margin:0px;
+	padding:0px;
+	border:0px;
+	float:left;
+	clear:both;
+}
+
+div.header a {
+	font-size: 14px;
+	color:#898989;	
+	line-height: 30px;
+}
+
+div.header a:hover{
+	font-size: 14px;
+	color:#ff9215;	
+	line-height: 30px;
+}
+
+
+.header .separator {
+	padding-left:10px;
+	padding-right:10px;
+	color:#898989;	
+}
+
+div.header #title {
+	float: left;
+	margin-left: 17px;
+}
+
+div.header #title a {
+	font-size: 18px;
+	color:white; 
+	margin-left: 5px;
+		
+}
+
+div.header #layout {
+	margin:0px;
+	padding:20px;
+	border:0px none; 
+	height:32px;	
+}
+
+div.header #menu {
+	float: right; 
+	text-align: right; 
+	width: 500px;
+	
+}

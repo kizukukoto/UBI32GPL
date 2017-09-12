@@ -1,0 +1,8 @@
+# $Id: copy,v 1.1.1.1 2009/10/09 03:04:21 jack Exp $
+
+copy:
+	@for i in ${COPY}; do						\
+		cmp ${DOCS_SRC}/${BUILDDIR}/$$i $$i > /dev/null 2>&1 ||	\
+		(echo ${BUILDDIR}/$$i &&				\
+		cp ${DOCS_SRC}/${BUILDDIR}/$$i .);			\
+	done

@@ -1,0 +1,191 @@
+#!/bin/sh
+
+MC_INSTALL_PATH=/usr/local/orion/miocrawler
+
+export MAGICK_CONFIGURE_PATH=/usr/lib/ImageMagick.6.4.4/config
+export MAGICK_CODER_MODULE_PATH=/usr/lib/ImageMagick.6.4.4/modules-Q8/coders
+
+MIOCRAWLER_BIN=./miocrawler
+PERSISTENT_DATA_PATH=/internalhd/etc/.miocrawler
+ORION_DB_PATH=/internalhd/etc/orion/wdphotos.db
+MIOCRAWLER_CACHE_PATH=/shares/Public/.miocrawler_cache
+PERSISTENT_DATA_FILE=miocrawler.pdat
+
+RETVAL=0
+mc_args=$2
+
+
+###################################################
+check_flag() {
+
+   STATUS="disable"
+   if [ -f ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} ] ; then
+	STATUS=`grep crawler_status_flag ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} | awk -F "=" '{print $2}'`
+   fi
+
+   echo $STATUS
+}
+
+###################################################
+set_flag() {
+  if [ ! -d  ${PERSISTENT_DATA_PATH} ] ; then
+	mkdir -p ${PERSISTENT_DATA_PATH}
+  fi
+  if [ -f ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} ] ; then
+  	VERSION=`grep last_version  ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} | awk -F "=" '{print $2}'`
+  fi
+  if [ "$VERSION" == "" ]; then
+	cd $MC_INSTALL_PATH
+	VERSION=`$MIOCRAWLER_BIN -version | awk -F "v" '{print $2}'`
+  fi
+  echo "crawler_status_flag=$1" > ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE}
+  echo "last_version=$VERSION" >> ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE}
+  echo "Crawler set to $1"
+}
+
+###################################################
+check_running() {
+
+  STATUS="Not running"  
+#  MIOCRAWLERPIDS=`ps |grep miocrawler | grep -v miocrawlerd | grep -v grep | awk {'print $1'}`
+# Some different `ps` versions yields different format. Check about may not be reliable.
+# Do one more different search to be sure
+#  [ -z $MIOCRAWLERPIDS ]
+
+
+  colnum=1
+  ps | grep PID | grep -v grep | awk '{ 
+        for( i; i <= NF; i++ ) { if ( $i=="PID" ) {exit i} } }'
+  colnum=$?
+  # Do this silly thing because the awk throws a bus error if the output from the previous commands
+  # returns an empty string.
+  MIOCRAWLERPIDS=`ps |grep miocrawler | grep -v miocrawlerd | grep -v grep`
+  if [ "$MIOCRAWLERPIDS" != "" ] ; then
+	MIOCRAWLERPIDS=`ps |grep miocrawler | grep -v miocrawlerd | grep -v grep | awk '{print $'$colnum'}'`
+  fi
+
+  if [ "$MIOCRAWLERPIDS" == "" ] ; then
+     MIOCRAWLERPIDS=`pidof miocrawler`
+  fi
+  
+  if [ "$MIOCRAWLERPIDS" ] ; then
+     STATUS="Running" 
+  fi
+  
+  echo $STATUS
+ }
+ 
+
+#################################################33
+start_miocrawler() {
+   if [ "`check_running`" == "Running" ] ; then
+      echo "Miocrawler is running. Stop it first."
+   else
+      cd $MC_INSTALL_PATH
+      ulimit -s 1024
+      # Make sure to set hte 'parent' nice to 0
+      renice 0 -p $$ >> /dev/null
+      nice -n 10 $MIOCRAWLER_BIN $mc_args >/dev/null 2>/dev/null &
+      echo "Miocrawler started."
+   fi
+   return 0
+}
+
+#################################################33
+start_miocrawler_debug() {
+   if [ "`check_running`" == "Running" ] ; then
+      echo "Miocrawler is running. Stop it first."
+   else
+      $MIOCRAWLER_BIN &
+      echo "Miocrawler started."
+   fi
+   return 0
+}
+
+###################################################
+ stop_miocrawler() {
+
+  colnum=1
+  echo "Kill Miocrawler Process..."
+  ps | grep PID | grep -v grep | awk '{ 
+        for( i; i <= NF; i++ ) { if ( $i=="PID" ) {exit i} } }'
+  colnum=$?
+  # Do this silly thing because the awk throws a bus error if the output from the previous commands
+  # returns an empty string.
+  MIOCRAWLERPIDS=`ps |grep miocrawler | grep -v miocrawlerd | grep -v grep`
+  if [ "$MIOCRAWLERPIDS" != "" ] ; then
+	MIOCRAWLERPIDS=`ps |grep miocrawler | grep -v miocrawlerd | grep -v grep | awk '{print $'$colnum'}'`
+  fi
+  
+# Some different `ps` versions yields different format. Check about may not be reliable.
+# Do one more different search to be sure
+#  [ -z $MIOCRAWLERPIDS ]
+  if [ "$MIOCRAWLERPIDS" == "" ] ; then
+     MIOCRAWLERPIDS=`pidof miocrawler`
+  fi
+  if [ "$MIOCRAWLERPIDS" ] ; then
+     #echo "$MIOCRAWLERPIDS"
+     kill -9 $MIOCRAWLERPIDS
+  else
+     echo "No miocrawler process is found"
+   fi
+ }
+ 
+
+###################################################
+if [ ! -f ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} ] ; then
+	# As part of fix for 29027, we enable this OOTB and then work as the user chooses
+	set_flag enable
+fi
+
+if [ ! -d $MIOCRAWLER_CACHE_PATH ]; then
+	mkdir $MIOCRAWLER_CACHE_PATH
+fi
+chmod 755 $MIOCRAWLER_CACHE_PATH
+#chown :www-data $MIOCRAWLER_CACHE_PATH
+
+
+case "$1" in
+	start)
+	    if [ "`check_flag`" == "enable" ] ; then
+	    	start_miocrawler
+	    	exit 0
+	    else
+		echo "Crawler is not enabled"
+	    fi
+	    ;;
+	stop)
+	    stop_miocrawler
+	    ;;
+	enable)
+	    if [ "`check_running`" != "Running" ] ; then
+		set_flag enable
+		start_miocrawler
+	    else
+		echo "Crawler already enabled, so ignoring this request"
+	    fi
+	    ;;
+	disable)
+	    stop_miocrawler
+	    set_flag disable
+	    ;;
+	reset)
+	    if [ "`check_running`" != "Running" ] ; then
+            rm -rf $ORION_DB_PATH;
+			find $MIOCRAWLER_CACHE_PATH -name \*.jpg -exec rm {} \;
+	    else
+		echo "Crawler is running. Please stop it first"
+	    fi
+	    ;;
+	status)
+			cd $MC_INSTALL_PATH
+            $MIOCRAWLER_BIN -version
+            check_running
+	    ;;
+	*)
+	    echo $"Usage: $0 {start|stop|enable|disable|reset|status}"
+	    RETVAL=1
+    esac
+    
+    exit $RETVAL
+

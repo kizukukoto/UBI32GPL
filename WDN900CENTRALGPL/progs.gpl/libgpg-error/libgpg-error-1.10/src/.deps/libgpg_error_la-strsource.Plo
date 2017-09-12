@@ -1,0 +1,13 @@
+libgpg_error_la-strsource.lo: strsource.c ../config.h gpg-error.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../lib/gcc/ubicom32-linux-uclibc/4.4.1/include/stddef.h \
+ gettext.h err-sources.h
+
+../config.h:
+
+gpg-error.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../lib/gcc/ubicom32-linux-uclibc/4.4.1/include/stddef.h:
+
+gettext.h:
+
+err-sources.h:

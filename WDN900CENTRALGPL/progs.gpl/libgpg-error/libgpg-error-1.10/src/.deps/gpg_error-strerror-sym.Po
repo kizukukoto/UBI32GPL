@@ -1,0 +1,13 @@
+gpg_error-strerror-sym.o: strerror-sym.c ../config.h \
+ /spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../lib/gcc/ubicom32-linux-uclibc/4.4.1/include/stddef.h \
+ gpg-error.h err-codes-sym.h errnos-sym.h
+
+../config.h:
+
+/spaces/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1_v02/bin/../lib/gcc/ubicom32-linux-uclibc/4.4.1/include/stddef.h:
+
+gpg-error.h:
+
+err-codes-sym.h:
+
+errnos-sym.h:

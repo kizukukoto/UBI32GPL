@@ -1,0 +1,158 @@
+#!/bin/sh
+
+HOST_XML_FILE=mediacrawler-host.xml
+INSTALL_PATH=/usr/local/mediacrawler
+PERSISTENT_DATA_PATH=/internalhd/etc/.mediacrawler
+PERSISTENT_DATA_FILE=mediacrawler.pdat
+MEDIACRAWLER_SHARES_FOLDER=/shares/.mediacrawler
+MEDIACRAWLER_BIN=./bin/mediacrawler
+
+argument=$1
+
+###################################################
+check_flag() {
+
+   STATUS="disable"
+   if [ -f ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} ] ; then
+        STATUS=`grep crawler_status_flag ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} | awk -F "=" '{print $2}'`
+   fi
+
+   echo $STATUS
+}
+
+###################################################
+set_flag() {
+  if [ ! -d  ${PERSISTENT_DATA_PATH} ] ; then
+        mkdir -p ${PERSISTENT_DATA_PATH}
+  fi
+  if [ -f ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} ] ; then
+        VERSION=`grep last_version  ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE} | awk -F "=" '{print $2}'`
+  fi
+  if [ "$VERSION" == "" ]; then
+        VERSION=1.0.0
+  fi
+  echo "crawler_status_flag=$1" > ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE}
+  echo "last_version=$VERSION" >> ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE}
+  chmod 766 ${PERSISTENT_DATA_PATH}/${PERSISTENT_DATA_FILE}
+  echo "Crawler set to $1"
+}
+
+###################################################
+check_running() {
+
+  STATUS="Not running"
+
+  colnum=1
+  ps | grep PID | grep -v grep | awk '{
+        for( i; i <= NF; i++ ) { if ( $i=="PID" ) {exit i} } }'
+  colnum=$?
+  CRAWLERPIDS=`ps |grep mediacrawler | grep -v mediacrawlerd | grep -v grep`
+  if [ "$CRAWLERPIDS" != "" ] ; then
+        CRAWLERPIDS=`ps |grep mediacrawler | grep -v mediacrawlerd | grep -v grep | awk '{print $'$colnum'}'`
+  fi
+
+  if [ "$CRAWLERPIDS" == "" ] ; then
+     CRAWLERPIDS=`pidof mediacrawler`
+  fi
+
+  if [ "$CRAWLERPIDS" ] ; then
+     STATUS="Running"
+  fi
+
+  echo $STATUS
+ }
+
+########################################################
+
+start_mediacrawler() {
+   if [ "`check_running`" == "Running" ] ; then
+      echo "Mediacrawler is running. Stop it first."
+   else
+      cd $INSTALL_PATH
+      ulimit -s 512
+      ulimit -c unlimited
+      # Make sure that we launch from the parent whose nice = 0
+      renice 0 -p $$ >> /dev/null
+      nice -n 10 $MEDIACRAWLER_BIN >/dev/null 2>/dev/null &
+      echo "Mediacrawler started."
+   fi
+   return 0
+}
+#################################################
+
+stop_mediacrawler() {
+   if [ "`check_running`" == "Running" ] ; then
+	kill -9 `pidof mediacrawler`
+	echo 'Killed the mediacrawler process'
+   fi
+}
+#################################################
+
+if [ ! -f ${PERSISTENT_DATA_PATH}/${HOST_XML_FILE} ] ; then
+	if [ ! -d ${PERSISTENT_DATA_PATH} ] ; then
+		mkdir ${PERSISTENT_DATA_PATH}
+		chmod 775 ${PERSISTENT_DATA_PATH}
+		chown :www-data ${PERSISTENT_DATA_PATH}
+	fi
+	cp ${INSTALL_PATH}/${HOST_XML_FILE} ${PERSISTENT_DATA_PATH}/${HOST_XML_FILE}
+	chmod 775 ${PERSISTENT_DATA_PATH}/${HOST_XML_FILE}
+	chown :www-data ${PERSISTENT_DATA_PATH}/${HOST_XML_FILE}
+	# As part of fix for 29027, we enable this OOTB and then work as the user chooses
+	set_flag enable
+fi
+
+case "$1" in
+        restart)
+            if [ "`check_flag`" == "enable" ] ; then
+                stop_mediacrawler
+                sleep 5
+                start_mediacrawler
+                exit 0
+            else
+                echo "Crawler is not enabled"
+            fi
+            ;;
+	status)
+      	   cd $INSTALL_PATH
+	   echo "Version: " `$MEDIACRAWLER_BIN version`
+	   echo "Remote Access: " `check_flag`
+	   echo "Process: "`check_running`
+	   ;;
+        start)
+            if [ "`check_flag`" == "enable" ] ; then
+                start_mediacrawler
+                exit 0
+            else
+                echo "Crawler is not enabled"
+            fi
+            ;;
+        reset)
+            if [ "`check_running`" != "Running" ] ; then
+                rm -rf $MEDIACRAWLER_SHARES_FOLDER
+            else
+                echo "Crawler is running. Please stop it first"
+            fi
+            ;;
+        stop)
+	    sleep 1
+            stop_mediacrawler
+	    sleep 5
+            ;;
+        enable)
+            if [ "`check_running`" != "Running" ] ; then
+                set_flag enable
+                start_mediacrawler
+            else
+                echo "Crawler already enabled, so ignoring this request"
+            fi
+            ;;
+        disable)
+            stop_mediacrawler
+            set_flag disable
+	    sleep 5
+            ;;
+        *)
+            echo $"Usage: $0 {start|stop|restart|enable|disable|status|reset}"
+            RETVAL=1
+esac
+exit 0

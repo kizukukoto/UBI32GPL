@@ -1,0 +1,73 @@
+argv_parse.lo .libs/argv_parse.o: argv_parse.c \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/stdlib.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/features.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/cdefs.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/wordsize.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/gnu/stubs.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/stddef.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/types.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/types.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/typesizes.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/time.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/endian.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/endian.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/select.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/select.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigset.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/time.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/sysmacros.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/pthreadtypes.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/alloca.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/ctype.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/string.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/string.h \
+  /opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/string2.h \
+  argv_parse.h
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/stdlib.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/features.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/cdefs.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/wordsize.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/gnu/stubs.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/cross-tools/lib/gcc/arm-unknown-linux-gnueabi/4.2.4/include/stddef.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/types.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/types.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/typesizes.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/time.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/endian.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/endian.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/select.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/select.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/sigset.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/time.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/sys/sysmacros.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/pthreadtypes.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/alloca.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/ctype.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/string.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/string.h:
+
+/opt/crosstool/OXNAS820/gcc-4.2.4-glibc-2.7-toolchain/usr/include/bits/string2.h:
+
+argv_parse.h:

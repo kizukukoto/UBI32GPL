@@ -1,0 +1,2 @@
+/var "Share" allow:wd_user cnidscheme:cdb options:noadouble,usedots,upriv
+/var/wd "TM_Volume" allow:wd_user cnidscheme:cdb volcharset:UTF8 options:usedots,upriv,tm dbpath:/var/wd/.AppleDB

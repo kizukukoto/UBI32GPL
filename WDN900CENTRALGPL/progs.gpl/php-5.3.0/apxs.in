@@ -1,0 +1,34 @@
+#!/bin/sh
+
+if [ -f @@APACHEENVVARS@@ ]; then
+	. @@APACHEENVVARS@@
+else
+	echo "No Apache Environment Variables."
+	exit 0
+fi
+
+case $1 in
+	-q)
+		case $2 in
+			CFLAGS) echo "${CFLAGS}";;
+			INCLUDEDIR) echo " ${INCLUDES} ${EXTRA_INCLUDES} ";;
+			BINDIR) echo "${bindir}";;
+			SBINDIR) echo "${sbindir}";;
+			TARGET) echo "${progname}";;
+			MPM_NAME) echo "${MPM_NAME}";;
+			APR_BINDIR) echo "${APR_BINDIR}";;
+			APU_BINDIR) echo "${APU_BINDIR}";;
+			APR_CONFIG) echo "${APR_CONFIG}";;
+			APU_CONFIG) echo "${APU_CONFIG}";;
+			APR_INCLUDEDIR) echo "${APR_INCLUDEDIR}";;
+			APU_INCLUDEDIR) echo "${APU_INCLUDEDIR}";;
+			*) echo "Unknown apxs option.[$2]";;
+		esac
+		;;
+	-S)
+		echo "-S: $2";;
+	*)
+		echo "Unknown apxs action.[$1]"
+		;;
+esac
+

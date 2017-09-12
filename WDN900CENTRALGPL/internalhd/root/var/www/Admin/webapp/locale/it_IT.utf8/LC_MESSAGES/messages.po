@@ -1,0 +1,73 @@
+# Languate translation
+#
+#, fuzzy
+#: string ""
+msgid ""
+msgstr ""
+
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2010-07-02 10:00-0700\n"
+"PO-Revision-Date: 2010-09-16  17:00\n"
+"Addition of three keys: I accept; Print; and License Agreemeent\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ITALIAN <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+
+#: string "Welcome"
+msgid "WELCOME"
+msgstr "Introduzione"
+
+
+#: string "Network Drive Password:"
+msgid "PASSWORD"
+msgstr "Password unità di rete:"
+
+
+#: string "Remember Me"
+msgid "REMEMBER_ME"
+msgstr "Memorizza"
+
+
+#: string "Sign in"
+msgid "SIGN_IN"
+msgstr "Accedi"
+
+
+#: string "Shares"
+msgid "SHARES"
+msgstr "Condivisioni"
+
+#: string "Access Denied"
+msgid "ACCESS_DENIED"
+msgstr "Accesso negato"
+
+
+#: string "Access denied content"
+msgid "ACCESS_DENIED_CONTENT"
+msgstr "Per visualizzare questo contenuto, è necessario accedere come utente autorizzato. <a href=$_link_>Fare click per effettuare il login.</a>" 
+
+#: string "Access denied content"
+msgid "AUTH_FAILED"
+msgstr "Credenziali utente non valide"
+
+
+#: string "Sign Out"
+msgid "LOGOUT"
+msgstr "Sign Out"
+
+
+#: string "If you leave this page, any mapped shares will remain connected until you manually disconnect them."
+msgid "LOGOUT_WARNING"
+msgstr "Se si esce da questa pagina, le eventuali condivisioni mappate rimarranno connesse fino a quando non le si scollegherà manualmente."
+
+#: string "Cancel"
+msgid "CANCEL"
+msgstr "Annulla"
+
+#: string "To download and install the latest Java software, go to java.com and follow the onscreen instructions. By default, Java is enabled in your browser. If you have disabled Java, please check your brower's help system for instructions about enabling it."
+msgid "GET_JAVA"
+msgstr "Per scaricare e installare l'ultima versione del software Java, visitare java.com e seguire le istruzioni visualizzate. Java è abilitato nel browser, per impostazione predefinita. Se è stato disattivato Java, consultare la guida del brower per le istruzioni su come abilitarlo."

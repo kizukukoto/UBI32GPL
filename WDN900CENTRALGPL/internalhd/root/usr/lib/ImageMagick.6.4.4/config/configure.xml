@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuremap [
+<!ELEMENT configuremap (configure)+>
+<!ELEMENT configure (#PCDATA)>
+<!ATTLIST configure name CDATA #REQUIRED>
+<!ATTLIST configure value CDATA #REQUIRED>
+]>
+<configuremap>
+  <configure name="NAME" value="ImageMagick"/>
+  <configure name="LIB_VERSION" value="0x644"/>
+  <configure name="LIB_VERSION_NUMBER" value="6,4,4,1"/>
+  <configure name="RELEASE_DATE" value="2012-09-11"/>
+  <configure name="CONFIGURE" value="/home/build/workspace/Update-WRGND14_GPLRELEASE-CODE/WRGND14_GPLRELEASE/progs.gpl/ImageMagick-6.4.4/build/ImageMagick-6.4.4/configure  '--build=i686-unknown-linux-gnu' '--host=ubicom32-linux-uclibc' '--prefix=' '--with-modules' '--without-x' '--without-gs-font-dir' '--without-perl' '--without-zlib' '--without-threads' '--without-magick-plus-plus' '--with-quantum-depth=8' '--enable-shared=yes' '--enable-static=no' 'CC=ubicom32-linux-uclibc-gcc' 'CXX=ubicom32-linux-uclibc-g++' 'CFLAGS=-Os -Wall -D__ARCH_USE_MMU__ -D__UCLIBC__ -fno-strict-aliasing -pipe -march=ubicom32v5 -DUBICOM32_ARCH_VERSION=5 -DIP8000 -Dubicom32 -I/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1/ubicom32-linux-uclibc/runtime/usr/include' 'CPPFLAGS=-Os -Wall -D__ARCH_USE_MMU__ -D__UCLIBC__ -fno-strict-aliasing -pipe -march=ubicom32v5 -DUBICOM32_ARCH_VERSION=5 -DIP8000 -Dubicom32 -I/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1/ubicom32-linux-uclibc/runtime/usr/include -I/home/build/workspace/Update-WRGND14_GPLRELEASE-CODE/WRGND14_GPLRELEASE/progs.gpl/jpeg-6b/build/jpegsrc.v6b' 'LDFLAGS=-march=ubicom32v5 -L/home/build/workspace/Update-WRGND14_GPLRELEASE-CODE/WRGND14_GPLRELEASE/progs.gpl/jpeg-6b/build/jpegsrc.v6b' 'build_alias=i686-unknown-linux-gnu' 'host_alias=ubicom32-linux-uclibc'"/>
+  <configure name="PREFIX" value=""/>
+  <configure name="EXEC-PREFIX" value=""/>
+  <configure name="VERSION" value="6.4.4"/>
+  <configure name="CC" value="ubicom32-linux-uclibc-gcc -std=gnu99"/>
+  <configure name="CFLAGS" value="-fopenmp -Os -Wall -D__ARCH_USE_MMU__ -D__UCLIBC__ -fno-strict-aliasing -pipe -march=ubicom32v5 -DUBICOM32_ARCH_VERSION=5 -DIP8000 -Dubicom32 -I/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1/ubicom32-linux-uclibc/runtime/usr/include -Wall -W"/>
+  <configure name="CPPFLAGS" value="-I/include/ImageMagick"/>
+  <configure name="PCFLAGS" value="-fopenmp"/>
+  <configure name="DEFS" value="-DHAVE_CONFIG_H"/>
+  <configure name="LDFLAGS" value="-L/lib -march=ubicom32v5 -L/home/build/workspace/Update-WRGND14_GPLRELEASE-CODE/WRGND14_GPLRELEASE/progs.gpl/jpeg-6b/build/jpegsrc.v6b"/>
+  <configure name="LIBS" value="-lMagickCore -ljpeg -lm -lgomp "/>
+  <configure name="CXX" value="ubicom32-linux-uclibc-g++"/>
+  <configure name="CXXFLAGS" value="-g -O2 -Wall -W"/>
+  <configure name="DISTCHECK_CONFIG_FLAGS" value="'CC=ubicom32-linux-uclibc-gcc' 'CFLAGS=-Os -Wall -D__ARCH_USE_MMU__ -D__UCLIBC__ -fno-strict-aliasing -pipe -march=ubicom32v5 -DUBICOM32_ARCH_VERSION=5 -DIP8000 -Dubicom32 -I/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1/ubicom32-linux-uclibc/runtime/usr/include' 'CPPFLAGS=-Os -Wall -D__ARCH_USE_MMU__ -D__UCLIBC__ -fno-strict-aliasing -pipe -march=ubicom32v5 -DUBICOM32_ARCH_VERSION=5 -DIP8000 -Dubicom32 -I/opt/ubicom32_sdk32x_gcc-4.4.1_uclibc-0.9.30.1/ubicom32-linux-uclibc/runtime/usr/include -I/home/build/workspace/Update-WRGND14_GPLRELEASE-CODE/WRGND14_GPLRELEASE/progs.gpl/jpeg-6b/build/jpegsrc.v6b' 'CXX=ubicom32-linux-uclibc-g++' 'LDFLAGS=-march=ubicom32v5 -L/home/build/workspace/Update-WRGND14_GPLRELEASE-CODE/WRGND14_GPLRELEASE/progs.gpl/jpeg-6b/build/jpegsrc.v6b' --disable-deprecated --with-umem=no --with-zlib=no --with-autotrace=no --with-fontconfig=no --with-fontpath= --with-gs-font-dir=no --with-rsvg=no --with-xml=no"/>
+  <configure name="HOST" value="ubicom32-unknown-linux-uclibc"/>
+  <configure name="DELEGATES" value="jpeg"/>
+  <configure name="COPYRIGHT" value="Copyright (C) 1999-2008 ImageMagick Studio LLC"/>
+  <configure name="WEBSITE" value="http://www.imagemagick.org"/>
+  <configure name="QuantumDepth" value="8"/>
+  <!-- <configure name="MAGICK_TEMPORARY_PATH" value="/tmp"/> -->
+  <!-- <configure name="MAGICK_MEMORY_LIMIT" value="2gb"/> -->
+  <!-- <configure name="MAGICK_MAP_LIMIT" value="8gb"/> -->
+  <!-- <configure name="MAGICK_AREA_LIMIT" value="4gb"/> -->
+  <!-- <configure name="MAGICK_DISK_LIMIT" value="16eb"/> -->
+  <!-- <configure name="MAGICK_FILE_LIMIT" value="768"/> -->
+  <!-- <configure name="MAGICK_THREAD_LIMIT" value="8"/> -->
+</configuremap>

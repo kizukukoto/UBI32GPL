@@ -1,0 +1,12 @@
+pam_deny.lo: pam_deny.c ../../config.h \
+ ../../libpam/include/security/pam_modules.h \
+ ../../libpam/include/security/_pam_types.h \
+ ../../libpam/include/security/_pam_compat.h
+
+../../config.h:
+
+../../libpam/include/security/pam_modules.h:
+
+../../libpam/include/security/_pam_types.h:
+
+../../libpam/include/security/_pam_compat.h:

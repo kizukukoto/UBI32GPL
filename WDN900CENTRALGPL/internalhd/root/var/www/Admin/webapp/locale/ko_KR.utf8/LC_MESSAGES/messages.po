@@ -1,0 +1,73 @@
+# Languate translation
+#
+#, fuzzy
+#: string ""
+msgid ""
+msgstr ""
+
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2010-07-02 10:00-0700\n"
+"PO-Revision-Date: 2010-09-16  17:00\n"
+"Addition of three keys: I accept; Print; and License Agreemeent\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: KOREAN <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+
+#: string "Welcome"
+msgid "WELCOME"
+msgstr "시작"
+
+
+#: string "Network Drive Password:"
+msgid "PASSWORD"
+msgstr "네트워크 드라이브 암호:"
+
+
+#: string "Remember Me"
+msgid "REMEMBER_ME"
+msgstr "로그인 정보 저장"
+
+
+#: string "Sign in"
+msgid "SIGN_IN"
+msgstr "로그인"
+
+
+#: string "Shares"
+msgid "SHARES"
+msgstr "공유"
+
+#: string "Access Denied"
+msgid "ACCESS_DENIED"
+msgstr "액세스 거부됨"
+
+
+#: string "Access denied content"
+msgid "ACCESS_DENIED_CONTENT"
+msgstr "이 컨텐츠를 보려면 승인된 사용자로 로그인해야 합니다. <a href=$_link_>로그인하려면 클릭하십시오.</a>" 
+
+#: string "Access denied content"
+msgid "AUTH_FAILED"
+msgstr "유효하지 않은 사용자 자격 증명"
+
+
+#: string "Sign Out"
+msgid "LOGOUT"
+msgstr "로그아웃"
+
+
+#: string "If you leave this page, any mapped shares will remain connected until you manually disconnect them."
+msgid "LOGOUT_WARNING"
+msgstr "이 페이지를 나가면, 수동으로 연결을 끊을 때까지 매핑된 공유가 연결된 채로 유지됩니다."
+
+#: string "Cancel"
+msgid "CANCEL"
+msgstr "취소"
+
+#: string "To download and install the latest Java software, go to java.com and follow the onscreen instructions. By default, Java is enabled in your browser. If you have disabled Java, please check your brower's help system for instructions about enabling it."
+msgid "GET_JAVA"
+msgstr "최신 Java 소프트웨어를 다운로드해서 설치하려면 java.com으로 이동해서 화면에 나타나는 지침을 따르십시오. 기본적으로 Java는 브라우저에서 활성화되어 있습니다. Java를 비활성화한 경우에는 브라우저 도움말 시스템의 활성화 지침을 참조하십시오."

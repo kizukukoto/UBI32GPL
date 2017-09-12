@@ -1,0 +1,19 @@
+diff -urN orig/openvpn-2.1.3/config.sub build/openvpn-2.1.3/config.sub
+--- orig/openvpn-2.1.3/config.sub
++++ build/openvpn-2.1.3/config.sub
+@@ -283,6 +283,7 @@
+ 	| sparcv8 | sparcv9 | sparcv9b | sparcv9v \
+ 	| spu | strongarm \
+ 	| tahoe | thumb | tic4x | tic80 | tron \
++	| ubicom32 \
+ 	| v850 | v850e \
+ 	| we32k \
+ 	| x86 | xc16x | xscale | xscalee[bl] | xstormy16 | xtensa \
+@@ -366,6 +367,7 @@
+ 	| tahoe-* | thumb-* \
+ 	| tic30-* | tic4x-* | tic54x-* | tic55x-* | tic6x-* | tic80-* \
+ 	| tron-* \
++	| ubicom32-* \
+ 	| v850-* | v850e-* | vax-* \
+ 	| we32k-* \
+ 	| x86-* | x86_64-* | xc16x-* | xps100-* | xscale-* | xscalee[bl]-* \

@@ -1,0 +1,126 @@
+diff -urN orig/httpd-2.2.9/build/config.sub build/httpd-2.2.9/build/config.sub
+--- orig/httpd-2.2.9/build/config.sub
++++ build/httpd-2.2.9/build/config.sub
+@@ -282,6 +282,7 @@
+ 	| sparcv8 | sparcv9 | sparcv9b | sparcv9v \
+ 	| spu | strongarm \
+ 	| tahoe | thumb | tic4x | tic80 | tron \
++	| ubicom32 \
+ 	| v850 | v850e \
+ 	| we32k \
+ 	| x86 | xscale | xscalee[bl] | xstormy16 | xtensa \
+@@ -365,6 +366,7 @@
+ 	| tahoe-* | thumb-* \
+ 	| tic30-* | tic4x-* | tic54x-* | tic55x-* | tic6x-* | tic80-* \
+ 	| tron-* \
++	| ubicom32-* \
+ 	| v850-* | v850e-* | vax-* \
+ 	| we32k-* \
+ 	| x86-* | x86_64-* | xps100-* | xscale-* | xscalee[bl]-* \
+diff -urN orig/httpd-2.2.9/configure build/httpd-2.2.9/configure
+--- orig/httpd-2.2.9/configure
++++ build/httpd-2.2.9/configure
+@@ -11807,7 +11807,7 @@
+     test "x$silent" != "xyes" && echo "  setting INCLUDES to \"-I${ap_zlib_base}/include\""
+     INCLUDES="-I${ap_zlib_base}/include"
+   else
+-    apr_addto_bugger="-I${ap_zlib_base}/include"
++    apr_addto_bugger="-I${ap_zlib_base} -I${ap_zlib_base}/include"
+     for i in $apr_addto_bugger; do
+       apr_addto_duplicate="0"
+       for j in $INCLUDES; do
+@@ -11829,7 +11829,7 @@
+     test "x$silent" != "xyes" && echo "  setting LDFLAGS to \"-L${ap_zlib_base}/lib\""
+     LDFLAGS="-L${ap_zlib_base}/lib"
+   else
+-    apr_addto_bugger="-L${ap_zlib_base}/lib"
++    apr_addto_bugger="-L${ap_zlib_base} -L${ap_zlib_base}/lib"
+     for i in $apr_addto_bugger; do
+       apr_addto_duplicate="0"
+       for j in $LDFLAGS; do
+diff -urN orig/httpd-2.2.9/server/Makefile.in build/httpd-2.2.9/server/Makefile.in
+--- orig/httpd-2.2.9/server/Makefile.in
++++ build/httpd-2.2.9/server/Makefile.in
+@@ -25,8 +25,12 @@
+ gen_test_char: $(gen_test_char_OBJECTS)
+ 	$(LINK) $(EXTRA_LDFLAGS) $(gen_test_char_OBJECTS) $(EXTRA_LIBS)
+
+-test_char.h: gen_test_char
++gen_test_char_pc:
++	@gcc -o gen_test_char -I../srclib/apr/include gen_test_char.c
++
++test_char.h: gen_test_char_pc
+ 	./gen_test_char > test_char.h
++	@make gen_test_char
+
+ util.lo: test_char.h
+
+diff -urN orig/httpd-2.2.9/srclib/apr/build/ltmain.sh build/httpd-2.2.9/srclib/apr/build/ltmain.sh
+--- orig/httpd-2.2.9/srclib/apr/build/ltmain.sh
++++ build/httpd-2.2.9/srclib/apr/build/ltmain.sh
+@@ -124,9 +124,10 @@
+ 	fi"
+ done
+
+-if test -n "$lt_env"; then
+-  lt_env="env $lt_env"
+-fi
++#if test -n "$lt_env"; then
++#  lt_env="env $lt_env"
++#fi
++lt_env="env"
+
+ # Make sure IFS has a sensible default
+ lt_nl='
+diff -urN orig/httpd-2.2.9/srclib/apr/include/apr_want.h build/httpd-2.2.9/srclib/apr/include/apr_want.h
+--- orig/httpd-2.2.9/srclib/apr/include/apr_want.h
++++ build/httpd-2.2.9/srclib/apr/include/apr_want.h
+@@ -88,13 +88,13 @@
+ #endif
+
+ #else
+-
++#if 0//!defined(ubicom32)
+ struct iovec
+ {
+     char *iov_base;
+     size_t iov_len;
+ };
+-
++#endif
+ #endif
+
+ /* apr_want is included at several layers; redefining APR_HAVE_IOVEC
+diff -urN orig/httpd-2.2.9/srclib/apr-util/xml/expat/conftools/ltmain.sh build/httpd-2.2.9/srclib/apr-util/xml/expat/conftools/ltmain.sh
+--- orig/httpd-2.2.9/srclib/apr-util/xml/expat/conftools/ltmain.sh
++++ build/httpd-2.2.9/srclib/apr-util/xml/expat/conftools/ltmain.sh
+@@ -124,9 +124,10 @@
+ 	fi"
+ done
+
+-if test -n "$lt_env"; then
+-  lt_env="env $lt_env"
+-fi
++#if test -n "$lt_env"; then
++#  lt_env="env $lt_env"
++#fi
++lt_env="env"
+
+ # Make sure IFS has a sensible default
+ lt_nl='
+diff -urN orig/httpd-2.2.9/srclib/pcre/Makefile.in build/httpd-2.2.9/srclib/pcre/Makefile.in
+--- orig/httpd-2.2.9/srclib/pcre/Makefile.in
++++ build/httpd-2.2.9/srclib/pcre/Makefile.in
+@@ -14,7 +14,11 @@
+ dftables: dftables.lo
+ 	$(LINK) $(EXTRA_LDFLAGS) dftables.lo $(EXTRA_LIBS)
+
+-$(srcdir)/chartables.c: dftables
++dftables_pc:
++	@gcc -o dftables dftables.c
++
++$(srcdir)/chartables.c: dftables_pc
+ 	./dftables $@
++	@make dftables
+
+ pcre.lo: $(srcdir)/chartables.c
