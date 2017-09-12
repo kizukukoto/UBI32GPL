@@ -1,3 +1,0 @@
-pure_ftpd-crypto-sha1.o: crypto-sha1.c ../config.h
-
-../config.h:

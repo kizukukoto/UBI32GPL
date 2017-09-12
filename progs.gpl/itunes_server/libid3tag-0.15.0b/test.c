@@ -1,5 +1,0 @@
-#include <zlib.h>
-main()
-{
-}
-

@@ -1,4 +1,0 @@
-touch *
-./configure --host=arm --build=arm-linux --prefix=/usr/local/pureftpd --with-rfc2640 --with-throttling --with-largefile --with-quotas
-cp -f config.h.bak config.h
-make clean;make

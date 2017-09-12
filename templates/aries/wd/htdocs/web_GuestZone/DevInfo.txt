@@ -1,3 +1,0 @@
-<?
-include "/htdocs/web/DevInfo.php";
-?>

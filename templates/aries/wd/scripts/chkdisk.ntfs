@@ -1,3 +1,0 @@
-#!/bin/sh
-echo [$0] $1 > /dev/console 
-chkntfs -a -f --no-orphans $1

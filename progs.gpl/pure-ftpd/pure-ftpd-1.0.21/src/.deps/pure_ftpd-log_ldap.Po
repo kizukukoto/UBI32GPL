@@ -1,3 +1,0 @@
-pure_ftpd-log_ldap.o: log_ldap.c ../config.h
-
-../config.h:

@@ -1,3 +1,0 @@
-pure_ftpd-altlog.o: altlog.c ../config.h
-
-../config.h:

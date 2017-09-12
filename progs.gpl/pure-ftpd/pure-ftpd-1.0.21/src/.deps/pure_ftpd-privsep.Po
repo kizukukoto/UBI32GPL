@@ -1,3 +1,0 @@
-pure_ftpd-privsep.o: privsep.c ../config.h
-
-../config.h:

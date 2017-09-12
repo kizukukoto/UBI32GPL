@@ -1,3 +1,0 @@
-pure_ftpd-diraliases.o: diraliases.c ../config.h
-
-../config.h:

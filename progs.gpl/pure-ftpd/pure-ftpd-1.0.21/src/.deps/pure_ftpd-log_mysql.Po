@@ -1,3 +1,0 @@
-pure_ftpd-log_mysql.o: log_mysql.c ../config.h
-
-../config.h:

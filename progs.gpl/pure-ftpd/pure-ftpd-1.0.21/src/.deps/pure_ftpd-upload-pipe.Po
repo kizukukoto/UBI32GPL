@@ -1,3 +1,0 @@
-pure_ftpd-upload-pipe.o: upload-pipe.c ../config.h
-
-../config.h:

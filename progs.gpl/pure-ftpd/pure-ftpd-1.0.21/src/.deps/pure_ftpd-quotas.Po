@@ -1,3 +1,0 @@
-pure_ftpd-quotas.o: quotas.c ../config.h
-
-../config.h:

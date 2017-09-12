@@ -1,6 +1,0 @@
-SUBDIRS = \
-	src
-
-EXTRA_DIST = \
-	README.FIRST
-

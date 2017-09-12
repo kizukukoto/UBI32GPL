@@ -1,3 +1,0 @@
-pure_ftpd-crypto-md5.o: crypto-md5.c ../config.h
-
-../config.h:

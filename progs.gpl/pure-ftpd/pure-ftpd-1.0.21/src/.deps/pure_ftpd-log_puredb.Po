@@ -1,3 +1,0 @@
-pure_ftpd-log_puredb.o: log_puredb.c ../config.h
-
-../config.h:

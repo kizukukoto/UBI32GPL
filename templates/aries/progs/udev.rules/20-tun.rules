@@ -1,2 +1,0 @@
-# udev rules
-ACTION=="add",	KERNEL=="tun",	NAME="net/tun"

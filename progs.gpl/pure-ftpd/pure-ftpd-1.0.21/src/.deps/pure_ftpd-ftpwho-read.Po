@@ -1,3 +1,0 @@
-pure_ftpd-ftpwho-read.o: ftpwho-read.c ../config.h
-
-../config.h:
