@@ -1,0 +1,1073 @@
+Keyword: AcceptMulti
+Where:   Tuning
+Type:    Flag
+Default: On
+Desc:    By default, Mathopd will try to accept more connections
+         after it has accepted one, until the accept call indicates
+         a blocking condition. When there is hardly any traffic,
+         this means that an extra system call is made each time
+         a connection comes in. If you don't want that behaviour,
+         use this keyword to turn it off.
+
+Keyword: Address
+Where:   Server
+Type:    Address
+Default: 0 (any address)
+Desc:    If you want a server to listen on a specific address, rather
+         than any address, use this keyword.
+         Example:
+
+           Server {
+             Address 127.0.0.1
+           }
+
+Keyword: Admin
+Where:   Control
+Type:    String
+Default: (none)
+Desc:    The value of this keyword, if set, is displayed in HTTP error
+         messages.
+
+Keyword: Alias
+Where:   Control
+Type:    String
+Desc:    Control blocks that contain an Alias keyword are used in
+         URI-to-path translation. A block with an Alias keyword must
+         have one or more Location keywords as well. Generally
+         speaking, Mathopd scans Control blocks until it can match
+         the directory part of the Request-URI with the alias.
+         Scanning starts in the Virtual server and continues
+         upwards. Scanning stops as soon as a match is found.
+
+         Example:
+
+           Control {
+             Alias /
+             Location /usr/share/doc/handbook
+           }
+           Control {
+             Alias /boland
+             Location /usr/home/boland/www
+           }
+
+         The above is an example of two aliases. Note that the order
+         of the aliases matters: if you switch the two around, unexpected
+         things will happen (the more specific alias will be obscured by
+         the '/' alias.)
+
+Keyword: AllowDotfiles
+Where:   Control
+Type:    Flag
+Default: Off
+Desc:    Normally, Mathopd will not serve any file if any part of its
+         pathname contains '/.', for security reasons.
+         If the AllowDotFiles flag is set, there restrictions are lifted
+         a bit, although constructions like '/./', '/../', etc. are
+         still disallowed.
+
+Keyword: AnyHost
+Where:   Virtual
+Desc:    If a virtual server has this keyword, it will match on any Host:
+         header that is sent by the client. Other virtual servers that have
+         an explicit Host name are still checked, so the 'AnyHost' virtual
+         server will only be used as a last resort. See also the discussion
+         of wildcard expansion under the 'Location' keyword.
+
+Keyword: AutoIndexCommand
+Where:   Control
+Desc:    If a request for a directory is made, and none of the files
+         specified by IndexNames is found in that directory, mathopd will,
+         as a last resort, run a special CGI script to generate a directory
+         listing. The AutoIndexCommand determines which script exactly.
+         The script must be an absolute pathname.
+
+Keyword: Backlog
+Where:   Server
+Type:    Integer
+Default: 128
+Desc:    If all connections are in use, and there are no idle connections,
+         Mathopd will make no attempt to accept new connections. The
+         operating system may hold on to new connections though, in which
+         case they will be picked up by Mathopd as soon as one connection
+         becomes idle. The number of connections that can 'hang in the air'
+         in this fashion is determined by the Backlog parameter.
+         Normally one should never have to change this number.
+
+Keyword: BufSize
+Where:   Tuning
+Type:    Integer
+Default: 12288
+Desc:    The server uses two buffers to store incoming and outgoing data.
+         The size of the outgoing buffer is determined by the value of the
+         BufSize keyword.
+         Larger buffers can lead to less system calls, but also increase the
+         amount of memory used by the server process.
+
+         Note: if you run a version of Mathopd that uses sendfile(), the
+         default bufsize is way too large, and you should decrease it.
+
+Keyword: BytesRead
+Where:   LogFormat
+Desc:    The number of octets (bytes) read from the client during a single
+         request.
+
+Keyword: BytesWritten
+Where:   LogFormat
+Desc:    The number of octets (bytes) sent to the client during a single
+         request.
+         Note that this number may not be accurate in all cases.
+         If a network error occurs after a successful send operation,
+         the logged number of bytes sent will be too big.
+
+Keyword: ChildLog
+Where:   Control
+Type:    String
+Desc:    If a child process, such as a CGI script, writes a message to its
+         standard error file descriptor (fd 2) it will end up in the file
+         designated by the ChildLog keyword. If no ChildLog is specified,
+         diagnostic messages will be thrown away.
+
+Keyword: Clobber
+Where:   Tuning
+Type:    Flag
+Default: On
+Desc:    Normally, Mathopd closes connections that are idle when a new
+         connection arrives and the maximum number of connections has been
+         reached. This behaviour is called 'clobbering'. By setting the
+         'Clobber' flag to 'Off', new connections cannot be made until an
+         existing connection terminates by itself or times out.
+
+Keyword: ContentLength
+Where:   LogFormat
+Desc:    The total size of the resource requested by the client.
+
+Keyword: Control
+Where:   Global, Server, Virtual
+Type:    Block
+Desc:    The 'Control' keyword starts a so-called control block. As the name
+         suggests, it controls the behaviour of the server. In fact the
+         keyword itself does not do very much; the directives inside the
+         control block do all the work.
+
+         Unless the block contains an Alias directive, settings that are
+         specified inside a control block are inherited by all next blocks
+         that are on an equal or lower level.
+
+         Control blocks can appear at three different levels. Control bocks
+         that appear at the 'top' level in the configuration file are called
+         global control blocks. Next, one can put control blocks inside
+         Server blocks. The settings defined there are local to that specific
+         server. And finally one can have control blocks inside Virtual
+         blocks. These blocks are on the lowest level.
+
+         Usually a configuration file is made up of one very large global
+         control block, followed by a bunch of Virtual servers that each
+         contain a small control block, mostly containing just an Alias and
+         a Location directive.
+
+Keyword: CoreDirectory
+Where:   Global
+Type:    String
+Desc:    Normally, for practical reasons, the server changes its current
+         directory to the root directory "/". If this is undesirable for
+         whatever reason, you can specify an alternate directory here.
+         As a side effect, if mathopd dumps core for whatever reason, the
+         core file will be in this directory. Actually if the server is
+         started by root it will never dump core for security reasons, so
+         this feature is a bit useless.
+
+Keyword: Ctime
+Where:   LogFormat
+Desc:    The current time in 'C' format (e.g. Sun Mar 30 21:44:52 2003.)
+
+Keyword: EncryptedUserFile
+Where:   Control
+Type:    Flag
+Default: Off
+Desc:    Normally, the UserFile (see the descriptions of the Realm and
+         Userfile keywords) contains passwords in clear-text format. If
+         you want to use encrypted passwords (for example, using the
+         'htpasswd' program) you must set the value of EncryptedUserFile
+         to 'On' in the control block that contains the UserFile in
+         question.
+
+Keyword: Error401File
+Where:   Control
+Type:    String
+Desc:    The contents of this file will be displayed whenever a '401' (not
+         authorized) error occurs. The file may be a CGI script or an
+         external command. If CGI scripts are used, the script is responsible
+         for sending the proper status code.
+
+Keyword: Error403File
+Where:   Control
+Type:    String
+         The contents of this file will be displayed whenever a '403'
+         (forbidden) error occurs. For more information, see Error401File.
+
+Keyword: Error404File
+Where:   Control
+Type:    String
+         The contents of this file will be displayed whenever a '404' (not
+         found) error occurs. For more information, see Error401File.
+
+Keyword: ErrorLog
+Where:   Global
+Type:    String
+Desc:    The server process will print diagnostics messages into this file.
+         Mathopd will open the error log in write-only mode. If it does not
+         have permission to do that, the program will exit.
+         Note that if the value of ErrorLog contains a percent sign (%),
+         the name of the error logfile will be expanded using a strftime-like
+         contruction (see also: Log.)
+
+Keyword: ExactMatch
+Where:   Control
+Type:    Flag
+Desc:    The ExactMatch causes an Alias to be used only if it matches the
+         request-URI exactly. This is rather a hack. It was originally
+         designed to disallow users more than one html page per web site.
+         The way this is done is as follows
+
+           Control {
+             IndexNames { index.html }
+             Types {
+               text/html { html htm }
+             }
+           }
+           Server {
+             Virtual {
+               Host www.another.example
+               Control {
+                 Alias /
+                 Location /var/www/www.another.example
+                 Specials {
+                   Dummy { html htm }
+                 }
+               }
+               Control {
+                 Alias /
+                 Location /var/www/www.another.example
+                 ExactMatch On
+               }
+             }
+             # other virtual servers ...
+           }
+
+         Now if someone requests http://www.another.example/, the alias
+         will match exactly, so the control block at the bottom will be
+         in effect. On the other hand, if a request is made for, say,
+         http://www.another.example/foo.html, the alias will not match
+         exactly, so the second control block from the bottom will be used.
+         This control block overrides the type declaration for html and htm
+         extensions, effectively hiding these files, even if they were to
+         exist physically. Note that files with extensions other than html
+         and htm are processed normally, so that you can for example still
+         have things like images on your home page.
+
+Keyword: ExpireInterval
+Where:   Control
+Type:    Integer
+Desc:    If the value of ExpireInterval is nonzero (which is the default)
+         the server will send an Expires: header that points to a data that
+         is the specified number of seconds in the future.
+
+Keyword: Export
+Where:   Control
+Type:    Block
+Desc:    Some operating systems require that some environment variables
+         have certain values in order for child processes to work correctly.
+         To export these variables to child processes, use the 'Export'
+         keyword. If you want to export certain variables with preset values,
+         use 'PutEnv' instead.
+         Example:
+
+           Control {
+             Export { TZ LD_LIBRARY_PATH }
+           }
+
+Keyword: External
+Where:   Control
+Type:    Block
+Desc:    The 'External' keywords defines a set of filename extensions that
+         get special treatment. (See also: Types, Specials.) If mathopd
+         processes a filename whose extension is match in an 'External'
+         block, it will run an external program with the name of the file
+         as its first argument. Before execution, mathopd will change its
+         current directory to the directory that contains the file that is
+         being served.
+         Example:
+
+           Control {
+             External {
+               /usr/bin/perl { .pl }
+             }
+           }
+
+         This will treat all files that end with '.pl' as CGI scripts,
+         interpreted by /usr/bin/perl.
+
+         It is possible to pass additional arguments to interpreters.
+         For example, if you want to run all perl scripts with the '-T'
+         option, use the following construction:
+
+           Control {
+             External {
+               "/usr/bin/perl -T" { .pl }
+             }
+           }
+
+Keyword: ExtraHeaders
+Where:   Control
+Type:    Block
+Desc:    Use this keyword to add extra HTTP headers. This is perhaps best
+         demonstrated by an example.
+
+           Control {
+             ExtraHeaders { "Cache-Control: max-age=3600" }
+           }
+
+         If this is done, all responses, well, to be precise, all responses
+         with status code 200, will be accompanied by a
+
+           Cache-Control: max-age=3600
+
+         HTTP header.
+
+Keyword: Family
+Where:   Server
+Type:    String
+Desc:    The value of 'Family' determines the address family used by the
+         server. If this parameter is not set, the address family is left
+         unspecified. If set, the value must be either "inet" for IPv4 or
+         "inet6" for IPv6. Note that inet6 servers may or may not listen
+         on IPv4 addresses as well, depending on the operating system.
+         See also the discussion of "v6only" at the Options keyword.
+
+Keyword: Greedy
+Where:   Tuning
+Type:    Flag
+Default: On
+
+Keyword: Host
+Where:   Virtual
+Type:    String
+Desc:    A virtual server has zero or more names. To name a virtual server,
+         use the 'Host' keyword. More than one `Host' keyword is allowed
+         for each virtual server.
+
+Keyword: IndexNames
+Where:   Control
+Type:    Block
+Desc:    Any request that ends with a slash ('/') is treated as an `index'.
+         The terminology is a bit confusing, since no indexes are actually
+         being made. What happens is that mathopd will map the request-URI
+         to a directory. This directory is then scanned for a set of files
+         called indexes. (For instance 'index.html'). As soon as a file is
+         found, that file will be sent to the client.
+         Example:
+
+           Control {
+             IndexNames { index.html Default.htm }
+           }
+
+         Note that the value of 'IndexNames' is carried over into all
+         subsequent control blocks. That is, if you define IndexNames once
+         it is not possible to reset its value later on.
+
+Keyword: InputBufSize
+Where:   Tuning
+Type:    Integer
+Default: 2048
+Desc:    The input buffer contains the complete set of headers sent by the
+         client. As such, it needs to be large enough to contain all those
+         headers. Usually the default value of 2048 is sufficient and does
+         not need to be changed.
+
+Keyword: LocalAddress
+Where:   LogFormat
+Desc:    The local Internet address of the connection.
+
+Keyword: LocalPort
+Where:   LogFormat
+Desc:    The port number of the server.
+
+Keyword: Location
+Where:   Control
+Type:    String
+Desc:    The Location keyword is used in combination with the Alias keyword.
+         There are two types of locations: physical locations and 'redirects'.
+         A physicial location is anything that starts with a slash ('/'),
+         a redirect is anything else.
+         When mathopd processes a request, the Alias that matches the
+         Request-URI sent by the client is replaced with its corresponding
+         location. For example, in the following situation
+
+           Control {
+             Alias /doc
+             Location /usr/share/doc/handbook
+           }
+
+         when a client requests a URI '/doc/x11.html', the server will
+         send the contents of /usr/share/doc/handbook/x11.html.
+         When the location is a redirect, the server will send a HTTP
+         '302' status response, which should cause the client to redirect
+         to the desired location. Example:
+
+           Control {
+             Alias /secure
+             Location https://an.example
+           }
+
+         In this example, when a client request a URI '/secure/test.html',
+         the server will redirect the client to 'https://an.example/test.html'.
+
+         More than one Location keywords can be used with one alias. Mathopd
+         will rotate the locations on a round-robin bases. Example:
+
+           Control {
+             Alias /download
+             Location http://mirror1.an.example/download
+             Location http://mirror2.an.example/download
+             Location http://mirror3.an.example/download
+           }
+
+         The first client that request something under /download will be
+         redirected to mirrior1.an.example, the second client to mirror2,
+         the third to mirror3, the fourth to mirror1, and so on.
+
+         Wildcard expansion: the wildcard character '*' in Location values
+         is expanded to the current value of the 'host' header sent by the
+         client (after conversion to lower case.) This makes it possible to
+         define a very large number of virtual servers in one go.
+         Example:
+
+           Server {
+             Virtual {
+               AnyHost
+               Control {
+                 Alias /
+                 Location /home/www/*
+               }
+             }
+           }
+
+         With this setting, a request for, say, http://an.example/foo.html
+         will result in the file /home/www/an.example/foo.html.
+
+Keyword: Log
+Where:   Global
+Type:    String
+Desc:    This keyword determines where the access log is stored. The
+         server creates one and only one access log, regardless of the
+         number of (virtual) servers. The log file must be writeable
+         by the user the server runs as. If no log file exists, Mathopd
+         will try to create one. In that case, the server must also have
+         write access to the directory that will contain the log file.
+         There are some hacks that make it easier to maintain logs
+         for distinct time periods. Before Mathopd tries to open the
+         log file, it will expand any '%' constructs in the log file
+         name, similar to date(1) and strftime(3). For example, if
+
+           Log /var/mathopd/log.%Y%m%d
+
+         is used, Mathopd will expand the %Y, %m and %d in the file
+         name, to something like /var/mathopd/log.20020831
+         Mathopd automatically rotates the log file every hour.
+         If during this process Mathopd cannot create a new log file
+         for any reason, it will continue to append to the old log.
+         The format of the access log is determined by whatever is
+         specified in the LogFormat block (see below.)
+
+Keyword: LogFormat
+Where:   Global
+Type:    Block
+Desc:    This keyword determines the order in which items are written into
+         the log file. Each line of the log file consists of some tab-
+         separated fields. The contents of each field is determined by
+         whatever is inside the LogFormat block. For example, if the
+         following is specified
+
+           LogFormat { CTime URI }
+
+         the first field in the log file corresponds to the date and time
+         of the request, and the second field corresponds to the client's
+         request-URI at that time.
+
+         The default field order for the log is as follows.
+
+           Ctime
+           RemoteUser
+           RemoteAddress
+           RemotePort
+           ServerName
+           Method
+           Uri
+           Status
+           ContentLength
+           Referer
+           UserAgent
+           BytesRead
+           BytesWritten
+
+         In addition to the above, the following fields are available:-
+
+           LocalAddress
+           LocalPort
+           Version
+           QueryString
+           TimeTaken
+           MicroTime
+
+Keyword: LogGMT
+Where:   Global
+Type:    Flag
+Default: Off
+Desc:    Normally time stamps in log files are in local time. If
+         LogGMT is set to 'On', time stamps are in GMT. Note that
+         this setting also affects naming of log files when
+         '%' constructions are used. (See the 'Log' keyword.)
+
+Keyword: Method
+Where:   LogFormat
+Desc:    The client's request-method, usually GET.
+
+Keyword: MicroTime
+Where:   LogFormat
+Desc:    The time, measured in seconds, with microsecond precision,
+         since 00:00:00 UTC, January 1, 1970. (Or whatever is returned
+         by the gettimeofday() system call.)
+
+Keyword: NoHost
+Where:   Virtual
+Desc:    A Virtual server that has the "NoHost" keyword will be used when
+         no Host header is sent by the client.
+
+Keyword: NumConnections
+Where:   Tuning
+Type:    Integer
+Default: 64
+Desc:    The NumConnections parameter determines how many simultaneous
+         requests can be handled.
+         The default is probably too low for high-traffic systems.
+         Mathopd uses a fixed block of memory for each connection, so
+         the higher you set this tunable, the more memory the server
+         will use.
+
+         See also: Clobber.
+
+         Note: the amount of memory that is used by Mathopd for buffers
+         can be approximated by the formula
+
+           Memory =
+             NumConnections * (BufSize + InputBufSize + 2 * ScriptBufSize)
+
+Keyword: NumHeaders
+Where:   Tuning
+Type:    Integer
+Default: 100
+Desc:    This keyword has a dual purpose.
+
+         Mathopd keeps track of the HTTP headers that are sent by a client
+         to pass on to child processes. Since each of these headers must
+         be stored somewhere, a fixed amount of memory is set aside for
+         these. The number of HTTP headers that are actually stored is
+         determined by the value of NumHeaders. If a client sends more headers
+         these will still be processed by the server, but they will not be
+         available as environment variables.
+
+         This keyword has an additional function: it determines the maximum
+         number of headers that a CGI script can send. It is an error for
+         a script to send more than this number of headers.
+
+Keyword: NumProcesses
+Where:   Tuning
+Type:    Integer
+Default: 1
+Desc:    This keyword controls the number of processes that will be created.
+         The idea is that this number can be set to the number of (logical)
+         CPUs in a multi-processor system, in order to increase performance.
+
+         If the value of NumProcesses is greater than one, the value recorded
+         in the PIDfile is not a process ID, but a negative number, indicating
+         the process group for all mathopd processes.
+
+         Note: the value of NumProcesses will be ignored if the server is
+         started with the '-n' flag.
+
+Keyword: Options
+Where:   Server
+Desc:    The Options keyword sets so-called socket options for a particular
+         server. The options currently defined are:
+
+           Name: rcvbuf
+           Type: integer
+           This option sets the size of the kernel receive buffer for
+           each connection on this server.
+
+           Name: sndbuf
+           Type: integer
+           This option sets the size of the kernel send buffer for
+           each connection on this server.
+
+           Name: nodelay
+           Type: flag
+           This option, if set, disables the so-called Nagle algorithm
+           for this server.
+
+           Name: v6only
+           Type: flag
+           This option is valid only for inet6 servers. If the option
+           is turned on the server will listen only for IPv6 connections.
+           If the option is turned off the server will listen for IPv4
+           connections as well. If the option is not set the behaviour may
+           vary depending on the operating system.
+
+         To illustrate how options are set, here is a short example
+
+           Server {
+             Family inet6
+             Options {
+               v6only On
+             }
+           }
+
+Keyword: PID
+Where:   LogFormat
+Desc:    The identifier of the process that handled the request.
+
+Keyword: PIDFile
+Where:   Global
+Type:    String
+Desc:    The PIDFile keyword specifies a file in which the server will
+         record its process ID, for tracking purposes. If more than one
+         process is started, the negative of the process group is recorded.
+
+Keyword: PathArgs
+Where:   Control
+Type:    Flag
+Desc:    If you want to redirect a user to a different web site, regardless
+         of the actual URL that is requested, you can do something like this
+
+           Control {
+             Alias /foo
+             Location http://www.an.example/foo.html
+             PathArgs On
+           }
+
+         In the above example, a request for, say, /foo/index.html will be
+         redirected to http://www.an.example/foo.html. In fact, *any* request
+         that starts with /foo/ will be redirected to the same URL. If the
+         PathArgs were omitted a request for /foo/index.html would be
+         redirected to http://www.an.example/foo.html/index.html (which does
+         not make much sense of course.)
+
+         The PathArgs keyword was originally created to solve a problem
+         related to hit metering. If you have a website, but no control
+         over its logfiles, you can create hidden images on your site
+         that link to a statistics gathering site. This is a well-known
+         process of course. If the statistics-gathering runs mathopd it
+         can be set up something like this:-
+
+           Control {
+             Alias /
+             Location /usr/local/www/tiny-image.png
+             PathArgs On
+           }
+
+         This way, every request will return the same response, namely,
+         the contents of tiny-image.png. If the two websites cooperate,
+         the request-URI that appears in the log file on the gathering
+         website can then be used to collect hit-metering data for the
+         original site.
+
+Keyword: PathInfo
+Where:   Control
+Type:    Flag
+Default: On
+Desc:    Normally mathopd allows requests for things like /script.cgi/args,
+         where /args is passed as 'path info' to the script.cgi program. This
+         works by mathopd chopping off all trailing path components until a
+         file is found. This operation can be quite expensive and in most
+         circumstances it is not needed. Worse yet, a request for, say,
+         /a/b/c/d/e/f/g/h will result in eight system calls.
+
+         To turn the 'chopping' behaviour off, set the value of PathInfo to
+         Off.
+
+         Note that PathInfo defaults to On for backwards compatibility.
+
+Keyword: Port
+Where:   Server
+Type:    Integer
+Default: 80
+Desc:    If you want Mathopd to run a server on a different port, rather
+         than the default for http, which is port 80, use a Port declaration.
+         Example:
+
+           Server {
+             Port 8080
+           }
+
+Keyword: PutEnv
+Where:   Control
+Type:    Block
+Desc:    This is like Export, except that environment variables defined
+         here must accompanied by a value.
+         Example: (rather silly)
+
+           Control {
+             PutEnv {
+               MATHOPD_INVOKED=1
+             }
+           }
+
+         There must be no space between the name of an environment
+         variable, the equals sign, and its value. If the value contains
+         space characters the entire name=value bit must be enclosed in
+         double quotes.
+
+Keyword: QueryString
+Where:   LogFormat
+Desc:    The query string (the part that follows the '?' in the request-URI)
+         if present.
+
+Keyword: Realm
+Where:   Control
+Type:    String
+Desc:    If this keyword is present in a control block, resources in that
+         block are protected using username-password combinations. The
+         Realm keyword must be accompanied by a UserFile keyword. The
+         value of the Realm keyword is transmitted to the client in '401'
+         error responses. Its value may be displayed by a web browser in
+         a login dialog.
+
+Keyword: Referer
+Where:   LogFormat
+Desc:    The value of the 'Referer:' header sent by the client. Sometimes
+         this refers to a URL that contains a link to the current request.
+
+Keyword: RemoteAddress
+Where:   LogFormat
+Desc:    The Internet Address of the client.
+
+Keyword: RemotePort
+Where:   LogFormat
+Desc:    The port number at the client's end of its connection to the server.
+
+Keyword: RemoteUser
+Where:   LogFormat
+Desc:    The username sent by the client for a request that needs
+         authorization and has successfully authenticated.
+
+Keyword: RootDirectory
+Where:   Global
+Type:    String
+Desc:    If this keyword is present, mathopd will perform a chroot() to the
+         specified directory before startup. The chroot() is done right
+         after the configuration file is read. Obviously the server must
+         be started as root for this to work. Some additional files may be
+         required in the new root, like a (stripped down) /etc/passwd and
+         so on.
+
+Keyword: RunScriptsAsOwner
+Where:   Control
+Type:    Flag
+Default: Off
+Desc:    Normally, if the server is started as root and the StayRoot flag
+         is set, child processes are run as a certain user (see the StayRoot
+         and ScriptUser keywords.)
+         It is possible to run CGI scripts as the user that owns them by
+         setting the RunScriptsAsOwner flag.
+         This is not recommended, since it is possible to trick mathopd
+         using symbolic links.
+
+Keyword: SanitizePath
+Where:   Control
+Type:    Flag
+Default: Off
+Desc:    If this flag is set for a virtual server, Mathop will filter out
+         all '//', '/./' and '/../' components of a URL.
+         For example, a request for
+
+             /foo/bar/../baz/./watnou//weer
+
+         would be treated as if it really had been for
+
+             /foo/baz/watnou/weer
+
+         Note that the presense of this flag in a virtual directory has no
+         effect. It only works at server level.
+
+         Also note that URLs of the form
+
+             /some/dir/.
+             /some/dir/..
+
+         that is, URLs that end with /. or /.. are illegal and return an
+         error, irrespective of the SanitizePath setting.
+
+Keyword: ScriptBufSize
+Where:   Tuning
+Type:    Integer
+Default: 4096
+Desc:    The server uses two buffers for CGI scripts: one for data that
+         is passed to a script, and another for data arriving from a script.
+         It is recommended that ScriptBufSize be equal to or greater than
+         InputBufSize. Also the ScriptBufSize should be at least sixteen
+         bytes less than BufSize, to leave room in the output buffer for
+         'chunk' delimiters.
+
+Keyword: ScriptTimeout
+Where:   Tuning
+Type:    Integer
+Default: 60
+Desc:    This timeout determines how long, measured in seconds, scripts
+         can run without generating any output.
+
+Keyword: ScriptUser
+Where:   Control
+Type:    String
+Desc:    If a CGI or external program is executed, Mathopd will change
+         its identity to make sure that such programs cannot do silly
+         things like kill the web server process and so on. The recommended
+         way to set the user for child processes is with the ScriptUser
+         keyword. Its argument is a user name that will be looked up in
+         the system password file right before execution of each program.
+         The user specified by ScriptUser must be someone else than the
+         'global' user, i.e. the user specified by the User keyword.
+         Note that in order to get CGI to work if mathopd is started by
+         root, the StayRoot flag MUST be set to 'On'.
+         See also: StayRoot.
+
+Keyword: Server
+Where:   Global
+Type:    Block
+Desc:    The Server keyword sets up a physical server, that is, a TCP
+         socket. Some TCP parameters may be tuned (see Address and Port.)
+         Inside a server block one can then declare 'virtual' servers,
+         which is where all action occurs.
+
+Keyword: ServerName
+Where:   LogFormat
+Desc:    The value of the 'Host:' header sent by the client (more or less.)
+
+Keyword: Specials
+Where:   Control
+Type:    Block
+Desc:    Some file extensions can be treated specially if they are
+         put into a 'Specials' block. There are four specialties:
+
+           CGI
+           Imagemap
+           Redirect
+           Dump
+
+         If a specialty is defined with a name that is not one of the
+         above four, a file that matches that specialty is treated as
+         if it did not exist. (See the 'Dummy' example in the description
+         of the ExactMatch keyword.)
+
+         A very brief description of the four specialties follows.
+
+         For a description of CGI, see cgi.txt.
+         An imagemap is a fairly ancient concept. It is generally not
+         used anymore but it is kept around for historical reasons.
+         A redirect file simply redirects the client to a URL that is
+         contained in the file. A Dump displays some mildly interesting
+         server statistics but is otherwise not very useful.
+
+         Example:
+
+           Control {
+             Specials {
+               CGI { cgi }
+               Imagemap { map }
+             }
+           }
+
+Keyword: Status
+Where:   LogFormat
+Desc:    The three-digit HTTP status code for this request.
+
+Keyword: StayRoot
+Where:   Global
+Type:    Flag
+Default: Off
+Desc:    Mathopd, if it is started by root, will change its identity to
+         that of a nonprivileged user (see the User keyword.) It is
+         sometimes desirable to retain some root privileges, for example
+         when external processes are started. One does not really want
+         those child processes to be able to interfere with the server
+         process itself, therefore these processes must be run under a
+         different identity. In order to accomplish this, set the
+         StayRoot flag.
+
+Keyword: Timeout
+Where:   Tuning
+Type:    Integer
+Default: 60
+Desc:    Connections that are idle for too long are aborted by Mathopd.
+         Idle in this case meaning 'receiving or transmitting no data.'
+         It is possible to increase or decrease the timeout by adding
+         a Timeout keyword. The unit of the timeout value is seconds.
+
+         See also: ScriptTimeout and Wait.
+
+Keyword: TimeTaken
+Where:   LogFormat
+Desc:    The time it has taken for the request to complete. Time is
+         measured from the first meaningful byte received from the client,
+         or the time the client connected.
+
+Keyword: Tuning
+Where:   Global
+Type:    Block
+Desc:    Some items that control general tuning of the server can be
+         specified here.
+
+Keyword: Types
+Where:   Control
+Type:    Block
+Desc:    All served content must be accompanied by a 'Content-Type' header
+         that indicates the kind of content. Historically, HTTP servers
+         have used the extension of a filename to determine its content.
+         For example a file whose name ends with 'html' is likely to
+         contain HTML, a file with a name ending with 'png' is probably
+         a PNG image, and so on. Mathopd follows this behaviour. File
+         extensions are mapped to media types (values of 'Content-Type'
+         that web browsers understand) using the 'Types' keyword.
+         Example:
+
+           Control {
+             Types {
+               text/html { html htm }
+               text/plain { txt }
+               image/jpeg { jpg }
+               application/octet-stream { * }
+             }
+           }
+
+         As you can see, the media type is followed by a group of
+         extensions that will be mapped to that type. The special
+         extension '*' is used to indicate a default: if a filename has
+         an extension that does not occur in any of the Types (or Specials
+         or External), then the type for '*' (if it is defined) is used.
+
+         Note that for Mathopd, 'extension' really means just `last part'.
+         For example, a file that is called 'flubrdhtml' is deemed to
+         be a HTML file even though it does not really have an extension.
+         This is a bit of a misfeature, but it does no real harm in
+         practice.
+
+Keyword: Umask
+Where:   Global
+Type:    Integer
+Default: 022
+Desc:    Mathopd will create log files with certain permissions. These
+         permissions are determined by what is called in Unix lingo the
+         'umask'. A umask of 022 (the default) will create files that are
+         readable by everyone but writeable only by the user that runs the
+         server process. More restricted umasks are 026 or even 066.
+         (The 0 at the beginning is not optional!)
+
+         Note: the umask is inherited by child processes.
+
+Keyword: Uri
+Where:   LogFormat
+Desc:    The URI requested by the client (minus query string, if present.)
+
+Keyword: User
+Where:   Global
+Type:    String
+Desc:    If Mathopd is started by root it must change its identity. This
+         is done for security reasons: you do not want the web server to
+         be able to read all files. The new identity is defined by the
+         value of the User keyword. The user name is looked up in the
+         password file (this is done before a possible chroot!) and
+         Mathopd then changes its effective user id (and real user id
+         as well, depending on whether StayRoot is off or on). In addition,
+         Mathopd will perform a setgroups() call to clear its list of
+         supplementary group ids.
+
+         Note: Mathopd will create log files, etc. with an owner that is
+         equal to the value of the User keyword. The *group* owner of
+         the log file may differ between operating systems. For example,
+         on BSD, the group owner of a file is set to the group owner of
+         the directory in which it is created. Other systems may have
+         different semantics.
+
+Keyword: UserAgent
+Where:   LogFormat
+Desc:    The value of the 'User-Agent:' header sent by the client. This may,
+         or may not, contain a string that can identify a web browser.
+
+Keyword: UserDirectory
+Where:   Control
+Type:    Flag
+Desc:    To allow each user to put up his or her personal pages, use the
+         UserDirectory kyeword.
+         Example:
+
+           Control {
+             Alias /users
+             Location public_html
+             UserDirectory On
+           }
+
+         In this example, a request for /users/boland/index.html will
+         result in a password lookup for user 'boland'. Assume the home
+         directory for this user is /home/boland. Then the file served will
+         be /home/boland/public_html/index.html.
+
+         Note: the '~' character, when used as the last character in
+         an alias is treated specially. For example:
+
+           Control {
+             Alias /~
+             Location public_html
+             UserDirectory On
+           }
+
+         With this setting, /~boland/index.html will be mapped to
+         /home/boland/public_html/index.html, like before. This is to
+         allow some sort of compatibilty to the often used custom to use
+         '~username' for user pages.
+
+         If a user does not exist, the control block that contains the
+         UserDirectory item is effectively ignored.
+
+Keyword: UserFile
+Where:   Control
+Type:    String
+Desc:    Control blocks that are 'protected' by a Realm keyword need
+         a UserFile keyword as well. The user file contains all username /
+         password combinations that are valid for that specific realm.
+         The user file should contain lines that look like
+
+           username:password
+
+         (with username and password replaced by a real username and
+         password of course.) A user can be entered more than once with
+         different passwords. The user file has no relation whatsoever
+         to the system password file. Passwords can be encrypted, but
+         Mathopd needs to be told that they are encrypted, using the
+         EncryptedUserFile keyword.
+
+Keyword: Version
+Where:   LogFormat
+Desc:    The HTTP version requested by the client.
+
+Keyword: Virtual
+Where:   Server, Global
+Type:    Block
+Desc:    The 'Virtual' keyword starts a virtual server block.
+         Virtual blocks can be declared globally or inside a server block.
+         Global virtual blocks are inherited by all servers that follow.
+
+Keyword: Wait
+Where:   Tuning
+Type:    Integer
+Default: 60
+Desc:    The value of 'Wait' represents the amount of time, in seconds,
+         the server will wait for a request from the client.

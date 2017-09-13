@@ -1,0 +1,50 @@
+#!/bin/sh 
+echo
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
+
+cat /etc/motd
+cat /etc/version
+
+echo "Mounting /proc and /dev/pts"
+mount -t proc proc /proc
+mount -t devpts devpts /dev/pts
+
+echo "Mounting /sys"
+mount -t sysfs sysfs /sys
+
+echo "Starting interface lo"
+# start localhost
+ifconfig lo up
+route add -net 127.0.0.0 netmask 255.0.0.0 lo
+
+echo "Starting logging daemons"
+tmp=`syslogd`
+tmp=`klogd`
+
+# portmap is requred for nfs
+portmap & 
+# inetd server
+inetd &
+
+# start the bridge
+/etc/init.d/start_br
+
+echo "***** Testing for console devices, please ignore any errors *****" > /dev/ttyUM0
+echo "Test ttyUM0 as a console" > /dev/ttyUM0
+if [ $? == 0 ]; then
+	CONSOLE_DEVICE="ttyUM0";
+fi
+
+echo "Test ttyUS0 as a console" > /dev/ttyUS0
+if [ $? == 0 ]; then
+	CONSOLE_DEVICE="ttyUS0";
+fi
+
+echo ""
+echo "System ready, Using ${CONSOLE_DEVICE} as console ******"
+while [ 1 ] 
+do
+	/bin/getty -nl /bin/sh 115200 ${CONSOLE_DEVICE};
+done
+

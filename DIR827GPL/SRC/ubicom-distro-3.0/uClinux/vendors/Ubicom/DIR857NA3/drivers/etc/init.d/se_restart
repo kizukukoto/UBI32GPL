@@ -1,0 +1,290 @@
+#!/bin/sh
+# Copyright (C) 2010-2011 Ubicom, Inc.
+
+#
+# (re)start StreamEngine
+#
+
+. /etc/rgw_config
+#. /etc/functions.sh
+
+#config_load /etc/config/network
+
+#
+# Is StreamEngine shaper currently running?  If so then stop it.
+#
+if [ -e /sys/devices/system/ubicom_streamengine/ubicom_streamengine0 ] ; then
+	echo Stopping StreamEngine shaper
+	/etc/init.d/se_unload
+fi
+
+
+MY_ENABLED=$(nvram get traffic_shaping | cut -c19- -)
+if [ $MY_ENABLED -ne 1 ] ; then
+echo StreamEngine disabled 0
+/etc/init.d/se_stop
+/etc/init.d/na_restart
+exit 1
+else
+
+fi
+
+
+#
+# Is classifier currently running?  If so then stop it.
+#
+if [ -e /sys/devices/system/streamengine_classifier/streamengine_classifier0 ] ; then
+	echo Stopping StreamEngine QoS subsystem
+	/etc/init.d/se_modules_unload
+fi
+
+#
+# Create char device nodes for debug
+#
+SYSFS=/sys/devices/system
+UBI32NA=ubi32_na
+UBI32NA_SYSFS_PATH=${SYSFS}/${UBI32NA}/${UBI32NA}0
+UBI32NA_CACHE_NODE=/dev/na0
+if [ -e $UBI32NA_SYSFS_PATH/cache_dev_major ]; then
+	if [ ! -e $UBI32NA_CACHE_NODE ]; then
+		mknod $UBI32NA_CACHE_NODE c $(cat $UBI32NA_SYSFS_PATH/cache_dev_major) 0
+	fi
+fi
+
+#
+# If both the NA and StreamEngine are disabled then we have nothing to do.
+#
+#config_get STREAMENGINE_ENABLED streamengine traffic_shaping
+STREAMENGINE_ENABLED=$(nvram get traffic_shaping | cut -c19- -)
+#config_get NA_ENABLED network_accelerator auto_load
+NA_ENABLED=$(nvram get auto_load | cut -c13- -)
+STREAMENGINE_SHAPER_LOADED=0
+if [ $STREAMENGINE_ENABLED -ne 1 ] ; then
+	if [ $NA_ENABLED -ne 1 ]; then
+		echo StreamEngine and NA disabled
+		exit 1;
+	fi
+
+	#
+	# NOTE: Although the StreamEngine is technically disabled the NA must function so the classifier of StreamEngine must still run
+	# in order to accelerate connections.
+	#
+else
+	#
+	# StreamEngine is enabled fully - do we need to perform a rate estimation?
+	#
+	/etc/init.d/se_load 256
+	STREAMENGINE_SHAPER_LOADED=1
+
+	#
+	# Get the link type command for use during rate estimation
+	#
+	#config_get LINK_CMD streamengine link_type
+	LINK_CMD=$(nvram get qos_connection_type | cut -c23- -)
+	echo Link command = $LINK_CMD
+
+	rm -rf /var/tmp/ubicom_streamengine_calculated_rate.tmp
+
+	#
+	# Hop Offset
+	#
+	#config_get HOP_OFFSET streamengine hop_offset
+	#HOP_OFFSET=0
+	if [ -n "$HOP_OFFSET" ] ; then
+		echo $HOP_OFFSET > /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_hop_offset
+	fi
+
+	#
+	# Manual or automatic speed?
+	#
+	#config_get PERFORM_RATE_ESTIMATION streamengine auto_uplink
+	PERFORM_RATE_ESTIMATION=$(nvram get auto_uplink | cut -c15- -)
+	SPEED_CMD=0
+	if [ $PERFORM_RATE_ESTIMATION -eq 0 ] ; then
+		#
+		# Manual speed
+		#
+		#config_get SPEED_CMD streamengine qos_uplink
+		SPEED_CMD=$(nvram get qos_uplink | cut -c14- -)
+		if [ $SPEED_CMD -gt 2000 ] && [ $SPEED_CMD -le 2048 ]; then
+			SPEED_CMD=2000
+		fi
+		SPEED_CMD=`expr \( $SPEED_CMD \* 1000 \)`
+
+		echo Manual speed = $SPEED_CMD
+	fi
+	/etc/init.d/se_do_rate_estimation $SPEED_CMD $LINK_CMD
+	RATEEST_RETURN_VALUE=$?
+
+	killall -SIGUSR1 timer
+
+	#
+	# If something went wrong with the rating then we unload the shaper
+	#
+	if [ $RATEEST_RETURN_VALUE -ne "0" ] ; then
+		echo Rate estimation failed - streamengine shaper will not start
+		/etc/init.d/se_unload
+echo StreamEngine disabled 1
+/etc/init.d/se_stop
+/etc/init.d/na_restart
+		STREAMENGINE_SHAPER_LOADED=0
+exit 1
+	else
+		#
+		# If the detected speed is > 2000000 (2mbps) then we disable the shaper. 
+		#  - we assume there is enough upstream bandwidth so as not to need a shaper
+		#
+		TX_RATE_BPS=$(cat /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_calculated_rate)
+		if [ $TX_RATE_BPS -gt 2000000 ] ; then
+			cp -rf /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_calculated_rate /var/tmp/ubicom_streamengine_calculated_rate.tmp
+			echo Streamengine shaper disabled: WAN speed greater than 2mbps detected
+			/etc/init.d/se_unload
+echo StreamEngine disabled 2
+/etc/init.d/se_stop
+/etc/init.d/na_restart
+			STREAMENGINE_SHAPER_LOADED=0
+exit 1
+		else
+			#
+			# Enable shaper with optional dynamic fragmentation
+			#
+			#config_get DYN_FRAG_ENABLED streamengine qos_dyn_fragmentation
+			DYN_FRAG_ENABLED=$(nvram get qos_dyn_fragmentation | cut -c25- -)
+			/etc/init.d/se_shaper_set $DYN_FRAG_ENABLED auto
+		fi
+	fi
+fi
+
+#
+# Stop connection manager modules and start ipv6 connection manager
+#
+/etc/init.d/na_restart ipv6
+
+#
+# Enable the QoS classifier subsystem
+#
+/etc/init.d/se_modules_load
+
+#
+# Set WAN interface, default eth0.1
+# Update interface info. Following source required, do not remove.
+#
+SE_SYSFS_WAN_IF=/sys/devices/system/streamengine_classifier/streamengine_classifier0/streamengine_classifier_if_name
+. /etc/rgw_config
+if [ -e ${SE_SYSFS_WAN_IF} ]; then
+	echo "Set WAN Interface to ${WAN_MODE_INTERFACE}"
+	echo -n ${WAN_MODE_INTERFACE} > ${SE_SYSFS_WAN_IF}
+else
+	echo "NO WAN Interface exists."
+	exit 1
+fi
+
+#
+# Tell the classifier the loaded state of the shaper 
+#
+echo $STREAMENGINE_SHAPER_LOADED > /sys/devices/system/streamengine_classifier/streamengine_classifier0/shaper_loaded
+
+#
+# Inform the classifier if we have a PPP wan link
+#
+# If the WAN type is a PPP wan link, check to see if shaper (aka more than 2mbps). You can turn off classifier
+# if the shaper ( more than 2mbs disabled ) or SE is disabled
+#
+case $WANCONNECTIONTYPE in
+	pppoe )
+		echo WAN type: PPPoE
+		echo 1 > /sys/devices/system/streamengine_classifier/streamengine_classifier0/ppp_transport
+		if [ $STREAMENGINE_SHAPER_LOADED -eq 0 ] || [ $STREAMENGINE_ENABLED -eq 0 ] ; then
+			echo 1 > /sys/devices/system/streamengine_classifier/streamengine_classifier0/streamengine_classifier_stop
+		fi
+		;;
+	pptp )
+		echo WAN type: PPTP
+		echo 1 > /sys/devices/system/streamengine_classifier/streamengine_classifier0/ppp_transport
+		if [ $STREAMENGINE_SHAPER_LOADED -eq 0 ] || [ $STREAMENGINE_ENABLED -eq 0 ] ; then
+			echo 1 > /sys/devices/system/streamengine_classifier/streamengine_classifier0/streamengine_classifier_stop
+		fi
+		;;
+	l2tp )
+		echo WAN type: L2TP
+		echo 1 > /sys/devices/system/streamengine_classifier/streamengine_classifier0/ppp_transport
+		if [ $STREAMENGINE_SHAPER_LOADED -eq 0 ] || [ $STREAMENGINE_ENABLED -eq 0 ] ; then
+			echo 1 > /sys/devices/system/streamengine_classifier/streamengine_classifier0/streamengine_classifier_stop
+		fi
+		;;
+	* )
+		echo WAN type: $WANCONNECTIONTYPE
+		;;
+esac
+
+#
+# Enable or disable auto classification - If Shaper is disabled, disable all classification
+#
+#config_get AUTO_CLASSIFICATION_ENABLED streamengine auto_classification
+AUTO_CLASSIFICATION_ENABLED=$(nvram get auto_classification | cut -c23- -)
+echo $AUTO_CLASSIFICATION_ENABLED > /sys/devices/system/streamengine_classifier_default/streamengine_classifier_default0/enabled
+
+#
+# If SE is disable or shaper is more than 2 Mbps, Turn on Autoclassifer for NA
+# Will not Affect PPPoe because we disabled all classifiers above
+#
+if [ $STREAMENGINE_SHAPER_LOADED -eq 0 ] || [ $STREAMENGINE_ENABLED -eq 0 ] ; then
+	echo "Auto Classification is Override - NA Enabled"
+	echo 1 > /sys/devices/system/streamengine_classifier_default/streamengine_classifier_default0/enabled
+fi
+
+#
+# Enable or disable bit torrent classification
+#
+#config_get BITTORRENT_CLASSIFICATION_ENABLED streamengine bittorrent_classification
+BITTORRENT_CLASSIFICATION_ENABLED=$(nvram get bittorent_classification | cut -c28- -)
+if [ $STREAMENGINE_SHAPER_LOADED -eq 0 ] || [ $STREAMENGINE_ENABLED -eq 0 ] ; then
+	echo 0 > /sys/devices/system/streamengine_classifier_bittorrent/streamengine_classifier_bittorrent0/enabled
+else
+	echo $BITTORRENT_CLASSIFICATION_ENABLED > /sys/devices/system/streamengine_classifier_bittorrent/streamengine_classifier_bittorrent0/enabled
+fi
+
+#
+# Enable or disable manual user rules
+#
+#config_get USER_RULES_CLASSIFICATION_ENABLED streamengine user_rules_classification
+USER_RULES_CLASSIFICATION_ENABLED=$(nvram get user_rules_classification | cut -c29- -)
+if [ $STREAMENGINE_SHAPER_LOADED -eq 0 ] || [ $STREAMENGINE_ENABLED -eq 0 ] ; then
+	echo 0 > /sys/devices/system/streamengine_classifier_user_rules/streamengine_classifier_user_rules0/enabled
+else
+	echo $USER_RULES_CLASSIFICATION_ENABLED > /sys/devices/system/streamengine_classifier_user_rules/streamengine_classifier_user_rules0/enabled
+	if [ $USER_RULES_CLASSIFICATION_ENABLED -eq 1 ] ; then
+		#
+		# Load rules
+		#
+		/etc/init.d/se_manual_rules_set
+	fi
+fi
+
+#
+# Enable or disable http content rules
+#
+#config_get HTTP_CONTENT_CLASSIFICATION_ENABLED streamengine http_content_classification
+HTTP_CONTENT_CLASSIFICATION_ENABLED=$(nvram get http_content_classification | cut -c31- -)
+if [ $STREAMENGINE_SHAPER_LOADED -eq 0 ] || [ $STREAMENGINE_ENABLED -eq 0 ] ; then
+#	echo 0 > /sys/devices/system/streamengine_classifier_http_content/streamengine_classifier_http_content0/enabled
+else
+	echo $HTTP_CONTENT_CLASSIFICATION_ENABLED > /sys/devices/system/streamengine_classifier_http_content/streamengine_classifier_http_content0/enabled
+	if [ $HTTP_CONTENT_CLASSIFICATION_ENABLED -eq 1 ] ; then
+		#
+		# Load rules
+		#
+		/etc/init.d/se_http_content_rules_set
+	fi
+fi
+
+# No Throttle Agressiveness
+echo 4294967295 > /sys/devices/system/streamengine_classifier_bittorrent/streamengine_classifier_bittorrent0/agressive_thresh
+# 20% Throttle Agressiveness
+#echo 3435973836 > /sys/devices/system/streamengine_classifier_bittorrent/streamengine_classifier_bittorrent0/agressive_thresh
+# 40% Throttle Agressiveness
+#echo 2576980344 > /sys/devices/system/streamengine_classifier_bittorrent/streamengine_classifier_bittorrent0/agressive_thresh
+
+echo 0 > /sys/devices/system/streamengine_classifier_ftp/streamengine_classifier_ftp0/enabled
+
+echo 50000 > /sys/devices/system/streamengine_db/streamengine_db0/connections_max

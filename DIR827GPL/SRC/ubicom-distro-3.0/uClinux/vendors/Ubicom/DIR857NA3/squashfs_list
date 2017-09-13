@@ -1,0 +1,145 @@
+/dev d 0755 0 0
+/bin d 0755 1000 1000
+/proc d 0555 0 0
+/sys d 0755 0 0
+/mnt d 0755 0 0
+/usr d 0755 0 0
+/etc d 0755 0 0
+/etc/config d 0755 0 0
+/etc/config/config d 0755 0 0
+/tmp d 0777 0 0
+/var d 0755 0 0
+/var/lib d 0755 0 0
+/var/lib/oprofile d 0755 0 0
+/var/lock d 0755 0 0
+/var/log d 0755 0 0
+/var/run d 0755 0 0
+/home d 0755 0 0
+/boot d 0755 0 0
+/sbin d 0755 0 0
+/root d 0750 0 0
+/flash d 0755 0 0
+
+/dev/ttyUS0 c 666 0 0 206 64
+/dev/ttyUM0 c 666 0 0 207 64
+
+/dev/loop0 c 640 0 0 7 0
+/dev/mem c 640 0 0 1 1
+/dev/ram b 640 0 0 1 1
+/dev/zero c 666 0 0 1 5
+/dev/console c 666 0 0 5 1
+/dev/rtc c 640 0 0 10 135
+/dev/tty c 666 0 0 5 0
+/dev/kmem c 640 0 0 1 2
+/dev/null c 666 0 0 1 3
+/dev/random c 666 0 0 1 8
+/dev/urandom c 666 0 0 1 9
+/dev/crypto c 666 0 0 10 70
+/dev/ppp c 666 0 0 108 0
+/dev/fb0 c 640 0 0 29 0
+/dev/pts d 755 0 0
+/dev/oprofile d 0755 0 0
+/dev/sda b 640 0 0 8 0
+/dev/sdb b 640 0 0 8 16
+/dev/mtd0 c 640 0 0 90 0
+/dev/mtdr0 c 640 0 0 90 1
+/dev/mtd1 c 640 0 0 90 2
+/dev/mtdr1 c 640 0 0 90 3
+/dev/mtd2 c 640 0 0 90 4
+/dev/mtdr2 c 640 0 0 90 5
+/dev/mtd3 c 640 0 0 90 6
+/dev/mtdr3 c 640 0 0 90 7
+/dev/mtd4 c 640 0 0 90 8
+/dev/mtdr4 c 640 0 0 90 9
+/dev/mtd5 c 640 0 0 90 10
+/dev/mtdr5 c 640 0 0 90 11
+/dev/mtd6 c 640 0 0 90 12
+/dev/mtdr6 c 640 0 0 90 13
+/dev/mtd7 c 640 0 0 90 14
+/dev/mtdr7 c 640 0 0 90 15
+/dev/mtd8 c 640 0 0 90 16
+/dev/mtdr8 c 640 0 0 90 17
+/dev/mtd9 c 640 0 0 90 18
+/dev/mtdr9 c 640 0 0 90 19
+/dev/mtd10 c 640 0 0 90 20
+/dev/mtdr10 c 640 0 0 90 21
+/dev/mtd11 c 640 0 0 90 22
+/dev/mtdr11 c 640 0 0 90 23
+/dev/mtd12 c 640 0 0 90 24
+/dev/mtdr12 c 640 0 0 90 25
+/dev/mtd13 c 640 0 0 90 26
+/dev/mtdr13 c 640 0 0 90 27
+/dev/mtd14 c 640 0 0 90 28
+/dev/mtdr14 c 640 0 0 90 29
+/dev/mtd15 c 640 0 0 90 30
+/dev/mtdr15 c 640 0 0 90 31
+/dev/ptmx c 666 0 0 5 2
+/dev/sda1 b 640 0 0 8 1
+/dev/sda2 b 640 0 0 8 2
+/dev/sda3 b 640 0 0 8 3
+/dev/sda4 b 640 0 0 8 4
+/dev/sdb1 b 640 0 0 8 17
+/dev/sdb2 b 640 0 0 8 18
+/dev/sdb3 b 640 0 0 8 19
+/dev/sdb4 b 640 0 0 8 20
+/dev/tty0 c 666 0 0 4 0
+/dev/tty1 c 666 0 0 4 1
+/dev/input d 755 0 0
+/dev/input/mice c 640 0 0 13 63
+/dev/input/event0 c 660 0 0 13 64
+/dev/input/event1 c 660 0 0 13 65
+/dev/input/event2 c 660 0 0 13 66
+/dev/input/event3 c 660 0 0 13 67
+/dev/input/mouse0 c 660 0 0 13 32
+/dev/input/mouse1 c 660 0 0 13 33
+/dev/input/mouse2 c 660 0 0 13 34
+/dev/input/mouse3 c 660 0 0 13 35
+/dev/psaux c 666 0 0 10 1
+/dev/ptyp0 c 666 0 0 2 0
+/dev/ptyp1 c 666 0 0 2 1
+/dev/ttyP0 c 666 0 0 57 0
+/dev/ttyP1 c 666 0 0 57 1
+/dev/ttyP2 c 666 0 0 57 2
+/dev/ttyS0 c 666 0 0 4 64
+/dev/ttyS1 c 666 0 0 4 65
+/dev/ttyp0 c 666 0 0 3 0
+/dev/ttyp1 c 666 0 0 3 1
+/dev/mtdblock0 b 640 0 0 31 0
+/dev/mtdblock1 b 640 0 0 31 1
+/dev/mtdblock2 b 640 0 0 31 2
+/dev/mtdblock3 b 640 0 0 31 3
+/dev/mtdblock4 b 640 0 0 31 4
+/dev/mtdblock5 b 640 0 0 31 5
+/dev/mtdblock6 b 640 0 0 31 6
+/dev/mtdblock7 b 640 0 0 31 7
+/dev/mtdblock8 b 640 0 0 31 8
+/dev/mtdblock9 b 640 0 0 31 9
+/dev/mtdblock10 b 640 0 0 31 10
+/dev/mtdblock11 b 640 0 0 31 11
+/dev/mtdblock12 b 640 0 0 31 12
+/dev/mtdblock13 b 640 0 0 31 13
+/dev/mtdblock14 b 640 0 0 31 14
+/dev/mtdblock15 b 640 0 0 31 15
+/dev/dsp c 660 0 0 14 3
+/dev/audio c 660 0 0 14 4
+/dev/snd d 0755 0 0
+/dev/snd/controlC0 c 660 0 0 116 0
+/dev/snd/seq c 660 0 0 116 1
+/dev/snd/timer c 660 0 0 116 33
+/dev/snd/pcmC0D0p c 660 0 0 116 16
+/dev/mmc0 b 666 0 0 179 0
+/dev/mmcblk0 b 666 0 0 179 0
+/dev/mmcblk0p1 b 666 0 0 179 1
+/dev/mmcblk0p2 b 666 0 0 179 2
+/dev/mmcblk0p3 b 666 0 0 179 3
+/dev/mmc1 b 666 0 0 179 8
+/dev/mmcblk1 b 666 0 0 179 8
+/dev/mmcblk1p1 b 666 0 0 179 9
+/dev/mmcblk1p2 b 666 0 0 179 10
+/dev/mmcblk1p3 b 666 0 0 179 11
+/dev/mmc2 b 666 0 0 179 16
+/dev/mmcblk2 b 666 0 0 179 16
+/dev/mmcblk2p1 b 666 0 0 179 17
+/dev/mmcblk2p2 b 666 0 0 179 18
+/dev/mmcblk2p3 b 666 0 0 179 19
+

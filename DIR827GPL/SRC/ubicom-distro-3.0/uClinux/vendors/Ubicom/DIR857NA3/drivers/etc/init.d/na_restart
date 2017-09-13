@@ -1,0 +1,49 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+#
+# (re)start Network Accelerator
+#
+
+#. /etc/functions.sh
+
+#config_load /etc/config/network
+
+MODULE=$1
+if [ -z $MODULE ]; then MODULE=all; fi
+
+#
+# Is Network Accelerator currently running?  If so then stop it.
+#
+/etc/init.d/na_stop
+
+#
+# Start NA if required
+#
+#config_get NA_AUTO_LOAD network_accelerator auto_load
+NA_AUTO_LOAD=$(nvram get auto_load | cut -c13- -)
+if [ "$NA_AUTO_LOAD" != "1" ] ; then
+	echo network_accelerator auto_load disabled
+	exit 1
+fi
+
+#
+# Enable the network_accelerator subsystem
+#
+echo "Starting NA"
+case $MODULE in
+	ipv4)
+		/etc/init.d/na_modules_load ipv4
+	;;
+	ipv6)
+		/etc/init.d/na_modules_load ipv6
+	;;
+	all)
+		/etc/init.d/na_modules_load ipv4
+		/etc/init.d/na_modules_load ipv6
+	;;
+	*)
+		echo "Wrong parameter MODULE:$MODULE"
+	;;
+esac
+

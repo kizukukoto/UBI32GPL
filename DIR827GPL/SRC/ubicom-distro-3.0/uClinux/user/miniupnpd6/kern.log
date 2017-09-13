@@ -1,0 +1,477 @@
+Jun 28 09:38:58 laptop14 kernel: [    3.720142] ehci_hcd 0000:00:1d.7: debug port 1
+Jun 28 09:38:58 laptop14 kernel: [    3.720148] ehci_hcd 0000:00:1d.7: cache line size of 32 is not supported
+Jun 28 09:38:58 laptop14 kernel: [    3.720159] ehci_hcd 0000:00:1d.7: irq 20, io mem 0xfed1c000
+Jun 28 09:38:58 laptop14 kernel: [    3.736008] ehci_hcd 0000:00:1d.7: USB 2.0 started, EHCI 1.00
+Jun 28 09:38:58 laptop14 kernel: [    3.736064] usb usb2: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    3.736088] hub 2-0:1.0: USB hub found
+Jun 28 09:38:58 laptop14 kernel: [    3.736093] hub 2-0:1.0: 6 ports detected
+Jun 28 09:38:58 laptop14 kernel: [    3.736174] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+Jun 28 09:38:58 laptop14 kernel: [    3.736188] uhci_hcd: USB Universal Host Controller Interface driver
+Jun 28 09:38:58 laptop14 kernel: [    3.736204] uhci_hcd 0000:00:1a.0: PCI INT A -> GSI 20 (level, low) -> IRQ 20
+Jun 28 09:38:58 laptop14 kernel: [    3.736209] uhci_hcd 0000:00:1a.0: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [    3.736212] uhci_hcd 0000:00:1a.0: UHCI Host Controller
+Jun 28 09:38:58 laptop14 kernel: [    3.736249] uhci_hcd 0000:00:1a.0: new USB bus registered, assigned bus number 3
+Jun 28 09:38:58 laptop14 kernel: [    3.736274] uhci_hcd 0000:00:1a.0: irq 20, io base 0x00006f60
+Jun 28 09:38:58 laptop14 kernel: [    3.736338] usb usb3: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    3.736363] hub 3-0:1.0: USB hub found
+Jun 28 09:38:58 laptop14 kernel: [    3.736369] hub 3-0:1.0: 2 ports detected
+Jun 28 09:38:58 laptop14 kernel: [    3.736443] uhci_hcd 0000:00:1a.1: PCI INT B -> GSI 21 (level, low) -> IRQ 21
+Jun 28 09:38:58 laptop14 kernel: [    3.736449] uhci_hcd 0000:00:1a.1: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [    3.736452] uhci_hcd 0000:00:1a.1: UHCI Host Controller
+Jun 28 09:38:58 laptop14 kernel: [    3.736491] uhci_hcd 0000:00:1a.1: new USB bus registered, assigned bus number 4
+Jun 28 09:38:58 laptop14 kernel: [    3.736523] uhci_hcd 0000:00:1a.1: irq 21, io base 0x00006f80
+Jun 28 09:38:58 laptop14 kernel: [    3.736588] usb usb4: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    3.736611] hub 4-0:1.0: USB hub found
+Jun 28 09:38:58 laptop14 kernel: [    3.736616] hub 4-0:1.0: 2 ports detected
+Jun 28 09:38:58 laptop14 kernel: [    3.736686] uhci_hcd 0000:00:1a.2: PCI INT C -> GSI 22 (level, low) -> IRQ 22
+Jun 28 09:38:58 laptop14 kernel: [    3.736692] uhci_hcd 0000:00:1a.2: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [    3.736695] uhci_hcd 0000:00:1a.2: UHCI Host Controller
+Jun 28 09:38:58 laptop14 kernel: [    3.736729] uhci_hcd 0000:00:1a.2: new USB bus registered, assigned bus number 5
+Jun 28 09:38:58 laptop14 kernel: [    3.736752] uhci_hcd 0000:00:1a.2: irq 22, io base 0x00006fa0
+Jun 28 09:38:58 laptop14 kernel: [    3.736815] usb usb5: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    3.736835] hub 5-0:1.0: USB hub found
+Jun 28 09:38:58 laptop14 kernel: [    3.736840] hub 5-0:1.0: 2 ports detected
+Jun 28 09:38:58 laptop14 kernel: [    3.736910] uhci_hcd 0000:00:1d.0: PCI INT A -> GSI 20 (level, low) -> IRQ 20
+Jun 28 09:38:58 laptop14 kernel: [    3.736916] uhci_hcd 0000:00:1d.0: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [    3.736919] uhci_hcd 0000:00:1d.0: UHCI Host Controller
+Jun 28 09:38:58 laptop14 kernel: [    3.736955] uhci_hcd 0000:00:1d.0: new USB bus registered, assigned bus number 6
+Jun 28 09:38:58 laptop14 kernel: [    3.736980] uhci_hcd 0000:00:1d.0: irq 20, io base 0x00006f00
+Jun 28 09:38:58 laptop14 kernel: [    3.737043] usb usb6: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    3.737064] hub 6-0:1.0: USB hub found
+Jun 28 09:38:58 laptop14 kernel: [    3.737069] hub 6-0:1.0: 2 ports detected
+Jun 28 09:38:58 laptop14 kernel: [    3.737141] uhci_hcd 0000:00:1d.1: PCI INT B -> GSI 21 (level, low) -> IRQ 21
+Jun 28 09:38:58 laptop14 kernel: [    3.737146] uhci_hcd 0000:00:1d.1: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [    3.737150] uhci_hcd 0000:00:1d.1: UHCI Host Controller
+Jun 28 09:38:58 laptop14 kernel: [    3.737188] uhci_hcd 0000:00:1d.1: new USB bus registered, assigned bus number 7
+Jun 28 09:38:58 laptop14 kernel: [    3.737212] uhci_hcd 0000:00:1d.1: irq 21, io base 0x00006f20
+Jun 28 09:38:58 laptop14 kernel: [    3.737274] usb usb7: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    3.737297] hub 7-0:1.0: USB hub found
+Jun 28 09:38:58 laptop14 kernel: [    3.737302] hub 7-0:1.0: 2 ports detected
+Jun 28 09:38:58 laptop14 kernel: [    3.737374] uhci_hcd 0000:00:1d.2: PCI INT C -> GSI 22 (level, low) -> IRQ 22
+Jun 28 09:38:58 laptop14 kernel: [    3.737380] uhci_hcd 0000:00:1d.2: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [    3.737383] uhci_hcd 0000:00:1d.2: UHCI Host Controller
+Jun 28 09:38:58 laptop14 kernel: [    3.737417] uhci_hcd 0000:00:1d.2: new USB bus registered, assigned bus number 8
+Jun 28 09:38:58 laptop14 kernel: [    3.737441] uhci_hcd 0000:00:1d.2: irq 22, io base 0x00006f40
+Jun 28 09:38:58 laptop14 kernel: [    3.737508] usb usb8: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    3.737529] hub 8-0:1.0: USB hub found
+Jun 28 09:38:58 laptop14 kernel: [    3.737534] hub 8-0:1.0: 2 ports detected
+Jun 28 09:38:58 laptop14 kernel: [    3.737658] PNP: PS/2 Controller [PNP0303:KBC,PNP0f13:PS2M] at 0x60,0x64 irq 1,12
+Jun 28 09:38:58 laptop14 kernel: [    3.737913] i8042.c: Warning: Keylock active.
+Jun 28 09:38:58 laptop14 kernel: [    3.741762] serio: i8042 KBD port at 0x60,0x64 irq 1
+Jun 28 09:38:58 laptop14 kernel: [    3.741767] serio: i8042 AUX port at 0x60,0x64 irq 12
+Jun 28 09:38:58 laptop14 kernel: [    3.741854] mice: PS/2 mouse device common for all mice
+Jun 28 09:38:58 laptop14 kernel: [    3.741989] rtc_cmos 00:03: RTC can wake from S4
+Jun 28 09:38:58 laptop14 kernel: [    3.742014] rtc_cmos 00:03: rtc core: registered rtc_cmos as rtc0
+Jun 28 09:38:58 laptop14 kernel: [    3.742042] rtc0: alarms up to one month, y3k, 114 bytes nvram, hpet irqs
+Jun 28 09:38:58 laptop14 kernel: [    3.742094] device-mapper: uevent: version 1.0.3
+Jun 28 09:38:58 laptop14 kernel: [    3.742167] device-mapper: ioctl: 4.14.0-ioctl (2008-04-23) initialised: dm-devel@redhat.com
+Jun 28 09:38:58 laptop14 kernel: [    3.742225] device-mapper: multipath: version 1.0.5 loaded
+Jun 28 09:38:58 laptop14 kernel: [    3.742228] device-mapper: multipath round-robin: version 1.0.0 loaded
+Jun 28 09:38:58 laptop14 kernel: [    3.742289] EISA: Probing bus 0 at eisa.0
+Jun 28 09:38:58 laptop14 kernel: [    3.742291] EISA: Cannot allocate resource for mainboard
+Jun 28 09:38:58 laptop14 kernel: [    3.742294] Cannot allocate resource for EISA slot 1
+Jun 28 09:38:58 laptop14 kernel: [    3.742320] EISA: Detected 0 cards.
+Jun 28 09:38:58 laptop14 kernel: [    3.742419] cpuidle: using governor ladder
+Jun 28 09:38:58 laptop14 kernel: [    3.742519] cpuidle: using governor menu
+Jun 28 09:38:58 laptop14 kernel: [    3.742941] Marking TSC unstable due to TSC halts in idle
+Jun 28 09:38:58 laptop14 kernel: [    3.742961] TCP cubic registered
+Jun 28 09:38:58 laptop14 kernel: [    3.743050] NET: Registered protocol family 10
+Jun 28 09:38:58 laptop14 kernel: [    3.743412] lo: Disabled Privacy Extensions
+Jun 28 09:38:58 laptop14 kernel: [    3.743704] NET: Registered protocol family 17
+Jun 28 09:38:58 laptop14 kernel: [    3.743718] Bluetooth: L2CAP ver 2.11
+Jun 28 09:38:58 laptop14 kernel: [    3.743720] Bluetooth: L2CAP socket layer initialized
+Jun 28 09:38:58 laptop14 kernel: [    3.743722] Bluetooth: SCO (Voice Link) ver 0.6
+Jun 28 09:38:58 laptop14 kernel: [    3.743724] Bluetooth: SCO socket layer initialized
+Jun 28 09:38:58 laptop14 kernel: [    3.743752] Bluetooth: RFCOMM socket layer initialized
+Jun 28 09:38:58 laptop14 kernel: [    3.743757] Bluetooth: RFCOMM TTY layer initialized
+Jun 28 09:38:58 laptop14 kernel: [    3.743759] Bluetooth: RFCOMM ver 1.10
+Jun 28 09:38:58 laptop14 kernel: [    3.744404] input: AT Translated Set 2 keyboard as /devices/platform/i8042/serio0/input/input4
+Jun 28 09:38:58 laptop14 kernel: [    3.744504] Using IPI No-Shortcut mode
+Jun 28 09:38:58 laptop14 kernel: [    3.744553] registered taskstats version 1
+Jun 28 09:38:58 laptop14 kernel: [    3.744640]   Magic number: 14:425:623
+Jun 28 09:38:58 laptop14 kernel: [    3.744700] rtc_cmos 00:03: setting system clock to 2010-06-28 07:38:46 UTC (1277710726)
+Jun 28 09:38:58 laptop14 kernel: [    3.744703] BIOS EDD facility v0.16 2004-Jun-25, 0 devices found
+Jun 28 09:38:58 laptop14 kernel: [    3.744704] EDD information not available.
+Jun 28 09:38:58 laptop14 kernel: [    3.744911] Freeing unused kernel memory: 532k freed
+Jun 28 09:38:58 laptop14 kernel: [    3.745043] Write protecting the kernel text: 4120k
+Jun 28 09:38:58 laptop14 kernel: [    3.745083] Write protecting the kernel read-only data: 1524k
+Jun 28 09:38:58 laptop14 kernel: [    3.920094] e1000e: Intel(R) PRO/1000 Network Driver - 0.3.3.3-k6
+Jun 28 09:38:58 laptop14 kernel: [    3.920097] e1000e: Copyright (c) 1999-2008 Intel Corporation.
+Jun 28 09:38:58 laptop14 kernel: [    3.920136] e1000e 0000:00:19.0: PCI INT A -> GSI 22 (level, low) -> IRQ 22
+Jun 28 09:38:58 laptop14 kernel: [    3.920144] e1000e 0000:00:19.0: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [    3.920262] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 09:38:58 laptop14 kernel: [    3.983794] ohci1394 0000:02:01.0: PCI INT A -> GSI 19 (level, low) -> IRQ 19
+Jun 28 09:38:58 laptop14 kernel: [    4.036494] ohci1394: fw-host0: OHCI-1394 1.1 (PCI): IRQ=[19]  MMIO=[f65ff800-f65fffff]  Max Packet=[2048]  IR/IT contexts=[4/4]
+Jun 28 09:38:58 laptop14 kernel: [    4.043223] 0000:00:19.0: eth0: (PCI Express:2.5GB/s:Width x1) 00:21:70:f9:85:2d
+Jun 28 09:38:58 laptop14 kernel: [    4.043225] 0000:00:19.0: eth0: Intel(R) PRO/1000 Network Connection
+Jun 28 09:38:58 laptop14 kernel: [    4.043253] 0000:00:19.0: eth0: MAC: 6, PHY: 8, PBA No: 3002ff-0ff
+Jun 28 09:38:58 laptop14 kernel: [    4.220064] usb 2-4: new high speed USB device using ehci_hcd and address 3
+Jun 28 09:38:58 laptop14 kernel: [    4.230584] PM: Starting manual resume from disk
+Jun 28 09:38:58 laptop14 kernel: [    4.230587] PM: Resume from partition 8:5
+Jun 28 09:38:58 laptop14 kernel: [    4.230588] PM: Checking hibernation image.
+Jun 28 09:38:58 laptop14 kernel: [    4.230759] PM: Resume from disk failed.
+Jun 28 09:38:58 laptop14 kernel: [    4.295423] kjournald starting.  Commit interval 5 seconds
+Jun 28 09:38:58 laptop14 kernel: [    4.295470] EXT3-fs: mounted filesystem with ordered data mode.
+Jun 28 09:38:58 laptop14 kernel: [    4.366033] usb 2-4: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    4.476064] usb 2-6: new high speed USB device using ehci_hcd and address 4
+Jun 28 09:38:58 laptop14 kernel: [    4.686924] usb 2-6: configuration #1 chosen from 2 choices
+Jun 28 09:38:58 laptop14 kernel: [    4.964067] usb 5-1: new full speed USB device using uhci_hcd and address 2
+Jun 28 09:38:58 laptop14 kernel: [    5.139905] usb 5-1: configuration #0 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    5.139908] usb 5-1: config 0 descriptor??
+Jun 28 09:38:58 laptop14 kernel: [    5.356123] ieee1394: Host added: ID:BUS[0-00:1023]  GUID[334fc00016aba490]
+Jun 28 09:38:58 laptop14 kernel: [    5.388057] usb 6-1: new low speed USB device using uhci_hcd and address 2
+Jun 28 09:38:58 laptop14 kernel: [    5.565113] usb 6-1: configuration #1 chosen from 1 choice
+Jun 28 09:38:58 laptop14 kernel: [    9.974577] udev: starting version 141
+Jun 28 09:38:58 laptop14 kernel: [   10.448736] cfg80211: Calling CRDA to update world regulatory domain
+Jun 28 09:38:58 laptop14 kernel: [   10.552457] usbcore: registered new interface driver cdc_ether
+Jun 28 09:38:58 laptop14 kernel: [   10.553967] usb 2-6: unsupported MDLM descriptors
+Jun 28 09:38:58 laptop14 kernel: [   10.553983] usbcore: registered new interface driver zaurus
+Jun 28 09:38:58 laptop14 kernel: [   10.609942] dcdbas dcdbas: Dell Systems Management Base Driver (version 5.6.0-3.2)
+Jun 28 09:38:58 laptop14 kernel: [   10.616250] input: PC Speaker as /devices/platform/pcspkr/input/input5
+Jun 28 09:38:58 laptop14 kernel: [   10.625526] Linux agpgart interface v0.103
+Jun 28 09:38:58 laptop14 kernel: [   10.626894] sdhci: Secure Digital Host Controller Interface driver
+Jun 28 09:38:58 laptop14 kernel: [   10.626896] sdhci: Copyright(c) Pierre Ossman
+Jun 28 09:38:58 laptop14 kernel: [   10.628403] sdhci-pci 0000:02:01.1: SDHCI controller found [1180:0822] (rev 22)
+Jun 28 09:38:58 laptop14 kernel: [   10.628421] sdhci-pci 0000:02:01.1: PCI INT B -> GSI 18 (level, low) -> IRQ 18
+Jun 28 09:38:58 laptop14 kernel: [   10.631619] mmc0: SDHCI controller on PCI [0000:02:01.1] using DMA
+Jun 28 09:38:58 laptop14 kernel: [   10.636210] cdc_wdm 2-6:1.5: cdc-wdm0: USB WDM device
+Jun 28 09:38:58 laptop14 kernel: [   10.636235] cdc_wdm 2-6:1.6: cdc-wdm1: USB WDM device
+Jun 28 09:38:58 laptop14 kernel: [   10.636248] usbcore: registered new interface driver cdc_wdm
+Jun 28 09:38:58 laptop14 kernel: [   10.638830] cdc_acm 2-6:1.1: ttyACM0: USB ACM device
+Jun 28 09:38:58 laptop14 kernel: [   10.639882] cdc_acm 2-6:1.3: ttyACM1: USB ACM device
+Jun 28 09:38:58 laptop14 kernel: [   10.639964] iTCO_vendor_support: vendor-support=0
+Jun 28 09:38:58 laptop14 kernel: [   10.640374] cdc_acm 2-6:1.9: ttyACM2: USB ACM device
+Jun 28 09:38:58 laptop14 kernel: [   10.640790] usbcore: registered new interface driver cdc_acm
+Jun 28 09:38:58 laptop14 kernel: [   10.640810] cdc_acm: v0.26:USB Abstract Control Model driver for USB modems and ISDN adapters
+Jun 28 09:38:58 laptop14 kernel: [   10.767142] cfg80211: World regulatory domain updated:
+Jun 28 09:38:58 laptop14 kernel: [   10.767144] ^I(start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp)
+Jun 28 09:38:58 laptop14 kernel: [   10.767146] ^I(2402000 KHz - 2472000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+Jun 28 09:38:58 laptop14 kernel: [   10.767148] ^I(2457000 KHz - 2482000 KHz @ 20000 KHz), (300 mBi, 2000 mBm)
+Jun 28 09:38:58 laptop14 kernel: [   10.767150] ^I(2474000 KHz - 2494000 KHz @ 20000 KHz), (300 mBi, 2000 mBm)
+Jun 28 09:38:58 laptop14 kernel: [   10.767152] ^I(5170000 KHz - 5250000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+Jun 28 09:38:58 laptop14 kernel: [   10.767154] ^I(5735000 KHz - 5835000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+Jun 28 09:38:58 laptop14 kernel: [   10.918026] usbcore: registered new interface driver hiddev
+Jun 28 09:38:58 laptop14 kernel: [   10.919876] iTCO_wdt: Intel TCO WatchDog Timer Driver v1.05
+Jun 28 09:38:58 laptop14 kernel: [   10.919961] iTCO_wdt: Found a ICH9M-E TCO device (Version=2, TCOBASE=0x1060)
+Jun 28 09:38:58 laptop14 kernel: [   10.920024] iTCO_wdt: initialized. heartbeat=30 sec (nowayout=0)
+Jun 28 09:38:58 laptop14 kernel: [   10.931386] synaptics was reset on resume, see synaptics_resume_reset if you have trouble on resume
+Jun 28 09:38:58 laptop14 kernel: [   10.934212] input: Logitech Optical USB Mouse as /devices/pci0000:00/0000:00:1d.0/usb6/6-1/6-1:1.0/input/input6
+Jun 28 09:38:58 laptop14 kernel: [   11.008136] generic-usb 0003:046D:C016.0001: input,hidraw0: USB HID v1.10 Mouse [Logitech Optical USB Mouse] on usb-0000:00:1d.0-1/input0
+Jun 28 09:38:58 laptop14 kernel: [   11.008151] usbcore: registered new interface driver usbhid
+Jun 28 09:38:58 laptop14 kernel: [   11.008170] usbhid: v2.6:USB HID core driver
+Jun 28 09:38:58 laptop14 kernel: [   11.012251] agpgart-intel 0000:00:00.0: Intel Mobile Intel® GM45 Express Chipset
+Jun 28 09:38:58 laptop14 kernel: [   11.013906] agpgart-intel 0000:00:00.0: detected 32764K stolen memory
+Jun 28 09:38:58 laptop14 kernel: [   11.017738] agpgart-intel 0000:00:00.0: AGP aperture is 256M @ 0xe0000000
+Jun 28 09:38:58 laptop14 kernel: [   11.093086] iwlagn: Intel(R) Wireless WiFi Link AGN driver for Linux, 1.3.27ks
+Jun 28 09:38:58 laptop14 kernel: [   11.093088] iwlagn: Copyright(c) 2003-2008 Intel Corporation
+Jun 28 09:38:58 laptop14 kernel: [   11.093168] iwlagn 0000:0c:00.0: PCI INT A -> GSI 17 (level, low) -> IRQ 17
+Jun 28 09:38:58 laptop14 kernel: [   11.093203] iwlagn 0000:0c:00.0: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [   11.093268] iwlagn: Detected Intel Wireless WiFi Link 5100AGN REV=0x54
+Jun 28 09:38:58 laptop14 kernel: [   11.117320] iwlagn: Tunable channels: 13 802.11bg, 24 802.11a channels
+Jun 28 09:38:58 laptop14 kernel: [   11.117392] iwlagn 0000:0c:00.0: irq 2298 for MSI/MSI-X
+Jun 28 09:38:58 laptop14 kernel: [   11.128766] phy0: Selected rate control algorithm 'iwl-agn-rs'
+Jun 28 09:38:58 laptop14 kernel: [   11.324684] HDA Intel 0000:00:1b.0: PCI INT A -> GSI 21 (level, low) -> IRQ 21
+Jun 28 09:38:58 laptop14 kernel: [   11.324732] HDA Intel 0000:00:1b.0: setting latency timer to 64
+Jun 28 09:38:58 laptop14 kernel: [   11.375183] acpi device:35: registered as cooling_device2
+Jun 28 09:38:58 laptop14 kernel: [   11.381576] input: Video Bus as /devices/LNXSYSTM:00/device:00/PNP0A03:00/device:33/input/input7
+Jun 28 09:38:58 laptop14 kernel: [   11.400333] eth1: register 'asix' at usb-0000:00:1d.7-4, ASIX AX88772 USB 2.0 Ethernet, 00:80:c8:38:4d:6a
+Jun 28 09:38:58 laptop14 kernel: [   11.400360] usbcore: registered new interface driver asix
+Jun 28 09:38:58 laptop14 kernel: [   11.403577] udev: renamed network interface eth1 to eth2
+Jun 28 09:38:58 laptop14 kernel: [   11.441114] ACPI: Video Device [VID] (multi-head: yes  rom: no  post: no)
+Jun 28 09:38:58 laptop14 kernel: [   11.441173] ACPI Warning (nspredef-0357): \_SB_.PCI0.VID2._DOD: Return Package has no elements (empty) [20080926]
+Jun 28 09:38:58 laptop14 kernel: [   11.441266] input: Video Bus as /devices/LNXSYSTM:00/device:00/PNP0A03:00/device:3a/input/input8
+Jun 28 09:38:58 laptop14 kernel: [   11.885650] input: DualPoint Stick as /devices/platform/i8042/serio1/input/input9
+Jun 28 09:38:58 laptop14 kernel: [   12.309099] ACPI: Video Device [VID2] (multi-head: yes  rom: no  post: no)
+Jun 28 09:38:58 laptop14 kernel: [   12.365043] hda_intel: azx_get_response timeout, switching to polling mode: last cmd=0x01ff1c00
+Jun 28 09:38:58 laptop14 kernel: [   12.385874] input: AlpsPS/2 ALPS DualPoint TouchPad as /devices/platform/i8042/serio1/input/input10
+Jun 28 09:38:58 laptop14 kernel: [   12.590035] lp: driver loaded but no devices found
+Jun 28 09:38:58 laptop14 kernel: [   12.647035] Adding 4803392k swap on /dev/sda5.  Priority:-1 extents:1 across:4803392k
+Jun 28 09:38:58 laptop14 kernel: [   13.177055] EXT3 FS on sda1, internal journal
+Jun 28 09:38:58 laptop14 kernel: [   13.500080] Clocksource tsc unstable (delta = -348464690 ns)
+Jun 28 09:38:58 laptop14 kernel: [   14.198665] type=1505 audit(1277710736.952:2): operation="profile_load" name="/usr/share/gdm/guest-session/Xsession" name2="default" pid=2240
+Jun 28 09:38:58 laptop14 kernel: [   14.233799] type=1505 audit(1277710736.988:3): operation="profile_load" name="/sbin/dhclient-script" name2="default" pid=2244
+Jun 28 09:38:58 laptop14 kernel: [   14.233862] type=1505 audit(1277710736.988:4): operation="profile_load" name="/sbin/dhclient3" name2="default" pid=2244
+Jun 28 09:38:58 laptop14 kernel: [   14.233893] type=1505 audit(1277710736.988:5): operation="profile_load" name="/usr/lib/NetworkManager/nm-dhcp-client.action" name2="default" pid=2244
+Jun 28 09:38:58 laptop14 kernel: [   14.233924] type=1505 audit(1277710736.988:6): operation="profile_load" name="/usr/lib/connman/scripts/dhclient-script" name2="default" pid=2244
+Jun 28 09:38:58 laptop14 kernel: [   14.331664] type=1505 audit(1277710737.084:7): operation="profile_load" name="/usr/lib/cups/backend/cups-pdf" name2="default" pid=2249
+Jun 28 09:38:58 laptop14 kernel: [   14.331760] type=1505 audit(1277710737.084:8): operation="profile_load" name="/usr/sbin/cupsd" name2="default" pid=2249
+Jun 28 09:38:58 laptop14 kernel: [   14.352533] type=1505 audit(1277710737.104:9): operation="profile_load" name="/usr/sbin/tcpdump" name2="default" pid=2256
+Jun 28 09:38:58 laptop14 kernel: [   14.377251] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 09:38:58 laptop14 kernel: [   14.434718] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 09:38:58 laptop14 kernel: [   14.435008] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 09:38:58 laptop14 kernel: [   14.462222] eth2: link down
+Jun 28 09:38:58 laptop14 kernel: [   14.465000] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 09:38:58 laptop14 kernel: [   15.988780] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 09:38:58 laptop14 kernel: [   15.988783] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 09:38:58 laptop14 kernel: [   15.988947] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 09:39:00 laptop14 kernel: [   17.901245] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+Jun 28 09:39:00 laptop14 kernel: [   17.901247] Bluetooth: BNEP filters: protocol multicast
+Jun 28 09:39:00 laptop14 kernel: [   17.914545] Bridge firewalling registered
+Jun 28 09:39:02 laptop14 kernel: [   19.392291] ppdev: user-space parallel port driver
+Jun 28 09:39:03 laptop14 kernel: [   20.612040] [drm] Initialized drm 1.1.0 20060810
+Jun 28 09:39:03 laptop14 kernel: [   20.616177] pci 0000:00:02.0: PCI INT A -> GSI 16 (level, low) -> IRQ 16
+Jun 28 09:39:03 laptop14 kernel: [   20.616182] pci 0000:00:02.0: setting latency timer to 64
+Jun 28 09:39:03 laptop14 kernel: [   20.616369] pci 0000:00:02.0: irq 2297 for MSI/MSI-X
+Jun 28 09:39:03 laptop14 kernel: [   20.616441] [drm] Initialized i915 1.6.0 20080730 on minor 0
+Jun 28 09:39:03 laptop14 kernel: [   20.620422] [drm:i915_setparam] *ERROR* unknown parameter 4
+Jun 28 09:39:06 laptop14 kernel: [   23.245030] iwlagn 0000:0c:00.0: firmware: requesting iwlwifi-5000-1.ucode
+Jun 28 09:39:06 laptop14 kernel: [   23.520961] Registered led device: iwl-phy0:radio
+Jun 28 09:39:06 laptop14 kernel: [   23.520976] Registered led device: iwl-phy0:assoc
+Jun 28 09:39:06 laptop14 kernel: [   23.520988] Registered led device: iwl-phy0:RX
+Jun 28 09:39:06 laptop14 kernel: [   23.521061] Registered led device: iwl-phy0:TX
+Jun 28 09:39:06 laptop14 kernel: [   23.762892] ADDRCONF(NETDEV_UP): wlan0: link is not ready
+Jun 28 09:39:08 laptop14 kernel: [   25.331610] wlan0: authenticate with AP 00:0f:90:55:48:50
+Jun 28 09:39:08 laptop14 kernel: [   25.333627] wlan0: authenticated
+Jun 28 09:39:08 laptop14 kernel: [   25.333630] wlan0: associate with AP 00:0f:90:55:48:50
+Jun 28 09:39:08 laptop14 kernel: [   25.339955] wlan0: RX AssocResp from 00:0f:90:55:48:50 (capab=0x421 status=0 aid=7)
+Jun 28 09:39:08 laptop14 kernel: [   25.339958] wlan0: associated
+Jun 28 09:39:08 laptop14 kernel: [   25.341258] wlan0: disassociating by local choice (reason=3)
+Jun 28 09:39:09 laptop14 kernel: [   26.892067] eth0: no IPv6 routers present
+Jun 28 09:39:59 laptop14 kernel: [   76.797416] wlan0: authenticate with AP 00:11:20:27:ef:d0
+Jun 28 09:39:59 laptop14 kernel: [   76.798254] wlan0: authenticate with AP 00:11:20:27:ef:d0
+Jun 28 09:39:59 laptop14 kernel: [   76.801110] wlan0: authenticated
+Jun 28 09:39:59 laptop14 kernel: [   76.801114] wlan0: associate with AP 00:11:20:27:ef:d0
+Jun 28 09:39:59 laptop14 kernel: [   76.809031] wlan0: RX ReassocResp from 00:11:20:27:ef:d0 (capab=0x421 status=0 aid=1)
+Jun 28 09:39:59 laptop14 kernel: [   76.809033] wlan0: associated
+Jun 28 09:39:59 laptop14 kernel: [   76.810520] ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+Jun 28 09:40:12 laptop14 kernel: [   89.519158] wlan0: direct probe to AP 00:11:20:27:ef:d0 try 1
+Jun 28 09:40:12 laptop14 kernel: [   89.522082] wlan0 direct probe responded
+Jun 28 09:40:12 laptop14 kernel: [   89.522090] wlan0: authenticate with AP 00:11:20:27:ef:d0
+Jun 28 09:40:12 laptop14 kernel: [   89.577942] wlan0: disassociating by local choice (reason=3)
+Jun 28 10:02:59 laptop14 kernel: [ 1457.029624] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:02:59 laptop14 kernel: [ 1457.085359] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:02:59 laptop14 kernel: [ 1457.086459] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 10:03:00 laptop14 kernel: [ 1457.512074] eth2: link down
+Jun 28 10:03:00 laptop14 kernel: [ 1457.514391] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 10:03:01 laptop14 kernel: [ 1458.605068] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 10:03:01 laptop14 kernel: [ 1458.605076] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 10:03:01 laptop14 kernel: [ 1458.605526] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 10:03:12 laptop14 kernel: [ 1469.556249] eth0: no IPv6 routers present
+Jun 28 10:03:58 laptop14 kernel: [ 1515.257182] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:03:58 laptop14 kernel: [ 1515.313187] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:03:58 laptop14 kernel: [ 1515.314013] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 10:03:58 laptop14 kernel: [ 1515.681070] eth2: link down
+Jun 28 10:03:58 laptop14 kernel: [ 1515.683018] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 10:03:59 laptop14 kernel: [ 1516.874060] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 10:03:59 laptop14 kernel: [ 1516.874068] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 10:03:59 laptop14 kernel: [ 1516.874519] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 10:04:10 laptop14 kernel: [ 1527.720265] eth0: no IPv6 routers present
+Jun 28 10:14:51 laptop14 kernel: [ 2168.824535] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:14:51 laptop14 kernel: [ 2168.881383] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:14:51 laptop14 kernel: [ 2168.882369] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 10:14:52 laptop14 kernel: [ 2169.313491] eth2: link down
+Jun 28 10:14:52 laptop14 kernel: [ 2169.315351] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 10:14:53 laptop14 kernel: [ 2170.405071] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 10:14:53 laptop14 kernel: [ 2170.405079] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 10:14:53 laptop14 kernel: [ 2170.405530] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 10:15:03 laptop14 kernel: [ 2181.168265] eth0: no IPv6 routers present
+Jun 28 10:32:56 laptop14 kernel: [ 3253.460784] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:32:56 laptop14 kernel: [ 3253.517365] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:32:56 laptop14 kernel: [ 3253.518471] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 10:32:56 laptop14 kernel: [ 3253.895418] eth2: link down
+Jun 28 10:32:56 laptop14 kernel: [ 3253.897865] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 10:32:57 laptop14 kernel: [ 3255.192881] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 10:32:57 laptop14 kernel: [ 3255.192889] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 10:32:57 laptop14 kernel: [ 3255.193348] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 10:33:07 laptop14 kernel: [ 3265.212259] eth0: no IPv6 routers present
+Jun 28 10:36:04 laptop14 kernel: [ 3441.821584] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:36:04 laptop14 kernel: [ 3441.876363] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:36:04 laptop14 kernel: [ 3441.877074] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 10:36:05 laptop14 kernel: [ 3442.267283] eth2: link down
+Jun 28 10:36:05 laptop14 kernel: [ 3442.269638] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 10:36:06 laptop14 kernel: [ 3443.525068] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 10:36:06 laptop14 kernel: [ 3443.525076] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 10:36:06 laptop14 kernel: [ 3443.525537] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 10:36:17 laptop14 kernel: [ 3454.308244] eth0: no IPv6 routers present
+Jun 28 10:53:13 laptop14 kernel: [ 4470.609629] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:53:13 laptop14 kernel: [ 4470.664430] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 10:53:13 laptop14 kernel: [ 4470.665901] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 10:53:13 laptop14 kernel: [ 4471.078088] eth2: link down
+Jun 28 10:53:13 laptop14 kernel: [ 4471.080013] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 10:53:14 laptop14 kernel: [ 4472.189117] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 10:53:14 laptop14 kernel: [ 4472.189126] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 10:53:14 laptop14 kernel: [ 4472.189589] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 10:53:25 laptop14 kernel: [ 4482.260258] eth0: no IPv6 routers present
+Jun 28 10:57:12 laptop14 kernel: [ 4710.079781] Registered led device: iwl-phy0:radio
+Jun 28 10:57:12 laptop14 kernel: [ 4710.097979] Registered led device: iwl-phy0:assoc
+Jun 28 10:57:12 laptop14 kernel: [ 4710.098035] Registered led device: iwl-phy0:RX
+Jun 28 10:57:12 laptop14 kernel: [ 4710.098071] Registered led device: iwl-phy0:TX
+Jun 28 10:57:12 laptop14 kernel: [ 4710.117182] ADDRCONF(NETDEV_UP): wlan0: link is not ready
+Jun 28 10:57:12 laptop14 kernel: [ 4710.118594] wlan0: direct probe to AP 00:11:20:27:ef:d0 try 1
+Jun 28 10:57:12 laptop14 kernel: [ 4710.132051] wlan0 direct probe responded
+Jun 28 10:57:12 laptop14 kernel: [ 4710.132060] wlan0: authenticate with AP 00:11:20:27:ef:d0
+Jun 28 10:57:12 laptop14 kernel: [ 4710.133976] wlan0: authenticated
+Jun 28 10:57:12 laptop14 kernel: [ 4710.133984] wlan0: associate with AP 00:11:20:27:ef:d0
+Jun 28 10:57:12 laptop14 kernel: [ 4710.142367] wlan0: RX AssocResp from 00:11:20:27:ef:d0 (capab=0x421 status=0 aid=1)
+Jun 28 10:57:12 laptop14 kernel: [ 4710.142374] wlan0: associated
+Jun 28 10:57:12 laptop14 kernel: [ 4710.153405] wlan0: disassociating by local choice (reason=3)
+Jun 28 10:57:12 laptop14 kernel: [ 4710.177405] phy0: failed to restore operational channel after scan
+Jun 28 10:57:12 laptop14 kernel: [ 4710.178182] phy0: failed to restore operational channel after scan
+Jun 28 10:57:17 laptop14 kernel: [ 4715.181208] wlan0: authenticate with AP 00:11:20:27:ef:d0
+Jun 28 10:57:17 laptop14 kernel: [ 4715.187097] wlan0: authenticated
+Jun 28 10:57:17 laptop14 kernel: [ 4715.187107] wlan0: associate with AP 00:11:20:27:ef:d0
+Jun 28 10:57:17 laptop14 kernel: [ 4715.191504] wlan0: RX ReassocResp from 00:11:20:27:ef:d0 (capab=0x421 status=0 aid=1)
+Jun 28 10:57:17 laptop14 kernel: [ 4715.191511] wlan0: associated
+Jun 28 10:57:17 laptop14 kernel: [ 4715.206884] ADDRCONF(NETDEV_CHANGE): wlan0: link becomes ready
+Jun 28 10:57:36 laptop14 kernel: [ 4733.270858] wlan0: authenticate with AP 00:0f:90:55:48:50
+Jun 28 10:57:36 laptop14 kernel: [ 4733.273085] wlan0: authenticate with AP 00:0f:90:55:48:50
+Jun 28 10:57:36 laptop14 kernel: [ 4733.273976] wlan0: authenticated
+Jun 28 10:57:36 laptop14 kernel: [ 4733.273983] wlan0: associate with AP 00:0f:90:55:48:50
+Jun 28 10:57:36 laptop14 kernel: [ 4733.279751] wlan0: RX ReassocResp from 00:0f:90:55:48:50 (capab=0x421 status=0 aid=9)
+Jun 28 10:57:36 laptop14 kernel: [ 4733.279759] wlan0: associated
+Jun 28 10:58:15 laptop14 kernel: [ 4773.032273] iwlagn: Aborted scan still in progress after 100ms
+Jun 28 10:58:15 laptop14 kernel: [ 4773.032285] wlan0: Failed to config new SSID to the low-level driver
+Jun 28 10:58:15 laptop14 kernel: [ 4773.032362] wlan0: disassociating by local choice (reason=3)
+Jun 28 10:58:15 laptop14 kernel: [ 4773.100716] wlan0: authenticate with AP 00:11:20:27:ef:d3
+Jun 28 10:58:15 laptop14 kernel: [ 4773.103343] wlan0: authenticate with AP 00:11:20:27:ef:d3
+Jun 28 10:58:15 laptop14 kernel: [ 4773.105370] wlan0: authenticated
+Jun 28 10:58:15 laptop14 kernel: [ 4773.105378] wlan0: associate with AP 00:11:20:27:ef:d3
+Jun 28 10:58:16 laptop14 kernel: [ 4773.304312] wlan0: associate with AP 00:11:20:27:ef:d3
+Jun 28 10:58:16 laptop14 kernel: [ 4773.504275] wlan0: associate with AP 00:11:20:27:ef:d3
+Jun 28 10:58:16 laptop14 kernel: [ 4773.704573] wlan0: association with AP 00:11:20:27:ef:d3 timed out
+Jun 28 10:58:25 laptop14 kernel: [ 4783.105381] wlan0: direct probe to AP 00:11:20:27:ef:d3 try 1
+Jun 28 10:58:25 laptop14 kernel: [ 4783.108663] iwlagn: index 0 not used in uCode key table.
+Jun 28 10:58:25 laptop14 kernel: [ 4783.125172] wlan0 direct probe responded
+Jun 28 10:58:25 laptop14 kernel: [ 4783.125183] wlan0: authenticate with AP 00:11:20:27:ef:d3
+Jun 28 10:58:25 laptop14 kernel: [ 4783.139033] wlan0: authenticated
+Jun 28 10:58:25 laptop14 kernel: [ 4783.139044] wlan0: associate with AP 00:11:20:27:ef:d3
+Jun 28 10:58:26 laptop14 kernel: [ 4783.336124] wlan0: associate with AP 00:11:20:27:ef:d3
+Jun 28 10:58:26 laptop14 kernel: [ 4783.340802] wlan0: RX AssocResp from 00:11:20:27:ef:d3 (capab=0x431 status=0 aid=1)
+Jun 28 10:58:26 laptop14 kernel: [ 4783.340810] wlan0: associated
+Jun 28 10:59:59 laptop14 kernel: [ 4863.073428] tun: Universal TUN/TAP device driver, 1.6
+Jun 28 10:59:59 laptop14 kernel: [ 4863.073434] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+Jun 28 11:00:58 laptop14 kernel: [ 4922.824261] tap0: no IPv6 routers present
+Jun 28 11:01:39 laptop14 kernel: [ 4963.652454] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 11:01:39 laptop14 kernel: [ 4963.708372] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 11:01:39 laptop14 kernel: [ 4963.709100] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 11:01:40 laptop14 kernel: [ 4964.243985] eth2: link down
+Jun 28 11:01:40 laptop14 kernel: [ 4964.246381] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 11:01:41 laptop14 kernel: [ 4965.240864] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 11:01:41 laptop14 kernel: [ 4965.240872] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 11:01:41 laptop14 kernel: [ 4965.241322] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 11:01:51 laptop14 kernel: [ 4975.069023] tap0: no IPv6 routers present
+Jun 28 11:01:51 laptop14 kernel: [ 4975.436245] eth0: no IPv6 routers present
+Jun 28 11:02:16 laptop14 kernel: [ 5000.045105] iwlagn: index 0 not used in uCode key table.
+Jun 28 11:02:16 laptop14 kernel: [ 5000.049978] wlan0: authenticate with AP 00:0f:90:55:48:53
+Jun 28 11:02:16 laptop14 kernel: [ 5000.052606] wlan0: authenticate with AP 00:0f:90:55:48:53
+Jun 28 11:02:16 laptop14 kernel: [ 5000.054599] wlan0: authenticated
+Jun 28 11:02:16 laptop14 kernel: [ 5000.054606] wlan0: associate with AP 00:0f:90:55:48:53
+Jun 28 11:02:16 laptop14 kernel: [ 5000.060072] wlan0: RX ReassocResp from 00:0f:90:55:48:53 (capab=0x431 status=0 aid=9)
+Jun 28 11:02:16 laptop14 kernel: [ 5000.060080] wlan0: associated
+Jun 28 11:02:41 laptop14 kernel: [ 5025.088228] wlan0: disassociating by local choice (reason=3)
+Jun 28 11:02:41 laptop14 kernel: [ 5025.134253] iwlagn: index 0 not used in uCode key table.
+Jun 28 11:11:57 laptop14 kernel: [ 5581.716669] ip6_tables: (C) 2000-2006 Netfilter Core Team
+Jun 28 11:11:57 laptop14 kernel: [ 5581.880315] nf_conntrack version 0.5.0 (16384 buckets, 65536 max)
+Jun 28 11:11:57 laptop14 kernel: [ 5581.880690] CONFIG_NF_CT_ACCT is deprecated and will be removed soon. Please use
+Jun 28 11:11:57 laptop14 kernel: [ 5581.880695] nf_conntrack.acct=1 kernel paramater, acct=1 nf_conntrack module option or
+Jun 28 11:11:57 laptop14 kernel: [ 5581.880700] sysctl net.netfilter.nf_conntrack_acct=1 to enable it.
+Jun 28 11:12:55 laptop14 kernel: [ 5639.351155] ip_tables: (C) 2000-2006 Netfilter Core Team
+Jun 28 11:19:19 laptop14 kernel: [ 6023.720632] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 11:19:19 laptop14 kernel: [ 6023.776370] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 28 11:19:19 laptop14 kernel: [ 6023.777061] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 28 11:19:20 laptop14 kernel: [ 6024.190494] eth2: link down
+Jun 28 11:19:20 laptop14 kernel: [ 6024.192740] ADDRCONF(NETDEV_UP): eth2: link is not ready
+Jun 28 11:19:21 laptop14 kernel: [ 6025.376894] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 28 11:19:21 laptop14 kernel: [ 6025.376903] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 28 11:19:21 laptop14 kernel: [ 6025.377383] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 28 11:19:30 laptop14 kernel: [ 6034.720118] tap0: no IPv6 routers present
+Jun 28 11:19:31 laptop14 kernel: [ 6035.520273] eth0: no IPv6 routers present
+Jun 28 13:36:31 laptop14 kernel: [14254.960085] CE: hpet increasing min_delta_ns to 15000 nsec
+Jun 29 15:02:38 laptop14 kernel: [105822.617226] ADDRCONF(NETDEV_CHANGE): eth2: link becomes ready
+Jun 29 15:02:38 laptop14 kernel: [105822.620912] eth2: link up, 100Mbps, full-duplex, lpa 0xCDE1
+Jun 29 15:02:49 laptop14 kernel: [105833.505250] eth2: no IPv6 routers present
+Jun 29 15:06:15 laptop14 kernel: [106039.216086] device tap0 entered promiscuous mode
+Jun 29 15:06:26 laptop14 kernel: [106050.824083] device eth2 entered promiscuous mode
+Jun 29 15:16:47 laptop14 kernel: [106671.132903] eth2: link up, 100Mbps, full-duplex, lpa 0xCDE1
+Jun 29 16:04:18 laptop14 kernel: [109522.203567] eth2: link up, 100Mbps, full-duplex, lpa 0x45E1
+Jun 29 16:08:26 laptop14 kernel: [109770.349707] device tap0 left promiscuous mode
+Jun 29 16:08:30 laptop14 kernel: [109774.580063] device eth0 entered promiscuous mode
+Jun 29 16:09:49 laptop14 kernel: [109853.279298] device eth0 left promiscuous mode
+Jun 29 16:09:49 laptop14 kernel: [109853.421861] device eth0 entered promiscuous mode
+Jun 30 11:15:34 laptop14 kernel: [178598.705066] device eth0 left promiscuous mode
+Jun 30 11:15:41 laptop14 kernel: [178605.027474] device tap0 entered promiscuous mode
+Jun 30 11:16:45 laptop14 kernel: [178669.032210] device tap0 left promiscuous mode
+Jun 30 11:29:19 laptop14 kernel: [179423.116998] device eth0 entered promiscuous mode
+Jun 30 11:59:09 laptop14 kernel: [181213.143596] device eth0 left promiscuous mode
+Jun 30 11:59:13 laptop14 kernel: [181217.866905] device tap0 entered promiscuous mode
+Jun 30 12:03:58 laptop14 kernel: [181501.968215] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 30 12:03:58 laptop14 kernel: [181502.024065] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 30 12:03:58 laptop14 kernel: [181502.024393] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 30 12:03:59 laptop14 kernel: [181503.653798] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 30 12:03:59 laptop14 kernel: [181503.653801] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 30 12:03:59 laptop14 kernel: [181503.653995] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 30 12:04:01 laptop14 kernel: [181505.425123] eth2: link up, 100Mbps, full-duplex, lpa 0x45E1
+Jun 30 12:06:09 laptop14 kernel: [181633.697218] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 30 12:06:09 laptop14 kernel: [181633.753072] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 30 12:06:09 laptop14 kernel: [181633.753429] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 30 12:06:11 laptop14 kernel: [181635.296803] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 30 12:06:11 laptop14 kernel: [181635.296806] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 30 12:06:11 laptop14 kernel: [181635.296999] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 30 12:06:13 laptop14 kernel: [181637.768384] eth2: link up, 100Mbps, full-duplex, lpa 0x45E1
+Jun 30 14:45:56 laptop14 kernel: [191220.849065] device tap0 left promiscuous mode
+Jun 30 14:46:02 laptop14 kernel: [191226.620808] device lo entered promiscuous mode
+Jun 30 14:47:35 laptop14 kernel: [191319.545012] device lo left promiscuous mode
+Jun 30 14:47:39 laptop14 kernel: [191323.044032] device tap0 entered promiscuous mode
+Jun 30 14:54:44 laptop14 kernel: [191748.732216] device eth2 left promiscuous mode
+Jun 30 14:54:51 laptop14 kernel: [191755.131105] device lo entered promiscuous mode
+Jun 30 14:54:57 laptop14 kernel: [191761.761094] device lo left promiscuous mode
+Jun 30 14:55:05 laptop14 kernel: [191769.239241] device eth0 entered promiscuous mode
+Jun 30 14:55:14 laptop14 kernel: [191778.045075] device eth0 left promiscuous mode
+Jun 30 14:59:32 laptop14 kernel: [192036.873199] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 30 14:59:32 laptop14 kernel: [192036.929057] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 30 14:59:32 laptop14 kernel: [192036.929386] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 30 14:59:33 laptop14 kernel: [192037.271842] eth2: link up, 100Mbps, full-duplex, lpa 0x45E1
+Jun 30 14:59:34 laptop14 kernel: [192038.593845] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 30 14:59:34 laptop14 kernel: [192038.593848] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 30 14:59:34 laptop14 kernel: [192038.594048] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 30 14:59:54 laptop14 kernel: [192058.265385] device tap0 left promiscuous mode
+Jun 30 15:00:02 laptop14 kernel: [192066.502197] device eth0 entered promiscuous mode
+Jun 30 15:00:05 laptop14 kernel: [192069.709068] device eth0 left promiscuous mode
+Jun 30 15:04:30 laptop14 kernel: [192334.716282] device tun0 entered promiscuous mode
+Jun 30 15:04:36 laptop14 kernel: [192340.657098] device tun0 left promiscuous mode
+Jun 30 15:37:32 laptop14 kernel: [194316.148438] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 30 15:37:32 laptop14 kernel: [194316.204334] e1000e 0000:00:19.0: irq 2299 for MSI/MSI-X
+Jun 30 15:37:32 laptop14 kernel: [194316.204680] ADDRCONF(NETDEV_UP): eth0: link is not ready
+Jun 30 15:37:32 laptop14 kernel: [194316.412139] eth2: link up, 100Mbps, full-duplex, lpa 0x45E1
+Jun 30 15:37:33 laptop14 kernel: [194317.724831] 0000:00:19.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: RX/TX
+Jun 30 15:37:33 laptop14 kernel: [194317.724834] 0000:00:19.0: eth0: 10/100 speed: disabling TSO
+Jun 30 15:37:33 laptop14 kernel: [194317.725281] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Jun 30 15:50:24 laptop14 kernel: [195088.357298] device eth0 entered promiscuous mode
+Jun 30 15:50:56 laptop14 kernel: [195120.717983] device tap0 entered promiscuous mode
+Jun 30 15:57:54 laptop14 kernel: [195538.118259] device tap0 left promiscuous mode
+Jun 30 15:57:58 laptop14 kernel: [195542.622523] device eth2 entered promiscuous mode
+Jun 30 16:20:44 laptop14 kernel: [196908.197114] device eth0 left promiscuous mode
+Jun 30 16:20:44 laptop14 kernel: [196908.398190] device eth0 entered promiscuous mode
+Jun 30 16:20:50 laptop14 kernel: [196913.972642] device eth2 left promiscuous mode
+Jun 30 16:20:50 laptop14 kernel: [196914.109532] device eth2 entered promiscuous mode
+Jun 30 16:55:07 laptop14 kernel: [198971.353057] device eth0 left promiscuous mode
+Jun 30 16:55:07 laptop14 kernel: [198971.516930] device eth0 entered promiscuous mode
+Jun 30 17:18:58 laptop14 kernel: [200402.169442] device eth0 left promiscuous mode
+Jun 30 17:18:58 laptop14 kernel: [200402.353065] device eth0 entered promiscuous mode
+Jun 30 17:45:42 laptop14 kernel: [202005.957855] TRACE: raw:OUTPUT:policy:3 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=1 UID=0 GID=0 
+Jun 30 17:45:42 laptop14 kernel: [202005.957899] TRACE: mangle:OUTPUT:policy:1 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=1 UID=0 GID=0 
+Jun 30 17:45:42 laptop14 kernel: [202005.957924] TRACE: filter:OUTPUT:rule:2 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=1 UID=0 GID=0 
+Jun 30 17:45:42 laptop14 kernel: [202005.957948] TRACE: filter:OUTPUT:policy:3 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=1 UID=0 GID=0 
+Jun 30 17:45:42 laptop14 kernel: [202005.957972] TRACE: mangle:POSTROUTING:policy:1 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=1 UID=0 GID=0 
+Jun 30 17:45:42 laptop14 kernel: [202005.965331] TRACE: raw:PREROUTING:policy:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=1 
+Jun 30 17:45:42 laptop14 kernel: [202005.965388] TRACE: mangle:PREROUTING:policy:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=1 
+Jun 30 17:45:42 laptop14 kernel: [202005.965433] TRACE: mangle:INPUT:policy:1 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=1 
+Jun 30 17:45:42 laptop14 kernel: [202005.965476] TRACE: filter:INPUT:rule:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=1 
+Jun 30 17:45:43 laptop14 kernel: [202006.957334] TRACE: raw:OUTPUT:policy:3 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=2 UID=0 GID=0 
+Jun 30 17:45:43 laptop14 kernel: [202006.957381] TRACE: mangle:OUTPUT:policy:1 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=2 UID=0 GID=0 
+Jun 30 17:45:43 laptop14 kernel: [202006.957406] TRACE: filter:OUTPUT:rule:2 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=2 UID=0 GID=0 
+Jun 30 17:45:43 laptop14 kernel: [202006.957429] TRACE: filter:OUTPUT:policy:3 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=2 UID=0 GID=0 
+Jun 30 17:45:43 laptop14 kernel: [202006.957454] TRACE: mangle:POSTROUTING:policy:1 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=2 UID=0 GID=0 
+Jun 30 17:45:43 laptop14 kernel: [202006.958076] TRACE: raw:PREROUTING:policy:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=2 
+Jun 30 17:45:43 laptop14 kernel: [202006.958132] TRACE: mangle:PREROUTING:policy:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=2 
+Jun 30 17:45:43 laptop14 kernel: [202006.958179] TRACE: mangle:INPUT:policy:1 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=2 
+Jun 30 17:45:43 laptop14 kernel: [202006.958221] TRACE: filter:INPUT:rule:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=2 
+Jun 30 17:45:44 laptop14 kernel: [202007.966446] TRACE: raw:OUTPUT:policy:3 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=3 UID=0 GID=0 
+Jun 30 17:45:44 laptop14 kernel: [202007.966512] TRACE: mangle:OUTPUT:policy:1 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=3 UID=0 GID=0 
+Jun 30 17:45:44 laptop14 kernel: [202007.966538] TRACE: filter:OUTPUT:rule:2 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=3 UID=0 GID=0 
+Jun 30 17:45:44 laptop14 kernel: [202007.966561] TRACE: filter:OUTPUT:policy:3 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=3 UID=0 GID=0 
+Jun 30 17:45:44 laptop14 kernel: [202007.966594] TRACE: mangle:POSTROUTING:policy:1 IN= OUT=eth0 SRC=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf DST=2001:0660:7301:0053:0221:70ff:fec2:fbc0 LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=128 CODE=0 ID=33889 SEQ=3 UID=0 GID=0 
+Jun 30 17:45:44 laptop14 kernel: [202007.967253] TRACE: raw:PREROUTING:policy:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=3 
+Jun 30 17:45:44 laptop14 kernel: [202007.967308] TRACE: mangle:PREROUTING:policy:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=3 
+Jun 30 17:45:44 laptop14 kernel: [202007.967356] TRACE: mangle:INPUT:policy:1 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=3 
+Jun 30 17:45:44 laptop14 kernel: [202007.967398] TRACE: filter:INPUT:rule:3 IN=eth0 OUT= MAC=00:21:70:f9:85:2d:00:21:70:c2:fb:c0:86:dd SRC=2001:0660:7301:0053:0221:70ff:fec2:fbc0 DST=5ffe:0000:0000:0000:82c8:38ff:fe4d:6bbf LEN=104 TC=0 HOPLIMIT=64 FLOWLBL=0 PROTO=ICMPv6 TYPE=129 CODE=0 ID=33889 SEQ=3 

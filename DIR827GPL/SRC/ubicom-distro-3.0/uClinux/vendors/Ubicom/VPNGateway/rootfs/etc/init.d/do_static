@@ -1,0 +1,50 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+case "$1" in
+start)	
+	ifconfig $WANINTERFACE $STATICWANIP netmask $STATICWANMASK up
+	route add default gw $STATICGATEWAY
+
+	# For dnsmasq to get DNS addresses, create /etc/config/resolv.conf file and create a link
+	# for /etc/config/config/resolv.conf, because Dnsmasq searchs here.
+	if [ ! -f /etc/config/resolv.conf ]; then
+		touch /etc/config/resolv.conf
+		chmod 777 /etc/config/resolv.conf
+	fi
+	
+	if [ "$STATICDNS1" != "" ]; then
+		echo "nameserver $STATICDNS1" > /etc/config/resolv.conf
+	fi
+	
+	if [ "$STATICDNS2" != "" ]; then
+		echo "nameserver $STATICDNS2" >> /etc/config/resolv.conf
+	fi
+	
+	if [ "$STATICGATEWAY" != "" ]; then
+		echo "nameserver $STATICGATEWAY" >> /etc/config/resolv.conf
+	fi
+	
+	if [ ! -f /etc/config/config/resolv.conf ]; then 
+		ln -s /etc/config/resolv.conf /etc/config/config/resolv.conf
+	fi
+
+	if [ ! -f /etc/resolv.conf ]; then 
+		ln -s /etc/config/resolv.conf /etc/resolv.conf
+	fi
+
+	;;
+stop)	
+	wan=`ifconfig | grep $WANINTERFACE`
+	if [ "$wan" != "" ]; then
+		# Delete the default route
+		route del default
+		ifconfig $WANINTERFACE 0.0.0.0 down		
+	fi
+	
+	if [ -f /etc/config/config/resolv.conf ]; then 
+		rm /etc/config/config/resolv.conf
+	fi
+esac
+exit 0

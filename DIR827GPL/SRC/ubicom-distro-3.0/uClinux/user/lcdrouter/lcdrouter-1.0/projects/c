@@ -1,0 +1,4 @@
+#!/bin/sh
+make -C ../ clean
+make -C ../
+

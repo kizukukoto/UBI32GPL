@@ -1,0 +1,25 @@
+#!/bin/sh
+# Copyright (C) 2009 Ubicom, Inc.
+
+PATH=/bin:/sbin:/usr/bin
+
+export PATH
+
+echo "***** Testing for console devices, please ignore any errors *****" > /dev/ttyUM0
+echo "Test ttyUM0 as a console" > /dev/ttyUM0
+if [ $? == 0 ]; then
+CONSOLE="ttyUM0";
+fi
+echo "Test ttyUS0 as a console" > /dev/ttyUS0
+if [ $? == 0 ]; then
+CONSOLE="ttyUS0";
+fi
+
+export CONSOLE
+
+echo ""
+echo "System ready, Using ${CONSOLE} as console ******"
+
+echo "Starting busybox init"
+exec /bin/init
+

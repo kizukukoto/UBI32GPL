@@ -1,0 +1,13 @@
+Language Pack Release Note
+Project Name: DIR-857
+HW version: A1
+Region/OEM code: ES
+======================================================================================
+Language-Version:1.00ESb01
+Language: Spanish
+Language-Checksum: 0x00CC0831 
+Language-svn:2244
+
+1.please base on FW v1.00b14.
+--------------------------------------------------------------------------------------
+

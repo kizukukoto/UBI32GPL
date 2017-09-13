@@ -1,0 +1,21 @@
+
+include makefile.soc.linux.mips.mak
+
+
+all: devlib client 
+
+devlib: 
+	$(MAKE) -C ./devlib -f makefile.soc.linux.mips dirs
+	$(MAKE) -C ./devlib -f makefile.soc.linux.mips
+
+client:
+	$(MAKE) -C ./client -f makefile.soc.linux.mips dirs
+	$(MAKE) -C ./client -f makefile.soc.linux.mips  
+
+clean:
+	$(MAKE) -C ./devlib -f makefile.soc.linux.mips clean
+	$(MAKE) -C ./client -f makefile.soc.linux.mips clean
+
+.PHONY: all createini devlib client clean 
+
+

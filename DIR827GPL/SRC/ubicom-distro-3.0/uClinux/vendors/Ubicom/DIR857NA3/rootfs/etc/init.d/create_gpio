@@ -1,0 +1,58 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2009 Ubicom, Inc.
+
+echo "CREATE GPIO"
+#Mount sys
+
+echo "mount sys"
+mount -t sysfs sysfs /sys
+
+#LEDS and PUSH BUTTON
+
+#WLAN
+#echo 5  > /sys/class/gpio/export
+#echo out > /sys/class/gpio/gpio5/direction 
+#echo 1 > /sys/class/gpio/gpio5/value
+#WAN LED Control
+#echo 132 > /sys/class/gpio/export
+#echo out > /sys/class/gpio/gpio132/direction 
+#echo 1 > /sys/class/gpio/gpio132/value
+#Internet Green/Blue
+echo 150 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio150/direction 
+echo 1 > /sys/class/gpio/gpio150/value
+#Internet Yellow
+echo 152 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio152/direction 
+echo 1 > /sys/class/gpio/gpio152/value
+#Status
+echo 148  > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio148/direction
+echo 1 > /sys/class/gpio/gpio148/value 
+#Power
+echo 149  > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio149/direction
+echo 0 > /sys/class/gpio/gpio149/value
+#WPS LED
+#echo 100 > /sys/class/gpio/export
+#echo out > /sys/class/gpio/gpio100/direction 
+#echo 1 > /sys/class/gpio/gpio100/value
+
+#WPS Button
+#echo 102 > /sys/class/gpio/export
+#echo in > /sys/class/gpio/gpio102/direction 
+#echo 1 > /sys/class/gpio/gpio102/value
+#Factory Default Button
+echo 157 > /sys/class/gpio/export
+echo in > /sys/class/gpio/gpio157/direction 
+echo 1 > /sys/class/gpio/gpio157/value
+#SD Insert Detect
+echo 155  > /sys/class/gpio/export
+echo in > /sys/class/gpio/gpio155/direction
+echo 1 > /sys/class/gpio/gpio155/value
+
+echo "Setting SMP Affinity"
+/etc/init.d/smp
+
+
+sleep 1

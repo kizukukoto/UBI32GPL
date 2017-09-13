@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name='InternetGatewayDevice' rw='0' type='node'>
+    <node name='DeviceSummary' rw='0' getc='0' noc='0' nocc='' acl='' type='string'>InternetGatewayDevice:1.0[](Baseline:1)</node>
+    <node name='LANDeviceNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>4</node>
+    <node name='WANDeviceNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>1</node>
+    <node name='LANDevice' rw='0' type='node'>
+        <node name='1' rw='1' nin='0' il='0' type='node'>
+            <node name='LANEthernetInterfaceNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+            <node name='LANUSBInterfaceNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+            <node name='LANWLANConfigurationNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+            <node name='LANHostConfigManagement' rw='0' type='node'>
+                <node name='MACAddress' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                <node name='IPInterfaceNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+                <node name='DomainName' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                <node name='DNSServers' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                <node name='MaxAddress' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                <node name='MinAddress' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                <node name='DHCPServerEnable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                <node name='DHCPLeaseTime' rw='1' getc='0' noc='0' nocc='' acl='' type='int'>86400</node>
+                <node name='DHCPServerConfigurable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>True</node>
+                <node name='DHCPRelay' rw='0' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                <node name='ReservedAddresses' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                <node name='SubnetMask' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                <node name='IPRouters' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                <node name='DHCPStaticAddressNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+                <node name='DHCPOptionNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+                <node name='DHCPConditionalPoolNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+                <node name='IPInterface' rw='1' nin='2' il='9' type='node'>
+                    <node name='1' rw='1' nin='0' il='0' type='node'>
+                        <node name='IPInterfaceAddressingType' rw='1' getc='0' noc='0' nocc='' acl='' type='string'>DHCP</node>
+                        <node name='IPInterfaceSubnetMask' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='IPInterfaceIPAddress' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                    </node>
+                    <node name='template' rw='1' nin='0' il='0' type='node'>
+                        <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                        <node name='IPInterfaceIPAddress' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='IPInterfaceSubnetMask' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='IPInterfaceAddressingType' rw='1' getc='0' noc='0' nocc='' acl='' type='string'>DHCP</node>
+                    </node>
+                </node>
+                <node name='DHCPStaticAddress' rw='1' nin='1' il='9' type='node'>
+                    <node name='template' rw='1' nin='0' il='0' type='node'>
+                        <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                        <node name='Chaddr' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='Yiaddr' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    </node>
+                </node>
+                <node name='DHCPOption' rw='1' nin='1' il='9' type='node'>
+                    <node name='template' rw='1' nin='0' il='0' type='node'>
+                        <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                        <node name='Tag' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='Value' rw='1' getc='0' noc='0' nocc='' acl='' type='base64'></node>
+                    </node>
+                </node>
+                <node name='DHCPConditionalServingPool' rw='1' nin='1' il='9' type='node'>
+                    <node name='template' rw='1' nin='0' il='0' type='node'>
+                        <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                        <node name='PoolOrder' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='SourceInterface' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='VendorClassID' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='VendorClassIDExclude' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                        <node name='VendorClassIDMode' rw='1' getc='0' noc='0' nocc='' acl='' type='string'>Exact</node>
+                        <node name='ClientID' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='ClientIDExclude' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                        <node name='UserClassID' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='UserClassIDExclude' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                        <node name='Chaddr' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='ChaddrMask' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='ChaddrExclude' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                        <node name='LocallyServed' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>True</node>
+                        <node name='MinAddress' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='MaxAddress' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='ReservedAddresses' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='SubnetMask' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='DNSServers' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='DomainName' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='IPRouters' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='DHCPLeaseTime' rw='1' getc='0' noc='0' nocc='' acl='' type='int'>86400</node>
+                        <node name='UseAllocatedWAN' rw='1' getc='0' noc='0' nocc='' acl='' type='string'>Normal</node>
+                        <node name='AssociatedConnection' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='DHCPServerIPAddress' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='DHCPStaticAddressNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+                        <node name='DHCPOptionNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'>0</node>
+                        <node name='DHCPStaticAddress' rw='1' nin='1' il='9' type='node'>
+                            <node name='template' rw='1' nin='0' il='0' type='node'>
+                                <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                                <node name='Chaddr' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                                <node name='Yiaddr' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                            </node>
+                        </node>
+                        <node name='DHCPOption' rw='1' nin='1' il='9' type='node'>
+                            <node name='template' rw='1' nin='0' il='0' type='node'>
+                                <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'>False</node>
+                                <node name='Tag' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                                <node name='Value' rw='1' getc='0' noc='0' nocc='' acl='' type='base64'></node>
+                            </node>
+                        </node>
+                    </node>
+                </node>
+            </node>
+            <node name='LANEthernetInterfaceConfig' rw='0' type='node'>
+                <node name='1' rw='0' type='node'>
+                    <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='Status' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Name' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='MACAddress' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='MACAddressControlEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='MaxBitRate' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='DuplexMode' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Stats' rw='0' type='node'>
+                        <node name='BytesSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='BytesReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='PacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='PacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='ErrorsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='ErrorsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnicastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnicastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='DiscardPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='DiscardPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='MulticastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='MulticastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='BroadcastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='BroadcastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnknownProtoPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    </node>
+                </node>
+            </node>
+            <node name='LANUSBInterfaceConfig' rw='0' type='node'>
+                <node name='1' rw='0' type='node'>
+                    <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='Status' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Name' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='MACAddress' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='MACAddressControlEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='Standard' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Type' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Rate' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Power' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Stats' rw='0' type='node'>
+                        <node name='BytesSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='BytesReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='CellsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='CellsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='ErrorsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='ErrorsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnicastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnicastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='DiscardPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='DiscardPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='MulticastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='MulticastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='BroadcastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='BroadcastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnknownProtoPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    </node>
+                </node>
+            </node>
+            <node name='WLANConfiguration' rw='0' type='node'>
+                <node name='1' rw='0' type='node'>
+                    <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='Status' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Name' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='BSSID' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='MaxBitRate' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='Channel' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='AutoChannelEnable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='SSID' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='BeaconType' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='MACAddressControlEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='Standard' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='WEPKeyIndex' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='KeyPassphrase' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='WEPEncryptionLevel' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='BasicEncryptionModes' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='BasicAuthenticationMode' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='WPAEncryptionModes' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='WPAAuthenticationMode' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='IEEE11iEncryptionModes' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='IEEE11iAuthenticationMode' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='PossibleChannels' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='BasicDataTransmitRates' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='OperationalDataTransmitRates' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='PossibleDataTransmitRates' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='InsecureOOBAccessEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='BeaconAdvertisementEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='SSIDAdvertisementEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='RadioEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='TransmitPowerSupported' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='TransmitPower' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='AutoRateFallBackEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='LocationDescription' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='RegulatoryDomain' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='TotalPSKFailures' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='TotalIntegrityFailures' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='ChannelsInUse' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='DeviceOperationMode' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='DistanceFromRoot' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='PeerBSSID' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='AuthenticationServiceMode' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                    <node name='WMMSupported' rw='0' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='UAPSDSupported' rw='0' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='WMMEnable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='UAPSDEnable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    <node name='TotalBytesSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='TotalBytesReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='TotalPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='TotalPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='TotalAssociations' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    <node name='Stats' rw='0' type='node'>
+                        <node name='ErrorsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='ErrorsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnicastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnicastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='DiscardPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='DiscardPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='MulticastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='MulticastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='BroadcastPacketsSent' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='BroadcastPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UnknownProtoPacketsReceived' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                    </node>
+                    <node name='WPS' rw='0' type='node'>
+                        <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        <node name='DeviceName' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='DevicePassword' rw='1' getc='1' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='UUID' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='Version' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='ConfigMethodsSupported' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='ConfigMethodsEnabled' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='SetupLockedState' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='SetupLock' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        <node name='ConfigurationState' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='LastConfigurationError' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='RegistrarNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                        <node name='RegistrarEstablished' rw='0' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        <node name='Registrar' rw='0' type='node'>
+                            <node name='1' rw='0' type='node'>
+                                <node name='Enable' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                                <node name='UUID' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                                <node name='DeviceName' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                            </node>
+                        </node>
+                    </node>
+                    <node name='AssociatedDevice' rw='0' type='node'>
+                        <node name='1' rw='0' type='node'>
+                            <node name='AssociatedDeviceMACAddress' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                            <node name='AssociatedDeviceIPAddress' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                            <node name='AssociatedDeviceAuthenticationState' rw='0' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                            <node name='LastRequestedUnicastCipher' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                            <node name='LastRequestedMulticastCipher' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                            <node name='LastPMKId' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                            <node name='LastDataTransmitRate' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        </node>
+                    </node>
+                    <node name='WEPKey' rw='0' type='node'>
+                        <node name='1' rw='0' type='node'>
+                            <node name='WEPKey' rw='1' getc='1' noc='0' nocc='' acl='' type='string'></node>
+                        </node>
+                    </node>
+                    <node name='PreSharedKey' rw='0' type='node'>
+                        <node name='1' rw='0' type='node'>
+                            <node name='PreSharedKey' rw='1' getc='1' noc='0' nocc='' acl='' type='string'></node>
+                            <node name='KeyPassphrase' rw='1' getc='1' noc='0' nocc='' acl='' type='string'></node>
+                            <node name='AssociatedDeviceMACAddress' rw='1' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        </node>
+                    </node>
+                    <node name='APWMMParameter' rw='0' type='node'>
+                        <node name='1' rw='0' type='node'>
+                            <node name='AIFSN' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMin' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMax' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='TXOP' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='AckPolicy' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        </node>
+                        <node name='2' rw='0' type='node'>
+                            <node name='AIFSN' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMin' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMax' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='TXOP' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='AckPolicy' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        </node>
+                        <node name='3' rw='0' type='node'>
+                            <node name='AIFSN' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMin' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMax' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='TXOP' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='AckPolicy' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        </node>
+                        <node name='4' rw='0' type='node'>
+                            <node name='AIFSN' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMin' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMax' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='TXOP' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='AckPolicy' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        </node>
+                    </node>
+                    <node name='STAWMMParameter' rw='0' type='node'>
+                        <node name='1' rw='0' type='node'>
+                            <node name='AIFSN' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMin' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMax' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='TXOP' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='AckPolicy' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        </node>
+                        <node name='2' rw='0' type='node'>
+                            <node name='AIFSN' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMin' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMax' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='TXOP' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='AckPolicy' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        </node>
+                        <node name='3' rw='0' type='node'>
+                            <node name='AIFSN' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMin' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMax' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='TXOP' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='AckPolicy' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        </node>
+                        <node name='4' rw='0' type='node'>
+                            <node name='AIFSN' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMin' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='ECWMax' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='TXOP' rw='1' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                            <node name='AckPolicy' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                        </node>
+                    </node>
+                </node>
+            </node>
+            <node name='Hosts' rw='0' type='node'>
+                <node name='HostNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt'></node>
+                <node name='Host' rw='0' type='node'>
+                    <node name='1' rw='0' type='node'>
+                        <node name='IPAddress' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='AddressSource' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='LeaseTimeRemaining' rw='0' getc='0' noc='0' nocc='' acl='' type='int'></node>
+                        <node name='MACAddress' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='Layer2Interface' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='VendorClassID' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='ClientID' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='UserClassID' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='HostName' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='InterfaceType' rw='0' getc='0' noc='0' nocc='' acl='' type='string'></node>
+                        <node name='Active' rw='0' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+                    </node>
+                </node>
+            </node>
+        </node>
+    </node>
+    <node name='DeviceInfo' rw='0' type='node'>
+        <node name='UpTime' rw='0' getc='0' noc='0' nocc='' acl='' type='unsignedInt' mode='time' field='uptime'>536385</node>
+        <node name='ProductClass' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='nvram' field='model_name'>D-Link Router</node>
+        <node name='SerialNumber' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='nvramMAC' field='wan_mac'>000321555666</node>
+        <node name='Description' rw='0' getc='0' noc='0' nocc='' acl='' type='string'>DLink DIR652A</node>
+        <node name='ModelName' rw='0' getc='0' noc='0' nocc='' acl='' type='string'>DIR652A</node>
+        <node name='SpecVersion' rw='0' getc='0' noc='2' nocc='2' acl='' type='string'>1.1</node>
+        <node name='ProvisioningCode' rw='1' getc='0' noc='2' nocc='2' acl='' type='string'>123</node>
+        <node name='HardwareVersion' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='version' field='HW_VERSION'>A1</node>
+        <node name='SoftwareVersion' rw='0' getc='0' noc='2' nocc='2' acl='' type='string'>1.0</node>
+        <node name='ManufacturerOUI' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='nvramOUI' field='wan_mac'>000321</node>
+        <node name='Manufacturer' rw='0' getc='0' noc='0' nocc='0' acl='' type='string'>DLink</node>
+    </node>
+    <node name='ManagementServer' rw='0' type='node'>
+        <node name='ParameterKey' rw='1' getc='0' noc='2' nocc='2' acl='' type='string'>1</node>
+        <node name='PeriodicInformInterval' rw='1' getc='0' noc='2' nocc='2' acl='' type='unsignedInt' mode='nvram' field='tr069_inform_interval'>15</node>
+        <node name='PeriodicInformEnable' rw='1' getc='0' noc='2' nocc='2' acl='' type='boolean'>1</node>
+        <node name='ConnectionRequestPassword' rw='0' getc='1' noc='0' nocc='0' acl='' type='string'>password</node>
+        <node name='ConnectionRequestUsername' rw='0' getc='0' noc='0' nocc='0' acl='' type='string'>username</node>
+        <node name='ConnectionRequestURL' rw='0' getc='0' noc='2' nocc='2' acl='' type='string'>http://10.10.1.15:7547</node>
+        <node name='URL' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'>http://iop.tw.workssys.com:80/comserver/node1/tr069</node>
+        <node name='Password' rw='1' getc='1' noc='2' nocc='2' acl='' type='string'>password</node>
+        <node name='Username' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>username</node>
+        <node name='PeriodicInformTime' rw='1' getc='0' noc='2' nocc='2' acl='' type='dateTime'>value</node>
+        <node name='UpgradesManaged' rw='1' getc='0' noc='0' nocc='' acl='' type='boolean'></node>
+    </node>
+    <node name='Layer3Forwarding' rw='0' type='node'>
+        <node name='ForwardNumberOfEntries' rw='0' getc='0' noc='0' nocc='' acl='' type='string'>value</node>
+        <node name='DefaultConnectionService' rw='1' getc='0' noc='2' nocc='1' acl='' type='string'>1</node>
+    </node>
+    <node name='UploadDiagnostics' rw='0' type='node'>
+        <node name='DiagnosticsState' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>Completed</node>
+        <node name='Interface' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'></node>
+        <node name='UploadURL' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>http://10.10.1.48/acs_filestore/upload/romStore/data.txt</node>
+        <node name='DSCP' rw='1' getc='0' noc='2' nocc='2' acl='' type='unsignedInt'>0</node>
+        <node name='TestFileLength' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>10000</node>
+        <node name='ROMTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:14:52.421599</node>
+        <node name='BOMTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:14:52.428843</node>
+        <node name='EOMTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:14:52.749615</node>
+        <node name='TotalBytesSent' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>30000</node>
+        <node name='TCPOpenRequestTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:14:52.354459</node>
+        <node name='TCPOpenResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:14:52.371839</node>
+        <node name='EthernetPriority' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>0</node>
+    </node>
+    <node name='DownloadDiagnostics' rw='0' type='node'>
+        <node name='DiagnosticsState' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>Completed</node>
+        <node name='Interface' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'></node>
+        <node name='DownloadURL' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>http://10.10.1.48/acs_filestore/download/data.txt</node>
+        <node name='DSCP' rw='1' getc='0' noc='2' nocc='2' acl='' type='unsignedInt'>0</node>
+        <node name='EthernetPriority' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>0</node>
+        <node name='ROMTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:23:29.111696</node>
+        <node name='BOMTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:23:29.138323</node>
+        <node name='EOMTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:23:29.269335</node>
+        <node name='TestBytesReceived' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>453630</node>
+        <node name='TotalBytesReceived' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>30000</node>
+        <node name='TCPOpenRequestTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:23:29.103696</node>
+        <node name='TCPOpenResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:23:29.110099</node>
+    </node>
+    <node name='IPPingDiagnostics' rw='0' type='node'>
+        <node name='DiagnosticsState' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>Complete</node>
+        <node name='Interface' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANIPConnection.1</node>
+        <node name='Host' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'>123.3.3.3</node>
+        <node name='NumberOfRepetitions' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>2</node>
+        <node name='Timeout' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>5000</node>
+        <node name='DataBlockSize' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>32</node>
+        <node name='DSCP' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>0</node>
+        <node name='SuccessCount' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='FailureCount' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='AverageResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='MinimumResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='MaximumResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+    </node>
+    <node name='TraceRouteDiagnostics' rw='0' type='node'>
+        <node name='DiagnosticsState' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>Completed</node>
+        <node name='Interface' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'></node>
+        <node name='Host' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'></node>
+        <node name='NumberOfTries' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='Timeout' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>3000</node>
+        <node name='DataBlockSize' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>64</node>
+        <node name='DSCP' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>0</node>
+        <node name='MaxHopCount' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='ResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='RouteHopsNumberOfEntries' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+    </node>
+    <node name='Capabilities' rw='0' type='node'>
+        <node name='PerformanceDiagnostic' rw='0' type='node'>
+            <node name='DownloadTransports' rw='0' getc='0' noc='0' nocc='2' acl='2' type='string'>HTTP</node>
+            <node name='UploadTransports' rw='0' getc='0' noc='0' nocc='2' acl='2' type='string'>HTTP</node>
+        </node>
+    </node>
+    <node name='UDPEchoConfig' rw='0' type='node'>
+        <node name='Enable' rw='1' getc='0' noc='0' nocc='0' acl='' type='boolean'>1</node>
+        <node name='Interface' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'></node>
+        <node name='SourceIPAddress' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'></node>
+        <node name='UDPPort' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>1235</node>
+        <node name='EchoPlusEnabled' rw='1' getc='0' noc='0' nocc='0' acl='' type='boolean'>0</node>
+        <node name='EchoPlusSupported' rw='1' getc='0' noc='0' nocc='0' acl='' type='boolean'>0</node>
+        <node name='PacketsReceived' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>3001</node>
+        <node name='PacketsResponded' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>64</node>
+        <node name='BytesReceived' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>41</node>
+        <node name='BytesResponded' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='TimeFirstPacketReceived' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:23:29.103696</node>
+        <node name='TimeLastPacketReceived' rw='0' getc='0' noc='0' nocc='0' acl='' type='dateTime'>2009-09-25T00:43:25.289011</node>
+    </node>
+    <node name='WANDevice' rw='0' type='node'>
+        <node name='1' rw='0' type='node'>
+            <node name='WANConnectionDevice' rw='0' type='node'>
+                <node name='1' rw='0' type='node'>
+                    <node name='WANPPPConnection' rw='0' type='node'>
+                        <node name='1' rw='0' type='node'>
+                            <node name='ExternalIPAddress' rw='1' getc='0' noc='2' nocc='0' acl='' type='string'>1.2.3.4</node>
+                        </node>
+                    </node>
+                </node>
+            </node>
+        </node>
+    </node>
+</node>

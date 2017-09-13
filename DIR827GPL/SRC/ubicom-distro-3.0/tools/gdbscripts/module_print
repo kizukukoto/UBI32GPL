@@ -1,0 +1,110 @@
+
+#
+# cast list entry to struct module
+#
+define list2module
+  set $cur_list_addr= (int) $cur_list
+  set $cur_module=(struct module *)($cur_list_addr - 4)
+end
+
+#
+# display module
+#
+define print_module
+  printf "%24s\t\t\t%p\t%p\t%d\n", $cur_module->name, $cur_module->module_core, $cur_module->arch.ocm_inst, $cur_module->arch.ocm_inst_size 
+end
+
+#
+# get next module
+#
+define next_module
+  set $cur_list=$cur_module->list.next
+  list2module
+end
+
+#
+# get first module
+#
+define first_module
+  set $cur_list=modules->next
+  list2module
+end
+
+#
+# print_first_module
+#
+define print_first_module
+  first_module
+  print_module
+end
+
+define print_next_module
+  next_module
+  print_module
+end
+
+define module_addrs
+  first_module
+  while $cur_list != &modules
+    print_module
+    next_module
+  end
+end
+
+define module_load_internal
+  first_module
+  while $cur_list != &modules
+    echo add-module-file $arg0
+    printf "/%s.ko %p %p\n", $cur_module->name, $cur_module->module_core, $cur_module->arch.ocm_inst
+    next_module
+  end
+end
+
+define module_load
+  echo module_path is: $arg0
+  echo To load all module symbols, please copy and paste the following lines:
+  printf "\n\n"  
+
+  printf "set confirm off\n"
+  module_load_internal $arg0
+  printf "set confirm on\n\n"
+end
+
+
+
+define kernel_and_module_load
+  echo uClinux path is: $arg0\n
+  echo kernel image is: $arg0/linux-2.6.x/vmlinux\n
+  echo module path is: $arg0/$arg1\
+  echo \n\n
+
+  set confirm off
+  add-symbol-file $arg0/linux-2.6.x/vmlinux 0x40400000
+  set confirm on
+
+  echo kernel symbol has been loaded but modules will not, please copy and paste the following lines:
+  echo \n\n
+
+  printf "set confirm off\n"
+  module_load_internal $arg0/$arg1
+  printf "set confirm on\n\n"
+
+end
+
+define load_with_ext
+  add-symbol-file $arg0/$arg1 $arg2
+end
+
+# --- not ready, do not call this
+define module_load2
+  echo module_path is: $arg0
+  printf "\n\n"  
+
+  set confirm off
+  first_module
+  while $cur_list != &modules
+    load_with_ext $arg0 $cur_module->name.ko $cur_module->module_core 
+    next_module
+  end
+  set confirm on
+end

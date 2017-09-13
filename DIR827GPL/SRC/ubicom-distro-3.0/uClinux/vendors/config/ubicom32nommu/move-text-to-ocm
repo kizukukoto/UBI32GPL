@@ -1,0 +1,125 @@
+#!/bin/bash
+
+SCRIPT_NAME=$(basename $0)
+SYMS=
+# print usage
+function usage() {
+    echo \
+"USAGE: $SCRIPT_NAME module.ko [--list]|[function-sections]bsd
+
+  Renames listed function-sections from .text.* to .ocm_text.*.
+  Upon loading, a linux kernel built with UBICOM32_OCM_MODULES will
+  load the specifed sections into fast on chip memory.
+"
+
+}
+
+function cleanup_and_exit {
+    if [ "$SYMS" != '' ]; then 
+	    rm -f $SYMS $SYMS.raw $SYMS.ocm
+	    rm -f $MODULE.original
+    fi
+    exit $1
+}
+
+# print error and exit
+function error() {
+    echo "ERROR: $SCRIPT_NAME: $1 " >&2
+    cleanup_and_exit 1
+}
+
+if [ "$1" = "" ] || [ "$2" = "" ]; then
+    usage >&2
+    error "No Input"
+fi
+
+MODULE=$1
+shift
+
+if [ ! -e "$MODULE" ]; then
+    usage >&2
+    error "$MODULE does not exist";
+fi
+
+SYMS="#$(basename $MODULE).symbols"
+
+# dump the headers
+ubicom32-elf-objdump -h $MODULE > $SYMS.raw
+
+if [ $? -ne 0 ]; then
+	error "$MODULE does not appear to be readable by ubicom32-elf-objdump";
+fi
+
+# filter 
+egrep "\.text\." $SYMS.raw | sed "s/.* \.text.\([^ ]*\) .*/\1/"  > $SYMS
+egrep "\.ocm_text\." $SYMS.raw | sed "s/.* \.ocm_text.\([^ ]*\) .*/\1/" > $SYMS.ocm
+
+if [ $1 = "--list" ]; then
+    echo Function-sections Currently in OCM
+    if [ ! -s $SYMS.ocm ]; then
+	echo "  none";
+    else
+	for s in $(cat $SYMS.ocm); do
+	    echo "  $s"
+	done
+    fi
+
+    echo Function-sections Not in OCM
+    if [ ! -s $SYMS ]; then
+	echo "  none";
+    else
+	for s in $(cat $SYMS); do
+	    echo "  $s"
+	done
+    fi
+    cleanup_and_exit 0
+fi
+
+cp $MODULE $MODULE.original
+RENAME=""
+
+ERR=0
+MOVE=''
+for f in $@; do
+    COUNT=$(egrep "^$f\$" -c $SYMS)
+    if [ $COUNT -ne 1 ]; then
+	if [ $COUNT -ge 1 ]; then
+	    echo "$f is not unique"
+	    ERR=1
+	else
+		# see
+	    COUNT=$(egrep "^$f\$" -c $SYMS.ocm)
+	    if [ $COUNT -ne 1 ]; then
+		echo "$f does not exist"
+		ERR=1
+	    else
+		echo "info: $f already configured for OCM."
+		continue
+	    fi
+	fi
+    fi  
+    echo "info: Move $f to OCM"
+
+    MOVE+="$f, "
+    RENAME="$RENAME --rename-section .text.$f=.ocm_text.$f "
+done
+
+if [ $ERR -eq 0 ]; then
+    if [ "$MOVE" != "" ]; then
+	echo -n "... "
+#    echo ubicom32-elf-objcopy $RENAME  $MODULE.original $MODULE
+	ubicom32-elf-objcopy $RENAME  $MODULE.original $MODULE
+	
+	if [ $? -ne 0 ]; then
+	    rm $MODULE
+	    mv $MODULE.original $MODULE
+	    error "ubicom32-elf-objcopy failed"
+	fi
+	echo " OK"
+    else
+	echo "info: Nothing left to move";
+    fi
+else
+    error "some symbols not found."
+fi
+cleanup_and_exit 0

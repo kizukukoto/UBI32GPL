@@ -1,0 +1,58 @@
+include ../makefile.soc.linux.xscale.mak
+
+CFLAGS	+=	-I.   \
+             -I../mdk -I../devmld -DMAUI \
+             -I../common/include -Iinclude  \
+             -I$(TARGET)/linux/include \
+             -I$(MDK_ROOT)/client/$(OS)_driver/include \
+             -D$(DEF_OS)  \
+             -DMDK_AP \
+             -DARCH_BIG_ENDIAN \
+             -DSOC_AP \
+	     -DENDIAN_SWAP \
+
+VPATH	:= $(SW_ROOT)/src/dk/mdk/common $(SW_ROOT)/src/dk/mdk/client $(SW_ROOT)/src/dk/mdk/client/$(TARGET)/$(OS)
+EXTRA_SRCS = osWrap_linux.c
+SRCS	:= 	endian_func.c dk_client.c dk_mem.c hw_routines.c linux_hw.c hw.c misclib.c  stats_routines.c main.c $(EXTRA_SRCS)
+
+
+    SRCS += misclibif.c devlibif.c 
+    CFLAGS += -I../devlib -I../devlib/ar5211 -I../devlib/ar5212 -I../devlib/ar2413 -I../devlib/ar6000 -I../devlib/ar5416
+
+OBJS	:=	$(patsubst %.c,$(OUTPUT_DIR)/%.o,$(SRCS)) 
+BIN		:=  $(OUTPUT_DIR)/mdk_client.out
+
+all:    dirs $(OBJS)  obj_list $(BIN)
+
+$(BIN):
+	rm -f $@
+	$(CC) -static -o $@  `cat $(OUTPUT_DIR)/.obj_list` $(LDFLAGS)
+	$(STRIP) -s $@  -o $@
+
+dirs:
+		mkdir -p $(OUTPUT_DIR)
+
+obj_list:
+	rm -f $(BIN)
+	rm -f $(OUTPUT_DIR)/.obj_list
+	echo $(OUTPUT_DIR)/*.o > $(OUTPUT_DIR)/.obj_list
+
+$(OUTPUT_DIR)/dynArray.o : ../devmld/dynArray.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+$(OUTPUT_DIR)/parse.o : ../devmld/parse.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+$(OUTPUT_DIR)/%.o : %.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+install:
+	cp $(SW_ROOT)/src/dk/mdk/client/owl/soc_linux/obj/mdk_client.out $(TOPDIR)/tools/ap71-rootdir/usr/bin/
+
+clean:
+	rm -rf $(OBJS) $(BIN) 
+	rm -rf $(OUTPUT_DIR)
+.PHONY:
+	clean all
+
+

@@ -1,0 +1,18 @@
+lock
+noipdefault
+noauth
+defaultroute
+hide-password
+usepeerdns
+mtu 1492
+mru 1492
+nobsdcomp
+nodeflate
+noaccomp
+nopcomp
+nocrtscts
+persist
+lcp-echo-interval 30 
+lcp-echo-failure 5
+lcp-max-configure 5
+lcp-max-failure 5

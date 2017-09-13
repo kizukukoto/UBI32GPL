@@ -1,0 +1,52 @@
+
+# **********************************************
+# LPJ_x configs are used only internally
+# **********************************************
+
+
+choice
+	prompt "LPJ"
+	help
+	  Select your lpj file.
+
+config LPJ_ultra7klcdrouter
+	bool "ultra7k_lcdrouter.lpj"
+
+config LPJ_ultra7k
+	bool "ultra7k.lpj"
+
+config LPJ_ultra7kmedia
+	bool "ultra7k_media.lpj"
+
+config LPJ_ultra7kmediatap
+	bool "ultra7k_media_tap.lpj"
+
+config LPJ_ultra7kvideo
+	bool "ultra7k_video.lpj"
+
+config LPJ_ultra7kzwave
+	bool "ultra7k_zwave.lpj"
+
+config LPJ_ultra8k
+	bool "ultra8k.lpj"
+
+config LPJ_ultra8kmedia
+	bool "ultra8k_media.lpj"
+
+config LPJ_ultra8kna
+	bool "ultra8k_na.lpj"
+
+
+endchoice
+
+config LPJ_NAME
+	string
+	default "ultra7k_lcdrouter.lpj" if LPJ_ultra7klcdrouter
+	default "ultra7k.lpj" if LPJ_ultra7k
+	default "ultra7k_media.lpj" if LPJ_ultra7kmedia
+	default "ultra7k_media_tap.lpj" if LPJ_ultra7kmediatap
+	default "ultra7k_video.lpj" if LPJ_ultra7kvideo
+	default "ultra7k_zwave.lpj" if LPJ_ultra7kzwave
+	default "ultra8k.lpj" if LPJ_ultra8k
+	default "ultra8k_media.lpj" if LPJ_ultra8kmedia
+	default "ultra8k_na.lpj" if LPJ_ultra8kna

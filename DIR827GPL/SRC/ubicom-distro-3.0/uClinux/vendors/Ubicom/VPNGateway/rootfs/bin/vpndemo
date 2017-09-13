@@ -1,0 +1,12 @@
+#!/bin/sh
+
+WAN_IF=${WAN_IF-eth1}
+LAN_IF=${LAN_IF-eth0}
+export WAN_IF
+export LAN_IF
+
+ifconfig $WAN_IF 192.168.2.77 up
+ifconfig $LAN_IF 192.168.0.1 up
+
+ipsec_uc_start net-to-host 192.168.2.77 192.168.2.33 192.168.0.0/24 192.168.0.1
+

@@ -1,0 +1,42 @@
+#!/bin/sh
+
+#########################################################################################
+## wan_stop
+##
+## This script stops the current WAN connection.
+##
+#########################################################################################
+. /etc/rgw_config
+
+echo "Stopping current WAN connection." >> /var/log/messages
+echo "WAN connection type: $WANCONNECTIONTYPE" >> /var/log/messages
+
+if [ "$WANCONNECTIONTYPE" = "static" ]; then
+
+	/etc/init.d/do_static stop
+
+elif [ "$WANCONNECTIONTYPE" = "dhcp" ]; then
+
+	# Previous do_dhcp script may still be running at background. Kill it first.
+	do_dhcp_pidlist=`ps | grep 'do_dhcp' | grep -v 'grep' | cut -b1-5`
+	if [ "$do_dhcp_pidlist" != "" ]; then
+		for i in $do_dhcp_pidlist
+		do
+			kill -9 $i
+		done
+	fi
+
+	/etc/init.d/do_dhcp stop
+
+elif [ "$WANCONNECTIONTYPE" = "pppoe" ]; then
+
+	/etc/init.d/do_pppoe stop
+
+elif [ "$WANCONNECTIONTYPE" = "pptp" ]; then
+
+	/etc/init.d/do_pptp stop
+
+else 
+	echo "WAN connection type $WANCONNECTIONTYPE is not supported, exiting!" >> /var/log/messages
+	exit 1
+fi

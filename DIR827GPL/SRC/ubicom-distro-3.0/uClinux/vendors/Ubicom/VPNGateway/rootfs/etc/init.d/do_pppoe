@@ -1,0 +1,27 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+case "$1" in
+start)	
+	sed -i "s/WANINTERFACE/$WANINTERFACE/" /etc/config/peers/adsl-pppoe
+	sed -i "s/USERNAME/$PPPOEUSERNAME/" /etc/config/peers/adsl-pppoe
+	echo "$PPPOEUSERNAME * $PPPOEPASSWORD *" >> /etc/config/pap-secrets
+	echo "$PPPOEUSERNAME * $PPPOEPASSWORD *" >> /etc/config/chap-secrets
+	
+	ifconfig $WANINTERFACE up	
+	pppd call adsl-pppoe debug logfile /var/log/pppoe-log &
+        ;;
+stop)	
+	sed -i "3,10 d" /etc/config/pap-secrets
+	sed -i "3,10 d" /etc/config/chap-secrets
+
+	echo "pty '/bin/pppoe -I WANINTERFACE'" > /etc/config/peers/adsl-pppoe
+	echo "name USERNAME" >> /etc/config/peers/adsl-pppoe
+	echo "file /etc/ppp/options.pppoe" >> /etc/config/peers/adsl-pppoe
+	echo "ipparam adsl-pppoe" >> /etc/config/peers/adsl-pppoe
+
+	kill `head -1 /var/run/$PPPINTERFACE.pid` > /dev/null 2>&1
+	rm /var/run/$PPPINTERFACE.pid
+esac
+exit 0

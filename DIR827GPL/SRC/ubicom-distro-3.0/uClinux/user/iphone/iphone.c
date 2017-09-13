@@ -1,0 +1,91 @@
+
+
+#include <stdint.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <usb.h>
+#include <stdio.h>
+#include <arpa/inet.h>
+#include <errno.h>
+#include <pthread.h>
+#include "iphone.h"
+
+
+// debug use
+#define THIS_FILE "main"
+#include "debug.h"
+
+
+static char* g_serviceport = "3023";
+static int g_noreset = 0;
+static itunnel_t g_context;
+static int quit_flag = 0;
+
+/*********************************************************************
+ */
+static void release_iphone() {
+
+    if (g_context.phone != NULL) {
+        iphone_free_device(g_context.phone);
+        g_context.phone = NULL;
+    }
+}
+
+/*********************************************************************
+ * @return 1 for success
+ * @return 0 for error
+ */
+static int init_iphone() {
+    g_context.phone = NULL;
+
+    iphone_error_t err = iphone_get_device(&g_context.phone);
+    if (err != IPHONE_E_SUCCESS) {
+        fprintf(stderr, "- iphone get device error: %hd\n", err);
+        return 0;
+    }
+    if (g_context.phone == NULL)
+        return 0;
+    fprintf(stdout, "- successfully got device\n");
+
+    return 1;
+}
+
+#define DEFAULT_TIMEOUT 4
+
+iphone_error_t iphone_get_try3(iphone_device_t * device);
+
+
+void init_usbnet_process()
+{
+	if( g_context.phone == NULL) {
+		DEBUG_INFO("not init");
+		return;
+	}
+		
+	iphone_usbnet_process(&g_context.phone);
+	
+	
+	
+}
+
+
+
+
+
+
+
+int main(int argc, char **argv)
+{
+
+	DEBUG_INFO("start");
+	init_iphone();			
+
+	init_usbnet_process();
+	
+}
+
+
+
+
+

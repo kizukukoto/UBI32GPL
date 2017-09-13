@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node name='InternetGatewayDevice' rw='0' type='node'>
+
+	<node acl="" getc="0" name="DeviceSummary" noc="0" nocc="" rw="false" type="string">InternetGatewayDevice:1.0[](Baseline:1)</node>
+	<node acl="" getc="0" name="LANDeviceNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">1</node>
+	<node acl="" getc="0" name="WANDeviceNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">1</node>
+
+
+    <node name='DeviceInfo' rw='0' type='node'>
+		<node acl="" getc="0" name="UpTime" noc="0" nocc="" rw="false" type="unsignedInt" mode='time' field='uptime'></node>
+        <node name='ProductClass' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='nvram' field='model_number'>TRAgent</node>
+        <node name='SerialNumber' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='nvramMAC' field='lan_mac'>123456789ABC</node>
+		<node acl="" getc="0" name="Description" noc="0" nocc="" rw="false" type="string">DLink DIR655</node>
+		<node acl="" getc="0" name="ModelName" noc="0" nocc="" rw="false" type="string">DIR655</node>
+        <node name='SpecVersion' rw='0' getc='0' noc='2' nocc='2' acl='' type='string'>1.1</node>
+        <node name='ProvisioningCode' rw='1' getc='0' noc='2' nocc='2' acl='' type='string'></node>
+        <node name='HardwareVersion' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='version' field='HW_VERSION'>1.0</node>
+        <node name='SoftwareVersion' rw='0' getc='0' noc='2' nocc='2' acl='' type='string' mode='version' field='SW_VERSION'>1.0GL</node>
+        <node name='ManufacturerOUI' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='nvramOUI' field='lan_mac'>TRAgent</node>
+        <node name='Manufacturer' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' >DLink</node>
+    </node>
+    
+    <node name='ManagementServer' rw='0' type='node'>
+        <node name='ParameterKey' rw='1' getc='0' noc='2' nocc='2' acl='' type='string'></node>
+        <node name='PeriodicInformInterval' rw='1' getc='0' noc='2' nocc='2' acl='' type='unsignedInt' mode='nvram' field='tr069_inform_interval'>15</node>
+        <node name='PeriodicInformEnable' rw='1' getc='0' noc='2' nocc='2' acl='' type='boolean' mode='nvram' field='tr069_inform_enable'>1</node>
+        <node name='ConnectionRequestPassword' rw='0' getc='1' noc='0' nocc='0' acl='' type='string' mode='nvram' field='tr069_cpe_pwd'>password</node>
+        <node name='ConnectionRequestUsername' rw='0' getc='0' noc='0' nocc='0' acl='' type='string' mode='nvram' field='tr069_cpe_usr'>username</node>
+        <node name='ConnectionRequestURL' rw='0' getc='0' noc='2' nocc='2' acl='' type='string' mode='server' field='ConnectionRequestURL'>http://10.10.1.15:7547</node>
+        <node name='URL' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string' mode='nvram' field='tr069_acs_url'>http://iop.tw.workssys.com:80/comserver/node1/tr069</node>
+        <node name='Password' rw='1' getc='1' noc='2' nocc='2' acl='' type='string' mode='nvram' field='tr069_acs_pwd'>password</node>
+        <node name='Username' rw='1' getc='0' noc='0' nocc='0' acl='' type='string' mode='nvram' field='tr069_acs_usr'>username</node>
+        <node name='PeriodicInformTime' rw='1' getc='0' noc='2' nocc='2' acl='' type='dateTime' mode='nvram' field='tr069_inform_time'>value</node>
+
+		<node acl="" getc="0" name="UpgradesManaged" noc="0" nocc="" rw="true" type="boolean" mode='nvram' field='tr069_upgrade_managed'></node>
+    </node>
+
+	<node name="Time" rw="false" type="node">
+		<node acl="" getc="0" name="CurrentLocalTime" noc="0" nocc="" rw="false" type="dateTime" mode='time' field='CurrentLocalTime'></node>
+		<node acl="" getc="0" name="NTPServer1" noc="0" nocc="" rw="true" type="string" mode='nvram' field='ntp_server'></node>
+	</node>
+
+
+	<node name="Layer3Forwarding" rw="false" type="node">
+		<node acl="" getc="0" name="DefaultConnectionService" noc="0" nocc="" rw="true" type="string"></node>
+		<node acl="" getc="0" name="ForwardNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+		<node il="9" name="Forwarding" nin="1" rw="true" type="node">
+			<node name="template" rw="true" type="node">
+				<node acl="" getc="0" name="Enable" noc="0" nocc="" rw="true" type="boolean">False</node>
+				<node acl="" getc="0" name="Status" noc="0" nocc="" rw="false" type="string">Disabled</node>
+				<node acl="" getc="0" name="StaticRoute" noc="0" nocc="" rw="false" type="boolean">True</node>
+				<node acl="" getc="0" name="Type" noc="0" nocc="" rw="true" type="string">Host</node>
+				<node acl="" getc="0" name="DestIPAddress" noc="0" nocc="" rw="true" type="string"></node>
+				<node acl="" getc="0" name="DestSubnetMask" noc="0" nocc="" rw="true" type="string"></node>
+				<node acl="" getc="0" name="SourceIPAddress" noc="0" nocc="" rw="true" type="string"></node>
+				<node acl="" getc="0" name="SourceSubnetMask" noc="0" nocc="" rw="true" type="string"></node>
+				<node acl="" getc="0" name="ForwardingPolicy" noc="0" nocc="" rw="true" type="int">-1</node>
+				<node acl="" getc="0" name="GatewayIPAddress" noc="0" nocc="" rw="true" type="string"></node>
+				<node acl="" getc="0" name="Interface" noc="0" nocc="" rw="true" type="string"></node>
+				<node acl="" getc="0" name="ForwardingMetric" noc="0" nocc="" rw="true" type="int">-1</node>
+			</node>
+		</node>
+	</node>
+
+
+	<node name="LANConfigSecurity" rw="false" type="node">
+		<node acl="" getc="1" name="ConfigPassword" noc="0" nocc="" rw="true" type="string"></node>
+	</node>
+
+
+    <node name='IPPingDiagnostics' rw='0' type='node'>
+        <node name='MaximumResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='MinimumResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='AverageResponseTime' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='FailureCount' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='SuccessCount' rw='0' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>4</node>
+        <node name='DSCP' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>0</node>
+        <node name='DataBlockSize' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>32</node>
+        <node name='Timeout' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>5000</node>
+        <node name='NumberOfRepetitions' rw='1' getc='0' noc='0' nocc='0' acl='' type='unsignedInt'>2</node>
+        <node name='Host' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'>123.3.3.3</node>
+        <node name='Interface' rw='1' getc='0' noc='0' nocc='2' acl='2' type='string'>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANIPConnection.1</node>
+        <node name='DiagnosticsState' rw='1' getc='0' noc='0' nocc='0' acl='' type='string'>Complete</node>
+    </node>
+
+
+
+
+
+	<node il="9" name="LANDevice" nin="1" rw="false" type="node">
+		<node name="1" rw="true" type="node">
+			<node acl="" getc="0" name="LANEthernetInterfaceNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">1</node>
+			<node acl="" getc="0" name="LANUSBInterfaceNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">0</node>
+			<node acl="" getc="0" name="LANWLANConfigurationNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">1</node>
+			<node name="LANHostConfigManagement" rw="false" type="node">
+				<node acl="" getc="0" name="MACAddress" noc="0" nocc="" rw="false" type="string" mode='nvram' field='lan_mac'></node>
+				<node acl="" getc="0" name="IPInterfaceNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">0</node>
+				<node acl="" getc="0" name="DomainName" noc="0" nocc="" rw="true" type="string" mode='nvram' field='dhcpd_domain_name'></node>
+				<node acl="" getc="0" name="DNSServers" noc="0" nocc="" rw="true" type="string" mode='laninfo' field='DNSServers'></node>
+				<node acl="" getc="0" name="MaxAddress" noc="0" nocc="" rw="true" type="string" mode='nvram' field='dhcpd_end'></node>
+				<node acl="" getc="0" name="MinAddress" noc="0" nocc="" rw="true" type="string" mode='nvram' field='dhcpd_start'></node>
+				<node acl="" getc="0" name="DHCPServerEnable" noc="0" nocc="" rw="true" type="boolean" mode='nvram' field='dhcpd_enable'>False</node>
+				<node acl="" getc="0" name="DHCPLeaseTime" noc="0" nocc="" rw="true" type="int" mode='laninfo' field='DHCPLeaseTime'>86400</node>
+				<node acl="" getc="0" name="DHCPServerConfigurable" noc="0" nocc="" rw="true" type="boolean">true</node>
+				<node acl="" getc="0" name="DHCPRelay" noc="0" nocc="" rw="false" type="boolean" mode='nvram' field='dns_relay'></node>
+				<node acl="" getc="0" name="ReservedAddresses" noc="0" nocc="" rw="true" type="string" mode='laninfo' field='ReservedAddresses'></node>
+				<node acl="" getc="0" name="SubnetMask" noc="0" nocc="" rw="true" type="string" mode='nvram' field='lan_netmask'></node>
+				<node acl="" getc="0" name="IPRouters" noc="0" nocc="" rw="true" type="string" mode='nvram' field='lan_ipaddr'></node>
+
+
+				<node il="9" name="IPInterface" nin="1" rw="true" type="node">
+					<node name="template" rw="true" type="node">
+						<node acl="" getc="0" name="IPInterfaceSubnetMask" noc="0" nocc="" rw="true" type="string"></node>
+						<node acl="" getc="0" name="IPInterfaceIPAddress" noc="0" nocc="" rw="true" type="string"></node>
+						<node acl="" getc="0" name="Enable" noc="0" nocc="" rw="true" type="boolean">False</node>
+						<node acl="" getc="0" name="IPInterfaceAddressingType" noc="0" nocc="" rw="true" type="string">DHCP</node>
+					</node>
+				</node>
+
+			</node>
+			
+			<node name="LANEthernetInterfaceConfig" rw="false" type="node">
+				<node name="1" rw="false" type="node">
+					<node acl="" getc="0" name="MACAddress" noc="0" nocc="" rw="false" type="string"  mode='nvram' field='lan_mac'></node>
+					<node acl="" getc="0" name="Enable" noc="0" nocc="" rw="true" type="boolean">true</node>
+					<node acl="" getc="0" name="Status" noc="0" nocc="" rw="false" type="string">Up</node>
+					<node acl="" getc="0" name="MaxBitRate" noc="0" nocc="" rw="true" type="string">Auto</node>
+					<node acl="" getc="0" name="DuplexMode" noc="0" nocc="" rw="true" type="string">Full</node>
+					<node name="Stats" rw="false" type="node">
+						<node acl="" getc="0" name="PacketsReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='lanstat' field="PacketsReceived"></node>
+						<node acl="" getc="0" name="PacketsSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='lanstat' field="PacketsSent"></node>
+						<node acl="" getc="0" name="BytesReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='lanstat' field="BytesReceived"></node>
+						<node acl="" getc="0" name="BytesSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='lanstat' field="BytesSent"></node>
+					</node>
+				</node>
+			</node>
+			
+			
+			<node name="WLANConfiguration" rw="false" type="node">
+				<node name="1" rw="false" type="node">
+					<node acl="" getc="0" name="Enable" noc="0" nocc="" rw="true" type="boolean" mode='nvram' field='wlan0_enable'></node>
+					<node acl="" getc="0" name="Status" noc="0" nocc="" rw="false" type="string" mode='wlaninfo' field='Status'></node>
+					<node acl="" getc="0" name="BSSID" noc="0" nocc="" rw="false" type="string" mode='nvram' field='lan_mac'></node>
+					<node acl="" getc="0" name="MaxBitRate" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field='MaxBitRate'></node>
+					<node acl="" getc="0" name="Channel" noc="0" nocc="" rw="true" type="unsignedInt" mode='nvram' field='wlan0_channel'></node>
+					<node acl="" getc="0" name="AutoChannelEnable" noc="0" nocc="" rw="true" type="boolean" mode='nvram' field='wlan0_auto_channel_enable'></node>
+					<node acl="" getc="0" name="SSID" noc="0" nocc="" rw="true" type="string" mode='nvram' field='wlan0_ssid'></node>
+					<node acl="" getc="0" name="BeaconType" noc="0" nocc="" rw="true" type="string">BasicandWPA</node>
+					<node acl="" getc="0" name="Standard" noc="0" nocc="" rw="false" type="string" mode='nvram' field='wlan0_dot11_mode'></node>
+					<node acl="" getc="0" name="WEPKeyIndex" noc="0" nocc="" rw="true" type="unsignedInt" mode='nvram' field='wlan0_wep_default_key'></node>
+					<node acl="" getc="1" name="KeyPassphrase" noc="0" nocc="" rw="true" type="string"></node>
+					<node acl="" getc="0" name="WEPEncryptionLevel" noc="0" nocc="" rw="false" type="string" mode='wlaninfo' field='WEPEncryptionLevel'></node>
+					<node acl="" getc="0" name="BasicEncryptionModes" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field='BasicEncryptionModes'></node>
+					<node acl="" getc="0" name="BasicAuthenticationMode" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field='BasicAuthenticationMode'></node>
+					
+					<node acl="" getc="0" name="WPAEncryptionModes" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field="WPAEncryptionModes" ></node>
+					<node acl="" getc="0" name="WPAAuthenticationMode" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field="WPAAuthenticationMode" ></node>
+					<node acl="" getc="0" name="PossibleChannels" noc="0" nocc="" rw="false" type="string" mode='wlaninfo' field='PossibleChannels'></node>
+					<node acl="" getc="0" name="BasicDataTransmitRates" noc="0" nocc="" rw="true" type="string">1,2,6</node>
+
+					<node acl="" getc="0" name="DeviceOperationMode" noc="0" nocc="" rw="true" type="string">InfrastructureAccessPoint</node>
+
+
+					
+					<node acl="" getc="0" name="TotalBytesSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='wlanstat' field="TotalBytesSent" ></node>
+					<node acl="" getc="0" name="TotalBytesReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='wlanstat' field="TotalBytesReceived" ></node>
+					<node acl="" getc="0" name="TotalPacketsSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='wlanstat' field="TotalPacketsSent" ></node>
+					<node acl="" getc="0" name="TotalPacketsReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='wlanstat' field="TotalPacketsReceived"></node>
+					<node acl="" getc="0" name="TotalAssociations" noc="0" nocc="" rw="false" type="unsignedInt" mode='wlaninfo' field='TotalAssociations'></node>
+					
+					<node name="WEPKey" rw="false" type="node">
+						<node name="1" rw="false" type="node">
+							<node acl="" getc="1" name="WEPKey" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field='wepkey1'></node>
+						</node>
+						<node name="2" rw="false" type="node">
+							<node acl="" getc="1" name="WEPKey" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field='wepkey2'></node>
+						</node>
+						<node name="3" rw="false" type="node">
+							<node acl="" getc="1" name="WEPKey" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field='wepkey3'></node>
+						</node>
+						<node name="4" rw="false" type="node">
+							<node acl="" getc="1" name="WEPKey" noc="0" nocc="" rw="true" type="string" mode='wlaninfo' field='wepkey4'></node>
+						</node>
+					</node>
+
+					<node name="PreSharedKey" rw="false" type="node">
+						<node name="1" rw="false" type="node">
+							<node acl="" getc="1" name="PreSharedKey" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="1" name="KeyPassphrase" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="AssociatedDeviceMACAddress" noc="0" nocc="" rw="true" type="string"></node>
+						</node>
+					</node>
+
+				</node>
+			</node>
+
+
+			<node name="Hosts" rw="false" type="node">
+				<node acl="" getc="0" name="HostNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">1</node>
+				<node name="Host" rw="false" type="node">
+					<node name="1" rw="false" type="node">
+						<node acl="" getc="0" name="IPAddress" noc="0" nocc="" rw="false" type="string" mode='nvram' field='lan_ipaddr'></node>
+						<node acl="" getc="0" name="MACAddress" noc="0" nocc="" rw="false" type="string" mode='nvram' field='lan_mac'></node>
+						<node acl="" getc="0" name="AddressSource" noc="0" nocc="" rw="false" type="string">Static</node>
+						<node acl="" getc="0" name="LeaseTimeRemaining" noc="0" nocc="" rw="false" type="int">0</node>
+						<node acl="" getc="0" name="HostName" noc="0" nocc="" rw="false" type="string" mode='nvram' field='lan_device_name'></node>
+						<node acl="" getc="0" name="InterfaceType" noc="0" nocc="" rw="false" type="string">Ethernet</node>
+						<node acl="" getc="0" name="Active" noc="0" nocc="" rw="false" type="boolean">true</node>
+					</node>
+				</node>
+			</node>
+			
+			
+		</node>
+	</node>
+
+
+
+
+	<node name="LANInterfaces" rw="false" type="node">
+		<node acl="" getc="0" name="LANEthernetInterfaceNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">0</node>
+		<node acl="" getc="0" name="LANUSBInterfaceNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">0</node>
+		<node acl="" getc="0" name="LANWLANConfigurationNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">0</node>
+	</node>
+
+
+
+	<node name="WANDevice" rw="false" type="node">
+		<node name="1" rw="false" type="node">
+			<node acl="" getc="0" name="WANConnectionNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">1</node>
+
+			<node name="WANCommonInterfaceConfig" rw="false" type="node">
+				<node acl="" getc="0" name="TotalPacketsReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="TotalPacketsReceived"></node>
+				<node acl="" getc="0" name="TotalPacketsSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="TotalPacketsSent"></node>
+				<node acl="" getc="0" name="PhysicalLinkStatus" noc="0" nocc="" rw="false" type="string" mode='waninfo' field='PhysicalLinkStatus'></node>
+				<node acl="" getc="0" name="Layer1DownstreamMaxBitRate" noc="0" nocc="" rw="false" type="unsignedInt" mode='waninfo' field='Layer1DownstreamMaxBitRate'></node>
+				<node acl="" getc="0" name="Layer1UpstreamMaxBitRate" noc="0" nocc="" rw="false" type="unsignedInt" mode='waninfo' field='Layer1UpstreamMaxBitRate'></node>
+				<node acl="" getc="0" name="WANAccessType" noc="0" nocc="" rw="false" type="string">Ethernet</node>
+				<node acl="" getc="0" name="EnabledForInternet" noc="0" nocc="" rw="true" type="boolean">true</node>
+				<node acl="" getc="0" name="WANAccessProvider" noc="0" nocc="" rw="false" type="string"></node>
+				<node acl="" getc="0" name="TotalBytesSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="TotalBytesSent" ></node>
+				<node acl="" getc="0" name="TotalBytesReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field='TotalBytesReceived'></node>
+
+			</node>
+
+			<node il="9" name="WANConnectionDevice" nin="2" rw="true" type="node">
+			
+
+
+				<node name="1" rw="true" type="node">
+					<node acl="" getc="0" name="WANIPConnectionNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">1</node>
+					<node acl="" getc="0" name="WANPPPConnectionNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">1</node>
+					
+					<node il="9" name="WANIPConnection" nin="1" rw="false" type="node">
+						<node name="1" rw="false" type="node">
+							<node acl="" getc="0" name="PortMappingNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">0</node>
+							<node acl="" getc="0" name="MACAddress" noc="0" nocc="" rw="true" type="string" mode='nvram' field='wan_mac'></node>
+							<node acl="" getc="0" name="DNSServers" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='DNSServers'></node>
+							<node acl="" getc="0" name="DefaultGateway" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='DefaultGateway'></node>
+							<node acl="" getc="0" name="SubnetMask" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='SubnetMask'></node>
+							<node acl="" getc="0" name="ExternalIPAddress" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='ExternalIPAddress'>1.2.3.4</node>
+							<node acl="" getc="0" name="AddressingType" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='AddressingType'></node>
+							<node acl="" getc="0" name="NATEnabled" noc="0" nocc="" rw="true" type="boolean">true</node>
+							<node acl="" getc="0" name="Enable" noc="0" nocc="" rw="true" type="boolean" mode='waninfo' field='wanip_enable'>False</node>
+							<node acl="" getc="0" name="ConnectionStatus" noc="0" nocc="" rw="false" type="string" mode='waninfo' field='ConnectionStatus' ></node>
+							<node acl="" getc="0" name="PossibleConnectionTypes" noc="0" nocc="" rw="false" type="string" mode='waninfo' field='PossibleConnectionTypes'></node>
+							<node acl="" getc="0" name="ConnectionType" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='ConnectionType'></node>
+							<node acl="" getc="0" name="Name" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='wan_proto'></node>
+							<node acl="" getc="0" name="Uptime" noc="0" nocc="" rw="false" type="unsignedInt" mode='waninfo' field='Uptime'></node>
+							<node acl="" getc="0" name="DNSEnabled" noc="0" nocc="" rw="true" type="boolean">true</node>
+							<node il="24" name="PortMapping" nin="1" rw="true" type="node">
+								<node name="template" rw="true" type="node">
+									<node acl="" getc="0" name="PortMappingProtocol" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="RemoteHost" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="ExternalPort" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="PortMappingEnabled" noc="0" nocc="" rw="true" type="boolean">False</node>
+									<node acl="" getc="0" name="PortMappingLeaseDuration" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="ExternalPortEndRange" noc="0" nocc="" rw="true" type="unsignedInt">0</node>
+									<node acl="" getc="0" name="InternalPort" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="InternalClient" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="PortMappingDescription" noc="0" nocc="" rw="true" type="string"></node>
+								</node>
+							</node>
+							<node name="Stats" rw="false" type="node">
+								<node acl="" getc="0" name="EthernetBytesSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="EthernetBytesSent"></node>
+								<node acl="" getc="0" name="EthernetBytesReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="EthernetBytesReceived"></node>
+								<node acl="" getc="0" name="EthernetPacketsSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="EthernetPacketsSent"></node>
+								<node acl="" getc="0" name="EthernetPacketsReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat'  field="EthernetPacketsReceived"></node>
+							</node>
+						</node>
+					</node>
+					<node il="9" name="WANPPPConnection" nin="1" rw="true" type="node">
+						<node name="1" rw="true" type="node">
+							<node acl="" getc="0" name="PortMappingNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt">0</node>
+							<node acl="" getc="0" name="ConnectionTrigger" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='ConnectionTrigger'>OnDemand</node>
+							<node acl="" getc="0" name="PPPoEACName" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="PPPoEServiceName" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='PPPoEServiceName'></node>
+							<node acl="" getc="0" name="DNSServers" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='DNSServers'></node>
+							<node acl="" getc="0" name="RemoteIPAddress" noc="0" nocc="" rw="false" type="string" mode='waninfo' field='RemoteIPAddress'></node>
+							<node acl="" getc="0" name="ExternalIPAddress" noc="0" nocc="" rw="false" type="string" mode='waninfo' field='ExternalIPAddress'>1.2.3.5</node>
+							<node acl="" getc="1" name="Password" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="Username" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='Username' ></node>
+							<node acl="" getc="0" name="ConnectionStatus" noc="0" nocc="" rw="false" type="string" mode='waninfo' field='ConnectionStatus'></node>
+							<node acl="" getc="0" name="Enable" noc="0" nocc="" rw="true" type="boolean" mode='waninfo' field='wanppp_enable'>False</node>
+							<node acl="" getc="0" name="ConnectionType" noc="0" nocc="" rw="true" type="string">IP_Routed</node>
+							<node acl="" getc="0" name="Name" noc="0" nocc="" rw="true" type="string" mode='waninfo' field='wan_proto'></node>
+							<node acl="" getc="0" name="Uptime" noc="0" nocc="" rw="false" type="unsignedInt" mode='waninfo' field='Uptime'></node>
+							<node acl="" getc="0" name="LastConnectionError" noc="0" nocc="" rw="false" type="string">ERROR_NONE</node>
+							<node acl="" getc="0" name="IdleDisconnectTime" noc="0" nocc="" rw="true" type="unsignedInt" mode='waninfo' field='IdleDisconnectTime'></node>
+							
+							<node acl="" getc="0" name="DNSEnabled" noc="0" nocc="" rw="true" type="boolean">true</node>
+							<node acl="" getc="0" name="DNSOverrideAllowed" noc="0" nocc="" rw="true" type="boolean">false</node>
+							<node acl="" getc="0" name="MACAddress" noc="0" nocc="" rw="true" type="string" mode='nvram' field='wan_mac'></node>
+							<node acl="" getc="0" name="RouteProtocolRx" noc="0" nocc="" rw="true" type="string">Off</node>
+							<node il="24" name="PortMapping" nin="1" rw="true" type="node">
+								<node name="template" rw="true" type="node">
+									<node acl="" getc="0" name="PortMappingEnabled" noc="0" nocc="" rw="true" type="boolean">False</node>
+									<node acl="" getc="0" name="PortMappingLeaseDuration" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="RemoteHost" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="ExternalPort" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="ExternalPortEndRange" noc="0" nocc="" rw="true" type="unsignedInt">0</node>
+									<node acl="" getc="0" name="InternalPort" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="PortMappingProtocol" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="InternalClient" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="PortMappingDescription" noc="0" nocc="" rw="true" type="string"></node>
+								</node>
+							</node>
+							<node name="Stats" rw="false" type="node">
+								<node acl="" getc="0" name="EthernetBytesSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="EthernetBytesSent"></node>
+								<node acl="" getc="0" name="EthernetBytesReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="EthernetBytesReceived" ></node>
+								<node acl="" getc="0" name="EthernetPacketsSent" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="EthernetPacketsSent"></node>
+								<node acl="" getc="0" name="EthernetPacketsReceived" noc="0" nocc="" rw="false" type="unsignedInt" mode='wanstat' field="EthernetPacketsReceived"></node>
+							</node>
+						</node>
+					</node>
+				</node>
+			
+			
+			
+				<node name="template" rw="true" type="node">
+					<node acl="" getc="0" name="WANIPConnectionNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+					<node acl="" getc="0" name="WANPPPConnectionNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+					
+					<node il="9" name="WANIPConnection" nin="1" rw="true" type="node">
+						<node name="template" rw="true" type="node">
+							<node acl="" getc="0" name="PortMappingNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+							<node acl="" getc="0" name="MACAddress" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="DNSServers" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="DefaultGateway" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="SubnetMask" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="ExternalIPAddress" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="AddressingType" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="NATEnabled" noc="0" nocc="" rw="true" type="boolean"></node>
+							<node acl="" getc="0" name="Enable" noc="0" nocc="" rw="true" type="boolean">False</node>
+							<node acl="" getc="0" name="ConnectionStatus" noc="0" nocc="" rw="false" type="string"></node>
+							<node acl="" getc="0" name="PossibleConnectionTypes" noc="0" nocc="" rw="false" type="string"></node>
+							<node acl="" getc="0" name="ConnectionType" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="Name" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="Uptime" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+							<node acl="" getc="0" name="DNSEnabled" noc="0" nocc="" rw="true" type="boolean">True</node>
+							<node il="9" name="PortMapping" nin="1" rw="true" type="node">
+								<node name="template" rw="true" type="node">
+									<node acl="" getc="0" name="PortMappingProtocol" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="RemoteHost" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="ExternalPort" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="PortMappingEnabled" noc="0" nocc="" rw="true" type="boolean">False</node>
+									<node acl="" getc="0" name="PortMappingLeaseDuration" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="ExternalPortEndRange" noc="0" nocc="" rw="true" type="unsignedInt">0</node>
+									<node acl="" getc="0" name="InternalPort" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="InternalClient" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="PortMappingDescription" noc="0" nocc="" rw="true" type="string"></node>
+								</node>
+							</node>
+							<node name="Stats" rw="false" type="node">
+								<node acl="" getc="0" name="EthernetBytesSent" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+								<node acl="" getc="0" name="EthernetBytesReceived" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+								<node acl="" getc="0" name="EthernetPacketsSent" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+								<node acl="" getc="0" name="EthernetPacketsReceived" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+							</node>
+						</node>
+					</node>
+					<node il="9" name="WANPPPConnection" nin="1" rw="true" type="node">
+						<node name="template" rw="true" type="node">
+							<node acl="" getc="0" name="PortMappingNumberOfEntries" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+							<node acl="" getc="0" name="ConnectionTrigger" noc="0" nocc="" rw="true" type="string">OnDemand</node>
+							<node acl="" getc="0" name="PPPoEACName" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="PPPoEServiceName" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="DNSServers" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="RemoteIPAddress" noc="0" nocc="" rw="false" type="string"></node>
+							<node acl="" getc="0" name="ExternalIPAddress" noc="0" nocc="" rw="false" type="string"></node>
+							<node acl="" getc="1" name="Password" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="Username" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="ConnectionStatus" noc="0" nocc="" rw="false" type="string"></node>
+							<node acl="" getc="0" name="Enable" noc="0" nocc="" rw="true" type="boolean">False</node>
+							<node acl="" getc="0" name="ConnectionType" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="Name" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="Uptime" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+							<node acl="" getc="0" name="LastConnectionError" noc="0" nocc="" rw="false" type="string"></node>
+							<node acl="" getc="0" name="IdleDisconnectTime" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+							
+							<node acl="" getc="0" name="DNSEnabled" noc="0" nocc="" rw="true" type="boolean">True</node>
+							<node acl="" getc="0" name="DNSOverrideAllowed" noc="0" nocc="" rw="true" type="boolean">False</node>
+							<node acl="" getc="0" name="MACAddress" noc="0" nocc="" rw="true" type="string"></node>
+							<node acl="" getc="0" name="RouteProtocolRx" noc="0" nocc="" rw="true" type="string">Off</node>
+							<node il="24" name="PortMapping" nin="1" rw="true" type="node">
+								<node name="template" rw="true" type="node">
+									<node acl="" getc="0" name="PortMappingEnabled" noc="0" nocc="" rw="true" type="boolean">False</node>
+									<node acl="" getc="0" name="PortMappingLeaseDuration" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="RemoteHost" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="ExternalPort" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="ExternalPortEndRange" noc="0" nocc="" rw="true" type="unsignedInt">0</node>
+									<node acl="" getc="0" name="InternalPort" noc="0" nocc="" rw="true" type="unsignedInt"></node>
+									<node acl="" getc="0" name="PortMappingProtocol" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="InternalClient" noc="0" nocc="" rw="true" type="string"></node>
+									<node acl="" getc="0" name="PortMappingDescription" noc="0" nocc="" rw="true" type="string"></node>
+								</node>
+							</node>
+							<node name="Stats" rw="false" type="node">
+								<node acl="" getc="0" name="EthernetBytesSent" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+								<node acl="" getc="0" name="EthernetBytesReceived" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+								<node acl="" getc="0" name="EthernetPacketsSent" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+								<node acl="" getc="0" name="EthernetPacketsReceived" noc="0" nocc="" rw="false" type="unsignedInt"></node>
+							</node>
+						</node>
+					</node>
+				</node>
+				
+				
+				
+				
+				
+			</node>
+		</node>
+	</node>
+
+
+
+
+
+
+
+
+
+
+
+</node>

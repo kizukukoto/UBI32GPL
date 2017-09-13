@@ -1,0 +1,46 @@
+#
+# Copyright (c) 2002-2007 Atheros Communications, Inc.
+# All rights reserved.
+#
+# $Id: //depot/sw/releases/Aquila_9.2.0_U11/drivers/wlan/lmac/spectral/Makefile.bsd#1 $
+#
+#
+# Makefile for cross-build the Atheros/spectral from source code on Linux.
+#
+# This file is intended to be called by the Makefile in the spectral
+# directory with TARGET set to the desired target platform.
+#
+
+DEPTH = ../..
+
+include $(DEPTH)/os/bsd/Makefile-bsd.common
+-include .depend
+
+#
+# Basic build components.
+#
+
+SPECTRAL_SRCS=$(ATH_SPECTRAL)/spectral.c
+SPECTRAL_OBJS=$(OBJDIR)/spectral.o
+
+HEADERS:= spectral.h spectral_ioctl.h
+
+SRCS+=	$(SPECTRAL_SRCS)
+CLEANFILES+= $(SPECTRAL_OBJS) $(ATH_SPECTRAL)/.depend
+DEPFILES = Makefile.bsd spectral_ioctl.h spectral.h $(KERNELSPEC) $(DEPTH)/os/bsd/Makefile-bsd.common 
+
+
+ALL=	$(SPECTRAL_OBJS)
+
+
+all:	$(ALL) ATH_FILELIST
+
+headers:
+	$(INSTALL) -m 444 $(HEADERS) $(WLANHDRS)/
+
+depend:
+	@$(MKDEP) -MT -D__NetBSD__ $(CFLAGS) $(SRCS)
+	
+$(OBJDIR)/spectral.o: $(ATH_SPECTRAL)/spectral.c $(DEPFILES)
+	$(CC) -c -o $@ $(CFLAGS) $(ATH_SPECTRAL)/spectral.c
+

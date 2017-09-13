@@ -1,0 +1,34 @@
+#!/bin/sh
+
+#########################################################################################
+## wan_start
+##
+## This script starts the WAN connection with the current WAN connection type.
+##
+#########################################################################################
+
+. /etc/rgw_config
+
+echo "Restarting the WAN connection."
+echo "WAN connection type: $WANCONNECTIONTYPE"
+
+if [ "$WANCONNECTIONTYPE" = "static" ]; then
+
+	$SCRIPT_PATH/do_static start
+
+elif [ "$WANCONNECTIONTYPE" = "dhcp" ]; then
+
+	$SCRIPT_PATH/do_dhcp start
+
+elif [ "$WANCONNECTIONTYPE" = "pppoe" ]; then
+
+	$SCRIPT_PATH/do_pppoe start
+
+elif [ "$WANCONNECTIONTYPE" = "pptp" ]; then
+
+	$SCRIPT_PATH/do_pptp start
+
+else 
+	echo "WAN connection type $WANCONNECTIONTYPE is not supported, exiting!"
+	exit 1
+fi

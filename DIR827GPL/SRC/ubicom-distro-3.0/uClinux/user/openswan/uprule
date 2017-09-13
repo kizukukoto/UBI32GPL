@@ -1,0 +1,20 @@
+#! /bin/sh
+
+        # policy based advanced routing
+        if [ -n "$IPROUTETABLE" ]
+        then
+            dorule delete
+            dorule add
+        fi
+        # virtual sourceip support
+        if [ -n "$PLUTO_MY_SOURCEIP" ]
+        then
+            addsource
+            rc=$?
+            if [ $rc -ne 0 ];
+            then
+                changesource
+            fi
+        fi
+        ip route flush cache
+

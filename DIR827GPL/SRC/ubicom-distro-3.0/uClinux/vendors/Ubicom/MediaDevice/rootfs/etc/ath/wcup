@@ -1,0 +1,25 @@
+#!/bin/sh
+##
+##
+
+. /etc/ath/wccfg
+
+	# Create a VAP
+	if [ -f /etc/ath/makeVAP ] && [ -f /etc/ath/activateVAP ]; then
+		/etc/ath/makeVAP sta $WLANSSID ${WLANIFNUM}
+		if [ $? != 0 ]; then
+			echo "Unable to create VAP!"
+	        	exit
+		fi
+
+		#Activate the VAP that was created
+		/etc/ath/activateVAP ath0 - $WLANSECMODE $WLANSECFILE
+	else
+		# Although wireless is enabled, we don`t have the necessary scripts to run wireless.
+		# So, disable wireless in wireless_config.
+#		sed -i '/^WIRELESSENABLED=/ c\WIRELESSENABLED='NO'' /etc/wireless_config
+		echo "Wireless start script could not be found!"
+		echo "Skipping wireless configuration."
+	fi
+
+

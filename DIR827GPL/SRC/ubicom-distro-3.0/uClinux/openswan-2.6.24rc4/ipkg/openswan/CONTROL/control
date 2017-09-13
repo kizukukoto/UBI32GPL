@@ -1,0 +1,12 @@
+Package: openswan
+Version: 2.6.24rc4-1
+Depends: libgmp, ip
+Provides: 
+Source: package/openswan
+Section: net
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 2305904
+Description:  Openswan is an IPsec implementation for Linux.
+ This package contains the Openswan user-land daemon.

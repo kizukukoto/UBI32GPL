@@ -1,0 +1,35 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+#
+# Stop WISH
+#
+
+BRINTERFACE=$(nvram get lan_bridge | cut -c14- -)
+
+#
+# main()
+#	Entry point
+# Is WISH currently running?  If so then stop it.
+#
+if [ -e /sys/devices/system/ubicom_wish/ubicom_wish0 ] ; then
+	echo Stopping WISH
+	./stop_wish
+fi
+
+#
+# Delete the wish_manual_rules_table rules from the forward paths of the mangle table
+#
+iptables -t mangle -D FORWARD -i $BRINTERFACE -o $BRINTERFACE -j wish_manual_rules_table 2> /dev/null
+
+#
+# Flush rules in the table
+#
+iptables -t mangle -F wish_manual_rules_table 2> /dev/null
+
+#
+# Delete wish_manual_rules_table
+#
+iptables -t mangle -X wish_manual_rules_table 2> /dev/null
+
+exit 0

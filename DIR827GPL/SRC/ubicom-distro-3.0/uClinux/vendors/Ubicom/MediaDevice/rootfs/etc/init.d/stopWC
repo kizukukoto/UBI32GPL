@@ -1,0 +1,36 @@
+#!/bin/sh
+
+#########################################################################################
+## stop wireless
+##
+#########################################################################################
+
+echo "Stopping wireless client"
+
+dhcpcd_pidlist=`ps | grep 'dhcpcd' | grep -v 'grep' | cut -b1-5`
+if [ "$dhcpcd_pidlist" != "" ]; then
+	echo "Killing existing dhcpcd processes"
+	for i in $dhcpcd_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+echo "Stopping wireless"
+/etc/ath/killVAP ALL
+
+# Try to remove wireless interfaces if they are still up (killVAP should have removed them).
+ath0=`ifconfig | grep ath0`
+if [ "$ath0" != "" ]; then
+	ifconfig ath0 down		
+fi
+
+wifi0=`ifconfig | grep wifi0`
+if [ "$wifi0" != "" ]; then
+	ifconfig wifi0 down		
+fi
+
+sleep 1
+
+echo "wireless client stopped"
+

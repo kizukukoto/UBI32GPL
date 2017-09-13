@@ -1,0 +1,153 @@
+#!/usr/bin/perl
+#
+# intialize git modules within current directory
+#
+
+use strict;
+use Getopt::Std;
+
+
+my $usage =<<EOF;
+ USAGE:
+    Initializes git submodules and clones missing.
+  Options:
+    -f  use defaults (clone all missing, checkout master)
+    -h  display this useful message.
+EOF
+    ;
+
+my %options=();
+
+#
+# get_options
+#
+sub get_options() {
+
+    if (!getopts("hf",\%options) || $options{'h'}) {
+
+
+	    print $usage;
+	exit 0;
+    }
+}
+
+
+#
+# query_interactive,
+#
+# ask a question, looks for a single char answer as one of responses.
+#
+sub query_interactive($$$)
+{
+    my $prompt = shift;
+    my $responses = shift;
+    my $result = uc shift;
+
+    print "\t" , $prompt,  " ";
+
+    if ($options{'f'} && $result) {
+	print "$result (forced)\n";
+	return $result;
+    }
+    while(1) {
+	$_ = uc <>;
+	chomp $_;
+	if ($_ eq "" && $result) {
+	    print "$result (default)\n";
+	    last;
+	}
+	if ($_ =~ /([$responses])/i ) {
+	    $result = $1;
+	    last;
+	}
+	print $prompt;
+    }
+    return $result;
+}
+
+#
+# _system
+#
+# wrapper for system
+#
+sub _system($$)
+{
+    print shift(@_) , " ";
+    my $r = system(@_);
+    if ($r == 0) {
+	print " OK\n";
+    }
+
+    return $r;
+}
+
+
+#
+# git_version_check
+#
+sub git_version_check() {
+    if (!$options{'f'}) {
+	print "Accept all defaults\n";
+    }
+    print "Checking system\n";
+    my $git_ver=`git --version`;
+    $git_ver =~ /\D*(\d+)\.(\d+)\.(\d+(\.\d+)?)/ || die " Unabled to determine git version";
+
+    my $major = $1;
+    my $minor = $2;
+    my $rest = $3;
+
+    printf sprintf "Git version is %d.%d.%s\n", $major, $minor, $rest;
+
+    # check version
+    if ($major == 1 && $minor >= 6) {
+	print "OK\n";
+	return 1;
+    }
+    return 0;
+}
+
+#
+# main
+#
+sub main() {
+    _system("Intializing Modules", "git submodule init");
+
+    my @git_dirs = ( '.' );
+
+    my $clone_all = 0;
+    foreach (`git submodule status`) {
+	chomp;
+	if ( $_ =~ /([\+\- ])([A-F0-9a-f]{40}) (\S*)/ ) {
+	    # $1 == status
+	    # $2 == sha1
+	    # $3 == dir
+	    print "Checking '$3'\n";
+	    # if the status is '-' then the submodule is missing and needs to be cloned.
+	    if ($1 eq '-') {
+
+		if (!$clone_all) {
+		    my $clone = query_interactive("Clone Missing module '$3'? (Y/n/a)", "YNA", "Y");
+
+		    if ($clone eq "A") {
+			print "\tWill clone all missing\n";
+			$clone_all = 1;
+		    } elsif ($clone ne "Y") {
+			next;
+		    }
+		}
+
+		_system("Clone", "git submodule update '$3'");
+		_system("Checkout $_", "(cd '$3'; git checkout master)");
+	    }
+	    push @git_dirs, $3;
+	}
+    }
+}
+
+#
+# startup
+#
+get_options();
+git_version_check() || die "Version Not 1.6.x or greater";
+main();

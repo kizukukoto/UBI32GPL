@@ -1,0 +1,8 @@
+#
+# This is the list of functions that should get moved to OCM.
+# Notice that this is pretty much a cropped profiler output. 
+# If you want to update this file, make sure you gather profiler
+# output for a particular module. You can repeat this process
+# with a module that is partially in OCM.
+#
+Loc Time    Sum Total  MIPS   Haz I-BLK D-BLK Th0  Th1  Th5  Th6  Th7  Th9  Th10  Th11  Memory  SDRAM   PRAM Latenc Sampl  Function name

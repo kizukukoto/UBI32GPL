@@ -1,0 +1,692 @@
+
+Project Name: DIR-827
+HW version: A1
+Region code: NA
+WLAN Domain: 0x3A/FCC
+Channel List 2.4G: 1, 2, 3, 4, 5, 6, 7, 8 ,9, 10, 11
+Firmware Query URL: http://wrpd.dlink.com.tw/router/firmware/query.asp?model=DIR-827_Ax_Default
+Flash size: 16MB
+DRAM size: 512MB 
+Algorithm: New Algorithm
+Reference Mac: Wan Mac.
+
+===========================================================================================
+Firmware Date: Fri, 05, July, 2013
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x66590A33
+SVN Revision: 2825
+IPv6 version: 2.01R_UNH1.00B8
+1.0023347: TTL should not be changed - Based on D-link's request, TTL should not be changed for inbound and outbound traffics.
+2.0022664: Security issue - Set OS command into text column Enter `reboot` command into NTP server setting will casuse DUT keep rebooting untile WAN cable unplugged.
+3.0022657: Internet Connection Setup Wizard - Based on the latest setup wizard spec, the drop down list should be removed from Internet connection setup wizard
+4.0023374: Others-Web Based Setup Wizard - When DUT WAN type can't be detected,setup wizard should proceed to try again or manual configure step.
+5.0023373: Setup-IPv6-ULA -ULA Address display blank when IPv6 connection type set as "6to4".LAN PC ping LAN IPv6 Link-Local Address can get reply but ping ULA Address fail.
+6.0023397: Tools-Firmware - "Upload language pack the notice message display issue 
+When upload language pack, the notice message will display in firmware upload field,it should display in language pack upload field"
+7.0023392: Setup-Network Settings - When the computer name field contains php code (e.g. <?php shell_exec ("/usr/bin/reboot");?> ) or html code and save setting, the DHCP reservations list displays abnormally
+8.0023390: Advanced-WiFi Protected Setup - After disable WPS,the WPS Current PIN Code will display "00000000",It should be default value.
+9.0023389: Tools-System Check - DUT can ping invaild IP 0.0.0.0 issue
+10.0023387: Tools-Admin - Default Remote Admin Port for HTTPS should modify to 8090.
+11.0023385: Setup-Wireless Settings - When configured SSID as special characters (such as :";'<>?,./|\) in "Setup-Wireless Settings-Manual Wireless Network Setup", the GUI display not correct after the settings be saved.
+12.0023375: Setup-IPv6-6rd - The "Mask Length" field of "IPv4 Address" should be grayed out.
+13.0023421: Setup-Network Settings - SPEC Update for "Setup-Network Settings" ,"Always Broadcast" must be disabled by default in DHCP Server Settings
+14.0023420: Advanced-QoS Engine - DUT should not allow input "aaaaa" into "Manual uplink speed" in QoS.
+15.0023415: Tools-Admin - If set user password to "(quotation marks), DUT tools admin page will display tr-069 configuration fields
+16.0023394: Tools-Schedules - When choice time format to 12-hour. Set start time to 11:30PM, end time to 12:30PM and save setting. The Schedule Rule List Time Frame would display 23:30~12:30 not 11:30PM~12:30PM.
+17.0023365: Utility Test-QRS Mobile-Android - The DNS issue for configured DUT WAN type to PPPoE via Android.Configured with QRS Mobile v1.2.0.2 (Android 4.0.4), the DNS displayed "0.0.0.0" at "Status-Info.-WAN" and DNS query fail
+18.0023363The reconnect mode issue for configured DUT WAN type to PPPoE via iOS.Configured with QRS Mobile v1.1.1.0 (iOS5/iOS6), the reconnect mode be setting as "Always On", it should be "On demand" (default)
+19.0023393: Advanced-Virtual Server - DUT unable to save equal private port in virtusal server rules.Ex:Public port are 80 and 21 but both transfer to private port 21.
+
+
+
+Firmware Version: 1.05b05
+Firmware Date: Wed, 20, March, 2013
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x656CF44C
+SVN Revision: 2741
+IPv6 version: 2.01R_UNH1.00B8
+1. Upgrade WIFI driver to U11
+
+Firmware Version: 1.05b04beta01
+Firmware Date: Wed, 14, March, 2013
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x655EDA32 
+SVN Revision: 2737
+IPv6 version: 2.01R_UNH1.00B8
+1. Based on v1.05b03 for D-Track HQ20130306000006-DIR-827A1_v1.05B02Beta05-UPnP Vulnerability
+
+Firmware Version: 1.05b04
+Firmware Date: Wed, 13, March, 2013
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x65768D87  
+SVN Revision: 2735
+IPv6 version: 2.01R
+1. modify storage unable found USB date
+2. modify media server unable found usb data
+3. modify firmware version
+
+Firmware Version: 1.05b03Beta01
+Firmware Date: Wed, 13, March, 2013
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x63EB226F  
+SVN Revision: 2734
+IPv6 version: 2.01R
+1. modify firmware version to 1.05b03Beta01
+
+Firmware Version: 1.05b03
+Firmware Date: Thu, 07, March, 2013
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x6335B56E  
+SVN Revision: 2727
+IPv6 version: 2.01R
+1. Test to use the rapid 7 security flaws of UPnP
+2. DUT will has SSDP response when do SCANOW on wan side
+3. Modify Some UPNP description not follow spec : serial number
+4. mofify smartnow software [https://www.rapid7.com/] issue (check libupnp version )
+
+
+Firmware Version: 1.05b02Beta02
+Firmware Date: Thu, 04, Feb, 2013
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x6612B519
+SVN Revision: 2705
+IPv6 version: 2.01R
+1. Fixed: 6rd MTU issue: Connect WAN type IPv6 AutoDetect mode DUT to IPv6 6RD network environment, get MTU value in DUT LAN ICMPv6 RA packets, MTU value should be 1480
+2. Fixed: Manual set 6RD mode, the RA router life time incorrect (current is 180, should be 1800)
+3. Fixed: Prefix Valid lifetime and Preferred lifetime value incorrect 
+
+Firmware Version: 1.05b02Beta01
+Firmware Date: Thu, 24, Jan, 2013
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x6626E262 
+SVN Revision: 2690
+IPv6 version: 2.01R
+1. fixed 6rd MTU issue: Connect WAN type IPv6 AutoDetect mode DUT to IPv6 6RD network environment, get MTU value in DUT LAN ICMPv6 RA packets, MTU value should be 1480
+
+
+Firmware Version: 1.05b01
+Firmware Date: Mon, 22, Oct, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x65675C91 
+SVN Revision: 2670
+IPv6 version: 2.01R
+1. Modify mDNS to satisfy D-Link AP and Router UPnP and mDNS Specification v1.03
+
+Firmware Version: 1.04b01
+Firmware Date: Tue, 9, Oct, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x655077F7 
+SVN Revision: 2659
+IPv6 version: 2.01R
+0. The same with v1.03b10(just change firmware version)
+1. Remove 404 page for iOS6
+2. Fixed TSD Bug 11918 Multicast movie on wireless PC will stop when a LAN PC start to play multicast movie. It happens when VLC server is located at DUT LAN.
+3. Fixed TSD Bug 11766 SSID is not correct after changed from unconfigured mode to configured mode by WPS with 5GHz client.
+4. Fixed TSD Bug 16657 When upload language pack, the uploading message will display on wrong block of WebGUI in upgrade firmware field.
+
+Firmware Version: 1.03b10
+Firmware Date: Mon, 8, Oct, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x654F7932 
+SVN Revision: 2657
+IPv6 version: 2.01R
+1. Remove 404 page for iOS6
+2. Fixed TSD Bug 11918 Multicast movie on wireless PC will stop when a LAN PC start to play multicast movie. It happens when VLC server is located at DUT LAN.
+3. Fixed TSD Bug 11766 SSID is not correct after changed from unconfigured mode to configured mode by WPS with 5GHz client.
+4. Fixed TSD Bug 16657 When upload language pack, the uploading message will display on wrong block of WebGUI in upgrade firmware field.
+
+Firmware Version: 1.03b09
+Firmware Date: Thu, 29, Aug, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x65429582 
+SVN Revision: 2601
+IPv6 version: 2.01R
+1. Official release firmware.
+
+Firmware Version: 1.03b08
+Firmware Date: Thu, 27, Jul, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x65C785F6 
+SVN Revision: 2572
+IPv6 version: 2.01R
+1. fix Application Rule - DUT will be freeze when enabling Application rule.
+
+Firmware Version: 1.03b07
+Firmware Date: Thu, 11, Jul, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x668C0E02
+SVN Revision: 2550
+IPv6 version: 2.01R
+1.Network Filter - Blocked PC still can access Internet.
+2.Status - Click "Connect" button will pop-up a message of "The new settings have been saved. Please wait xx seconds." 
+3.Application Rule - DUT will be freeze when enabling Application rule.
+4.Internet Setup Wizard - Set "Time Zone" in "Internet Setup Wizard" does not saved.
+5.Advanced-WiFi Protected Setup :It should pop-up message for "Disable WPS" when configure wireless security to "WPA-EAP"
+6.Advanced-WiFi Protected Setup	:It'll pop-up incorrect message while change wireless security. 
+7.Setup-Wireless Settings - Incorrect warning message issue
+8.Tools-Time :Time sync incorrect issue 
+9.Others-Digital Home Device Compatibility Tests - Configured DUT as WEP-64 and WEP-128. Use NDS Lite to connect with DUT will fail.
+
+Firmware Version: 1.03b06
+Firmware Date: Mon, 18, Jun, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x6662ADE6
+SVN Revision: 2507
+IPv6 version: 2.01R
+1.All multicast address 224.0.0.x will not be drop in any circumstance.
+
+Firmware Version: 1.03b05
+Firmware Date: Fri, 20, Apr, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x65562B80
+SVN Revision: 2351
+IPv6 version: 2.01R
+1. Support UNH-IOL test plan v1.00b08
+2. Router hang or reboot when WAN type set to PPTP or L2TP in attached topology.
+3. DHCP server will not work if using more than 95 characters as "Computer Name" in DHCP reservation rule.
+4. XBox 360 can not detect Media Server of DIR-827
+5. Disable "Automatic Uplink Speed" causes WAN Traffic Shaping not working. 
+	Step1. Reset to default.
+	Step2. Disable "Automatic Uplink Speed" and select "2048" as "Manual Uplink Speed".
+	Step3. Connect WAN to Internet.
+	Step4. Run Chariot on LAN PC to test LAN to WAN throughput. Throughput will always exceed "Manual Uplink Speed".
+
+Firmware Version: 1.03b04
+Firmware Date: Fri, 18, Apr, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x6536965F
+SVN Revision: 2345
+IPv6 version: 2.01R
+1. Support UNH-IOL test plan v1.00b08
+2. Router hang or reboot when WAN type set to PPTP or L2TP in attached topology.
+3. DHCP server will not work if using more than 95 characters as "Computer Name" in DHCP reservation rule.
+4. XBox 360 can not detect Media Server of DIR-827
+
+Firmware Version: 1.03b03
+Firmware Date: Fri, 23, Mar, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x64F664C3
+SVN Revision: 2303
+IPv6 version: 2.01R
+1. Fix WiFi Protected Setup : Dual band client can not link to DUT by WPS-PBC.
+2. Fix WiFi Protected Setup : Pure 5GHz wireless client can not link to DUT by WPS-PBC
+3. Fix DHCP server will not work if using more than 95 characters as "Computer Name" in DHCP reservation rule.
+4. Fix L2TP low throughput
+
+Firmware Version: 1.03b02
+Firmware Date: Fri, 13, Feb, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x64E18595
+SVN Revision: 2218
+IPv6 version: 2.01R
+
+1.Section-2.5-part-G
+  
+a.set dhcp lan stateful range 0002~0003
+  
+b.when connect the second pc ,DUT still release 0002 address only
+  
+c.somtimes ,change dhcp stateful range can・t work
+
+2.Section-2.6-part-A-step6,There is no RA with zero lifetime on lan side
+
+3.Hub and spoken can・t be disabled
+
+4.DUT GUI  pop wrong prompt messagen when switch <s :lan / d :wan> to <s :wan :d :lan > in firewall rule
+
+5.DS-LITE mode by manual settings,Then wan staus shows N/A  in ATFR and option field
+
+6.In 6in4 mode,When set lan static prefix and reboot,Then wan status can・t show lan ip and pc client can・t get ipv6 ip
+
+
+Firmware Version: 1.03b01
+Firmware Date: Fri, 03, Feb, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu,02, Feb, 2012
+CheckSum: 0x64107C60
+SVN Revision: 2193
+IPv6 version: 2.01R
+
+1. Support IPv6 v2.01R.
+- Separate address provisioning flow for Cable Network and Broadband Network.
+- UNH-IOL test plan v1.0.0b07.
+- Support 6RD hub and spoke Mode.
+- New AutoDetection Mode.
+- Disable Simple Security by default.
+2. IPv6 full function test. 
+
+Firmware Version: 1.02b05Beta01
+Firmware Date: Thu, 02, Feb, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Jan, 2012
+CheckSum: 0x5BAE119D
+SVN Revision: 2187
+IPv6 version: 1.17R
+
+1. fix bug - User cannot observe the new upload content through DLNA.
+
+Firmware Version: 1.02b05
+Firmware Date: Thu, 02, Feb, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Jan, 2012
+CheckSum: 0x5BA1F28B
+
+SVN Revision: 2184
+IPv6 version: 1.17R
+
+1. Change UI to support WPS 1.0 only.
+
+Firmware Version: 1.02b04Beta01
+Firmware Date: Tue, 31, Jan, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Jan, 2012
+CheckSum: 0x5B98A039
+SVN Revision: 2177
+IPv6 version: 1.17R
+
+1. fix bug - Dhcp will be abnormal because some vfork in udhcp is not changed to fork. 
+
+Firmware Version: 1.02b04Beta
+Firmware Date: Mon, 30, Jan, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Jan, 2012
+CheckSum: 0x5BB25702
+SVN Revision: 2172
+IPv6 version: 1.17R
+
+1. fix bug - some dhcp client will not get IP when the length of dhcp offer is 690. 
+
+Firmware Version: 1.02b04
+Firmware Date: Wed, 18, Jan, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Jan, 2012
+CheckSum: 0x5BA68684
+SVN Revision: 2172
+IPv6 version: 1.17R
+
+1.Update Disable WPS-PIN Method
+Base on v1.02b01Beta
+
+Firmware Version: 1.02b03
+Firmware Date: Fri, 13, Jan, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Jan, 2012
+CheckSum: 0x5BA14217
+SVN Revision: 2161
+IPv6 version: 1.17R
+
+1.Add Disable WPS-PIN Method
+Base on v1.02b01Beta
+
+Firmware Version: 1.02b01Beta
+Firmware Date: Wed, 26, Oct, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0017, Date: Thu, 06, Oct, 2011
+CheckSum: 0x5B4CCAA3
+SVN Revision: 1961
+
+1. fix bug : When there are over 2 wireless clients connected to 827, it will cause crash.
+2. fix bug : wan mac did not restore default when keyin '00:00:00:00:00:00'.
+3. Setup wizard remove mac clone for DHCP mode.
+4. Setup wizard redirect to http://www.dlink.com in last step.
+5. fix bug : Show wrong channel width when support HT20/40 Coexistence at /STATUS/DEVICE INFO page.
+6. fix bug : when there are more than 3 wireless clients connected to 827, the /STATUS/WIRELESS page will be abnormal.
+
+Firmware Version: 1.01b05
+Firmware Date: Thu, 06, Oct, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0017, Date: Thu, 06, Oct, 2011
+CheckSum: 0x5B4FEBDA
+SVN Revision: 1934
+
+1. fix bug : In DHCPC mode after one or two day, lan PC can not access internet.
+2. Change Russia Time Zone.
+3. Fix DCC issue: set static wan first and then set pppoe, DNS keep 0.0.0.0.
+
+Firmware Version: 1.01b04
+Firmware Date: Fri, 30, Sep, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0016, Date: Fri, 30, Sep, 2011
+CheckSum: 0x5B6A94BA
+SVN Revision: 1900
+
+1. fix mp bug : wlan.txt can not show right info for usd_connect and sd_connect.
+2. fix bug : When wan disconnected and connected soon, sometimes SE will take long time to calculate the uplink speed and lan PC can not access internet.
+3. fix Enable Email log On Log Full, DUT will send log mail when log full.
+
+Firmware Version: 1.01b03
+Firmware Date: Wed, 28, Sep, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0015, Date: Wed, 28, Sep, 2011
+CheckSum: 0x5B6A2D15
+SVN Revision: 1885
+
+1. fix bug : When runnng WPS with autoconfig, it will set to both AES and TKIP.
+2. fix bug : When wan disconnected and connected again, sometimes SE will happen error and router can not access internet.
+3. fix ipv6&ipv4 status page when clicking disconnect button for https web at lan side.
+4. fix ipv6 firewall GUI issue
+
+Firmware Version: 1.01b02
+Firmware Date: Wed, 21, Sep, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0014, Date: Wed, 21, Sep, 2011
+CheckSum: 0x5B68A581
+SVN Revision: 1876
+
+1. fix bug : Internet LED displays wrong status.
+2. fix bug : Access web-site including large ajax and javascript, DUT will crash.
+             Ex. CAMEO Agentflow, PLM.
+
+Firmware Version: 1.01b01
+Firmware Date: Thu, 15, Sep, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0013, Date: Thu, 15, Sep, 2011
+CheckSum: 0x5B4B14F2
+SVN Revision: 1866
+
+1. fix bug : Win7 Logo Xbox 2Nic failed.
+2. fix bug : Application rule failed. a.Set 'BT' and 'Calista IP phone' rule. b.Trigger TCP 5190 and firewall UDP 3000 is ok.
+   c.Trigger TCP 6969 and firewall TCP 6881-6889 is failed.
+3. fix bug : When running BT, it will crash.
+4. fix bug : When putting router idle a while, it can not access internet.
+5. fix bug : 5G wireless always does not display last channel.
+6. fix bug : Upload incorrect file to Language Pack Upgrade, DUT reboot.
+7. fix bug : fix internet led sometimes will be delayed after SE.
+8. fix bug : PC can not access internet after running QRS.
+9. fix bug : Inbound Filter issue: Be deny http session will redirect to remote manager UI.
+   Procedure: a.Create an Inbound Filter rule Name:"filtertest", Action:Deny, add the WAN1 PC IP into Remote IP Range List. 
+              b.Lunch the Virtual Server rule, add the Inbound Filter into Virtual Server with http service . 
+              c.Enable Remote manager and setting port 8080
+              d.Follow the Virtual Server test plan and verify Inbound Filter rule can work in virtual server.
+              Be deny http session will redirect to remote manager UI .
+10. fix bug : Fixed DUT don't send out DHCP release packet when DUT reboot or change configures if needs reboot. (in DHCP mode)
+11. fix bug : pppoe connect button don't response.
+12. fix bug : PC can not see the dlna icon of DIR-827.
+13. fix bug : If wireless is enabled, check cypher type only set to AES when wireless mode is 802.11n only. 
+
+Firmware Version: 1.00b18
+Firmware Date: Tue, 30, Aug, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0012, Date: Fri, 19, Aug, 2011
+CheckSum: 0x5B6C0383
+SVN Revision: 1830
+
+1. fix Win7 logo.
+2. fix bug : Do not send log when log is full and 'On Log Full' is enable.
+3. fix bug : D-Track- HQ20110729000010 DynDNS connection problem.
+4. fix bug : cypher type only set to AES when wireless mode is 802.11n only.
+
+Firmware Version: 1.00b17
+Firmware Date: Fri, 19, Aug, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0012, Date: Fri, 19, Aug, 2011
+CheckSum: 0x5B3E6E58
+SVN Revision: 1803
+
+1. fix bug : Wrong LP checksum when upgrade different language.
+2. fix bug : unbalance performance after running chariot more times.
+3. fix bug : upnp can not open port 80.
+4. fix bug : update udp session to 50000.
+
+Firmware Version: 1.00b16
+Firmware Date: Thu, 18, Aug, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0011, Date: Thu, 18, Aug, 2011
+CheckSum: 0x5B2D4A19
+SVN Revision: 1794
+
+1. fix bug : miniupnp will not run and minidlna will have some problems.
+
+Firmware Version: 1.00b15
+Firmware Date: Thu, 18, Aug, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0011, Date: Thu, 18, Aug, 2011
+CheckSum: 0x5B3A3182
+SVN Revision: 1790
+
+1. fix bug : WPS is failed in unconfigured mode or with dual band client.
+2. fix bug : minidlna has wrong propertise description.
+3. fix bug : when loading language package, the router will crash.
+4. fix bug : in advanced/wireless it will show "HT20/40MHz Coexistence".
+
+Firmware Version: 1.00b14
+Firmware Date: Mon, 15, Aug, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0010, Date: Fri, 12, Aug, 2011
+CheckSum: 0x5B21491C
+SVN Revision: 1777
+
+1. Add HT20/40 Coexistence disable/enable.
+2. fix bug : Static IP 5G client can・t show IP address in wireless status page
+3. fix bug : Fast Path is not working when QoS is diabled.
+
+Firmware Version: 1.00b13
+Firmware Date: Fri, 12, Aug, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0010, Date: Fri, 12, Aug, 2011
+CheckSum: 0x5B370CF4
+SVN Revision: 1766
+
+1. fix bug : fix router wizard will show WiPnP and reboot after wps setting.
+2. fix bug : NAT non-balance issue.
+3. fix bug : DUT may crash when enable between routing in guest zone or set mac clone for dhcp wan mode.
+4. fix bug : When wan type is l2tp mode, it can not dial up.
+5. fix bug : When schedule rules be used and, UI can・t pop warding message when try to del schedule rule from list.
+6. fix bug : When host radios try to use a schedule rule ,then UI will pop wrong warning message when add schedule rule in default DUT and apply it  to host radio.
+7. fix bug : Log Web access only doesn't work.
+8. fix bug : Turn on mac filter then all pc can・t access internet
+9. fix bug : WPS 5Ghz key content is empty in wps manual mode
+10. Update to Setup Wizard Spec v1.04R1
+11. fix bug : Route List Destination IP could be set as illegal IP address
+12. fix bug : When set ipv6 mode every time,it always pops wrong warning message. in static ipv6 wan mode
+13. fix bug : fixe TSD bug: the default tcp/udp port 1-65535 field has one spac.cause
+
+Firmware Version: 1.00b12
+Firmware Date: Mon, 08, Aug, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0009, Date: Mon, 08, Aug, 2011
+CheckSum: 0x5B23BCE8
+SVN Revision: 1733
+
+1. fix bug : WPS does not work.
+2. fix bug : NTP can not get the right time.
+3. fix bug : Web UI auto logout failed
+4. update for Setup Wizard v1.04
+5. fix bug : ipv6 GUI issue
+6. fix bug : dut does not have lan ipv6 address
+7. fix bug : D-track-HQ20110722000009-Website Filter on Access Control
+8. For WPS 2.0 if user sets security to wep or tkip or disables ssid broadcast, it will show warning message to disable WPS.
+9. fix bug : wireless wizard, wps wizard and WISH page gray out while wireless 2g and 5g are disabled together
+10. fix bug : web page will be reset when preess 'don't save settings' button
+11. Wizard : When auto detect WAN type, if success will redirect to DHCP or PPPoE
+12. fix bug : For Access control, the schedule field display incorrectly.
+13. fix bug : Web page display error if manage according to the procedure- a. Click ：Save Settings； no matter Virtual Server 
+    settings changed or not. b. Click ：Reboot Later；. c. Change any settings of Virtual Server. d. Click ：Don・t Save Settings； 
+    then click ：Yes； in the pop-up message.
+
+Firmware Version: 1.00b11
+Firmware Date: Fri, 22, Jul, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0008, Date: Fri, 22, Jul, 2011
+CheckSum: 0x5B1AF3B7
+SVN Revision: 1676
+
+1. fix bug : When BT test with PPPoE, the router will re-dail.
+2. Enhance usb performance.
+3. fix bug : bad performance with single radio.
+4. fix bug : pptp crash when disabling pptp server and remove eth line
+5. fix bug : Open DNS Parental will display error message at the countdown page.
+6. fix bug : WISH is not working
+7. fix bug : disable 2.4G can not show 5G channel
+8. fix bug : MEDIA SERVER GUI error
+9. fix bug : wireless schedule failed
+10. Update dir-827 GUI for IEEE 802.11n Spec Changes - ui will not show beacon interval, rts, wmm, fragmentation and dtim
+11. fix bug : (5G)Change guest zone SSID and Security mode to"WEP 64 bit key". And then Save it and will reboot the DUT.
+    When Wireless try to connect to DUT, DUT sometimes will crash.
+12. fix bug : Set DUT's WAN type as static IP. Enable the remote management function(HTTP default port 8080). WAN PC try to 
+    access the DUT with 8080 port. Put the device at more time will can found the DUT will crash itself.
+13. fix bug : When apply schedule is 12hrs with 1:11AM~1:16AM to wireless radios ,the status always show off ,and wireless 
+    client can・t find DUT when on duration
+
+Firmware Version: 1.00b10
+Firmware Date: Tue, 12, Jul, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0007, Date: Tue, 12, Jul, 2011
+CheckSum: 0x5B1D8277
+SVN Revision: 1634
+
+1. fix bug : When BT test with PPPoE, the router will re-dail.
+2. fix bug : When test wlan TP with one radio, it is bad.
+3. fix bug : When router connects a PPPoE server, if we disable the PPPoE server first and then 
+   remove the eth line on wan, it will crash.
+4. fix bug : SD card does not work.
+5. fix bug : There is no pop warning when changing settings without save and go to other page(ipv6 and media server).
+6. fix bug : Wrong 5G channel when out of schedule at /STATUS/DEVICE INFO page.
+7. fix bug : wireless schedule can・t work, fail for 5Ghz, delay 2mins for 2.4Ghz.
+8. fix bug : When wireless is not in schedule, it still show enabled in status.
+
+Firmware Version: 1.00b09
+Firmware Date: Wed, 06, Jul, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0006, Date: Wed, 06, Jul, 2011
+CheckSum: 0x5B389E9A
+SVN Revision: 1608
+
+1. fix bug : Fix ntp do not work after reboot.
+2. Setup Wizard v1.03.
+3. Reboot later spec.
+4. fix bug : SD card can not work.
+5. IPv6 1.17R.
+6. fix bug : wireless throuput is bad and nonbanlance.
+7. fix bug : fix crash issue.
+8. fix bug : can not run purenetwork tool.
+9. fix bug : Disable Routing between guest zone can・t work, client can access between zone.
+10. fix bug : PPTP Disconnected button can・t work ,because web page will hang up.
+11. fix bug : WISH can not work with 5G radio.
+12. fix bug : When change wan speed to static, the rt can not access internet.
+
+
+Firmware Version: 1.00b08
+Firmware Date: Thu, 27, Jun, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0005, Date: Mon, 27, Jun, 2011
+CheckSum: 0x6060D4F7
+SVN Revision: 1555
+
+1. fix bug : fix wlan DTIM to support 1~255.
+2. fix bug : opendns value should be false/true for XML agent.
+3. fix bug : Add 5G info for STATUS/Statistics page.
+4. fix bug : remove 802.11d desciption from ADVANCED/Advanced Wireless page.
+5. fix bug : Add 5G info for widget.
+6. update Ubicom's patch for MP chip.
+7. fix bug : when using pppoev6 lan address login , can't send reply page.
+8. fix bug : WISH can not work.
+9. fix bug : Set WPA-PSK for 2.4G Guest zone, WPA key is empty.
+
+Firmware Version: 1.00b07
+Firmware Date: Thu, 16, Jun, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0004, Date: Wed, 15, Jun, 2011
+CheckSum: 0x65A9EC37
+SVN Revision: 1507
+
+1. fix bug : wep key can・t be saved after set it.
+2. Add 5G settings for /ADVANCED/ADVANCED WIRELESS page.
+3. fix bug : WISH does not work.
+4. fix bug : WPS button does not work.
+5. fix bug : There is no statistics for TX in lan and wan in statistics page .
+6. fix bug : In default with pppoe mode DUT can・t pass NAT type test by Microsoft IGD test tool.
+
+Firmware Version: 1.00b06
+Firmware Date: Wed, 15, Jun, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0003, Date: Wed, 15, Jun, 2011
+CheckSum: 0x5FE0AEB0
+SVN Revision: 1493
+
+1. fix bug : Sometimes the router will crash.
+2. fix bug : DUT will reboot when test shareport read/write in NTFS format.
+
+Firmware Version: 1.00b05
+Firmware Date: Fri, 03, Jun, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0002, Date: Fri, 03, Jun, 2011
+CheckSum: 0x5EC22E51
+SVN Revision: 1478
+
+1. fix bug : When push cancel or finish wizard from default status, Ipv6 setting should keep in link local mode.
+2. Wirless is working.
+3. fix bug : Time function in NTP can・t work when enable opendns from wizard in default DUT.
+4. fix bug : Release button can・t work in dhcp mode.
+5. fix bug : Schedule can・t work for send email log.
+6. fix bug : Enable opendns then user can・t access internet and can・t login DUT WEB page.
+7. fix bug : shareport utility doesn・t work.
+8. fix bug : DLNA doesn・t work.
+9. fix bug : Ddns doesn・t work.
+10. fix bug : DUT will keep rebooting with  wan has cable connected, and  dhcpe server has option 44 : win server ip.
+11. fix bug : pptl and l2tp can not work.
+12. fix bug : https server can・t work  in Remote management.
+13. fix bug : UPNP IGD can・t shown.
+14. fix bug : QOS doesn・t work.
+15. fix bug : OPENDNS doesn・t work.
+16. fix bug : Wrong model name in firmware query url for release note.
+
+Firmware Version: 1.00b04
+Firmware Date: Thu, 26, May, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0001, Date: Wed, 18, May, 2011
+CheckSum: 0x6061D360
+SVN Revision: 1456
+
+1. fix bug : DUT keeps in rebooting  when enable opendns.
+2. fix bug : DUT keeps in rebooting  when dns server ip is no response.
+3. fix bug : Syslog can・t work.
+4. fix bug : Remote management can・t work.
+5. fix bug : DUT in dhcp mode ,connect on cameo intranet ,check and browser website is ok ,do nothing and wait about 10 MIns ,user can・t access internet because DUT crash.
+6. fix bug : IPv6 is not working.
+
+Firmware Version: 1.00b03
+Firmware Date: Thu, 19, May, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0001, Date: Wed, 18, May, 2011
+CheckSum: 0x60664378
+SVN Revision: 1449
+
+1. fix bug : wan can not get ip.
+
+Firmware Version: 1.00b02
+Firmware Date: Thu, 19, May, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0001, Date: Wed, 18, May, 2011
+CheckSum: 0x60671CE4
+SVN Revision: 1438
+
+1. fix bug : change mtd block to support old arch.
+
+Firmware Version: 1.00b01
+Firmware Date: Wed, 18, May, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0001, Date: Wed, 18, May, 2011
+CheckSum: 0x6065B63F
+SVN Revision: 1418
+
+1. New model firmware use Ubicom new SDK 3.0.

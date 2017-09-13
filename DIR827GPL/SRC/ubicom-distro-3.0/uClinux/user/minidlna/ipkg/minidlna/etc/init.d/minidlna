@@ -1,0 +1,14 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2010 OpenWrt.org
+
+START=400
+STOP=100
+PID=/var/run/minidlna.pid
+
+start() {
+	minidlna -P $PID -R &
+}
+
+stop() {
+	killall -s SIGINT minidlna
+}

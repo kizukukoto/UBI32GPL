@@ -1,0 +1,43 @@
+#
+#	Makefile.common -- Common Build instructions for Ubicom32
+#	Should only be included by vendor/Ubicom/TARGET/Makefile
+#
+
+clean.common: clean.first
+
+# Check TARGET/initramfs_list for more created directories and nodes
+# with permissions. However, we need to create some here so that the
+# user tools makes can build into them.
+ROMFS_DIRS = bin dev etc lib root sbin
+# creates the romfs directorys
+romfs.dirs:
+	echo $@
+	[ -d $(ROMFSDIR) ] || mkdir -p $(ROMFSDIR)
+	for i in $(ROMFS_DIRS); do \
+		[ -d $(ROMFSDIR)/$$i ] || mkdir -p $(ROMFSDIR)/$$i; \
+	done
+
+romfs.common: romfs.dirs romfs.first
+	echo $@
+	[ -d rootfs ] && $(ROMFSINST) -f rootfs/ /
+
+	echo "$(VERSIONSTR) -- " `date` > $(ROMFSDIR)/etc/version
+
+ifdef SHARED_LIBS_TO_INSTALL
+	$(ROOTDIR)/vendors/config/ubicom32nommu/install-shared-libs-from-toolchain \
+		$(SHARED_LIBS_TO_INSTALL)
+endif
+
+image.common: image.first
+	-chmod -R +x $(ROMFSDIR)/bin
+	-rm $(ROOTDIR)/$(LINUXDIR)/usr/initramfs_data.cpio.{gz,lzma,bz2}
+	LDFLAGS="" $(MAKEARCH_KERNEL) -C $(ROOTDIR)/$(LINUXDIR) $(LINUXTARGET)
+
+# do not add any rules for these targets they are implemented in the
+# main Vendor Makefile (the one that included this)
+clean.first:
+romfs.first: romfs.dirs
+image.first:
+clean: clean.common
+romfs: romfs.common
+image: image.common

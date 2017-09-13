@@ -1,0 +1,57 @@
+#!/bin/sh
+RESOLV_IPV4="/var/etc/resolv.conf"
+RESOLV_IPV6="/var/etc/resolv_ipv6.conf"
+RESOLV_CONF="/etc/resolv.conf"
+DHCP_PD="/var/tmp/dhcp_pd"
+DHCP_PD_OLD="/var/tmp/dhcp_pd.old"
+RADVD_PID="/var/run/radvd.pid"
+RADVD_CONFIG="/var/etc/radvd.conf"
+DHCPD6_CONFIG="/var/etc/dhcpd6.conf"
+WAN_PROTO=$(nvram get wan_proto)
+AUTOCONFIG=$(nvram get autoconfig_type)
+IAPD=$(cat $DHCP_PD_OLD | sed '1p1,$d')/$(cat $DHCP_PD_OLD | sed '2p1,$d')
+
+if [ "$AUTOCONFIG" = "autoconfig_type = stateless" ] || [ "$AUTOCONFIG" = "stateless" ]; then
+	DNS=$(cat $RADVD_CONFIG | grep "^RDNSS" | sed 's/RDNSS //g' | sed 's/{//g')
+else
+	DNS=$(cat $DHCPD6_CONFIG | grep "domain-name-servers" | sed 's/option domain-name-servers //g' | sed 's/;//g')
+fi
+
+restart_lan(){
+	cli ipv6 radvd stop
+	cli ipv6 radvd start
+	cli ipv6 dhcp6d stop
+	cli ipv6 dhcp6d start
+}
+
+if [ -n "$new_domain_name" -o -n "$new_domain_name_servers" ]; then
+	rm -f $RESOLV_IPV6
+	if [ -n "$new_domain_name" ]; then
+		echo search $new_domain_name >> $RESOLV_IPV6
+	fi
+	if [ -n "$new_domain_name_servers" ]; then
+		for nameserver in $new_domain_name_servers; do
+			echo nameserver $nameserver >> $RESOLV_IPV6
+		done
+		cat $RESOLV_IPV4 $RESOLV_IPV6 > $RESOLV_CONF
+	fi
+fi
+
+if [ -n "$new_iapd_prefix" ]; then
+	if [ -n "$new_domain_name_servers" -a "$(echo $new_domain_name_servers | sed 's/ //g')" != "$(echo $DNS | sed 's/ //g')" ]; then
+		echo IPv6 Domain Name Server is changed, restart IPv6 LAN
+		restart_lan
+	elif [ -z "$(echo $new_iapd_prefix | grep $IAPD)" -o ! -e $RADVD_PID ]; then
+		echo IAPD is changed, restart IPv6 LAN
+		restart_lan
+	fi
+	cp $DHCP_PD $DHCP_PD_OLD
+else
+	if [ -n "$new_domain_name_servers" -a "$(echo $new_domain_name_servers | sed 's/ //g')" != "$(echo $DNS | sed 's/ //g')" ]; then
+		echo IPv6 Domain Name Server is changed, restart IPv6 LAN
+		restart_lan
+	fi
+fi
+
+exit 0
+

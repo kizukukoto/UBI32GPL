@@ -1,0 +1,34 @@
+INI_DIR	:= ./inis
+CP  :=  cp -f
+
+include ../makefile.soc.linux.xscale.mak
+
+CFLAGS	+=	-I.  -I../common/include -I../devmld
+CFLAGS +=   -I./ar5210 -I./ar5211 -I./ar5212 -I./ar2413 -I./ar5513 -I./ar6000 -I./ar5416 -I$(OUTPUT_DIR) -I$(INI_DIR)
+CFLAGS +=   -DLINUX -DLinux -D_cplusplus 
+CFLAGS +=   -I./ini  
+CFLAGS += -DMDK_AP -D$(DEF_OS)  
+CFLAGS += -DSOC_LINUX
+CFLAGS += -DARCH_BIG_ENDIAN
+
+VPATH	:= $(SW_ROOT)/src/dk/mdk/common $(MDK_ROOT)/devlib/ar5210  $(MDK_ROOT)/devlib/ar5211  $(MDK_ROOT)/devlib/ar5212  $(MDK_ROOT)/devlib/ar2413  $(MDK_ROOT)/devlib/ar6000 $(MDK_ROOT)/devlib/ar5416
+EXTRA_SRCS := 
+SRCS	:= 	artEar.c art_ani.c athreg.c mAlloc.c mCal.c mConfig.c mCont.c mData.c mDevtbl.c mEeprom.c mMask.c mMaskMath.c mMaskPhys.c mCfg210.c mData210.c mEEP210.c mCfg211.c mData211.c mEEP211.c mData212.c mCfg212.c mCfg212d.c mCfg413.c mEEPROM_d.c mAni212.c mCfg5416.c mData5416.c mEep5416.c mEEPROM_g.c stats_routines.c rate_constants.c mEep6000.c $(EXTRA_SRCS)
+
+OBJS	:=	$(patsubst %.c,$(OUTPUT_DIR)/%.o,$(SRCS))
+	
+all: $(OBJS)	
+
+dirs:
+	mkdir -p $(INI_DIR)
+	mkdir -p $(OUTPUT_DIR)
+
+$(OUTPUT_DIR)/%.o : %.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+clean: 
+	rm -rf $(OBJS) 
+	rm -rf $(OUTPUT_DIR)
+
+.PHONY:
+	clean

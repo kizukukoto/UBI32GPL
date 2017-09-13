@@ -1,0 +1,31 @@
+#!/bin/sh
+# Copyright (C) 2009 Ubicom, Inc.
+
+PATH=/bin:/sbin:/usr/bin
+LD_LIBRARY_PATH=/lib:/usr/lib
+GTK_PATH=/usr/lib/gtk-2.0
+
+export PATH
+export LD_LIBRARY_PATH
+export GTK_PATH
+
+echo "***** Testing for console devices, please ignore any errors *****" > /dev/ttyUM0
+
+echo "Test tty0 as a console" > /dev/tty0
+if [ $? == 0 ]; then
+CONSOLE="tty0";
+fi
+
+echo "Test ttyUM0 as a console" > /dev/ttyUM0
+if [ $? == 0 ]; then
+CONSOLE="ttyUM0";
+fi
+
+export CONSOLE
+
+echo ""
+echo "System ready, Using ${CONSOLE} as console ******"
+
+echo "Starting busybox init"
+exec /bin/init
+

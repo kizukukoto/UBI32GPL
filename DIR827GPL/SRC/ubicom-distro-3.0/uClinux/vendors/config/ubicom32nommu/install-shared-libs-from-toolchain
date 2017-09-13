@@ -1,0 +1,85 @@
+#!/bin/bash
+#
+# install-shared-libs-from-toolchain
+#
+# Locates the shared librarys in the toolchain and copies those
+# matching the input.
+
+function check_param() {
+    if [ "${!1}" = "" ]; then
+	echo "Error: \$$1 is not set, bail" >&2
+	exit 1
+    fi
+}
+
+if [ "$*" = "" ]; then
+    echo No Input >&2
+    exit 1
+fi
+
+check_param ROMFSINST
+check_param ROOTDIR
+check_param CC
+
+LIBROOT=$($CC -print-sysroot)/lib/$($CC -print-multi-directory)
+echo "Copying shared libs from $PWD"
+echo "   Input: $*";
+# enable this for more debug
+# ROMFSINST="$ROMFSINST -v"
+
+# locate librarys
+for lib in $*; do
+    FOUND=$(ls -1 $LIBROOT/lib${lib}.so.[0-9] 2> /dev/null)
+    if [ "$FOUND" == "" ]; then
+	FOUND=$(ls -1 $LIBROOT/${lib}.so.[0-9] 2> /dev/null)
+	if [ "$FOUND" == "" ]; then
+	    echo "ERROR: Cannot locate $lib.so.X" >&2
+	    exit 1
+	fi
+    fi
+    FILES="$FILES $FOUND"
+done
+
+# die on any error
+set -e
+
+
+# sort, remove duplicates and copy
+for f in $FILES
+do
+  echo $f
+  # TODO automatically add dependencies.
+  # ldd file | grep '=>' | cut -f1 -d' '
+done | sort | uniq | (
+    INSTALLED=
+    while read i
+    do
+      name=$(basename $i)
+      echo -n " install shared lib: "
+      INSTALLED="$INSTALLED $i"
+      if [ -L $i ]; then
+	  L=$(readlink -f $i);
+	  link_name=$(basename $L);
+	  printf "%-25s -> %s\n" $name $link_name
+	  $ROMFSINST -s $link_name /lib/$name;
+	  $ROMFSINST -p 755 $L /lib/$link_name;
+	  INSTALLED="$INSTALLED $L"
+      else
+	  echo "$name"
+	  $ROMFSINST -p 755 $i /lib/$name
+      fi
+
+    done
+# finally add ld-linux.so.2 if we need to
+    LD=$(ls -1 $LIBROOT/ld-uClibc.so.[0-9] | head -n 1)
+    if echo "$INSTALLED" | grep $LD -q; then
+	LD=$(readlink $LD);
+	echo -n " install shared lib: "
+	printf "%-25s -> %s\n" ld-linux-so.2 $LD
+	$ROMFSINST -s $LD /lib/ld-linux.so.2
+
+	echo -n " install shared lib: "
+	printf "%-25s -> %s\n" ld.so.1 $LD
+	$ROMFSINST -s $LD /lib/ld.so.1
+    fi
+)

@@ -1,0 +1,856 @@
+/* Copyright 2008 Ubicom, Inc. All Rights Reserved.
+ * -------------------------------------------------------------------------------- 
+ */
+
+
+/* General
+ *--------------------------------------------------------------------------------
+ */
+html {
+	color: #000;
+	background-color: #DEDEDE;
+}
+
+body {
+	font-size: 80%;
+}
+div, p, ul, ol, li, dl, dt, dd, table, input, select, textarea {
+	font-family: Verdana, Arial, sans-serif;
+}
+h1, h2, h3, h4 {
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 120%;
+}
+body
+{
+	width: 823px;  	/* fixed width layout */
+	width: auto;	/* elastic layout */
+	color: #000;
+	background-color: #FFF;
+	background-image: url(Images/bg_masthead.gif) ;
+	background-repeat: repeat-x;
+	margin: 0 auto;
+	border: none;
+	padding: 0;
+}
+
+a:link, a:visited, a:active {
+	color:#66F;
+	text-decoration: none;
+}
+
+a:hover {
+	color:#000;
+	text-decoration: underline;
+}
+
+/* Loader container
+ *--------------------------------------------------------------------------------
+ */
+#loader_container {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	/* For IE: */
+	-position: expression('absolute');
+	-height: expression(document.documentElement.scrollHeight+'px');
+	-width: expression(document.documentElement.scrollWidth+'px');
+}
+
+/* General styles
+ *--------------------------------------------------------------------------------
+ */
+#wrapper {
+	padding: 1em 2em;
+}
+div.centered, p.centered
+{
+	text-align: center;
+}
+.right {
+	text-align: right;
+}
+.left {
+	text-align: left;
+}
+/* Top masthead row
+ *--------------------------------------------------------------------------------
+ */
+
+
+#topcontainer {
+	border:none;
+	width: auto;
+}
+#topleftcontent {
+	float: left;
+	background-image: url(Images/masthead_ubicom_logo.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 270px;	/* match the dimensions of the logo plus padding: 11px, 35px, 12px, 34px; */
+	height: 85px;
+}
+#toprightcontent {
+	margin: 0 0 0 270px;
+	vertical-align: bottom;
+}
+#topright_bottom {
+}
+#model_name {
+	margin: 0 auto 5 auto;
+	font-size: 250%;
+	font-style: italic;
+	font-weight: bold;
+	color: #ED302E;
+}
+
+/* Horizontal Topnav
+ *--------------------------------------------------------------------------------
+ */
+
+#topnav_container {
+	margin-top: 10px;
+}
+#topnav {
+}
+#topnav table {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	color: #FFF;
+}
+
+#topnav td {
+	font-weight: normal;
+	letter-spacing: 1px;
+	padding: 0 4px 0 4px;
+	border-top: 1px solid #FFF;
+	border-right: 0 solid #FFF;
+	border-bottom: 1px solid #000;
+	border-left: 0 solid #FFF;
+}
+
+#topnav td a:link, #topnav td a:visited, #topnav td a:active {
+	display: block;
+	font-weight: bold;
+	color:#66F;
+	text-decoration: none;
+	padding: 2px  5px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#topnav td a:hover {
+	display: block;
+	font-weight: bold;
+	color:#000;
+	text-decoration: underline;
+	padding: 2px  5px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#topnav .here {
+	font-weight: bold;
+	letter-spacing: 1px;
+	border-color: #FFF;
+	background-color: #FFF;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	border-bottom: 1px solid #FFF;
+	border-left: 1px solid #000;
+}
+
+#topnav .here a:link, #topnav .here a:visited, #topnav .here a:active {
+	display: block;
+	font-weight: bold;
+	color: #000;
+	text-decoration: none;
+	letter-spacing: 1px;
+	padding: 2px 5px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#topnav .here a:hover {
+	display: block;
+	font-weight: bold;
+	color: #000;
+	text-decoration: none;
+	letter-spacing: 1px;
+	padding: 2px 5px;
+	text-transform: uppercase;
+	text-align: center;
+}
+.topnav_temp {
+	background-color: #DEDEDE !important;
+	border-bottom: 1px solid #DEDEDE !important;
+}
+
+
+/* Horizontal Subnav
+ *--------------------------------------------------------------------------------
+ */
+
+/*
+ * Many of the margin and padding settings are needed to make mouseover subnavs work.
+ * Do not change margins or padding without retesting mouseover subnavs.
+ */
+
+#subnav_container {
+	margin: 0;
+	padding: 0 0 12px 0;
+}
+#subnav {
+	margin: 0 2px 2px 2px;
+	padding: 2px; 
+	text-align: center;
+}
+.subnav_group {
+	padding-top: .5em;
+	line-height: 150%;
+	display: none;
+}
+.subnav_group a {
+	white-space: nowrap;
+	font-size: 96%;
+	font-weight: bold;
+	padding: 0.6em;
+	vertical-align: top ;
+}
+#subnav a:link, #subnav li a:visited, #subnav li a:active {
+	color:#66F;
+	text-decoration: none;
+}
+#subnav a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+
+#subnav .here {
+	color: #000;
+}
+#subnav a:link.here, #subnav a:visited.here, #subnav a:active.here {
+	color:#000;
+	text-decoration: none;
+}
+#subnav a:hover.here {
+	color: #000;
+	text-decoration: none;
+}
+#subnav a:link.disabled, #subnav a:visited.disabled, #subnav a:active.disabled, #subnav a:hover.disabled {
+	font-weight: normal;
+	color:#999;
+	text-decoration: none;
+}
+
+.subnav_temp {
+	background-color: #DEDEDE !important;
+}
+
+
+/* Footer
+ *--------------------------------------------------------------------------------
+ */
+
+#footer_container {
+	clear: both;
+	height: 85px;
+	margin: 0;
+	padding: 0;
+	background-color: #FFF;
+	background-image: url(Images/bg_footer.gif);
+	text-align: center;
+}
+#footer_container table {
+	width: 100%;
+	text-align: center;
+}
+#lang_container {
+	padding-top: 50px;
+}
+#lang_container select {
+	background-color: #E2E2E2;
+	border: 1px solid #66C;
+}
+#copyright {
+	padding-top: 50px;
+
+}
+.fwv {
+	padding-top: 50px;
+}
+
+/*
+ * Main content of page
+ *--------------------------------------------------------------------------------
+ */
+
+#main_content, #reboot_content, #warnings_section {
+	border: none;
+	margin: 0 0 0 auto;
+	padding: 0;
+	width: auto;
+	float: none;
+}
+
+/*
+ * Main page content is one or more sections, each of which can contain one or more boxes.
+ * A section is a container for all the content about one high-level aspect of configuration;
+ * for example: all WAN set-up; all wireless settings.
+ * A section has a title, optional introductory text, and can contain one or more boxes.
+ */
+.section {
+	border: none;
+	width: auto;
+	padding: 0;
+}
+.section_head {
+	padding: 0 10px 10px 10%;
+	margin: 0;
+}
+
+/* title of a section */
+.section_head h2 {
+	clear: both;
+	left: -10%;
+	margin-top: 0;
+	margin-right: -10%;
+	padding: 0 0 5px 0;
+	color: #F90;
+	font-weight: bold;
+	font-size: 190%;
+	text-align: left;
+	border-bottom: 2px dashed #CC6;
+	position:relative;
+}
+
+/*
+ * Optional explanatory text about the section.
+ */
+.section_head p {
+	margin: 6px 6px 6px 6px;
+	color: #000;
+}
+
+/*
+ * A box is a container for a group of related controls; for example: all DHCP server settings.
+ * A box has an optional title, optional introductory text, optional help tips,
+ * and a main "fieldset" section which contains form controls.
+*/
+
+.box {
+	padding: 0 10px;
+	margin: 10px 0 0 0;
+}
+/*
+ * Clear the floating contents of <box> at bottom.
+ * This is necessary to get proper bottom spacing in the presence of floats.
+ * This hack forces FF to do what IE does erroneously.
+ * IE does not see the hack, because it doesn't implement :after
+ */
+.box:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+/*
+ * The title of a box
+ */
+.box h3 {
+	margin: 0;
+	padding: 5px 5px 5px 10px;
+	margin: 0 -10px 5px -10px;
+	font-weight: bold;
+	font-size: 160%;
+	color:  rgb(72,186,98);
+	text-align: left;
+}
+
+/*
+ * Container for box content (primarily controls with their labels)
+ * Form fields must be in a fieldset. A box can contain only one fieldset.
+ */
+
+fieldset {
+	border: 2px dashed #cc6;
+	padding: 5px;
+	color: #000;
+}
+/*
+ * Sometimes you need a field set for its other properties,
+ * but you don't want it to show.
+ */
+fieldset.invisible {
+	border: none;
+	padding: 5px 0;
+}
+/*
+ * Separate lines in a fieldset by enclosing in <p></p>
+ */
+.box fieldset p {
+	clear: both;
+	margin: 4px 0 4px 0;
+}
+/*
+ * Clear the floating contents of <p> at bottom.
+ * This is necessary to get proper bottom spacing when there are multiline floats.
+ * This hack forces FF to do what IE does erroneously.
+ * IE does not see the hack, because it doesn't implement :after
+ */
+.box fieldset p:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.box fieldset br {
+	clear: both;
+}
+/*
+ * Use the duple class on labels of simple "label : input" pairs
+ */
+fieldset label.duple {
+	display: block; /* force to a block so width and word wrap work */
+	float: left;		/* keep to left of following control */
+	width: 40%;
+	margin: 1px 8px 4px 0;
+	padding: 0;
+	border: 0;
+	text-align: right;
+	font-weight: bold;
+}
+fieldset input, fieldset select {
+	margin: 0 4px 0 0;
+}
+.box fieldset .output {
+	position: relative;
+	top: 1px;
+}
+
+/*
+ * Sometimes you need subtitles inside a box 
+ */ 
+.box h4 {
+	padding: 5px 5px 5px 10px;
+	margin: 0 -10px 5px -10px;
+	font-size: 120%;
+	color:  #000;
+}
+.box h5 {
+	padding: 5px 5px 5px 10px;
+	margin: 0 -10px 5px -10px;
+	font-size: 100%;
+	color:  #000;
+}
+
+/*
+ * Help tips related to a box.
+ *  -- not used in this style.
+ */
+.box_tips {
+	display: none;
+}
+/*
+ * Divider line (also called "rule") between boxes.
+ *  -- not used in this style.
+ */
+.box_rule {
+	display: none;
+}
+
+/*
+ * Buttons
+ */
+.button_submit {
+	background-color: #66F;
+	border-width: 2px;
+	border-style: outset;
+	border-color: #CCF #44C #33C #BBF;
+	color: #FFF;
+	font-weight: bold;
+}
+.section_head .button_submit {
+	font-size: 120%;
+	padding: 5px;
+	margin: 0 4px 0 0;
+}
+fieldset .button_submit {
+	font-size: 120%;
+	padding: 2px;
+	margin: 0 4px 0 0;
+}
+input.button_submit.disabled {
+	border-color: #CCC;
+	background-color: #CCC;
+	color: #999;
+}
+/*
+ * Other miscellaneous styles
+ * --------------------------------------------------------------------------------
+ */
+img {
+	display: block;
+	border: 0;
+}
+
+form {
+	margin: 0 auto 0 auto;
+}
+
+dt {
+	font-weight: bold;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+dd {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0;
+}
+
+dd p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+dd dl {
+	margin-left: 30px;
+}
+
+span.option {
+	font-weight: bold;
+}
+
+.button_ref {
+	white-space: nowrap;
+	background-color: #66F;
+	border-width: 2px;
+	border-style: outset;
+	border-color: #CCF #44C #33C #BBF;
+	color: #FFF;
+	font-weight: bold;
+}
+
+code {
+	font-family: "Letter Gothic MT", "Lucida Console", "Courier New", Courier, monospace;
+	font-weight: bold;
+}
+
+div.centered, p.centered, h1.centered {
+	text-align: center;
+}
+/*
+ * Mac IE 5 needs long form to center tables
+ */
+div.centered table {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+
+.box_msg {
+	color: #13376B;
+	background-color: transparent;
+	font-weight: bold;
+}
+
+.box_alert {
+	color: #CC0000;
+	background-color: transparent;
+	font-weight: bold;
+}
+
+.rule_details {
+}
+
+#admin_pwd_warning {
+	color: #F00;
+	font-weight: bold;
+	margin: 1em;
+}
+
+/*
+ * Tables for data arrays
+ * --------------------------------------------------------------------------------
+ */
+.formlisting {
+	width: 100%;
+	margin-top: 4px;
+}
+.formlisting th {
+	width: auto;
+	padding: 4px 2px 4px 2px;
+	background-color: #DEDEDE;
+}
+.formlisting th + th {
+	border-left: 1px solid #FFF;
+}
+.formlisting td {
+	width: auto;
+	padding: 2px;
+	background-color: #F0F0F0;
+}
+.formlisting tr.highlight td {
+	background-color: #CDF;
+}
+.formlisting td + td {
+	border-left: 1px solid #FFF;
+}
+.formlist_image {
+	width: 2% !important;
+	padding: 0 !important;
+	background-color: #FFF !important;
+}
+.formlist_image img {
+	margin: auto;
+}
+
+/*
+ * Tables in forms (form area)
+ * --------------------------------------------------------------------------------
+ */
+
+.formarea tr .formradio {
+	vertical-align: top;
+}
+
+
+.formarea td {
+	vertical-align: middle;
+	padding: 2px 4px !important;
+}
+
+.formarea a:link {
+	color: #666666;
+	background-color: transparent;
+	font-size: 11px;
+	text-decoration: none;
+}
+
+.formarea a:visited {
+	color: #666666;
+	background-color: transparent;
+	font-size: 11px;
+	text-decoration: none;
+}
+
+.formarea a:active {
+	color: #666666;
+	background-color: transparent;
+	font-size: 11px;
+	text-decoration: none;
+}
+
+.formarea a:hover {
+	color: #666666;
+	font-size: 11px;
+	text-decoration: underline;
+}
+
+.formarea .form_label {
+	font-weight: bold;
+	text-align: right;
+	padding-right: 10px !important;
+	width: 170px;
+}
+
+.formarea .form_label_top {
+	vertical-align: top;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 10px;
+	width: 170px;
+}
+
+.formarea .form_label_middle {
+	vertical-align: middle;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 10px;
+	width: 170px;
+}
+
+.formarea .form_label_bottom {
+	vertical-align: text-bottom;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 10px;
+	width: 170px;
+}
+
+.formarea .form_label_radio {
+	vertical-align: top;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 5px;
+	width: 170px;
+}
+
+.formarea .form_label_left {
+	font-weight: bold;
+	text-align: left;
+	padding-right: 8px;
+}
+
+.form_label_col {
+	padding: 2px 4px;
+	font-weight: bold;
+}
+
+/*
+ * Table overrides -- must follow classes to be overridden
+ * --------------------------------------------------------------------------------
+ */
+
+td.centered, th.centered {
+	text-align: center;
+}
+
+td.bottom, th.bottom {
+	vertical-align: bottom;
+}
+
+.ae_selected_row {
+	color: #F90;
+}
+
+/*
+ * Help Section
+ * --------------------------------------------------------------------------------
+ */
+
+.help_example dl {
+	background-color: #DFDFDF;
+	padding: 0 0 0 4px;
+	border: gray;
+	border-width: 1px;
+	border-style: solid;
+}
+
+dd .help_example dl {
+	margin-left: 0;
+}
+
+.help_screen_shot {
+	text-align: center;
+}
+
+.help_example dl dl {
+	border: 0;
+}
+
+
+p#gloss_index {
+	text-align: center;
+	margin: 10px 10%;
+	font-size: 20px;
+}
+
+#gloss_index a:link, #gloss_index a:visited, #gloss_index a:active {
+	color: #666666;
+	background-color: transparent;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	border: 1px solid #CCCCCC;
+	padding: 0px 6px;
+}
+
+#gloss_index a:hover {
+	color: #666666;
+	background-color: rgb(72,186,98);
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	border: 1px solid #000000;
+	padding: 0px 6px;
+}
+
+/*
+ * Lightbox/Modal dialog implementation
+ * --------------------------------------------------------------------------------
+ */
+
+.black_overlay {
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 300%;
+	background-color: black;
+	z-index: 1001;
+	overflow: hidden;
+	-moz-opacity: 0.7;
+	opacity:.70;
+	filter: alpha(opacity=70);
+}
+.white_content {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: 50%;
+	padding: 16px;
+	border: 8px solid #CDC;
+	border-top-color: #CDC;
+	border-right-color: #ABA;
+	border-bottom-color: #9A9;
+	border-left-color: #BCB;
+	background-color: white;
+	z-index: 1002;
+	overflow: scroll;
+}
+.progressbar {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 55px;
+	height: 85px;
+	background-color: white;
+	z-index: 1002;
+	overflow: hidden;
+	text-align: center;
+	font-size: 9px;
+	color: #000;
+}
+
+/*
+ * Styles for directory dialogs including treeview.js
+ * --------------------------------------------------------------------------------
+ */
+.dir_container {
+	width: auto; 
+	margin: 0 auto; 
+	padding: 1em;
+	background-color: #EEE;
+}
+.dir_tree {
+	width: 90%;
+	margin: 0 auto; 
+	display: block; 
+	overflow: scroll; 
+	border: 1px inset #7F9DB9; 
+	padding: 0.25em;
+	background-color: #FFF;
+	height: 20em;
+	xmax-height: 20em;
+}
+.dir_label {
+	margin: 0 auto;
+	cursor: pointer;
+}
+.dir_branch {
+	margin-left: 17px;
+	display: none;
+}

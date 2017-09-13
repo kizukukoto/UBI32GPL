@@ -1,0 +1,13 @@
+Package: libpostproc
+Version: 0.6.1-1
+Depends: libffmpeg
+Provides: 
+Source: feeds_src/packages/multimedia/ffmpeg
+Section: libs
+Status: unknown ok not-installed
+Essential: no
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 15978
+Description:  libpostproc

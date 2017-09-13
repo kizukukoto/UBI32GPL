@@ -1,0 +1,89 @@
+#!/bin/sh
+
+MINIUPNPD=/sbin/miniupnpd
+CONF=/etc/miniupnpd/miniupnpd.conf
+ARGS='-f '$CONF' -U'
+
+IPTABLES_CREATE=/etc/miniupnpd/iptables_init.sh
+IPTABLES_REMOVE=/etc/miniupnpd/iptables_removeall.sh
+
+if [ ! -f $MINIUPNPD ]; then
+	echo "miniupnpd application binary not found."
+	exit 1
+fi
+
+. /etc/rgw_config
+
+case "$1" in
+	start|--start)
+		if [ "$WANINTERFACE" = "" ]; then
+			echo "Error: No WAN interface defined!"
+			exit 1
+		fi
+		if [ "$BRINTERFACE" = "" ]; then
+			echo "Error: No LAN interface defined!"
+			exit 1
+		fi
+
+		# wait until the wan interface is up, try 10 times
+		for i in `seq 1 10`
+		do
+			WANIF_OK=`ifconfig $WANINTERFACE | grep 'HWaddr'`
+			if [ "$WANIF_OK" != "" ]; then
+				break
+			fi
+			sleep 10
+			if [ $i -eq 10 ]; then
+				echo "WARN: Could not start miniupnpd. WAN interface is NOT up!"
+				exit 1
+			fi
+		done
+
+		# wait until the lan ip is obtained, try 10 times
+		for i in `seq 1 10`
+		do
+			lan_ip=`ifconfig $BRINTERFACE | grep 'inet addr' | cut -d':' -f2 | cut -d' ' -f1`
+			if [ "$lan_ip" != "" ]; then
+				break
+			fi
+			sleep 10
+			if [ $i -eq 10 ]; then
+				echo "WARN: Could not start miniupnpd. No LAN IP!"
+				exit 1
+			fi
+		done
+
+		echo "Running miniupnpd (UPnP Internet Gateway Device) on IP: $lan_ip"
+		sed -i '/^listening_ip=/ c\listening_ip='$lan_ip'/24' $CONF
+		sed -i '/^port=/ c\port=5000' $CONF
+		sed -i '/^ext_ifname=/ c\ext_ifname='$WANINTERFACE'' $CONF
+		sleep 1
+		$IPTABLES_CREATE > /dev/null 2>&1
+		if [ $? != 0 ]; then
+			echo "Error creating iptables chain for miniupnpd!"
+			exit 1
+		fi
+		miniupnpd $ARGS > /dev/null 2>&1 &
+        ;;
+	stop|--stop)
+		if [ -f /var/run/miniupnpd.pid ]; then
+			echo "Killing existing miniupnpd processes"
+			kill -9 `cat /var/run/miniupnpd.pid`
+			$IPTABLES_REMOVE > /dev/null 2>&1
+			rm -f /var/run/miniupnpd.pid
+		else
+			echo "Warning: UPnP already not started!"
+		fi
+        ;;
+	restart|--restart)
+		$0 stop
+		$0 start
+        ;;
+	status|--status) 
+	# TODO: Add status code here
+        ;;
+	*)      echo "Usage: $0 {start|stop|restart|status}"
+		exit 2
+        ;;
+esac
+exit

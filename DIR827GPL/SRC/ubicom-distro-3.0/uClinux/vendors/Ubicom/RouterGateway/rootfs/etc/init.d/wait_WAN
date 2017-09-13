@@ -1,0 +1,48 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+#Wait until WanIP is configured before going on.
+while [ 1 ]; do
+	eth=`ifconfig | grep $WANINTERFACE`
+	if [ -n "$eth" ]; then
+		WANIP=`ifconfig $WANINTERFACE | grep 'inet addr' | cut -f2 -d':' | cut -f1 -d' '`
+		if [ -n "$WANIP" ]; then
+			break;
+		fi
+	fi
+	sleep 5
+done
+
+
+if [ -f /bin/iptables ]; then
+	if [ -f $SCRIPT_PATH/do_iptables ]; then
+		$SCRIPT_PATH/do_iptables start $WANIP &
+	else
+		echo "iptables script not found, skipping."
+	fi
+else
+	echo "iptables application not found, cannot enable NAT and DMZ and Firewall!"
+fi
+
+#Get local time from a network time server.
+if [ "$NTPENABLED" = "YES" ]; then
+	if [ -f /bin/ntpclient ]; then
+		echo "Running ntpclient. Timezone is set to $TIMEZONE, NTP server set to $NTPSERVER"
+		echo $TIMEZONE > /etc/TZ
+		ntpclient -s -h $NTPSERVER &
+	else
+		echo "ntpclient application binary not found, skipping."
+	fi
+fi
+
+#Run inadyn dynamic dns clientINADYNENABLED
+if [ "$INADYNENABLED" = "YES" ]; then
+	if [ -f /bin/inadyn ]; then
+	         echo "Running inadyn"
+		 inadyn -u $INADYNUSERNAME -p $INADYNPASSWD -a $INADYNALIAS &
+	else
+		echo "inadyn application binary not found, skipping."
+	fi
+fi
+

@@ -1,0 +1,105 @@
+###################################################################################
+##  wccfg
+##
+##  Configuration file for Atheros station.
+##  All settings that affect the operation of the station are included in this file.  For
+##  those settings not define here, defaults are used.  This file should be used in
+##  lieu of manual configuration.
+##
+##  Default Parameters
+##  If these are not set explictly by exporting environmental variables, the following
+##  Defaults will be applied
+#################################################################################
+
+. /etc/wireless_config
+
+##
+## default SSID & security mode
+##
+
+if [ "${WLANSSID}" = "" ]; then
+    export WLANSSID=mediatest
+fi
+
+if [ "${WLANSECMODE}" = "" ]; then
+    export WLANSECMODE=NONE
+fi
+
+if [ "${WLANPRIMARYCH}" = "" ]; then
+    # WLANPRIMARYCH could be
+    #                a number or
+    #                11na (which means auto-scan in 11na mode) or
+    #                11ng (which means auto-scan in 11ng mode)
+
+    export WLANPRIMARYCH=11ng
+fi
+
+
+if [ "${WLANCHMODE}" = "" ]; then
+    # For this default, we will be in HT20 mode
+    export WLANCHMODE=11NGHT20
+fi
+
+##
+## Set the default interfaces if not already defined
+##
+
+if [ "${WLANIFNUM}" = "" ]; then
+    export WLANIFNUM=0:RF:$WLANPRIMARYCH:$WLANCHMODE
+fi
+
+if [ "${TXQUEUELEN}" = "" ]; then
+    export TXQUEUELEN=1000
+fi
+
+if [ "${SHORTGI}" = "" ]; then
+    export SHORTGI=1
+fi
+
+#
+# Aggregation.  First parameter enables/disables,
+# second parameter sets the size limit
+#
+
+if [ "${AMPDUENABLE}" = "" ]; then
+    export AMPDUENABLE=1
+fi
+
+if [ "${AMPDUFRAMES}" = "" ]; then
+    export AMPDUFRAMES=32
+fi
+
+if [ "${AMPDULIMIT}" = "" ]; then
+    export AMPDULIMIT=50000
+fi
+
+if [ "${CWMMODE}" = "" ]; then
+    export CWMMODE=1
+fi
+
+if [ "${RATECTL}" = "" ]; then
+    export RATECTL=auto
+fi
+
+if [ "${MANRATE}" = "" ]; then
+    export MANRATE=0x8c8c8c8c
+fi
+
+if [ "${MANRETRIES}" = "" ]; then
+    export MANRETRIES=0x04040404
+fi
+
+if [ "${RX_CHAINMASK}" = "" ]; then
+    export RX_CHAINMASK=7
+fi
+
+if [ "${TX_CHAINMASK}" = "" ]; then
+    export TX_CHAINMASK=5
+fi
+
+#####################################################################################
+## The following parameters are board specific, and should not be modified
+#####################################################################################
+
+export ATH_use_eeprom=0
+

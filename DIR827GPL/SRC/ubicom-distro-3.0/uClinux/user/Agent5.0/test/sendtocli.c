@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
+#define fork() 0
+
+int main(int argc, char *argv[])
+{
+	if(argc != 3) {
+		printf("Usage: %s url content\n", argv[0]);
+		return -1;
+	} else if(fork() == 0) { //Child process
+		int fd;
+		struct sockaddr_in server;
+            	struct hostent *hp;
+		char *host, *path, *port;
+		int iport = 80;
+
+		if(strncasecmp(argv[1], "http://", 7) == 0)
+			host = argv[1] + 7;
+		else
+			host = argv[1];
+		path = strchr(host, '/');
+		if(path) {
+			*path = '\0';
+			path++;
+		} else {
+			path = "";
+		}
+
+		port = strchr(host, ':');
+		if(port) {
+			*port = '\0';
+			iport = atoi(port + 1);
+		}
+
+		fd = socket(AF_INET, SOCK_STREAM, 0);
+		memset(&server, 0, sizeof(server));
+		server.sin_family = AF_INET;
+		server.sin_port = htons(iport);
+            	hp = gethostbyname(host);
+            	if(hp) {
+                	memcpy(&(server.sin_addr), hp->h_addr, sizeof(server.sin_addr));
+			if(connect(fd, (struct sockaddr *)&server, sizeof(server)) == 0) {
+				int len;
+				int res = 0;
+				char buffer[512];
+				char *from;
+
+				len = strlen(argv[2]);
+
+				len = snprintf(buffer, sizeof(buffer),
+						"POST /%s HTTP/1.1\r\n"
+						"Host: %s:%d\r\n"
+						"Content-Type: application/x-www-form-urlencoded\r\n"
+						"Content-Length: %d\r\n"
+						"\r\n"
+						"%s", path, host, iport, len, argv[2]);
+
+				from = buffer;
+				do {
+					len -= res;
+					from += res;
+					res = send(fd, from, len, 0);
+				} while(res > 0);
+
+				if(res == 0)
+					printf("send OK\n");
+			} else {
+				printf("Connect to peer failed: %s\n", strerror(errno));
+				return -1;
+			}
+		} else {
+			printf("Resolve peer(%s) address failed: %s\n", host, strerror(errno));
+			return -1;
+		}
+	}
+
+	return 0;
+}

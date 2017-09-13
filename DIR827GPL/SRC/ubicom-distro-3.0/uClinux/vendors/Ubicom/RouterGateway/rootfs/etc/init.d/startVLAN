@@ -1,0 +1,47 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+# Enable 802.1Q VLANs
+SWITCH_DIR=$(ls -1 /proc/switch | head -n 1)
+echo 1 > /proc/switch/$SWITCH_DIR/enable_vlan
+
+# Create 2 802.1Q vlans
+
+echo 1 > /proc/switch/$SWITCH_DIR/vlan/create
+echo 2 > /proc/switch/$SWITCH_DIR/vlan/create
+
+# Add member ports
+echo 4 8t > /proc/switch/$SWITCH_DIR/vlan/1/ports
+echo 0 1 2 3 8t > /proc/switch/$SWITCH_DIR/vlan/2/ports
+
+ifconfig eth0 up
+
+# Add the virtual interfaces
+vconfig add eth0 1
+vconfig add eth0 2
+
+# Generate random MAC address for WAN interface if there's no valid one set.
+wan_mac_ok=`echo $WANMAC | egrep '^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})$'`
+if [ "$wan_mac_ok" = "" ]; then
+	wan_random_mac=00:03:64:f3:`hexdump -e '1/1 "%02x:"' < /dev/urandom -n 2 | cut -c1-5`
+	echo "Using random MAC address for $WANINTERFACE: $wan_random_mac"
+	ifconfig $WANINTERFACE hw ether $wan_random_mac
+	sed -i '/^WANMAC=/ c\WANMAC='$wan_random_mac'' /etc/rgw_config
+else
+	echo "Bringing up the $WANINTERFACE interface with MAC address $WANMAC"
+	ifconfig $WANINTERFACE hw ether $WANMAC
+fi
+
+# Generate random MAC address for LAN interface if there's no valid one set.
+lan_mac_ok=`echo $LANMAC | egrep '^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})$'`
+if [ "$lan_mac_ok" = "" ]; then
+	lan_random_mac=00:03:64:f3:`hexdump -e '1/1 "%02x:"' < /dev/urandom -n 2 | cut -c1-5`
+	echo "Using random MAC address for $LANINTERFACE: $lan_random_mac"
+	ifconfig $LANINTERFACE hw ether $lan_random_mac
+	sed -i '/^LANMAC=/ c\LANMAC='$lan_random_mac'' /etc/rgw_config
+else
+	echo "Bringing up the $LANINTERFACE interface with MAC address $LANMAC"
+	ifconfig $LANINTERFACE hw ether $LANMAC
+fi
+

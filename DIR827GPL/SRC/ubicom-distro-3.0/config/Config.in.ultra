@@ -1,0 +1,5 @@
+
+
+source config/Config.in.ultra.boards
+source config/Config.in.ultra.lpj
+

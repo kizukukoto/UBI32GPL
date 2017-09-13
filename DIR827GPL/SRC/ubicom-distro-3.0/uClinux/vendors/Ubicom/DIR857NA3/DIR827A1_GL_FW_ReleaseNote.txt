@@ -1,0 +1,58 @@
+
+Project Name: DIR-827
+HW version: A1
+Region code: NA
+WLAN Domain: 0x3A/FCC
+Channel List 2.4G: 1, 2, 3, 4, 5, 6, 7, 8 ,9, 10, 11
+Firmware Query URL: http://wrpd.dlink.com.tw/router/firmware/query.asp?model=DIR-857_Ax_GL
+Flash size: 16MB
+DRAM size: 64MB 
+Algorithm: New Algorithm
+Reference Mac: Wan Mac.
+
+======================================================================================
+
+Firmware Version: 1.00GLb03
+Firmware Date: Thu, 31, Mar, 2011 
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0016, Date: Thu, 31, Mar, 2011
+CheckSum: 0x59D7A842
+SVN Revision: 1250
+
+1. fix IPv6 bug:
+   a.there is no ipv6 routing information
+   b.ipv6 wan detect wizard can・t detect
+   c.ds-lite wan type can・t be stored
+   d.there is no static dhcp-pd in routing page
+2. fix TR069 bug:There is no option 43(dhcpv4) and option 17 (dhcpv6).
+
+Firmware Version: 1.00GLb02
+Firmware Date: Tue, 29, Mar, 2011 
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0015, Date: Tue, 29, Mar, 2011
+CheckSum: 0x58473541
+SVN Revision: 1233
+
+1. IPv6 v1.17.
+2. add TR069.
+3. fix wlan bugs - 
+   a.There is no 2.4Hgz client info in wireless status.
+   b.There is no 5Ghz info. In device info status
+   c.5GHZ band channel can・t changeable from ch36 to other channel
+   d.There is no 5Ghz gust zone
+   e.There is no 5GHZ in version.txt and chklst.txt
+   f.wireless mac address in chklist.txt doesn・t match with sniiffer packet
+   g. support WPS
+4. fix bug : DUT can・t restore configure from configure file ,when wireless page has some settings.
+5. fix bug : There is no advanced DNS function in wan mode
+6. fix DHCP mode DNS cannt set auto
+
+Firmware Version: 1.00GLb01
+Firmware Date: Mon, 21, Mar, 2011 
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0014, Date: Wed, 16, Mar, 2011
+CheckSum: 0x544FC845
+SVN Revision: 1126
+
+1. New model firmware use Ubicom new SDK 2.1.
+2. fix bug : after appling the UI, wan can not get the ip.

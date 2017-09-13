@@ -1,0 +1,14 @@
+Package: xl2tpd
+Version: 1.1.12-1
+Depends: 
+Provides: 
+Source: package/xl2tpd
+Section: net
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 135372
+Description:  l2tpd is the open source implementation of the L2TP tunneling protocol
+ (RFC2661). It does implement both LAC and LNS role in a L2TP networking
+ architecture. The main goal of this protocol is to tunnel PPP frame trough
+ an ip network.

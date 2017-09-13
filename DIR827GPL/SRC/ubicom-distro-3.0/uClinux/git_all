@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# get x value if git version is 1.6.x.y
+GIT_VER_MINOR2=$(git --version | grep '1\.6' | awk -F '.' '{print $3}')
+GIT_VER_MINOR2=${GIT_VER_MINOR2:-0}
+
+# warn if git version is not 1.6.x.y, where x > 1
+if [ $GIT_VER_MINOR2 -lt 1 ]; then
+    echo "WARNING: Bad git version, (Expecting 1.6.1.x or newer of 1.6.x, but found $(git --version)) " >&2
+fi
+
+CMD=$1
+ERR=1
+SCRIPT_NAME=$(basename $0)
+function usage {
+
+    echo "USAGE: Runs the specifed git command on this module and all submodules."
+    echo "  Examples:"
+    echo "	$SCRIPT_NAME checkout master"
+    echo "	$SCRIPT_NAME pull"
+    echo "  Notes: "
+    echo "   Git push is not supported. "
+    echo "   Must be run from root of git repository."
+    echo "  $SCRIPT_NAME is not an official git command"
+    exit $ERR
+}
+
+if [ "$CMD" == "" ]; then
+    echo "ERROR: $SCRIPT_NAME No arguments" >&2
+    usage
+fi
+
+MODULES=". $(git submodule --quiet foreach echo '$path')"
+if [ $? -ne 0  ]; then
+    echo
+    usage
+    exit
+fi
+STOP_ON_ERROR=1
+case "$CMD" in
+    branch|pull|checkout)
+	;;
+    push)
+	echo "ERROR: $SCRIPT_NAME push is not supported as it may lead to misuse/abuse." >&2
+	echo "  Please use git push manually within each module." >&2
+	usage
+	;;
+    sha1)
+	for m in $MODULES; do
+	    printf "%-20s -> commit %s\n" $m $(cd $m; git show -s --pretty="format:%H")
+	done
+	exit 0
+	;;
+    status|diff)
+	STOP_ON_ERROR=0
+	;;
+
+    --help|help)
+	usage;
+	;;
+
+esac
+
+echo Running git $CMD on all
+
+DIR=$PWD
+for m in $MODULES; do
+    echo Execute on "$m"
+    (cd $m; git $@)
+    ERR=$?
+    if [ $STOP_ON_ERROR -ne 0 ] && [ $ERR -ne 0 ]; then
+	echo Error $ERR
+	usage
+    fi
+done

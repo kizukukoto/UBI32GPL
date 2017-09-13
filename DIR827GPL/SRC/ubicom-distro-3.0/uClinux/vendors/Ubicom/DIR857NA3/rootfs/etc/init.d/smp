@@ -1,0 +1,9 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2011 Ubicom, Inc 
+
+START=99
+
+start() {
+	/sbin/set_smp_affinity eth0 eth1 pciej pciek &
+}
+

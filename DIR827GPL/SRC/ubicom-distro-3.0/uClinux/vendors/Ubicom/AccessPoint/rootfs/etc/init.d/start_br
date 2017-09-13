@@ -1,0 +1,35 @@
+#!/bin/sh
+
+. /etc/ap_config
+
+# Create bridge and add default LAN ports
+brctl addbr $BRINTERFACE
+
+# need VLAN?
+if [ $LANINTERFACE != "eth0" ]; then
+	sh /etc/init.d/startVLAN
+fi
+ifconfig $LANINTERFACE up
+brctl addif $BRINTERFACE $LANINTERFACE
+
+# other ethernet ports?
+cat /proc/net/dev | grep -o eth1
+if [ $? == 0 ]; then
+	ifconfig eth1 up
+	brctl addif $BRINTERFACE eth1
+fi
+
+if [ "${BRIDGEIP}" = "" ]; then
+	echo "***Running DHCP client to get IP address for Port0 ($BRINTERFACE) on bridge***"
+	dhcpcd $BRINTERFACE &
+else
+	echo "***Usinging static IP ($BRIDGEIP/$BRIDGEMASK) for Port0 ($BRINTERFACE) on bridge***"
+	tmp=`ifconfig $BRINTERFACE $BRIDGEIP netmask $BRIDGEMASK up`
+	if [ "${BRIDGEDEFAULTROUTE}" != "" ]; then
+	    echo " with default route $BRIDGEDEFAULTROUTE"
+	    route add default gw $BRIDGEDEFAULTROUTE
+	fi
+
+fi
+
+touch /tmp/bridge_started

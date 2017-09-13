@@ -1,0 +1,22 @@
+
+Project Name: DIR-827
+HW version: A1
+Region code: NA
+WLAN Domain: 0x10/FCC
+Channel List 2.4G: 1, 2, 3, 4, 5, 6, 7, 8 ,9, 10, 11
+Firmware Query URL: http://wrpd.dlink.com.tw/router/firmware/query.asp?model=DIR-857_Ax_NA
+Flash size: 16MB
+DRAM size: 64MB 
+Algorithm: New Algorithm
+Reference Mac: Wan Mac.
+
+======================================================================================
+
+Firmware Version: 1.00NAb01
+Firmware Date: Wed, 16, Mar, 2011 
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0014, Date: Wed, 16, Mar, 2011
+CheckSum: 0x54A46561
+SVN Revision: 1053
+
+1. New model firmware use Ubicom new SDK 2.1.

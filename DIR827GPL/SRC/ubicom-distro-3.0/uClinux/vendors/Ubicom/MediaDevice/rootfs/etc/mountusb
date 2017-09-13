@@ -1,0 +1,9 @@
+#!/bin/sh
+if [ "$ACTION" = add ]; then
+	mkdir /mnt/usb
+	mount /dev/$MDEV /mnt/usb
+elif [ "$ACTION" = remove ]; then
+	umount /mnt/usb
+	rm -rf /mnt/usb
+fi
+

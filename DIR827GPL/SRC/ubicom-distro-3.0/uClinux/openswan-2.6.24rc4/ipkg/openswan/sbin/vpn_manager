@@ -1,0 +1,480 @@
+#!/bin/sh
+
+usage() {
+	echo "Script for managing VPN profiles"
+	echo "Usage: vpn_manager {start | stop | restart | status} [PROFILE]"
+	echo "Examples:"
+	echo "  vpn_manager start			# start all enabled profiles"
+	echo "  vpn_manager stop			# stop all enabled profiles and pluto if it is running"
+	echo "  vpn_manager restart			# restart all enabled profiles"
+	echo "  vpn_manager start ipsec_remote_psk	# start profile named ipsec_remote_psk only"
+	echo "  vpn_manager stop ipsec_remote_psk	# stop profile named ipsec_remote_psk only"
+	echo "  vpn_manager status			# show list of all started profiles and ipsec info if pluto is running"
+	echo
+	echo "PROFILE is the name of the VPN profile at /etc/config/vpn_profile, e.g. ipsec_remote_psk, ipsec_site_to_site, pptp_vpn"
+}
+
+if [ $# -ne 1 ] && [ $# -ne 2 ]; then
+	usage
+	exit 1
+fi
+
+if [ ! -f /etc/ipsec/ipsec.conf ]; then
+        echo "ERROR: Missing /etc/ipsec/ipsec.conf"
+        exit 2
+fi
+
+. /etc/ipsec/ipsec.conf                                              
+. /etc/functions.sh
+
+# Set to 1 below if there is at least one ipsec profile enabled.
+ipsec_profile_enabled=0
+
+# April 29, 2010: We decided to reject starting more than one VPN profile simultaneously.
+# The whole design of vpn_manager script and _pluto_start and _whack_start scripts
+# are based on supporting multiple profiles simultaneously. We need to redesign the scripts
+# according to supporting single profile at a time, but assuming that we may choose
+# to add multiple profile support back in the future, we do not want to do this now.
+# Therefore, we implemented a simple solution for rejecting multiple profiles.
+# First of all, if "/var/run/vpn_started" exists, we will stop processing and exit. This handles the case for
+# trying to start a specific profile by "vpn_manager start profile_name".
+# If VPN is not yet started and "vpn_manager start" is called without specifying a profile name, we need to go through all profiles.
+# So, we use the following variable to detect if there is already an enabled profile and reject all other profiles in the loop.
+# Thus, the first enabled profile will be started based on the order in vpn_profile config file.
+enabled_profile_found=0
+
+configure_vpn_profile() {
+	if [ "$1" == "ipsec_common" ]; then
+		return 1
+	fi
+
+	config_get profile_type $1 profile_type
+	if [ "$profile_type" != "ipsec" ] && [ "$profile_type" != "l2tp_ipsec" ] && [ "$profile_type" != "pptp_vpn" ]; then
+		echo "Profile type $profile_type is not supported!"
+		echo "Supported profile types are: ipsec, l2tp_ipsec and pptp_vpn."
+		return 1
+	fi
+
+	config_get started $1 started
+	if [ "$started" == "1" ]; then
+		echo "Profile $1 is already started!"
+		return 1
+	fi
+
+	config_get enable $1 enable
+	if [ "$enable" == "1" ]; then
+		if [ "$enabled_profile_found" == "1" ]; then
+			# Return silently instead of displaying the following message?
+			#echo "$1 is enabled, but cannot be started, because another VPN profile is enabled before."
+			# Cannot exit here because none of the VPN profiles is started yet! We are in configuration phase.
+			return 1
+		else
+			enabled_profile_found=1
+		fi
+		
+		# We do not allow to enable more than one remote_user tunnel type.
+		# This code is not needed now, because we do not allow more than one profile anyway.
+		# I am leaving it commented for now, because we may choose to allow more than one profile later.
+		# And this check should better be done by a runtime flag at /var/run instead of config option!
+		#config_get tunnel_type $1 tunnel_type
+		#if [ "$tunnel_type" == "remote-user" ]; then
+		#	config_get remote_user_enabled ipsec_common remote_user_enabled
+		#	if [ "$remote_user_enabled" == "1" ]; then
+		#		echo "Cannot start profile $1. A remote-user profile is already enabled."
+		#		echo "Profile $1 is disabled now."
+		#		# If we do not disable this profile here, then _pluto_start
+		#		# will call _whack_start for it later.
+		#		# This problem comes out when all profiles are started at once (with vpn_manager start),
+		#		# because in this case we cannot check the return value of configure_vpn_profile() function
+		#		# and exit if it is not 0. We don`t have this problem, while starting a single profile.
+		#		config_set $1 enable 0
+		#		uci_set vpn_profile $1 enable 0
+		#		uci_commit vpn_profile
+		#		return 1
+		#	else
+		#		# uci_set is setting in flash, so it takes time and cannot set it until next loop.
+		#		# Therefore, config_set is used first to set the flag before processing next profile.
+		#		# We still use uci_set to save it in flash.
+		#		config_set ipsec_common remote_user_enabled 1
+		#		uci_set vpn_profile ipsec_common remote_user_enabled 1
+		#		# "uci_commit vpn_profile" is called later below for all profiles.
+		#	fi
+		#fi
+		
+		
+		echo "Profile $1 is enabled. Start it."
+
+		if [ "$profile_type" == "l2tp_ipsec" ]; then
+			/etc/init.d/xl2tpd start
+		fi
+
+		if [ "$profile_type" == "pptp_vpn" ]; then
+			/sbin/pptp_vpn_server.sh start
+			# This flag should be set here for pptp profile.
+			uci_set vpn_profile $1 started 1
+			uci_commit vpn_profile
+			touch /var/run/vpn_started
+			echo "$1" >> /var/run/vpn_started
+			echo "Profile $1 started"
+			# We can exit here for pptp_vpn profile, because we don`t allow to start multiple profiles.
+			exit 0
+		fi
+
+		if [ "$profile_type" == "ipsec" ] || [ "$profile_type" == "l2tp_ipsec" ]; then
+			ipsec_profile_enabled=1
+			# Read network settings from the system and update ipsec.conf file. We are doing it this way to remove 
+			# redundant config_get calls in ipsec scripts.
+			config_load /etc/config/network
+			config_get WAN_MODE wan proto
+			if [ "$WAN_MODE" == "dhcp" ] || [ "$WAN_MODE" == "static" ]; then
+				config_get wan_if wan ifname
+			else
+				
+				config_get wan_if wan ppp_if
+			fi
+			wan_ip=`ifconfig $wan_if | grep 'inet addr' | cut -d':' -f2 | cut -d' ' -f1`
+
+			config_get lan_ip lan ipaddr
+			config_get lan_mask lan netmask
+
+			lan_subnet=`$(eval "echo \"awk -v args=sb -v ip=$lan_ip -v mask=$lan_mask -f /etc/subnet.awk\"")`
+
+			sed -i '/^WAN_IF=/ c\WAN_IF='$wan_if'' /etc/ipsec/ipsec.conf
+			sed -i '/^WAN_IP=/ c\WAN_IP='$wan_ip'' /etc/ipsec/ipsec.conf
+			sed -i '/^LAN_IP=/ c\LAN_IP='$lan_ip'' /etc/ipsec/ipsec.conf
+			sed -i '/^LAN_NET=/ c\LAN_NET='$lan_subnet'' /etc/ipsec/ipsec.conf
+
+			# Update pluto options if pluto is not started yet.
+			if [ ! -e $SEC_CTL_PATH ]; then
+				pluto_opts="%v4:192.168.0.0/16,%v4:10.0.0.0/8,%v4:172.16.0.0/12,%v4:!$lan_subnet"
+				uci_set vpn_profile ipsec_common pluto_virt_priv_opts $pluto_opts
+			fi
+
+			uci_set vpn_profile $1 local_ip $wan_ip
+			uci_set vpn_profile $1 local_net $lan_subnet
+			uci_set vpn_profile $1 local_src $lan_ip
+
+			uci_commit vpn_profile
+
+			# Update ipsec secrets file. We have to do it here before starting pluto.
+			config_get auth_type $1 auth_type
+			if [ "$auth_type" == "psk" ]; then
+				config_get psk $1 psk
+				if [ "$psk" != "" ]; then
+					echo "$wan_ip %any: PSK $psk" >> $SEC_FILE
+				else
+					# TODO: What should we do in this error case, exit?
+					echo "ERROR: No PSK defined although authentication is selected as PSK"
+				fi
+			elif [ "$auth_type" == "rsasig" ]; then
+				config_get private_key $1 local_private_key
+				config_get private_key_pw $1 local_key_passwd
+				if [ "$private_key" != "" ]; then
+					echo "$wan_ip %any: RSA $private_key $private_key_pw" >> $SEC_FILE
+				else
+					# TODO: What should we do in this error case, exit?
+					echo "ERROR: No private key defined although authentication is selected as RSA"
+				fi
+			fi
+		fi
+	fi
+}
+
+
+stop_vpn_profiles() {
+	config_get started $1 started
+	if [ "$started" == "1" ]; then
+		config_set $1 started 0
+		uci_set vpn_profile $1 started 0
+		echo "Profile $1 stopped"
+	fi
+	
+}
+
+print_started_profile() {
+	config_get started $1 started
+	if [ "$started" == "1" ]; then
+		echo "Profile $1 is started."
+	else
+		config_get enable $1 enable
+		if [ "$enable" == "1" ]; then
+			echo "Profile $1 is enabled, but NOT started."
+		fi
+	fi
+}
+
+show_started_profile_names() {
+	config_load /etc/config/vpn_profile
+	config_foreach print_started_profile vpn_profile
+}
+
+_PLUTO_START=_pluto_start
+_PLUTO_STOP=_pluto_stop
+_WHACK_START=_whack_start
+_WHACK_STOP=_whack_stop
+
+case "$1" in
+	start|--start)
+		[ -f /var/run/vpn_started ] && {
+			str_prof=`cat /var/run/vpn_started`
+			echo "VPN is already started for profile $str_prof. Exiting..."
+			exit 1
+		}
+
+		# Do not restart if WAN interface is NOT UP.
+		config_load /etc/config/network
+		config_get WAN_PROTO wan proto
+		if [ "$WAN_PROTO" == "dhcp" ] || [ "$WAN_PROTO" == "static" ]; then
+			config_get WAN_IFNAME wan ifname
+			# WAN IF can be down although it has an IP ("ifconfig eth0.1 down" gives this result).
+			# We want WAN IF to be UP and to have an IP at the same time.
+			WAN_IP=`ifconfig $WAN_IFNAME | grep 'inet addr' | cut -d':' -f2 | cut -d' ' -f1`
+			WAN_IF_UP=`ip link show $WAN_IFNAME | grep UP`
+			if [ "$WAN_IF_UP" == "" ] || [ "$WAN_IP" == "" ]; then
+				echo "WAN connection is not up. Cannot start VPN"
+				exit 1
+			fi
+		elif [ "$WAN_PROTO" == "pppoe" ]; then
+			# The ppp interface we grep here cannot be mixed with L2TP/ipsec`s or PPTP VPN`s ppp interfaces
+			# because VPN has not been started yet. At this point, ppp IF can only belong to one of the WAN protocols.
+			WAN_UP=`ifconfig | grep ppp`
+			if [ "$WAN_UP" == "" ]; then 
+				echo "WAN connection is not up. Cannot start VPN"
+				exit 1
+			fi
+		else
+			echo "VPN is only supported for static, DHCP and PPPOE WAN modes. Exiting."
+			exit 1
+		fi
+
+
+		config_load /etc/config/vpn_profile
+		# start a specific profile.
+		if [ $# -eq 2 ]; then
+			configure_vpn_profile $2
+			if [ "$?" -ne "0" ]; then
+				exit 1
+			fi
+
+			if [ "$enabled_profile_found" == "0" ]; then
+				echo "Profile $2 is NOT enabled. Exiting."
+				exit 1
+			fi
+
+			if [ "$ipsec_profile_enabled" == "1"  ]; then
+				if [ ! -e $SEC_CTL_PATH ]; then
+					$_PLUTO_START no_whack
+				fi
+				$_WHACK_START $2
+				if [ "$?" -ne "0" ]; then
+					echo "ERROR: Profile $2 cannot be started!"
+					exit 1
+				fi
+
+				# "started" flag should be set here when starting specific profiles.
+				# _PLUTO_START script handles setting this flag for ipsec profiles when all profiles are started.
+				# It is set in configure_vpn_profile() for pptp profile only.
+				uci_set vpn_profile $2 started 1
+				uci_commit vpn_profile
+				touch /var/run/vpn_started
+				echo "$2" >> /var/run/vpn_started
+			fi
+
+			echo "Profile $2 started"
+			exit 0
+		fi
+
+		# Start all profiles
+		# Configure all enabled ipsec profiles.
+		config_foreach configure_vpn_profile vpn_profile
+		if [ "$enabled_profile_found" == "0" ]; then
+			echo "No profile enabled. Exiting."
+			exit 1
+		fi
+
+		# start pluto if not started yet and there is at lease one ipsec profile enabled. 
+		# yes_whack parameter tells pluto script to start whack for all enabled ipsec profiles.
+		if [ "$ipsec_profile_enabled" == "1"  ]; then
+			if [ ! -e $SEC_CTL_PATH ]; then
+				$_PLUTO_START yes_whack
+			else
+				echo "Pluto is already running"
+				exit 0			
+			fi
+		else
+			#echo "No ipsec profile enabled. No need to run pluto"
+			exit 0			
+		fi
+
+	;;
+	stop|--stop)
+		config_load /etc/config/vpn_profile
+		# shut down a profile only
+		if [ $# -eq 2 ]; then
+			config_get pstarted $2 started
+			if [ "$pstarted" == "1" ]; then
+				config_get ptype $2 profile_type
+				if [ "$ptype" == "l2tp_ipsec" ]; then
+					/etc/init.d/xl2tpd stop
+				elif [ "$ptype" == "pptp_vpn" ]; then
+					/sbin/pptp_vpn_server.sh stop
+				fi
+
+				if [ "$ptype" == "ipsec" ] || [ "$ptype" == "l2tp_ipsec" ]; then
+					config_get tun_type $2 tunnel_type
+					#if [ "$tun_type" == "remote-user" ]; then
+					#	uci_set vpn_profile ipsec_common remote_user_enabled 0
+					#fi
+					$_WHACK_STOP $2
+				fi
+
+				uci_set vpn_profile $2 started 0
+				uci_commit vpn_profile
+				echo "Profile $2 stopped"
+			else
+				echo "Profile $2 is not started!"
+			fi
+			exit 0
+		fi
+
+		config_get l2tp_started l2tp_ipsec started
+		if [ "$l2tp_started" == "1" ]; then
+			/etc/init.d/xl2tpd stop
+		fi
+
+		config_get pptp_started pptp_vpn started
+		if [ "$pptp_started" == "1" ]; then
+			/sbin/pptp_vpn_server.sh stop
+		fi
+
+		if [ -e $SEC_CTL_PATH ]; then
+			# Clean up ipsec secrets and xauth password files.
+			sed -i "12,40 d" $SEC_FILE
+			sed -i "8,40 d" $XAUTH_FILE
+			$_PLUTO_STOP
+		fi
+		
+		# Mark all profiles as stopped
+		#uci_set vpn_profile ipsec_common remote_user_enabled 0
+		config_foreach stop_vpn_profiles vpn_profile
+		uci_commit vpn_profile
+		[ -f /var/run/vpn_started ] && {
+			rm /var/run/vpn_started
+		}
+		#echo "All VPN profiles are stopped."
+	;;
+	restart|--restart)
+		if [ $# -eq 2 ]; then
+			echo "INFO: do not support profile restart"
+			exit 5
+		fi
+
+		config_load /etc/config/vpn_profile
+
+		config_get l2tp_started l2tp_ipsec started
+		if [ "$l2tp_started" == "1" ]; then
+			/etc/init.d/xl2tpd stop
+		fi
+
+		config_get pptp_started pptp_vpn started
+		if [ "$pptp_started" == "1" ]; then
+			/sbin/pptp_vpn_server.sh stop
+		fi
+
+		if [ -e $SEC_CTL_PATH ]; then
+			# Clean up ipsec secrets and xauth password files.
+			sed -i "12,40 d" $SEC_FILE
+			sed -i "8,40 d" $XAUTH_FILE
+			$_PLUTO_STOP
+		fi
+
+		# Mark all profiles as stopped
+		#config_set ipsec_common remote_user_enabled 0
+		#uci_set vpn_profile ipsec_common remote_user_enabled 0
+		config_foreach stop_vpn_profiles vpn_profile
+		uci_commit vpn_profile
+		[ -f /var/run/vpn_started ] && {
+			rm /var/run/vpn_started
+		}
+
+		# Do not restart if WAN interface is NOT UP.
+		config_load /etc/config/network
+		config_get WAN_PROTO wan proto
+		if [ "$WAN_PROTO" == "dhcp" ] || [ "$WAN_PROTO" == "static" ]; then
+			config_get WAN_IFNAME wan ifname
+			# WAN IF can be down although it has an IP ("ifconfig eth0.1 down" gives this result).
+			# We want WAN IF to be UP and to have an IP at the same time.
+			WAN_IP=`ifconfig $WAN_IFNAME | grep 'inet addr' | cut -d':' -f2 | cut -d' ' -f1`
+			WAN_IF_UP=`ip link show $WAN_IFNAME | grep UP`
+			if [ "$WAN_IF_UP" == "" ] || [ "$WAN_IP" == "" ]; then
+				echo "WAN connection is not up. Cannot start VPN"
+				exit 1
+			fi
+		else
+			# The ppp interface we grep here cannot be mixed with L2TP/ipsec`s or PPTP VPN`s ppp interfaces
+			# because VPN has not been started yet. At this point, ppp IF can only belong to one of the WAN protocols.
+			WAN_UP=`ifconfig | grep ppp`
+			if [ "$WAN_UP" == "" ]; then 
+				echo "WAN connection is not up. Cannot start VPN"
+				exit 1
+			fi
+		fi
+
+		# Start all profiles
+		# Configure all enabled ipsec profiles.
+		config_load /etc/config/vpn_profile
+		config_foreach configure_vpn_profile vpn_profile
+		if [ "$enabled_profile_found" == "0" ]; then
+			echo "No profile enabled. Exiting."
+			exit 1
+		fi
+
+		# start pluto if not started yet and there is at lease one ipsec profile enabled. 
+		# yes_whack parameter tells pluto script to start whack for all enabled ipsec profiles.
+		if [ "$ipsec_profile_enabled" == "1"  ]; then
+			if [ ! -e $SEC_CTL_PATH ]; then
+				$_PLUTO_START yes_whack
+			else
+				echo "Pluto is already running"
+				exit 0			
+			fi
+		else
+			#echo "No ipsec profile enabled. No need to run pluto"
+			exit 0			
+		fi
+	;;
+	status|--status)
+		if [ $# -eq 2 ]; then
+			echo "INFO: do not support status for specific profile"
+			exit 6
+		fi
+
+		# Print started VPN profiles
+		show_started_profile_names
+
+		if [ ! -e $SEC_CTL_PATH ]; then
+			echo "Pluto not started"
+			exit 7
+		fi
+
+		echo "Pluto started"
+
+		whack --status
+	;;
+	# Hidden usage for debugging
+	whack|--whack)
+		if [ ! -e $SEC_CTL_PATH ]; then
+			echo "INFO: pluto not started"
+			exit 8
+		fi
+
+		# pass all except $1 to whack
+		shift
+		$_WHACK $*
+	;;
+	*)
+		usage
+		exit 8
+	;;
+esac	
+exit

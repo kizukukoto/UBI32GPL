@@ -1,0 +1,1373 @@
+#
+# For a description of the syntax of this configuration file,
+# see Kconfig-language.txt
+#
+
+menu "Base Features"
+
+config USER_LIBVERSION
+	bool "Library for version"
+	default n
+	help
+	Library for version
+
+config USER_VCT
+	bool "VCT support"
+	depends on USER_LIBVERSION
+	default n
+	help
+	If you do not write VCT driver in platform, turn it off
+
+config USER_NVRAM
+	bool "NVRAM support"
+	default n
+	help
+	Answer Y for user mode NVRAM support.  The NVRAM support
+	library is used by several applications here and in the Options
+	menu, including rc, wlconf, httpd, upnp, nas, ses, and wcn.
+
+config USER_NVRAM_DEBUG
+	bool "DEBUG"
+	depends on USER_NVRAM
+	help
+	  Answer Y for debug build.
+
+config USER_NVRAM_DEBUG_ARTBLOCK
+	bool "ARTBLOCK DEBUG"
+	depends on USER_NVRAM_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_RESERVATE_WIRELESS_DOMAIN
+	bool "CFG_RESERVATE_WIRELESS_DOMAIN"
+	depends on USER_NVRAM
+	default n
+	help
+	If you do not reservation wireless domain in device, turn it off
+
+config USER_SET_GET_FROM_ARTBLOCK
+	 bool "ARTBLOCK support"
+	 default n
+	 help
+	 To support get and set hwversion,lanmac,wanmac for ART mtdblock.
+
+config USER_GET_SET_MACBLOCK
+	  bool "MACBLOCK support"
+	  default n
+	  help
+	  To support get and set hwversion,lanmac,wanmac for MAC mtdblock.
+
+config USER_RC
+	bool "RC (Task Management)"
+	select USER_NVRAM
+	select USER_SUTIL
+	select USER_LIBPLATFORM
+	default n
+	help
+	  Task Management to manage processes
+
+config USER_RC_DEBUG
+	bool "DEBUG"
+	depends on USER_RC
+	help
+	  Answer Y for debug build.
+
+config USER_RC_DEBUG_WANTIMER
+	bool "WANTIMER DEBUG"
+	depends on USER_RC_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_RC_DEBUG_WLAN
+	bool "WLAN DEBUG"
+	depends on USER_RC_DEBUG
+	help
+	  Answer Y for debug build.
+	  
+config USER_CROWDCONTROL
+	bool "Crowd Control HTTP Proxy support"
+	depends on USER_RC
+	default n
+	help
+	  Answer Y for Crowd Control HTTP Proxy support.	  
+
+config USER_FIREWALL2
+	bool "firewall2 (experimental)"
+	default n
+	depends on USER_RC
+	help
+		Just rearranged firewall.c source code ...(experiment in DIR665)
+
+choice
+		 prompt "Wireless module"
+		 default USER_WL_ATH
+		 depends on USER_RC
+		 
+		 config USER_WL_ATH
+		 bool "Atheros"
+
+			config USER_WL_ATH_WITH_N
+		   	bool "Atheros support 802.11n"
+			depends on USER_WL_ATH
+			default n
+		
+			config USER_WL_ATH_MAC_FILTER
+			   bool "Atheros support MAC Filter"
+			   depends on USER_WL_ATH
+			   default n
+			
+			config USER_WL_ATH_WDS
+			bool "Atheros wds feature (ap, bridge, repeater)"
+			depends on USER_WL_ATH
+			default n
+			
+				config USER_WL_ATH_WDS_AP
+				   bool "Atheros support WDS-AP Mode"
+				   depends on USER_WL_ATH_WDS
+				   default n
+				
+				config USER_WL_ATH_WDS_BR
+				   bool "Atheros support WDS-BRIDGE Mode"
+				   depends on USER_WL_ATH_WDS
+				   default n
+		
+				config USER_WL_ATH_WDS_RPT
+				   bool "Atheros support WDS-REPEAT Mode"
+				   depends on USER_WL_ATH_WDS
+				   default n
+			
+			config USER_WL_ATH_5GHZ
+			   bool "Atheros support 5GHz"
+			   depends on USER_WL_ATH
+			   default n
+
+			config USER_WL_ATH_GUEST_ZONE
+			bool "Atheros support Guest Zone"
+			   depends on USER_WL_ATH
+			   default n	     
+
+		 config USER_WL_BCM
+		 bool "Broadcom"
+
+		config USER_WL_MVL
+		 bool "Marvell"
+		 
+		config USER_WL_RALINK
+		 bool "Ralink"
+		 	config USER_WL_RALINK_5GHZ
+			   bool "Ralink support 5GHz"
+			   depends on USER_WL_RALINK
+			   default n
+endchoice
+
+
+config USER_HEX_MODE_WITH_WIRELESS
+	bool "Wireless SSID Support HEX mode in NVRAM"
+	default n
+
+
+config USER_TIMER
+	bool "Timer for Schedule"
+	default n
+
+config USER_WIRELESS_SCHEDULE
+	bool "Support Wireless Schedule"
+	depends on USER_TIMER_TIMER
+	default n
+	help
+	Every one mins to check wireless schedule
+
+config USER_SYS
+		 bool "SYS (System Management)"
+		 default n
+		 help
+		 System Management to manage HTTP firmware upgrade procedure
+
+config USER_SUTIL
+		 bool "Shared Utility"
+		 default n
+		 help
+		 Shared Utility
+
+config USER_SUTIL_DEBUG
+	bool "DEBUG"
+	depends on USER_SUTIL
+	help
+	  Answer Y for debug build.
+
+config USER_SUTIL_DEBUG_FLASH
+	bool "FLASH DEBUG"
+	depends on USER_SUTIL_DEBUG
+	help
+	  Answer Y for debug build.
+
+choice
+		 prompt "IP Match"
+		 default USER_IP_MATCH_3
+		 depends on USER_SUTIL
+		 
+		 config USER_IP_MATCH_3
+		 bool "IP match 3"
+
+		 config USER_IP_MATCH_4
+		 bool "IP match 4"
+
+endchoice
+
+config USER_LIBPLATFORM
+	bool "libplatform"
+	help
+          Library for version
+
+config USER_LIBPLATFORM_DEBUG
+	bool "DEBUG"
+	depends on USER_LIBPLATFORM
+	help
+	  Answer Y for debug build.
+
+config USER_LIBPLATFORM_DEBUG_VCT
+	bool "VCT DEBUG"
+	depends on USER_LIBPLATFORM_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_NVRAM_SIZE
+	int "CFG_NVRAM_SIZE"
+	depends on USER_SUTIL
+	default 2048
+
+config USER_FIREWALL_NUMBER
+	int "CFG_FIREWALL_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_MAC_FILTER_NUMBER
+	int "CFG_MAC_FILTER_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_APPLICATION_NUMBER
+	int "CFG_APPLICATION_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_PORT_FORWARD_NUMBER
+	int "CFG_PORT_FORWARD_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_VIRTUAL_SERVER_NUMBER
+	int "CFG_VIRTUAL_SERVER_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_URL_FILTER_NUMBER
+	int "CFG_URL_FILTER_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_SCHEDULE_NUMBER
+	int "CFG_SCHEDULE_NUMBER"
+	depends on USER_SUTIL
+	default 10
+
+config USER_STATIC_ROUTE_NUMBER
+	int "CFG_STATIC_ROUTE_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_BLOCK_SERVICE_NUMBER
+	int "CFG_BLOCK_SERVICE_NUMBER"
+	depends on USER_SUTIL
+	default 10
+
+config USER_TRUST_IP_NUMBER
+	int "CFG_TRUST_IP_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_DHCPD_RESERVATION_NUMBER
+	int "CFG_DHCPD_RESERVATION_NUMBER"
+	depends on USER_SUTIL
+	default 25
+
+config USER_MULTIPLE_ROUTING_NUMBER
+	int "CFG_MULTIPLE_ROUTING_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_QOS_NUMBER
+	int "CFG_QOS_NUMBER"
+	depends on USER_SUTIL
+	default 20
+
+config USER_INBOUND_FILTER_NUMBER
+	int "CFG_INBOUND_FILTER_NUMBER"
+	depends on USER_SUTIL
+	default 24
+
+config USER_ACCESS_CONTROL_NUMBER
+	int "CFG_ACCESS_CONTROL_NUMBER"
+	depends on USER_SUTIL
+	default 15
+
+config USER_SRC_MACHINE_NUMBER
+	int "CFG_SRC_MACHINE_NUMBER"
+	depends on USER_SUTIL
+	default 8
+
+config USER_IP_CONNTRACK_NUMBER
+	int "CFG_IP_CONNTRACK_NUMBER"
+	depends on USER_SUTIL
+	default 4096      
+
+config USER_UPLOAD_TIME
+	int "CFG_UPLOAD_TIME"
+	depends on USER_SUTIL
+	default 120
+
+config USER_REBOOT_TIME
+	int "CFG_REBOOT_TIME"
+	depends on USER_SUTIL
+	default 60
+
+config USER_RESTORE_TIME
+	int "CFG_RESTORE_TIME"
+	depends on USER_SUTIL
+	default 70
+
+config USER_RESTORE_WIRELESS_TIME
+	int "CFG_RESTORE_WIRELESS_TIME"
+	depends on USER_SUTIL
+	default 30
+
+config USER_RESET_TIME
+	int "CFG_RESET_TIME"
+	depends on USER_SUTIL
+	default 3
+
+config USER_UPLOAD_CERTIFICATION_TIME
+	int "CFG_UPLOAD_CERTIFICATION_TIME"
+	depends on USER_SUTIL
+	default 3
+
+config USER_LAN_IP_CHANGE_REBOOT_TIME
+	int "CFG_LAN_IP_CHANGE_REBOOT_TIME"
+	depends on USER_SUTIL
+	default 60
+
+config USER_SUPER_G_REBOOT_TIME
+	int "CFG_SUPER_G_REBOOT_TIME"
+	depends on USER_SUTIL
+	default 70
+
+config USER_UPGRADE_TIME
+	int "CFG_UPGRADE_TIME"
+	depends on USER_SUTIL
+	default 120
+choice
+		 prompt "Flash Type"
+		 default USER_FLASH_INTEL_28F640
+
+		 config USER_FLASH_INTEL_28F640
+		 bool "Intel 8M 28F640"
+
+		 config USER_FLASH_MXIC_29LV640TB
+		 bool "MXIC 8M 29LV640TB"
+
+endchoice
+
+config USER_CLI
+	bool "cli commands"
+	default n
+	help
+	commands set. for replace RC.
+
+config USER_BUSYBOX_1_6_1
+	bool "busybox-1.6.1 revsion for CAMEO"
+	default n
+	help
+	Modified for built-in dnsmasq, add https support, ssi/ssc style
+		of thttpd compatible, 2 account such as httpd and sslvpn user
+		support. chcklist support by urlmap options.
+
+config USER_LINUX_NVRAM
+	bool "linux nvram"
+	default n
+	help
+	nvram application and device module that base on broadcom style.
+endmenu
+
+menu "Application Options"
+
+config USER_IPV6_LLMNR
+	bool "IPv6 LLMNR"
+	default n
+	help
+	Link Local Multicast Name Resolution
+
+config USER_HTTPD_HTTPD
+	bool "httpd"
+	select USER_NVRAM
+	select USER_SUTIL
+	select USER_LIBPLATFORM
+	default n
+	help
+	  Answer Y for basic web configuration support.
+
+config USER_HTTPD_DEBUG
+	bool "DEBUG"
+	depends on USER_HTTPD_HTTPD
+	help
+	  Answer Y for debug build.
+
+config USER_HTTPD_DEBUG_PURE
+	bool "PURE DEBUG"
+	depends on USER_HTTPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_HTTPD_DEBUG_AJAX
+	bool "AJAX DEBUG"
+	depends on USER_HTTPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_HTTPD_DEBUG_HTTP_UTIL
+	bool "HTTP UTIL DEBUG"
+	depends on USER_HTTPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_HTTPD_PURE
+	bool "HNAP -- Pure Network"
+	depends on USER_HTTPD_HTTPD
+	help
+	  Answer Y for pure network support.
+
+config HTTPD_DENY_USERID
+	bool "allow login as admin  only"
+	depends on USER_HTTPD_HTTPD
+	default n
+	help
+	  Answer Y for allowing login as admin or N for allowing login as admin/user.
+
+config HTTPD_USED_SP_ADMINID
+	bool "allow login as the spcial admin and used the MAC as the password"
+	depends on USER_HTTPD_HTTPD
+	default n
+	help
+	  Answer Y for allowing login as the spcial admin and used the MAC as the password.	
+
+config HTTPD_USED_MUTIL_AUTH
+	bool "support mutil user login by MAC address"
+	depends on USER_HTTPD_HTTPD
+	default n
+	help
+	  Answer Y for support mutil user login by MAC address.	      
+
+config HTTPD_LOGOUT_ADMIN_CHANGED
+	bool "logout while admin info be changed"
+	depends on USER_HTTPD_HTTPD
+	default n
+	help
+	Answer Y for logout constraintly while admin name/password be changed or N for current user in this session.
+
+config USER_HTTPS
+	bool "HTTP Secure"
+	default n
+	help
+	Answer Y for http secure support.
+
+config USER_HTTP_TIMEOUT
+	bool "HTTP-Re-Login support when login timeout"
+	depends on DLINK_SPEC
+	default n
+	help
+	Answer Y for httpd timeout to login page support.
+
+config USER_PPPD
+	bool "PPPD"
+	default n
+
+config USER_MULTIPLE_PPPoE
+	bool "CFG_MULTIPLE_PPPOE"
+	depends on USER_PPPD_PPPD_PPPD
+	default n
+	help
+	Answer Y for multiple pppoe support(max session = 5). Please also turn on PPPoE client, LLTD and IP.
+
+config USER_RUSSIA_PPPoE
+	bool "CFG_RUSSIA_PPPOE"
+	depends on USER_PPPD_PPPD_PPPD
+	default n
+	help
+	Answer Y for russia pppoe support.
+
+config USER_SUPPORT_PRIVATE_IP
+	bool "CFG_SUPPORT_PRIVATE_IP"
+	default n
+	help
+	Answer Y for multicast to support private ip as 239.x.x.x.
+
+config USER_RP_PPPoE
+	bool "PPPoE client"
+	default n
+
+config USER_PPPOE_RELAY
+	bool "PPPoE Relay"
+	depends on USER_RP_PPPOE_PPPOE
+	default n
+	help
+	Answer Y for pppoe relay support.	
+
+config USER_UUID
+	    bool "UUID generator"
+	 depends on USER_MINIUPNPD
+		default n
+	
+config USER_MINIUPNPD
+	bool "miniupnpd"
+	select USER_UUIDGEN_UUIDGEN
+	help
+	  Alternate upnpd with less overhead
+
+config USER_MINIUPNPD6
+        bool "miniupnpd6"
+        select USER_UUIDGEN_UUIDGEN
+        help
+          Alternate upnpd for IPv6 with less overhead
+
+config USER_MDNS
+        bool "mdns"
+        help
+          Support MDNS
+
+config USER_DHNAP_SUPPORT
+        bool "DHNAP"
+        help
+          Support DHNAP
+
+config USER_MINIUPNPD_DEBUG
+	bool "DEBUG"
+	depends on USER_MINIUPNPD
+	help
+	  Answer Y for debug build.
+
+config USER_MINIUPNPD_DEBUG_SSDP
+	bool "SSDP DEBUG"
+	depends on USER_MINIUPNPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_MINIUPNPD_DEBUG_SOAP
+	bool "SOAP DEBUG"
+	depends on USER_MINIUPNPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_MINIUPNPD_DEBUG_EVENTS
+	bool "EVENTS DEBUG"
+	depends on USER_MINIUPNPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_MINIUPNPD_DEBUG_DESCRIPTION
+	bool "DESCRIPTION DEBUG"
+	depends on USER_MINIUPNPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_MINIUPNPD_DEBUG_HTTP
+	bool "HTTP DEBUG"
+	depends on USER_MINIUPNPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+config USER_MINIUPNPD_DEBUG_NVRAM_FUNS
+	bool "NVRAM FUNS DEBUG"
+	depends on USER_MINIUPNPD_DEBUG
+	help
+	  Answer Y for debug build.
+
+choice
+		prompt "UPNP_SOLUTION"
+		default USER_UPNP_ATH
+		depends on USER_MINIUPNPD
+		   
+		config USER_UPNP_ATH
+		default USER_UPNP_ATH_MINIUPNPD_RC
+		bool "Atheros UPNP"
+		
+		config USER_UPNP_ATH_MINIUPNPD_RC
+		bool "CFG_MINIUPNPD_RC"
+		depends on USER_UPNP_ATH
+		default n
+
+		config USER_UPNP_ATH_MINIUPNPD_1_3
+		bool "CFG_MINIUPNPD_1_3"
+		depends on USER_UPNP_ATH
+		default n
+
+			config USER_UPNP_ATH_MINIUPNPD_1_3_LEASE_FILES
+			bool "USER_UPNP_ATH_MINIUPNPD_1_3_LEASE_FILES"
+			depends on USER_UPNP_ATH_MINIUPNPD_1_3
+			default n
+			help
+				The features that PortMapping rules would be saved to files
+
+			config USER_UPNP_ATH_MINIUPNPD_1_3_CHECK_VS_NVRAM
+			bool "USER_UPNP_ATH_MINIUPNPD_1_3_CHECK_VS_NVRAM"
+			depends on USER_UPNP_ATH_MINIUPNPD_1_3
+			default n
+			help
+				The features let PortMapping will check if rules already added by web GUI
+				which is saved in nvram (virtual server rules)
+
+			config USER_UPNP_ATH_MINIUPNPD_1_3_HAIRPIN
+			bool "USER_UPNP_ATH_MINIUPNPD_1_3_HAIRPIN"
+			depends on USER_UPNP_ATH_MINIUPNPD_1_3
+			default n
+			help
+				The features would let PortMapping rules support hairpin
+				(Lan site clinet communicate with another lan client via wan ip and port)
+
+		config USER_UPNP_ATH_MINIUPNPD
+		bool "CFG_MINIUPNPD"
+		depends on USER_UPNP_ATH
+		default n
+		
+		config USER_UPNP_ATH_LIBUPNP
+		bool "CFG_LIBUPNP"
+		depends on USER_UPNP_ATH
+		default n
+		
+		config USER_UPNP_ATH_LIBUPNP_SAVE2FILE
+		bool "CFG_UPNP_ATH_LIBUPNP_SAVE2FILE"
+		depends on USER_UPNP_ATH_LIBUPNP
+		default n
+		help
+			Save Upnp AddPortMapping rules to files
+
+		config USER_UPNP_ATH_LIBUPNP_CHECK_NVRAM
+		bool "CFG_UPNP_ATH_LIBUPNP_CHECK_NVRAM"
+		depends on USER_UPNP_ATH_LIBUPNP
+		default n
+		help
+			When Upnp client invoke AddPortMapping, check
+			if the rule is conflict with the virtual server
+			rules added in nvram via WEB UI
+
+		config USER_UPNP_BCM
+		bool "Broadcom UPNP"
+
+		config USER_UPNP_MVL
+		bool "Marvell UPNP"
+		 help
+			Please also turn on the feature of Web server.
+endchoice
+
+config USER_NTP
+	bool "NTP client"
+	default n
+
+# already defined as USER_DNSMASQ_DNSMASQ!
+#config USER_DNSMASQ
+#	bool "DNSMasq -- DNS forwarder"
+#	default n
+
+config USER_OPENDNS
+		bool "OPENDNS support"
+		depends on USER_DNSMASQ_DNSMASQ
+		default n
+		help
+		Answer Y for opendns support, implement in apps/dnsmasq-2.41.
+
+config USER_DDNS
+	bool "Dynamic DNS (DDNS)"
+	default n
+
+config USER_DDNS_TIME_INTERVAL
+	bool "CFG_DDNS_TIME_INTERVAL"
+	depends on USER_DDNS
+	default n
+	help
+	Answer Y for time interval support of DDNS.
+
+config USER_WCN
+	bool "Windows Connect Now support (WCN)"
+	default n
+	help
+	Answer Y to enable support for Windows Connect Now - a method
+	   to configure wireless networks via USB Flash Devices.
+	   (Requires USER_WCN and dependents be configured into the kernel.)
+
+config USER_3G_USB_CLIENT
+	bool "3G USB Client"
+	default n	
+	help
+	Answer Y to enable support for 3G USB Client
+	you can use 3G USB Adapter to Internet  
+
+config USER_3G_USB_CLIENT_IPHONE
+	bool "3G USB Clinet iPHONE support"
+	default n	
+	help
+	Answer Y to enable support for 3G USB Client iPHONE suport
+	you can use 3G USB Adapter to Internet
+
+config USER_3G_USB_CLIENT_WM5
+        bool "3G USB Clinet WM5 support"
+        default n
+        help
+        Answer Y to enable support for 3G USB Client windows mobile suport
+        you can use 3G USB Adapter to Internet
+
+config USER_IPHONE
+	bool "iphone application"
+	default n	
+	help
+	Answer Y to enable support for Iphone 3G USB
+	Note: library openssl, iphone module also need to be enable
+
+config USER_NETWORK_USB
+	bool "NetWork USB (SharePort) Utiltiy"
+	default n
+	help
+	Answer Y to enable support for NetWork USB Utiltiy (SharePort Utility)
+	you can select Kcodes or Silex
+
+choice
+		prompt "NetWork USB Utiltiy"
+		default USER_KCODES
+		depends on USER_NETWORK_USB
+		
+		config USER_KCODES
+		bool "Kcodes"
+		depends on USER_NETWORK_USB
+		default n
+		
+		config USER_SILEX
+		bool "Silex"
+		depends on USER_NETWORK_USB
+		default n
+endchoice
+
+config USER_SMTP
+	bool "Send Logs by E-Mail"
+	default n
+	help
+	Answer Y to enable support for sending logs by E-mail
+
+config USER_MAILOS
+	bool "Mail On Schedule Daemon"
+	depends on USER_MAIL_CLIENT_MAIL_CLIENT
+	default n
+	help
+	Answer Y to enable support for sending logs on schedule by E-mail
+
+config USER_ETHERWAKE
+	bool "etherwake"
+	default y
+	help
+	Scyld's (Donald Becker) Wake-On-LAN magic packet generator
+
+config USER_WAKE_ON_LAN
+	bool "Wake On LAN Proxy"
+	default y
+	help
+	Answer Y to enable support for device as Wake On LAN Proxy Server
+
+config USER_IPTABLES
+ 		 bool "Iptables support -- Firewall"
+		 default n
+
+config USER_NAT_ENABLE
+	bool "NAT Support"
+	default n
+	
+config USER_HW_NAT
+	bool "HW NAT Support"
+	default n
+
+config USER_SPI
+	bool "SPI"
+	default n
+
+config USER_ACCESS_CONTROL
+	bool "Access control"
+	default n
+
+config USER_PORT_FORWARD_BOTH
+	bool "Port Forward Both TCP and UDP"
+	default n
+
+config USER_PORT_FORWARD_TO_LOG
+	bool "Port Forward rule show to syslog"
+	default n
+
+config USER_INBOUND_FILTER
+	bool "Inbound Filter"
+	default n
+
+config USER_DHCP_RELAY
+	bool "DHCP Relay Agent"
+	default n
+	help
+		This program forwards DHCP messages between subnets 
+		with different sublayer broadcast domains. 
+		It is similarly to the DHCP relay agent dhcrelay of
+		ISC's DHCP, but has the following features which are important:
+		    * Runs as non-root in a chroot-jail
+			* Uses "normal" AF_INET sockets; this allows to uses packetfilters
+				to filter incoming messages.
+			* The DHCP agent IDs can be defined freely
+			* Has a small memory footprint when using dietlibc
+				(if dietlibc feature is enbaled)
+			
+			It tries to be RFC 2131/2132 and 3046 compliant.
+			Probably it works with BOOTP (RFC 951) also, but
+			since the handling of the giaddr field is described
+			misleading (see RFC 1542), there may occur problems.
+
+		Reference: http://www.nongnu.org/dhcp-fwd/
+
+config USER_UDHCP
+	bool "DHCP server & client"
+	select USER_NVRAM
+	select USER_SUTIL
+	default n
+
+config USER_UDHCPD_NETBIOS
+	bool "CFG_DHCPD_NETBIOS"
+	depends on USER_UDHCP
+	default n
+	help
+	Answer Y for netbios support of udhcpd.
+
+config USER_UDHCPD_ALWAYS_BROADCAST
+	bool "CFG_DHCPD_ALWAYS_BROADCAST"
+	depends on USER_UDHCP
+	default n
+	help
+	Answer Y for always broadcast support of udhcpd.
+
+config USER_UDHCPD_REVOKE
+	bool "CFG_DHCPD_REVOKE"
+	depends on USER_UDHCP
+	default n
+	help
+	Answer Y for revoke support of udhcpd. Clean up client IP cache in dhcpd.
+
+config USER_UDHCPD_CHECK_RESERV_BY_GUI
+	bool "CFG_DHCPD_CHECK_RESERV_BY_GUI"
+	depends on USER_UDHCP
+	default n
+	help
+	If Answer Y 
+		Check dhcpd reservation table IP setting by GUI.
+	If Answer N,
+		When device's IP change, then force to clean dhcpd reservation table automatically.
+
+config USER_UDHCPC_UNICAST
+	bool "CFG_DHCPC_UNICAST"
+	depends on USER_UDHCP
+	default n
+	help
+	Answer Y for unicast support of udhcpc.
+
+config USER_UDHCPC_STATIC_ROUTE
+	bool "CFG_UDHCPC_STATIC_ROUTE"
+	depends on USER_UDHCP
+	default n
+	help
+		This enables support for dhcp static route (option 33)
+		in dhcp client (RFC 2132), to let udhcpc request server with
+		option 33, and handdle following response, answer Y for
+		static route of udhcpc.
+
+config USER_UDHCPC_CLASSLESS_STATIC_ROUTE
+	bool "CFG_UDHCPC_CLASSLESS_STATIC_ROUTE"
+	depends on USER_UDHCP
+	default n
+	help
+		This enables support for dhcp classes static route (option 121)
+		in dhcp client (RFC 3442), to let udhcpc request server with
+		option 121, and handdle following response, answer Y for
+		classes static route of udhcpc.
+
+choice
+	prompt "DHCP Client Classless Static Route"
+	default CFG_RFC_UDHCPC_CLASSLESS_STATIC_ROUTE
+	depends on USER_UDHCPC_CLASSLESS_STATIC_ROUTE
+		 
+	config USER_RFC_UDHCPC_CLASSLESS_STATIC_ROUTE
+	bool "CFG_RFC_UDHCPC_CLASSLESS_STATIC_ROUTE"
+	depends on USER_UDHCPC_CLASSLESS_STATIC_ROUTE
+	default n
+	help
+		This enables support for dhcp Classless Static Route (option 121)
+		in dhcp client (RFC 3442), to let udhcpc request server with
+		option 121, and handdle following response, answer Y for
+		static route of udhcpc.
+
+	config USER_MS_UDHCPC_CLASSLESS_STATIC_ROUTE
+		bool "CFG_MS_UDHCPC_CLASSLESS_STATIC_ROUTE"
+	depends on USER_UDHCPC_CLASSLESS_STATIC_ROUTE
+	default n
+	help
+		This enables support for dhcp Classless Static Route (option 249)
+		in dhcp client (RFC 3442), to let udhcpc request server with
+		option 249, and handdle following response, answer Y for
+		static route of udhcpc. Only Microsoft use this number instead of 121.
+endchoice
+
+config USER_UDHCP_SYSLOG
+	bool "Write logs to syslog"
+	depends on USER_UDHCP
+
+config USER_UDHCP_DEBUG
+	bool "Enable debug messages"
+	depends on USER_UDHCP
+
+config USER_AUTO_MODE_SELECT
+	bool "USER_AUTO_MODE_SELECT"
+	depends on USER_UDHCP
+	default n
+	help
+		This enables support for router auto mode select function in dhcp client.
+
+config IGNORE_IP_CONTRAST
+    bool "IGNORE_IP_CONTRAST"
+    default n
+    depends on USER_UDHCP
+    help
+    This is one of the udhcpc recall rc condition when it get IP.
+    Note: If you enabled this option, no matter dhcpc's new IP equal old IP, do rc restart (filter). Otherwise, the static_routing rules would not add to routing table.
+
+config USER_TFTPD
+	bool "TFTP server"
+	select USER_NVRAM
+	select USER_SUTIL
+	select USER_LIBPLATFORM
+	default n
+
+config USER_TFTPD_DEBUG
+	bool "DEBUG"
+	depends on USER_TFTPD
+	help
+	  Answer Y for debug build.
+
+config USER_GPIO
+	 	bool "GPIO"
+		default n
+
+config USER_MFORWARD
+		 bool "Multicast Forwarding"
+		 default n
+config USER_SUPPORT_PRIVACY_ADDRESS 
+	bool "CFG_SUPPORT_PRIVACY_ADDRESS"
+	depends on USER_MFORWARD
+	default n
+	help
+	Answer Y for privacy multi-cast address(239.xxx.xxx.xxx) support.
+
+config USER_SUPPORT_BIND
+	bool "CFG_SUPPORT_BIND"
+	depends on USER_MFORWARD
+	default n
+	help
+	Answer Y for socket bind support.Because It does not work on Python solution with connect().
+	
+config USER_BIGPOND
+	 	bool "Bigpond"
+		default n
+
+config USER_PPTP_CLIENT
+	 	bool "PPTP - accel-pptp 0.7.12"
+		default n
+
+config USER_PPTP_CLIENT_V082
+		bool "PPTP - accel-pptp 0.8.2"
+		default n
+
+config USER_L2TP_CLIENT
+	 	bool "L2TP"
+		default n
+
+config USER_XL2TP_CLIENT
+	 	bool "XL2TP"
+		default n
+
+config USER_LLD2D
+	 	bool "LLTD"
+		default n
+
+config USER_SNMP
+		bool "SNMP"
+		default n
+		
+config USER_SNMP_TRAP
+		bool "SNMP Trap"
+		depends on USER_SNMP
+		default n
+		help
+		support snmp trap
+
+# already defined as USER_NMBD_NMBD!
+#config USER_NMBD
+#		bool "NMBD for NETBIOS"
+#		default n
+
+config USER_PCIUTILS
+		bool "pciutils"
+		default n
+
+config USER_ZEBRA
+		bool "Zebra -- Routing tool"
+		default y
+
+config USER_OPENSSL
+		bool "Openssl"
+		default n
+
+config USER_OPENAGENT
+	bool "TR-069 CPE protocol"
+	depends on USER_OPENSSL
+	default n
+	help
+	Answer Y for TR-069 support.
+
+config USER_ZLIB
+		bool "Zlib"
+		default n
+
+config USER_DROPBEAR
+	bool "Dropber SSH Server"
+	depends on USER_ZLIB
+	default n
+	help
+	Answer Y for lightweight SSH server support.
+
+config USER_WPASUPPLICANT
+		bool "Wpa Supplicant"
+		default n
+		
+config USER_WPS
+		bool "WPS"
+		default n
+
+config USER_WPS_PIN_GENERATE
+	 bool "WPS PIN generate function supported"
+		depends on USER_WPS
+	 default n
+		help
+		WPS PIN generate function supported in sutil.so.
+
+config USER_HOSTAPD
+		bool "HOSTAPD"
+		depends on USER_WPS
+		default n
+
+config USER_SUPPLICANT_ATH
+		  bool "Wpa supplicant for Atheros"
+		  depends on USER_WPS
+		  default n
+		help
+		This daemon only supports Atheros solution.
+
+config USER_WAN_8021X
+		  bool "Wpa supplicant for wired (WAN) 802.1x Support"
+		  depends on USER_SUPPLICANT_ATH
+		  default n
+		help
+		This Config current only supports Atheros solution because dependence on USER_SUPPLICANT_ATH.
+
+config USER_WPS_WPATALK
+		  bool "WPS for Atheros AP94"
+		  depends on USER_WPS
+		  default n
+		help
+		Supports Atheros AP94 WPS solution. 
+		AP94 support 2.4GHz and 5GHz concurrent mode
+
+# already defined as USER_IPROUTE2!
+#config USER_IP
+#		bool "IPROUTE2 -- iproute2 package"
+#		default n
+
+config IPROUTE2_IP
+		bool "IP -- iproute2 package"
+		depends on USER_IPROUTE2
+		default n
+		
+config USER_TC
+		bool "TC (Traffic Control) -- iproute2 package"
+		depends on USER_IPROUTE2
+		default n
+
+config USER_STREAMENGINE
+		bool "Ubicom Streamengine"
+		depends on USER_TC
+		default n
+
+config USER_STREAMENGINE2
+		bool "Ubicom Streamengine2"
+		depends on USER_TC
+		default n
+		
+config USER_WISH
+		bool "Ubicom WISH"
+		depends on USER_TC
+		default n
+		
+config USER_TRACEGW
+		bool "TRACEGW -- for traceroute"
+		depends on USER_TC
+		default n		
+
+config USER_MBANDWIDTH
+		bool "MBANDWIDTH -- for measuring bandwidth"
+		depends on USER_TC && USER_TRACEGW
+		default n
+
+config USER_IPV6_SUPPORT
+		bool "IPV6_SUPPORT"
+		default Y
+		help
+		Answer Y to support IPv6.
+
+config USER_IPV6_STATIC
+		bool "IPv6: support static IPv6"
+		depends on USER_IPV6_SUPPORT
+		default n
+		help
+		Answer Y to support static IPv6.
+
+config USER_IPV6_DHCP
+		bool "IPv6: support DHCPv6 server & client"
+		depends on USER_IPV6_SUPPORT
+		default n
+		help
+
+config USER_RADVD
+		bool "Radvd  -- IPv6 tool"
+		depends on USER_IPV6_SUPPORT
+		default n
+
+config USER_MIREDO
+		bool "Miredo -- Teredo: Tunneling IPv6 over UDP through NATs"
+		depends on USER_IPV6_SUPPORT
+		default n
+
+config USER_MRD
+		bool "MRD -- IPv6 Multicast routing Daemon: support MLD v1 & v2"
+		depends on USER_IPV6_SUPPORT
+		default n
+
+config USER_IPV6_TUNNEL
+		bool "IPv6: support tunnel"
+		depends on USER_IPV6_SUPPORT
+		default n
+
+config USER_IPV6_PPPoE
+		bool "IPv6: support ipv6 pppoe"
+		depends on USER_IPV6_TUNNEL
+		default n
+
+config USER_6TO4_TUNNEL
+		bool "IPv6: support 6to4 tunnel"
+		depends on USER_IPV6_TUNNEL
+		default n
+		help
+		Answer Y for 6to4 tunnel support of IPv6.
+
+config USER_6IN4_TUNNEL
+		bool "IPv6: support 6in4 tunnel"
+		depends on USER_IPV6_TUNNEL
+		default n
+		help 
+		This "IPv6 in IPv4 tunnel" is so-called Tunnel broker 
+
+config USER_STATELESS_WAN
+		bool "IPv6: support stateless autoconfiguration WAN"
+		depends on USER_IPV6_SUPPORT
+		default n
+		help
+		The function would make router's wan interface accept ra
+
+config USER_IPV6_CLIENT_LIST
+		  bool "IPv6: support monitor ipv6 clients in LAN side"
+		  depends on USER_IPV6_SUPPORT
+		  default n
+		  help
+		  The function is used ipv6 nd mechanism to implement.
+
+config USER_WISH
+		bool "WISH for Wireless QoS"		
+		default n
+
+config DLINK_SPEC
+		bool "DLINK Spec."
+		default n
+		
+config USER_DCC_DCC
+		bool "DCC -- D-Link Click'n Connect"
+		depends on DLINK_SPEC
+		select USER_NVRAM
+		select USER_SUTIL
+		select USER_LIBPLATFORM
+		default n
+
+config USER_OWERA
+		bool "OWERA Support "
+		depends on DLINK_SPEC
+		default n
+		
+config USER_DLINK_ROUTER_URL
+		bool "DLINK ROUTER URL support"
+		depends on DLINK_SPEC
+		default n
+		help
+		Answer Y for DLINK ROUTER URL support, implement in user/dnsmasq2.		
+			
+config USER_DLINK_ROUTER_LED_DEFINE
+		bool "DLINK LED DEFINE"
+		depends on DLINK_SPEC
+		default n
+		
+config USER_DLINK_FW_QUERY
+		bool "DLINK Firmware Query"
+		depends on DLINK_SPEC
+		default n
+		help
+		Answer Y for Query latest FW from Dlink Server.
+
+config USER_XML_AGENT
+		bool "XML_AGENT for Widget(Gadget)"
+		depends on DLINK_SPEC
+		default n
+		help
+		Answer Y for Support DLink Widget or Gadget.
+
+config USER_LOGIN_ALERT
+		bool "GUI Login Alert Message"
+		depends on DLINK_SPEC
+		default n
+		help
+		Answer Y for
+		If user login fail at login.asp, 
+			GUI redirect to login.asp again and show alert messages.
+			( GUI originally redirect to login_fail.asp or login_auth_fail.asp )
+		If you want to use this feature, 
+			you also need to modify GUI to show alert messages.
+
+config USER_SHOW_CHECKSUM
+	bool "Checksum feature support"
+	default n
+					
+config USER_AJAX
+	bool "ajax feature support"
+	default n	
+	
+config USER_AUTHGRAPH
+	bool "AuthGraph feature support"
+	default n
+	
+config USER_SHOW_HW_VERSION
+	bool "chklist show hwversion support"
+	default n     
+	
+config USER_CROWDCONTROL
+	bool "Crowd Control HTTP Proxy support"
+	default n		  				
+
+config USER_IP_LOOKUP
+	bool "look up lan pc hostname and ip support"
+	default n	   
+	
+config USER_HEARTBEAT
+	bool "heartbeat feature support"
+	default n		  
+
+config USER_LCM_FEATURE_INFOD
+		bool "lcm feature support infod"
+		default n
+	
+config USER_PPP_USED_CHAT
+	bool "ppp used chat support"
+	default n	   				
+source ../user/config/Kconfig.vpn
+endmenu
+
+
+menu "Tools"
+
+config USER_BRCTL
+		 bool "Bridge Utilities"
+		 default n 
+		 help
+		 bridge utilities
+
+config USER_VLAN
+		 bool "VLAN tool"
+		 default n
+		 help
+		 VLAN tool
+
+config USER_HEADER
+		bool "Header tool"
+		default n
+		help
+		header tool
+
+endmenu
+
+menu "Web Pages"
+
+config USER_WWW
+	bool "HTML pages"
+		 default n
+
+config USER_TEST_PAGE
+		 bool "Test pages"
+		 default n
+
+config USER_IPv6_TEST_FUNCTION
+		  bool "support IPv6 test function for CHT"
+		  depends on USER_TEST_PAGE
+		  default n
+		  help
+		  Answer Y for supporting IPv6 test function for CHT.
+endmenu
+
+
+menu "GUI"
+
+config USER_LCDROUTER
+	bool "LCD Router"
+	select LIB_LITE
+	default n
+	help
+	  Answer Y for supporting LCD GUI.
+
+config USER_LCDSHOWD
+	bool "LCD Showing Daemon"
+	select LIB_LITE
+	default n
+	help
+	  Answer Y for supporting LCD GUI (Cameo Version).
+
+endmenu
+
+config USER_DDNS_ORAY
+	bool "ORAY"
+	default n
+	help
+	DDNS for China
+
+config USER_WEB_FILE_ACCESS
+	bool "WEB_FILE_ACCESS"
+	default n
+	help
+	Enable Web File Access

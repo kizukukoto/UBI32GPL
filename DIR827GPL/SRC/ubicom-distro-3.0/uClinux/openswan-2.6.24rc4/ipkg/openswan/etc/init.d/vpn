@@ -1,0 +1,34 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+STOP=30
+
+clear_vpn_profile_started_flag() {
+	config_get started $1 started
+	if [ "$started" == "1" ]; then
+		config_set $1 started 0
+		uci_set vpn_profile $1 started 0
+	fi
+	
+}
+
+# If the router is not properly shut down, while the VPN profiles are running,
+# "started" flag of running profiles will remain set.
+# During boot make sure that "started" flag of all profiles are cleared.
+start() {
+	[ -f /etc/config/vpn_profile ] && {
+		config_load /etc/config/vpn_profile
+		#uci_set vpn_profile ipsec_common remote_user_enabled 0
+		config_foreach clear_vpn_profile_started_flag vpn_profile
+		uci_commit vpn_profile
+		echo "Start VPN"
+		/sbin/vpn_manager start
+	}
+}
+
+# This will be called to stop all VPN profiles during a reboot.
+stop() {
+	[ -f /etc/config/vpn_profile ] && [ -f /var/run/vpn_started ] && {
+		/sbin/vpn_manager stop
+	}
+}

@@ -1,0 +1,18 @@
+#!/bin/sh
+## UBICOM: Start bridge if it wasn't already
+if [ ! -e /tmp/bridge_started ]; then
+    echo "Need to start bridge first"
+    sh /etc/init.d/start_br
+fi
+
+echo "Create device nodes for ART"
+mknod /dev/dk0 c 63 0
+mknod /dev/dk1 c 63 1
+chmod 666 /dev/dk0
+chmod 666 /dev/dk1
+
+echo "Load ART kernel module"
+insmod /lib/modules/art.ko
+
+echo "Start ART client application"
+mdk_client.out &

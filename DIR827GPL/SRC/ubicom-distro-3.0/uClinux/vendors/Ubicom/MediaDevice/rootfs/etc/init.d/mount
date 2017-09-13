@@ -1,0 +1,35 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2009 Ubicom, Inc.
+
+if [ $action = "start" ]	
+then
+	echo "Mounting file systems"
+	mount -t proc proc /proc
+	mount -t devpts devpts /dev/pts
+
+	# Make contents of /etc non-volatile to keep user settings permanently.
+	mkdir /flash
+	mount -t jffs2 /dev/mtdblock2 /flash
+	if [ $? != 0 ]; then
+		eraseall /dev/mtd2
+		mount -t jffs2 /dev/mtdblock2 /flash
+	fi
+	
+	#Unionmount flash over romfs
+	mount -t unionfs -o dirs=/flash=rw:/etc=ro none /etc
+
+	echo "mount sys"
+	mount -t sysfs sysfs /sys
+
+	echo "activate mdev"
+	mount -t tmpfs mdev /dev
+	echo /bin/mdev > /proc/sys/kernel/hotplug
+	mdev -s
+
+
+elif [ $action = "stop"	]
+then
+	echo "Unmounting file systems"
+	umount proc
+	umount devpts
+fi

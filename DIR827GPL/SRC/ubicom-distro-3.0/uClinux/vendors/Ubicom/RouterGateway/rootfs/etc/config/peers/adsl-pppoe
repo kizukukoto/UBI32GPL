@@ -1,0 +1,5 @@
+pty '/bin/pppoe -I WANINTERFACE'
+name USERNAME
+file /etc/ppp/options.pppoe
+ipparam adsl-pppoe
+

@@ -1,0 +1,12 @@
+Package: minidlna
+Version: 1.0.18-1
+Depends: libintl, libiconv, libpthread, libexif, libjpeg, libsqlite3, libffmpeg, libid3tag, libflac, libvorbis, libuuid
+Provides: 
+Source: package/minidlna
+Section: multimedia
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 310504
+Description:  MiniDLNA (aka ReadyDLNA) is server software with the aim of
+ being fully compliant with DLNA/UPnP-AV clients.

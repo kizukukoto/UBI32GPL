@@ -1,0 +1,190 @@
+#!/bin/sh
+
+#########################################################################################
+## stopRGW
+##
+## Usage: stopRGW
+##
+## This script can be called without any parametetrs to clear RGW settings and stop all 
+## RGW processes.
+## When called from startRGW, a parameter is passed, which is used to filter out the PID 
+## of startRGW from the list of PID`s to be killed.
+##
+#########################################################################################
+
+echo "Stopping RGW"
+echo "Resetting pap-secrets, chap-secrets, adsl-pppoe and tunnel files to default."
+
+sed -i "3,10 d" /etc/config/pap-secrets
+sed -i "3,10 d" /etc/config/chap-secrets
+
+echo "pty '/bin/pppoe -I WANINTERFACE'" > /etc/config/peers/adsl-pppoe
+echo "name USERNAME" >> /etc/config/peers/adsl-pppoe
+echo "file /etc/ppp/options.pppoe" >> /etc/config/peers/adsl-pppoe
+echo "ipparam adsl-pppoe" >> /etc/config/peers/adsl-pppoe
+
+echo "pty '/bin/pptp SERVER_IP --nolaunchpppd'" > /etc/config/peers/tunnel
+echo "name USERNAME" >> /etc/config/peers/tunnel
+echo "file /etc/ppp/options.pptp" >> /etc/config/peers/tunnel
+echo "ipparam tunnel" >> /etc/config/peers/tunnel
+
+# No firewall set yet, but clear everything just in case!
+echo "Flushing iptables..."
+iptables -F
+iptables -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+
+echo "Checking existing RGW processes. If any, they will be killed..."
+
+pppd_pidlist=`ps | grep 'pppd' | grep -v 'grep' | cut -b1-5`
+if [ "$pppd_pidlist" != "" ]; then
+	echo "Killing existing pppd processes"
+	for i in $pppd_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+dhcpcd_pidlist=`ps | grep 'dhcpcd' | grep -v 'grep' | cut -b1-5`
+if [ "$dhcpcd_pidlist" != "" ]; then
+	echo "Killing existing dhcpcd processes"
+	for i in $dhcpcd_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+dnsmasq_pidlist=`ps | grep 'dnsmasq' | grep -v 'grep' | cut -b1-5`
+if [ "$dnsmasq_pidlist" != "" ]; then
+	echo "Killing existing dnsmasq processes"
+	for i in $dnsmasq_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+inadyn_pidlist=`ps | grep 'inadyn' | grep -v 'grep' | cut -b1-5`
+if [ "$inadyn_pidlist" != "" ]; then
+	echo "Killing existing inadyn processes"
+	for i in $inadyn_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+lld2d_pidlist=`ps | grep 'lld2d' | grep -v 'grep' | cut -b1-5`
+if [ "$lld2d_pidlist" != "" ]; then
+	echo "Killing existing lld2d processes"
+	for i in $lld2d_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+mathopd_pidlist=`ps | grep 'mathopd' | grep -v 'grep' | cut -b1-5`
+if [ "$mathopd_pidlist" != "" ]; then
+	echo "Killing existing mathopd processes"
+	for i in $mathopd_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+# miniupnpd
+if [ -f /etc/init.d/do_miniupnpd ]; then
+       echo "Stopping miniupnpd (UPnP Internet Gateway Device)"
+       /etc/init.d/do_miniupnpd stop
+fi
+
+boa_pidlist=`ps | grep 'boa' | grep -v 'grep' | cut -b1-5`
+if [ "$boa_pidlist" != "" ]; then
+	echo "Killing existing boa processes"
+	for i in $boa_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+zebra_pidlist=`ps | grep 'zebra' | grep -v 'grep' | cut -b1-5`
+if [ "$zebra_pidlist" != "" ]; then
+	echo "Killing existing zebra processes"
+	for i in $zebra_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+ripd_pidlist=`ps | grep 'ripd' | grep -v 'grep' | cut -b1-5`
+if [ "$ripd_pidlist" != "" ]; then
+	echo "Killing existing ripd processes"
+	for i in $ripd_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+ospfd_pidlist=`ps | grep 'ospfd' | grep -v 'grep' | cut -b1-5`
+if [ "$ospfd_pidlist" != "" ]; then
+	echo "Killing existing ospfd processes"
+	for i in $ospfd_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+bgpd_pidlist=`ps | grep 'bgpd' | grep -v 'grep' | cut -b1-5`
+if [ "$bgpd_pidlist" != "" ]; then
+	echo "Killing existing bgpd processes"
+	for i in $bgpd_pidlist
+	do
+		kill -9 $i
+	done
+fi
+
+# Bring all interfaces and the bridge down.
+wan=`ifconfig | grep eth0.1`
+if [ "$wan" != "" ]; then
+	ifconfig eth0.1 0.0.0.0 down		
+fi
+
+lan=`ifconfig | grep eth0.2`
+if [ "$lan" != "" ]; then
+	ifconfig eth0.2 0.0.0.0 down		
+fi
+
+eth0=`ifconfig | grep eth0`
+if [ "$eth0" != "" ]; then
+	ifconfig eth0 0.0.0.0 down		
+fi
+
+echo "Stopping wireless"
+/etc/ath/killVAP ALL
+
+# Try to remove wireless interfaces if they are still up (killVAP should have removed them).
+ath0=`ifconfig | grep ath0`
+if [ "$ath0" != "" ]; then
+	ifconfig ath0 down		
+fi
+
+wifi0=`ifconfig | grep wifi0`
+if [ "$wifi0" != "" ]; then
+	ifconfig wifi0 down		
+fi
+
+br0=`ifconfig | grep br0`
+if [ "$br0" != "" ]; then
+	brctl delif br0 eth0.2
+	brctl delif br0 ath0
+	ifconfig br0 down
+	sleep 1
+	brctl delbr br0
+fi
+
+sleep 1
+
+echo "RGW stopped"
+

@@ -1,0 +1,147 @@
+A configuration file for mathopd consists of zero or more 'items',
+possibly mixed with comment text.
+
+An item is a configuration keyword followed by zero or one arguments,
+as indicated by the syntax below.
+
+I have taken the liberty of introducing some meta-concepts to make
+the syntax more readable.
+
+When you read the phrase "X-block", please replace it with the following.
+
+X-block: "{" X-items "}"
+
+X-items:
+	<nothing>
+	X-item X-items
+
+Keywords and arguments are separated by whitespace, that is, spaces,
+tab characters, carriage returns, or line feeds.
+
+A string is anything enclosed in double quotes ("). The quotes can be
+omitted if the string is actually just a single word. To include the
+double quote character itself in a string, precede the quote with a
+backslash ('\').
+
+An integer is represented using the normal 'C' conventions: '0x' in
+front indicates a hexadecimal number, '0' in front indicates octal.
+
+The '#' character, when not used inside a string, is considered the
+beginning of comment text. A comment lasts until the next line.
+Comments are ignored when the input file is parsed.
+
+Configuration File Syntax
+--------------------------------
+
+configuration-item:
+	"RootDirectory" string
+	"CoreDirectory" string
+	"Umask" integer
+	"StayRoot" flag
+	"User" string
+	"PIDFile" string
+	"Log" string
+	"ErrorLog" string
+	"Tuning" tuning-block
+	"Control" control-block
+	"Server" server-block
+	"LogFormat" logformat-block
+	"LogGMT" flag
+	"Virtual" virtual-block
+
+tuning-item:
+	"Timeout" integer
+	"BufSize" integer
+	"InputBufSize" integer
+	"NumConnections" integer
+	"AcceptMulti" flag
+	"NumHeaders" integer
+	"ScriptTimeout" integer
+	"ScriptBufSize" integer
+	"Clobber" flag
+	"Wait" integer
+	"NumProcesses" integer
+	"Greedy" flag
+
+control-item:
+	"Location" string
+	"Alias" string
+	"PathArgs" flag
+	"IndexNames" string-block
+	"Types" type-block
+	"Specials" type-block
+	"External" type-block
+	"Admin" string
+	"Realm" string
+	"UserFile" string
+	"Error401File" string
+	"Error403File" string
+	"Error404File" string
+	"EncryptedUserFile" flag
+	"ChildLog" string
+	"Export" string-block
+	"ExactMatch" flag
+	"ScriptUser" string
+	"RunScriptsAsOwner" string
+	"AllowDotfiles" flag
+	"UserDirectory" flag
+	"PutEnv" string-block
+	"ExtraHeaders" string-block
+	"PathInfo" flag
+	"AutoIndexCommand" string
+	"ExpireInterval" integer
+	"SanitizePath" flag
+
+server-item:
+	"Port" string
+	"Address" string
+	"Virtual" virtual-block
+	"Control" control-block
+	"Backlog" integer
+	"Family" family
+	"Options" socket-option-block
+
+virtual-item:
+	"Host" string
+	"NoHost"
+	"Control" control-block
+	"AnyHost"
+
+type-item:
+	string string-block
+
+logformat-item:
+	"Ctime"
+	"RemoteUser"
+	"RemoteAddress"
+	"RemotePort"
+	"LocalAddress"
+	"LocalPort"
+	"ServerName"
+	"Method"
+	"Uri"
+	"Version"
+	"Status"
+	"ContentLength"
+	"Referer"
+	"UserAgent"
+	"BytesRead"
+	"BytesWritten"
+	"QueryString"
+        "TimeTaken"
+	"MicroTime"
+	"PID"
+
+flag:
+	"On"
+	"Off"
+
+family:
+	"inet"
+	"inet6"
+
+socket-option-item:
+	"rcvbuf" integer
+	"sndbuf" integer
+	"v6only" flag
+	"nodelay" flag

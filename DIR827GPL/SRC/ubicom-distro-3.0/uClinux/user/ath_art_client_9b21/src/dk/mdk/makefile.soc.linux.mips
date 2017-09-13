@@ -1,0 +1,24 @@
+
+ifeq ($(OCTEON),1)
+include makefile.soc.linux.cavium.mak
+else
+include makefile.soc.linux.mips.mak
+endif
+
+all: devlib client 
+
+devlib: 
+	$(MAKE) -C ./devlib -f makefile.soc.linux.mips dirs
+	$(MAKE) -C ./devlib -f makefile.soc.linux.mips
+
+client:
+	$(MAKE) -C ./client -f makefile.soc.linux.mips dirs
+	$(MAKE) -C ./client -f makefile.soc.linux.mips  
+
+clean:
+	$(MAKE) -C ./devlib -f makefile.soc.linux.mips clean
+	$(MAKE) -C ./client -f makefile.soc.linux.mips clean
+
+.PHONY: all createini devlib client clean 
+
+

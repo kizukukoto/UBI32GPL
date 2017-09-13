@@ -1,0 +1,73 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2009 Ubicom, Inc.
+
+#########################################################################################
+## startWC
+##
+## This script is used to configure and start the wireless implementation.
+## All the required parameters are imported from the wireless_config file.
+## Before running the applications with new settings, existing processes are killed.
+##
+#########################################################################################
+. /etc/wireless_config
+
+if [ $action = "start" ]; then
+	echo "Starting wireless Media with settings from /etc/wireless_config"
+
+	#If wireless enabled, start wireless interface 
+	if [ "$WIRELESSENABLED" != "YES" ]; then
+			echo "Wireless not enabled!"
+			echo "Skip wireless configuration."
+			exit
+	fi
+
+#	if [ "$WLAN_ON_BOOT" != "YES" ]; then
+#		echo "Wireless on boot not enabled!"
+#		echo "Skip starting wireless on boot"
+#		exit
+#	fi
+
+	if [ -f /lib/modules/2.6.28/net/ath_hal.ko ] || [ -f /lib/modules/ath_hal.ko ]; then
+		echo "Starting wireless client"
+		if [ -f /etc/ath/wcup ]; then
+			/etc/ath/wcup
+			sleep 1
+		else
+			# Although wireless is enabled, we don`t have the necessary scripts to run wireless.
+			# So, disable wireless in wireless_config.
+#			sed -i '/^WIRELESSENABLED=/ c\WIRELESSENABLED='NO'' /etc/wireless_config
+			echo "Wireless start script could not be found!"
+			echo "Skipping wireless configuration."
+			exit
+		fi
+
+		if [ "$WLANMODE" = "static" ]; then
+			echo "WLAN connection type is $WLANCONNECTIONTYPE"
+			if [ -f $SCRIPT_PATH/do_static ]; then
+				$SCRIPT_PATH/do_static start
+			else 
+				echo "Static IP script not found, cannot set static IP!"
+			fi
+		elif [ "$WLANMODE" = "dhcp" ]; then
+			echo "WLAN connection type is $WLANCONNECTIONTYPE"
+			if [ -f $SCRIPT_PATH/do_dhcp ]; then
+				$SCRIPT_PATH/do_dhcp start &
+			else
+				echo "DHCP client script not found, cannot get IP using DHCP!"
+			fi
+		else
+			echo "Unsupported WLAN connection type: $WLANCONNECTIONTYPE"
+		fi
+	else
+		# Although wireless is enabled, we don`t have the necessary scripts to run wireless.
+		# So, disable wireless in wireless_config.
+#		sed -i '/^WIRELESSENABLED=/ c\WIRELESSENABLED='NO'' /etc/wireless_config
+		echo "Wireless start script could not be found!"
+		echo "Skipping wireless configuration."
+	fi
+	
+elif [ $action = "stop"	]; then
+	echo "Stopping wireless client"
+fi	
+
+

@@ -1,0 +1,161 @@
+
+# **********************************************
+# BOARD_x configs are used only internally
+# **********************************************
+
+choice
+	prompt "Board"
+	help
+	  Select your board.
+
+config BOARD_IP7140EvalWANonSWRev12
+	bool "IP7140Eval_WANonSW_Rev12.brd"
+	help
+	  'IP7140 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2'.
+
+config BOARD_IP7150EvalWANonSWRev12
+	bool "IP7150Eval_WANonSW_Rev12.brd"
+	help
+	  'IP7150 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2'.
+
+config BOARD_IP7160Eval
+	bool "IP7160Eval.brd"
+	help
+	  'IP7160 Router Evaluation Board, 8007-0111, Rev 1.1'.
+
+config BOARD_IP7160EvalRev12
+	bool "IP7160Eval_Rev12.brd"
+	help
+	  'IP7160 Router Evaluation Board, 8007-0112, Rev 1.2'.
+
+config BOARD_IP7160EvalWANonSW16MB128DDR
+	bool "IP7160Eval_WANonSW_16MB_128DDR.brd"
+	help
+	      'IP7160 Router Evaluation Board WAN-on-Switch 16MB version, 8007-' +    '0111, Rev 1.1'.
+
+config BOARD_IP7160EvalWANonSW16MB
+	bool "IP7160Eval_WANonSW_16MB.brd"
+	help
+	      'IP7160 Router Evaluation Board WAN-on-Switch 16MB version, 8007-' +    '0111, Rev 1.1'.
+
+config BOARD_IP7160EvalWANonSW
+	bool "IP7160Eval_WANonSW.brd"
+	help
+	  'IP7160 Router Evaluation Board WAN-on-Switch, 8007-0111, Rev 1.1'.
+
+config BOARD_IP7160EvalWANonSWRev1216MB128DDR
+	bool "IP7160Eval_WANonSW_Rev12_16MB_128DDR.brd"
+	help
+	  'IP7160 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2 16MB'.
+
+config BOARD_IP7160EvalWANonSWRev1216MB
+	bool "IP7160Eval_WANonSW_Rev12_16MB.brd"
+	help
+	  'IP7160 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2 16MB'.
+
+config BOARD_IP7160EvalWANonSWRev12
+	bool "IP7160Eval_WANonSW_Rev12.brd"
+	help
+	  'IP7160 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2'.
+
+config BOARD_IP7160EvalWANonSWRev12lcd
+	bool "IP7160Eval_WANonSW_Rev12_lcd.brd"
+	help
+	      'IP7160 Router Evaluation Board WAN-on-Switch.
+		
+		Supports Boards' +    ':
+			8007-0112, Rev 1.2, IP7160 RGW EVAL
+		
+		With the following ad' +    'apter board:
+			8007-1410, Rev 1.0, IP7K RGW LCD
+		
+		With the foll' +    'owing display board:
+			8007-0920, Rev 2.0, IP7K LCD Adapter
+			80' +    '07-0921, Rev 2.1, IP7K LCD Adapter'.
+
+config BOARD_IP8000Bringup
+	bool "IP8000Bringup.brd"
+	help
+	  'IP8000 Bringup board Rev0.0'.
+
+config BOARD_IP8100DIR857
+	bool "IP8100_DIR857.brd"
+	help
+	      'IP8100 RGW Board
+		
+		Supports the following boards:
+			8008-0110 R' +    'ev 1.0	IP8K RGW Board'.
+
+config BOARD_IP8100RGW4L
+	bool "IP8100RGW_4L.brd"
+	help
+	      'IP8100 RGW Board Cost-effective 4-layer PCB design'.
+
+config BOARD_IP8100RGW
+	bool "IP8100RGW.brd"
+	help
+	      'IP8100 RGW Board
+		
+		Supports the following boards:
+			8008-0110 R' +    'ev 1.0	IP8K RGW Board'.
+
+config BOARD_IP8100RGWES4L
+	bool "IP8100RGW_ES_4L.brd"
+	help
+	      'IP8100 RGW Board Cost-effective 4-layer PCB design'.
+
+config BOARD_IP8100RGWESRev10
+	bool "IP8100RGW_ES_Rev1_0.brd"
+	help
+	      'IP8100 RGW Board
+		
+		Supports the following boards:
+			8008-0110 R' +    'ev 1.0	IP8K RGW Board'.
+
+config BOARD_IP8100RGWESRev11
+	bool "IP8100RGW_ES_Rev1_1.brd"
+	help
+	      'IP8100 RGW Board
+		
+		Supports the following boards:
+			8008-0111 R' +    'ev 1.1	IP8K RGW Board
+			8008-0112 Rev 1.2 IP8K RGW Board'.
+
+config BOARD_IP8100RGWRev11
+	bool "IP8100RGW_Rev1_1.brd"
+	help
+	      'IP8100 RGW Board
+		
+		Supports the following boards:
+			8008-0111 R' +    'ev 1.1	IP8K RGW Board
+			8008-0112 Rev 1.2 IP8K RGW Board'.
+
+config BOARD_IP8200RGW
+	bool "IP8200RGW.brd"
+	help
+	      'IP8200 (full package) RGW Board Cost-effective 4-layer PCB design'.
+
+endchoice
+
+config BOARD_NAME
+	string
+	default "IP7140Eval_WANonSW_Rev12.brd" if BOARD_IP7140EvalWANonSWRev12
+	default "IP7150Eval_WANonSW_Rev12.brd" if BOARD_IP7150EvalWANonSWRev12
+	default "IP7160Eval.brd" if BOARD_IP7160Eval
+	default "IP7160Eval_Rev12.brd" if BOARD_IP7160EvalRev12
+	default "IP7160Eval_WANonSW_16MB_128DDR.brd" if BOARD_IP7160EvalWANonSW16MB128DDR
+	default "IP7160Eval_WANonSW_16MB.brd" if BOARD_IP7160EvalWANonSW16MB
+	default "IP7160Eval_WANonSW.brd" if BOARD_IP7160EvalWANonSW
+	default "IP7160Eval_WANonSW_Rev12_16MB_128DDR.brd" if BOARD_IP7160EvalWANonSWRev1216MB128DDR
+	default "IP7160Eval_WANonSW_Rev12_16MB.brd" if BOARD_IP7160EvalWANonSWRev1216MB
+	default "IP7160Eval_WANonSW_Rev12.brd" if BOARD_IP7160EvalWANonSWRev12
+	default "IP7160Eval_WANonSW_Rev12_lcd.brd" if BOARD_IP7160EvalWANonSWRev12lcd
+	default "IP8000Bringup.brd" if BOARD_IP8000Bringup
+	default "IP8100_DIR857.brd" if BOARD_IP8100DIR857
+	default "IP8100RGW_4L.brd" if BOARD_IP8100RGW4L
+	default "IP8100RGW.brd" if BOARD_IP8100RGW
+	default "IP8100RGW_ES_4L.brd" if BOARD_IP8100RGWES4L
+	default "IP8100RGW_ES_Rev1_0.brd" if BOARD_IP8100RGWESRev10
+	default "IP8100RGW_ES_Rev1_1.brd" if BOARD_IP8100RGWESRev11
+	default "IP8100RGW_Rev1_1.brd" if BOARD_IP8100RGWRev11
+	default "IP8200RGW.brd" if BOARD_IP8200RGW

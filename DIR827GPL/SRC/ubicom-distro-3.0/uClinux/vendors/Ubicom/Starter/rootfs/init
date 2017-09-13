@@ -1,0 +1,19 @@
+#!/bin/sh 
+echo
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
+
+cat /etc/motd
+cat /etc/version
+
+echo "Mounting /proc and /dev/pts"
+mount -t proc proc /proc
+mount -t devpts devpts /dev/pts
+mount -t sysfs sys /sys
+
+#exec /bin/getty -nl /bin/sh 115200 ttyUM0
+#exec /bin/sh
+while [ 1 ] 
+do
+	/bin/getty -nl /bin/sh 115200 ttyUM0
+done

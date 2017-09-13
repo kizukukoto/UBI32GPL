@@ -1,0 +1,13 @@
+Language Pack Release Note
+Project Name: DIR-857
+HW version: A1
+Region/OEM code: IT
+======================================================================================
+Language-Version:1.00ITb01
+Language: Italian
+Language-Checksum: 0x00CAE92D 
+Language-svn:2244
+
+1.please base on FW v1.00b14.
+--------------------------------------------------------------------------------------
+

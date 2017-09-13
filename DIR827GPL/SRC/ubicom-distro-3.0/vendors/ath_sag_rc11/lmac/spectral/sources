@@ -1,0 +1,71 @@
+#
+#  sources file for SPECTRAL module
+#
+LMAC=..
+TOP=$(LMAC)\..
+INC=$(TOP)\include
+ASF=$(TOP)\asf
+ADF=$(TOP)\adf
+
+!IFDEF BUILD_UMAC
+MP=$(TOP)\os\win_nwf
+INC_MP=$(MP)\include
+IF_ATH=$(TOP)\umac\if_lmac
+!ELSE
+MP=$(TOP)\winvista
+INC_MP=$(INC)\winvista
+IF_ATH=$(TOP)\if_ath_net80211
+!ENDIF
+
+ATH=$(LMAC)\ath_dev
+HAL=$(TOP)\hal
+
+!include $(INC_MP)\sources.inc
+
+TARGETNAME=ath_spectral
+TARGETPATH=$(TOP)\lib
+TARGETTYPE=LIBRARY
+
+!IFDEF BUILD_HTC
+# Put htc include dirs at the head of the list.
+# This ensures that the htc/adf header files will preempt any
+# header files of the same names from the regular adf directories.
+INCLUDES= $(INCLUDES)                            \
+    $(TOP)\htc\inc;                              \
+    $(TOP)\htc\adf\include;                      \
+    $(TOP)\htc\adf\winvista\nbuf;                \
+    $(TOP)\htc\adf\winvista\include;
+!ENDIF
+
+INCLUDES= $(INCLUDES)       \
+    $(ATH);                 \
+    $(ATH)\winvista;	    \
+    $(ADF)\os\win_nwf;      \
+    $(ADF)\include\os;      \
+    $(ASF)\include;         \
+    $(IF_ATH);              \
+    $(HAL);                 \
+    $(HAL)\winvista;        \
+    $(INC);                 \
+    $(INC_MP);              \
+!IFDEF BUILD_UMAC
+    $(TOP)\umac\include; \
+!ENDIF
+    $(LMAC)\ath_pktlog;     \
+    $(LMAC)\dfs;            \
+    $(SDXROOT)\net\inc;     \
+    $(DDK_INC_PATH)
+
+SOURCES=$(SOURCES)          \
+        spectral.c          \
+        spectral_netlink.c  \
+        spectral_samp.c     \
+        spectral_cmds.c     \
+        spectral_process_data.c     \
+        spectral_debug.c    \
+        spectral_eacs.c     \
+        spectral_ht20_data.c \
+        spectral_ht40_data.c
+
+
+        

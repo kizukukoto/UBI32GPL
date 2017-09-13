@@ -1,0 +1,35 @@
+
+This assumes the Profiler tool (ip3kprof.exe) is running on a machine that is hooked up to the LAN side of the target board.  The Profiler tool is for Windows, but it will run under Wine on Linux.
+Configure ipProfile
+
+There is no longer any need to configure the profiler.  Mainexec always includes the ipProfile package.  There are no ipProfile options that need to be changed.  The tool IP address is no longer configured into the build.
+Configure Target IP Addresses
+
+There is no longer any need to modify app/main.c to make profiling work.
+Configure Networking
+
+There is no longer any need for special network configuration, since the profiler now sends packets directly from the profilerd linux daemon.  Packets do not come from ultra.  Packets will be sent from the board to the IP address of the machine running ip3kprof.  If there is a router or firewall in the way, there might be some configuration issues.
+Enable Sending Profile Packets
+
+Get the profiler to send packets to the machine you're running ip3kprof.exe on.  At the Linux shell, do the following:
+
+% profilerd &
+
+There is no longer any need to configure a bridge to Ultra since profiler packets come directly from a linux daemon.  
+
+Profiler packets are not sent unless the ip3kprof tool is running.  So there is almost no overhead for profiling, and profilerd can be running all the time (but by default it doesn't run until you start it).
+
+Start your application or workload before starting the profiler tool.  The profiler will only pick up addreses for code that is running when the profiler tool starts. 
+Run Profiler Tool  
+
+Create a Windows shortcut for the profiler (the profiler is in tools/bin/win32/ip3kprof.exe in your latest SDK) and give it the mainexec.elf as a first parameter and the image.elf as a second one.  Run the Profiler shortcut.
+
+You can also use wine under Linux to run the profiler. For example:
+
+bash> wine ultra/tools/bin/win32/ip3kprof.exe -a -ip:192.168.0.1 bin/mainexec.elf image.elf
+
+If you are profiling one or more applications, include the application ELF file names after ultra and vmlinux, and include a -L:xxxxxxxxx parameter before the app giving its load address.  You can find the load address by using ps to find its PID, then "cat /proc/PID/maps".  Use the address of the executable segment. 
+
+If everything is OK you should see the Threads tab, and the Packets received number in the top left should go up about once a second.  Check the applications tab to see if the profiler picked up the load address of your application.
+
+See the ip3kprof documentation outside the wiki for details on profiler command line and interpreting the output data. 

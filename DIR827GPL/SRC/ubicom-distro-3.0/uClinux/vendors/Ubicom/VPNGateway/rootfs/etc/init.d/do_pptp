@@ -1,0 +1,31 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+case "$1" in
+start)	
+	sed -i "s/SERVER_IP/$PPTPSERVERIP/" /etc/config/peers/tunnel
+	sed -i "s/USERNAME/$PPTPUSERNAME/" /etc/config/peers/tunnel
+	echo "$PPTPUSERNAME * $PPTPPASSWORD *" >> /etc/config/pap-secrets
+	echo "$PPTPUSERNAME * $PPTPPASSWORD *" >> /etc/config/chap-secrets
+	
+	# Set static IP address for WAN interface before running PPTP.
+	ifconfig $WANINTERFACE $PPTPWANIP netmask $PPTPSUBNETMASK up
+	route add default gw $PPTPGATEWAYIP
+	
+	pppd call tunnel debug logfile /var/log/pptp-log &
+        ;;
+stop)	
+	sed -i "3,10 d" /etc/config/pap-secrets
+	sed -i "3,10 d" /etc/config/chap-secrets
+
+	echo "pty '/bin/pptp SERVER_IP --nolaunchpppd'" > /etc/config/peers/tunnel
+	echo "name USERNAME" >> /etc/config/peers/tunnel
+	echo "file /etc/ppp/options.pptp" >> /etc/config/peers/tunnel
+	echo "ipparam tunnel" >> /etc/config/peers/tunnel
+
+	kill `head -1 /var/run/$PPPINTERFACE.pid` > /dev/null 2>&1
+	rm /var/run/$PPPINTERFACE.pid
+	
+esac
+exit 0

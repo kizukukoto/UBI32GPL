@@ -1,0 +1,20 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2009 Ubicom, Inc.
+
+if [ $action = "start" ]	
+then
+	echo "Starting network"
+	# start localhost
+	ifconfig lo up
+	route add -net 127.0.0.0 netmask 255.0.0.0 lo
+
+	# portmap is requred for nfs
+	portmap & 
+	# inetd server
+	inetd &
+elif [ $action = "stop"	]
+then
+	echo "Stopping network"
+	ifconfig lo down 
+fi	
+

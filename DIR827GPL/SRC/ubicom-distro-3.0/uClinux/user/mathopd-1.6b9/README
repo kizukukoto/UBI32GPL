@@ -1,0 +1,22 @@
+README file for Mathopd/1.6
+
+This is Mathopd, a fast, lightweight, non-forking HTTP server for
+UN*X systems.
+
+Please read the file COPYING first before you do anything else.
+
+The src/ directory contains the source files for this
+software and a makefile to build everything. The makefile
+has instructions that will help you adjust it to build
+the software on your specific platform.
+
+The doc/ directory contains some documentation about running
+this software. It also has detailed descriptions of all
+settings that can be configured.
+
+Mathopd/1.6 is currently BETA quality, which means it may
+crash and burn at random intervals. If you need a stable
+mathopd, please use the latest version from the 1.5 branch.
+
+Michiel Boland
+July 2007
