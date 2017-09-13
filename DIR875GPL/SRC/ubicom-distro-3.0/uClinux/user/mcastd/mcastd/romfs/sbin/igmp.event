@@ -1,0 +1,23 @@
+#!/bin/sh
+set > /tmp/igmp.event.log
+
+if [ -x /tmp/igmp.event ];then
+	/tmp/igmp.event
+	exit $?
+fi
+
+# SRC='fe80::224:e8ff:feb1:77fd' ACTION='join' GROUP='ff0e::1235' ./igmp.event
+# SRC='fe80::224:e8ff:feb1:77fd'
+# ACTION='join'
+# GROUP='ff0e::1235'
+
+ping6 -I br0 -c 1 -q "$SRC" 2>&1 > /dev/null
+if [ $? -ne 0 ];then
+	exit 0
+fi
+
+ether_addr=`ip -6 neigh|grep "$SRC"|cut -f 5 -d ' '`
+if [ $? -ne 0 ];then
+	exit 0
+fi
+/sbin/mcastd "$ACTION" inet6 "$GROUP" $ether_addr 3

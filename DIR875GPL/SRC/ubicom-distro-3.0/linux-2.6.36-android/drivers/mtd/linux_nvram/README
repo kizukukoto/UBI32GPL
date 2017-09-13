@@ -1,0 +1,83 @@
+#################################
+#	NVRAM device and utility 
+#################################
+There are 3 files cooperate to nvram
+o nvram: user nvram command.
+o libnvram.so: nvram shared library, nvram_xxx() APIs
+o devnvram.ko: nvram devices driver, access  mtd layer and privide
+	interfaces via /dev/nvram. 
+
+#################################
+#	make
+################################
+To compile device module and library, utilty:
+	make
+
+###############################
+#	INSERT MODULE
+###############################
+1. to make sure which mtd block you want to be as nvram from /proc/mtd
+	eg:
+	#cat /proc/mtd
+	dev:    size   erasesize  name
+	mtd0: 00030000 00010000 "uboot"
+	mtd1: 00010000 00010000 "nvram"
+	mtd2: 00180000 00010000 "kernel"
+	mtd3: 00600000 00010000 "rootfs"
+	mtd4: 00010000 00010000 "cal_data"
+	mtd5: 00030000 00010000 "lang_pack"
+
+2. to load nvram module, just type to attach mtd by default partition "nvram"
+
+	#insmod ./devnvram.ko
+	init nvram memory map size: 0x10000 order of pages: 0x4
+	nvram module init:
+		/dev/nvram major number 225 glues to mtd: "nvram" size: 0x00010000
+		nvram_space: 0x00010000 mapped via mmap(2)
+
+    if no NVRAM_SPACE specified from "insmod", driver will auto allocate from 
+    /proc/mtd when block is found.
+    or can specifiy supported options: mtdname, nvram_major, NVRAM_SPACE
+	[peter@localhost linux_nvram]$modinfo ./devnvram.ko
+	filename:       ./devnvram.ko
+	license:        GPL
+	description:    MTD nvram driver.
+	parm:           mtdname:mtd partition name in /proc/mtd. (default name: nvram)
+	parm:           nvram_major:major number in /dev/nvram (default: 225)
+	parm:           NVRAM_SPACE:the mmap(2) space size of nvram driver mapped to user
+	vermagic:       2.6.8.1-12mdksmp SMP 686 gcc-3.4
+	depends:
+
+    eg: to change map size as 4KB from mtdname "nvram_test"
+	insmod /lib//modules/2.6.28.10/kernel/drivers/mtd/linux_nvram/devnvram.ko mtdname=artblock
+	insmod /lib//modules/2.6.28.10/kernel/drivers/mtd/linux_nvram/devnvram.ko mtdname=fw_env
+
+	insmod ./devnvram.ko NVRAM_SPACE=0x1000 mtdname=nvram_test
+	init nvram memory map size: 0x100 order of pages: 0x0
+	nvram module init:
+        	/dev/nvram major number 225 glues to mtd: "nvram_test" size: 0x00010000
+  	      nvram_space: 0x00000100 mapped via mmap(2)
+
+	it will use name "nvram_test" from /proc/mtd as nvram block. and
+	4KB size was mapped to userspace only. even if the block "mtd_test" have
+	it's block size.
+3. make sure /dev/nvram exist. or by mknod eg:
+	mknod /dev/nvram c 225 0
+4. copy libnvram.so into /lib
+	cp libnvram.so /lib
+5. copy nvram to PATH, eg:
+	cp nvram /sbin
+
+6. restore default:
+	nvram restore_default
+	nvram commit
+#########################################
+#	nvram support command
+#########################################
+	/lib # /sbin/nvram
+	usage: nvram [get name] [set name=value] [unset name] [show] [restore_default] [upgrade] [eraseall]
+
+########################################
+#	TODO
+#######################################
+	o create artblock to another fold.

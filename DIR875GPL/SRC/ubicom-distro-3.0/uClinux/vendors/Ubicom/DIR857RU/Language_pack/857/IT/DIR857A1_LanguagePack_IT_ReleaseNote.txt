@@ -1,0 +1,29 @@
+Language Pack Release Note
+Project Name: DIR-857
+HW version: A1
+Region/OEM code: IT
+======================================================================================
+Language-Version:1.01ITb01
+Language: Italian
+Language-Checksum: 0x00CADDF8
+Language-svn:2577
+
+1.Add string to pop up eap warning message and Disable WPS-PIN Method
+--------------------------------------------------------------------------------------
+
+Language-Version:1.00ITb02
+Language: Italian
+Language-Checksum: 0x00CADE7E
+Language-svn:2567
+
+1.Add string to pop up eap warning message
+--------------------------------------------------------------------------------------
+
+Language-Version:1.00ITb01
+Language: Italian
+Language-Checksum: 0x00CAE92D 
+Language-svn:2244
+
+1.please base on FW v1.00b14.
+--------------------------------------------------------------------------------------
+

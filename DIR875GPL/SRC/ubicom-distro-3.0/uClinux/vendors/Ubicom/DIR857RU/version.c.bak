@@ -1,0 +1,6 @@
+const char VER_FIRMWARE[] = "1.01RU";
+const char HW_VERSION[] = "A1";
+const char VER_DATE[] = "21, Sep, 2012";
+const char VER_BUILD[] = "00";
+const char SVN_TAG[] = "2615";
+

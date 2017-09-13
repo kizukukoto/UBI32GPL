@@ -1,0 +1,10 @@
+This program is to detect the type of interface
+it detect two type: pppoe and dhcp.
+
+In PPPoE, I just sent a PPPoE-Discoery
+to specified interface, and expect to receive a PPPoE-PADO packet
+
+In DHCP, I sent a DHCP-Discovery packet to interface, and expect to
+receive a DHCP-offer
+
+

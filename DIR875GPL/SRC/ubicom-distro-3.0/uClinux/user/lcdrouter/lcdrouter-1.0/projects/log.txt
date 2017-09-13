@@ -1,0 +1,355 @@
+ERROR: gui/engine/app_loader.c[254]:app created function-p = 0xb70a20ca 
+ERROR: gui/desktop/desktop.c[276]:desktop dfb 0x8bb6440 
+ERROR: gui/engine/app_loader.c[258]:app pointer = 0x8bcf488 
+ERROR: gui/engine/app_loader.c[267]:app start function-p = 0xb70a2020 
+ERROR: gui/engine/app_loader.c[275]:app pause function-p = 0xb70a2070 
+ERROR: gui/engine/app_loader.c[90]:Can not find app_instance_get_shared_data method 
+ERROR: gui/engine/app_loader.c[284]:app get_shared_data function-p = (nil) 
+ERROR: gui/engine/app_loader.c[90]:Can not find app_instance_set_shared_data method 
+ERROR: gui/engine/app_loader.c[290]:app set_shared_data function-p = (nil) 
+ERROR: gui/desktop/desktop.c[129]:magic called 
+ERROR: gui/engine/app_loader.c[300]:app name = Desktop . 0xb70a1c6f 
+ERROR: gui/desktop/desktop.c[135]:magic called 
+ERROR: gui/desktop/desktop.c[141]:magic called 
+ERROR: gui/desktop/desktop.c[147]:magic called 
+ERROR: gui/desktop/desktop.c[159]:magic called 
+ERROR: gui/engine/app_loader.c[223]:app = Desktop 
+ERROR: gui/engine/app_loader.c[220]:global_app_list empty or item not found... 
+ERROR: gui/desktop/desktop.c[217]:magic called 
+ERROR: gui/desktop/desktop.c[179]:magic called 
+Main Desktop pointer1 0x8bcf488
+Main Desktop pointer2 0x8c0f670
+Main Desktop pointer3 0x8c0f670
+ERROR: gui/engine/app_loader.c[254]:app created function-p = 0xb709c7b3 
+ERROR: gui/main_menu/main_menu.c[506]:main_menu dfb 0x8bb6440 
+ERROR: gui/widgets/grid.c[537]:item_h = 85  item_w = 110 
+TRACE: gui/widgets/grid.c[548]:col=2 i=0 x=10 y=10 w=110 h=85 
+TRACE: gui/widgets/grid.c[548]:col=2 i=1 x=130 y=10 w=110 h=85 
+TRACE: gui/widgets/grid.c[548]:col=2 i=2 x=10 y=105 w=110 h=85 
+TRACE: gui/widgets/grid.c[548]:col=2 i=3 x=130 y=105 w=110 h=85 
+ERROR: gui/widgets/menuv2.c[656]:item_h = 55  item_w = 245 
+TRACE: gui/mm/menu_data.c[519]:0x8c1b2e8: allocated instance for mdi
+ 
+INFO: gui/mm/menu_data.c[226]:0x8c1c340: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb7013008 len=10 type=2
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1b308, start_offset:0 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1b308, end_offset:e 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 0 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 0 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c340: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb7013016 len=8 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1b308, start_offset:e 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1b308, end_offset:1a 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 1 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 28 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c340: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb7013022 len=9 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1b308, start_offset:1a 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1b308, end_offset:27 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 2 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 56 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c340: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb701302f len=7 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1b308, start_offset:27 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1b308, end_offset:32 
+TRACE: gui/mm/menu_data.c[519]:0x8c1c360: allocated instance for mdi
+ 
+INFO: gui/mm/menu_data.c[226]:0x8c1c3b0: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6fae008 len=7 type=2
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c380, start_offset:0 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c380, end_offset:b 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 0 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 0 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c3b0: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6fae013 len=15 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c380, start_offset:b 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c380, end_offset:1e 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6fae026 len=29 type=19
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c380, start_offset:b 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c380, end_offset:3f 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 1 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 28 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c3b0: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6fae047 len=7 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c380, start_offset:3f 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c380, end_offset:4a 
+TRACE: gui/mm/menu_data.c[519]:0x8c1c3e8: allocated instance for mdi
+ 
+INFO: gui/mm/menu_data.c[226]:0x8c1c430: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6f49008 len=14 type=2
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c408, start_offset:0 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c408, end_offset:12 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 0 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 0 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c430: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6f4901a len=4 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c408, start_offset:12 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c408, end_offset:1a 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 1 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 28 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c430: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6f49022 len=12 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c408, start_offset:1a 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c408, end_offset:2a 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 2 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 56 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 2 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 56 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 3 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 84 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c340: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb701303a len=7 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1b308, start_offset:32 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1b308, end_offset:3d 
+TRACE: gui/mm/menu_data.c[519]:0x8c1c3b0: allocated instance for mdi
+ 
+INFO: gui/mm/menu_data.c[226]:0x8c1c440: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6ee4008 len=17 type=2
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c3a0, start_offset:0 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c3a0, end_offset:15 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 0 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 0 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c460: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6ee401d len=28 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c3a0, start_offset:15 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c3a0, end_offset:35 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6ee403d len=27 type=19
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c3a0, start_offset:15 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c3a0, end_offset:54 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 1 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 28 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+INFO: gui/mm/menu_data.c[226]:0x8c1c440: allocated list_item 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6ee405c len=3 type=12
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c3a0, start_offset:54 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c3a0, end_offset:5b 
+TRACE: gui/mm/menu_data.c[424]:add metadata p=0xb6ee4063 len=27 type=19
+ 
+TRACE: gui/mm/menu_data.c[463]:added new element: 
+TRACE: gui/mm/menu_data.c[464]:start_chunk: 0x8c1c3a0, start_offset:54 
+TRACE: gui/mm/menu_data.c[465]:end_chunk: 0x8c1c3a0, end_offset:7a 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 2 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 56 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+TRACE: gui/mm/menu_data.c[264]:list_item_count: 4 
+TRACE: gui/mm/menu_data.c[268]:chunk_offset: 112 
+TRACE: gui/mm/menu_data.c[279]:list_item closed 
+ERROR: gui/widgets/grid.c[125]:menu_data added to menu instance with 4 items... 
+ERROR: gui/engine/app_loader.c[258]:app pointer = 0x8c14ed8 
+ERROR: gui/engine/app_loader.c[267]:app start function-p = 0xb709c709 
+ERROR: gui/engine/app_loader.c[275]:app pause function-p = 0xb709c759 
+ERROR: gui/engine/app_loader.c[90]:Can not find app_instance_get_shared_data method 
+ERROR: gui/engine/app_loader.c[284]:app get_shared_data function-p = (nil) 
+ERROR: gui/engine/app_loader.c[90]:Can not find app_instance_set_shared_data method 
+ERROR: gui/engine/app_loader.c[290]:app set_shared_data function-p = (nil) 
+ERROR: gui/main_menu/main_menu.c[143]:magic called 
+ERROR: gui/engine/app_loader.c[300]:app name = Main Menu . 0xb709b96f 
+ERROR: gui/main_menu/main_menu.c[149]:magic called 
+ERROR: gui/main_menu/main_menu.c[155]:magic called 
+ERROR: gui/main_menu/main_menu.c[161]:magic called 
+ERROR: gui/main_menu/main_menu.c[173]:magic called 
+ERROR: gui/engine/app_loader.c[223]:app = Main Menu 
+ERROR: gui/engine/app_loader.c[223]:app = Desktop 
+ERROR: gui/engine/app_loader.c[220]:global_app_list empty or item not found... 
+ERROR: gui/main_menu/main_menu.c[436]:magic called 
+ERROR: gui/main_menu/main_menu.c[397]:magic called 
+global list from main= 0x8c14a50
+TRACE: gui/widgets/grid.c[219]:grid_instance_draw called... 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 0  chunk_offset 0  get_list_item() = 0x8c1b328 0x8c1b318 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb7013008 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb7013008 endoffset=14 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb7013016 
+TRACE: gui/mm/menu_data.c[366]:item found 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 1  chunk_offset 28  get_list_item() = 0x8c1b344 0x8c1b318 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb7013016 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb7013008 endoffset=26 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb7013022 
+TRACE: gui/mm/menu_data.c[366]:item found 
+ERROR: gui/widgets/grid.c[158]:item draw id=1 network 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 2  chunk_offset 56  get_list_item() = 0x8c1b360 0x8c1b318 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb7013022 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb7013008 endoffset=39 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb701302f 
+TRACE: gui/mm/menu_data.c[366]:item found 
+ERROR: gui/widgets/grid.c[158]:item draw id=2 wireless 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 3  chunk_offset 84  get_list_item() = 0x8c1b37c 0x8c1b318 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb701302f 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb7013008 endoffset=50 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb701303a 
+TRACE: gui/mm/menu_data.c[366]:item found 
+ERROR: gui/widgets/grid.c[158]:item draw id=3 status 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 4  chunk_offset 112  get_list_item() = 0x8c1b398 0x8c1b318 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb701303a 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb7013008 endoffset=61 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb7013045 
+TRACE: gui/mm/menu_data.c[366]:item found 
+ERROR: gui/widgets/grid.c[158]:item draw id=4 alerts 
+TRACE: gui/widgets/grid.c[237]:grid_instance_draw success... 
+ERROR: gui/widgets/header.c[103]:header_instance_draw called... 
+ERROR: gui/widgets/scroll.c[97]:scroll_instance_draw called... 
+TRACE: gui/widgets/grid.c[219]:grid_instance_draw called... 
+TRACE: gui/widgets/grid.c[237]:grid_instance_draw success... 
+ERROR: gui/widgets/scroll.c[97]:scroll_instance_draw called... 
+ERROR: gui/widgets/scroll.c[97]:scroll_instance_draw called... 
+TRACE: gui/widgets/grid.c[219]:grid_instance_draw called... 
+TRACE: gui/widgets/grid.c[237]:grid_instance_draw success... 
+TRACE: gui/widgets/grid.c[219]:grid_instance_draw called... 
+TRACE: gui/widgets/grid.c[237]:grid_instance_draw success... 
+TRACE: gui/widgets/grid.c[219]:grid_instance_draw called... 
+TRACE: gui/widgets/grid.c[237]:grid_instance_draw success... 
+TRACE: gui/widgets/grid.c[219]:grid_instance_draw called... 
+TRACE: gui/widgets/grid.c[237]:grid_instance_draw success... 
+ERROR: gui/widgets/grid.c[350]:3. grid button pressed  
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 4  chunk_offset 112  get_list_item() = 0x8c1b398 0x8c1b318 
+Grid item selected 4
+TRACE: gui/widgets/grid.c[219]:grid_instance_draw called... 
+TRACE: gui/widgets/grid.c[237]:grid_instance_draw success... 
+ERROR: gui/widgets/header.c[103]:header_instance_draw called... 
+INFO: gui/engine/animation.c[145]:animation direction = 0 
+TRACE: gui/engine/animation.c[53]:render to animation  dest= 0x8c4a8e0  source = 0x8c15af0  side=1 
+TRACE: gui/engine/animation.c[156]:Create animation = 0x8c4a6c8 
+ERROR: gui/widgets/menuv2.c[130]:menu_data added to menu instance with 2 items... 
+ERROR: gui/widgets/header.c[103]:header_instance_draw called... 
+TRACE: gui/engine/animation.c[53]:render to animation  dest= 0x8c4a8e0  source = 0x8c15af0  side=2 
+TRACE: gui/engine/animation.c[71]:Do animation dest = 0x8c15af0  w = 320  h = 240 
+TRACE: gui/engine/animation.c[79]:Do animation = 0x8c4a6c8  loop = 8 
+ERROR: gui/widgets/menuv2.c[241]:menu_instance_draw called... 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 0  chunk_offset 0  get_list_item() = 0x8c27998 0x8c1c418 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb6ee4008 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb6ee4008 endoffset=21 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb6ee401d 
+TRACE: gui/mm/menu_data.c[366]:item found 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 1  chunk_offset 28  get_list_item() = 0x8c279b4 0x8c1c418 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb6ee401d 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb6ee4008 endoffset=84 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb6ee405c 
+TRACE: gui/mm/menu_data.c[366]:item found 
+ERROR: gui/widgets/menuv2.c[177]:item draw id=1 Yes - FW Upgrade to Rev 1.1 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 1  chunk_offset 28  get_list_item() = 0x8c279b4 0x8c1c418 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb6ee401d 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb6ee4008 endoffset=84 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb6ee405c 
+WARN: gui/mm/menu_data.c[375]:item not found 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 2  chunk_offset 56  get_list_item() = 0x8c279d0 0x8c1c418 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb6ee405c 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb6ee4008 endoffset=122 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb6ee4082 
+TRACE: gui/mm/menu_data.c[366]:item found 
+ERROR: gui/widgets/menuv2.c[177]:item draw id=2 No 
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 2  chunk_offset 56  get_list_item() = 0x8c279d0 0x8c1c418 
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb6ee405c 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb6ee4008 endoffset=122 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb6ee4082 
+WARN: gui/mm/menu_data.c[375]:item not found 
+TRACE: gui/mm/menu_data.c[313]:function call 
+ERROR: gui/mm/menu_data.c[315]:Null list_item instance 
+ERROR: gui/widgets/menuv2.c[259]:menu_instance_draw success... 
+ERROR: gui/widgets/header.c[103]:header_instance_draw called... 
+ERROR: gui/widgets/menuv2.c[241]:menu_instance_draw called... 
+ERROR: gui/widgets/menuv2.c[259]:menu_instance_draw success... 
+ERROR: gui/widgets/header.c[103]:header_instance_draw called... 
+ERROR: gui/widgets/scroll.c[97]:scroll_instance_draw called... 
+ERROR: gui/widgets/menuv2.c[241]:menu_instance_draw called... 
+ERROR: gui/widgets/menuv2.c[259]:menu_instance_draw success... 
+ERROR: gui/widgets/menuv2.c[241]:menu_instance_draw called... 
+ERROR: gui/widgets/menuv2.c[259]:menu_instance_draw success... 
+ERROR: gui/widgets/menuv2.c[241]:menu_instance_draw called... 
+ERROR: gui/widgets/menuv2.c[259]:menu_instance_draw success... 
+ERROR: gui/widgets/menuv2.c[241]:menu_instance_draw called... 
+ERROR: gui/widgets/menuv2.c[259]:menu_instance_draw success... 
+ERROR: gui/widgets/menuv2.c[473]:0. menuv2 button pressed  
+TRACE: gui/mm/menu_data.c[295]:chunk_num 0 
+TRACE: gui/mm/menu_data.c[306]:index 1  chunk_offset 28  get_list_item() = 0x8c279b4 0x8c1c418 
+app_list item selected 1
+TRACE: gui/mm/menu_data.c[313]:function call 
+TRACE: gui/mm/menu_data.c[321]:data_ptr=0xb6ee401d 
+TRACE: gui/mm/menu_data.c[351]:mempointer=0xb6ee4008 endoffset=84 
+TRACE: gui/mm/menu_data.c[353]:end_ptr=0xb6ee405c 
+TRACE: gui/mm/menu_data.c[366]:item found 
+global list 0x8c14a50
+ERROR: gui/engine/app_loader.c[175]:check app Main Menu with ../modules/dummy_return.so 
+ERROR: gui/engine/app_loader.c[175]:check app Desktop with ../modules/dummy_return.so 
+ERROR: gui/engine/app_loader.c[172]:global_app_list empty or item not found... 
+ERROR: gui/engine/app_loader.c[254]:app created function-p = 0xb6bf82db 
+ERROR: dummy_return/dummy_return.c[543]:network status dfb 0x8bb6440 
+ERROR: gui/engine/app_loader.c[258]:app pointer = 0x8c51968 
+ERROR: gui/engine/app_loader.c[267]:app start function-p = 0xb6bf8231 
+ERROR: gui/engine/app_loader.c[275]:app pause function-p = 0xb6bf8281 
+ERROR: dummy_return/dummy_return.c[158]:magic called 
+ERROR: gui/engine/app_loader.c[300]:app name = network_status . 0xb6bf741f 
+ERROR: dummy_return/dummy_return.c[164]:magic called 
+ERROR: dummy_return/dummy_return.c[170]:magic called 
+ERROR: dummy_return/dummy_return.c[176]:magic called 
+ERROR: dummy_return/dummy_return.c[188]:magic called 
+ERROR: gui/engine/app_loader.c[223]:app = network_status 
+ERROR: gui/engine/app_loader.c[223]:app = Main Menu 
+ERROR: gui/engine/app_loader.c[223]:app = Desktop 
+ERROR: gui/engine/app_loader.c[220]:global_app_list empty or item not found... 
+ERROR: gui/engine/app_loader.c[175]:check app network_status with ../modules/dummy_return.so 
+ERROR: gui/engine/app_loader.c[177]:App found ../modules/dummy_return.so 
+ERROR: gui/main_menu/main_menu.c[444]:magic called 
+ERROR: gui/main_menu/main_menu.c[40

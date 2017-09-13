@@ -1,0 +1,502 @@
+(*) Direct/Test: Application starting...
+loop 14 times
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0804AC50
+real free:08059898
+real free:08059460
+real free:08059040
+real free:08058C20
+real free:08058800
+real free:080583E0
+real free:08057FC8
+real free:08057B90
+real free:08057770
+real free:08057350
+(*) Direct/Thread: Started 'X11 Input' (19359) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+relloc: 1792 = cap:64 * size:28
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+(*) Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+DirectGetInterface 306: countinue leak
+IDirectFB_CreateFont:1220
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+(*) Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+DirectGetInterface 306: countinue leak
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:08058CA8
+real free:08058888
+real free:08058450
+real free:08058030
+real free:0807CC50
+real free:0807C830
+real free:08061BC8
+real free:08061650
+real free:0808ADA0
+real free:0804AF88
+real free:08061630
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:08061530
+real free:08061110
+real free:080630B0
+real free:0804D9A8
+real free:08058408
+real free:08061C40
+real free:0808AE38
+real free:0804B020
+real free:08059AF0
+real free:0804C620
+real free:080577A0
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0807CD00
+real free:0807C8E0
+real free:08061BF0
+real free:08061AA0
+real free:0808AE98
+real free:0808AE30
+real free:08057788
+real free:080562E8
+real free:08059AF0
+real free:0804CA98
+real free:08057F68
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0804D9A8
+real free:080583D0
+real free:080613F8
+real free:08060FD8
+real free:08061730
+real free:0804CA98
+real free:0806EF40
+real free:08058460
+real free:08059AF0
+real free:080602A8
+real free:080562D0
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0807CFB0
+real free:08061AF8
+real free:08057760
+real free:0804AFC8
+real free:080587F0
+real free:0807C968
+real free:0807C8D0
+real free:0804CE20
+real free:08059AF0
+real free:0805A658
+real free:0804D9E8
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0804C7C0
+real free:08058830
+real free:0807C8E0
+real free:080576D8
+real free:08058730
+real free:080586C8
+real free:080585D8
+real free:08061708
+real free:080585B8
+real free:08060460
+real free:080616E8
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0807F0E0
+real free:08061B30
+real free:080585D8
+real free:080585B8
+real free:0806EEB8
+real free:0804B208
+real free:0807F2F8
+real free:0804B0F0
+real free:0807F238
+real free:0804CC08
+real free:0804AFF8
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0806B6F8
+real free:080618B8
+real free:0804B1D0
+real free:080616E8
+real free:080615E8
+real free:0804D730
+real free:0804D678
+real free:080585B8
+real free:08057200
+real free:0806EC30
+real free:080571E0
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0807F2F8
+real free:0807F2D8
+real free:0804F570
+real free:0806ECC0
+real free:08059010
+real free:08058518
+real free:08057670
+real free:0804BEF0
+real free:0804BED0
+real free:0807F108
+real free:0804CD38
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0804F470
+real free:0807C940
+real free:0804CD38
+real free:0806ED20
+real free:08059078
+real free:0808AD30
+real free:0807CE38
+real free:0805A658
+real free:0804DAB8
+real free:0804C2B0
+real free:08061C38
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0806ED20
+real free:0807C940
+real free:0807CEE0
+real free:0807CEC0
+real free:0808AD30
+real free:08086968
+real free:0804CD40
+real free:08060410
+real free:0804DAF0
+real free:08067738
+real free:08061408
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:08061730
+real free:08054FB8
+real free:0806EE70
+real free:0806EE50
+real free:08057F68
+real free:0804C2C0
+real free:08061C40
+real free:08061060
+real free:08061C20
+real free:080613F0
+real free:0807CE40
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:080869F0
+real free:08086988
+real free:0804D690
+real free:0804CCD0
+real free:08061C28
+real free:08054F58
+real free:0807CE30
+real free:08061410
+real free:08057760
+real free:0808ACF0
+real free:0804B898
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+(!) Direct/Mem: Not freeing unknown 0x804a558 (log) from [log.c:139 in direct_log_destroy()] - corrupt/incomplete list?
+Local memory allocations remaining (59): 
+    112 bytes at 0x804aba8 allocated in direct_thread_set_name (thread.c: 369)
+     12 bytes at 0x804b228 allocated in direct_thread_set_name (thread.c: 386)
+     44 bytes at 0x804b250 allocated in direct_modules_explore_directory (modules.c: 232)
+     22 bytes at 0x804c2e8 allocated in direct_modules_explore_directory (modules.c: 240)
+      7 bytes at 0x804c680 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x804c690 allocated in direct_modules_explore_directory (modules.c: 232)
+     21 bytes at 0x804c6c0 allocated in direct_modules_explore_directory (modules.c: 240)
+      6 bytes at 0x804cab8 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x804cac8 allocated in direct_modules_explore_directory (modules.c: 232)
+     19 bytes at 0x804caf8 allocated in direct_modules_explore_directory (modules.c: 240)
+      4 bytes at 0x804d598 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x8057320 allocated in direct_modules_explore_directory (modules.c: 232)
+     25 bytes at 0x8057350 allocated in direct_modules_explore_directory (modules.c: 240)
+      8 bytes at 0x804b048 allocated in direct_modules_register (modules.c: 134)
+    372 bytes at 0x8061c60 allocated in gAcquire (generic.c: 6927)
+     40 bytes at 0x8063788 allocated in DirectRegisterInterface (interface.c: 88)
+     84 bytes at 0x80637b8 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x8063c00 allocated in DirectRegisterInterface (interface.c: 88)
+     82 bytes at 0x8063c30 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x80643a8 allocated in DirectRegisterInterface (interface.c: 88)
+     80 bytes at 0x80643d8 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x806ef60 allocated in DirectRegisterInterface (interface.c: 88)
+    100 bytes at 0x8070e40 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x80712b8 allocated in DirectRegisterInterface (interface.c: 88)
+     98 bytes at 0x80712e8 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x8071a70 allocated in DirectRegisterInterface (interface.c: 88)
+     99 bytes at 0x8071aa0 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x8072268 allocated in DirectRegisterInterface (interface.c: 88)
+     98 bytes at 0x8072298 allocated in DirectGetInterface (interface.c: 272)
+    372 bytes at 0x8078630 allocated in gAcquire (generic.c: 6927)
+    252 bytes at 0x805a790 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x808aeb8 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8086510 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8086628 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8073188 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8054fd8 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x806e818 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x806e930 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8086080 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80861a8 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8054428 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x807f318 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x804eb90 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x806d788 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8069818 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8065128 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x806c868 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80851e0 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x80847d8 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x808fd28 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x80506b0 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80673d8 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x80760c8 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80761e0 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8062328 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8066020 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x80540c8 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80831e0 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+   4321 bytes at 0x80662c8 allocated in main (main.c: 98)
+type any key to close lite
+type any key to exit
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_default.so leak foce?
+(-) [Main Thread     326.882] (19358) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x8063788 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_dgiff.so leak foce?
+(-) [Main Thread     326.882] (19358) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x8063c00 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_ft2.so leak foce?
+(-) [Main Thread     326.882] (19358) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x80643a8 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_dfiff.so leak foce?
+(-) [Main Thread     326.882] (19358) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x806ef60 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_gif.so leak foce?
+(-) [Main Thread     326.882] (19358) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x80712b8 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_jpeg.so leak foce?
+(-) [Main Thread     326.882] (19358) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x8071a70 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_png.so leak foce?
+(-) [Main Thread     326.882] (19358) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x8072268 'impl'

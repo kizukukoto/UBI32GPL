@@ -1,0 +1,32 @@
+Project Name: DIR-857
+HW version: A1
+Region code: RU
+WLAN Domain: 0x30/ETSI
+Channel List 2.4G: 1, 2, 3, 4, 5, 6, 7, 8 ,9, 10, 11,12,13
+Firmware Query URL: http://wrpd.dlink.com.tw/router/firmware/query.asp?model=DIR-857_Ax_Default
+Flash size: 16MB
+DRAM size: 64MB 
+Algorithm: New Algorithm
+Reference Mac: Wan Mac.
+
+======================================================================================
+Firmware Version: 1.01RUB01
+Firmware Date: 25, Sep, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x5A117C2D
+SVN Revision: 2640
+IPv6 version: 2.01R_UNH1.00B8
+
+1. add Russia mode
+
+
+Firmware Version: 1.01RU
+Firmware Date: 21, Sep, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x59EF8BB6
+SVN Revision: 2615
+IPv6 version: 2.01R_UNH1.00B8
+
+1. first release.

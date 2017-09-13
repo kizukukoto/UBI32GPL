@@ -1,0 +1,15 @@
+-------
+ ABOUT 
+-------
+
+fdpichdr is a small utility akin to the flthdr utility; change some aspects
+of the FDPIC ELF header on the fly.  For example, the default stack size is
+about 0x20000 bytes, but perhaps you want to make it smaller or larger.
+
+
+------
+ HELP
+------
+
+Support: http://blackfin.uclinux.org/gf/project/toolchain/forum/
+Bugs: http://blackfin.uclinux.org/gf/project/toolchain/tracker/

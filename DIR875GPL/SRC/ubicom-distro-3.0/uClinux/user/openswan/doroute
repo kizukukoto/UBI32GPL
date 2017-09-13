@@ -1,0 +1,53 @@
+#! /bin/sh
+
+#
+# spin off from the original_updown
+#
+        st=0
+        parms="$PLUTO_PEER_CLIENT"
+        parms2=
+        if [ -n "$PLUTO_NEXT_HOP" ] && [ "$PLUTO_NEXT_HOP" != "$PLUTO_PEER" ]
+        then
+           parms2="via $PLUTO_NEXT_HOP"
+        fi
+        parms2="$parms2 dev ${PLUTO_INTERFACE%:*}"
+        parms3="$IPROUTEARGS"
+        if [ -n "$IPROUTETABLE" ]
+        then
+            parms3="$parms3 table $IPROUTETABLE"
+        fi
+
+        if [ -z "$PLUTO_MY_SOURCEIP" ] && [ -n "$DEFAULTSOURCE" ]
+        then
+            PLUTO_MY_SOURCEIP="${DEFAULTSOURCE%/*}"
+        fi
+
+        if test "$1" = "add" -a -n "$PLUTO_MY_SOURCEIP"
+        then
+            addsource
+            parms3="$parms3 src ${PLUTO_MY_SOURCEIP%/*}"
+        fi
+
+        case "$PLUTO_PEER_CLIENT" in
+        "0.0.0.0/0")
+                # opportunistic encryption work around
+                # need to provide route that eclipses default, without
+                # replacing it.
+                it="ip route $1 0.0.0.0/1 $parms2 $parms3 &&
+                        ip route $1 128.0.0.0/1 $parms2 $parms3"
+                ;;
+        *)      it="ip route $1 $parms $parms2 $parms3"
+                ;;
+        esac
+        oops="`eval $it 2>&1`"
+        st=$?
+        if test " $oops" = " " -a " $st" != " 0"
+        then
+            oops="silent error, exit status $st"
+        fi
+        if test " $oops" != " " -o " $st" != " 0"
+        then
+            echo "$0: doroute \`$it' failed ($oops)" >&2
+        fi
+        return $st
+

@@ -1,0 +1,11 @@
+Package: openvpn
+Version: 2.1_rc15-1
+Depends: kmod-tun, libopenssl, liblzo
+Provides: 
+Source: package/openvpn
+Section: net
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 495974
+Description:  Open source VPN solution using SSL

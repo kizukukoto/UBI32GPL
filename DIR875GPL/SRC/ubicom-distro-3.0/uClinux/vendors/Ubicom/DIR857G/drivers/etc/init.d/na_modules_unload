@@ -1,0 +1,76 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+SYSFS=/sys/devices/system
+IPV4_MODULE=ubicom_na_connection_manager_ipv4
+IPV6_MODULE=ubicom_na_connection_manager_ipv6
+IPV4_SYSFS_PATH=${SYSFS}/${IPV4_MODULE}/${IPV4_MODULE}0
+IPV6_SYSFS_PATH=${SYSFS}/${IPV6_MODULE}/${IPV6_MODULE}0
+
+MODULE=$1
+if [ -z $MODULE ]; then
+	MODULE=all;
+fi
+
+#
+# threaded_module_unload(module_name, terminate_file)
+#	Terminates the module specified.  The module is threaded meaning it has one or more kernel threads to be stopped.
+# Unloading a threaded module is more tricky - we have to signal to terminate the threads, wait for the thread to end, then unload
+#
+threaded_module_unload()
+{
+	MODULE_NAME=$1
+	TERMINATE_FILE=$2
+
+	echo Unloading module $MODULE_NAME
+
+	#
+	# Signal to the module to begin shutdown
+	#
+	echo 1 > $TERMINATE_FILE
+
+	#
+	# Wait for the $TERMINATE_FILE to be removed - this means the threads have stopped and unloaded sysfs files.
+	#
+	echo Waiting for $MODULE_NAME to unload
+	until [  ! -e $TERMINATE_FILE ]; do
+		sleep 1
+		echo -n .
+	done
+	echo Module $MODULE_NAME unloaded
+
+	#
+	# Now unload the module
+	#
+	rmmod $MODULE_NAME
+}
+
+stop_and_unload()
+{
+	MODULE_NAME=$1
+	SYSFS_PATH=$2
+
+	#
+	# Stop the module
+	#
+	echo 1 > $SYSFS_PATH/stop
+
+	threaded_module_unload $MODULE_NAME $SYSFS_PATH/terminate
+}
+
+case $MODULE in
+	ipv4)
+		stop_and_unload $IPV4_MODULE $IPV4_SYSFS_PATH
+	;;
+	ipv6)
+		stop_and_unload $IPV6_MODULE $IPV6_SYSFS_PATH
+	;;
+	all)
+		stop_and_unload $IPV4_MODULE $IPV4_SYSFS_PATH
+		stop_and_unload $IPV6_MODULE $IPV6_SYSFS_PATH
+	;;
+	*)
+		echo "Wrong parameter MODULE:$MODULE"
+	;;
+esac
+

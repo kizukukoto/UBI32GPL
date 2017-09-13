@@ -1,0 +1,116 @@
+#! /bin/sh
+
+#
+# This is just an simple example shwoing how to start pluto with different types of setups.
+# It is limited to one connection type a time and is not suitable for real openswan
+# configuration management.
+#
+
+if [ $# -lt 1 ]; then
+        echo "Enter connection type and parameters"
+        echo "host-to-host : left_ip right_ip"
+        echo "net-to-host  : left_ip right ip left_net(a.b.c.d/x) left_src"
+        echo "nat-to-host  : left_ip right ip left_net(a.b.c.d/x) left_src"
+        echo "net-to-net   : left_ip right ip left_net(a.b.c.d/x) left_src right_net(e.f.g.h/y) right_src"
+	exit 2
+fi
+
+# Please change to null in production
+PLUTO_DBG=${PLUTO_DBG- --debug-all --stderrlog}
+WHACK_DBG=${WHACK_DBG- --debug-all}
+
+#
+# Environment variables override the defaults
+#
+CONN_NAME=${CONN_NAME-$1}
+WAN_IF=${WAN_IF-eth0.1}
+SEC_CTL_PATH=${SEC_CTL_PATH-/var/run/pluto}
+SEC_FILE=${SEC_FILE-/etc/ipsec.secrets}
+SEC_AUTH=${SEC_AUTH- --psk}
+
+LEFT_IKEPORT=${LEFT_IKEPORT-500}
+RIGHT_IKEPORT=${RIGHT_IKEPORT-500}
+
+#
+# Prepare the directory to hold pid file
+#
+mkdir -p $SEC_CTL_PATH 
+
+#
+# Force ip forward
+#
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+#
+# Derive variables used in setup
+# 
+CONN_TYPE=$1
+LEFT_IP=$2
+RIGHT_IP=$3
+
+PLUTO_OPTS="--nofork --ikeport $LEFT_IKEPORT --secretsfile $SEC_FILE --ctlbase $SEC_CTL_PATH/pluto --interface $WAN_IF $PLUTO_DBG"
+
+WHACK_LEFT_OPTS="--host $LEFT_IP --ikeport $LEFT_IKEPORT"
+WHACK_RIGHT_OPTS="--host $RIGHT_IP --ikeport $RIGHT_IKEPORT"
+
+#
+# Customize variables based on connection type
+#
+if [ "$CONN_TYPE" = "host-to-host" ]; then
+	WHACK_LEFT_OPTS="$WHACK_LEFT_OPTS --client $LEFT_IP/32"
+	WHACK_RIGHT_OPTS="$WHACK_RIGHT_OPTS --client $RIGHT_IP/32"
+
+elif [ "$CONN_TYPE" = "net-to-host" ]; then
+	LEFT_NET=$4
+	LEFT_SRC=$5
+	WHACK_LEFT_OPTS="$WHACK_LEFT_OPTS --client $LEFT_NET --srcip $LEFT_SRC"
+	WHACK_RIGHT_OPTS="$WHACK_RIGHT_OPTS --client $RIGHT_IP/32"
+
+elif [ "$CONN_TYPE" = "nat-to-host" ]; then
+	LEFT_NET=$4
+	LEFT_SRC=$5
+	## Do not MASQ or NAT packets to be tunneled
+	## !! remove this in startRGW: # iptables -t nat -A POSTROUTING -o eth0 -s 10.0.0.0/24 -j MASQUERADE
+	iptables -t nat -A POSTROUTING -o $WAN_IF -s $LEFT_NET -d ! $RIGHT_IP/32 -j MASQUERADE
+
+	PLUTO_OPTS="$PLUTO_OPTS --nat_traversal --force_keepalive"
+	WHACK_LEFT_OPTS="$WHACK_LEFT_OPTS --client $LEFT_NET --srcip $LEFT_SRC"
+	WHACK_RIGHT_OPTS="$WHACK_RIGHT_OPTS --client $RIGHT_IP/32"
+
+elif [ "$CONN_TYPE" = "net-to-net" ]; then
+	echo "not ready yet"
+	exit 0
+
+else
+	echo "bad connection type"
+	exit -1
+
+fi 
+
+#
+# Assemble the final options used by whack
+#
+WHACK_OPTS="--name $CONN_NAME --ipv4 $WHACK_LEFT_OPTS --to $WHACK_RIGHT_OPTS $SEC_AUTH --encrypt --pfs $WHACK_DBG"
+
+#
+# All options available, kick off the daemon
+#
+echo PLUTO_OPTS=$PLUTO_OPTS
+echo WHACK_OPTS=$WHACK_OPTS
+
+pluto $PLUTO_OPTS &
+sleep 2
+
+#
+# Tell pluto to accept one connection. User may create more than one connections using whack.
+#
+whack $WHACK_OPTS
+sleep 2
+whack --listen &
+sleep 2
+
+#
+# Initiate the secured connection.
+#
+whack --name $CONN_NAME --initiate &
+

@@ -1,0 +1,667 @@
+object TProjectNode
+  Name = 'Project'
+  Description = 'The repository of configuration options for a Ubicom32 project.'
+  DefineName = 'Project'
+  FileName = 
+    '/scratch2/twu/DIR-857-36Kernel/ubicom-distro-3.0/ultra/projects/' +
+    'bootexec/config/ultra8k.lpj'
+  Timestamp = '0'
+  CheckSum = '-1840635720'
+  Lists = <
+    item
+      List.Strings = (
+        '0'
+        '1'
+        '2'
+        '3'
+        '4'
+        '5'
+        '6'
+        '7'
+        '8'
+        '9'
+        '10'
+        '11'
+        '12'
+        '13'
+        '14'
+        '15'
+        '16'
+        '17'
+        '18'
+        '19'
+        '20'
+        '21'
+        '22'
+        '23'
+        '24'
+        '25'
+        '26'
+        '27'
+        '28'
+        '29'
+        '30'
+        '31')
+      ListName = 'ALL_PINS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        'PG0'
+        'PG1'
+        'PG2'
+        'PG3'
+        'PG4'
+        'PG5'
+        'RA'
+        'RB'
+        'RC'
+        'RD'
+        'RE'
+        'RF'
+        'RG'
+        'RH'
+        'RI'
+        'RJ'
+        'RLATCH')
+      ListName = 'INPUT_PORTS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        'PG0'
+        'PG1'
+        'PG2'
+        'PG3'
+        'PG4'
+        'PG5'
+        'RA'
+        'RB'
+        'RC'
+        'RD'
+        'RE'
+        'RF'
+        'RG'
+        'RH'
+        'RI'
+        'RJ'
+        'RLATCH')
+      ListName = 'OUTPUT_PORTS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        'PG0'
+        'PG1'
+        'PG2'
+        'PG3'
+        'PG4'
+        'PG5'
+        'RA')
+      ListName = 'INTERRUPT_PORTS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        'PG0'
+        'PG1'
+        'PG2'
+        'PG3'
+        'PG4'
+        'PG5'
+        'RA'
+        'RB'
+        'RC'
+        'RD'
+        'RE'
+        'RF'
+        'RG'
+        'RH'
+        'RI'
+        'RJ'
+        'RLATCH')
+      ListName = 'ALL_PORTS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        '4'
+        '5'
+        '6'
+        'INT_RB6'
+        'INT_RC12'
+        'INT_RC13'
+        'INT_RD16'
+        'INT_RE3'
+        'INT_RF3'
+        'INT_RG31'
+        'INT_RH14'
+        'INT_RH15')
+      ListName = 'INTERRUPT_PINS'
+    end
+    item
+      List.Strings = (
+        'ExactSpacing'
+        'MinMIPSMinSpacing'
+        'MinMIPSMaxSpacing'
+        'MaxMIPSMinSpacing'
+        'MaxMIPSMaxSpacing'
+        'AvailableMIPS')
+      ListName = 'HRT_ALLOC_METHOD_LIST'
+    end
+    item
+      List.Strings = (
+        'Disabled (0)'
+        'Error (1)'
+        'Warn (2)'
+        'Info (3)'
+        'Trace (4)')
+      ListName = 'DEBUG_MACRO_LIST'
+    end>
+  object TSectionNode
+    Name = 'Global Settings'
+    Description = 'Settings that affect the entire project.'
+    DefineName = 'SECTION_GLOBAL_SETTINGS'
+    object TYesNoNode
+      Name = 'Enable Global Debug'
+      DefineName = 'DEBUG'
+      Value = True
+      Modified = True
+      DefaultValue = False
+    end
+    object TExpressionNode
+      Name = 'Project Name'
+      DefineName = 'PROJECT_NAME'
+      Value = 'ultra'
+      Modified = True
+      DefaultValue = 'Project'
+    end
+    object TDirectoryNode
+      Name = 'SDK directory'
+      DefineName = 'SDK_DIR'
+      Value = '..\..\..'
+      Modified = True
+      DefaultValue = '/scratch2/twu/DIR-857-36Kernel/ubicom-distro-3.0/ultra'
+    end
+    object TStringNode
+      Name = 'Compiler Flags'
+      DefineName = 'GLOBAL_CFLAGS'
+      Value = '-O2 -g -fgnu89-inline -fleading-underscore'
+      Modified = True
+      DefaultValue = '-Os -g'
+    end
+    object TExpressionNode
+      Name = 'Architecture'
+      DefineName = 'ARCH'
+      Value = 'IP3K'
+    end
+  end
+  object TPackageNode
+    Name = 'Application'
+    Description = 'Application Configuration'
+    PackageDependencies.Strings = (
+      'IPDEVTREE'
+      'IPGDB'
+      'IPINTERRUPT'
+      'IPLIBC'
+      'IPETHERNETDMA'
+      'IPONESHOT')
+    DefineName = 'APPLICATION'
+    object TYesNoNode
+      Name = 'DepsOnlyMode Control'
+      Description = 'Check this box if the project should use "deps-only" mode.'
+      DefineName = 'USE_DEPS_ONLY_MODE'
+      ConfigType = kNone
+      Value = True
+    end
+    object TYesNoNode
+      Name = 'Runtime Debugging'
+      Description = 'Enable debug output from the project'#39's main application.'
+      DefineName = 'APPLICATION_DEBUG'
+      ConfigType = kPrivateHeaderFile
+      Value = True
+      object TListNode
+        Name = 'Compiled Debug Messages'
+        Description = 'Debug messages at this severity or higher will be compiled in.'
+        DefineName = 'DEBUG_PKG_LVL_MESSAGES'
+        ConfigType = kPrivateHeaderFile
+        Value = 'Info (3)'
+        ListName = 'DEBUG_MACRO_LIST'
+      end
+    end
+    object TStringNode
+      Name = 'Firmware Identity String'
+      Description = 
+        'Firmware Identity String used to validate firmware.  It is defin' +
+        'ed in the top-level Makefile as CONFIG_IDENTITY_STRING.'
+      DefineName = 'APP_IDENTITY_STRING'
+      ConfigType = kAllPublicFiles
+      DefineIsValue = True
+    end
+    object TExpressionNode
+      Name = 'Reserved sectors in flash for the bootloader'
+      Description = 
+        'This should match the length of the first partition of the mtdpa' +
+        'rts= entry in the kernel command line.'
+      DefineName = 'APP_BOOTLOADER_RESERVED_SPACE_IN_SECTORS'
+      ConfigType = kAllPublicFiles
+      Value = '2'
+    end
+    object TExpressionNode
+      Name = 'Reserved kilobytes for SNV in bootloader sectors'
+      DefineName = 'APP_SNV_RESERVED_KB'
+      ConfigType = kAllPublicFiles
+      Value = '1'
+    end
+    object TExpressionNode
+      Name = 'Reserved sectors in flash for the kernel'
+      Description = 
+        'This should match the length of the second partition of the mtdp' +
+        'arts= entry in the kernel command line.You can leave this as 0 a' +
+        'nd the kernel will automatically determine it'
+      DefineName = 'APP_KERNEL_RESERVED_SPACE_IN_SECTORS'
+      ConfigType = kAllPublicFiles
+      Value = '0'
+    end
+    object TSectionNode
+      Name = 'uClinux'
+      object TStringNode
+        Name = 
+          'Kernel command line parameter extension for root file systems ot' +
+          'her than initramfs'
+        DefineName = 'APP_BOOTARGS_EXTRA'
+        ConfigType = kAllPublicFiles
+        Value = 'root=/dev/mtdblock2 rootfstype=squashfs,jffs2 init=/init'
+      end
+      object TStringNode
+        Name = 'Kernel command line'
+        DefineName = 'APP_BOOTARGS'
+        ConfigType = kAllPublicFiles
+        Value = 
+          'mtdparts=ubicom32fc.0:128k(bootloader)ro,7616k(upgrade),384k(jff' +
+          's2),64k(fw_env)'
+      end
+      object TExpressionNode
+        Name = 'uClinux memory start address offset'
+        DefineName = 'APP_UCLINUX_MEM_START_ADDR'
+        ConfigType = kAllPublicFiles
+        Value = '0x00100000'
+      end
+    end
+    object TExpressionNode
+      Name = 'Board Name'
+      DefineName = 'AP_BOARD_NAME'
+      ConfigType = kAllPublicFiles
+      OverrideDefine = 'AP_BOARD_NAME2'
+      Value = 'UBICOM32_NULL_BOARD'
+    end
+    object TExpressionNode
+      Name = 'Board Name'
+      DefineName = 'AP_BOARD_NAME2'
+      ConfigType = kAllPublicFiles
+      DefineIsValue = True
+      Value = 'UBICOM32_NULL_BOARD'
+    end
+    object TStringNode
+      Name = 'Board Revision'
+      DefineName = 'AP_BOARD_REVISION'
+      ConfigType = kPrivateHeaderFile
+      Value = 'NULL'
+    end
+    object TRadioNode
+      Name = 'Build Bootexec'
+      PackageDependencies.Strings = (
+        'IPBOOTDECOMPRESSOR')
+      DefineName = 'BOOTEXEC_ULTRA'
+      ConfigType = kAllPublicFiles
+      Value = True
+      object TYesNoNode
+        Name = 'Enable U-Boot'
+        Description = 'Check this box to enable u-boot.'
+        DefineName = 'APP_UBOOT_ENABLE'
+        ConfigType = kAllPublicFiles
+        Value = True
+        object TStringNode
+          Name = 'U-Boot Path'
+          DefineName = 'APP_UBOOT_DIR'
+          ConfigType = kMakeFile
+        end
+        object TExpressionNode
+          Name = 'U-Boot RAM image size'
+          DefineName = 'APP_UBOOT_MEM_SIZE'
+          ConfigType = kAllPublicFiles
+          Value = '0x100000'
+        end
+        object TExpressionNode
+          Name = 'Environment variables space size in sectors'
+          DefineName = 'APP_UBOOT_ENV_SIZE_IN_SECTORS'
+          ConfigType = kAllPublicFiles
+          Value = '1'
+        end
+      end
+    end
+    object TRadioNode
+      Name = 'Build Main Exec'
+      DefineName = 'MAINEXEC_ULTRA'
+      ConfigType = kAllPublicFiles
+    end
+  end
+  object TBoardNode
+    Name = 'IP8100 DIR857 Board'
+    Description = 
+      'IP8100 RGW Board'#13#10#13#10'Supports the following boards:'#13#10#9'8008-0110 R' +
+      'ev 1.0'#9'IP8K RGW Board'
+    PackageDependencies.Strings = (
+      'IPPCIE'
+      'IPSDTIO'
+      'IPRESETOUTPUT')
+    DefineName = 'Board'
+    FileName = 
+      '/scratch2/twu/DIR-857-36Kernel/ubicom-distro-3.0/ultra/boards/IP' +
+      '8100_DIR857.brd'
+    object TSectionNode
+      Name = 'Project'
+      object TExpressionNode
+        Name = 'Architecture'
+        DefineName = 'BRD_ARCH'
+        Value = 'IP3K'
+      end
+    end
+  end
+  object TPackageNode
+    Name = 'ipDSR - Device Service Routine Support'
+    DefineName = 'IPDSR'
+    object TExpressionNode
+      Name = 'DSR Stack Size'
+      DefineName = 'DSR_STACK_SIZE'
+      Value = '1024'
+      Modified = True
+      DefaultValue = '512'
+    end
+  end
+  object TPackageNode
+    Name = 'ipEthernetDMA - On-Chip Ethernet Driver VP support'
+    DefineName = 'IPETHERNETDMA'
+    object TYesNoNode
+      Name = 'MII Management I/F'
+      DefineName = 'IPETHERNET_MII_MGMT_ENABLE'
+      Value = True
+      Modified = True
+      DefaultValue = False
+      object TListNode
+        Name = 'MDIO port'
+        DefineName = 'IPETHERNET_MII_MDIO_PORT'
+        Value = 'PG3'
+        Modified = True
+        DefaultValue = 'unspecified'
+      end
+      object TListNode
+        Name = 'MDIO pin'
+        DefineName = 'IPETHERNET_MII_MDIO_PIN'
+        Value = '7'
+        Modified = True
+        DefaultValue = '0'
+      end
+      object TListNode
+        Name = 'MDC port'
+        DefineName = 'IPETHERNET_MII_MDC_PORT'
+        Value = 'PG3'
+        Modified = True
+        DefaultValue = 'unspecified'
+      end
+      object TListNode
+        Name = 'MDC pin'
+        DefineName = 'IPETHERNET_MII_MDC_PIN'
+        Value = '4'
+        Modified = True
+        DefaultValue = '0'
+      end
+      object TExpressionNode
+        Name = 'Clock cycle time'
+        DefineName = 'IPETHERNET_MII_DUTY_CYCLE_ns'
+        Value = '100'
+        Modified = True
+        DefaultValue = '150'
+      end
+    end
+    object TTemplateNode
+      Name = 'Multiple Instances'
+      DefineName = 'IPETHERNET_MI_ENABLED'
+      object TYesNoNode
+        Name = 'Enable ethernet instance'
+        DefineName = 'IPETHERNET_INSTANCE_ENABLED'
+        Value = True
+        object TRadioNode
+          Name = 'Use port RH'
+          DefineName = 'USE_MII_RH_FOR_ETHERNET'
+          Value = True
+          Modified = True
+          DefaultValue = False
+        end
+        object TRadioNode
+          Name = 'Use port RI'
+          DefineName = 'USE_MII_RI_FOR_ETHERNET'
+          object TListNode
+            Name = 'Select I/O pin map'
+            DefineName = 'GMII_RI_PORT_SELETION'
+            Value = 'PG3'
+            Modified = True
+            DefaultValue = 'unknown'
+          end
+        end
+        object TSectionNode
+          Name = 'Link mode options'
+          object TRadioNode
+            Name = 'Auto-detect'
+            DefineName = '_ETH_AUTO_LINK_MODE'
+            Modified = True
+            DefaultValue = True
+            object TYesNoNode
+              Name = 'Get link state from PHY'
+              DefineName = '_ETH_GET_LINK_FROM_PHY'
+              Modified = True
+              DefaultValue = True
+              object TExpressionNode
+                Name = 'PHY Address'
+                DefineName = '_ETH_PHY_ADDRESS'
+                Value = '4'
+                Modified = True
+                DefaultValue = '0x00'
+              end
+            end
+          end
+          object TRadioNode
+            Name = 'Forced full duplex'
+            DefineName = '_ETH_FORCED_FULL_DUPLEX'
+            Value = True
+            Modified = True
+            DefaultValue = False
+          end
+        end
+      end
+      object TInstanceNode
+        Name = 'Ethernet WAN'
+        DefineName = 'Instance'
+        Value = 'eth_wan_'
+        object TYesNoNode
+          Name = 'Enable ethernet instance'
+          DefineName = 'IPETHERNET_INSTANCE_ENABLED'
+          Value = True
+          object TRadioNode
+            Name = 'Use port RI'
+            DefineName = 'USE_MII_RI_FOR_ETHERNET'
+            Value = True
+            Modified = True
+            DefaultValue = False
+            object TListNode
+              Name = 'Select I/O pin map'
+              DefineName = 'GMII_RI_PORT_SELETION'
+              Value = 'PG3'
+              Modified = True
+              DefaultValue = 'unknown'
+            end
+          end
+          object TSectionNode
+            Name = 'Link mode options'
+            object TRadioNode
+              Name = 'Auto-detect'
+              DefineName = '_ETH_AUTO_LINK_MODE'
+              Value = True
+              object TYesNoNode
+                Name = 'Get link state from PHY'
+                DefineName = '_ETH_GET_LINK_FROM_PHY'
+                Value = True
+                object TExpressionNode
+                  Name = 'PHY Address'
+                  DefineName = '_ETH_PHY_ADDRESS'
+                  Value = '4'
+                  Modified = True
+                  DefaultValue = '0x00'
+                end
+              end
+            end
+          end
+        end
+      end
+      object TInstanceNode
+        Name = 'Ethernet LAN'
+        DefineName = 'Instance'
+        Value = 'eth_lan_'
+        object TYesNoNode
+          Name = 'Enable ethernet instance'
+          DefineName = 'IPETHERNET_INSTANCE_ENABLED'
+          Value = True
+          object TRadioNode
+            Name = 'Use port RH'
+            DefineName = 'USE_MII_RH_FOR_ETHERNET'
+            Value = True
+            Modified = True
+            DefaultValue = False
+          end
+          object TSectionNode
+            Name = 'Link mode options'
+            object TRadioNode
+              Name = 'Auto-detect'
+              DefineName = '_ETH_AUTO_LINK_MODE'
+              Modified = True
+              DefaultValue = True
+              object TYesNoNode
+                Name = 'Get link state from PHY'
+                DefineName = '_ETH_GET_LINK_FROM_PHY'
+                Modified = True
+                DefaultValue = True
+                object TExpressionNode
+                  Name = 'PHY Address'
+                  DefineName = '_ETH_PHY_ADDRESS'
+                  Value = '4'
+                  Modified = True
+                  DefaultValue = '0x00'
+                end
+              end
+            end
+            object TRadioNode
+              Name = 'Forced full duplex'
+              DefineName = '_ETH_FORCED_FULL_DUPLEX'
+              Value = True
+              Modified = True
+              DefaultValue = False
+            end
+          end
+        end
+      end
+    end
+  end
+  object TPackageNode
+    Name = 'ipGDB - Debugger support'
+    DefineName = 'IPGDB'
+    object TYesNoNode
+      Name = 'GDB Restart Trapped Thread'
+      DefineName = 'GDB_RESTART_TRAPPED_THREAD'
+      Modified = True
+      DefaultValue = True
+    end
+  end
+  object TPackageNode
+    Name = 'ipHeap - Heap Memory Management Features'
+    DefineName = 'IPHEAP'
+    object TExpressionNode
+      Name = 'OCM Heap Size'
+      DefineName = 'HEAP_OCM_HEAP_KB'
+      Value = '4'
+      Modified = True
+      DefaultValue = '24'
+    end
+  end
+  object TPackageNode
+    Name = 'ipSDTIO - SD/SDIO host driver'
+    DefineName = 'IPSDTIO'
+    object TTemplateNode
+      Name = 'Multiple Instances'
+      DefineName = 'IPSDTIO_MI_ENABLED'
+      object TYesNoNode
+        Name = 'Enable SDTIO instance'
+        DefineName = 'IPSDTIO_INSTANCE_ENABLED'
+        Modified = True
+        DefaultValue = True
+        object TListNode
+          Name = 'SD Port'
+          DefineName = 'SDTIO_PORT'
+          Value = 'RD'
+          Modified = True
+          DefaultValue = 'RB'
+        end
+        object TSectionNode
+          Name = 'HRT settings'
+          DefineName = 'IPSDTIO_HRT_SETTINGS'
+          object TExpressionNode
+            Name = 'Minimum HRT Slot Spacing'
+            DefineName = 'IPSDTIO_HRT_SPACING'
+            Value = '8'
+            Modified = True
+            DefaultValue = '4'
+          end
+        end
+      end
+      object TInstanceNode
+        Name = 'New Instance'
+        DefineName = 'Instance'
+        Value = 'portb_'
+        object TYesNoNode
+          Name = 'Enable SDTIO instance'
+          DefineName = 'IPSDTIO_INSTANCE_ENABLED'
+          Modified = True
+          DefaultValue = True
+        end
+      end
+      object TInstanceNode
+        Name = 'New Instance'
+        DefineName = 'Instance'
+        Value = 'portd_'
+        object TYesNoNode
+          Name = 'Enable SDTIO instance'
+          DefineName = 'IPSDTIO_INSTANCE_ENABLED'
+          Modified = True
+          DefaultValue = True
+          object TListNode
+            Name = 'SD Port'
+            DefineName = 'SDTIO_PORT'
+            Value = 'RD'
+            Modified = True
+            DefaultValue = 'RB'
+          end
+          object TSectionNode
+            Name = 'HRT settings'
+            DefineName = 'IPSDTIO_HRT_SETTINGS'
+            object TExpressionNode
+              Name = 'Minimum HRT Slot Spacing'
+              DefineName = 'IPSDTIO_HRT_SPACING'
+              Value = '8'
+              Modified = True
+              DefaultValue = '4'
+            end
+          end
+        end
+      end
+    end
+  end
+end

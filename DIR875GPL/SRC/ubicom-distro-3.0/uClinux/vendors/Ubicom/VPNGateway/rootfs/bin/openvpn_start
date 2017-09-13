@@ -1,0 +1,30 @@
+#!/bin/sh
+
+#
+# Make dev nodes ready
+#
+mkdir -p /dev/net
+if [ ! -f /dev/net/tun ]; then
+	echo "create tun dev node"
+	mknod /dev/net/tun c 10 200
+	chmod 0666 /dev/net/tun
+fi
+
+if [ ! -f /dev/net/tap ]; then
+	echo "create tap dev node"
+	mknod /dev/net/tap c 90 128
+	chmod 0666 /dev/net/tap
+fi
+
+#
+# Make sure ip_forward is enabled
+#
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+#
+# start openvpn with the specified configuration file
+#
+# $1 can be tun_c, tun_s, tap_c or tap_s
+#
+openvpn /etc/openvpn/$1.conf &
+

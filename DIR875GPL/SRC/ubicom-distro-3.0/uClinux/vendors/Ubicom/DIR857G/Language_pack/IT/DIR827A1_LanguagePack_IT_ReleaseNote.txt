@@ -1,0 +1,12 @@
+﻿Language Pack Release Note
+Project Name: DIR-827
+HW version: A1
+Region/OEM code: IT
+======================================================================================
+Language-Version: ver1.00ITb01
+Language: Italian
+Language-Checksum: 0x00CB3EFC
+svn:1780
+
+1.please base on FW v1.00b17 or later.
+--------------------------------------------------------------------------------------

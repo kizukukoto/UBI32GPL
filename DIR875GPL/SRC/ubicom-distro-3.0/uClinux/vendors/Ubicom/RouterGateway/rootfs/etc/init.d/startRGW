@@ -1,0 +1,195 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2009 Ubicom, Inc.
+
+#########################################################################################
+## startRGW
+##
+## This script is used to configure and start the reference router implementation.
+## All the required parameters are imported from the rgw_config file.
+## Before running the applications with new settings, existing processes are killed.
+##
+#########################################################################################
+
+. /etc/rgw_config
+
+if [ $action = "start" ]	
+then
+	echo "Starting RGW with settings from /etc/rgw_config"
+	echo "WAN connection type: $WANCONNECTIONTYPE"
+	echo "Wireless Enabled: $WIRELESSENABLED"
+
+	# Create VLAN interfaces for LAN and WAN.
+	$SCRIPT_PATH/startVLAN
+	
+	# Create a bridge and add LAN interface to it. If wireless is enabled, WLAN interface will be added later in "apup" script.
+	brctl addbr $BRINTERFACE
+	#brctl stp $BRINTERFACE off
+	brctl addif $BRINTERFACE $LANINTERFACE
+	ifconfig $LANINTERFACE up
+	
+	ifconfig $BRINTERFACE $BRIDGEIP netmask $BRIDGEMASK up
+	
+	if [ -f $SCRIPT_PATH/do_dnsmasq ]; then
+		# !!!We don`t want dnsmasq script to run at background!!!, because we want DHCP server to start running 
+		# before enabling LAN-WAN routing. Thus, LAN PC`s will not get IP from WAN side DHCP servers.
+		$SCRIPT_PATH/do_dnsmasq start
+		# Make sure dnsmasq is up and running before enabling routing.
+		sleep 3
+	else
+		echo "dnsmasq script not found, cannot run DHCP server and DNS forwarder!"
+	fi
+
+	if [ "$WANCONNECTIONTYPE" = "static" ]; then
+		if [ -f $SCRIPT_PATH/do_static ]; then
+			$SCRIPT_PATH/do_static start
+		else 
+			echo "Static IP script not found, cannot get static IP!"
+		fi
+	elif [ "$WANCONNECTIONTYPE" = "dhcp" ]; then
+		if [ -f $SCRIPT_PATH/do_dhcp ]; then
+			$SCRIPT_PATH/do_dhcp start &
+		else
+			echo "DHCP client script not found, cannot get IP using DHCP!"
+		fi
+	elif [ "$WANCONNECTIONTYPE" = "pppoe" ]; then
+		if [ -f $SCRIPT_PATH/do_pppoe ]; then
+			$SCRIPT_PATH/do_pppoe start &
+		else
+			echo "PPPoE script does not exist, cannot run PPPoE!"
+		fi
+	elif [ "$WANCONNECTIONTYPE" = "pptp" ]; then
+		if [ -f $SCRIPT_PATH/do_pptp ]; then
+			$SCRIPT_PATH/do_pptp start &
+		else
+			echo "PPTP script does not exist, cannot run PPTP!"
+		fi
+	else 
+		echo "WAN connection type $WANCONNECTIONTYPE is not supported! Cannot make WAN connection."
+	fi
+
+	# Add other Ethernet I/F if there is any to the LAN bridge
+	cat /proc/net/dev | grep -q eth1
+	if [ "$?" == "0" ]; then
+		brctl addif $BRINTERFACE eth1
+		ifconfig eth1 up
+	fi
+	
+	# "apup" script calls "start_br" to start bridge if /tmp/bridge_started does not exist. 
+	# So, create it since we have already started bridge here.
+	touch /tmp/bridge_started
+	
+	#If wireless enabled, start wireless interface and add to bridge (done in apup script)
+	if [ "$WIRELESSENABLED" = "YES" ]; then
+		if [ -f /lib/modules/2.6.28/net/ath_hal.ko ] || [ -f /lib/modules/ath_hal.ko ]; then
+			if [ -f /etc/ath/apup ]; then
+				echo "Starting wireless"
+				/etc/ath/apup
+				sleep 1
+			else
+				# Although wireless is enabled, we don`t have the necessary scripts to run wireless.
+				# So, disable wireless in rgw_config.
+				sed -i '/^WIRELESSENABLED=/ c\WIRELESSENABLED='NO'' /etc/rgw_config
+				echo "Wireless start script could not be found!"
+				echo "Skipping wireless configuration."
+			fi
+		else
+			# Although wireless is enabled, we don`t have the necessary modules and/or scripts to run wireless.
+			# So, disable wireless in rgw_config.
+			sed -i '/^WIRELESSENABLED=/ c\WIRELESSENABLED='NO'' /etc/rgw_config
+			echo "Wireless modules could not be found!"
+			echo "Skipping wireless configuration."
+		fi
+	fi
+	
+	#Start ipv4 forwarding
+	echo 1 > /proc/sys/net/ipv4/ip_forward
+
+	# Add global ipv6 addresses to LAN and WAN interfaces.
+	# Get MAC addresses from real world (not from the config file as it might not be up-to-date)
+	if [ -n $IPV6_LAN_PREFIX ]; then
+		echo "Adding global IPv6 address for LAN interface with prefix $IPV6_LAN_PREFIX"
+		lanmac=`ifconfig $BRINTERFACE | grep HWaddr | awk -F'HWaddr ' '{print $2}'`
+		ifconfig $BRINTERFACE add $IPV6_LAN_PREFIX:`/etc/init.d/mac2eui64 $lanmac`/$IPV6_LAN_PREFIXLEN
+	fi
+	if [ -n $IPV6_WAN_PREFIX ]; then
+		echo "Adding global IPv6 address for WAN interface with prefix $IPV6_WAN_PREFIX"
+		wanmac=`ifconfig $WANINTERFACE | grep HWaddr | awk -F'HWaddr ' '{print $2}'`
+		ifconfig $WANINTERFACE add $IPV6_WAN_PREFIX:`/etc/init.d/mac2eui64 $wanmac`/$IPV6_WAN_PREFIXLEN
+	fi
+	#Start ipv6 forwarding
+	echo 1 > /proc/sys/net/ipv6/conf/all/forwarding
+
+	#Start lltd responder
+	if [ "$LLTDENABLED" = "YES" ]; then
+		if [ -f /bin/lld2d ]; then
+			echo "Running lld2d (lltd responder)"
+			lld2d $BRINTERFACE &
+		else
+			echo "lld2d application binary not found, skipping."
+		fi
+	fi
+
+	sleep 1
+	
+	#start zebra router and its components. 
+	#-P option sets port number for telnet console of each application
+	if [ "$ZEBRAENABLED" = "YES" ]; then
+		if [ -f /bin/zebra ] && [ -f /bin/ripd ] && [ -f /bin/ospfd ] && [ -f /bin/bgpd ]; then
+			echo "Running zebra router and its components."
+	        	zebra -P 5555 &
+	        	ripd -P 5554 &
+	        	ospfd -P 5553 &
+			bgpd -P 5552 &
+		else
+			echo "zebra application binaries not found, skipping."
+		fi
+	fi
+	
+	sleep 1
+	
+	if [ "$WEBSERVER" = "boa" ]; then
+		if [ -f /bin/boa ]; then
+			echo "Running boa webserver"
+			boa &
+		else
+			echo "boa application binary not found. Webserver not started!."
+		fi
+	elif [ "$WEBSERVER" = "mathopd" ]; then
+		if [ -f /bin/mathopd ]; then
+			echo "Running mathopd webserver."	
+			mathopd -f /etc/mathopd.conf &
+		else
+			echo "mathopd application binary not found. Webserver not started!"
+		fi
+	elif [ "$WEBSERVER" = "httpd" ]; then
+		if [ -f /bin/httpd ]; then
+			echo "Running httpd webserver."	
+			httpd -h /home/httpd &
+		else
+			echo "httpd application binary not found. Webserver not started!"
+		fi
+	else
+		echo "Webserver $WEBSERVER is not supported. Webserver not started!"
+	fi
+	
+	sleep 1
+	
+	#Start miniupnpd (UPnP Internet Gateway Device)
+	if [ "$UPNPENABLED" = "YES" ]; then
+		if [ -f $SCRIPT_PATH/do_miniupnpd ]; then
+		       $SCRIPT_PATH/do_miniupnpd start &
+		else
+			echo "miniupnpd script not found, skipping."
+		fi
+	fi
+	
+	sleep 1
+	
+	$SCRIPT_PATH/wait_WAN &
+
+elif [ $action = "stop"	]
+then
+	echo "Stopping RGW"
+fi	
+
+

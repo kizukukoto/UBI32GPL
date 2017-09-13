@@ -1,0 +1,28 @@
+Language Pack Release Note
+Project Name: DIR-857
+HW version: A1
+Region/OEM code: CN
+======================================================================================
+Language-Version:1.01CNb01
+Language: China
+Language-Checksum: 0x00C5D4DD
+Language-svn:2573
+
+1.Add string to pop up eap warning message and Disable WPS-PIN Method
+--------------------------------------------------------------------------------------
+Language-Version:1.00CNb02
+Language: China
+Language-Checksum: 0x00C5D385
+Language-svn:2563
+
+1.Add string to pop up eap warning message
+--------------------------------------------------------------------------------------
+
+Language-Version:1.00CNb01
+Language: China
+Language-Checksum: 0x00C58DAF 
+Language-svn:2244
+
+1.please base on FW v1.00b14.
+--------------------------------------------------------------------------------------
+

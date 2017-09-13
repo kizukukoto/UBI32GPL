@@ -1,0 +1,10 @@
+#!/bin/sh
+# Copyright (C) 2009 Ubicom, Inc.
+
+initscript="$1"
+[ "$#" -ge 1 ] && shift
+action="$1"
+[ "$#" -ge 1 ] && shift
+
+. $initscript
+

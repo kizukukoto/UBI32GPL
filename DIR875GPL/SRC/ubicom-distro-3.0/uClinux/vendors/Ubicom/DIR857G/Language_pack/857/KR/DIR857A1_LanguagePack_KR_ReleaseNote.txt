@@ -1,0 +1,28 @@
+Language Pack Release Note
+Project Name: DIR-857
+HW version: A1
+Region/OEM code: KR
+======================================================================================
+Language-Version:1.01KRb01
+Language: Korean
+Language-Checksum: 0x00CB7052
+Language-svn:2579
+
+1.Add string to pop up eap warning message and Disable WPS-PIN Method
+--------------------------------------------------------------------------------------
+
+Language-Version:1.00KRb02
+Language: Korean
+Language-Checksum: 0x00CB710F
+Language-svn:2569
+
+1.Add string to pop up eap warning message
+--------------------------------------------------------------------------------------
+Language-Version:1.00KRb01
+Language: Korean
+Language-Checksum: 0x00CB69A4 
+Language-svn:2244
+
+1.please base on FW v1.00b14.
+--------------------------------------------------------------------------------------
+

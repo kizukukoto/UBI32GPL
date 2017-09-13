@@ -1,0 +1,32 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+#
+# Stop  Network Accelerator
+#
+
+#. /etc/functions.sh
+
+#config_load /etc/config/network
+
+SYSFS=/sys/devices/system
+IPV4_MODULE=ubicom_na_connection_manager_ipv4
+IPV6_MODULE=ubicom_na_connection_manager_ipv6
+IPV4_SYSFS_PATH=${SYSFS}/${IPV4_MODULE}/${IPV4_MODULE}0
+IPV6_SYSFS_PATH=${SYSFS}/${IPV6_MODULE}/${IPV6_MODULE}0
+
+#
+# Is Network Accelerator currently running?  If so then stop it.
+# Params: ipv4, ipv6 & all. No param = all
+#
+if [ -e $IPV4_SYSFS_PATH ] ; then
+	echo Stopping Network Accelerator IPv4 module
+	/etc/init.d/na_modules_unload ipv4
+fi
+if [ -e $IPV6_SYSFS_PATH ] ; then
+	echo Stopping Network Accelerator IPv6 module
+	/etc/init.d/na_modules_unload ipv6
+fi
+
+exit 0
+

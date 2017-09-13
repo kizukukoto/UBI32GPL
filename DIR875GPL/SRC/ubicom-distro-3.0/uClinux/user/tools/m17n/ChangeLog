@@ -1,0 +1,52 @@
+2009/12/30
+1. Modify url link at 
+	hhwf.xref
+	help141.a
+in STRINGS_ZH.txt
+
+2. Modify url link at
+	From:bwn.IF,
+in STRINGS_KO.txt
+
+2009/11/02
+Add 
+#From:ADV_DNS_DESC1,XXXX
+#From:ADV_DNS_DESC2,XXXX
+#From:ADV_DNS_DESC3,XXXX
+(STRINGS_CN.txt/STRINGS_ZH.txt/STRINGS_DE.txt/STRINGS_ES.txt/STRINGS_FR/STRINGS_IT.txt/STRINGS_KO.txt)
+
+2009/10/28
+Fixed up.tz.xxx: , -> 、 in STRINGZ_ZH.txt
+Modify  #From:up.tz.17,(GMT-03:00) XXX
+To		#From:up.tz.17,(GMT-03:30) XXX
+Modify 
+		#From:up.tz.34,(GMT+02:00) Harare, Pretoria
+		up.tz.34,(GMT+02:00) 赫爾辛基、普利托里亞
+
+To
+		#From:up.tz.34,(GMT+02:00) Harare, Pretoria
+		up.tz.34,(GMT+02:00) 辛巴威、普利托里亞
+
+
+2009/10/16
+Modify  #From:help887,Some firmware upgrades ... Tools&nbsp;-&gt;&nbsp;Admin</a> screen.
+To      #From:help887,Some firmware upgrades ... Tools&nbsp;-&gt;&nbsp;System</a> screen.
+Modify  #From:help92x2,To specify any other protocol, enter its protocol number (<a href="http://www.iana.org/assignments/protocol-numbers" target="_blank">常用通訊埠查詢</a>) in the <span class="option">Protocol</span> box.
+To      #From:help92x2,To specify any other protocol, enter its protocol number (<a href="http://www.iana.org/assignments/protocol-numbers" target="_blank">as assigned by the IANA</a>) in the <span class="option">Protocol</span> box.
+Modify  #From:up.tz.27,(GMT+01:00) Belgrade, Brastislava, Budapest, Ljubljana, 布拉格
+To      #From:up.tz.27,(GMT+01:00) Belgrade, Brastislava, Budapest, Ljubljana, Prague
+2009/10/01
+Modify bws.intro.WlsSec,為了保護您的隱私,您可以自行設定無線安全功能.DIR-635提供三種無線安全加密模式 ...
+To		bws.intro.WlsSec,為了保護您的隱私,您可以自行設定無線安全功能.本設備提供三種無線安全加密模式 ...
+(STRINGS_ZH.txt)
+2009/09/22
+Modify	#From:open,...
+To		#From:OPEN,...
+2009/08/19
+Modify	#From:bwn.intro.ICS,Use this section to configure your Internet Connection type. There are several connection types to choose from: Static IP, DHCP, PPPoE, PPTP, and L2TP. If you are unsure of your connection method, please contact your Internet Service Provider.
+To		#Frombwn.intro.ICS,Use this section to configure your Internet Connection type. There are several connection types to choose from: Static IP, DHCP, PPPoE, PPTP, and L2TP. If you are unsure of your connection method, please contact your Internet Service Provider.
+
+Modify	#From:help254.ict,There are several connection types to choose from: Static IP, DHCP, PPPoE, PPTP, L2TP, and 3G USB. If you are unsure of your connection method, please contact your Internet Service Provider. Note: If using the PPPoE option, you will need to ensure that any PPPoE client software on your computers is removed or disabled.
+To		:#From:help254.ict,There are several connection types to choose from: Static IP, DHCP, PPPoE, PPTP and L2TP. If you are unsure of your connection method, please contact your Internet Service Provider. Note: If using the PPPoE option, you will need to ensure that any PPPoE client software on your computers is removed or disabled.
+
+================================================================================================

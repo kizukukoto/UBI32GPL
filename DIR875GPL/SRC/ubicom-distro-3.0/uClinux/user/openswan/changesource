@@ -1,0 +1,41 @@
+#! /bin/sh
+
+        # Change used route source to destination if there is previous
+        # Route to same PLUTO_PEER_CLIENT. This is basically to fix
+        # configuration errors where all conns to same destination don't
+        #  have (left/right)sourceip set.
+        st=0
+        parms="$PLUTO_PEER_CLIENT dev ${PLUTO_INTERFACE%:*}"
+        parms="$parms src ${PLUTO_MY_SOURCEIP%/*} $IPROUTEARGS"
+        if [ -n "$IPROUTETABLE" ]
+        then
+            parms="$parms table $IPROUTETABLE"
+        fi
+        it="ip route change $parms"
+        case "$PLUTO_PEER_CLIENT" in
+        "0.0.0.0/0")
+                # opportunistic encryption work around
+                it=
+                ;;
+        esac
+        oops="`eval $it 2>&1`"
+        st=$?
+        if test " $oops" = " " -a " $st" != " 0"
+        then
+            oops="silent error, exit status $st"
+        fi
+        case "$oops" in
+                'RTNETLINK answers: No such file or directory'*)
+                # Will happen every time first tunnel is activated because
+                # there is no previous route to PLUTO_PEER_CLIENT. So we
+                # need to ignore this error.
+                oops=""
+                st=0
+                ;;
+        esac
+        if test " $oops" != " " -o " $st" != " 0"
+        then
+            echo "$0: changesource \`$it' failed ($oops)" >&2
+        fi
+        return $st
+

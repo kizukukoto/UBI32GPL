@@ -1,0 +1,16 @@
+Package: ffmpeg
+Version: 0.6.1-1
+Depends: libpthread, libffmpeg, libpostproc
+Provides: 
+Source: feeds_src/packages/multimedia/ffmpeg
+Section: multimedia
+Status: unknown ok not-installed
+Essential: no
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 51662
+Description:  FFmpeg is a a software package that can record, convert and stream digital 
+ audio and video in numerous formats.
+ .
+ This package contains the FFmpeg command line tool.

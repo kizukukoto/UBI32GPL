@@ -1,0 +1,46 @@
+#!/bin/sh
+# Copyright (C) 2009 Ubicom, Inc.
+
+STEXT=0x40411c20
+ETEXT=0x60000000
+
+if [ $1 = "start" ]
+then
+	echo "Starting oprofile"
+	mkdir -p /dev/oprofile
+	mount -t oprofilefs  /dev/null /dev/oprofile
+	if [ -f /vmlinux ]; then
+		if [ -f /proc/kallsyms ]; then
+			START=`grep _stext /proc/kallsyms`
+			if [ $? -ne 0 ]; then
+				echo "Bad/missing _stext"
+				START=""
+			fi
+			END=`grep _etext /proc/kallsyms`
+			if [ $? -ne 0 ]; then
+				echo "Bad/missing _etext"
+				END=""
+			fi
+
+			if [ x"$START" != x ]; then
+				set - $START
+				STEXT=$1
+			fi
+			if [ x"$END" != x ]; then
+				set - $END
+				ETEXT=$1
+			fi
+		else
+			echo "Warning: Using compiled in kernel start/end addresses\n"
+		fi
+
+		oprofiled -V all -r ${STEXT},${ETEXT} --vmlinux=/vmlinux -e 0&
+	else
+		oprofiled -V all -r ${STEXT},${ETEXT} --no-vmlinux -e 0&
+	fi
+elif [ $1 = "stop" ]
+then
+	killall oprofiled
+	sleep 1
+	umount /dev/oprofile
+fi

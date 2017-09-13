@@ -1,0 +1,36 @@
+#
+# NOTE! Don't add files that are generated in specific
+# subdirectories here. Add them in the ".gitignore" file
+# in that subdirectory instead.
+#
+# Normal rules
+#
+.*
+*.o
+*.o.*
+*.a
+*.s
+*.ko
+*.so
+*.so.dbg
+*.mod.c
+*.i
+*.lst
+*.symtypes
+*.order
+*.gdb
+*.map
+*.orig
+*.rej
+*~
+\#*#
+*.diag
+Config.in
+
+# we like to keep .gitignore files
+!.gitignore
+
+#
+# Top-level generic files
+#
+

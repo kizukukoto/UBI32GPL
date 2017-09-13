@@ -1,0 +1,9 @@
+all: udpclient sendtocli
+
+udpclient: udpclient.c
+	$(CC) -o udpclient udpclient.c
+sendtocli: sendtocli.c
+	$(CC) -o sendtocli sendtocli.c
+
+clean:
+	@rm -f udpclient sendtocli

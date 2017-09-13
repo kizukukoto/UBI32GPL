@@ -1,0 +1,2691 @@
+[Jul  6 06:10:40] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 06:10:40] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 06:10:40] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 06:10:43] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 06:10:43] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 06:10:43] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 06:10:43] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 06:10:43] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 06:10:43] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 06:10:43] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 06:10:43] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 06:10:43] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>691259443</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T06:10:43+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 06:10:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 06:10:44] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">691259443</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 06:10:44] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:10:44] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278469570021239284"
+Content-Length: 0
+
+
+[Jul  6 06:10:44] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 06:10:44] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 06:38:06] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 06:38:06] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 06:38:06] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 06:38:06] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 06:38:06] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 06:38:06] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 06:38:06] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 06:38:06] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 06:38:06] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 06:38:06] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 06:38:06] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 06:38:06] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>299840090</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T06:38:06+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 06:38:06] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 06:38:07] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">299840090</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 06:38:07] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:38:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278471212824239389"
+Content-Length: 0
+
+
+[Jul  6 06:38:07] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 06:38:07] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 06:51:50] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 06:51:50] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 06:51:50] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 06:51:51] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 06:51:51] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 06:51:51] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 06:51:51] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 06:51:51] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 06:51:51] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 06:51:51] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 06:51:51] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 06:51:51] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>1725605879</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T06:51:51+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 06:51:51] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">1725605879</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 06:51:51] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:51:51] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278472036729239413"
+Content-Length: 0
+
+
+[Jul  6 06:51:51] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 06:51:51] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 06:58:07] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 06:58:07] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 06:58:07] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 06:58:07] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 06:58:07] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 06:58:07] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 06:58:07] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 06:58:07] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 06:58:07] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 06:58:07] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 06:58:07] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 06:58:07] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>129364583</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T06:58:07+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 06:58:07] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">129364583</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 06:58:07] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:58:07] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278472413129239445"
+Content-Length: 0
+
+
+[Jul  6 06:58:07] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 06:58:07] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 06:59:26] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 06:59:26] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 06:59:26] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 06:59:26] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 06:59:26] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 06:59:26] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 06:59:26] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 06:59:26] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 06:59:26] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 06:59:26] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 06:59:26] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 06:59:26] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>795542249</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T06:59:26+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 06:59:26] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">795542249</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 06:59:26] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 06:59:26] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278472491988239450"
+Content-Length: 0
+
+
+[Jul  6 06:59:26] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 06:59:26] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 07:00:59] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 07:00:59] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 07:00:59] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 07:00:59] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 07:00:59] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 07:00:59] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 07:00:59] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 07:00:59] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 07:00:59] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 07:00:59] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 07:00:59] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 07:00:59] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>429350393</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T07:00:59+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 07:00:59] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">429350393</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 07:00:59] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 07:00:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278472584825239456"
+Content-Length: 0
+
+
+[Jul  6 07:00:59] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 07:00:59] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 07:09:50] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 07:09:50] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 07:09:50] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 07:09:50] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 07:09:50] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 07:09:50] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 07:09:50] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 07:09:50] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 07:09:50] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 07:09:50] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 07:09:50] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 07:09:50] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>1071288946</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T07:09:50+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 07:09:50] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">1071288946</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 07:09:50] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 07:09:50] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278473116061239537"
+Content-Length: 0
+
+
+[Jul  6 07:09:50] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 07:09:50] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 07:11:36] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 07:11:36] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 07:11:36] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 09:39:41] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 09:39:41] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 09:39:41] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 09:39:41] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 09:39:41] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 09:39:41] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 09:39:41] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 09:39:41] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 09:39:41] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 09:39:41] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 09:39:41] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 09:39:41] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>1482687008</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T09:39:41+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 09:39:41] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">1482687008</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 09:39:41] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 09:39:41] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278482105428240098"
+Content-Length: 0
+
+
+[Jul  6 09:39:41] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 09:39:41] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:21:33] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 10:21:33] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 10:21:33] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 10:21:33] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:21:33] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 10:21:33] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 10:21:33] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 10:21:33] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 10:21:33] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 10:21:33] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 10:21:33] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 10:21:33] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>2019041025</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:21:33+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:21:33] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">2019041025</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:21:33] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:21:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278484617597240329"
+Content-Length: 0
+
+
+[Jul  6 10:21:33] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:21:33] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:22:21] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 10:22:21] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 10:22:21] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 10:22:24] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:22:24] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 10:22:24] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 10:22:24] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 10:22:24] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 10:22:24] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 10:22:24] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 10:22:24] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 10:22:24] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>1538141234</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:22:24+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:22:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:22:25] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">1538141234</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:22:25] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:22:25] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278484668602240336"
+Content-Length: 0
+
+
+[Jul  6 10:22:25] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:22:25] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:22:29] DEBUG periodic_timeout()@../source/periodic.c:114 => Periodic inform timeout
+[Jul  6 10:22:29] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:22:29] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>1096514612</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+ad
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>2 PERIODIC</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:22:29+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:22:29] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">1096514612</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:22:29] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:22:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278484673637240338"
+Content-Length: 0
+
+
+[Jul  6 10:22:30] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:22:30] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:37:33] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 10:37:33] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 10:37:33] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 10:37:33] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:37:33] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 10:37:33] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 10:37:33] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 10:37:33] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 10:37:33] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 10:37:33] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 10:37:33] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 10:37:33] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>2111468438</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:37:33+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:37:33] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">2111468438</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:37:33] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:37:33] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278485577262240439"
+Content-Length: 0
+
+
+[Jul  6 10:37:33] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:37:33] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:37:56] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 10:37:57] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 10:37:57] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 10:37:57] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:37:57] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 10:37:57] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 10:37:57] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 10:37:57] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 10:37:57] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 10:37:57] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 10:37:57] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 10:37:57] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>1253787127</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:37:57+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:37:57] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">1253787127</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:37:57] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:37:57] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278485600798240442"
+Content-Length: 0
+
+
+[Jul  6 10:37:57] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:37:57] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:37:59] DEBUG periodic_timeout()@../source/periodic.c:114 => Periodic inform timeout
+[Jul  6 10:37:59] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:37:59] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>639670548</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+ad
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>2 PERIODIC</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:37:59+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:37:59] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">639670548</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:37:59] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:37:59] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278485603086240443"
+Content-Length: 0
+
+
+[Jul  6 10:37:59] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:37:59] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:38:29] DEBUG periodic_timeout()@../source/periodic.c:114 => Periodic inform timeout
+[Jul  6 10:38:29] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:38:29] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>115553179</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9e
+<DeviceId>
+<Manufacturer>TRAgent</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+ad
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>2 PERIODIC</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:38:29+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:38:29] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:38:30] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">115553179</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:38:30] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:38:30] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278485633690240447"
+Content-Length: 0
+
+
+[Jul  6 10:38:30] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:38:30] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:54:01] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 10:54:01] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 10:54:01] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 10:54:01] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:54:01] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 10:54:01] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 10:54:01] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 10:54:01] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 10:54:01] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 10:54:01] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 10:54:01] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 10:54:01] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b7
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>1209445838</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9c
+<DeviceId>
+<Manufacturer>DLink</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:54:01+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:54:01] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">1209445838</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:54:01] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:54:01] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278486564741240550"
+Content-Length: 0
+
+
+[Jul  6 10:54:01] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:54:01] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 10:54:43] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 10:54:43] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 10:54:43] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 10:54:43] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 10:54:43] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 10:54:43] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 10:54:43] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 10:54:43] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 10:54:43] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 10:54:43] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 10:54:43] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 10:54:43] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>249348883</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9c
+<DeviceId>
+<Manufacturer>DLink</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T10:54:43+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 10:54:43] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">249348883</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 10:54:43] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 10:54:43] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278486607105240557"
+Content-Length: 0
+
+
+[Jul  6 10:54:43] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 10:54:43] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 11:01:24] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 11:01:24] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 11:01:24] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 11:01:24] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 11:01:24] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 11:01:24] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 11:01:24] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 11:01:24] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 11:01:24] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 11:01:24] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 11:01:24] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 11:01:24] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>700268110</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9c
+<DeviceId>
+<Manufacturer>DLink</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T11:01:24+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 11:01:24] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">700268110</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 11:01:24] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 11:01:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278487008024240605"
+Content-Length: 0
+
+
+[Jul  6 11:01:24] DEBUG session_readable()@../source/session.c:273 => Receive an empty package
+[Jul  6 11:01:24] DEBUG start_sched()@../source/sched.c:173 => Destroy scheduler
+[Jul  6 11:06:24] DEBUG main()@../source/tr.c:322 => ifdef TR069_WIB and tr_exist(FLAG_BOOTSTRAP) and call launch_periodic_sched
+[Jul  6 11:06:24] NOTICE string_time2second()@../source/tr_strptime.c:456 => Incorrect UTC time string: value
+[Jul  6 11:06:24] DEBUG launch_periodic_sched()@../source/periodic.c:162 => Launch periodic sched
+[Jul  6 11:06:24] DEBUG create_session()@../source/session.c:849 => Connect to server(http://221.122.107.207/comserver/node1/tr069) successed!
+[Jul  6 11:06:24] ERROR launch_periodic_upload_sched()@../source/pm.c:247 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadInterval fail
+[Jul  6 11:06:24] ERROR launch_periodic_upload_sched()@../source/pm.c:254 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadEnable fail
+[Jul  6 11:06:24] ERROR launch_periodic_upload_sched()@../source/pm.c:260 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.URL fail
+[Jul  6 11:06:24] ERROR launch_periodic_upload_sched()@../source/pm.c:261 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Username fail
+[Jul  6 11:06:24] ERROR launch_periodic_upload_sched()@../source/pm.c:262 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.Password fail
+[Jul  6 11:06:24] ERROR launch_periodic_upload_sched()@../source/pm.c:264 => Lib resolve InternetGatewayDevice.FAPService.1.PerfMgmt.FileMgmt.PeriodicUploadTime fail
+[Jul  6 11:06:24] DEBUG launch_periodic_upload_sched()@../source/pm.c:278 => Launch periodic sched
+[Jul  6 11:06:24] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Content-Type: text/xml; charset=utf-8
+SOAPAction: Inform
+Transfer-Encoding: chunked
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+1b6
+<?xml version='1.0' encoding='UTF-8'?>
+<soap-env:Envelope xmlns:soap-env='http://schemas.xmlsoap.org/soap/envelope/' xmlns:soap-enc='http://schemas.xmlsoap.org/soap/encoding' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:cwmp='urn:dslforum-org:cwmp-1-0'>
+<soap-env:Header>
+<cwmp:ID soap-env:mustUnderstand='1'>735868699</cwmp:ID>
+</soap-env:Header>
+<soap-env:Body>
+<cwmp:Inform>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+9c
+<DeviceId>
+<Manufacturer>DLink</Manufacturer>
+<OUI>TRAgent</OUI>
+<ProductClass>TRAgent</ProductClass>
+<SerialNumber>123456789ABC</SerialNumber>
+</DeviceId>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+a9
+<Event xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:EventStruct[1]'>
+<EventStruct>
+<EventCode>1 BOOT</EventCode>
+<CommandKey></CommandKey>
+</EventStruct>
+</Event>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+cb
+<MaxEnvelopes>1</MaxEnvelopes>
+<CurrentTime>2010-07-06T11:06:24+08:00</CurrentTime>
+<RetryCount>0</RetryCount>
+<ParameterList xsi:type='soap-enc:Array' soap-enc:arrayType='cwmp:ParameterValueStruct[7]'>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+92
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SpecVersion</Name>
+<Value xsi:type='xsd:string'>1.1</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.HardwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.SoftwareVersion</Name>
+<Value xsi:type='xsd:string'>1.0</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+97
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.DeviceInfo.ProvisioningCode</Name>
+<Value xsi:type='xsd:string'>123</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+b4
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ConnectionRequestURL</Name>
+<Value xsi:type='xsd:string'>http://10.10.1.15:7547</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+96
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.ManagementServer.ParameterKey</Name>
+<Value xsi:type='xsd:string'></Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+c6
+<ParameterValueStruct>
+<Name>InternetGatewayDevice.WANDevice.1.WANConnectionDevice.1.WANPPPConnection.1.ExternalIPAddress</Name>
+<Value xsi:type='xsd:string'>1.2.3.4</Value>
+</ParameterValueStruct>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+11
+</ParameterList>
+
+
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+35
+</cwmp:Inform>
+</soap-env:Body>
+</soap-env:Envelope>
+
+0
+
+
+[Jul  6 11:06:24] DEBUG session_readable()@../source/session.c:328 => SOAP message:
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cwmp="urn:dslforum-org:cwmp-1-0"><SOAP-ENV:Header><cwmp:ID SOAP-ENV:mustUnderstand="1">735868699</cwmp:ID></SOAP-ENV:Header><SOAP-ENV:Body><cwmp:InformResponse><MaxEnvelopes>1</MaxEnvelopes></cwmp:InformResponse></SOAP-ENV:Body></SOAP-ENV:Envelope>
+[Jul  6 11:06:24] DEBUG session_writable()@../source/session.c:612 => HTTP header
+[Jul  6 11:06:24] DEBUG tr_conn_send()@../source/connection.c:194 => Send to peer: 
+POST /comserver/node1/tr069 HTTP/1.1
+Host: 221.122.107.207:80
+User-Agent: TR069 Client 1.0
+Cookie: $Version="1";TR069SessionID="7ECC77139D592E5F211278487308248240645"
+Content-Length: 0
+
+

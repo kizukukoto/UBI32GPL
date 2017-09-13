@@ -1,0 +1,4 @@
+echo 1 > /proc/irq/27/smp_affinity
+echo 2 > /proc/irq/70/smp_affinity
+echo 4 > /proc/irq/93/smp_affinity
+

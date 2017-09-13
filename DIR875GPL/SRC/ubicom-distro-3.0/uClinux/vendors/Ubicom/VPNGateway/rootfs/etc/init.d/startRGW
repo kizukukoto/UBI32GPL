@@ -1,0 +1,216 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2009 Ubicom, Inc.
+
+#########################################################################################
+## startRGW
+##
+## This script is used to configure and start the reference router implementation.
+## All the required parameters are imported from the rgw_config file.
+## Before running the applications with new settings, existing processes are killed.
+##
+## Hack for hush:
+##
+## 	Since hush is used as the default shell, there are problems running some scripts
+## 	and commands in shell scripts. This is due to the fact that hush is not fully
+## 	developed yet. In order to work around this problem, commands are invoked within
+## 	a subshell by using back quotes. Therefore, you'll see many lines like tmp=`...`,
+## 	where tmp is a dummy variable that is not used in fact. Please note that commands
+## 	that run in the background (ending with '&') are not subject to this issue.
+## 	The hack will be removed as soon as this problem disappears.
+##
+#########################################################################################
+
+#########################################################################################
+. /etc/rgw_config
+
+if [ $action = "start" ]	
+then
+	echo "Starting RGW with settings from /etc/rgw_config"
+	echo "WAN connection type: $WANCONNECTIONTYPE"
+	echo "Wireless Enabled: $WIRELESSENABLED"
+
+	# Create VLAN interfaces for LAN and WAN.
+	tmp=`$SCRIPT_PATH/startVLAN`
+	
+	# Create a bridge and add LAN interface to it. If wireless is enabled, WLAN interface will be added later in "apup" script.
+	tmp=`brctl addbr $BRINTERFACE`
+	#brctl stp $BRINTERFACE off
+	tmp=`brctl addif $BRINTERFACE $LANINTERFACE`
+	tmp=`ifconfig $LANINTERFACE up`
+	
+	tmp=`ifconfig $BRINTERFACE $BRIDGEIP netmask $BRIDGEMASK up`
+	
+	if [ -f $SCRIPT_PATH/do_dnsmasq ]; then
+		# !!!We don`t want dnsmasq script to run at background!!!, because we want DHCP server to start running 
+		# before enabling LAN-WAN routing. Thus, LAN PC`s will not get IP from WAN side DHCP servers.
+		tmp=`$SCRIPT_PATH/do_dnsmasq start`
+		# Make sure dnsmasq is up and running before enabling routing.
+		tmp=`sleep 3`
+	else
+		echo "dnsmasq script not found, cannot run DHCP server and DNS forwarder!"
+	fi
+
+	if [ "$WANCONNECTIONTYPE" = "static" ]; then
+		if [ -f $SCRIPT_PATH/do_static ]; then
+			tmp=`$SCRIPT_PATH/do_static start`
+		else 
+			echo "Static IP script not found, cannot get static IP!"
+		fi
+	elif [ "$WANCONNECTIONTYPE" = "dhcp" ]; then
+		if [ -f $SCRIPT_PATH/do_dhcp ]; then
+			$SCRIPT_PATH/do_dhcp start &
+		else
+			echo "DHCP client script not found, cannot get IP using DHCP!"
+		fi
+	elif [ "$WANCONNECTIONTYPE" = "pppoe" ]; then
+		if [ -f $SCRIPT_PATH/do_pppoe ]; then
+			$SCRIPT_PATH/do_pppoe start &
+		else
+			echo "PPPoE script does not exist, cannot run PPPoE!"
+		fi
+	elif [ "$WANCONNECTIONTYPE" = "pptp" ]; then
+		if [ -f $SCRIPT_PATH/do_pptp ]; then
+			$SCRIPT_PATH/do_pptp start &
+		else
+			echo "PPTP script does not exist, cannot run PPTP!"
+		fi
+	else 
+		echo "WAN connection type $WANCONNECTIONTYPE is not supported! Cannot make WAN connection."
+	fi
+
+	# Add other Ethernet I/F if there is any to the LAN bridge
+	tmp=`cat /proc/net/dev | grep -q eth1`
+	if [ -n "$tmp" ]; then
+		tmp=`brctl addif $BRINTERFACE eth1`
+		tmp=`ifconfig eth1 up`
+	fi
+	
+	# "apup" script calls "start_br" to start bridge if /tmp/bridge_started does not exist. 
+	# So, create it since we have already started bridge here.
+	tmp=`touch /tmp/bridge_started`
+	
+	#If wireless enabled, start wireless interface and add to bridge (done in apup script)
+	if [ "$WIRELESSENABLED" = "YES" ]; then
+		if [ -f /lib/modules/2.6.28/net/ath_hal.ko ] || [ -f /lib/modules/ath_hal.ko ]; then
+			if [ -f /etc/ath/apup ]; then
+				echo "Starting wireless"
+				tmp=`/etc/ath/apup`
+				tmp=`sleep 1`
+			else
+				# Although wireless is enabled, we don`t have the necessary scripts to run wireless.
+				# So, disable wireless in rgw_config.
+				tmp=`sed -i '/^WIRELESSENABLED=/ c\WIRELESSENABLED='NO'' /etc/rgw_config`
+				echo "Wireless start script could not be found!"
+				echo "Skipping wireless configuration."
+			fi
+		else
+			# Although wireless is enabled, we don`t have the necessary modules and/or scripts to run wireless.
+			# So, disable wireless in rgw_config.
+			tmp=`sed -i '/^WIRELESSENABLED=/ c\WIRELESSENABLED='NO'' /etc/rgw_config`
+			echo "Wireless modules could not be found!"
+			echo "Skipping wireless configuration."
+		fi
+	fi
+	
+	if [ -f /bin/iptables ]; then
+		if [ -f /etc/init.d/do_iptables ]; then
+			tmp=`/etc/init.d/do_iptables start`
+		else
+			echo "iptables script not found, skipping."
+		fi
+	else
+		echo "iptables application not found, cannot enable NAT and DMZ and Firewall!"
+	fi
+
+	#Start lltd responder
+	if [ "$LLTDENABLED" = "YES" ]; then
+		if [ -f /bin/lld2d ]; then
+			echo "Running lld2d (lltd responder)"
+			lld2d $BRINTERFACE &
+		else
+			echo "lld2d application binary not found, skipping."
+		fi
+	fi
+
+	tmp=`sleep 1`
+	
+	#start zebra router and its components. 
+	#-P option sets port number for telnet console of each application
+	if [ "$ZEBRAENABLED" = "YES" ]; then
+		if [ -f /bin/zebra ] && [ -f /bin/ripd ] && [ -f /bin/ospfd ] && [ -f /bin/bgpd ]; then
+			echo "Running zebra router and its components."
+	        	zebra -P 5555 &
+	        	ripd -P 5554 &
+	        	ospfd -P 5553 &
+			bgpd -P 5552 &
+		else
+			echo "zebra application binaries not found, skipping."
+		fi
+	fi
+	
+	tmp=`sleep 1`
+	
+	#Run inadyn dynamic dns clientINADYNENABLED
+	if [ "$INADYNENABLED" = "YES" ]; then
+		if [ -f /bin/inadyn ]; then
+		         echo "Running inadyn"
+			 inadyn -u $INADYNUSERNAME -p $INADYNPASSWD -a $INADYNALIAS &
+		else
+			echo "inadyn application binary not found, skipping."
+		fi
+	fi
+	
+	if [ "$WEBSERVER" = "boa" ]; then
+		if [ -f /bin/boa ]; then
+			echo "Running boa webserver"
+			boa &
+		else
+			echo "boa application binary not found. Webserver not started!."
+		fi
+	elif [ "$WEBSERVER" = "mathopd" ]; then
+		if [ -f /bin/mathopd ]; then
+			echo "Running mathopd webserver."	
+			mathopd -f /etc/mathopd.conf &
+		else
+			echo "mathopd application binary not found. Webserver not started!"
+		fi
+	elif [ "$WEBSERVER" = "httpd" ]; then
+		if [ -f /bin/httpd ]; then
+			echo "Running httpd webserver."	
+			httpd -h /home/httpd &
+		else
+			echo "httpd application binary not found. Webserver not started!"
+		fi
+	else
+		echo "Webserver $WEBSERVER is not supported. Webserver not started!"
+	fi
+	
+	tmp=`sleep 1`
+	
+	#Start miniupnpd (UPnP Internet Gateway Device)
+	if [ "$UPNPENABLED" = "YES" ]; then
+		if [ -f $SCRIPT_PATH/do_miniupnpd ]; then
+		       $SCRIPT_PATH/do_miniupnpd start &
+		else
+			echo "miniupnpd script not found, skipping."
+		fi
+	fi
+	
+	tmp=`sleep 1`
+	
+	#Get local time from a network time server.
+	if [ "$NTPENABLED" = "YES" ]; then
+		if [ -f /bin/ntpclient ]; then
+			echo "Running ntpclient. Timezone is set to $TIMEZONE, NTP server set to $NTPSERVER"
+			echo $TIMEZONE > /etc/TZ
+			tmp=`ntpclient -s -h $NTPSERVER`
+		else
+			echo "ntpclient application binary not found, skipping."
+		fi
+	fi
+elif [ $action = "stop"	]
+then
+	echo "Stopping RGW"
+fi	
+
+

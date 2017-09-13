@@ -1,0 +1,22 @@
+.EXPORT_ALL_VARIABLES:
+
+VENDOR_EXTDIRS = modules
+
+############################################################################
+
+# CPUFLAGS
+# VENDOR_CFLAGS                # not required here
+# DISABLE_XIP := 1             # XIP works fine
+DISABLE_MOVE_RODATA := 1       # until we get a toolchain release
+LOPT := -O2                    # library is alway 02
+UOPT := -Os                    # user apps are always Os
+BUILD_FDPIC := 1	       # enable FDPIC (remove line to disable)
+
+# add this for c++
+# SHARED_LIBS_TO_INSTALL += libstdc++
+
+############################################################################
+
+include $(ROOTDIR)/vendors/config/ubicom32nommu/config.arch
+
+############################################################################

@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1270209594 source:/home/labo4g/Bureau/Source/miniUPnP/test/miniupnpd-1.4.20100308/Test/main.c
+	<stdio.h>
+	<stdlib.h>
+	<netdb.h>
+	<string.h>
+	<syslog.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<net/if.h>
+	<arpa/inet.h>
+	<netinet/in.h>
+	<ifaddrs.h>
+

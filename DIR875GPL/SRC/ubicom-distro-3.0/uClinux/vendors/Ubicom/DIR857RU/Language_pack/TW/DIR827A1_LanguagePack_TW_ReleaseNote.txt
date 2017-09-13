@@ -1,0 +1,13 @@
+Language Pack Release Note
+Project Name: DIR-827
+HW version: A1
+Region/OEM code: TW
+======================================================================================
+Language-Version:1.00TWb01
+Language: Taiwan
+Language-Checksum: 0x00C69570
+svn:1780
+
+1.please base on FW v1.00b17 or later.
+--------------------------------------------------------------------------------------
+

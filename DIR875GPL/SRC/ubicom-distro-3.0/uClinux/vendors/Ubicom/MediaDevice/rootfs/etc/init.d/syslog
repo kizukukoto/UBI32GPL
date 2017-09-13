@@ -1,0 +1,12 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2009 Ubicom, Inc.
+
+if [ $action = "start" ]	
+then
+	echo "Starting logging daemons"
+	syslogd
+	klogd
+elif [ $action = "stop"	]
+then
+	echo "Stopping logging daemons"
+fi	

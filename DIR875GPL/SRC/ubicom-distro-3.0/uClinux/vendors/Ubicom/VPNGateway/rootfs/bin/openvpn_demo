@@ -1,0 +1,5 @@
+#!/bin/sh
+ifconfig eth1 192.168.2.77 up
+ifconfig eth0 192.168.4.1 up
+
+openvpn_start tun_s

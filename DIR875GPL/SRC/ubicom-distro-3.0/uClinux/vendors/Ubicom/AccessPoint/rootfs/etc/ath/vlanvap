@@ -1,0 +1,58 @@
+#!/bin/sh
+#shell script to to configure the vap for vlan
+#arguments
+#   $1 - $APNAME - name of the interface eg. ath0
+#   $2 - $BRNAME - name of the bridge eg. br2
+#   $3 - $VLANID - Id of the VLAN, eg 2
+#   $4 - $SECMODE - Security mode like WPA
+#   $5 - $SECFILE - like 8021x.conf
+#call as
+#   configure_vlanvap ath0 br2 2 WPA wpa2EAP.conf
+VAPNAME=$1
+VBRNAME=$2
+VVLANID=$3
+VSECMODE=$4
+VSECFILE=$5
+#verify sec args 
+if [ ${VSECMODE} != "NONE" ]; then
+    if [ ${VSECFILE} = "NONE" ]; then
+	echo "No security file specified for $VSECMODE on $VAPNAME"
+	exit 1
+    fi
+fi
+#add tags on both eth0, eth1 and athx
+VESSID=`iwconfig ${VAPNAME} | grep ESSID | cut -f2 -d\"`
+brctl addbr $VBRNAME
+brctl delif br0 $VAPNAME
+vconfig add $VAPNAME $VVLANID
+vconfig add eth0 $VVLANID
+vconfig add eth1 $VVLANID
+brctl addif $VBRNAME $VAPNAME.$VVLANID
+brctl addif $VBRNAME eth0.$VVLANID
+brctl addif $VBRNAME eth1.$VVLANID
+ifconfig $VAPNAME.$VVLANID up
+ifconfig eth0.$VVLANID up
+ifconfig eth1.$VVLANID up
+ifconfig $VBRNAME up
+#change the configuration file for proper bridge= and interface= lines
+if [ "${VSECMODE}" != "NONE" ]; then
+    #WPA
+    set -x
+    if [ "${VSECMODE}" = "WPA" ]; then
+	sed -e 's/CHANGE_ME/'${VESSID}'/g' /etc/ath/${VSECFILE} | sed -e 's/ath0/'${VAPNAME}'/g' | sed -e 's/br0/'${VBRNAME}'/g' > /tmp/sec${VAPNAME}
+	hostapd -B /tmp/sec${VAPNAME}
+    fi
+
+    #WEP
+    if [ "${VSECMODE}" = "WEP" ]; then
+       if [ "${VAPNAME}" != "ath0" ]; then
+	  echo "WEP not allowed on VAPs other than ath0"
+	  echo "Configuration Denied"
+	  exit 1
+       else
+	  sed -e 's/APNAME/VAPNAME/g' /etc/ath/WEP.conf > /tmp/sec${VAPNAME}
+	  . /tmp/sec${VAPNAME}
+       fi
+    fi
+fi
+#end configure_vlanvap

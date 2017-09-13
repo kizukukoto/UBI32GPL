@@ -1,0 +1,38 @@
+#!/bin/sh
+
+. /etc/ap_config
+
+case "$1" in
+     'start')
+	echo -n "Starting dnsmasq"
+ 	PID=`ps | grep dnsmasq | egrep -v grep\|$0`
+ 	if [ "$PID" = "" ]; then
+	    dnsmasq -d -q > /dev/null 2>&1 &
+ 	fi
+	echo ": [OK]"
+	;;
+
+     'stop')
+     	echo -n "Stopping dnsmasq"
+ 	PID=`ps | grep dnsmasq | egrep -v grep\|$0`
+ 	if [ "$PID" != "" ]; then
+ 	    killall -9 dnsmasq > /dev/null 2>&1
+ 	fi
+	echo ": [OK]"
+	;;
+
+     'restart')
+	echo -n "Restarting dnsmasq"
+ 	PID=`ps | grep dnsmasq | egrep -v grep\|$0`
+ 	if [ "$PID" != "" ]; then
+ 	    killall -9 dnsmasq > /dev/null 2>&1
+ 	fi
+	dnsmasq -d -q > /dev/null 2>&1 &
+	echo ": [OK]"
+	;;
+
+     *)
+	echo "Usage"
+	echo "$SCRIPT_PATH/do_dnsmasq start | stop | restart"
+	;;
+esac

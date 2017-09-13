@@ -1,0 +1,832 @@
+#!/bin/sh
+
+. /etc/rgw_config
+. /etc/iptables.conf
+
+WANINF=$WANINTERFACE
+
+LANINF=$BRINTERFACE
+LANIP=$BRIDGEIP
+LANNET=`awk -v args=sb -v ip=$BRIDGEIP -v mask=$BRIDGEMASK -f /etc/init.d/helper/subnet.awk`
+
+WEBPORT=80
+
+if [ ! -f /bin/iptables ]; then
+	echo "iptables not exist."
+	exit 1
+fi
+
+
+case "$1" in
+  stop)
+	echo "removing netfilter rules."
+	iptables -F
+	iptables -t nat -F
+	iptables -t mangle -F
+
+	echo "deleting nat chains."
+	iptables -t nat -X PRE.DOS
+	iptables -t nat -X PRE.SPI
+	iptables -t nat -X PRE.LAN
+	iptables -t nat -X DNAT.UPNP
+	iptables -t nat -X DNAT.VSVR.NAT
+	iptables -t nat -X DNAT.PFWD.NAT
+	iptables -t nat -X DNAT.PORTT.NAT
+	iptables -t nat -X PRE.IGMP
+	iptables -t nat -X PRE.WAN
+	iptables -t nat -X MASQ.NAT
+
+	echo "deleting filter chains."
+	iptables -X MACF.LAN
+	iptables -X URLF.LAN
+	iptables -X FIREWALL
+	iptables -X FWD.WAN
+	iptables -X FWD.LAN
+	iptables -X IN.LAN
+	echo "done."
+
+	exit 0
+	;;
+
+  restart)
+	$0 stop
+	$0 start
+	exit 0
+	;;
+
+  status)
+	exit 0
+	;;
+
+  start)
+	;;
+
+  *)
+	echo "usage: $0 start | stop | restart | status"
+	exit 0
+	;;
+esac
+
+
+#NAT PREROUTING
+#PRE.DOS
+echo "Adding nat PRE.DOS"
+iptables -t nat -N PRE.DOS
+#SYN Flooding
+iptables -t nat -A PRE.DOS -p tcp -m limit --limit 10/s --limit-burst 50 -j RETURN
+iptables -t nat -A PRE.DOS -p tcp -m limit --limit 10/s --limit-burst 50 -j LOG --log-level info --log-prefix 'ATT:002[SYN-FLOODING]:'
+iptables -t nat -A PRE.DOS -p tcp -j DROP
+
+#PING flooding:
+iptables -t nat -A PRE.DOS -p icmp --icmp-type echo-request -m limit --limit 10/s --limit-burst 50 -j RETURN
+iptables -t nat -A PRE.DOS -p icmp --icmp-type echo-reply -m limit --limit 10/s --limit-burst 50 -j RETURN
+iptables -t nat -A PRE.DOS -p icmp -m limit --limit 10/s --limit-burst 50 -j LOG --log-level info --log-prefix 'ATT:002[PING-FLOODING]:'
+iptables -t nat -A PRE.DOS -p icmp -j DROP
+
+#PRE.SPI
+echo "Adding nat PRE.SPI"
+iptables -t nat -N PRE.SPI
+# Bad Packet
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags SYN,ACK SYN,ACK -m state --state NEW -j LOG --log-level notice --log-prefix 'ATT:001[SYN-ACK]:'
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags SYN,ACK SYN,ACK -m state --state NEW -j DROP
+
+#NULL scan
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags ALL NONE -j LOG --log-level notice --log-prefix 'ATT:001[NULL]:'
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags ALL NONE -j DROP
+
+#NMAP
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags ALL FIN,URG,PSH -j LOG --log-level info --log-prefix 'ATT:001[NMAP-Xmas]:'
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP
+
+#SYN-RST
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags SYN,RST SYN,RST -j LOG --log-level info --log-prefix 'ATT:001[SYN-RST]:'
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
+
+#SYN-FIN
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags SYN,FIN SYN,FIN -j LOG --log-level info --log-prefix 'ATT:001[SYN-FIN]:'
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags SYN,FIN SYN,FIN -j DROP
+
+#X'mas
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags ALL ALL -j LOG --log-level info --log-prefix 'ATT:001[Xmas]:'
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags ALL ALL -j DROP
+
+#X'mas
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j LOG --log-level info --log-prefix 'ATT:001[Xmas]:'
+iptables -t nat -A PRE.SPI -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
+
+#PRE.LAN
+echo "Adding nat PRE.LAN"
+iptables -t nat -N PRE.LAN
+iptables -t nat -A PRE.LAN -j ACCEPT
+
+#: <<'END' 
+##shell does not support array 
+#if [ ! -z "$DNATUPNP" ]; then
+#	#DNAT.UPNP
+#	#Parameter format:
+#	#(PROT, EXTPORT, INTHOST, INTPORT)
+#	# The rules here will be add by UPNP.
+#	iptables -t nat -N DNAT.UPNP
+#	for ((i=0 ; i <= $((${#DNATUPNP[@]} - 1)) ; i++))
+#	do
+#		echo "${DNATUPNP[$i]}" | awk -F','\
+#			'{system("iptables -t nat -A DNAT.UPNP -p " $1 " --dport " $2 " -j DNAT --to-destination " $3":"$4)}'
+#	done
+#fi
+#END
+
+
+echo "Adding nat DNAT.UPNP"
+	iptables -t nat -N DNAT.UPNP
+if [ ! -z "$DNATUPNP1" ]; then
+	#DNAT.UPNP
+	#Parameter format:
+	#(PROT, EXTPORT, INTHOST, INTPORT)
+	# The rules here will be add by UPNP.
+	echo "$DNATUPNP1" | awk -F','\
+		'{system("iptables -t nat -A DNAT.UPNP -p " $1 " --dport " $2 " -j DNAT --to-destination " $3":"$4)}'
+fi
+
+if [ ! -z "$DNATUPNP2" ]; then
+	#DNAT.UPNP
+	#Parameter format:
+	#(PROT, EXTPORT, INTHOST, INTPORT)
+	# The rules here will be add by UPNP.
+	echo "$DNATUPNP2" | awk -F','\
+		'{system("iptables -t nat -A DNAT.UPNP -p " $1 " --dport " $2 " -j DNAT --to-destination " $3":"$4)}'
+fi
+
+if [ ! -z "$DNATUPNP3" ]; then
+	#DNAT.UPNP
+	#Parameter format:
+	#(PROT, EXTPORT, INTHOST, INTPORT)
+	# The rules here will be add by UPNP.
+	echo "$DNATUPNP3" | awk -F','\
+		'{system("iptables -t nat -A DNAT.UPNP -p " $1 " --dport " $2 " -j DNAT --to-destination " $3":"$4)}'
+fi
+
+if [ ! -z "$DNATUPNP4" ]; then
+	#DNAT.UPNP
+	#Parameter format:
+	#(PROT, EXTPORT, INTHOST, INTPORT)
+	# The rules here will be add by UPNP.
+	echo "$DNATUPNP4" | awk -F','\
+		'{system("iptables -t nat -A DNAT.UPNP -p " $1 " --dport " $2 " -j DNAT --to-destination " $3":"$4)}'
+fi
+
+
+if [ ! -z "$DNATUPNP5" ]; then
+	#DNAT.UPNP
+	#Parameter format:
+	#(PROT, EXTPORT, INTHOST, INTPORT)
+	# The rules here will be add by UPNP.
+	echo "$DNATUPNP5" | awk -F','\
+		'{system("iptables -t nat -A DNAT.UPNP -p " $1 " --dport " $2 " -j DNAT --to-destination " $3":"$4)}'
+fi
+
+#: <<'END' 
+##shell does not support array 
+#if [ ! -z "$DNATVSVRNAT" ]; then
+#	#DNAT.VSVR.NAT
+#	iptables -t nat -N DNAT.VSVR.NAT
+#	#Parameter format:
+#	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, INTPORT)
+#
+#	for ((i=0 ; i <= $((${#DNATVSVRNAT[@]} - 1)) ; i++))
+#	do
+#		echo "${DNATVSVRNAT[$i]}" | awk -F','\
+#			'{if ($1 == "SINGLEPORT") \
+#				{system("iptables -t nat -A DNAT.VSVR.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}\
+#			else\
+#				{system("iptables -t nat -A DNAT.VSVR.NAT -p " $2 " -m multiport --ports " $3":"$4 " -j DNAT --to-shift " $5":"$6)}}'
+#	done
+#fi
+#END
+
+echo "Adding nat DNAT.VSVR.NAT"
+iptables -t nat -N DNAT.VSVR.NAT
+if [ ! -z "$DNATVSVRNAT1" ]; then
+	#DNAT.VSVR.NAT
+	#Parameter format:
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, INTPORT)
+
+#--to-shift DNAT option not supported?
+	echo "$DNATVSVRNAT1" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.VSVR.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+if [ ! -z "$DNATVSVRNAT2" ]; then
+	#DNAT.VSVR.NAT
+	#Parameter format:
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, INTPORT)
+
+#--to-shift DNAT option not supported?
+	echo "$DNATVSVRNAT2" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.VSVR.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+if [ ! -z "$DNATVSVRNAT3" ]; then
+	#DNAT.VSVR.NAT
+	#Parameter format:
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, INTPORT)
+
+#--to-shift DNAT option not supported?
+	echo "$DNATVSVRNAT3" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.VSVR.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+if [ ! -z "$DNATVSVRNAT4" ]; then
+	#DNAT.VSVR.NAT
+	#Parameter format:
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, INTPORT)
+
+#--to-shift DNAT option not supported?
+	echo "$DNATVSVRNAT4" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.VSVR.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+if [ ! -z "$DNATVSVRNAT5" ]; then
+	#DNAT.VSVR.NAT
+	#Parameter format:
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, INTPORT)
+
+#--to-shift DNAT option not supported?
+	echo "$DNATVSVRNAT5" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.VSVR.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+#: <<'END' 
+##shell does not support array
+#if [ ! -z "$DNATPFWDNAT" ]; thenDNAT.PFWD.NAT
+#	#DNAT.PFWD.NAT
+#	iptables -t nat -N DNAT.PFWD.NAT
+#	#Parameter format:#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+#	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+#	for ((i=0 ; i <= $((${#DNATPFWDNAT[@]} - 1)) ; i++))
+#	do
+#		echo "${DNATPFWDNAT[$i]}" | awk -F','\
+#			'{if ($1 == "SINGLEPORT") \
+#				{system("iptables -t nat -A DNAT.PFWD.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}\
+#			else\
+#				{system("iptables -t nat -A DNAT.PFWD.NAT -p " $2 " -m multiport --ports " $3":"$4 " -j DNAT --to-shift " $5":"$6)}}'
+#	done
+#fi
+#END
+
+
+echo "Adding nat DNAT.PFWD.NAT"
+iptables -t nat -N DNAT.PFWD.NAT
+if [ ! -z "$DNATPFWDNAT1" ]; then
+	#DNAT.PFWD.NAT
+	#Parameter format:#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+#--to-shift DNAT option not supported?
+	echo "$DNATPFWDNAT1" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.PFWD.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+if [ ! -z "$DNATPFWDNAT2" ]; then
+	#DNAT.PFWD.NAT
+	#Parameter format:#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+#--to-shift DNAT option not supported?
+	echo "$DNATPFWDNAT2" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.PFWD.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+if [ ! -z "$DNATPFWDNAT3" ]; then
+	#DNAT.PFWD.NAT
+	#Parameter format:#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+#--to-shift DNAT option not supported?
+	echo "$DNATPFWDNAT3" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.PFWD.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+if [ ! -z "$DNATPFWDNAT4" ]; then
+	#DNAT.PFWD.NAT
+	#Parameter format:#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+#--to-shift DNAT option not supported?
+	echo "$DNATPFWDNAT4" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.PFWD.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+if [ ! -z "$DNATPFWDNAT5" ]; then
+	#DNAT.PFWD.NAT
+	#Parameter format:#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+	#(SINGLEPORT, PROT, EXTPORT, INTHOST, INTPORT) || (MULTIPORT, PROT, EXTPORTSTART, EXTPORTEND, INTHOST, OFFSET)
+#--to-shift DNAT option not supported?
+	echo "$DNATPFWDNAT5" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -t nat -A DNAT.PFWD.NAT -p " $2 " --dport " $3 " -j DNAT --to-destination " $4":"$5)}}'
+fi
+
+#DNAT.PORTT.NAT
+iptables -t nat -N DNAT.PORTT.NAT
+
+#PRE.IGMP
+#echo "Adding nat PRE.IGMP"
+#iptables -t nat -N PRE.IGMP
+#iptables -t nat -A PRE.IGMP -d 224.0.0.1 -j ACCEPT # FIX-IT : ip will be parameter
+
+#PRE.WAN
+echo "Adding nat PRE.WAN"
+iptables -t nat -N PRE.WAN
+iptables -t nat -A PRE.WAN -j DNAT.UPNP
+iptables -t nat -A PRE.WAN -j DNAT.VSVR.NAT
+iptables -t nat -A PRE.WAN -j DNAT.PFWD.NAT
+iptables -t nat -A PRE.WAN -j DNAT.PORTT.NAT
+
+
+if [ "$ECHO_REQ_DEFAULT_POLICY" = "ACCEPT" ]; then
+	iptables -t nat -A PRE.WAN -p icmp --icmp-type echo-request -j ACCEPT
+else
+	iptables -t nat -A PRE.WAN -p icmp --icmp-type echo-request -j DROP
+fi
+
+
+if [ "$ECHO_REP_DEFAULT_POLICY" = "ACCEPT" ]; then
+	iptables -t nat -A PRE.WAN -p icmp --icmp-type echo-reply -j ACCEPT
+else
+	iptables -t nat -A PRE.WAN -p icmp --icmp-type echo-reply -j DROP
+fi
+
+#iptables -t nat -A PRE.WAN -j PRE.IGMP
+iptables -t nat -A PRE.WAN -m state --state INVALID -j ACCEPT
+iptables -t nat -A PRE.WAN -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -t nat -A PRE.WAN -p tcp --dport $WEBPORT -j ACCEPT
+
+#open inetd services ports
+inetd_services=`awk '{ printf $1 " " }' /etc/inetd.conf`
+for service in $inetd_services 
+do
+	grep "^\<$service\>" /etc/services | awk '{ print $2 }' | awk -F'/' ' { system("iptables -t nat -A PRE.WAN -p " $2 " --dport " $1 " -j ACCEPT ") }  '
+done
+
+
+#NAT POSTROUTING
+#iptables -t nat -N MASQ.NAT
+#MASQ.NAT
+#if (??) {
+#	iptables -t nat -A MASQ.NAT -j MASQUERADE
+#} else {
+#	# iptables -t nat -A MASQ.NAT -j STUN --type {TYPE}
+#}
+
+
+#nat
+#PREROUTING
+echo "Adding nat PREROUTING"
+iptables -t nat -A PREROUTING -j PRE.DOS
+iptables -t nat -A PREROUTING -j PRE.SPI
+iptables -t nat -A PREROUTING -i $LANINF -j PRE.LAN
+
+if [ "$WANCONNECTIONTYPE" = "static" ]; then
+	WANIP=$STATICWANIP
+elif [ "$WANCONNECTIONTYPE" = "dhcp" ]; then
+	WANIP=$DHCPWANIP
+else
+	echo "error: could'n get WAN IP"
+fi
+
+iptables -t nat -A PREROUTING -i $WANINF -d $WANIP -j PRE.WAN
+if [ "$DMZENABLED" = "YES" ]; then
+	iptables -t nat -A PREROUTING -i $WANINF -j DNAT --to $DMZHOST
+	iptables -A INPUT -i $WANINF -j ACCEPT
+else
+	iptables -t nat -A PREROUTING -i $WANINF -j DROP
+fi
+
+#POSTROUTING
+echo "Adding nat POSTROUTING"
+iptables -t nat -A POSTROUTING -o $WANINF -s $LANNET -j MASQUERADE
+iptables -t nat -A POSTROUTING -o $LANINF -s $LANNET -j SNAT --to-source $LANIP
+
+#ACL
+#: <<'END' 
+##shell dos not support array
+#if [ ! -z "$MACADDR" ]; then
+#	#MACF.LAN
+#	iptables -N MACF.LAN
+#	if [ "$MACF_DEFAULT_POLICY" = "ACCEPT" ]; then
+#		for ((i=0 ; i <= $((${#MACADDR[@]} - 1)) ; i++))
+#		do
+#			iptables -A MACF.LAN -m mac --mac-source ${MACADDR[$i]} -j LOG --log-level notice --log-prefix 'DRP:004:'
+#			iptables -A MACF.LAN -m mac --mac-source ${MACADDR[$i]} -j DROP
+#		done
+#	else
+#		for ((i=0 ; i <= $((${#MACADDR[@]} - 1)) ; i++))
+#		do
+#			iptables -A MACF.LAN -m mac --mac-source ${MACADDR[$i]} -j RETURN
+#		done
+#
+#		iptables -A MACF.LAN -j LOG --log-level notice --log-prefix 'DRP:004:'
+#		iptables -A MACF.LAN -j DROP
+#	fi
+#fi
+#END
+
+echo "Adding filter MAC"
+iptables -N MACF.LAN
+if [ ! -z "$MACADDR1" ]; then
+	#MACF.LAN
+	if [ "$MACF_DEFAULT_POLICY" = "ACCEPT" ]; then
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR1 -j LOG --log-level notice --log-prefix 'DRP:004:'
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR1 -j DROP
+	else
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR1 -j RETURN
+
+		iptables -A MACF.LAN -j LOG --log-level notice --log-prefix 'DRP:004:'
+		iptables -A MACF.LAN -j DROP
+	fi
+fi
+
+
+if [ ! -z "$MACADDR2" ]; then
+	#MACF.LAN
+	if [ "$MACF_DEFAULT_POLICY" = "ACCEPT" ]; then
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR2 -j LOG --log-level notice --log-prefix 'DRP:004:'
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR2 -j DROP
+	else
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR2 -j RETURN
+	fi
+fi
+
+
+if [ ! -z "$MACADDR3" ]; then
+	#MACF.LAN
+	if [ "$MACF_DEFAULT_POLICY" = "ACCEPT" ]; then
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR3 -j LOG --log-level notice --log-prefix 'DRP:004:'
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR3 -j DROP
+	else
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR3 -j RETURN
+	fi
+fi
+
+if [ ! -z "$MACADDR4" ]; then
+	#MACF.LAN
+	if [ "$MACF_DEFAULT_POLICY" = "ACCEPT" ]; then
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR4 -j LOG --log-level notice --log-prefix 'DRP:004:'
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR4 -j DROP
+	else
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR4 -j RETURN
+	fi
+fi
+
+if [ ! -z "$MACADDR5" ]; then
+	#MACF.LAN
+	if [ "$MACF_DEFAULT_POLICY" = "ACCEPT" ]; then
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR5 -j LOG --log-level notice --log-prefix 'DRP:004:'
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR5 -j DROP
+	else
+		iptables -A MACF.LAN -m mac --mac-source $MACADDR5 -j RETURN
+	fi
+fi
+
+
+#: <<'END' 
+##shell does not support array
+#if [ ! -z "$URL" ]; then
+#	#URLF.LAN
+#	iptables -N URLF.LAN
+#	#When default policy is DROP :
+#	if [ "$URLF_DEFAULT_POLICY" = "ACCEPT" ]; then
+#		#When the default policy is ACCEPT :
+#		for ((i=0 ; i <= $((${#URL[@]} - 1)) ; i++))
+#		do
+#			iptables -A URLF.LAN -m string --url ${URL[$i]} -j LOG --log-level notice --log-prefix 'DRP:007:'
+#			iptables -A URLF.LAN -m string --url ${URL[$i]} -j DROP
+#		done
+#	else
+#		for ((i=0 ; i <= $((${#URL[@]} - 1)) ; i++))
+#		do
+#			iptables -#DNAT.UPNP A URLF.LAN -m string --url ${URL[$i]} -j RETURN
+#		done
+#
+#	fi
+#fi
+#END
+
+
+echo "Adding filter URL"
+iptables -N URLF.LAN
+#if [ ! -z "$URL1" ]; then
+	#URLF.LAN
+	#When default policy is DROP :
+#--url option not supported?
+#	if [ "$URLF_DEFAULT_POLICY" = "ACCEPT" ]; then
+#		#When the default policy is ACCEPT :
+#		iptables -A URLF.LAN -m string --url $URL1 -j LOG --log-level notice --log-prefix 'DRP:007:'
+#		iptables -A URLF.LAN -m string --url $URL1 -j DROP
+#	else
+#		iptables -A URLF.LAN -m string --url $URL1 -j RETURN
+#
+#		iptables -A URLF.LAN -m string --http_req -j LOG --log-level notice --log-prefix 'DRP:007:'
+#		iptables -A URLF.LAN -m string --http_req -j DROP
+#	fi
+#fi
+
+
+#if [ ! -z "$URL2" ]; then
+#	#URLF.LAN
+#	#When default policy is DROP :
+##--url option not supported?
+#	if [ "$URLF_DEFAULT_POLICY" = "ACCEPT" ]; then
+#		#When the default policy is ACCEPT :
+#		iptables -A URLF.LAN -m string --url $URL2 -j LOG --log-level notice --log-prefix 'DRP:007:'
+#		iptables -A URLF.LAN -m string --url $URL2 -j DROP
+#	else
+#		iptables -#DNAT.UPNP A URLF.LAN -m string --url $URL2 -j RETURN
+#	fi
+#fi
+
+#if [ ! -z "$URL3" ]; then
+#	#URLF.LAN
+#	#When default policy is DROP :
+##--url option not supported?
+#	if [ "$URLF_DEFAULT_POLICY" = "ACCEPT" ]; then
+#		#When the default policy is ACCEPT :
+#		iptables -A URLF.LAN -m string --url $URL3 -j LOG --log-level notice --log-prefix 'DRP:007:'
+#		iptables -A URLF.LAN -m string --url $URL3 -j DROP
+#	else
+#		iptables -#DNAT.UPNP A URLF.LAN -m string --url $URL3 -j RETURN
+#	fi
+#fi
+
+#if [ ! -z "$URL4" ]; then
+#	#URLF.LAN
+#	#When default policy is DROP :
+##--url option not supported?
+#	if [ "$URLF_DEFAULT_POLICY" = "ACCEPT" ]; then
+#		#When the default policy is ACCEPT :
+#		iptables -A URLF.LAN -m string --url $URL4 -j LOG --log-level notice --log-prefix 'DRP:007:'
+#		iptables -A URLF.LAN -m string --url $URL4 -j DROP
+#	else
+#		iptables -#DNAT.UPNP A URLF.LAN -m string --url $URL4 -j RETURN
+#	fi
+#fi
+
+#if [ ! -z "$URL5" ]; then
+#	#URLF.LAN
+#	#When default policy is DROP :
+##--url option not supported?
+#	if [ "$URLF_DEFAULT_POLICY" = "ACCEPT" ]; then
+#		#When the default policy is ACCEPT :
+#		iptables -A URLF.LAN -m string --url $URL5 -j LOG --log-level notice --log-prefix 'DRP:007:'
+#		iptables -A URLF.LAN -m string --url $URL5 -j DROP
+#	else
+#		iptables -#DNAT.UPNP A URLF.LAN -m string --url $URL5 -j RETURN
+#	fi
+#fi
+
+#: <<'END' 
+##shell does not support array
+#if [ ! -z "$FIREWALLRULES" ]; then
+#	#(SINGLEPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, DSTPORT) || (MULTIPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, START, END) || (IPRANGE, ININF, OUTINF, PROTO, SIPSTART, SIPEND, DIPSTART, DIPEND, START, END)
+#	#FIREWALL
+#	iptables -N FIREWALL 
+#
+#	#When default policy is ACCEPT :
+#	for ((i=0 ; i <= $((${#FIREWALLRULES[@]} - 1)) ; i++))
+#	do
+#		if [ "$FIREWALL_DEFAULT_POLICY" = "ACCEPT" ]; then
+#			echo "${FIREWALLRULES[$i]}" | awk -F','\
+#			'{if ($1 == "SINGLEPORT") \
+#				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+#					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j DROP")} \
+#			else {if ($1 == "MULTIPORT") \
+#					{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+#						 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j DROP")} \
+#				else \
+#					{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+#						 i#shell does not support arrayptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j DROP")}} \
+#			}'
+#		else
+#			echo "${FIREWALLRULES[$i]}" | awk -F','\
+#			'{if ($1 == "SINGLEPORT") \
+#				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j ACCEPT")} \
+#			else {if ($1 == "MULTIPORT") \
+#				 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j ACCEPT")} \
+#				else \
+#				 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j ACCEPT")}} \
+#			}'
+#		fi
+#	done
+#fi
+#END
+
+
+
+iptables -N FIREWALL 
+echo "Adding filter firewall"
+if [ -n "$FIREWALLRULES1" -a "$FIREWALLENABLED" = "YES" ]; then
+	#(SINGLEPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, DSTPORT) || (MULTIPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, START, END) || (IPRANGE, ININF, OUTINF, PROTO, SIPSTART, SIPEND, DIPSTART, DIPEND, START, END)
+	#FIREWALL
+
+	#When default policy is ACCEPT :
+	if [ "$FIREWALL_DEFAULT_POLICY" = "ACCEPT" ]; then
+		echo "$FIREWALLRULES1" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+				 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j DROP")} \
+		else {if ($1 == "MULTIPORT") \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j DROP")} \
+			else \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j DROP")}} \
+		}'
+	else
+		echo "$FIREWALLRULES1" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j ACCEPT")} \
+		else {if ($1 == "MULTIPORT") \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j ACCEPT")} \
+			else \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j ACCEPT")}} \
+		}'
+	fi
+fi
+
+if [ -n "$FIREWALLRULES2" -a "$FIREWALLENABLED" = "YES" ]; then
+	#(SINGLEPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, DSTPORT) || (MULTIPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, START, END) || (IPRANGE, ININF, OUTINF, PROTO, SIPSTART, SIPEND, DIPSTART, DIPEND, START, END)
+	#FIREWALL
+
+	#When default policy is ACCEPT :
+	if [ "$FIREWALL_DEFAULT_POLICY" = "ACCEPT" ]; then
+		echo "$FIREWALLRULES2" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+				 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j DROP")} \
+		else {if ($1 == "MULTIPORT") \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j DROP")} \
+			else \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j DROP")}} \
+		}'
+	else
+		echo "$FIREWALLRULES2" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j ACCEPT")} \
+		else {if ($1 == "MULTIPORT") \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j ACCEPT")} \
+			else \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j ACCEPT")}} \
+		}'
+	fi
+fi
+
+if [ -n "$FIREWALLRULES3" -a "$FIREWALLENABLED" = "YES" ]; then
+	#(SINGLEPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, DSTPORT) || (MULTIPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, START, END) || (IPRANGE, ININF, OUTINF, PROTO, SIPSTART, SIPEND, DIPSTART, DIPEND, START, END)
+	#FIREWALL
+
+	#When default policy is ACCEPT :
+	if [ "$FIREWALL_DEFAULT_POLICY" = "ACCEPT" ]; then
+		echo "$FIREWALLRULES3" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+				 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j DROP")} \
+		else {if ($1 == "MULTIPORT") \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j DROP")} \
+			else \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j DROP")}} \
+		}'
+	else
+		echo "$FIREWALLRULES3" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j ACCEPT")} \
+		else {if ($1 == "MULTIPORT") \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j ACCEPT")} \
+			else \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j ACCEPT")}} \
+		}'
+	fi
+fi
+
+if [ -n "$FIREWALLRULES4" -a "$FIREWALLENABLED" = "YES" ]; then
+	#(SINGLEPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, DSTPORT) || (MULTIPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, START, END) || (IPRANGE, ININF, OUTINF, PROTO, SIPSTART, SIPEND, DIPSTART, DIPEND, START, END)
+	#FIREWALL
+
+	#When default policy is ACCEPT :
+	if [ "$FIREWALL_DEFAULT_POLICY" = "ACCEPT" ]; then
+		echo "$FIREWALLRULES4" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+				 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j DROP")} \
+		else {if ($1 == "MULTIPORT") \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j DROP")} \
+			else \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j DROP")}} \
+		}'
+	else
+		echo "$FIREWALLRULES4" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j ACCEPT")} \
+		else {if ($1 == "MULTIPORT") \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j ACCEPT")} \
+			else \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j ACCEPT")}} \
+		}'
+	fi
+fi
+
+if [ -n "$FIREWALLRULES5" -a "$FIREWALLENABLED" = "YES" ]; then
+	#(SINGLEPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, DSTPORT) || (MULTIPORT, ININF, OUTINF, PROTO, SRCIP, DSTIP, START, END) || (IPRANGE, ININF, OUTINF, PROTO, SIPSTART, SIPEND, DIPSTART, DIPEND, START, END)
+	#FIREWALL
+
+	#When default policy is ACCEPT :
+	if [ "$FIREWALL_DEFAULT_POLICY" = "ACCEPT" ]; then
+		echo "$FIREWALLRULES5" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+				 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j DROP")} \
+		else {if ($1 == "MULTIPORT") \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j DROP")} \
+			else \
+				{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j LOG --log-level notice --log-prefix 'DRP:006:'\n\
+					 iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j DROP")}} \
+		}'
+	else
+		echo "$FIREWALLRULES5" | awk -F','\
+		'{if ($1 == "SINGLEPORT") \
+			{system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " --dport " $7 " -j ACCEPT")} \
+		else {if ($1 == "MULTIPORT") \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -s " $5 " -d " $6 " -m multiport --ports " $7":"$8 " -j ACCEPT")} \
+			else \
+			 {system("iptables -A FIREWALL -i " $2 " -o " $3 " -p " $4 " -m iprange --src-range " $5"-"$6 " --dst-range " $7"-"$8 " -m multiport --ports " $9":"$10 " -j ACCEPT")}} \
+		}'
+	fi
+fi
+
+#FWD.LAN	
+echo "Adding filter FWD.LAN"
+
+iptables -N FWD.LAN
+iptables -A FWD.LAN -j MACF.LAN
+
+iptables -A FWD.LAN -j FIREWALL
+
+iptables -A FWD.LAN -p tcp --dport 80 -j URLF.LAN
+
+#iptables -A FWD.LAN -p udp --dport 53  -j DOMAINF.LAN #where is domainf?
+#iptables -A FWD.LAN -p tcp --dport 53 -j DOMAINF.LAN #where is domainf?
+
+#iptables -A FWD.LAN -p udp --dport 500 -j DROP ???
+#iptables -A FWD.LAN -p udp --dport 4500 -j DROP ???
+
+#Allow IPSec
+#iptables -A FWD.LAN -p ah -j DROP
+#iptables -A FWD.LAN -p esp -j DROP
+
+#iptables -A FWD.LAN -p tcp --dport 1723 -j DROP ???
+
+#FWD.WAN
+echo "Adding filter FWD.WAN"
+iptables -N FWD.WAN
+
+iptables -A FWD.WAN -j FIREWALL
+
+#INP.LANDNAT.PORTT.NAT
+echo "Adding filter IN.LAN"
+iptables -N IN.LAN
+
+
+#forward
+#INPUT
+echo "Adding filter INPUT"
+iptables -A INPUT -i $LANINF -j IN.LAN
+
+#FORWARD
+echo "Adding filter FORWARD"
+iptables -A FORWARD -i $LANINF -j FWD.LAN
+
+#OUTPUT
+iptables -A FORWARD -i $WANINF -j FWD.WAN
+
+
+#mangle
+#PREROUTING
+echo "Adding mangle PREROUTING"
+iptables -t mangle -A PREROUTING -j TTL --ttl-inc 1
+#iptables -t mangle -A PREROUTING -i $WANINF -p tcp --syn -m tcpmss --mss $(($MTU - 40)):1500 -j TCPMSS --set-mss $(($MTU - 40))
+#shell does not support arithmetic operation
+iptables -t mangle -A PREROUTING -i $WANINF -p tcp --syn -m tcpmss --mss 1460:1500 -j TCPMSS --set-mss 1460
+
+
+

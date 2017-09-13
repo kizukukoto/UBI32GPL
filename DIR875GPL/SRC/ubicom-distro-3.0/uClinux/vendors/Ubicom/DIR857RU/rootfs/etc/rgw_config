@@ -1,0 +1,156 @@
+#!/bin/sh
+# Copyright (C) 2009 Ubicom Inc. <gareth/.williams@ubicom.com>
+
+#
+# IMPORTANT: This is NOT a functional rgw_config as per Ubicom's own RouterGateway project.
+# It is provided to set up environment variables that Ubicom scripts may use for convenience purposes.
+#
+
+#[VERSION]
+VERSION=UNKNOWN
+MODEL=$(nvram get model_number | cut -c16- -)
+SERIALNO=$(nvram get serial_number | cut -c17- -)
+
+#[SYSTEM]
+HOSTNAME=$(nvram get hostname | cut -c12- -)
+DOMAINNAME=$(nvram get dhcpd_domain_name | cut -c21- -)
+USERNAME=$(nvram get admin_username | cut -c18- -)
+PASSWD=$(nvram get admin_password | cut -c18- -)
+
+#[LAN]
+LANINTERFACE=$(nvram get lan_eth | cut -c11- -)
+LANMAC=$(nvram get lan_mac | cut -c11- -)
+
+#[BRIDGEINTERFACE]
+BRINTERFACE=$(nvram get lan_bridge | cut -c14- -)
+BRIDGEIP=$(nvram get lan_ipaddr | cut -c14- -)
+BRIDGEMASK=$(nvram get lan_netmask | cut -c15- -)
+
+#[WIRELESS]
+WIRELESSENABLED=$(nvram get wlan0_enable | cut -c16- -)
+WLANINTERFACE=$(nvram get wlan0_eth | cut -c13- -)
+
+#[IPV6]
+IPV6_LAN_PREFIX=$(nvram get ipv6_ra_prefix64_l_one | cut -c26- -)
+IPV6_LAN_PREFIXLEN=64
+IPV6_WAN_PREFIX=$(nvram get ipv6_ra_prefix64_w_one | cut -c26- -)
+IPV6_WAN_PREFIXLEN=64
+
+#[PATHS]
+SCRIPT_PATH=/etc/init.d
+
+#[NTP]
+NTPENABLED=$(nvram get ntp_client_enable | cut -c21- -)
+TIMEZONE=UNKNOWN
+TIMEZONE_INX=UNKNOWN
+DAYLIGHTSAVING=UNKNOWN
+DAYLIGHTSTARTDATE=UNKNOWN
+DAYLIGHTENDDATE=UNKNOWN
+NTPSERVER=$(nvram get ntp_default_server | cut -c22- -)
+                        
+#[WAN]                      
+WANINTERFACE=$(nvram get wan_eth | cut -c11- -)
+WANCONNECTIONTYPE=$(nvram get wan_proto | cut -c13- -)
+AUTOMTU=NO                
+case $WANCONNECTIONTYPE in
+	static )
+		WANCONNECTIONTYPE=static
+		WAN_MODE_INTERFACE=$WANINTERFACE
+		MTU=1500
+		;;
+	dhcpc )
+		WANCONNECTIONTYPE=dhcp
+		WAN_MODE_INTERFACE=$WANINTERFACE
+		MTU=1500
+		;;
+	pppoe )
+		WANCONNECTIONTYPE=pppoe
+		WAN_MODE_INTERFACE=ppp0
+		MTU=$(nvram get wan_pppoe_mtu | cut -c17- -)
+		;;
+	pptp )
+		WANCONNECTIONTYPE=pptp
+		WAN_MODE_INTERFACE=ppp0
+		MTU=$(nvram get wan_pptp_mtu | cut -c16- -)
+		;;
+	l2tp )
+		WANCONNECTIONTYPE=l2tp
+		WAN_MODE_INTERFACE=ppp0
+		MTU=$(nvram get wan_l2tp_mtu | cut -c16- -)
+		;;
+	* )
+		echo Unknown WAN connection type $WANCONNECTIONTYPE
+		exit 1
+esac
+
+# Leave this MAC Addres field empty if you want to have it generated randomly
+WANMAC=$(nvram get wan_mac | cut -c11- -)
+MACCLONE=$(nvram get mac_clone_addr | cut -c16- -)
+WANCONNECTION=
+DMZENABLED=$(nvram get dmz_enable | cut -c14- -)
+DMZHOST=$(nvram get dmz_ipaddr | cut -c14- -)
+UPSTREAMBW=
+DOWNSTREAMBW=
+
+#[DHCP]
+DHCPWANIP=
+DHCPWANMASK=
+DHCPGATEWAY=
+DHCPUSERSPECIALDNS=NO  
+DHCPDNS1=
+DHCPDNS2=
+DHCPDNS3=                
+
+#[STATIC]
+STATICWANIP=$(nvram get wan_static_ipaddr | cut -c21- -)
+STATICWANMASK=$(nvram get wan_static_netmask | cut -c22- -)
+STATICGATEWAY=$(nvram get wan_static_gateway | cut -c22- -)
+STATICUSERSPECIALDNS=$(nvram get wan_specify_dns | cut -c19- -)
+STATICDNS1=$(nvram get wan_primary_dns | cut -c19- -)
+STATICDNS2=$(nvram get wan_secondary_dns | cut -c21- -)
+
+#[PPP]
+PPPINTERFACE=ppp0
+PPPLOCALIP=
+PPPREMOTEIP=
+PPPUSERSPECIALDNS=NO
+PPPDNS1=
+PPPDNS2=
+PPPDNS3=
+
+#[PPPOE]
+PPPOEUSERNAME=$(nvram get wan_pppoe_username_00 | cut -c25- -)
+PPPOEPASSWORD=$(nvram get wan_pppoe_password_00 | cut -c25- -)
+
+#[PPTP]
+PPTPUSERNAME=$(nvram get wan_pptp_username | cut -c21- -)
+PPTPPASSWORD=$(nvram get wan_pptp_password | cut -c21- -)
+PPTPSERVERIP=$(nvram get wan_pptp_server_ip | cut -c26- -)
+PPTPWANIP=$(nvram get wan_pptp_ipaddr | cut -c19- -)
+PPTPSUBNETMASK=$(nvram get wan_pptp_netmask | cut -c20- -)
+PPTPGATEWAYIP=$(nvram get wan_pptp_gateway | cut -c20- -)
+
+#[MINIUPNPD]
+UPNPENABLED=NO
+
+#[WEBSERVER]
+WEBSERVER=httpd
+
+#[INADYN]
+INADYNENABLED=NO
+INADYNUSERNAME=
+INADYNPASSWD=
+INADYNALIAS=
+
+#[ZEBRA]
+ZEBRAENABLED=NO
+
+#[LLTD]
+LLTDENABLED=YES
+
+#[FIREWALL]
+FIREWALLENABLED=NO
+
+#[SNMP]
+SNMPENABLED=NO
+

@@ -1,0 +1,4 @@
+::sysinit:/etc/init.d/rcS S start
+::shutdown:/etc/init.d/rcS K stop
+::respawn:/bin/getty -nl /bin/sh 115200 $CONSOLE;
+

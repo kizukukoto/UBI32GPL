@@ -1,0 +1,12 @@
+Package: gdbserver
+Version: 4.12.3
+Depends: 
+Provides: 
+Source: package/gdbserver
+Section: utils
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 294289
+Description:  GDBSERVER is a program that allows you to run GDB on a different machine 
+ than the one which is running the program being debugged.

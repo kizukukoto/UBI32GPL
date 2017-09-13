@@ -1,0 +1,33 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+# Enable 802.1Q VLANs
+echo 1 > /proc/switch/bcm539x/enable_vlan
+
+# Create 2 802.1Q vlans
+
+echo 1 > /proc/switch/bcm539x/vlan/create
+echo 2 > /proc/switch/bcm539x/vlan/create
+
+# Add member ports
+echo 4 8t > /proc/switch/bcm539x/vlan/1/ports
+echo 0 1 2 3 8t > /proc/switch/bcm539x/vlan/2/ports
+
+# Generate random MAC address for eth0 interface if there's no valid one set. Virtual interfaces will use the same MAC.
+wan_mac_ok=`echo $WANMAC | egrep '^([[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2}:[[:xdigit:]]{2})$'`
+if [ "$wan_mac_ok" = "" ]; then
+	wan_random_mac=00:03:64:f3:`hexdump -e '1/1 "%02x:"' < /dev/urandom -n 2 | cut -c1-5`
+	echo "Using random MAC address for eth0: $wan_random_mac"
+	ifconfig eth0 hw ether $wan_random_mac
+	sed -i '/^WANMAC=/ c\WANMAC='$wan_random_mac'' /etc/rgw_config
+else
+	echo "Bringing up the eth0 interface with MAC address $WANMAC"
+	ifconfig eth0 hw ether $WANMAC
+fi
+
+ifconfig eth0 up
+
+# Add the virtual interfaces
+vconfig add eth0 1
+vconfig add eth0 2

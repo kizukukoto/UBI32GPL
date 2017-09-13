@@ -1,0 +1,20 @@
+#!/bin/sh 
+# This is the helper script to start dual radio operation
+
+. /etc/ap_config
+
+## UBICOM: Start bridge if it wasn't already
+if [ ! -e /tmp/bridge_started ]; then
+    echo "Need to start bridge first"
+    sh /etc/init.d/start_br
+fi
+
+echo "Create ath0"
+/etc/ath/makeVAP ap ${AP_SSID} 0:RF:${AP_PRIMARY_CH}:${AP_CHMODE}
+echo "Create ath1"
+/etc/ath/makeVAP ap ${AP_SSID2} 1:RF:${AP_PRIMARY_CH2}:${AP_CHMODE2}
+
+echo "Activate ath0"
+/etc/ath/activateVAP ${WLANINTERFACE} ${BRINTERFACE} NONE
+echo "Activate ath1"
+/etc/ath/activateVAP ${WLANINTERFACE2} ${BRINTERFACE} ${AP_SECMODE} ${AP_SECFILE}

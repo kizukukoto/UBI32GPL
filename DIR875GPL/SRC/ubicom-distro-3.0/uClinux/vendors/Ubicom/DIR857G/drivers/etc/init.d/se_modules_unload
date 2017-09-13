@@ -1,0 +1,68 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+#
+# threaded_module_unload(module_name, terminate_file)
+#	Terminates the module specified.  The module is threaded meaning it has one or more kernel threads to be stopped.
+# Unloading a threaded module is more tricky - we have to signal to terminate the threads, wait for the thread to end, then unload
+#
+threaded_module_unload()
+{
+	MODULE_NAME=$1
+	TERMINATE_FILE=$2
+
+	echo Unloading module $MODULE_NAME
+
+	#
+	# Signal to the module to begin shutdown
+	#
+	echo 1 > $TERMINATE_FILE
+
+	#
+	# Wait for the $TERMINATE_FILE to be removed - this means the threads have stopped and unloaded sysfs files.
+	#
+	echo Waiting for $MODULE_NAME to unload
+	until [  ! -e $TERMINATE_FILE ]; do
+		sleep 1
+		echo -n .
+	done
+	echo Module $MODULE_NAME unloaded
+
+	#
+	# Now unload the module
+	#
+	LS_SE_MODULES=`lsmod | grep $MODULE_NAME | sed 's/ .*$//g' | sed q`
+	while [ $MODULE_NAME == "$LS_SE_MODULES" ]; do
+		rmmod $MODULE_NAME
+		usleep 5000
+		LS_SE_MODULES=`lsmod | grep $MODULE_NAME | sed 's/ .*$//g' | sed q`	
+	done
+
+}
+
+#
+# Signal to the classifier front end to stop processing further
+#
+echo 1 > /sys/devices/system/streamengine_classifier/streamengine_classifier0/streamengine_classifier_stop
+
+#
+# Ask the database to expire all connections
+#
+echo 1 > /sys/devices/system/streamengine_db/streamengine_db0/expire_all
+
+#
+# Now we can unload the modules - reverse order of loading
+# NOTE: Some modules don't have threads so can just be unloaded directly.
+#
+threaded_module_unload ubicom_streamengine_classifier /sys/devices/system/streamengine_classifier/streamengine_classifier0/terminate
+threaded_module_unload ubicom_streamengine_classifier_ftp /sys/devices/system/streamengine_classifier_ftp/streamengine_classifier_ftp0/terminate
+threaded_module_unload ubicom_streamengine_classifier_http_content /sys/devices/system/streamengine_classifier_http_content/streamengine_classifier_http_content0/terminate
+rmmod ubicom_streamengine_classifier_http
+threaded_module_unload ubicom_streamengine_classifier_bittorrent /sys/devices/system/streamengine_classifier_bittorrent/streamengine_classifier_bittorrent0/terminate
+threaded_module_unload ubicom_streamengine_classifier_user_rules /sys/devices/system/streamengine_classifier_user_rules/streamengine_classifier_user_rules0/terminate
+threaded_module_unload ubicom_streamengine_classifier_default /sys/devices/system/streamengine_classifier_default/streamengine_classifier_default0/terminate
+rmmod ubicom_streamengine_tracker_datagram
+rmmod ubicom_streamengine_tracker_udp
+rmmod ubicom_streamengine_tracker_tcp
+threaded_module_unload ubicom_streamengine_db /sys/devices/system/streamengine_db/streamengine_db0/terminate
+rmmod ubicom_streamengine_tracker

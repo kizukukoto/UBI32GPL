@@ -1,0 +1,42 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2009 Ubicom, Inc.
+
+if [ $action = "start" ]	
+then
+	echo "Starting network"
+	# start localhost
+	#insmod /lib/modules/2.6.36+/ubicom_na_connection_manager_ipv4.ko
+	#insmod /lib/modules/2.6.36+/ubicom_na_connection_manager_ipv6.ko
+	ifconfig lo up
+	route add -net 127.0.0.0 netmask 255.0.0.0 lo
+
+	# portmap is requred for nfs
+	portmap & 
+	# inetd server
+	inetd &
+
+	# Setup the VLAN interfaces and Eth0
+	ifconfig eth0 up
+	ifconfig eth1 up
+
+	# Add the virtual interfaces
+#	vconfig add eth0 1
+#	vconfig add eth0 2
+
+	# Create a bridge and add LAN interface to it.
+#	ifconfig eth0.2 up
+
+	echo "Creating GPIO"
+	/etc/init.d/create_gpio
+
+	echo "Starting USB"
+	insmod /lib/modules/dwc_common_port_lib.ko
+	insmod /lib/modules/dwc_otg.ko 
+
+	sleep 2	
+elif [ $action = "stop"	]
+then
+	echo "Stopping network"
+	ifconfig lo down 
+fi
+

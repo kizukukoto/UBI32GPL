@@ -1,0 +1,5 @@
+config MCASTD
+	bool "mcastd(ar8327)"
+	default n
+	help
+	IGMP/MLD snoopying middleware daemon, depend on platform(ar8327 switch)

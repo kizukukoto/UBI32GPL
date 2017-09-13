@@ -1,0 +1,138 @@
+#
+# Build proper applications for Atheros radio
+#
+.EXPORT_ALL_VARIABLES:
+.PHONY: all init tools wpa2tools art romfs romfs_wt romfs_wpa2
+
+UCLINUX_BUILD_USER=1
+include $(ARCH_CONFIG)
+
+#not good but workaround ath makefile problem
+CFLAGS+= $(CPUFLAGS)
+
+ATH_TMP_DIR=$(shell pwd)/tmp
+
+#select the applications to build
+ATH_APPS :=
+ifdef CONFIG_ATH_WLAN_TOOLS
+ATH_APPS += tools
+ROMFS_WT = romfs_wt
+endif
+
+ifdef CONFIG_ATH_APP_WPA2
+ATH_APPS += wpa2tools
+ROMFS_WPA2 = romfs_wpa2
+
+# only use ath user tools when the one from uClinux is not selected, assuming it is more uptodate
+ifndef CONFIG_USER_WIRELESS_TOOLS
+CONFIG_ATH_WIRELESS_TOOLS=y
+endif
+LDO=$(CC)
+#
+# defines for wireless_tools
+#
+BUILD_STATIC=y
+BUILD_WE_ESSENTIAL=y
+endif
+
+ifdef CONFIG_ATH_ART
+ATH_APPS += art
+ROMFS_ART = romfs_art
+endif
+
+#ATH_APPS += hostapd
+ATH_APPS += athr-hostap
+#ATH_APPS += wpa2tools
+ROMFS_WPA2 = romfs_wpa2
+ATH_APP_ATHR_HOSTAP=$(shell pwd)/apps/athr-hostap/hostapd
+
+#
+# Give the first ssid in a wpa_supplicant config file a higher priority than others
+#
+ifdef CONFIG_ATH_PROMOTE_FIRST_SSID
+CFLAGS += -DPROMOTE_FIRST_SSID
+endif
+
+ATH_GDB_FILES=$(shell find $(ATH_WLAN_DIR) -name \*.gdb)
+
+all: init $(ATH_APPS)
+
+init:
+	@rm -rf $(ATH_TMP_DIR)
+	@mkdir -p $(ATH_TMP_DIR)/sbin
+	@mkdir -p $(ATH_APP_DIR)
+
+tools:
+	$(MAKE) -C $(ATH_WLAN_DIR)/os/linux/tools ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) TARGET=$(HAL_TARGET) INSTALL_ROOT=$(ATH_TMP_DIR)  ath_tools
+	@mv $(ATH_TMP_DIR)/sbin/* $(ATH_APP_DIR)
+	@rm -rf $(ATH_TMP_DIR)/*
+
+
+wpa2tools:
+	$(MAKE) -C $(ATH_LSDK_DIR)/apps/wpa2 ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) TARGET=$(HAL_TARGET) INSTALL_ROOT=$(ATH_TMP_DIR)
+	cp -r $(ATH_TMP_DIR)/* $(ATH_APP_DIR)
+
+hostapd:
+	$(MAKE) -C $(ATH_LSDK_DIR)/apps/hostap-0.7.2/hostapd ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) TARGET=$(HAL_TARGET) INSTALL_ROOT=$(ATH_TMP_DIR)
+	#cp -r $(ATH_TMP_DIR)/* $(ATH_APP_DIR)
+
+athr-hostap:
+	$(MAKE) -C $(ATH_LSDK_DIR)/apps/athr-hostap/hostapd ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) TARGET=$(HAL_TARGET) INSTALL_ROOT=$(ATH_TMP_DIR)
+	#cp -r $(ATH_TMP_DIR)/* $(ATH_APP_DIR)
+
+art:
+	#$(MAKE) -C $(ATH_LSDK_DIR)/apps/art2_client ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) TARGET=$(HAL_TARGET) INSTALL_ROOT=$(ATH_TMP_DIR)
+
+clean:
+	# clean linux apps
+	$(MAKE) -C $(ATH_WLAN_DIR)/os/linux/tools clean
+	$(MAKE) -C $(ATH_LSDK_DIR)/apps/wpa2 clean 
+	$(MAKE) -C $(ATH_LSDK_DIR)/apps/art clean 
+	#$(MAKE) -C $(ATH_LSDK_DIR)/apps/art2_client clean 
+	$(MAKE) -C $(ATH_LSDK_DIR)/apps/athr-hostap/hostapd clean 
+	@rm -rf $(ATH_WLAN_DIR)/os/linux/tools/*.gdb
+	@rm -rf $(ATH_LSDK_DIR)/apps/wpa2/wireless_tools/*.gdb
+	# clean wpa2 tools
+	# clean art
+	# rmove generated stuff
+	@rm -rf $(ATH_TMP_DIR)
+	@rm -rf $(ATH_APP_DIR)
+	
+#romfs: $(romfs_hostapd) $(romfs_athr-hostap)
+
+#romfs_hostapd:
+#	$(ROMFSINST) -e CONFIG_ATH_WLAN_TOOLS $(ATH_APP_DIR)/hostap-0.7.2/hostapd/hostapd /sbin/hostapd
+#	$(ROMFSINST) -e CONFIG_ATH_WLAN_TOOLS $(ATH_APP_DIR)/hostap-0.7.2/hostapd/hostapd_cli /sbin/hostapd_cli
+
+romfs_athr-hostap:
+	$(ROMFSINST) $(ATH_APP_ATHR_HOSTAP)/hostapd /sbin/hostapd
+	$(ROMFSINST) $(ATH_APP_ATHR_HOSTAP)/hostapd_cli /sbin/hostapd_cli
+
+romfs: $(ROMFS_WT) romfs_athr-hostap #$(ROMFS_WPA2) # romfs_athr-hostap $(ROMFS_ART)
+
+romfs_wt:
+	$(ROMFSINST) -e CONFIG_ATH_WLAN_TOOLS $(ATH_APP_DIR)/wlanconfig /bin/wlanconfig
+	$(ROMFSINST) -e CONFIG_ATH_WLAN_TOOLS $(ATH_APP_DIR)/athstats /bin/athstats
+	$(ROMFSINST) -e CONFIG_ATH_WLAN_TOOLS $(ATH_APP_DIR)/athstatsclr /bin/athstatsclr
+	$(ROMFSINST) -e CONFIG_ATH_WLAN_TOOLS $(ATH_APP_DIR)/80211stats /bin/80211stats
+
+romfs_wpa2:
+	# Install wireless_tools to bin
+	$(ROMFSINST) -e CONFIG_ATH_WIRELESS_TOOLS $(ATH_APP_DIR)/sbin/iwconfig /bin/iwconfig	
+	$(ROMFSINST) -e CONFIG_ATH_WIRELESS_TOOLS $(ATH_APP_DIR)/sbin/iwlist /bin/iwlist	
+	$(ROMFSINST) -e CONFIG_ATH_WIRELESS_TOOLS $(ATH_APP_DIR)/sbin/iwpriv /bin/iwpriv	
+	$(ROMFSINST) -e CONFIG_ATH_WIRELESS_TOOLS $(ATH_APP_DIR)/sbin/iwspy /bin/iwspy	
+	$(ROMFSINST) -e CONFIG_ATH_WIRELESS_TOOLS $(ATH_APP_DIR)/sbin/iwgetid /bin/iwgetid
+	# Install additional tools to sbin
+	$(ROMFSINST) $(ATH_APP_DIR)/sbin/apstart /sbin/apstart
+	$(ROMFSINST) $(ATH_APP_DIR)/sbin/hostapd /sbin/hostapd
+	$(ROMFSINST) $(ATH_APP_DIR)/sbin/repeater_pass_configuration /sbin/repeater_pass_configuration
+	#$(ROMFSINST) $(ATH_APP_DIR)/sbin/ifrename /sbin/ifrename
+	$(ROMFSINST) $(ATH_APP_DIR)/sbin/wpatalk /sbin/wpatalk
+	# Copy etc -- just copy now
+	cp -r $(ATH_APP_DIR)/etc/* $(ROMFSDIR)/etc/ 
+	# Install shared libs
+	cp -r $(ATH_APP_DIR)/lib/*.so $(ROMFSDIR)/lib/ 
+
+romfs_art:
+	$(ROMFSINST) $(ATH_APP_DIR)/sbin/nart.out /sbin/nart.out

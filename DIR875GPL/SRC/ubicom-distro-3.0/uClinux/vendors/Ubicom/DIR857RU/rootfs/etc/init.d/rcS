@@ -1,0 +1,7 @@
+#!/bin/sh
+# Copyright (C) 2009 Ubicom, Inc.
+
+for i in /etc/rc.d/$1*; do
+	[ -x $i ] && eval "$i $2 2>&1"
+done 
+

@@ -1,0 +1,5 @@
+#!/bin/sh
+make -C ../ clean
+make -C ../
+./lcdrouter --dfb:system=x11,mode=320x240
+

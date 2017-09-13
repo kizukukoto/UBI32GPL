@@ -1,0 +1,93 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+case "$1" in
+start)	
+	if [ -f /bin/dhcpcd ]; then
+		echo "Running DHCP client for WAN ($WANINTERFACE) interface" >> /var/log/messages
+		dhcpcd $WANINTERFACE &
+	else 
+		echo "DHCP client application does not exist!" >> /var/log/messages
+	fi
+
+	while [ 1 ]; do
+		sleep 10
+		eth=`ifconfig | grep $WANINTERFACE`
+		if [ "$eth" != "" ]; then
+			NEWWANIP=`ifconfig $WANINTERFACE | grep 'inet addr' | cut -f2 -d':' | cut -f1 -d' '`
+			if [ "$NEWWANIP" != "" ]; then
+				NEWWANMASK=`ifconfig $WANINTERFACE | grep 'Mask' | cut -f4 -d':'`
+				NEWWANGW=`cat /etc/config/dhcpcd-$WANINTERFACE.info | grep GATEWAY  | awk -F'=' '{print $2}'`
+				sed -i '/^DHCPWANIP=/ c\DHCPWANIP='$NEWWANIP'' /etc/rgw_config
+				sed -i '/^DHCPWANMASK=/ c\DHCPWANMASK='$NEWWANMASK'' /etc/rgw_config
+				sed -i '/^DHCPGATEWAY=/ c\DHCPGATEWAY='$NEWWANGW'' /etc/rgw_config
+				
+				if [ "$DHCPUSERSPECIALDNS" = "NO" ]; then
+					# dhcpcd app writes DNS server addresses to /etc/resolv.conf. Copy them to /etc/rgw_config
+					# Do not change identation of following operations!
+					NEWDNS1=`cat /etc/resolv.conf | grep nameserver | cut -c 12-30 | cut -f1 -d'
+'`
+					NEWDNS2=`cat /etc/resolv.conf | grep nameserver | cut -c 12-30 | cut -f2 -d'
+'`
+					NEWDNS3=`cat /etc/resolv.conf | grep nameserver | cut -c 12-30 | cut -f3 -d'
+'`
+					sed -i '/^DHCPDNS1=/ c\DHCPDNS1='$NEWDNS1'' /etc/rgw_config
+					sed -i '/^DHCPDNS2=/ c\DHCPDNS2='$NEWDNS2'' /etc/rgw_config
+					sed -i '/^DHCPDNS3=/ c\DHCPDNS3='$NEWDNS3'' /etc/rgw_config
+				else 
+					# The user entered the DNS addresses statically. We write these addresses to the /etc/resolv.conf.
+					if [ "$DHCPDNS1" != "" ]; then
+						echo "nameserver $DHCPDNS1" > /etc/resolv.conf
+					fi
+					
+					if [ "$DHCPDNS2" != "" ]; then
+						echo "nameserver $DHCPDNS2" >> /etc/resolv.conf
+					fi
+				fi
+				
+				# For dnsmasq to get DNS addresses, create a link to resolv.conf. 
+				# Dnsmasq searchs for /etc/config/config/resolv.conf.
+				if [ ! -f /etc/config/config/resolv.conf ]; then 
+					ln -s /etc/resolv.conf /etc/config/config/resolv.conf
+				fi
+				echo "WAN ($WANINTERFACE) IP address given by DHCP Server: $NEWWANIP" >> /var/log/messages
+				exit 0
+			else
+				# Try again! Firstly kill existing dhcpcd processes, if any.
+				dhcpcd_pidlist=`ps | grep 'dhcpcd' | grep -v 'grep' | cut -b1-5`
+				if [ "$dhcpcd_pidlist" != "" ]; then
+					echo "Could not get IP from a DHCP server yet." >> /var/log/messages
+					echo "Restart dhcpcd and try again..." >> /var/log/messages
+					for i in $dhcpcd_pidlist
+					do
+						kill -9 $i > /dev/null 2>&1
+					done
+				fi
+				dhcpcd $WANINTERFACE &
+			fi
+		fi
+	done
+        ;;
+stop)	
+	# Delete the default route
+	route del default
+	
+	dhcpcd_pidlist=`ps | grep 'dhcpcd' | grep -v 'grep' | cut -b1-5`
+	if [ "$dhcpcd_pidlist" != "" ]; then
+		echo "Killing existing dhcpcd processes" >> /var/log/messages
+		for i in $dhcpcd_pidlist
+		do
+			kill -9 $i > /dev/null 2>&1
+		done
+	fi
+		
+	if [ -f /etc/config/config/resolv.conf ]; then 
+		rm /etc/config/config/resolv.conf
+	fi
+	
+	sed -i '/^DHCPWANIP=/ c\DHCPWANIP=''' /etc/rgw_config
+	sed -i '/^DHCPWANMASK=/ c\DHCPWANMASK=''' /etc/rgw_config
+	sed -i '/^DHCPGATEWAY=/ c\DHCPGATEWAY=''' /etc/rgw_config
+esac
+exit 0

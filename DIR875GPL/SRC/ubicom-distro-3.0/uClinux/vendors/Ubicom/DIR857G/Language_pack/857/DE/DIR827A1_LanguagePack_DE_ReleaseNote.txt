@@ -1,0 +1,22 @@
+Language Pack Release Note
+Project Name: DIR-827
+HW version: A1
+Region/OEM code: DE
+======================================================================================
+Language-Version: ver1.01DEb01
+Language: German
+Language-Checksum: 0x00CB49FE
+svn:2634
+
+1.Fixed The setup page have no "Storage" item issue
+2.Fixed Translation issue for wizard of Setup
+-------------------------------------------------------------------------------------
+
+Language-Version: ver1.00DEb01
+Language: German
+Language-Checksum: 0x00CB1B0B
+svn:1780
+
+1.please base on FW v1.00b17 or later.
+--------------------------------------------------------------------------------------
+

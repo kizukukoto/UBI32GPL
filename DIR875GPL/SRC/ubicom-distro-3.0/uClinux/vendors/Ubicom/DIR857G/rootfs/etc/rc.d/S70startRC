@@ -1,0 +1,11 @@
+#!/bin/sh
+# Copyright (C) 2009 Ubicom, Inc.
+
+echo "START RC APP"
+
+# Start watchdog
+[ -c /dev/watchdog ] && nice -20 watchdog -t 10 -T 120 /dev/watchdog &
+
+# rc will take control over the device.:
+rc init &
+

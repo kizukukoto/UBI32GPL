@@ -1,0 +1,193 @@
+.EXPORT_ALL_VARIABLES:
+
+VENDOR_EXTDIRS = modules
+
+############################################################################
+
+# CPUFLAGS
+# VENDOR_CFLAGS                # not required here
+# DISABLE_XIP := 1             # XIP works fine
+DISABLE_MOVE_RODATA := 1       # until we get a toolchain release
+LOPT := -O2                    # library is alway 02
+UOPT := -Os                    # user apps are always Os
+BUILD_FDPIC := 1               # enable FDPIC (remove line to disable)
+
+############################################################################
+
+include $(ROOTDIR)/vendors/config/ubicom32nommu/config.arch
+include $(ROOTDIR)/vendors/Ubicom/DIR857RU/config.modules
+include $(ROOTDIR)/vendors/Ubicom/DIR857RU/config.ubicom
+############################################################################
+
+#
+# Settings for building user apps
+#
+
+ifdef UCLINUX_BUILD_USER
+
+  CFLAGS += -DAR9100 -DCONFIG_VLAN_ROUTER -DATHEROS_11N_DRIVER -DPCI_MODULE -DUBICOM_MP_SPEED -DCONFIG_LP -DCONFIG_LP_FW_VER_REGION -DUBICOM_JFFS2 -DNVRAM_CONF_VER_CTL -DUSB_STORAGE_HTTP_ENABLE -DSPECIAL_ONEINTERNET_LED -DSPECIAL_WPS_LED -DSPECIAL_POWER_STATUS_LED -DUBICOM_TWOMII -DIPV6_DSLITE -DUBICOM_SDK30_NEWKERNEL -DCONFIG_WEB_404_REDIRECT -DCONFIG_DOMAIN_SHAREPORT
+
+# defined at /uClinux/vendors/Ubicom/DIR-XXX/config.modules
+  ifeq ($(CONFIG_MODULE_SILEX_USB),y)
+    CFLAGS += -DUSE_SILEX
+  endif
+
+  ifeq ($(CONFIG_MODULE_KCODES),y)
+    CFLAGS += -DUSE_KCODES
+  endif
+
+  ifeq ($(CONFIG_MODULE_ATH_SAG),y)
+    CFLAGS += -DATH_AR938X
+  endif
+
+  ifeq ($(CONFIG_MODULE_ATH_SAG_RC9),y)
+    CFLAGS += -DATH_AR938X
+  endif
+
+  ifeq ($(CONFIG_USER_SET_GET_FROM_ARTBLOCK),y)
+    CFLAGS += -DSET_GET_FROM_ARTBLOCK
+  endif
+
+  ifeq ($(CONFIG_USER_WAN_8021X),y)
+    CFLAGS += -DCONFIG_USER_WAN_8021X
+  endif
+
+  ifdef CONFIG_USER_NVRAM_SIZE
+    CFLAGS += -DCONFIG_NVRAM_SIZE=${CONFIG_USER_NVRAM_SIZE}
+  endif
+
+  ifeq ($(CONFIG_USER_NAT_ENABLE),y)
+    CFLAGS += -DNAT_ENABLE
+  endif
+
+  ifeq ($(CONFIG_USER_PORT_FORWARD_BOTH),y)
+    CFLAGS += -DPORT_FORWARD_BOTH
+  endif
+
+  ifeq ($(CONFIG_USER_INBOUND_FILTER),y)
+    CFLAGS += -DINBOUND_FILTER
+  endif
+
+  ifeq ($(CONFIG_USER_ACCESS_CONTROL),y)
+    CFLAGS += -DACCESS_CONTROL
+  endif
+
+  ifeq ($(CONFIG_USER_DLINK_ROUTER_LED_DEFINE),y)
+    CFLAGS += -DDLINK_ROUTER_LED_DEFINE
+  endif
+
+  ifeq ($(CONFIG_USER_UDHCPD_NETBIOS),y)
+    CFLAGS += -DUDHCPD_NETBIOS
+  endif
+
+  ifeq ($(CONFIG_USER_UDHCPD_ALWAYS_BROADCAST),y)
+    CFLAGS += -DUDHCPD_ALWAYS_BROADCAST
+  endif
+
+  ifeq ($(CONFIG_USER_UDHCPD_REVOKE),y)
+    CFLAGS += -DUDHCPD_REVOKE
+  endif
+
+  ifeq ($(CONFIG_USER_UDHCPC_UNICAST),y)
+    CFLAGS += -DUDHCPC_UNICAST
+  endif
+
+  ifeq ($(CONFIG_USER_UDHCPC_STATIC_ROUTE),y)
+    CFLAGS += -DUDHCPC_STATIC_ROUTE
+  endif
+
+  ifeq ($(CONFIG_USER_UDHCPC_CLASSLESS_STATIC_ROUTE),y)
+    CFLAGS += -DUDHCPC_CLASSLESS_STATIC_ROUTE
+  endif
+
+  # Support classess static route for udhcpc or not
+  ifeq ($(CONFIG_USER_UDHCPC_STATIC_ROUTE),y)
+    ifeq ($(CONFIG_USER_UDHCPC_CLASSLESS_STATIC_ROUTE),y)
+      CFLAGS +=-DUDHCPC_RFC_CLASSLESS_STATIC_ROUTE
+    else
+      CFLAGS +=-DUDHCPC_MS_CLASSLESS_STATIC_ROUTE
+    endif
+  endif
+
+  ifeq ($(CONFIG_USER_AUTO_MODE_SELECT),y)
+    CFLAGS += -DAUTO_MODE_SELECT
+  endif
+
+  ifeq ($(CONFIG_USER_IP_LOOKUP),y)
+    CFLAGS += -DCONFIG_USER_IP_LOOKUP
+  endif
+
+  ifeq ($(CONFIG_USER_NMBD_NMBD),y)
+    CFLAGS += -DCONFIG_USER_NMBD
+  endif
+
+  ifeq ($(CONFIG_USER_DLINK_FW_QUERY),y)
+    CFLAGS += -DDLINK_FW_QUERY
+  endif
+
+  ifeq ($(CONFIG_USER_UPNP_ATH_MINIUPNPD_RC),y)
+    CFLAGS += -DUPNP_ATH_MINIUPNPD_RC
+  endif
+
+  ifeq ($(CONFIG_USER_WCN),y)
+    CFLAGS += -DCONFIG_USER_WCN
+  endif
+
+  ifeq ($(CONFIG_USER_UPNP_ATH_MINIUPNPD_1_3),y)
+    CFLAGS += -DUPNP_ATH_MINIUPNPD_1_3
+  endif
+
+  ifeq ($(CONFIG_USER_WISH),y)
+    CFLAGS += -DCONFIG_USER_WISH
+  endif
+
+  ifeq ($(CONFIG_USER_SHOW_CHECKSUM),y)
+    CFLAGS += -DCONFIG_USER_SHOW_CHECKSUM
+  endif
+
+  ifeq ($(CONFIG_USER_WPS_WPATALK),y)
+    CFLAGS += -DWPS_WPATALK
+  endif
+
+  ifeq ($(CONFIG_USER_WL_ATH),y)
+    CFLAGS += -DCONFIG_USER_WL_ATH
+  endif
+  
+  ifeq ($(CONFIG_USER_WIRELESS_SCHEDULE),y)
+    CFLAGS += -DCONFIG_USER_WIRELESS_SCHEDULE
+  endif  
+
+  ifeq ($(CONFIG_USER_WL_ATH_GUEST_ZONE),y)
+    CFLAGS += -DCONFIG_USER_WL_ATH_GUEST_ZONE
+  endif
+
+  ifeq ($(CONFIG_UBICOM_SWITCH_BCM539X),y)
+    CFLAGS += -DCONFIG_UBICOM_SWITCH_BCM539X
+  endif
+
+  ifeq ($(CONFIG_UBICOM_SWITCH_AR8316),y)
+    CFLAGS += -DCONFIG_UBICOM_SWITCH_AR8316
+  endif
+
+  ifeq ($(CONFIG_UBICOM_SWITCH_AR8327),y)
+    CFLAGS += -DCONFIG_UBICOM_SWITCH_AR8327
+  endif
+
+  ifeq ($(CONFIG_USER_ZEBRA),y)
+    CFLAGS += -DCONFIG_USER_ZEBRA
+  endif
+
+  ifeq ($(CONFIG_USER_RUSSIA_PPPoE),y)
+    CFLAGS += -DRPPPOE
+  endif
+
+  ifeq ($(CONFIG_USER_SUPPORT_PRIVATE_IP),y)
+    CFLAGS += -DSUPPORT_PRIVATE_IP
+ endif
+
+
+  CFLAGS += -D$(CONFIG_PRODUCT)
+
+endif
+
+

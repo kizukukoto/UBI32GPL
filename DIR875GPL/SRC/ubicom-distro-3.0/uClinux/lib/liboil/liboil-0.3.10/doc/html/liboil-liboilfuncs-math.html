@@ -1,0 +1,3504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Simple Arithmetic</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.68.1">
+<link rel="start" href="index.html" title="Liboil Reference Manual">
+<link rel="up" href="ch01.html" title="Liboil Stable API">
+<link rel="prev" href="liboil-liboilfuncs-copy.html" title="liboilfuncs-copy">
+<link rel="next" href="liboil-liboilfuncs-math8x8.html" title="Simple Arithmetic on Blocks">
+<meta name="generator" content="GTK-Doc V1.7 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="Liboil Stable API">
+<link rel="chapter" href="ch02.html" title="Liboil Unstable API">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="liboil-liboilfuncs-copy.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">Liboil Reference Manual</th>
+<td><a accesskey="n" href="liboil-liboilfuncs-math8x8.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#id2543003" class="shortcut">Top</a>
+                  &#160;|&#160;
+                  <a href="#id2585065" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="liboil-liboilfuncs-math"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2>
+<a name="id2543003"></a><span class="refentrytitle">Simple Arithmetic</span>
+</h2>
+<p>Simple Arithmetic &#8212; Aritmetic operations</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<pre class="synopsis">
+
+
+
+void        <a href="liboil-liboilfuncs-math.html#oil-abs-f32-f32">oil_abs_f32_f32</a>                 (float *dest,
+                                             int dstr,
+                                             const float *src,
+                                             int sstr,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-abs-f64-f64">oil_abs_f64_f64</a>                 (double *dest,
+                                             int dstr,
+                                             const double *src,
+                                             int sstr,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-abs-u16-s16">oil_abs_u16_s16</a>                 (uint16_t *dest,
+                                             int dstr,
+                                             const int16_t *src,
+                                             int sstr,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-abs-u32-s32">oil_abs_u32_s32</a>                 (uint32_t *dest,
+                                             int dstr,
+                                             const int32_t *src,
+                                             int sstr,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-abs-u8-s8">oil_abs_u8_s8</a>                   (uint8_t *dest,
+                                             int dstr,
+                                             const int8_t *src,
+                                             int sstr,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-average2-u8">oil_average2_u8</a>                 (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr1,
+                                             const uint8_t *s2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-multsum-f32">oil_multsum_f32</a>                 (float *dest,
+                                             const float *src1,
+                                             int sstr1,
+                                             const float *src2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-multsum-f64">oil_multsum_f64</a>                 (double *dest,
+                                             const double *src1,
+                                             int sstr1,
+                                             const double *src2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-f32">oil_scalaradd_f32</a>               (float *d,
+                                             int dstr,
+                                             const float *s1,
+                                             int sstr,
+                                             const float *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-f64">oil_scalaradd_f64</a>               (double *d,
+                                             int dstr,
+                                             const double *s1,
+                                             int sstr,
+                                             const double *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-s16">oil_scalaradd_s16</a>               (int16_t *d,
+                                             int dstr,
+                                             const int16_t *s1,
+                                             int sstr,
+                                             const int16_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-s32">oil_scalaradd_s32</a>               (int32_t *d,
+                                             int dstr,
+                                             const int32_t *s1,
+                                             int sstr,
+                                             const int32_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-s8">oil_scalaradd_s8</a>                (int8_t *d,
+                                             int dstr,
+                                             const int8_t *s1,
+                                             int sstr,
+                                             const int8_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-u16">oil_scalaradd_u16</a>               (uint16_t *d,
+                                             int dstr,
+                                             const uint16_t *s1,
+                                             int sstr,
+                                             const uint16_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-u32">oil_scalaradd_u32</a>               (uint32_t *d,
+                                             int dstr,
+                                             const uint32_t *s1,
+                                             int sstr,
+                                             const uint32_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-u8">oil_scalaradd_u8</a>                (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr,
+                                             const uint8_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmult-f32">oil_scalarmult_f32</a>              (float *d,
+                                             int dstr,
+                                             const float *s1,
+                                             int sstr,
+                                             const float *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmult-f64">oil_scalarmult_f64</a>              (double *d,
+                                             int dstr,
+                                             const double *s1,
+                                             int sstr,
+                                             const double *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmult-s16">oil_scalarmult_s16</a>              (int16_t *d,
+                                             int dstr,
+                                             const int16_t *s1,
+                                             int sstr,
+                                             const int16_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmult-s32">oil_scalarmult_s32</a>              (int32_t *d,
+                                             int dstr,
+                                             const int32_t *s1,
+                                             int sstr,
+                                             const int32_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmult-s8">oil_scalarmult_s8</a>               (int8_t *d,
+                                             int dstr,
+                                             const int8_t *s1,
+                                             int sstr,
+                                             const int8_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmult-u16">oil_scalarmult_u16</a>              (uint16_t *d,
+                                             int dstr,
+                                             const uint16_t *s1,
+                                             int sstr,
+                                             const uint16_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmult-u32">oil_scalarmult_u32</a>              (uint32_t *d,
+                                             int dstr,
+                                             const uint32_t *s1,
+                                             int sstr,
+                                             const uint32_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmult-u8">oil_scalarmult_u8</a>               (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr,
+                                             const uint8_t *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-f32">oil_vectoradd_f32</a>               (float *d,
+                                             int dstr,
+                                             const float *s1,
+                                             int sstr1,
+                                             const float *s2,
+                                             int sstr2,
+                                             int n,
+                                             const float *s3_1,
+                                             const float *s4_1);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-f64">oil_vectoradd_f64</a>               (double *d,
+                                             int dstr,
+                                             const double *s1,
+                                             int sstr1,
+                                             const double *s2,
+                                             int sstr2,
+                                             int n,
+                                             const double *s3_1,
+                                             const double *s4_1);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s16">oil_vectoradd_s16</a>               (int16_t *d,
+                                             int dstr,
+                                             const int16_t *s1,
+                                             int sstr1,
+                                             const int16_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const int16_t *s3_1,
+                                             const int16_t *s4_1);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s32">oil_vectoradd_s32</a>               (int32_t *d,
+                                             int dstr,
+                                             const int32_t *s1,
+                                             int sstr1,
+                                             const int32_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const int32_t *s3_1,
+                                             const int32_t *s4_1);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s8">oil_vectoradd_s8</a>                (int8_t *d,
+                                             int dstr,
+                                             const int8_t *s1,
+                                             int sstr1,
+                                             const int8_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const int8_t *s3_1,
+                                             const int8_t *s4_1);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-u16">oil_vectoradd_u16</a>               (uint16_t *d,
+                                             int dstr,
+                                             const uint16_t *s1,
+                                             int sstr1,
+                                             const uint16_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const uint16_t *s3_1,
+                                             const uint16_t *s4_1);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-u32">oil_vectoradd_u32</a>               (uint32_t *d,
+                                             int dstr,
+                                             const uint32_t *s1,
+                                             int sstr1,
+                                             const uint32_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const uint32_t *s3_1,
+                                             const uint32_t *s4_1);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-u8">oil_vectoradd_u8</a>                (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr1,
+                                             const uint8_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const uint8_t *s3_1,
+                                             const uint8_t *s4_1);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s-s8">oil_vectoradd_s_s8</a>              (int8_t *d,
+                                             int dstr,
+                                             const int8_t *s1,
+                                             int sstr1,
+                                             const int8_t *s2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s-u8">oil_vectoradd_s_u8</a>              (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr1,
+                                             const uint8_t *s2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s-s16">oil_vectoradd_s_s16</a>             (int16_t *d,
+                                             int dstr,
+                                             const int16_t *s1,
+                                             int sstr1,
+                                             const int16_t *s2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s-u16">oil_vectoradd_s_u16</a>             (uint16_t *d,
+                                             int dstr,
+                                             const uint16_t *s1,
+                                             int sstr1,
+                                             const uint16_t *s2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s-f32">oil_vectoradd_s_f32</a>             (float *d,
+                                             int dstr,
+                                             const float *s1,
+                                             int sstr1,
+                                             const float *s2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-vectoradd-s-f64">oil_vectoradd_s_f64</a>             (double *d,
+                                             int dstr,
+                                             const double *s1,
+                                             int sstr1,
+                                             const double *s2,
+                                             int sstr2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-squaresum-f64">oil_squaresum_f64</a>               (double *d,
+                                             const double *s,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-squaresum-shifted-s16">oil_squaresum_shifted_s16</a>       (uint32_t *d,
+                                             const int16_t *s,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-sum-f64">oil_sum_f64</a>                     (double *d_1,
+                                             const double *s,
+                                             int sstr,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-add-f32">oil_add_f32</a>                     (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-divide-f32">oil_divide_f32</a>                  (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-floor-f32">oil_floor_f32</a>                   (float *d,
+                                             const float *s,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-inverse-f32">oil_inverse_f32</a>                 (float *d,
+                                             const float *s,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-maximum-f32">oil_maximum_f32</a>                 (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-minimum-f32">oil_minimum_f32</a>                 (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-multiply-f32">oil_multiply_f32</a>                (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-negative-f32">oil_negative_f32</a>                (float *d,
+                                             const float *s,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalaradd-f32-ns">oil_scalaradd_f32_ns</a>            (float *d,
+                                             const float *s1,
+                                             const float *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-scalarmultiply-f32-ns">oil_scalarmultiply_f32_ns</a>       (float *d,
+                                             const float *s1,
+                                             const float *s2_1,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-sign-f32">oil_sign_f32</a>                    (float *d,
+                                             const float *s,
+                                             int n);
+void        <a href="liboil-liboilfuncs-math.html#oil-subtract-f32">oil_subtract_f32</a>                (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2585065"></a><h2>Description</h2>
+<p>
+</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id2585084"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="id2585095"></a><h3>
+<a name="oil-abs-f32-f32"></a>oil_abs_f32_f32 ()</h3>
+<a class="indexterm" name="id2585107"></a><pre class="programlisting">void        oil_abs_f32_f32                 (float *dest,
+                                             int dstr,
+                                             const float *src,
+                                             int sstr,
+                                             int n);</pre>
+<p>
+Calculates the absolute value of each element in the source array
+and writes it into the destination array.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dest</code></em>&#160;:</span></td>
+<td> destination array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td> stride of destination elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src</code></em>&#160;:</span></td>
+<td> source array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td> stride of source elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements in arrays
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2585242"></a><h3>
+<a name="oil-abs-f64-f64"></a>oil_abs_f64_f64 ()</h3>
+<a class="indexterm" name="id2585254"></a><pre class="programlisting">void        oil_abs_f64_f64                 (double *dest,
+                                             int dstr,
+                                             const double *src,
+                                             int sstr,
+                                             int n);</pre>
+<p>
+Calculates the absolute value of each element in the source array
+and writes it into the destination array.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dest</code></em>&#160;:</span></td>
+<td> destination array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td> stride of destination elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src</code></em>&#160;:</span></td>
+<td> source array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td> stride of source elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements in arrays
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2585388"></a><h3>
+<a name="oil-abs-u16-s16"></a>oil_abs_u16_s16 ()</h3>
+<a class="indexterm" name="id2585401"></a><pre class="programlisting">void        oil_abs_u16_s16                 (uint16_t *dest,
+                                             int dstr,
+                                             const int16_t *src,
+                                             int sstr,
+                                             int n);</pre>
+<p>
+Calculates the absolute value of each element in the source array
+and writes it into the destination array.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dest</code></em>&#160;:</span></td>
+<td> destination array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td> stride of destination elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src</code></em>&#160;:</span></td>
+<td> source array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td> stride of source elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements in arrays
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2585535"></a><h3>
+<a name="oil-abs-u32-s32"></a>oil_abs_u32_s32 ()</h3>
+<a class="indexterm" name="id2585547"></a><pre class="programlisting">void        oil_abs_u32_s32                 (uint32_t *dest,
+                                             int dstr,
+                                             const int32_t *src,
+                                             int sstr,
+                                             int n);</pre>
+<p>
+Calculates the absolute value of each element in the source array
+and writes it into the destination array.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dest</code></em>&#160;:</span></td>
+<td> destination array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td> stride of destination elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src</code></em>&#160;:</span></td>
+<td> source array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td> stride of source elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements in arrays
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2585682"></a><h3>
+<a name="oil-abs-u8-s8"></a>oil_abs_u8_s8 ()</h3>
+<a class="indexterm" name="id2585694"></a><pre class="programlisting">void        oil_abs_u8_s8                   (uint8_t *dest,
+                                             int dstr,
+                                             const int8_t *src,
+                                             int sstr,
+                                             int n);</pre>
+<p>
+Calculates the absolute value of each element in the source array
+and writes it into the destination array.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dest</code></em>&#160;:</span></td>
+<td> destination array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td> stride of destination elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src</code></em>&#160;:</span></td>
+<td> source array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td> stride of source elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements in arrays
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2585828"></a><h3>
+<a name="oil-average2-u8"></a>oil_average2_u8 ()</h3>
+<a class="indexterm" name="id2585841"></a><pre class="programlisting">void        oil_average2_u8                 (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr1,
+                                             const uint8_t *s2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Averages each element in <em class="parameter"><code>s1</code></em> and <em class="parameter"><code>s2</code></em> and places the result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This class is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2586038"></a><h3>
+<a name="oil-multsum-f32"></a>oil_multsum_f32 ()</h3>
+<a class="indexterm" name="id2586051"></a><pre class="programlisting">void        oil_multsum_f32                 (float *dest,
+                                             const float *src1,
+                                             int sstr1,
+                                             const float *src2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Multiplies each element in <em class="parameter"><code>src1</code></em> and <em class="parameter"><code>src2</code></em> and sums the results
+over the entire array, and places the sum into <em class="parameter"><code>dest</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dest</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2586225"></a><h3>
+<a name="oil-multsum-f64"></a>oil_multsum_f64 ()</h3>
+<a class="indexterm" name="id2586237"></a><pre class="programlisting">void        oil_multsum_f64                 (double *dest,
+                                             const double *src1,
+                                             int sstr1,
+                                             const double *src2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Multiplies each element in <em class="parameter"><code>src1</code></em> and <em class="parameter"><code>src2</code></em> and sums the results
+over the entire array, and places the sum into <em class="parameter"><code>dest</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dest</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>src2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2586411"></a><h3>
+<a name="oil-scalaradd-f32"></a>oil_scalaradd_f32 ()</h3>
+<a class="indexterm" name="id2586423"></a><pre class="programlisting">void        oil_scalaradd_f32               (float *d,
+                                             int dstr,
+                                             const float *s1,
+                                             int sstr,
+                                             const float *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2607855"></a><h3>
+<a name="oil-scalaradd-f64"></a>oil_scalaradd_f64 ()</h3>
+<a class="indexterm" name="id2607866"></a><pre class="programlisting">void        oil_scalaradd_f64               (double *d,
+                                             int dstr,
+                                             const double *s1,
+                                             int sstr,
+                                             const double *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2608032"></a><h3>
+<a name="oil-scalaradd-s16"></a>oil_scalaradd_s16 ()</h3>
+<a class="indexterm" name="id2608045"></a><pre class="programlisting">void        oil_scalaradd_s16               (int16_t *d,
+                                             int dstr,
+                                             const int16_t *s1,
+                                             int sstr,
+                                             const int16_t *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2608221"></a><h3>
+<a name="oil-scalaradd-s32"></a>oil_scalaradd_s32 ()</h3>
+<a class="indexterm" name="id2608234"></a><pre class="programlisting">void        oil_scalaradd_s32               (int32_t *d,
+                                             int dstr,
+                                             const int32_t *s1,
+                                             int sstr,
+                                             const int32_t *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2608410"></a><h3>
+<a name="oil-scalaradd-s8"></a>oil_scalaradd_s8 ()</h3>
+<a class="indexterm" name="id2608423"></a><pre class="programlisting">void        oil_scalaradd_s8                (int8_t *d,
+                                             int dstr,
+                                             const int8_t *s1,
+                                             int sstr,
+                                             const int8_t *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2608600"></a><h3>
+<a name="oil-scalaradd-u16"></a>oil_scalaradd_u16 ()</h3>
+<a class="indexterm" name="id2608612"></a><pre class="programlisting">void        oil_scalaradd_u16               (uint16_t *d,
+                                             int dstr,
+                                             const uint16_t *s1,
+                                             int sstr,
+                                             const uint16_t *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2608789"></a><h3>
+<a name="oil-scalaradd-u32"></a>oil_scalaradd_u32 ()</h3>
+<a class="indexterm" name="id2608801"></a><pre class="programlisting">void        oil_scalaradd_u32               (uint32_t *d,
+                                             int dstr,
+                                             const uint32_t *s1,
+                                             int sstr,
+                                             const uint32_t *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2608978"></a><h3>
+<a name="oil-scalaradd-u8"></a>oil_scalaradd_u8 ()</h3>
+<a class="indexterm" name="id2608990"></a><pre class="programlisting">void        oil_scalaradd_u8                (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr,
+                                             const uint8_t *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2609167"></a><h3>
+<a name="oil-scalarmult-f32"></a>oil_scalarmult_f32 ()</h3>
+<a class="indexterm" name="id2609180"></a><pre class="programlisting">void        oil_scalarmult_f32              (float *d,
+                                             int dstr,
+                                             const float *s1,
+                                             int sstr,
+                                             const float *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2609357"></a><h3>
+<a name="oil-scalarmult-f64"></a>oil_scalarmult_f64 ()</h3>
+<a class="indexterm" name="id2609370"></a><pre class="programlisting">void        oil_scalarmult_f64              (double *d,
+                                             int dstr,
+                                             const double *s1,
+                                             int sstr,
+                                             const double *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2609523"></a><h3>
+<a name="oil-scalarmult-s16"></a>oil_scalarmult_s16 ()</h3>
+<a class="indexterm" name="id2609534"></a><pre class="programlisting">void        oil_scalarmult_s16              (int16_t *d,
+                                             int dstr,
+                                             const int16_t *s1,
+                                             int sstr,
+                                             const int16_t *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2609693"></a><h3>
+<a name="oil-scalarmult-s32"></a>oil_scalarmult_s32 ()</h3>
+<a class="indexterm" name="id2609703"></a><pre class="programlisting">void        oil_scalarmult_s32              (int32_t *d,
+                                             int dstr,
+                                             const int32_t *s1,
+                                             int sstr,
+                                             const int32_t *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2609862"></a><h3>
+<a name="oil-scalarmult-s8"></a>oil_scalarmult_s8 ()</h3>
+<a class="indexterm" name="id2609872"></a><pre class="programlisting">void        oil_scalarmult_s8               (int8_t *d,
+                                             int dstr,
+                                             const int8_t *s1,
+                                             int sstr,
+                                             const int8_t *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2610031"></a><h3>
+<a name="oil-scalarmult-u16"></a>oil_scalarmult_u16 ()</h3>
+<a class="indexterm" name="id2610042"></a><pre class="programlisting">void        oil_scalarmult_u16              (uint16_t *d,
+                                             int dstr,
+                                             const uint16_t *s1,
+                                             int sstr,
+                                             const uint16_t *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2610201"></a><h3>
+<a name="oil-scalarmult-u32"></a>oil_scalarmult_u32 ()</h3>
+<a class="indexterm" name="id2610211"></a><pre class="programlisting">void        oil_scalarmult_u32              (uint32_t *d,
+                                             int dstr,
+                                             const uint32_t *s1,
+                                             int sstr,
+                                             const uint32_t *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2610370"></a><h3>
+<a name="oil-scalarmult-u8"></a>oil_scalarmult_u8 ()</h3>
+<a class="indexterm" name="id2610380"></a><pre class="programlisting">void        oil_scalarmult_u8               (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr,
+                                             const uint8_t *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> to each value in <em class="parameter"><code>s1</code></em> and places the
+result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2610539"></a><h3>
+<a name="oil-vectoradd-f32"></a>oil_vectoradd_f32 ()</h3>
+<a class="indexterm" name="id2610550"></a><pre class="programlisting">void        oil_vectoradd_f32               (float *d,
+                                             int dstr,
+                                             const float *s1,
+                                             int sstr1,
+                                             const float *s2,
+                                             int sstr2,
+                                             int n,
+                                             const float *s3_1,
+                                             const float *s4_1);</pre>
+<p>
+Multiplies the constant <em class="parameter"><code>s3_1</code></em> with each element of <em class="parameter"><code>s1</code></em> and
+multiplies the constant <em class="parameter"><code>s4_1</code></em> with each element of <em class="parameter"><code>s2</code></em> and
+adds the two results together and places the final result in
+<em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s3_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s4_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2610777"></a><h3>
+<a name="oil-vectoradd-f64"></a>oil_vectoradd_f64 ()</h3>
+<a class="indexterm" name="id2610787"></a><pre class="programlisting">void        oil_vectoradd_f64               (double *d,
+                                             int dstr,
+                                             const double *s1,
+                                             int sstr1,
+                                             const double *s2,
+                                             int sstr2,
+                                             int n,
+                                             const double *s3_1,
+                                             const double *s4_1);</pre>
+<p>
+Multiplies the constant <em class="parameter"><code>s3_1</code></em> with each element of <em class="parameter"><code>s1</code></em> and
+multiplies the constant <em class="parameter"><code>s4_1</code></em> with each element of <em class="parameter"><code>s2</code></em> and
+adds the two results together and places the final result in
+<em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s3_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s4_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2611014"></a><h3>
+<a name="oil-vectoradd-s16"></a>oil_vectoradd_s16 ()</h3>
+<a class="indexterm" name="id2611025"></a><pre class="programlisting">void        oil_vectoradd_s16               (int16_t *d,
+                                             int dstr,
+                                             const int16_t *s1,
+                                             int sstr1,
+                                             const int16_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const int16_t *s3_1,
+                                             const int16_t *s4_1);</pre>
+<p>
+Multiplies the constant <em class="parameter"><code>s3_1</code></em> with each element of <em class="parameter"><code>s1</code></em> and
+multiplies the constant <em class="parameter"><code>s4_1</code></em> with each element of <em class="parameter"><code>s2</code></em> and
+adds the two results together and places the final result in
+<em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s3_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s4_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2611252"></a><h3>
+<a name="oil-vectoradd-s32"></a>oil_vectoradd_s32 ()</h3>
+<a class="indexterm" name="id2611262"></a><pre class="programlisting">void        oil_vectoradd_s32               (int32_t *d,
+                                             int dstr,
+                                             const int32_t *s1,
+                                             int sstr1,
+                                             const int32_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const int32_t *s3_1,
+                                             const int32_t *s4_1);</pre>
+<p>
+Multiplies the constant <em class="parameter"><code>s3_1</code></em> with each element of <em class="parameter"><code>s1</code></em> and
+multiplies the constant <em class="parameter"><code>s4_1</code></em> with each element of <em class="parameter"><code>s2</code></em> and
+adds the two results together and places the final result in
+<em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s3_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s4_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2611490"></a><h3>
+<a name="oil-vectoradd-s8"></a>oil_vectoradd_s8 ()</h3>
+<a class="indexterm" name="id2611500"></a><pre class="programlisting">void        oil_vectoradd_s8                (int8_t *d,
+                                             int dstr,
+                                             const int8_t *s1,
+                                             int sstr1,
+                                             const int8_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const int8_t *s3_1,
+                                             const int8_t *s4_1);</pre>
+<p>
+Multiplies the constant <em class="parameter"><code>s3_1</code></em> with each element of <em class="parameter"><code>s1</code></em> and
+multiplies the constant <em class="parameter"><code>s4_1</code></em> with each element of <em class="parameter"><code>s2</code></em> and
+adds the two results together and places the final result in
+<em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s3_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s4_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2611727"></a><h3>
+<a name="oil-vectoradd-u16"></a>oil_vectoradd_u16 ()</h3>
+<a class="indexterm" name="id2611738"></a><pre class="programlisting">void        oil_vectoradd_u16               (uint16_t *d,
+                                             int dstr,
+                                             const uint16_t *s1,
+                                             int sstr1,
+                                             const uint16_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const uint16_t *s3_1,
+                                             const uint16_t *s4_1);</pre>
+<p>
+Multiplies the constant <em class="parameter"><code>s3_1</code></em> with each element of <em class="parameter"><code>s1</code></em> and
+multiplies the constant <em class="parameter"><code>s4_1</code></em> with each element of <em class="parameter"><code>s2</code></em> and
+adds the two results together and places the final result in
+<em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s3_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s4_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2611965"></a><h3>
+<a name="oil-vectoradd-u32"></a>oil_vectoradd_u32 ()</h3>
+<a class="indexterm" name="id2611975"></a><pre class="programlisting">void        oil_vectoradd_u32               (uint32_t *d,
+                                             int dstr,
+                                             const uint32_t *s1,
+                                             int sstr1,
+                                             const uint32_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const uint32_t *s3_1,
+                                             const uint32_t *s4_1);</pre>
+<p>
+Multiplies the constant <em class="parameter"><code>s3_1</code></em> with each element of <em class="parameter"><code>s1</code></em> and
+multiplies the constant <em class="parameter"><code>s4_1</code></em> with each element of <em class="parameter"><code>s2</code></em> and
+adds the two results together and places the final result in
+<em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s3_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s4_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2612217"></a><h3>
+<a name="oil-vectoradd-u8"></a>oil_vectoradd_u8 ()</h3>
+<a class="indexterm" name="id2612230"></a><pre class="programlisting">void        oil_vectoradd_u8                (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr1,
+                                             const uint8_t *s2,
+                                             int sstr2,
+                                             int n,
+                                             const uint8_t *s3_1,
+                                             const uint8_t *s4_1);</pre>
+<p>
+Multiplies the constant <em class="parameter"><code>s3_1</code></em> with each element of <em class="parameter"><code>s1</code></em> and
+multiplies the constant <em class="parameter"><code>s4_1</code></em> with each element of <em class="parameter"><code>s2</code></em> and
+adds the two results together and places the final result in
+<em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s3_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s4_1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2612485"></a><h3>
+<a name="oil-vectoradd-s-s8"></a>oil_vectoradd_s_s8 ()</h3>
+<a class="indexterm" name="id2612499"></a><pre class="programlisting">void        oil_vectoradd_s_s8              (int8_t *d,
+                                             int dstr,
+                                             const int8_t *s1,
+                                             int sstr1,
+                                             const int8_t *s2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Adds each element of <em class="parameter"><code>s1</code></em> to <em class="parameter"><code>s2</code></em> and clamps the result to the range
+of the type and places the result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2612698"></a><h3>
+<a name="oil-vectoradd-s-u8"></a>oil_vectoradd_s_u8 ()</h3>
+<a class="indexterm" name="id2612712"></a><pre class="programlisting">void        oil_vectoradd_s_u8              (uint8_t *d,
+                                             int dstr,
+                                             const uint8_t *s1,
+                                             int sstr1,
+                                             const uint8_t *s2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Adds each element of <em class="parameter"><code>s1</code></em> to <em class="parameter"><code>s2</code></em> and clamps the result to the range
+of the type and places the result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2612911"></a><h3>
+<a name="oil-vectoradd-s-s16"></a>oil_vectoradd_s_s16 ()</h3>
+<a class="indexterm" name="id2612925"></a><pre class="programlisting">void        oil_vectoradd_s_s16             (int16_t *d,
+                                             int dstr,
+                                             const int16_t *s1,
+                                             int sstr1,
+                                             const int16_t *s2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Adds each element of <em class="parameter"><code>s1</code></em> to <em class="parameter"><code>s2</code></em> and clamps the result to the range
+of the type and places the result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2613124"></a><h3>
+<a name="oil-vectoradd-s-u16"></a>oil_vectoradd_s_u16 ()</h3>
+<a class="indexterm" name="id2613138"></a><pre class="programlisting">void        oil_vectoradd_s_u16             (uint16_t *d,
+                                             int dstr,
+                                             const uint16_t *s1,
+                                             int sstr1,
+                                             const uint16_t *s2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Adds each element of <em class="parameter"><code>s1</code></em> to <em class="parameter"><code>s2</code></em> and clamps the result to the range
+of the type and places the result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2613337"></a><h3>
+<a name="oil-vectoradd-s-f32"></a>oil_vectoradd_s_f32 ()</h3>
+<a class="indexterm" name="id2613351"></a><pre class="programlisting">void        oil_vectoradd_s_f32             (float *d,
+                                             int dstr,
+                                             const float *s1,
+                                             int sstr1,
+                                             const float *s2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Adds each element of <em class="parameter"><code>s1</code></em> to <em class="parameter"><code>s2</code></em> and clamps the result to the range
+[-1,1] and places the result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2613551"></a><h3>
+<a name="oil-vectoradd-s-f64"></a>oil_vectoradd_s_f64 ()</h3>
+<a class="indexterm" name="id2613565"></a><pre class="programlisting">void        oil_vectoradd_s_f64             (double *d,
+                                             int dstr,
+                                             const double *s1,
+                                             int sstr1,
+                                             const double *s2,
+                                             int sstr2,
+                                             int n);</pre>
+<p>
+Adds each element of <em class="parameter"><code>s1</code></em> to <em class="parameter"><code>s2</code></em> and clamps the result to the range
+[-1,1] and places the result in <em class="parameter"><code>d</code></em>.
+</p>
+<p>
+FIXME: This function is difficult to optimize and will likely be
+replaced.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>dstr</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr1</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr2</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2613764"></a><h3>
+<a name="oil-squaresum-f64"></a>oil_squaresum_f64 ()</h3>
+<a class="indexterm" name="id2613777"></a><pre class="programlisting">void        oil_squaresum_f64               (double *d,
+                                             const double *s,
+                                             int n);</pre>
+<p>
+Sums the square of each element in <em class="parameter"><code>s</code></em> and places the result in
+<em class="parameter"><code>dest</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2613881"></a><h3>
+<a name="oil-squaresum-shifted-s16"></a>oil_squaresum_shifted_s16 ()</h3>
+<a class="indexterm" name="id2613895"></a><pre class="programlisting">void        oil_squaresum_shifted_s16       (uint32_t *d,
+                                             const int16_t *s,
+                                             int n);</pre>
+<p>
+Square each element in <em class="parameter"><code>s</code></em> and divide by (1&lt;&lt;15), and sum the
+results, placing the final result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2614000"></a><h3>
+<a name="oil-sum-f64"></a>oil_sum_f64 ()</h3>
+<a class="indexterm" name="id2614013"></a><pre class="programlisting">void        oil_sum_f64                     (double *d_1,
+                                             const double *s,
+                                             int sstr,
+                                             int n);</pre>
+<p>
+Sums the elements in the source array and places the result in
+<em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d_1</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></td>
+<td> source array
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>sstr</code></em>&#160;:</span></td>
+<td> stride of source elements
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2614133"></a><h3>
+<a name="oil-add-f32"></a>oil_add_f32 ()</h3>
+<a class="indexterm" name="id2614146"></a><pre class="programlisting">void        oil_add_f32                     (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);</pre>
+<p>
+Adds elements in <em class="parameter"><code>s2</code></em> and <em class="parameter"><code>s1</code></em> and places the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td> source 1
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td> source 2
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2614277"></a><h3>
+<a name="oil-divide-f32"></a>oil_divide_f32 ()</h3>
+<a class="indexterm" name="id2614290"></a><pre class="programlisting">void        oil_divide_f32                  (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);</pre>
+<p>
+Divides elements in <em class="parameter"><code>s1</code></em> by <em class="parameter"><code>s2</code></em> and places the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td> source 1
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td> source 2
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2614422"></a><h3>
+<a name="oil-floor-f32"></a>oil_floor_f32 ()</h3>
+<a class="indexterm" name="id2614435"></a><pre class="programlisting">void        oil_floor_f32                   (float *d,
+                                             const float *s,
+                                             int n);</pre>
+<p>
+Calculates the greatest integer less than or equal to each element
+in <em class="parameter"><code>s</code></em> and places the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></td>
+<td> source
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2614541"></a><h3>
+<a name="oil-inverse-f32"></a>oil_inverse_f32 ()</h3>
+<a class="indexterm" name="id2614554"></a><pre class="programlisting">void        oil_inverse_f32                 (float *d,
+                                             const float *s,
+                                             int n);</pre>
+<p>
+Calculates the multiplicative inverse of each element in <em class="parameter"><code>s</code></em> and
+places the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></td>
+<td> source
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2614659"></a><h3>
+<a name="oil-maximum-f32"></a>oil_maximum_f32 ()</h3>
+<a class="indexterm" name="id2614672"></a><pre class="programlisting">void        oil_maximum_f32                 (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);</pre>
+<p>
+Places the greater of <em class="parameter"><code>s1</code></em> and <em class="parameter"><code>s2</code></em> in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td> source 1
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td> source 2
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2614803"></a><h3>
+<a name="oil-minimum-f32"></a>oil_minimum_f32 ()</h3>
+<a class="indexterm" name="id2614816"></a><pre class="programlisting">void        oil_minimum_f32                 (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);</pre>
+<p>
+Places the lesser of <em class="parameter"><code>s1</code></em> and <em class="parameter"><code>s2</code></em> in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td> source 1
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td> source 2
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2614948"></a><h3>
+<a name="oil-multiply-f32"></a>oil_multiply_f32 ()</h3>
+<a class="indexterm" name="id2614961"></a><pre class="programlisting">void        oil_multiply_f32                (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);</pre>
+<p>
+Multiplies elements in <em class="parameter"><code>s1</code></em> and <em class="parameter"><code>s2</code></em> and places the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td> source 1
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td> source 2
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2615092"></a><h3>
+<a name="oil-negative-f32"></a>oil_negative_f32 ()</h3>
+<a class="indexterm" name="id2615105"></a><pre class="programlisting">void        oil_negative_f32                (float *d,
+                                             const float *s,
+                                             int n);</pre>
+<p>
+Negates each element in <em class="parameter"><code>s</code></em> and places the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></td>
+<td> source
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2615210"></a><h3>
+<a name="oil-scalaradd-f32-ns"></a>oil_scalaradd_f32_ns ()</h3>
+<a class="indexterm" name="id2615224"></a><pre class="programlisting">void        oil_scalaradd_f32_ns            (float *d,
+                                             const float *s1,
+                                             const float *s2_1,
+                                             int n);</pre>
+<p>
+Adds the constant value <em class="parameter"><code>s2_1</code></em> to each source element and places
+the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td> source
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td> source
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2615350"></a><h3>
+<a name="oil-scalarmultiply-f32-ns"></a>oil_scalarmultiply_f32_ns ()</h3>
+<a class="indexterm" name="id2615364"></a><pre class="programlisting">void        oil_scalarmultiply_f32_ns       (float *d,
+                                             const float *s1,
+                                             const float *s2_1,
+                                             int n);</pre>
+<p>
+Multiplies the constant value <em class="parameter"><code>s2_1</code></em> and each source element and places
+the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td> source
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2_1</code></em>&#160;:</span></td>
+<td> source
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2615490"></a><h3>
+<a name="oil-sign-f32"></a>oil_sign_f32 ()</h3>
+<a class="indexterm" name="id2615503"></a><pre class="programlisting">void        oil_sign_f32                    (float *d,
+                                             const float *s,
+                                             int n);</pre>
+<p>
+Calculates the sign of each element in <em class="parameter"><code>s</code></em> and
+places the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s</code></em>&#160;:</span></td>
+<td> source
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id2615608"></a><h3>
+<a name="oil-subtract-f32"></a>oil_subtract_f32 ()</h3>
+<a class="indexterm" name="id2615622"></a><pre class="programlisting">void        oil_subtract_f32                (float *d,
+                                             const float *s1,
+                                             const float *s2,
+                                             int n);</pre>
+<p>
+Subtracts elements in <em class="parameter"><code>s2</code></em> from <em class="parameter"><code>s1</code></em> and places the result in <em class="parameter"><code>d</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>d</code></em>&#160;:</span></td>
+<td> destination
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s1</code></em>&#160;:</span></td>
+<td> source 1
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>s2</code></em>&#160;:</span></td>
+<td> source 2
+</td>
+</tr>
+<tr>
+<td>
+<span class="term"><em class="parameter"><code>n</code></em>&#160;:</span></td>
+<td> number of elements
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

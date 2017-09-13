@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>D-LINK SYSTEMS, INC. | WIRELESS ROUTER | HOME</title>
+		<script>
+			function send_request(){
+				var which_form = document.getElementById('form1');
+			
+				which_form.action = "webfile_cgi.cgi?" + Math.random();
+				which_form.submit();
+			}
+		</script>
+	</head>
+	<body onload="send_request()">
+		<form id="form1" method="post">
+			<input type="hidden" name="request" value="create_wsinfo">
+		</form>
+	</body>
+</html>

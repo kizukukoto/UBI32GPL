@@ -1,0 +1,75 @@
+#
+# Automatically generated make config: don't edit
+# Ubicom Distro version: 2.0
+# Wed Sep  8 11:59:16 2010
+#
+
+#
+# ******** General settings **********
+#
+CONFIG_HAVE_DOT_CONFIG=y
+CONFIG_DISTRO_UCLINUX=y
+# CONFIG_DISTRO_OPENWRT is not set
+# CONFIG_DISTRO_OPENWRT_TRUNK is not set
+CONFIG_DISTRO_INITRAMFS=y
+# CONFIG_DISTRO_SQUASHFS is not set
+CONFIG_DISTRO_TYPE="uClinux"
+CONFIG_DISTRO_OCM_SIZE_H="linux-2.6.x/arch/ubicom32/include/asm/ocm_size.h"
+CONFIG_DISTRO_KERNEL="linux-2.6.x"
+CONFIG_SQUASHFS_IMAGE_FILE="images/romfs.img"
+# CONFIG_DISTRO_MENUCONFIG is not set
+
+#
+# ******** Upgrade Identity settings **********
+#
+CONFIG_IDENTITY_STRING="Unknown - BOARD"
+
+#
+# ******** Bootloader settings **********
+#
+# CONFIG_BOARD_IP7140EvalWANonSWRev12 is not set
+# CONFIG_BOARD_IP7150EvalWANonSWRev12 is not set
+# CONFIG_BOARD_IP7160DIR657BoardI is not set
+# CONFIG_BOARD_IP7160DIR855BoardF is not set
+# CONFIG_BOARD_IP7160Eval is not set
+# CONFIG_BOARD_IP7160EvalRev12 is not set
+# CONFIG_BOARD_IP7160EvalWANonSW16MB is not set
+# CONFIG_BOARD_IP7160EvalWANonSW is not set
+# CONFIG_BOARD_IP7160EvalWANonSWRev1216MB is not set
+# CONFIG_BOARD_IP7160EvalWANonSWRev12 is not set
+# CONFIG_BOARD_IP7160EvalWANonSWRev12lcd is not set
+# CONFIG_BOARD_IP7500AVEth is not set
+# CONFIG_BOARD_IP7500IAPADV7393 is not set
+# CONFIG_BOARD_IP7500IAP is not set
+# CONFIG_BOARD_IP7500IAPI2SSPDIFTFT1N5046E is not set
+# CONFIG_BOARD_IP7500IAPSD is not set
+# CONFIG_BOARD_IP7500IAPSPDIFTFT1N5046E is not set
+# CONFIG_BOARD_IP7500IAPTFT1N5046E is not set
+# CONFIG_BOARD_IP7500Media is not set
+# CONFIG_BOARD_IP7500MediaEth is not set
+# CONFIG_BOARD_IP7500Module is not set
+# CONFIG_BOARD_IP7500TAP is not set
+# CONFIG_BOARD_IP7500TVIU800 is not set
+# CONFIG_BOARD_IP7500WSPKR is not set
+# CONFIG_BOARD_IP7500WSPKRCHARLCD is not set
+# CONFIG_BOARD_IP7500WSPKRSPDIF is not set
+# CONFIG_BOARD_IP7500WSPKRSPDIFCHARLCD is not set
+# CONFIG_BOARD_IP8000Bringup is not set
+CONFIG_BOARD_IP8100DIR857=y
+# CONFIG_BOARD_IP8100RGW is not set
+# CONFIG_BOARD_IP8100RGWRev11 is not set
+# CONFIG_BOARD_IP8500TAP is not set
+CONFIG_BOARD_NAME="IP8100_DIR857.brd"
+# CONFIG_LPJ_ultra7klcdrouter is not set
+# CONFIG_LPJ_ultra7k is not set
+# CONFIG_LPJ_ultra7kmedia is not set
+# CONFIG_LPJ_ultra7kmediatap is not set
+# CONFIG_LPJ_ultra7kvideo is not set
+# CONFIG_LPJ_ultra7kzwave is not set
+CONFIG_LPJ_ultra8k=y
+# CONFIG_LPJ_ultra8kmedia is not set
+CONFIG_LPJ_NAME="ultra8k.lpj"
+CONFIG_RUN_CTOOL=y
+# CONFIG_IPPROFILE is not set
+CONFIG_LOADER_UBOOT=y
+# CONFIG_DISABLE_MAINEXEC is not set

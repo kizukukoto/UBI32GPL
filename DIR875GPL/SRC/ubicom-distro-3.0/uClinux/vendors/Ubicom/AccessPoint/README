@@ -1,0 +1,30 @@
+Here is a brief introduction to AccessPoint profile.
+
+AccessPoint profile can be used to build a WiFi Access Point. It can
+support multiple radios.
+
+Currently, Atheros based 11n and legacy 11g radios are supported with
+Fusion 7.3.0.x based drivers.
+
+The profile configuration is optimized for dual radio performance with
+pre-built wireless modules.
+
+There is no supported UI for this profile. All configuration and
+management has to be done through the console.
+There is, however, a sample UI framework in /home/httpd.
+
+At boot, only LAN is active. On boards with Ethernet switches, all switch
+ports are on the LAN. Default IP address is 192.168.0.240. 
+
+WLAN is not active at boot time. There are 2 helper scripts that can start the WLAN up.
+/etc/ath/apup can be used to start a single radio.
+/etc/ath/dual_apup can be used to start two radios.
+
+There are 2 configuration files.
+/etc/ap_config file includes configuration parameters that apply to the
+whole Access Point operation. These include IP address, Version etc. 
+/etc/ath/apcfg file includes configuration parameters that apply to
+wireless configuration. Please see Atheros documentation for parameter
+descriptions.
+Both of these files will be stored in resilient flash so settings can be
+recovered after a reboot. 

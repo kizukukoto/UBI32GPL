@@ -1,0 +1,426 @@
+(*) Direct/Test: Application starting...
+loop 14 times
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:080596B0
+real free:08059290
+real free:08058E58
+real free:08058A38
+real free:08058618
+real free:080581F8
+real free:08057DD8
+real free:080579C0
+real free:08057588
+real free:08057168
+real free:08056D48
+(*) Direct/Thread: Started 'X11 Input' (22226) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+relloc: 1792 = cap:64 * size:28
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+(*) Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+DirectGetInterface 306: countinue leak
+IDirectFB_CreateFont:1220
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+(*) Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+DirectGetInterface 306: countinue leak
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0806E890
+real free:0806E4B8
+real free:0807C5A8
+real free:0807C188
+real free:08057620
+real free:08057488
+real free:08057068
+real free:0804BC30
+real free:080626D0
+real free:08062538
+real free:08060F78
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0807C348
+real free:0807BF28
+real free:08057688
+real free:080574F0
+real free:080570D0
+real free:080563D8
+real free:08056370
+real free:0804C498
+real free:08061020
+real free:0807C728
+real free:08089FD0
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:08057128
+real free:08060A68
+real free:08060640
+real free:0807C0E0
+real free:0807BCC0
+real free:08074F08
+real free:08056258
+real free:08055E40
+real free:0807C8D0
+real free:0807C548
+real free:0805D610
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0807C1A8
+real free:080575F0
+real free:08057448
+real free:08061AB0
+real free:0804C2F8
+real free:08074FF0
+real free:08060E98
+real free:08056C00
+real free:08060760
+real free:0804C1F8
+real free:08057C98
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0806F6C0
+real free:080575A8
+real free:08057170
+real free:08074D68
+real free:08060C30
+real free:0807C5F0
+real free:0804C490
+real free:08057D00
+real free:08057CE0
+real free:0805F700
+real free:0805F6E0
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:08061C10
+real free:08055A18
+real free:08075038
+real free:08061A60
+real free:08060F10
+real free:08060778
+real free:0804C810
+real free:0804C020
+real free:0804C6D0
+real free:0804C5E0
+real free:08089FE0
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0807BF10
+real free:080622D0
+real free:08060790
+real free:080604A0
+real free:0804C170
+real free:080576B0
+real free:0807C7E0
+real free:08057BE8
+real free:08057AE0
+real free:08089FE0
+real free:080750D0
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:080531C0
+real free:08060790
+real free:08060770
+real free:0804C448
+real free:0804BF98
+real free:0804BE98
+real free:0804BD98
+real free:0807C240
+real free:08062318
+real free:0805F800
+real free:080578E8
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:08060790
+real free:080604A0
+real free:08061B68
+real free:0807BE50
+real free:0807BD50
+real free:0807BC50
+real free:08057920
+real free:08060AC0
+real free:0805D120
+real free:08075240
+real free:0807C360
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:08054240
+real free:080541D8
+real free:08060D30
+real free:08060B98
+real free:08061DE0
+real free:08061D10
+real free:08057B80
+real free:080533F0
+real free:08061C28
+real free:08075240
+real free:0804C158
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:08060BC8
+real free:080605C0
+real free:080605A0
+real free:08057778
+real free:08061C28
+real free:080750D0
+real free:0807C7D8
+real free:0805A468
+real free:08060740
+real free:08074F70
+real free:0807C8A8
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0805F600
+real free:08083B58
+real free:08057810
+real free:0805A500
+real free:08057AA8
+real free:08060888
+real free:08061B78
+real free:080533F0
+real free:08060510
+real free:0804C388
+real free:0807C8A8
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:0805A548
+real free:0805F800
+real free:08061C28
+real free:08061BC0
+real free:08060938
+real free:08083C20
+real free:0804C288
+real free:080533F0
+real free:08074F70
+real free:0804C388
+real free:0805D150
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+type any key to close lite

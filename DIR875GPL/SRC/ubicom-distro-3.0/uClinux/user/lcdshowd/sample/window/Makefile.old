@@ -1,0 +1,17 @@
+PRJNAME = dir865
+
+CFLAGS := -DLITEFONTDIR=\"/usr/local/share/fonts/truetype\" -D_REENTRANT -DPC
+CFLAGS += -I/pub/rootfs/include -I/pub/rootfs/include/directfb
+LDFLAGS = -L/pub/rootfs/lib -L/pub/rootfs/lib/directfb -llite -lleck -ldirectfb -lfusion -ldirect -lpthread -ldl -lm
+SRCS = main.c
+OBJS = $(subst .c,.o,$(SRCS))
+
+all: $(PRJNAME)
+
+$(PRJNAME): $(OBJS)
+	cc $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
+.c.o:
+	cc -c $(CFLAGS) $<
+
+clean:
+	rm -rf *.o $(PRJNAME)

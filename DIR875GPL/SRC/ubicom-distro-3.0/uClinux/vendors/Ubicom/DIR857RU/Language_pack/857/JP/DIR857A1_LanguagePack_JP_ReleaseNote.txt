@@ -1,0 +1,28 @@
+Language Pack Release Note
+Project Name: DIR-857
+HW version: A1
+Region/OEM code: JP
+======================================================================================
+Language-Version:1.01JPb01
+Language: Japan
+Language-Checksum: 0x00C893F8
+Language-svn:2578
+
+1.Add string to pop up eap warning message and Disable WPS-PIN Method
+--------------------------------------------------------------------------------------
+
+Language-Version:1.00JPb02
+Language: Japan
+Language-Checksum: 0x00C8942B
+Language-svn:2568
+
+1.Add string to pop up eap warning message
+--------------------------------------------------------------------------------------
+Language-Version:1.00JPb01
+Language: Japan
+Language-Checksum: 0x00C868E2 
+Language-svn:2244
+
+1.please base on FW v1.00b14.
+--------------------------------------------------------------------------------------
+0x00C8942B 

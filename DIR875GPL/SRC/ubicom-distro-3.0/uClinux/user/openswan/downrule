@@ -1,0 +1,8 @@
+#! /bin/sh
+
+        if [ -n "$IPROUTETABLE" ]
+        then
+            dorule delete
+            ip route flush cache
+        fi
+

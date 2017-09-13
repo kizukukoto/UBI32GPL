@@ -1,0 +1,19 @@
+/Makefile/1.3/Fri May 16 07:34:18 2008//
+/Makefile.am/1.1/Fri Jan 25 10:36:28 2008//
+/Makefile.in/1.1/Fri Jan 25 10:36:28 2008//
+/ns_date.c/1.1/Fri Jan 25 10:36:28 2008//
+/ns_name.c/1.1/Fri Jan 25 10:36:28 2008//
+/ns_parse.c/1.1/Fri Jan 25 10:36:28 2008//
+/ns_samedomain.c/1.1/Fri Jan 25 10:36:28 2008//
+/ns_sign.c/1.1/Fri Jan 25 10:36:28 2008//
+/ns_verify.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_comp.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_findzonecut.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_init.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_mkquery.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_mkupdate.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_query.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_send.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_sendsigned.c/1.1/Fri Jan 25 10:36:28 2008//
+/res_update.c/1.1/Fri Jan 25 10:36:28 2008//
+D

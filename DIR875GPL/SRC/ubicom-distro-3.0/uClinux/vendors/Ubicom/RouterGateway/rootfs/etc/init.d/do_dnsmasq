@@ -1,0 +1,39 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+case "$1" in
+     'start')
+	echo -n "Starting dnsmasq"
+ 	PID=`ps | grep dnsmasq | egrep -v grep\|$0`
+ 	if [ "$PID" = "" ]; then
+	    dnsmasq -d -q > /dev/null 2>&1 &
+	    ps > /dev/null 2>&1
+   	    PID=`ps | grep dnsmasq | egrep -v grep\|$0`
+ 	    if [ "$PID" = "" ]; then
+		echo ": [FAIL]"
+		exit
+	    fi
+ 	fi
+	echo ": [OK]"
+	;;
+
+     'stop')
+     	echo -n "Stopping dnsmasq"
+ 	PID=`ps | grep dnsmasq | egrep -v grep\|$0`
+ 	if [ "$PID" != "" ]; then
+ 	    killall -9 dnsmasq > /dev/null 2>&1
+ 	fi
+	echo ": [OK]"
+	;;
+
+     'restart')
+	$0 stop
+	$0 start
+	;;
+
+     *)
+	echo "Usage"
+	echo "$SCRIPT_PATH/do_dnsmasq start | stop | restart"
+	;;
+esac

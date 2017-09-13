@@ -1,0 +1,70 @@
+/**************************************************************************/
+ How do build the DIR-857NA image
+/**************************************************************************/
+
+Step 1:
+// install expect
+yum install expect
+export UBICOM_DONGLE=192.168.0.250:5010
+
+Step 2:
+a. Please check the svn revision number (rev_num) of the release note.
+   (for example, SVN Revision: 100, so the rev_num is 100)
+b. Checkout SDK from svn server
+   svn co -r rev_num svn://172.21.32.250/IP8K/trunk/ubicom-distro_SDK_2.0
+
+Step 3:
+mv ubicom-distro_SDK_2.0 ubicom-distro
+cd ubicom-distro
+tar -jxvf toolchain.bz2
+make clean
+make distclean
+make distclean_all
+
+Step 4:
+make menuconfig
+   a. Ubicom Distro Configuration :
+     Distro (uClinux)--> uClinux
+     [*]Run distro menuconfig
+     Board (IP7160DIR855Board_F.brd)--> IP8100_DIR857.brd
+     LPJ (ultra7k.lpj)--> ultra8k.lpj
+     [*]Regenerate ultra configs 
+     [*]Enable U-Boot (build u-boot)
+
+   b. uClinux Distribution Configuration :
+     Vendor/Product Selection--> 
+         Vendor(Ubicom)--> Ubicom
+         products(DIR-657NA)--> DIR-857G
+
+   c. Just press "Enter" if there're any dialog.
+
+   d. exit
+
+Step 5:
+make
+make install_all
+
+step 6:
+// Debug
+telnet 192.168.0.250 50
+
+Others:
+1.
+   a. configs and UI floder: home\ubicom-distro\uClinux\vendors\Ubicom\DIR-857NA
+   b. app floder: home\ubicom-distro\uClinux\user
+   c. boards folder: home\ubicom-distro\ultra\boards
+   d. rootfs folder: home\ubicom-distro\uClinux\romfs
+2. board file put to ultra\boards and type menuconfig and it will list.
+3. product floder put to uClinux\vender\Ubicom\ and modify config.linux-2.6.x for CONFIG_INITRAMFS_SOURCE
+
+How to add the feature   
+1. modiyf uClinux/user/Makefile - add CONFIG_FEATURE_NAME
+2. modiyf uClinux/user/Kconfig - add FEATURE_NAME
+3. modify uClinux/vendors/Ubicom/DIR-857NA/config.vendor - let CONFIG_FEATURE_NAME enabled in default
+4  added uClinux/user/FEATURE_NAME folder and add main.c, README and Makefile in the folder.
+ 
+How to modiofy nvram default value
+1. modify uClinux/vendors/Ubicom/DIR-857NA/rootfs/etc/nvram.default
+
+How to modify GUI page
+2. modify uClinux/vendors/Ubicom/DIR-857NA/rootfs/home/www/*.asp and *.js

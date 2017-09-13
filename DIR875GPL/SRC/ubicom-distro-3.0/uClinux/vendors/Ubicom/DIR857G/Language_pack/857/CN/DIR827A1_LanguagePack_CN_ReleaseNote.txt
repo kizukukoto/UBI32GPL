@@ -1,0 +1,19 @@
+nguage Pack Release Note
+Project Name: DIR-827
+HW version: A1
+Region/OEM code: CN
+======================================================================================
+Language-Version:1.01CNb01
+Language: China
+Language-Checksum:0x00C5D349
+svn:2632
+
+1.Fixed The setup page have no "Storage" item issue
+--------------------------------------------------------------------------------------
+Language-Version:1.00CNb01
+Language: China
+Language-Checksum:0x00C59318
+svn:1780
+
+1.please base on FW v1.00b17 or later.
+--------------------------------------------------------------------------------------

@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>SharePort Web Access</title>	
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+		<link href="webfile_css/layout.css" rel="stylesheet" type="text/css" />
+		<script language="JavaScript" src="webfile_js/webfile.js"></script>
+		<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<script type="text/javascript" src="fancybox/jquery-1.4.3.min.js"></script>
+		<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.js"></script>
+		<script type="text/javascript" src="fancybox/json2.js"></script>
+		<script language="JavaScript" src="js/object.js"></script>
+		<script language="JavaScript" src="js/xml.js"></script>
+		<script language="JavaScript" src="js/public.js"></script>
+		<script type="text/javascript">	
+			var media_info;
+			var storage_user = new HASH_TABLE();
+			var header_width;
+			var isAltF4 = false; 
+			var isCtrlW = false; 
+			
+			load_lang_obj();	// you have to load language object for displaying words in each html page and load html object for the redirect or return page
+												
+			document.onkeydown = logout_key_handler;
+			window.onbeforeunload = confirm_to_close;
+			
+			function get_logout_result(http_req){ //for avoiding firefox error msg
+				var my_txt = http_req.responseText;
+				//do nothing;
+			}
+			
+			function confirm_to_close(e){		
+				/*var which_clientY;
+				
+				if (document.all) {
+					which_clientY = event.clientY;
+				}else{
+					which_clientY = e.clientY;
+				}
+				*/
+				if (/*which_clientY < 0 ||*/ isAltF4 || isCtrlW){
+					var xml_request = new XMLRequest(get_logout_result);
+					var para = "request=Logout";
+
+					xml_request.exec_webfile_cgi(para);
+				}
+			}
+			
+			function logout_key_handler(e){
+				if (document.all) {
+					var which_key = event.keyCode;
+					var which_alt = event.altKey;
+					var which_ctrl = event.ctrlKey;
+				}else{
+					var which_key = e.which;
+					var which_alt = e.altKey;
+					var which_ctrl = e.ctrlKey;
+				}	
+				
+				if ((which_alt && (which_key == 115))){
+					isAltF4 = true;
+					confirm_to_close();
+				}else if ((which_ctrl && (which_key == 87))){
+					isCtrlW = true;
+					confirm_to_close();
+				}else{
+					isAltF4 = false;
+					isCtrlW = false;				
+				}
+			}
+			
+			window.onresize = function() {
+				var resize_width = get_browser_width();
+
+				if (resize_width <= header_width){
+					get_by_id('header').style.position = "absolute";
+					get_by_id('navi').style.position = "absolute";
+					get_by_id('search').style.position = "absolute";
+				}else{
+					get_by_id('header').style.position = "fixed";
+					get_by_id('navi').style.position = "fixed";
+					get_by_id('search').style.position = "fixed";
+				}
+				
+			} 
+				
+			function show_media_list(which_action){
+				var media_list = get_by_id("media_list");
+				var str;
+								
+				if (media_info.status == "ok" && media_info.errno == null){
+								
+					str = "<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+											
+					for (var i = 0; i < media_info.count; i++){
+						var obj = media_info.files[i];
+						var file_name = obj.name;
+						var search_value = get_by_id("search_box").value;
+						var time = ctime(obj.mtime);
+						
+						if (search_value.length > 0){
+							if (which_action){	// check the search box							
+								if(file_name.indexOf(search_value) != 0){
+									continue;
+								}
+							}
+						}
+					
+						str += "<tr onMouseOver=\"this.style.background='#D8D8D8'\" onMouseOut=\"this.style.background=''\">"
+							 + "<td width=\"36\" height=\"36\" class=\"tdbg\">"
+							 + "<img src=\"webfile_images/icon_files.png\" width=\"36\" height=\"36\" border=\"0\">"
+							 + "</td>"
+							 + "<td width=\"868\" class=\"text_2\">"
+							 + "<a href=\"" + obj.path + "\" target=\"_blank\">"
+							 + "<div style=\"width:924px;overflow:hidden\">"
+							 + file_name+ "<br>" + get_file_size(obj.size) + ", " + time
+							 + "</div>"
+							 + "</a>"								 
+							 + "</td></tr>";
+					}
+					
+					str += "</table>"
+						+ "<div id=\"footer\"><img src=\"webfile_images/dlink.png\" width=\"77\" height=\"22\" /></div>";
+					
+					media_list.innerHTML = str;
+				}else{
+					location.href = "login.htm";
+				}							
+			}
+			
+			function get_settings_xml(http_req){
+				var my_txt = http_req.responseText;
+											
+				try {
+					media_info = JSON.parse(my_txt);
+				} catch(e) {
+					get_media_list('document');
+					return;
+				}				
+				
+				show_media_list(false);
+			}
+			
+			function get_media_list(which_media){		
+				var xml_request = new XMLRequest(get_settings_xml);
+				var para = "ListCategory?id=" + storage_user.get("id") + "&tok=" + storage_user.get("tok")
+						 + "&pageoffset=0&maxcount=50" + "&filter=" + which_media;
+								
+				xml_request.json_cgi(para);			
+			}
+			
+			function clear_search_box(){				
+				get_by_id("search_box").value = "";	
+				show_media_list(false);				
+			}	
+
+			function reset_search_box(){
+				get_by_id("search_box").value = lang_obj.display('WS008');	
+				show_media_list(false);	
+			}
+			
+			function get_login_info_result(http_req){
+				var my_txt = http_req.responseText;
+				var result_info;
+				
+				try {
+					result_info = JSON.parse(my_txt);
+				} catch(e) {
+					return;
+				}
+
+				if (result_info.status == "ok"){
+					storage_user.put("id", result_info.user_name);
+					storage_user.put("tok", result_info.user_pwd);
+					get_media_list('document');										
+				}else if (result_info.status == "fail" && result_info.errno == 5003){
+					location.href = "login.htm";
+				}
+			}
+			
+			function get_login_info(){
+				var xml_request = new XMLRequest(get_login_info_result);
+				var para = "request=get_login_info";
+								
+				header_width = get_by_id("header").offsetWidth;	
+				
+				xml_request.exec_webfile_cgi(para);
+			}
+		</script>
+	</head>
+	<body onload="MM_preloadImages('webfile_images/btn_home_.png','webfile_images/backBtn_.png','webfile_images/x.png');get_login_info();">
+		<div id="wrapper">
+			<div id="header">
+				<div align="right">
+					<table width="100%" border="0" cellspacing="0">
+			<tr>
+							<th width="224" rowspan="2" scope="row"><img src="webfile_images/index_01.png" width="220" height="55" /></th>
+							<th width="715" height="30" scope="row"><a href="category_view.htm" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','webfile_images/btn_home_.png',1)"><img src="webfile_images/btn_home_.png" name="Image6" width="25" height="25" border="0" align="right" id="Image6" /></a></th>
+							<th width="15" scope="row"></th>
+						</tr>
+						<tr>
+							<th scope="row"></th>
+							<th scope="row"></th>
+						</tr>
+					</table>		 
+					<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','webfile_images/btn_home_.png',1)"></a>
+				</div>
+				</div>
+				<div id="navi">
+					<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+							<th width="9%" height="42" scope="row">
+								<div align="right">
+									<a href="category_view.htm" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('back','','webfile_images/backBtn_.png',1)"><img src="webfile_images/backBtn.png" name="back" width="70" height="30" border="0" id="back" /></a>
+								</div>
+							</th>
+							<td width="82%" class="text_2Copy"><script>lang_obj.write('WS004');</script></td>
+							<td width="10%"></td>
+									</tr>
+								</table>
+				</div>
+				<div id="search">
+					<table width="100%" height="49" border="0" border-color:transparent;align="left" cellpadding="0" cellspacing="0">
+									<tr>
+							<th width="40" height="49"  scope="row"></th>
+							<th width="880" class="search2" scope="row">							
+								<script>document.write("<input type=\"text\" id=\"search_box\" name=\"search_box\" class=\"search2\" value=\"" + lang_obj.display('WS008') + "\" onfocus=\"clear_search_box()\" onkeyup=\"show_media_list(true)\" size=\"105\" />");</script>
+							</th>
+							<th width="40" scope="row"><a href="javascript:reset_search_box()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('reset','','webfile_images/x.png',1)"><img src="webfile_images/x.png" name="reset" width="15" height="15" border="0" align="left" id="reset" /></a></th>
+																		</tr>
+																	</table>
+				</div>
+																				<div id="media_list"></div>
+		</div>
+	</body>
+</html>

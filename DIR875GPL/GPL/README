@@ -1,0 +1,80 @@
+Note & Install & Build
+===============
+Note:
+  1. DIR857A1_GPL104b09.tar.gz include toolchain source code. 
+
+Environment: 
+	1. HostOS: Fedora Core 8 full installation.
+	2. Update or install intltool
+		(1). ~#sudo yum install intltool.i386
+				 Please press "Y" and "enter" to proceed.
+Install:
+	1. Building the image.
+		(1). Copy the DIR857A1_GPL104b09.tar.gz into /home/trunk directory
+		     use following commands.
+			~#tar -zxvf DIR857A1_GPL104b09.tar.gz
+		(2). You will get "ubicom-distro-3.0" directory.
+			~#cd /home/trunk/ubicom-distro-3.0
+		(3). Unpack toolchain
+			~#mkdir toolchain
+			~#cd toolchain
+			~#tar zxvf ../ubicom32toolchain-2011-05-28-platform.tar.gz
+			~#cd ../
+		(4)~#make menuconfig
+  ¢x ¢x --- ******** General settings **********                                                                                                         ¢x ¢x
+  ¢x ¢x     Distro (uClinux)  --->                                                                                                                       ¢x ¢x
+  ¢x ¢x     Root file system (initramfs)  --->                                                                                                           ¢x ¢x
+  ¢x ¢x [*] Run distro menuconfig                                                                                                                        ¢x ¢x
+  ¢x ¢x --- ******** Upgrade Identity settings **********                                                                                                ¢x ¢x
+  ¢x ¢x (Unknown - BOARD) Application Identity String (up to 31 chars)                                                                                   ¢x ¢x
+  ¢x ¢x --- ******** Bootloader settings **********                                                                                                      ¢x ¢x
+  ¢x ¢x     Board (IP8100_DIR857.brd)  --->                                                                                                              ¢x ¢x
+  ¢x ¢x     LPJ (ultra8k.lpj)  --->                                                                                                                      ¢x ¢x
+  ¢x ¢x [*] Use pre-build ultra binaries                                                                                                                 ¢x ¢x
+  ¢x ¢x [ ] Enable Profiler                                                                                                                              ¢x ¢x
+  ¢x ¢x [*] Enable U-Boot                                                                                                                                ¢x ¢x
+  ¢x ¢x ---                                                                                                                                              ¢x ¢x
+  ¢x ¢x     Reset to defaults                                                                                                                            ¢x ¢x
+  ¢x ¢x     Load an Alternate Configuration File                                                                                                         ¢x ¢x
+  ¢x ¢x     Save Configuration to an Alternate File    
+          --please select <Exit>.
+          
+          Do you wish to save your new Ubicom Distro ?
+          --please select the <Yes>.
+
+       b.uClinux Distribution Configuration:
+            Vendor/Product Selection ----> 
+         ---Selection the Vendor you wish to target
+            Vendor(Ubicom)-->Ubicom
+         ---Selection the Product yor wish to target
+            products(AccessPoint)-->DIR857G
+         
+         --->please select <Exit>.
+         
+         Do you wish to save your new kernel configrartion?
+          --please slect the <Yes>.
+         
+         than if it shows "Process anyway? (N/y/?)", please press the 'enter' directly.
+
+			c. SUPPORT PRIVATE IP (SUPPORT_PRIVATE_IP) [N/y/?] (NEW)
+         please press <Enter>
+
+			d. SUPPORT VLAN IGMP (SUPPORT_VLAN_IGMP) [N/y/?] (NEW)
+         please press <Enter>
+
+      e. L2TPv3 support (EXPERIMENTAL) (L2TP_V3) [N/y/?] (NEW) 
+         please press <Enter>
+
+      f. rp-l2tp (USER_RP_L2TP_L2TP) [N/y/?] (NEW)
+         please press <Enter>
+         
+      g.CFG_SUPPORT_PRIVATE_IP (USER_SUPPORT_PRIVATE_IP) [N/y/?] (NEW)
+         please press <Enter>
+
+
+         
+		(5)~#make
+		(6). After make successfully, you will get the image file "DIR-857_upgrade.bin"
+		     in "ubicom-distro-3.0/bin"
+	2. Update the new firmware by web interface provided by device.
+	3. You got your specific image now.

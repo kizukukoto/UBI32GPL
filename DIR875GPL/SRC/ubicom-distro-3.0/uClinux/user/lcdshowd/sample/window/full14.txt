@@ -1,0 +1,1245 @@
+==7156== Memcheck, a memory error detector for x86-linux.
+==7156== Copyright (C) 2002-2004, and GNU GPL'd, by Julian Seward et al.
+==7156== Using valgrind-2.2.0, a program supervision framework for x86-linux.
+==7156== Copyright (C) 2000-2004, and GNU GPL'd, by Julian Seward et al.
+==7156== For more details, rerun with: -v
+==7156== 
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBBDE08
+real free:1BBBD880
+real free:1BBBD2E8
+real free:1BBBCD58
+real free:1BBBC7C8
+real free:1BBBC238
+real free:1BBBBCB0
+real free:1BBBB740
+real free:1BBBB1A8
+real free:1BBBAC18
+real free:1BBBA688
+==7156== warning: Valgrind's pthread_attr_setinheritsched does nothing
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_attr_setschedparam does nothing
+==7156==          (scheduling not changeable)
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_attr_destroy does nothing
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_getschedparam is incomplete
+==7156==          your program may misbehave as a result
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+relloc: 1792 = cap:64 * size:28
+==7156== Syscall param writev(vector[...]) contains uninitialised or unaddressable byte(s)
+==7156==    at 0x1BB2B3FD: writev (in /lib/tls/libc-2.3.3.so)
+==7156==    by 0x1BD2E29D: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD2E5BE: _X11TransWritev (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD11F59: _XSend (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==  Address 0x1BBB0AF4 is 28 bytes inside a block of size 16384 alloc'd
+==7156==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==7156==    by 0x1BD011FD: XOpenDisplay (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BCC31E3: InitLocal (x11.c:125)
+==7156==    by 0x1BCC35B3: system_initialize (x11.c:228)
+==7156== 
+==7156== Syscall param write(buf) contains uninitialised or unaddressable byte(s)
+==7156==    at 0x1BB2494B: write (in /lib/tls/libc-2.3.3.so)
+==7156==    by 0x1BD2E21D: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD2E55E: _X11TransWrite (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD11863: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==  Address 0x1BBB0AFE is 38 bytes inside a block of size 16384 alloc'd
+==7156==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==7156==    by 0x1BD011FD: XOpenDisplay (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BCC31E3: InitLocal (x11.c:125)
+==7156==    by 0x1BCC35B3: system_initialize (x11.c:228)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+(*) Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+DirectGetInterface 306: countinue leak
+IDirectFB_CreateFont:1220
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+(*) Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+DirectGetInterface 306: countinue leak
+==7156== 
+==7156== Conditional jump or move depends on uninitialised value(s)
+==7156==    at 0x1B9A7AA9: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==7156==    by 0x1B9A9CCF: dfb_surface_buffer_write (surface_buffer.c:610)
+==7156==    by 0x1B9A6CE0: dfb_surface_write_buffer (surface.c:652)
+==7156==    by 0x1C1108F0: IDirectFBImageProvider_PNG_RenderTo (idirectfbimageprovider_png.c:361)
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==7156== warning: Valgrind's pthread_cond_destroy is incomplete
+==7156==          (it doesn't check if the cond is waited on)
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_cond_destroy is incomplete
+==7156==          (it doesn't check if the cond is waited on)
+==7156==          your program may misbehave as a result
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==7156== warning: Valgrind's pthread_cond_destroy is incomplete
+==7156==          (it doesn't check if the cond is waited on)
+==7156==          your program may misbehave as a result
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==7156== 
+==7156== Conditional jump or move depends on uninitialised value(s)
+==7156==    at 0x1B9A7AA9: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==7156==    by 0x1B9AACB7: dfb_surface_buffer_lock (surface_buffer.c:274)
+==7156==    by 0x1B9A68B3: dfb_surface_lock_buffer (surface.c:572)
+==7156==    by 0x1B9BCF6D: load_default_cursor (windowstack.c:830)
+==7156== 
+==7156== Conditional jump or move depends on uninitialised value(s)
+==7156==    at 0x1B9A7AA9: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==7156==    by 0x1B9AACB7: dfb_surface_buffer_lock (surface_buffer.c:274)
+==7156==    by 0x1B9A68B3: dfb_surface_lock_buffer (surface.c:572)
+==7156==    by 0x1C088900: render_glyph (idirectfbfont_ft2.c:272)
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+==7156== 
+==7156== pthread_mutex_destroy: mutex is still in use
+==7156==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==7156==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==7156==    by 0x1B948553: IDirectFBEventBuffer_Destruct (idirectfbinputbuffer.c:187)
+==7156==    by 0x1B94871E: IDirectFBEventBuffer_Release (idirectfbinputbuffer.c:212)
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==7156== 
+==7156== pthread_mutex_destroy: mutex is still in use
+==7156==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==7156==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==7156==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==7156==    by 0x1B9943FF: context_destructor (layer_context.c:129)
+==7156== 
+==7156== pthread_mutex_destroy: mutex is still in use
+==7156==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==7156==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==7156==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==7156==    by 0x1B9E7BC4: fusion_object_pool_destroy (object.c:272)
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+==7156== 
+==7156== pthread_mutex_destroy: mutex is still in use
+==7156==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==7156==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==7156==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==7156==    by 0x1BCC394B: system_shutdown (x11.c:369)
+==7156== 
+==7156== pthread_mutex_destroy: mutex is still in use
+==7156==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==7156==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==7156==    by 0x1BD2D173: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD19039: XrmDestroyDatabase (in /usr/X11R6/lib/libX11.so.6.2)
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBBBB08
+real free:1BBC1BE0
+real free:1BBBE840
+real free:1BBBE420
+real free:1BBBE060
+real free:1BBBDCA0
+real free:1BBBAF50
+real free:1BBBD758
+real free:1BBBD390
+real free:1BBBCFD0
+real free:1BBBA670
+==7156== warning: Valgrind's pthread_attr_setinheritsched does nothing
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_attr_setschedparam does nothing
+==7156==          (scheduling not changeable)
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_attr_destroy does nothing
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_getschedparam is incomplete
+==7156==          your program may misbehave as a result
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+==7156== 
+==7156== pthread_mutex_destroy: mutex is still in use
+==7156==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==7156==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==7156==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==7156==    by 0x1BCB194B: system_shutdown (x11.c:369)
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBAF4D0
+real free:1C2071D0
+real free:1C193168
+real free:1BBE9A10
+real free:1BBE9250
+real free:1BBE12F0
+real free:1BBD0E38
+real free:1BBCFC00
+real free:1BBD0FC0
+real free:1BBD09A8
+real free:1BBD0810
+==7156== warning: Valgrind's pthread_attr_setinheritsched does nothing
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_attr_setschedparam does nothing
+==7156==          (scheduling not changeable)
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_attr_destroy does nothing
+==7156==          your program may misbehave as a result
+==7156== warning: Valgrind's pthread_getschedparam is incomplete
+==7156==          your program may misbehave as a result
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1C201AE8
+real free:1BBE9AF0
+real free:1BC4F188
+real free:1BBD6440
+real free:1BBEBB48
+real free:1BBEBA88
+real free:1BBD3A70
+real free:1BBB0968
+real free:1BBD60D0
+real free:1BBD5938
+real free:1BBC4C98
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBD6448
+real free:1BBB8D58
+real free:1BBB83C8
+real free:1BBB69C0
+real free:1BC3D660
+real free:1BBDC820
+real free:1BC36B40
+real free:1BBCF840
+real free:1BBB96C8
+real free:1BBC8CB0
+real free:1BBAEB28
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBC4B68
+real free:1BBB9B50
+real free:1BBB9CD0
+real free:1BBB9A10
+real free:1BBB5F88
+real free:1BBB5E60
+real free:1BBB5DB8
+real free:1BBACBD0
+real free:1BBA9FE8
+real free:1BBE2BD0
+real free:1BBB35D8
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBD4620
+real free:1BBD3AD0
+real free:1BBD38B0
+real free:1BBB7D90
+real free:1BBC9658
+real free:1BBB2570
+real free:1BBB39A0
+real free:1BBB40E0
+real free:1BBB0800
+real free:1BC3B978
+real free:1BC37C20
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBB9730
+real free:1BBB4DF8
+real free:1BBB5778
+real free:1BBB4560
+real free:1BBAEA28
+real free:1BBAE7A0
+real free:1BBAE508
+real free:1BBAB838
+real free:1BC4A260
+real free:1BC36EE8
+real free:1BBE6010
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBB7568
+real free:1BBB76F8
+real free:1BC488C0
+real free:1BC3D7C0
+real free:1BBB0DC8
+real free:1BBB3E98
+real free:1BBD7B30
+real free:1BBCE468
+real free:1BBACA98
+real free:1BBBDC50
+real free:1BBFAE18
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBE5BB8
+real free:1BBE5DC8
+real free:1BBCEFB8
+real free:1BBBFB10
+real free:1BBD0A08
+real free:1BBC45D0
+real free:1BBC2C98
+real free:1BBC19E8
+real free:1BBC90B0
+real free:1BBC2830
+real free:1BC4F660
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+close lite
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--7156-- WARNING: unhandled syscall: 224
+--7156-- Do not panic.  You may be able to fix this easily.
+--7156-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:00000000
+type any key to close lite
+==7156== 
+==7156== ERROR SUMMARY: 280 errors from 11 contexts (suppressed: 874 from 1)
+==7156== malloc/free: in use at exit: 56727 bytes in 752 blocks.
+==7156== malloc/free: 20502 allocs, 19750 frees, 22142109 bytes allocated.
+==7156== For counts of detected errors, rerun with: -v
+==7156== searching for pointers to 752 not-freed blocks.
+==7156== checked 7739192 bytes.
+==7156== 
+==7156== 
+==7156== 16 bytes in 1 blocks are still reachable in loss record 1 of 34
+==7156==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==7156==    by 0x1BA4C47C: (within /lib/libdl-2.3.3.so)
+==7156==    by 0x1BA4C066: dlsym (in /lib/libdl-2.3.3.so)
+==7156==    by 0x1BA15621: sigaction (vg_libpthread.c:2269)
+==7156== 
+==7156== 
+==7156== 24 bytes in 3 blocks are still reachable in loss record 2 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1B8E8420: decompose_rpath (dl-load.c:566)
+==7156==    by 0x1B8EA531: _dl_map_object (dl-load.c:604)
+==7156==    by 0x1B8EE921: openaux (dl-deps.c:63)
+==7156== 
+==7156== 
+==7156== 24 bytes in 1 blocks are still reachable in loss record 3 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD2D9F7: XInitThreads (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BCC31BE: ???
+==7156==    by 0x1BCC35B3: ???
+==7156== 
+==7156== 
+==7156== 24 bytes in 1 blocks are still reachable in loss record 4 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD2D9DF: XInitThreads (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BCC31BE: ???
+==7156==    by 0x1BCC35B3: ???
+==7156== 
+==7156== 
+==7156== 29 bytes in 3 blocks are still reachable in loss record 5 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD4D5D4: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD556D4: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 32 bytes in 1 blocks are still reachable in loss record 6 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BCEC2F7: _XrmInternalStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BCEC6F1: XrmPermStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD132FF: XrmInitialize (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 48 bytes in 1 blocks are still reachable in loss record 7 of 34
+==7156==    at 0x1B905892: realloc (vg_replace_malloc.c:197)
+==7156==    by 0x1BD14227: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD155AB: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD15863: XrmGetStringDatabase (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 80 bytes in 10 blocks are definitely lost in loss record 8 of 34
+==7156==    at 0x1B905892: realloc (vg_replace_malloc.c:197)
+==7156==    by 0x1BD526E0: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD52C73: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD54A40: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 80 bytes in 20 blocks are still reachable in loss record 9 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD53261: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD54A40: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD55593: _XlcCreateLC (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 128 bytes in 2 blocks are still reachable in loss record 10 of 34
+==7156==    at 0x1B905892: realloc (vg_replace_malloc.c:197)
+==7156==    by 0x1BB63747: (within /lib/tls/libc-2.3.3.so)
+==7156==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==7156==    by 0x1BB63A6F: _dl_open (in /lib/tls/libc-2.3.3.so)
+==7156== 
+==7156== 
+==7156== 176 bytes in 6 blocks are still reachable in loss record 11 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1B8EDDE4: _dl_map_object_deps (dl-deps.c:456)
+==7156==    by 0x1BB62F33: (within /lib/tls/libc-2.3.3.so)
+==7156==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==7156== 
+==7156== 
+==7156== 189 bytes in 7 blocks are still reachable in loss record 12 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1B8EA5D5: _dl_map_object (dl-load.c:155)
+==7156==    by 0x1B8EE921: openaux (dl-deps.c:63)
+==7156==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==7156== 
+==7156== 
+==7156== 384 bytes in 48 blocks are still reachable in loss record 14 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD4E681: _XlcAddCharSet (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4D56A: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 615 bytes in 47 blocks are still reachable in loss record 15 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD4E85E: _XlcCreateDefaultCharSet (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4D553: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 668 bytes in 9 blocks are still reachable in loss record 16 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1B8EDEBF: _dl_map_object_deps (dl-deps.c:488)
+==7156==    by 0x1BB62F33: (within /lib/tls/libc-2.3.3.so)
+==7156==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==7156== 
+==7156== 
+==7156== 690 bytes in 8 blocks are still reachable in loss record 17 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1B8EA2BA: _dl_map_object (dl-load.c:155)
+==7156==    by 0x1BB62EE3: (within /lib/tls/libc-2.3.3.so)
+==7156==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==7156== 
+==7156== 
+==7156== 788 bytes in 19 blocks are still reachable in loss record 18 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1B9FAE08: direct_strdup (mem.c:318)
+==7156==    by 0x1B94A9E6: config_allocate (conf.c:404)
+==7156==    by 0x1B94E554: dfb_config_init (conf.c:1638)
+==7156== 
+==7156== 
+==7156== 879 bytes in 15 blocks are still reachable in loss record 19 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1B8EC2E4: _dl_new_object (dl-object.c:113)
+==7156==    by 0x1B8E88D1: _dl_map_object_from_fd (dl-load.c:871)
+==7156==    by 0x1B8EA0A6: _dl_map_object (dl-load.c:1956)
+==7156== 
+==7156== 
+==7156== 960 bytes in 20 blocks are still reachable in loss record 20 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD526A8: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD52C73: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD54A40: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 990 bytes in 48 blocks are still reachable in loss record 21 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD4E7EE: _XlcCreateDefaultCharSet (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4D553: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 1168 bytes in 15 blocks are still reachable in loss record 22 of 34
+==7156==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==7156==    by 0x1B8EFFE5: _dl_check_map_versions (dl-version.c:298)
+==7156==    by 0x1BB62F7D: (within /lib/tls/libc-2.3.3.so)
+==7156==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==7156== 
+==7156== 
+==7156== 1280 bytes in 1 blocks are still reachable in loss record 23 of 34
+==7156==    at 0x1B905892: realloc (vg_replace_malloc.c:197)
+==7156==    by 0x1BD5C197: _XlcDynamicLoad (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD2BC18: _XOpenLC (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD2BF0D: _XrmInitParseInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 1520 bytes in 1 blocks are still reachable in loss record 24 of 34
+==7156==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==7156==    by 0x1B94A8D6: config_allocate (conf.c:365)
+==7156==    by 0x1B94E554: dfb_config_init (conf.c:1638)
+==7156==    by 0x1B92C95F: DirectFBInit (directfb.c:117)
+==7156== 
+==7156== 
+==7156== 1565 bytes in 48 blocks are still reachable in loss record 25 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD4D3AC: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD556D4: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 1812 bytes in 2 blocks are still reachable in loss record 26 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1B905817: realloc (vg_replace_malloc.c:189)
+==7156==    by 0x1B9F97ED: allocate_interface_desc (interface.c:391)
+==7156==    by 0x1B9F9925: direct_dbg_interface_add (interface.c:433)
+==7156== 
+==7156== 
+==7156== 1910 bytes in 130 blocks are still reachable in loss record 27 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BADB73F: strdup (in /lib/tls/libc-2.3.3.so)
+==7156==    by 0x1BD5C266: _XlcDynamicLoad (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD2BC18: _XOpenLC (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 2048 bytes in 1 blocks are still reachable in loss record 28 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD504BA: _XlcCreateLocaleDataBase (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD5585A: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD54A23: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 2048 bytes in 1 blocks are still reachable in loss record 29 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BCEC34B: _XrmInternalStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BCEC6F1: XrmPermStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD132FF: XrmInitialize (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 2304 bytes in 48 blocks are still reachable in loss record 30 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD4E79F: _XlcCreateDefaultCharSet (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4D553: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 5888 bytes in 184 blocks are still reachable in loss record 31 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BD4EA06: _XlcSetConverter (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BA3D57C: _XlcDefaultLoader (in /usr/X11R6/lib/X11/locale/lib/common/xlcDef.so.2)
+==7156==    by 0x1BD5C154: _XlcDynamicLoad (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 8176 bytes in 1 blocks are still reachable in loss record 32 of 34
+==7156==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==7156==    by 0x1BCEC06B: (within /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BCEC317: _XrmInternalStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==7156==    by 0x1BCEC6F1: XrmPermStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==7156== 
+==7156== 
+==7156== 9432 bytes in 15 blocks are still reachable in loss record 33 of 34
+==7156==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==7156==    by 0x1B8EC0DE: _dl_new_object (dl-object.c:43)
+==7156==    by 0x1B8E88D1: _dl_map_object_from_fd (dl-load.c:871)
+==7156==    by 0x1B8EA0A6: _dl_map_object (dl-load.c:1956)
+==7156== 
+==7156== 
+==7156== 10552 bytes in 34 blocks are still reachable in loss record 34 of 34
+==7156==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==7156==    by 0x1B9FA8FC: direct_calloc (mem.c:179)
+==7156==    by 0x1B930768: IDirectFB_CreateSurface (idirectfb.c:830)
+==7156==    by 0x1B90C7BA: lite_util_load_image (in /share/pub/rootfs/lib/liblite.so.3.0.5)
+==7156== 
+==7156== LEAK SUMMARY:
+==7156==    definitely lost: 80 bytes in 10 blocks.
+==7156==    possibly lost:   0 bytes in 0 blocks.
+==7156==    still reachable: 56447 bytes in 741 blocks.
+==7156==         suppressed: 200 bytes in 1 blocks.

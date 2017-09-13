@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/sbin/wpa_supplicant /etc/wpa2/topology.conf &
+
+exit 0

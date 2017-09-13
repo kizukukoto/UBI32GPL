@@ -1,0 +1,13 @@
+#!/bin/sh
+# Copyright (C) 2009 Ubicom, Inc.
+
+# This script generates EEE EUI-64 Identifier from the given MAC address
+
+MAC=$1
+
+# Invert the second least significant bit of the first octet
+OCTET1=`echo $MAC | cut -c1-2`
+OCTET1_NEW=`printf "%x" $(( 0x$OCTET1 ^ 0x02 ))`
+
+echo "$OCTET1_NEW`echo $MAC | cut -c4-5`:`echo $MAC | cut -c7-8`FF:FE`echo $MAC | cut -c10-11`:`echo $MAC | cut -c13-14``echo $MAC | cut -c16-17`"
+

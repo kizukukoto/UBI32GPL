@@ -1,0 +1,21 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+MODULE=$1
+if [ -z $MODULE ]; then MODULE=all; fi
+
+case $MODULE in
+	ipv4)
+		insmod /lib/modules/`uname -r`/ubicom_na_connection_manager_ipv4.ko
+	;;
+	ipv6)
+		insmod /lib/modules/`uname -r`/ubicom_na_connection_manager_ipv6.ko
+	;;
+	all)
+		insmod /lib/modules/`uname -r`/ubicom_na_connection_manager_ipv4.ko
+		insmod /lib/modules/`uname -r`/ubicom_na_connection_manager_ipv6.ko
+	;;
+	*)
+		echo "Wrong parameter MODULE:$MODULE"
+	;;
+esac

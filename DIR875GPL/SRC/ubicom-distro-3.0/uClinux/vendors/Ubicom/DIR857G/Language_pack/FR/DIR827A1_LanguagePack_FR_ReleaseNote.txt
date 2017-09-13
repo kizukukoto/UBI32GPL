@@ -1,0 +1,12 @@
+﻿Language Pack Release Note
+Project Name: DIR-827
+HW version: A1
+Region/OEM code: FR
+======================================================================================
+Language-Version: ver1.00FRb01
+Language: France
+Language-Checksum: 0x00CAD93A
+svn:1780
+
+1.please base on FW v1.00b17 or later.
+--------------------------------------------------------------------------------------

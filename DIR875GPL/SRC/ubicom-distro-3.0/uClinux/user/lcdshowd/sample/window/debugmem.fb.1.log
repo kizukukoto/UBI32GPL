@@ -1,0 +1,103 @@
+(*) Direct/Test: Application starting...
+loop 1 times
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:0804B020
+real free:08052630
+real free:080521F8
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:080519B8
+real free:08051598
+real free:08051178
+real free:08050D60
+real free:08050928
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:080500E8
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+relloc: 1792 = cap:64 * size:28
+IDirectFB_CreateFont:1218
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+(*) Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+DirectGetInterface 306: countinue leak
+IDirectFB_CreateFont:1220
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+(*) Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+DirectGetInterface 306: countinue leak
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:08051DD8
+real free:08050508
+(!) Direct/Mem: Not freeing unknown 0x804a558 (log) from [log.c:139 in direct_log_destroy()] - corrupt/incomplete list?
+Local memory allocations remaining (33): 
+    112 bytes at 0x804aba8 allocated in direct_thread_set_name (thread.c: 369)
+     12 bytes at 0x804b228 allocated in direct_thread_set_name (thread.c: 386)
+     44 bytes at 0x804b250 allocated in direct_modules_explore_directory (modules.c: 232)
+     22 bytes at 0x804c2e8 allocated in direct_modules_explore_directory (modules.c: 240)
+      7 bytes at 0x804c680 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x804c690 allocated in direct_modules_explore_directory (modules.c: 232)
+     21 bytes at 0x804c6c0 allocated in direct_modules_explore_directory (modules.c: 240)
+      6 bytes at 0x804cab8 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x804cac8 allocated in direct_modules_explore_directory (modules.c: 232)
+     19 bytes at 0x804caf8 allocated in direct_modules_explore_directory (modules.c: 240)
+      4 bytes at 0x804d598 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x8051030 allocated in direct_modules_explore_directory (modules.c: 232)
+     25 bytes at 0x8051060 allocated in direct_modules_explore_directory (modules.c: 240)
+      8 bytes at 0x8051080 allocated in direct_modules_register (modules.c: 134)
+    372 bytes at 0x8053408 allocated in gAcquire (generic.c: 6927)
+     40 bytes at 0x8054d68 allocated in DirectRegisterInterface (interface.c: 88)
+     84 bytes at 0x8054d98 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x80551e0 allocated in DirectRegisterInterface (interface.c: 88)
+     82 bytes at 0x8055210 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x8055988 allocated in DirectRegisterInterface (interface.c: 88)
+     80 bytes at 0x80559b8 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x805df68 allocated in DirectRegisterInterface (interface.c: 88)
+    100 bytes at 0x805df98 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x805e410 allocated in DirectRegisterInterface (interface.c: 88)
+     98 bytes at 0x805e440 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x805ebd8 allocated in DirectRegisterInterface (interface.c: 88)
+     99 bytes at 0x805ec08 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x805f3d0 allocated in DirectRegisterInterface (interface.c: 88)
+     98 bytes at 0x805f400 allocated in DirectGetInterface (interface.c: 272)
+    372 bytes at 0x805d068 allocated in gAcquire (generic.c: 6927)
+    252 bytes at 0x8063b38 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8076798 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+   4321 bytes at 0x8053580 allocated in main (main.c: 98)
+type any key to close lite
+type any key to exit
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_default.so leak foce?
+(-) [Main Thread       5.338] (16407) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x8054d68 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_dgiff.so leak foce?
+(-) [Main Thread       5.338] (16407) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x80551e0 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_ft2.so leak foce?
+(-) [Main Thread       5.338] (16407) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x8055988 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_dfiff.so leak foce?
+(-) [Main Thread       5.338] (16407) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x805df68 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_gif.so leak foce?
+(-) [Main Thread       5.338] (16407) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x805e410 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_jpeg.so leak foce?
+(-) [Main Thread       5.338] (16407) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x805ebd8 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_png.so leak foce?
+(-) [Main Thread       5.338] (16407) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x805f3d0 'impl'

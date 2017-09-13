@@ -1,0 +1,13 @@
+#!/bin/sh
+cat /var/etc/resolv.conf /var/etc/resolv_ipv6.conf > /var/etc/resolv_dual.conf
+
+ipv6_dhcp_pd_enable=$(nvram get ipv6_dhcp_pd_enable)
+
+if [ "$ipv6_dhcp_pd_enable" = "ipv6_dhcp_pd_enable = 0" ] || [ "$ipv6_dhcp_pd_enable" = "0" ]; then
+
+cli ipv6 radvd stop
+cli ipv6 radvd start
+cli ipv6 dhcp6d stop
+cli ipv6 dhcp6d start
+
+fi

@@ -1,0 +1,41 @@
+#!/bin/sh
+PROC_HOTPLUG=/proc/sys/kernel/hotplug
+HOTPLUGD=/usr/sbin/hotplugd
+
+hotplug_start() {
+	echo "Initialize Hotplug"
+	#if [ -f ${PROC_HOTPLUG} ]; then
+		echo "/sbin/hotplug_init" > ${PROC_HOTPLUG}
+	#fi
+	if [ -x ${HOTPLUGD} ]; then
+		echo -n "Starting HotPlug:                       "
+		EXEC_HOTPLUGD="${HOTPLUGD}"
+		echo ${EXEC_HOTPLUGD}
+		${EXEC_HOTPLUGD} -D
+	fi
+}
+
+
+hotplug_stop() {
+	sxmount umount
+	killall hotplugd 2>/dev/null
+}
+
+
+hotplug_restart() {
+	hotplug_stop
+	sleep 1
+	hotplug_start
+}
+
+
+case "$1" in
+'start')
+	hotplug_start ;;
+'stop')
+	hotplug_stop ;;
+'restart')
+	hotplug_restart ;;
+*)
+	echo "usage $0 start|stop|restart"
+esac

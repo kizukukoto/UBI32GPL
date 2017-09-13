@@ -1,0 +1,29 @@
+Language Pack Release Note
+Project Name: DIR-857
+HW version: A1
+Region/OEM code: FR
+======================================================================================
+Language-Version:1.01FRb01
+Language: France
+Language-Checksum: 0x00CB0374
+Language-svn:2576
+
+1.Add string to pop up eap warning message and Disable WPS-PIN Method
+--------------------------------------------------------------------------------------
+
+Language-Version:1.00FRb02
+Language: France
+Language-Checksum: 0x00CB02E8
+Language-svn:2566
+
+1.Add string to pop up eap warning message
+--------------------------------------------------------------------------------------
+
+Language-Version:1.00FRb01
+Language: France
+Language-Checksum: 0x00CB4A51 
+Language-svn:2244
+
+1.please base on FW v1.00b14.
+--------------------------------------------------------------------------------------
+

@@ -1,0 +1,176 @@
+#!/bin/sh
+echo "***********[$*,$#,$PLUTO_VERB]******" >>/tmp/pluto_updown
+WAN_PROTO="`nvram get wan_proto | awk '{print $3}'`"
+PPPOE_REMOTEIP="`nvram get pppoe_remoteip | awk '{print $3}'`"
+
+#set >>/tmp/pluto_updown
+__route() {
+	#NVRAM_LANIP="`nvram get lan_ipaddr |awk '{print $3}'`"
+	env > /tmp/pluto_updown.env
+	if [ $PLUTO_PEER_CLIENT != "0.0.0.0/0" ];then
+		ip route $1 $PLUTO_PEER_CLIENT dev $PLUTO_INTERFACE \
+			src $PLUTO_MY_CLIENT_ADDR
+		return
+	fi
+	# For remote is Full tunnel
+	# 1. Don't route to remote if destination is my subnet.
+	# 2. Don't route multicast to remote
+	# 3. keep default gw if tunnel was deleted.
+
+	# The following two ip xfrm rules should add anytime. Prevent UI cannot access.
+	ip xfrm policy $1 dir in src $PLUTO_MY_CLIENT dst $PLUTO_MY_CLIENT
+	ip xfrm policy $1 dir out src $PLUTO_MY_CLIENT dst $PLUTO_MY_CLIENT
+	# delete default gateway here and add it as below
+	# ip route del $PLUTO_PEER_CLIENT
+
+	ip xfrm policy $1 dir out src 0.0.0.0/0 dst 255.255.255.255/32
+	ip xfrm policy $1 dir out src 0.0.0.0/0 dst 224.0.0.0/4
+	# add ip route, dhcprelay will be triggered here
+
+	ip route get $PLUTO_PEER
+	if [ $? -eq 0 ]; then
+		DEFAULT_GW=`route -n|grep ^0.0.0.0|awk '{print $2}'`
+		VIA="via $DEFAULT_GW"
+	fi
+
+	if [ $1 = "add" ];then
+		#SRC="src $NVRAM_LANIP"
+		SRC="src $PLUTO_MY_CLIENT_ADDR"
+	fi
+	ip route replace $PLUTO_PEER_CLIENT dev $PLUTO_INTERFACE $SRC $VIA
+
+	#ip route $1 $PLUTO_PEER_CLIENT dev $PLUTO_INTERFACE src `echo $NVRAM_LANIP | awk '{print $3}'` via 192.168.100.1
+}
+__ipt_nat() {
+	# allow traffic from my subnet to peer subnet
+	iptables -t nat $1 POSTROUTING -o $PLUTO_INTERFACE -s $PLUTO_MY_CLIENT -d $PLUTO_PEER_CLIENT -j ACCEPT
+	# for local subnet is full tunnel or Hot-Spoke to NAT out side.
+	if [ $PLUTO_PEER_CLIENT != "0.0.0.0/0" ]; then
+		iptables -t nat $1 POSTROUTING -s $PLUTO_PEER_CLIENT -d $PLUTO_MY_CLIENT -j MASQUERADE
+	fi
+	# allow traffic from peer subnet to my subnet
+	iptables $1 INPUT -s $PLUTO_PEER_CLIENT -d $PLUTO_MY_CLIENT -j ACCEPT
+	iptables $1 FORWARD -s $PLUTO_PEER_CLIENT -d $PLUTO_MY_CLIENT -j ACCEPT
+	
+	# Support MBSSID rule that prohibit user to access gui from MBSSID so that it should change behavior from insert to append.
+	mbssid=`nvram get feature_mbssid`
+	echo "\nXXXX $mbssid XXXX\n"
+	if [ "$mbssid" == "feature_mbssid = y" ];then
+		_mbssid
+	fi
+
+	# when local subnet have not route gateway via me. use MASQUERADE.
+	autoroute=`nvram get ipsec_autoroute`
+	if  [ "$autoroute" == "1" ];then
+		iptables -t nat $1 POSTROUTING -o br0 -s \
+		$PLUTO_PEER_CLIENT -d $PLUTO_MY_CLIENT -j MASQUERADE	
+	fi
+}
+my_uproute() {
+	__ipt_nat "-I"
+	echo 25 > /sys/module/nf_conntrack_ops/parameters/nf_timeout
+	echo "my_uproute" >> /tmp/pluto_updown
+	env >> /tmp/pluto_updown
+	echo "ipsec,$PLUTO_ME,$PLUTO_PEER,tunnel" > /tmp/vpn_tunnel/ipsec-"$PLUTO_PEER_CLIENT_NET"
+}
+my_downroute() {
+	__ipt_nat "-D"
+	echo "my_downroute" >> /tmp/pluto_updown
+	#Fix me, can't find remote ip
+	rm -rf /tmp/vpn_tunnel/ipsec-"$PLUTO_PEER_CLIENT_NET"
+	# del ip route: move to phase __route
+	# ip route del $PLUTO_PEER_CLIENT dev $PLUTO_INTERFACE src `echo $NVRAM_LANIP | awk '{print $3}'`
+}
+hw_ipsec(){
+	echo "XXXXXXXXXX add hw">/tmp/hw_ipsec
+	env >> /tmp/hw_ipsec
+	echo cli misc ipconvert 0 \
+	$PLUTO_MY_CLIENT_NET $PLUTO_MY_CLIENT_MASK  0.0.0.0 \
+	$PLUTO_PEER_CLIENT_NET $PLUTO_PEER_CLIENT_MASK 0.0.0.0 \
+	$PLUTO_ME $PLUTO_PEER >>/tmp/hw_ipsec
+
+	cli misc ipconvert 0 \
+	$PLUTO_MY_CLIENT_NET $PLUTO_MY_CLIENT_MASK  0.0.0.0 \
+	$PLUTO_PEER_CLIENT_NET $PLUTO_PEER_CLIENT_MASK 0.0.0.0 \
+	$PLUTO_ME $PLUTO_PEER  >> /tmp/vpn_pair
+	
+	cat /tmp/vpn_pair > /proc/sys/net/vpn/vpn_pair
+}
+
+_mbssid()
+{
+	iptables -D INPUT -i ath+ -p icmp -j DROP
+	iptables -D INPUT -i ath+ -p tcp --dport 80 -j DROP
+	iptables -I INPUT -i ath+ -p icmp -j DROP
+	iptables -I INPUT -i ath+ -p tcp --dport 80 -j DROP
+}
+
+case "$PLUTO_VERB" in
+    prepare-host|prepare-client)
+    	#hw_ipsec
+	# Delete possibly-existing route (preliminary to adding a route)
+	# Not used for NETKEY
+	;;
+    route-host|route-client)
+	# connection to me or my client subnet being routed
+	# Peter: trigger on action is "route" but not be trigger(initiate) yet
+	echo 25 > /sys/module/nf_conntrack_ops/parameters/nf_timeout
+	__route "add"
+	;;
+    unroute-host|unroute-client)
+	# connection to me or my client subnet being unrouted
+	__route "del"
+	;;
+    up-host)
+	# connection to me coming up
+	# If you are doing a custom version, firewall commands go here.
+	my_uproute
+	;;
+    down-host)
+	# connection to me going down
+	# If you are doing a custom version, firewall commands go here.
+	my_downroute
+	;;
+    up-client)
+	my_uproute
+	# connection to my client subnet coming up
+	# If you are doing a custom version, firewall commands go here.
+	;;
+    down-client)
+	my_downroute
+	# connection to my client subnet going down
+	# If you are doing a custom version, firewall commands go here.
+	;;
+    #
+    # IPv6
+    #
+    prepare-host-v6|prepare-client-v6)
+	# prepare client for connection
+	;;
+    route-host-v6|route-client-v6)
+	# connection to me or my client subnet being routed
+	;;
+    unroute-host-v6|unroute-client-v6)
+	# connection to me or my client subnet being unrouted
+	;;
+    up-host-v6)
+	# connection to me coming up
+	# If you are doing a custom version, firewall commands go here.
+	;;
+    down-host-v6)
+	# connection to me going down
+	# If you are doing a custom version, firewall commands go here.
+	;;
+    up-client-v6)
+	# connection to my client subnet coming up
+	# If you are doing a custom version, firewall commands go here.
+	;;
+    down-client-v6)
+	# connection to my client subnet going down
+	# If you are doing a custom version, firewall commands go here.
+	;;
+    *)	echo "$0: unknown verb \`$PLUTO_VERB' or parameter \`$1'" >&2
+    	echo "XXXXXXXXXXXXXXXX" >>/tmp/pluto_updown
+	exit 1
+	;;
+esac

@@ -1,0 +1,655 @@
+DIR-857A1(Linux version) Firmware Release Note
+
+======================================================================================
+Firmware: v1.02 Build: 12
+Hardware: A1
+Date: 22, Aug 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x653F51AD 
+399(UBICOM_SDK3.0) + 2594(uClinux) + 7421(IPv6)
+
+Firmware: v1.02 Build: 11
+Hardware: A1
+Date: 15, Aug 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65B5A601 
+398(UBICOM_SDK3.0) + 2587(uClinux) + 7421(IPv6)
+
+Firmware: v1.02 Build: 10
+Hardware: A1
+Date: 9, July 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65BAB369 
+389(UBICOM_SDK3.0) + 2545(uClinux) + 7282(IPv6)
+
+Firmware: v1.02 Build: 09
+Hardware: A1
+Date: 6, July 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x6649F47D 
+389(UBICOM_SDK3.0) + 2537(uClinux) + 7282(IPv6)
+
+Firmware: v1.02 Build: 08
+Hardware: A1
+Date: 29, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65C056E8 
+387(UBICOM_SDK3.0) + 2531(uClinux) + 7282(IPv6)
+
+Firmware: v1.02 Build: 07
+Hardware: A1
+Date: 29, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65AF4512
+387(UBICOM_SDK3.0) + 2529(uClinux)
+1. Do not Release
+
+Firmware: v1.02 Build: 06
+Hardware: A1
+Date: 22, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x660032CA
+386(UBICOM_SDK3.0) + 2524(uClinux) + 7282(IPv6)
+
+Firmware: v1.02 Build: 05
+Hardware: A1
+Date: 21, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65A882FE 
+383(UBICOM_SDK3.0) + 2516(uClinux) + 7282(IPv6)
+
+Firmware: v1.02 Build: 04
+Hardware: A1
+Date: 18, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65A97149 
+383(UBICOM_SDK3.0) + 2508(uClinux) + 7282(IPv6)
+
+Firmware: v1.02 Build: 03
+Hardware: A1
+Date: 9, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65A42874 
+382(UBICOM_SDK3.0) + 2490(uClinux) + 7282(IPv6)
+
+Firmware: v1.02 Build: 02
+Hardware: A1
+Date: 8, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65A87B8E 
+381(UBICOM_SDK3.0) + 2488(uClinux) + 7282(IPv6)
+
+Firmware: v1.02 Build: 01Beta02
+Hardware: A1
+Date: 5, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x659D79DD 
+371(UBICOM_SDK3.0) + 2470(uClinux) + 7282(IPv6)
+1. remove hung debug optione in kernel
+
+Firmware: v1.02 Build: 01Beta01
+Hardware: A1
+Date: 4, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65CA7F80 
+371(UBICOM_SDK3.0) + 2467(uClinux) + 7282(IPv6)
+1. enable hung debug optione in kernel
+
+Firmware: v1.02 Build: 01
+Hardware: A1
+Date: 4, Jun 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65AD68D2
+370(UBICOM_SDK3.0) + 2466(uClinux) + 7282(IPv6)
+1. check 5G channel of every domain
+
+Firmware: v1.01 Build: 10
+Hardware: A1
+Date: 11, May 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x654D0756
+362(UBICOM_SDK3.0) + 2393(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.01 Build: 09
+Hardware: A1
+Date: 04, May 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x654F23CD
+361(UBICOM_SDK3.0) + 2373(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.01 Build: 08Beta04
+Hardware: A1
+Date: 04, May 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65495729
+361(UBICOM_SDK3.0) + 2371(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.01 Build: 08Beta03
+Hardware: A1
+Date: 03, May 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x653AC79B
+360(UBICOM_SDK3.0) + 2369(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.01 Build: 08Beta02
+Hardware: A1
+Date: 02, May 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x6545A67E
+358(UBICOM_SDK3.0) + 2366(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.01 Build: 08Beta
+Hardware: A1
+Date: 26, Apr 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x655B2CE9
+355(UBICOM_SDK3.0) + 2357(uClinux) + IPv6_2.01R_UNH1.00b8_827
+a. v1.01b08 renamed
+
+Firmware: v1.01 Build: 08
+Hardware: A1
+Date: 25, Apr 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x6553687D
+355(UBICOM_SDK3.0) + 2355(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.01 Build: 07
+Hardware: A1
+Date: 20, Apr 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65443566 
+354(UBICOM_SDK3.0) + 2348(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.01 Build: 06
+Hardware: A1
+Date: 17, Apr 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x6534B28E
+352(UBICOM_SDK3.0) + 2343(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.01 Build: 05Beta04
+Hardware: A1
+Date: 11, Apr 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x65188343 
+348(UBICOM_SDK3.0) + 2335(uClinux) + IPv6_2.01R_UNH1.00b8_827
+1. Patch Atheros wifi driver for power saving (from QCA Thomas correct_patch.patch(2012/4/10) not commit svn yet)
+
+Firmware: v1.01 Build: 05Beta03
+Hardware: A1
+Date: 10, Apr 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x6522C857
+348(UBICOM_SDK3.0) + 2333(uClinux) + IPv6_2.01R_UNH1.00b8_827
+1. Patch Atheros wifi driver for power saving (from QCA Eric Kuo pspoll.patch(2012/4/9), not commit svn yet)
+
+Firmware: v1.01 Build: 05Beta02
+Hardware: A1
+Date: 9, Apr 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x650D2672
+346(UBICOM_SDK3.0) + 2330(uClinux) + IPv6_2.01R_UNH1.00b8_827
+1. Patch Atheros wifi driver (from QCA Eric Kuo rc9.patch(2012/4/6))
+2. commit nvram.default to set udp_nat_type = 0
+
+Firmware: v1.01 Build: 05Beta
+Hardware: A1
+Date: 30, Mar 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x6505A4B6
+346(UBICOM_SDK3.0) + 2309(uClinux) + IPv6_2.01R_UNH1.00b8_827
+1. Base on v101b05 and only modify nvram.default udp_nat_type 2 to 0
+
+Firmware: v1.01 Build: 05
+Hardware: A1
+Date: 28, Mar 2012
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0021, Date: Thu, 02, Feb, 2012
+CheckSum: 0x6548CE1A
+346(UBICOM_SDK3.0) + 2326(uClinux) + IPv6_2.01R_UNH1.00b8_827
+
+Firmware: v1.00 Build: 15Beta
+Hardware: A1
+Date: 26, Mar 2012
+Firmware Version: ver1.00b15Beta
+Firmware Date:Mon, 26, Feb, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0020, Date: Tue, 13, Dec, 2011
+CheckSum: 0x6505BB7D
+346(UBICOM_SDK3.0) + 2307(uClinux) + 7130(ipv6)
+
+Firmware: v1.00 Build: 14
+Hardware: A1
+Date: 03, Feb 2012
+Firmware Version: ver1.00b14 
+Firmware Date:Fri, 03, Feb, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0020, Date: Tue, 13, Dec, 2011
+CheckSum: 0x64232166
+330(UBICOM_SDK3.0) + 2186(uClinux)
+
+svn up -r1925 uClinux/vendors/Ubicom/DIR857NA3/config.linux-2.6.x
+svn up -r1877 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/adv_ipv6_firewall.asp
+svn up -r2189 uClinux/user/rc/lighttpd.c
+svn up -r2190 uClinux/user/gpio/gpio.c
+
+svn up -r312 vendors/Ubicom_StreamEngine2_ip8K
+
+M      user/rc/wlan/Atheros/wlan.c
+M      user/rc/network.c
+M      vendors/Ubicom/DIR857NA3/bsp.h
+M      vendors/Ubicom/DIR857NA3/config.arch
+M      vendors/Ubicom/DIR857NA3/createbin.sh
+M      vendors/Ubicom/DIR857NA3/project.h
+M      vendors/Ubicom/DIR857NA3/version.c
+M      vendors/Ubicom/DIR857NA3/rootfs/etc/nvram.default
+M      vendors/Ubicom/DIR857NA3/rootfs/www/lingual_EN.js
+M      vendors/Ubicom/DIR857NA3/rootfs/www/short_modnum.gif
+
+M      vendors/ath_sag/Makefile
+M      vendors/ath_sag/drivers/wlan
+M      vendors/sxuptp/sxstorage/drive_letter.c
+M      vendors/sxuptp/sxstorage/mount_thread.c
+
+Firmware: v1.00 Build: 13
+Hardware: A1
+Date: 18, Jan 2012
+Firmware Version: ver1.00b13 
+Firmware Date:Wed, 18, Jan, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Nov, 2011
+CheckSum: 0x5BD81829
+SVN: 2030(uClinux) + 314(UBICOM_SDK3.0)
+
+svn up -r2043 uClinux/user/rc/app.c
+svn up -r2054 uClinux/user/rc/qos.c
+svn up -r2058 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_system.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan1.asp
+svn up -r2092 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wan.asp
+svn up -r2093 uClinux/user/igmpproxy/igmpproxy.c
+svn up -r2094 uClinux/user/mldc/main.c
+svn up -r2053 uClinux/user/httpd/smac.c
+svn up -r2112 uClinux/user/udhcp/common.h
+svn up -r2114 uClinux/user/httpd/pure.h
+svn up -r2117 uClinux/user/httpd/pure_xml.c
+svn up -r2118 uClinux/user/httpd/chklst_version.c
+svn up -r2119 uClinux/user/httpd/widget.c
+svn up -r2120 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/adv_network.asp
+svn up -r2121 uClinux/user/timer/timer.c
+svn up -r2122 uClinux/user/wpsbtnd/wpsbtnd.c
+svn up -r2122 uClinux/user/gpio/gpio.c
+svn up -r2085 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/error-404.htm
+svn up -r2134 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/655_09.jpg
+svn up -r2131 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/655_16.jpg
+svn up -r2132 uClinux/user/udhcp/samples/dual.sample.russia-bound-dns
+svn up -r2135 uClinux/user/rc/mtd.c
+svn up -r2136 uClinux/user/httpd/lp.c
+svn up -r2153 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_time.asp
+svn up -r2156 uClinux/user/rc/firewall.c
+svn up -r2157 uClinux/user/sutil/project.c
+svn up -r2162 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan.asp
+svn up -r2166 uClinux/user/httpd/pure.c
+svn up -r2170 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard_tmp.asp
+svn up -r2170 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard.asp
+svn up -r2170 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/do_wps.asp
+svn up -r2170 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan2.asp
+svn up -r2170 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wireless.asp
+svn up -r2170 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/adv_wps_setting.asp
+
+svn up -r2113 uClinux/user/httpd/httpd.c - - -r2072
+
+svn up -r317 linux-2.6.36-android/drivers/net/ubi32_na.c
+svn up -r318 linux-2.6.36-android/net/ipv4/tcp_ipv4.c
+svn up -r323 u-boot/httpd/httpd.h
+svn up -r327 vendors/ath_sag/apps/wpa2/hostapd/wps_config.c
+
+M      vendors/Ubicom/DIR857NA3/project.h
+M      vendors/Ubicom/DIR857NA3/createbin.sh
+M      vendors/Ubicom/DIR857NA3/version.c
+M      vendors/Ubicom/DIR857NA3/bsp.h
+M      vendors/Ubicom/DIR857NA3/rootfs/www/short_modnum.gif
+M      vendors/Ubicom/DIR857NA3/rootfs/www/lingual_EN.js
+M      vendors/Ubicom/DIR857NA3/rootfs/etc/nvram.default - + r2169
+M 		 vendors/Ubicom/DIR857NA3/config.linux-2.6.x - # CONFIG_IPV6_MROUTE is not set
+M      user/rc/wlan/Atheros/wlan.c - + r2097 + r2165
+M      user/rc/network.c
+M      vendors/ath_sag/Makefile
+M      vendors/ath_sag/drivers/wlan
+M			 uClinux/user/httpd/httpd_util.c - + r2100 + r2133
+M			 uClinux/user/rc/Makefile - + r2101
+M			 uClinux/user/httpd/core.c - + r2103
+M		   uClinux/user/sutil/sutil.h - + r2118
+M			 uClinux/user/httpd/cmobasicapi.c - + r2118 + r2166
+M			 uClinux/vendors/Ubicom/DIR857NA3/config.arch
+M			 uClinux/user/rc/wantimer.c - + r2109 and r2110
+M			 uClinux/user/httpd/ajax.c - + r2129
+M			 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/st_ipv6.asp
+
+Firmware: v1.00 Build: 12
+Hardware: A1
+Date: 11, Jan 2012
+Firmware Version: ver1.00b12 
+Firmware Date:Wed, 11, Jan, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Nov, 2011
+CheckSum: 0x5B9BE910
+SVN: 2030(uClinux) + 314(UBICOM_SDK3.0)
+
+svn up -r2043 uClinux/user/rc/app.c
+svn up -r2054 uClinux/user/rc/qos.c
+svn up -r2058 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_system.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan1.asp
+svn up -r2092 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wan.asp
+svn up -r2093 uClinux/user/igmpproxy/igmpproxy.c
+svn up -r2094 uClinux/user/mldc/main.c
+svn up -r2053 uClinux/user/httpd/smac.c
+svn up -r2097 uClinux/user/rc/wlan/Atheros/wlan.c
+svn up -r2098 uClinux/vendors/Ubicom/DIR857NA3/project.h
+svn up -r2112 uClinux/user/udhcp/common.h
+svn up -r2114 uClinux/user/httpd/pure.h
+svn up -r2117 uClinux/user/httpd/pure_xml.c
+svn up -r2118 uClinux/user/sutil/project.c
+svn up -r2118 uClinux/user/httpd/chklst_version.c
+svn up -r2118 uClinux/user/httpd/cmobasicapi.c
+svn up -r2119 uClinux/user/httpd/widget.c
+svn up -r2120 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/adv_network.asp
+svn up -r2121 uClinux/user/timer/timer.c
+svn up -r2122 uClinux/user/wpsbtnd/wpsbtnd.c
+svn up -r2122 uClinux/user/gpio/gpio.c
+svn up -r2085 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/error-404.htm
+svn up -r2134 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/655_09.jpg
+svn up -r2131 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/655_16.jpg
+svn up -r2132 uClinux/user/udhcp/samples/dual.sample.russia-bound-dns
+svn up -r2135 uClinux/user/rc/mtd.c
+svn up -r2136 uClinux/user/httpd/lp.c
+svn up -r2138 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/do_wps.asp
+svn up -r2138 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/adv_wps_setting.asp
+svn up -r2142 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard.asp
+svn up -r2144 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard_tmp.asp
+svn up -r2144 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan2.asp
+svn up -r2144 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wireless.asp
+svn up -r2146 uClinux/user/httpd/pure.c
+svn up -r2153 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_time.asp
+svn up -r2156 uClinux/user/rc/firewall.c
+
+svn up -r2113 uClinux/user/httpd/httpd.c - - -r2072
+
+svn up -r317 linux-2.6.36-android/drivers/net/ubi32_na.c
+svn up -r318 linux-2.6.36-android/net/ipv4/tcp_ipv4.c
+svn up -r326 vendors/ath_sag/apps/wpa2/hostapd/wps_config.c
+
+M      vendors/Ubicom/DIR857NA3/project.h
+M      vendors/Ubicom/DIR857NA3/createbin.sh
+M      vendors/Ubicom/DIR857NA3/version.c
+M      vendors/Ubicom/DIR857NA3/bsp.h
+M      vendors/Ubicom/DIR857NA3/rootfs/www/short_modnum.gif
+M      vendors/Ubicom/DIR857NA3/rootfs/www/lingual_EN.js
+M      vendors/Ubicom/DIR857NA3/rootfs/etc/nvram.default
+M 		 vendors/Ubicom/DIR857NA3/config.linux-2.6.x - # CONFIG_IPV6_MROUTE is not set
+M      user/rc/wlan/Atheros/wlan.c
+M      user/rc/network.c
+M      vendors/ath_sag/Makefile
+M      vendors/ath_sag/drivers/wlan
+M			 uClinux/user/httpd/httpd_util.c - + r2100 + r2133
+M			 uClinux/user/rc/Makefile - + r2101
+M			 uClinux/user/httpd/core.c - + r2103
+M		   uClinux/user/sutil/sutil.h - + r2118
+M			 uClinux/user/httpd/cmobasicapi.c - + r2118
+M			 uClinux/vendors/Ubicom/DIR857NA3/config.arch
+M			 uClinux/user/sutil/project.c
+M			 uClinux/user/rc/wantimer.c - + r2109 and r2110
+M			 uClinux/user/httpd/ajax.c - + r2129
+
+Firmware: v1.00 Build: 11
+Hardware: A1
+Date: 02, Jan 2012
+Firmware Version: ver1.00b11 
+Firmware Date:Mon, 02, Jan, 2012 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Nov, 2011
+CheckSum: 0x5BD2BBE9
+SVN: 2030(uClinux) + 314(UBICOM_SDK3.0)
+
+svn up -r2043 uClinux/user/rc/app.c
+svn up -r2054 uClinux/user/rc/qos.c
+svn up -r2058 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_system.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan1.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan2.asp
+svn up -r2092 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wan.asp
+svn up -r2093 uClinux/user/igmpproxy/igmpproxy.c
+svn up -r2094 uClinux/user/mldc/main.c
+svn up -r2053 uClinux/user/httpd/smac.c
+svn up -r2097 uClinux/user/rc/wlan/Atheros/wlan.c
+svn up -r2098 uClinux/vendors/Ubicom/DIR857NA3/project.h
+svn up -r2104 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard.asp
+svn up -r2104 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard_tmp.asp
+svn up -r2107 uClinux/user/rc/firewall.c
+svn up -r2112 uClinux/user/udhcp/common.h
+svn up -r2114 uClinux/user/httpd/pure.h
+svn up -r2117 uClinux/user/httpd/pure_xml.c
+svn up -r2118 uClinux/user/httpd/pure.c
+svn up -r2118 uClinux/user/sutil/project.c
+svn up -r2118 uClinux/user/httpd/chklst_version.c
+svn up -r2118 uClinux/user/httpd/cmobasicapi.c
+svn up -r2119 uClinux/user/httpd/widget.c
+svn up -r2120 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/adv_network.asp
+svn up -r2121 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_time.asp
+svn up -r2121 uClinux/user/timer/timer.c
+svn up -r2122 uClinux/user/wpsbtnd/wpsbtnd.c
+svn up -r2122 uClinux/user/gpio/gpio.c
+svn up -r2085 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/error-404.htm
+svn up -r2131 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/655_09.jpg
+svn up -r2131 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/655_16.jpg
+svn up -r2132 uClinux/user/udhcp/samples/dual.sample.russia-bound-dns
+
+svn up -r2113 uClinux/user/httpd/httpd.c - - -r2072
+
+svn up -r317 linux-2.6.36-android/drivers/net/ubi32_na.c
+svn up -r318 linux-2.6.36-android/net/ipv4/tcp_ipv4.c
+
+M      vendors/Ubicom/DIR857NA3/project.h
+M      vendors/Ubicom/DIR857NA3/createbin.sh
+M      vendors/Ubicom/DIR857NA3/version.c
+M      vendors/Ubicom/DIR857NA3/bsp.h
+M      vendors/Ubicom/DIR857NA3/rootfs/www/short_modnum.gif
+M      vendors/Ubicom/DIR857NA3/rootfs/www/lingual_EN.js
+M      vendors/Ubicom/DIR857NA3/rootfs/etc/nvram.default
+M 		 vendors/Ubicom/DIR857NA3/config.linux-2.6.x - # CONFIG_IPV6_MROUTE is not set
+M      user/rc/wlan/Atheros/wlan.c
+M      user/rc/network.c
+M      vendors/ath_sag/Makefile
+M      vendors/ath_sag/drivers/wlan
+M			 uClinux/user/httpd/httpd_util.c - + r2100 + r2133
+M			 uClinux/user/rc/Makefile - + r2101
+M			 uClinux/user/httpd/core.c - + r2103
+M		   uClinux/user/sutil/sutil.h - + r2118
+M			 uClinux/user/httpd/cmobasicapi.c - + r2118
+M			 uClinux/vendors/Ubicom/DIR857NA3/config.arch
+M			 uClinux/user/sutil/project.c
+M			 uClinux/user/rc/wantimer.c - + r2109 and r2110
+M			 uClinux/user/httpd/ajax.c - + r2129
+
+Firmware: v1.00 Build: 10
+Hardware: A1
+Date: 29, Dec 2011
+Firmware Version: ver1.00b10 
+Firmware Date:Thu, 29, Dec, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Nov, 2011
+CheckSum: 0x5BA70A9B
+SVN: 2030(uClinux) + 314(UBICOM_SDK3.0)
+
+svn up -r2043 uClinux/user/rc/app.c
+svn up -r2054 uClinux/user/rc/qos.c
+svn up -r2058 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_system.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan1.asp
+svn up -r2088 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wlan2.asp
+svn up -r2092 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/wizard_wan.asp
+svn up -r2093 uClinux/user/igmpproxy/igmpproxy.c
+svn up -r2094 uClinux/user/mldc/main.c
+svn up -r2053 uClinux/user/httpd/smac.c
+svn up -r2097 uClinux/user/rc/wlan/Atheros/wlan.c
+svn up -r2098 uClinux/vendors/Ubicom/DIR857NA3/project.h
+svn up -r2104 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard.asp
+svn up -r2104 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard_tmp.asp
+svn up -r2107 uClinux/user/rc/firewall.c
+svn up -r2112 uClinux/user/udhcp/common.h
+svn up -r2114 uClinux/user/httpd/pure.h
+svn up -r2117 uClinux/user/httpd/pure_xml.c
+svn up -r2118 uClinux/user/httpd/pure.c
+svn up -r2118 uClinux/user/sutil/project.c
+svn up -r2118 uClinux/user/httpd/chklst_version.c
+svn up -r2118 uClinux/user/httpd/cmobasicapi.c
+svn up -r2119 uClinux/user/httpd/widget.c
+svn up -r2120 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/adv_network.asp
+svn up -r2121 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_time.asp
+svn up -r2121 uClinux/user/timer/timer.c
+svn up -r2122 uClinux/user/wpsbtnd/wpsbtnd.c
+svn up -r2122 uClinux/user/gpio/gpio.c
+
+svn up -r2113 uClinux/user/httpd/httpd.c - -r2072
+
+svn up -r317 linux-2.6.36-android/drivers/net/ubi32_na.c
+svn up -r318 linux-2.6.36-android/net/ipv4/tcp_ipv4.c
+
+M      vendors/Ubicom/DIR857NA3/project.h
+M      vendors/Ubicom/DIR857NA3/createbin.sh
+M      vendors/Ubicom/DIR857NA3/version.c
+M      vendors/Ubicom/DIR857NA3/bsp.h
+M      vendors/Ubicom/DIR857NA3/rootfs/www/short_modnum.gif
+M      vendors/Ubicom/DIR857NA3/rootfs/www/lingual_EN.js
+M      vendors/Ubicom/DIR857NA3/rootfs/etc/nvram.default
+M 		 vendors/Ubicom/DIR857NA3/config.linux-2.6.x - # CONFIG_IPV6_MROUTE is not set
+M      user/rc/wlan/Atheros/wlan.c
+M      user/rc/network.c
+M      vendors/ath_sag/Makefile
+M      vendors/ath_sag/drivers/wlan
+M			 uClinux/user/httpd/httpd_util.c - + r2100
+M			 uClinux/user/rc/Makefile - + r2101
+M			 uClinux/user/httpd/core.c - + r2103
+M		   uClinux/user/sutil/sutil.h - + r2118
+M			 uClinux/user/httpd/cmobasicapi.c - + r2118
+M			 uClinux/vendors/Ubicom/DIR857NA3/config.arch
+M			 uClinux/user/sutil/project.c
+M			 uClinux/user/rc/wantimer.c - + r2109 and r2110
+
+Firmware: v1.00 Build: 09
+Hardware: A1
+Date: 14, Dec 2011
+Firmware Version: ver1.00b09 
+Firmware Date:Tue, 14, Dec, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Nov, 2011
+CheckSum: 0x5BBB99ED
+SVN: 2030(uClinux) + 314(UBICOM_SDK3.0)
+
+svn up -r2035 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/setup_wizard.asp
+svn up -r2043 uClinux/user/rc/app.c
+svn up -r2051 uClinux/vendors/Ubicom/DIR857NA3/project.h
+svn up -r2054 uClinux/user/rc/qos.c
+svn up -r2055 uClinux/user/timer/timer.c
+svn up -r2058 uClinux/vendors/Ubicom/DIR857NA3/rootfs/www/tools_system.asp
+
+M      vendors/Ubicom/DIR857NA3/project.h
+M      vendors/Ubicom/DIR857NA3/createbin.sh
+M      vendors/Ubicom/DIR857NA3/version.c
+M      vendors/Ubicom/DIR857NA3/bsp.h
+M      vendors/Ubicom/DIR857NA3/rootfs/www/short_modnum.gif
+M      vendors/Ubicom/DIR857NA3/rootfs/www/lingual_EN.js
+M      vendors/Ubicom/DIR857NA3/rootfs/etc/nvram.default
+M      user/rc/wlan/Atheros/wlan.c
+M      user/rc/network.c
+M      vendors/ath_sag/Makefile
+M      vendors/ath_sag/drivers/wlan
+======================================================================================
+
+Firmware: v1.00 Build: 08
+Hardware: A1
+Date: 06, Dec 2011
+Firmware Version: ver1.00b08 
+Firmware Date:Tue, 06, Dec, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Nov, 2011
+CheckSum: 0x5BCECB3C
+SVN: 2030(uClinux) + 313(UBICOM_SDK3.0)
+
+Firmware: v1.00 Build: 07
+Hardware: A1
+Date: 02, Dec 2011
+Firmware Version: ver1.00b07 
+Firmware Date:Fri, 02, Dec, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Nov, 2011
+CheckSum: 0x5BB5695D
+SVN: 2030(uClinux) + 313(UBICOM_SDK3.0)
+
+Firmware: v1.00 Build: 06
+Hardware: A1
+Date: 25, Nov 2011
+Firmware Version: ver1.00b06 
+Firmware Date:Fri, 25, Nov, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0019, Date: Wed, 16, Nov, 2011
+CheckSum: 0x5BAD5673
+SVN: 2022(uClinux) + 312(UBICOM_SDK3.0)
+
+Firmware: v1.00 Build: 05
+Hardware: A1
+Date: 14, Nov 2011
+Firmware Version: ver1.00b05 
+Firmware Date:Mon, 14, Nov, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0018, Date: Wed, 02, Nov, 2011
+CheckSum: 0x5BB61B17
+SVN: 1991(uClinux) + 307(UBICOM_SDK3.0)
+
+Firmware: v1.00 Build: 04
+Hardware: A1
+Date: 11, Oct 2011
+Firmware Version: ver1.00b04 
+Firmware Date:Tue, 11, Oct, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0017, Date: Thu, 06, Oct, 2011
+CheckSum: 0x5B938CDD
+SVN: 1942(uClinux) + 294(UBICOM_SDK3.0)
+
+Firmware: v1.00 Build: 03
+Hardware: A1
+Date: 23, Sep 2011
+Firmware Version: ver1.00b03 
+Firmware Date:Fri, 23, Sep, 2011 
+KERNEL: 2.6.36
+SDK: 3.0, Build: 0014, Date: Wed, 21, Sep, 2011
+CheckSum: 0x5AF8DD47
+SVN: 1881(uClinux) + 283(UBICOM_SDK3.0) 
+

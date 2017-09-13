@@ -1,0 +1,1191 @@
+This is msmtp.info, produced by makeinfo version 4.8 from msmtp.texi.
+
+   This manual was last updated November 6, 2006 for version 1.4.9 of
+msmtp.
+
+   Copyright (C) 2005, 2006 Martin Lambers
+
+     This program, including this manual, is free software; you can
+     redistribute it and/or modify it under the terms of the GNU
+     General Public License as published by the Free Software
+     Foundation; either version 2 of the License, or (at your option)
+     any later version.
+
+     This program, including this manual, is distributed in the hope
+     that it will be useful, but WITHOUT ANY WARRANTY; without even the
+     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program; if not, write to the Free Software
+     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+     02111-1307  USA
+
+INFO-DIR-SECTION Individual utilities
+START-INFO-DIR-ENTRY
+* msmtp: (msmtp).	An SMTP client.
+END-INFO-DIR-ENTRY
+
+
+File: msmtp.info,  Node: Top,  Next: Introduction,  Up: (dir)
+
+msmtp
+*****
+
+This manual was last updated November 6, 2006 for version 1.4.9 of
+msmtp.
+
+   Copyright (C) 2005, 2006 Martin Lambers
+
+     This program, including this manual, is free software; you can
+     redistribute it and/or modify it under the terms of the GNU
+     General Public License as published by the Free Software
+     Foundation; either version 2 of the License, or (at your option)
+     any later version.
+
+     This program, including this manual, is distributed in the hope
+     that it will be useful, but WITHOUT ANY WARRANTY; without even the
+     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+     PURPOSE.  See the GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program; if not, write to the Free Software
+     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+     02111-1307  USA
+
+* Menu:
+
+* Introduction::			Basic concepts.
+* Configuration files::			Configuration file commands.
+* Invocation::				Command line options.
+* SMTP features::			Explanation of various SMTP features.
+* Sendmail mode::			How to send mail.
+* Server information mode::		How to obtain information about
+					an SMTP server.
+* Remote Message Queue Starting mode::	How to send RMQS requests.
+* Examples::				Usage examples.
+* Development::				About the development process.
+
+
+File: msmtp.info,  Node: Introduction,  Next: Configuration files,  Prev: Top,  Up: Top
+
+1 Introduction
+**************
+
+msmtp is an SMTP client.
+
+   In its default mode of operation, it reads a mail from standard
+input and sends it to a predefined SMTP server that takes care of
+proper delivery. Command line options and exit codes are compatible to
+sendmail.
+
+   Supported SMTP features include:
+   * Authentication methods PLAIN, LOGIN, CRAM-MD5 and EXTERNAL (and
+     GSSAPI, DIGEST-MD5 and NTLM when compiled with GNU SASL support)
+
+   * TLS encrypted connections with the OpenSSL or GnuTLS libraries
+     (including server certificate verification and the possibility to
+     send a client certificate)
+
+   * Support for Internationalized Domain Names (IDN)
+
+   * DSN (Delivery Status Notification) support
+
+   * PIPELINING support for increased transmission speed
+
+   * RMQS (Remote Message Queue Starting) support (ETRN keyword)
+
+   The best way to start is probably to have a look at the Examples
+section.  *Note Examples::.
+
+   In addition to sendmail mode, there are two other modes of operation:
+   * Server information mode. In this mode, msmtp prints as much
+     information as it can get about a given SMTP server (supported
+     features, maximum mail size, ...).
+
+   * Remote Message Queue Starting mode. In this mode, msmtp sends a
+     Remote Message Queue Starting request for a host, domain, or queue
+     to a given SMTP server.
+
+   Normally, a system wide configuration file and/or a user
+configuration file contain information about which SMTP server to use
+and how to use it, but almost all settings can also be configured on
+the command line.
+
+   The information about SMTP servers is organized in accounts. Each
+account describes one SMTP server: host name, authentication settings,
+TLS settings, and so on.  Each configuration file can define multiple
+accounts.
+
+
+File: msmtp.info,  Node: Configuration files,  Next: Invocation,  Prev: Introduction,  Up: Top
+
+2 Configuration files
+*********************
+
+msmtp supports a system wide configuration file and a user
+configuration file.  Both are optional and need not exist.
+
+   If it exists and is readable, a system wide configuration file
+`SYSCONFDIR/msmtprc' will be loaded, where `SYSCONFDIR' depends on your
+platform. The default is `/usr/local/etc'.  Use `--version' to find out
+which directory your version uses.
+
+   If it exists and is readable, a user configuration file will be
+loaded (`~/.msmtprc' by default). Accounts defined in the user
+configuration file override accounts from the system configuration
+file.  The user configuration file must have no more permissions than
+user read/write.  Configuration data from either file can be changed by
+command line options.
+
+   A configuration file is a simple text file. Empty lines and comment
+lines (whose first non-blank character is '#') are ignored. Every other
+line must contain a command and may contain an argument to that command.
+The argument may be enclosed in double quotes (").
+
+   If the first character of a filename is the tilde (~), this tilde
+will be replaced by `$HOME'.  If a command accepts the argument `on',
+it also accepts an empty argument and treats that as if it was `on'.
+
+   Commands form groups. Each group starts with the `account' command
+and defines the settings for one SMTP server.
+
+   *Note Examples::.
+
+2.1 General commands
+====================
+
+`defaults'
+     Set defaults. The following configuration commands will set
+     default values for all following account definitions in the
+     current configuration file.
+
+`account NAME [: ACCOUNT[,...]]'
+     Start a new account definition with the given name. The current
+     default values are filled in (see *Note defaults::).
+     If a colon and a list of previously defined accounts is given
+     after the account name, the new account, with the filled in
+     default values, will inherit all settings from the accounts in the
+     list.
+
+`host HOSTNAME'
+     The SMTP server to send the mail to.  The argument may be a host
+     name or a network address.  Every account definition must contain
+     this command.
+
+`port NUMBER'
+     The port that the SMTP server listens on.  The default port will
+     be acquired from your operating system's service database: for
+     SMTP, the service is "smtp" (default port 25), unless TLS without
+     STARTTLS is used, in which case it is "ssmtp" (465). For LMTP, it
+     is "lmtp".
+
+`timeout (off|SECONDS)'
+     Set or unset a network timeout, in seconds. The argument `off'
+     means that no timeout will be set, which means that the operating
+     system default will be used.  For compatibility with older
+     versions, `connect_timeout' is accepted as an alias for this
+     command.
+
+`protocol (smtp|lmtp)'
+     Set the protocol to use. Currently only SMTP and LMTP are
+     supported. SMTP is the default. See *Note port:: for default ports.
+
+`domain ARGUMENT'
+     This command sets the argument of the SMTP EHLO (or LMTP LHLO)
+     command. The default is `localhost', which is stupid but should
+     always work.  Possible choices are the domain part of your mail
+     address (`provider.example' for `joe@provider.example') or the
+     fully qualified domain name of your host (if available).
+
+2.2 Authentication commands
+===========================
+
+*Note Authentication::.
+
+`auth [(on|off|METHOD)]'
+     This command enables or disables SMTP authentication and
+     optionally chooses an authentication method to use. It should not
+     be necessary to choose a method; with the argument `on', msmtp
+     will choose the best one available.  Accepted methods are `plain',
+     `cram-md5', `digest-md5', `gssapi', `external', `login', and
+     `ntlm'.  *Note Authentication::.
+`user [USERNAME]'
+     Set your user name for SMTP authentication. An empty argument
+     unsets the user name.  Authentication must be activated with the
+     `auth' command.
+
+`password [SECRET]'
+     Set your password for SMTP authentication. An empty argument
+     unsets the password.  Authentication must be activated with the
+     `auth' command.  If no password is set but one is needed during
+     authentication, msmtp will try to find it in `~/.netrc', and if
+     that fails, will prompt you for it.  *Note Authentication::.
+
+`ntlmdomain [NTLMDOMAIN]'
+     Set a domain for the `ntlm' authentication method. The default is
+     to use no domain (equivalent to an empty argument), but some
+     servers seem to require one, even if it is an arbitrary string.
+
+2.3 TLS commands
+================
+
+*Note Transport Layer Security::.
+
+`tls [(on|off)]'
+     This command enables or disables TLS/SSL encrypted connections to
+     the SMTP server. Not every server supports TLS, and a few that do
+     require the `tls_starttls off' command. It is recommended to also
+     use the `tls_trust_file' command. *Note Transport Layer Security::.
+
+`tls_trust_file [FILE]'
+     This command activates strict server certificate verification.
+     The given file must contain one or more certificates of trusted
+     Certification Authorities (CAs) in PEM format. An empty argument
+     disables this feature.  *Note Transport Layer Security::.
+
+`tls_key_file [FILE]'
+     This command (together with the `tls_cert_file') command enables
+     msmtp to send a client certificate to the SMTP server if requested.
+     The file must contain the private key of a certificate in PEM
+     format.  An empty argument disables this feature.  *Note Transport
+     Layer Security::.
+
+`tls_cert_file [FILE]'
+     This command (together with the `tls_key_file' command) enables
+     msmtp to send a client certificate to the SMTP server if requested.
+     The file must contain a certificate in PEM format.  An empty
+     argument disables this feature.  *Note Transport Layer Security::.
+
+`tls_certcheck [(on|off)]'
+     This command enables or disables sanity checks for the server
+     certificate.  These checks are enabled by default, but can cause
+     difficulties in rare cases.  *Note Transport Layer Security::.
+     For compatibility with older versions, `tls_nocertcheck' is
+     accepted as an alias for `tls_certcheck off'.
+
+`tls_starttls [(on|off)]'
+     This command enables or disables the use of the STARTTLS SMTP
+     command to start TLS encryption. It is enabled by default.  *Note
+     Transport Layer Security::.  For compatibility with older
+     versions, `tls_nostarttls' is accepted as an alias for
+     `tls_starttls off'.
+
+`tls_force_sslv3 [(on|off)]'
+     Force TLS/SSL version SSLv3. This might be needed to use SSL with
+     some old and broken servers. Do not use this unless you have to.
+     *Note Transport Layer Security::.
+
+2.4 Commands specific to sendmail mode
+======================================
+
+*Note Sendmail mode::.
+
+`auto_from [(on|off)]'
+     Enable or disable automatic envelope-from addresses. The default is
+     `off'.
+     When enabled, an envelope-from address of the form user@domain
+     will be generated.  The local part will be set to `$USER' or, if
+     that fails, to `$LOGNAME' or, if that fails, to the login name of
+     the current user.  The domain part can be set with the
+     `maildomain' command (see *Note maildomain::).  If the maildomain
+     is empty, the envelope-from address will only consist of the user
+     name and not have a domain part.
+     When disabled, the envelope-from address must be set explicitly
+     with the `from' command (see *Note from::).
+     *Note Envelope-from address::.
+
+`from [ADDRESS]'
+     Set the envelope-from address. This address will only be used when
+     `auto_from' is disabled.  *Note Envelope-from address::.
+
+`maildomain [DOMAIN]'
+     Set a domain part for the generation of an envelope-from address.
+     This is only used when `auto_from' is enabled. The domain may be
+     empty.  *Note Envelope-from address::.
+
+`dsn_notify (off|CONDITION)'
+     This command sets the condition(s) under which the mail system
+     should send DSN (Delivery Status Notification) messages. The
+     argument off disables explicit DSN requests, which means the mail
+     system decides when to send DSN messages. This is the default.
+     The CONDITION must be `never', to never request notification, or a
+     comma separated list (no spaces!) of one or more of the following:
+     `failure', to request notification on transmission failure,
+     `delay', to be notified of message delays, `success', to be
+     notified of successful transmission.  The SMTP server must support
+     the DSN extension.  *Note Delivery Status Notifications::.
+
+`dsn_return (off|AMOUNT)'
+     This command controls how much of a mail should be returned in DSN
+     (Delivery Status Notification) messages. The argument off disables
+     explicit DSN requests, which means the mail system decides how
+     much of a mail it returns in DSN messages. This is the default.
+     The AMOUNT must be `headers', to just return the message headers,
+     or `full', to return the full mail.  The SMTP server must support
+     the DSN extension.  *Note Delivery Status Notifications::.
+
+`keepbcc [(on|off)]'
+     This command controls whether to remove or keep the Bcc header
+     when sending a mail. The default is to remove it. *Note Bcc
+     header::.
+
+`logfile [FILE]'
+     This command enables or disables logging to the specified file. An
+     empty argument disables this feature. The file name `-' directs
+     the log information to standard output.  *Note Logging::.
+
+`syslog [(on|off|FACILITY)]'
+     This command enables or disables syslog logging. The facility can
+     be one of `LOG_USER', `LOG_MAIL', `LOG_LOCAL0', ..., `LOG_LOCAL7'.
+     The default facility is `LOG_USER'. Syslog logging is disabled by
+     default.  *Note Logging::.
+
+
+File: msmtp.info,  Node: Invocation,  Next: SMTP features,  Prev: Configuration files,  Up: Top
+
+3 Invocation
+************
+
+3.1 Synopsis
+============
+
+   * Sendmail mode (default):
+     `msmtp [OPTION...] [--] RECIPIENT...'
+     `msmtp [OPTION...] -t [--] [RECIPIENT...]'
+
+   * Server information mode:
+     `msmtp [OPTION...] --serverinfo'
+
+   * Remote Message Queue Starting mode:
+     `msmtp [OPTION...]  --rmqs=(HOST|@DOMAIN|#QUEUE)'
+
+3.2 Options
+===========
+
+Options override configuration file settings. They are compatible with
+sendmail where appropriate.
+
+3.2.1 General options
+---------------------
+
+`--version'
+     Print version information. This includes information about the
+     library used for TLS/SSL support (if any), the library used for
+     authentication, the authentication mechanisms supported by this
+     library, and the default locations of the system and user
+     configuration files.
+
+`--help'
+     Print help.
+
+`-P'
+`--pretend'
+     Print the configuration settings that would be used, but do not
+     take further action.  An asterisk ('*') will be printed instead of
+     the password.
+
+`-d'
+`--debug'
+     Print lots of debugging information, including the whole
+     conversation with the SMTP server. Be careful with this option:
+     the (potentially dangerous) output will not be sanitized, and your
+     password may get printed in an easily decodable format!
+
+3.2.2 Changing the mode of operation
+------------------------------------
+
+`-S'
+`--serverinfo'
+     Print information about the SMTP server and exit. This includes
+     information about supported features (mail size limit,
+     authentication, TLS, DSN, ...)  and about the TLS certificate (if
+     TLS is active).  *Note Server information mode::.
+
+`--rmqs=(HOST|@DOMAIN|#QUEUE)'
+     Send a Remote Message Queue Starting request for the given host,
+     domain, or queue to the SMTP server and exit.  *Note Remote
+     Message Queue Starting mode::.
+
+3.2.3 Configuration options
+---------------------------
+
+Most options in this category correspond to a configuration file
+command.  Please refer to *Note Configuration files:: for detailed
+information.
+`-C FILENAME'
+`--file=FILENAME'
+     Use the given file instead of `~/.msmtprc' as the user
+     configuration file.
+
+`-a ACCOUNT'
+`--account=ACCOUNT'
+     Use the given account instead of the account named `default'. This
+     option cannot be used together with the `--host' option.  *Note
+     Choosing an account::.
+
+`--host=HOSTNAME'
+     Use this SMTP server with settings from the command line; do not
+     use any configuration file data. This option cannot be used
+     together with the `--account' option. It disables loading of
+     configuration files.  *Note Choosing an account::.
+
+`--port=NUMBER'
+     Set the port number to connect to. *Note port::.
+
+`--timeout=(off|SECONDS)'
+     Set a network timeout. *Note timeout::. For compatibility with
+     older versions, `--connect-timeout' is accepted as an alias for
+     this option.
+
+`--protocol=(smtp|lmtp)'
+     Set the protocol. *Note protocol::.
+
+`--domain=[ARGUMENT]'
+     Set the argument of the SMTP EHLO (or LMTP LHLO) command. *Note
+     domain::.
+
+`--auth[=(on|off|METHOD)]'
+     Enable or disable authentication and optionally choose the method.
+     *Note auth::.
+
+`--user=[USERNAME]'
+     Set or unset the user name for authentication. *Note user::.
+
+`--tls[=(on|off)]'
+     Enable or disable TLS. *Note tls::.
+
+`--tls-starttls[=(on|off)]'
+     Enable or disable STARTTLS for TLS encryption. *Note
+     tls_starttls::.
+
+`--tls-trust-file=[FILE]'
+     Set or unset a trust file for TLS encryption. *Note
+     tls_trust_file::.
+
+`--tls-key-file=[FILE]'
+     Set or unset a key file for TLS encryption. *Note tls_key_file::.
+
+`--tls-cert-file=[FILE]'
+     Set or unset a cert file for TLS encryption. *Note tls_cert_file::.
+
+`--tls-certcheck[=(on|off)]'
+     Enable or disable server certificate checks for TLS encryption.
+     *Note tls_certcheck::.
+
+`--tls-force-sslv3[=(on|off)]'
+     Force TLS/SSL version SSLv3. *Note tls_force_sslv3::.
+
+3.2.4 Options specific to sendmail mode
+---------------------------------------
+
+`--auto-from[=(on|off)]'
+     Enable or disable automatic envelope-from addresses. The default
+     is off.  *Note auto_from::.
+
+`-f ADDRESS'
+`--from=ADDRESS'
+     Set the envelope-from address. It is only used when `auto_from' is
+     off.  *Note from::.
+     If no account was chosen yet (with `--account' or `--host'), this
+     option will choose the first account that has the given
+     envelope-from address (set with the `from' command). If no such
+     account is found, "default" is used. *Note Choosing an account::.
+
+`--maildomain=[DOMAIN]'
+     Set the domain part for generated envelope-from addresses. It is
+     only used when `auto_from' is on. *Note maildomain::.
+
+`-N (off|CONDITION)'
+`--dsn-notify=(off|CONDITION)'
+     Set or unset DSN notification conditions. *Note dsn_notify::.
+
+`-R (off|AMOUNT)'
+`--dsn-return=(off|AMOUNT)'
+     Set or unset the DSN notification amount. *Note dsn_return::.
+     Note that `hdrs' is accepted as an alias for `headers' to be
+     compatible with sendmail.
+
+`--keepbcc[=(on|off)]'
+     Enable or disable the preservation of the Bcc header. *Note
+     keepbcc::.
+
+`-X [FILE]'
+`--logfile=[FILE]'
+     Set or unset the log file. *Note logfile::.
+
+`--syslog[=(on|off|FACILITY)]'
+     Enable or disable syslog logging. *Note syslog::.
+
+`-t'
+`--read-recipients'
+     Send the mail to the recipients given in the To, Cc, and Bcc
+     headers of the mail in addition to the recipients given on the
+     command line.
+`--'
+     This marks the end of options. All following arguments will be
+     treated as recipient addresses, even if they start with a '-'.
+
+   The following options are accepted but ignored for sendmail
+compatibility: `-BTYPE', `-bm', `-FNAME', `-G', `-hN', `-i', `-L TAG',
+`-m', `-n', `-O option=VALUE', `-ox VALUE', `-v'
+
+3.3 Choosing an account
+=======================
+
+There are three ways to choose the account to use.  It depends on the
+circumstances which method is the best.
+
+  1. `--account=ACCOUNT'
+     Use the given account. Command line settings override
+     configuration file settings.
+
+  2. `--host=HOSTNAME'
+     Use only the settings from the command line; do not use any
+     configuration file data.
+
+  3. `--from=ADDRESS'
+     Choose the first account from the system or user configuration
+     file that has a matching envelope-from address as specified by a
+     `from' command. This works only when neither `--account' nor
+     `--host' is used.
+        If none of the above options is used (or if `--from' is used
+but no account has a matching `from' command), then the account
+"default" is used.
+
+3.4 Exit code
+=============
+
+The standard exit codes from `sysexits.h' are used.
+
+3.5 Environment / Files
+=======================
+
+``SYSCONFDIR/msmtprc''
+     The system configuration file. Use the `--version' option to find
+     out what `SYSCONFDIR' is on your platform.
+
+``~/.msmtprc''
+     The default user configuration file.
+
+``~/.netrc''
+     The `.netrc' file contains login information. If a password is not
+     found in the configuration file, msmtp will search it in `.netrc'
+     before prompting the user for it. The syntax of `.netrc' is
+     described in the `netrc(5)' or `ftp(1)' manual page.
+
+``$USER', `$LOGNAME''
+     These variables override the user's login name when constructing an
+     envelope-from address. `LOGNAME' is only used if `USER' is unset.
+
+``$TMPDIR''
+     Directory to create temporary files in. If this is unset, a system
+     specific default directory is used.
+     A temporary file is only created when the `-t'/`--read-recipients'
+     option is used. The file is then used to buffer the headers of the
+     mail (but not the body, so the file won't get very large).
+
+
+File: msmtp.info,  Node: SMTP features,  Next: Sendmail mode,  Prev: Invocation,  Up: Top
+
+4 SMTP features
+***************
+
+* Menu:
+
+* Transport Layer Security::		How to use TLS/SSL
+* Authentication::			How to use authentication
+* Delivery Status Notifications::	How to use DSN
+
+
+File: msmtp.info,  Node: Transport Layer Security,  Next: Authentication,  Up: SMTP features
+
+4.1 Transport Layer Security
+============================
+
+Quoting from RFC2246, the TLS 1.0 protocol specification:
+"The TLS protocol provides communications privacy over the Internet.
+The protocol allows client/server applications to communicate in a way
+that is designed to prevent eavesdropping, tampering, or message
+forgery."
+
+   SMTP servers can use TLS in one of two modes:
+   * Immediately. This is SMTP tunneled through TLS, aka SSMTP. The
+     default port for this mode is 465 (ssmtp).
+
+   * Via the STARTTLS SMTP command.  The SMTP session begins normally.
+     The client sends the STARTTLS command when it wishes to begin TLS
+     encryption. The default port for this mode is the default SMTP
+     port: 25 (smtp).
+   msmtp can switch between these modes with the `tls_starttls' command
+(see *Note tls_starttls::) command or the `--tls-starttls' option (see
+*Note --tls-starttls::).
+
+   When TLS is started, the server sends a certificate to identify
+itself. This certificate contains information about the certificate
+owner, the certificate issuer, and the activation and expiration times
+of the certificate.  This information can be displayed in server
+information mode.  *Note Server information mode::.
+
+   Some sanity checks are done with the server certificate. These
+include:
+   * Does the certificate belong to the host name of the SMTP server?
+
+   * Is the certificate activated?
+
+   * Is the certificate still valid, or has it expired?
+   Sometimes one of these checks fail. msmtp will abort the connection
+in this case. If the user still wants to use this SMTP server with TLS,
+the sanity checks can be switched off with `tls_certcheck' or
+`--tls-certcheck' (see *Note tls_certcheck::, *Note --tls-certcheck::).
+
+   Note that the SMTP server cannot be fully trusted just because the
+certificate passes the sanity checks. To verify that the user can trust
+the SMTP server, it is necessary to use a (list of) certificates of
+Certification Authorities (CAs) that are trusted. If msmtp can verify
+that the server certificate was issued by one of these CAs, then the
+SMTP server is trusted.  A file containing CA certificates can be set
+with `tls_trust_file' or `--tls-trust-file' (see *Note
+tls_trust_file::, *Note --tls-trust-file::).  Using this verification
+mode is highly recommended. On systems compatible to Debian GNU/Linux,
+the file `/etc/ssl/certs/ca-certificates.crt' from the
+`ca-certificates' package can be used.
+
+   If the server requests it, the client can send a certificate, too.
+This allows the server to verify the identity of the client. See the
+EXTERNAL mechanism in *Note Authentication::. The
+`tls_key_file'/`tls_cert_file' commands or the
+`--tls-key-file'/`--tls-cert-file' options can be used to set a client
+certificate. See *Note tls_key_file::/*Note --tls-key-file::, *Note
+tls_cert_file::/*Note --tls-cert-file::.  Note that GnuTLS will only
+send a client certificate if it matches one of the CAs advertised by
+the server. If you set a client certificate but it is not send to the
+server, it probably was not issued by any CA that the server trusts.
+
+
+File: msmtp.info,  Node: Authentication,  Next: Delivery Status Notifications,  Prev: Transport Layer Security,  Up: SMTP features
+
+4.2 Authentication
+==================
+
+Many SMTP servers require a client to authenticate itself before it is
+allowed to send mail.
+
+   Multiple authentication methods exist. Most SMTP servers support
+only some of them.  Some methods send authentication data in plain text
+(or nearly plain text) to the server. These methods should only be used
+when TLS is active to prevent others from stealing the password. *Note
+Transport Layer Security::.
+
+   msmtp supports the following authentication methods:
+   * `PLAIN'
+     This authentication method needs a user name and a password.  Both
+     are send in BASE64 encoding, which can be easily decoded to plain
+     text.
+
+   * `CRAM-MD5'
+     This authentication method needs a user name and a password.  The
+     authentication data is not sent in plain text, which means this
+     method can safely be used without TLS.
+
+   * `DIGEST-MD5'
+     This authentication method needs a user name and a password.  The
+     authentication data is not sent in plain text, which means this
+     method can safely be used without TLS.
+
+   * `GSSAPI'
+     This authentication method needs a user name. The Kerberos
+     framework takes care of secure authentication, therefore this
+     method can safely be used without TLS.
+
+   * `EXTERNAL'
+     This is a special authentication method: The actual authentication
+     happens outside of the SMTP protocol, typically by sending a TLS
+     client certificate (see *Note Transport Layer Security::).
+     The EXTERNAL method merely confirms that this authentication
+     succeeded for the given user (or, if no user name is given,
+     confirms that authentication succeeded). Thus it may not be
+     necessary for authentication to use this method, and if the server
+     does not support the EXTERNAL method, this does not mean that it
+     does not support authentication with TLS client certificates.
+     This authentication method is not chosen automatically; you have
+     to request it manually.
+     Note: Sendmail 8.12.11 advertises the EXTERNAL mechanism only
+     after a TLS client certificate has been send. It seems to ignore
+     the optional user name.  Does anyone know more about this?
+
+   * `LOGIN'
+     This is a non-standard authentication method similar to (but worse
+     than) PLAIN.  It needs a user name and a password, both of which
+     are send in BASE64 encoding, which can be easily decoded to plain
+     text.
+
+   * `NTLM'
+     This is an obscure non-standard authentication method. It needs a
+     user name and a password and in some cases a special domain
+     parameter (see *Note ntlmdomain::).  The authentication data is
+     not send in plain text.
+
+   It depends on the underlying authentication library and its version
+whether a particular method is supported or not. Use the `--version' to
+find out which methods are supported by your version of msmtp.
+
+   Authentication data can be set with the `user' and `password'
+commands or with the `--user' option. See *Note user::, *Note
+password::, *Note --user::.  If no password is set but one is needed
+during authentication, msmtp will try to find it in `~/.netrc', and if
+that fails, msmtp will prompt you for it.
+
+   The authentication method can be chosen with the `auth' command or
+`--auth' option, but it is usually sufficient to just use the `on'
+argument to let msmtp choose the method itself. See *Note auth::, *Note
+--auth::.
+
+   If msmtp chooses the method itself, it will not choose a method that
+sends plain text authentication data when TLS is not active. This means
+that only CRAM-MD5, DIGEST-MD5, GSSAPI, and NTLM are available when TLS
+is inactive.  PLAIN and LOGIN are only available when TLS is active.
+If you really want to send clear text authentication data, you have to
+force msmtp to do that by setting the authentication method to PLAIN or
+LOGIN when TLS is off.
+
+
+File: msmtp.info,  Node: Delivery Status Notifications,  Prev: Authentication,  Up: SMTP features
+
+4.3 Delivery Status Notifications
+=================================
+
+In situations such as delivery failure or very long delivery delay, the
+mail system often generates a message for the sender of the mail in
+question, informing him about the difficulties.
+
+   Delivery Status Notification (DSN) requests, defined in RFC 3461,
+try to give the sender of the mail control about how and when these DSN
+messages are sent.  The SMTP server must support the DSN extension.
+*Note Server information mode::.
+
+   A first parameter controls when such messages should be generated:
+never, on delivery failure, on delivery delay, and/or on success.  This
+can be set with `dsn_notify'/`--dsn-notify', see *Note
+dsn_notify::/*Note --dsn-notify::.
+
+   A second parameter controls how much of the original mail should be
+contained in a DSN message: only the headers, or the full mail. This
+can be set with `dsn_return'/`--dsn-return', see *Note
+dsn_return::/*Note --dsn-return::.  Note that this parameter only
+applies to DSNs that indicate delivery failure for at least one
+recipient. If a DSN contains no indications of delivery failure, only
+the headers of the message are returned.
+
+
+File: msmtp.info,  Node: Sendmail mode,  Next: Server information mode,  Prev: SMTP features,  Up: Top
+
+5 Sendmail mode
+***************
+
+* Menu:
+
+* Envelope-from address::	Information about envelope-from addresses
+* Logging::			Different logging methods
+* Bcc header::			Bcc header handling
+
+
+File: msmtp.info,  Node: Envelope-from address,  Next: Logging,  Up: Sendmail mode
+
+5.1 Envelope-from address
+=========================
+
+The SMTP server expects a sender mail address for each mail. This is the
+envelope-from address. It is independent of the From header (because it
+is part of the mail _envelope_, not of the mail itself), but in most
+cases both addresses are the same.
+
+   Envelope-from addresses can be generated automatically (when
+`auto_from' is enabled with the `auto_from' command or `--auto-from'
+option) or set explicitly with the `from' command and `--from' option.
+See *Note auto_from::, *Note from::.
+
+   When `auto_from' is enabled, an envelope-from address of the form
+user@domain will be generated.  The local part will be set to `$USER'
+or, if that fails, to `$LOGNAME' or, if that fails, to the login name
+of the current user.  The domain part can be set with the `maildomain'
+command and `--maildomain' option (see *Note maildomain::).  If the
+maildomain is empty, the envelope-from address will only consist of the
+user name and not have a domain part.
+
+
+File: msmtp.info,  Node: Logging,  Next: Bcc header,  Prev: Envelope-from address,  Up: Sendmail mode
+
+5.2 Logging
+===========
+
+Logging is enabled on a per account basis. If it is enabled, msmtp will
+generate one log line for each mail it tries to send via the account in
+question.
+
+   The line will include the following information:
+   * Host name of the SMTP server:  `host=hostname'
+
+   * Whether TLS was used: `tls=(on|off)'
+
+   * Whether authentication was used: `auth=(on|off)'
+
+   * The user name used for authentication (only if authentication is
+     used): `user=name'
+
+   * The envelope-from address: `from=address'
+
+   * The recipient addresses: `recipients=addr1,addr2,...'
+
+   * The size of the mail as transferred to the server, in bytes (only
+     if the delivery succeeded): `mailsize=number'
+
+   * The SMTP status code and SMTP error message (only in case of
+     failure and only if available): `smtpstatus=number',
+     `smtpmsg='message''. Multiline SMTP messages will be concatenated
+     into one line.
+
+   * The msmtp error message (only in case of failure and only if
+     available): `errormsg='message''
+
+   * The msmtp exit code (from `sysexits.h'; `EX_OK' indicates
+     success): `exitcode=EX_...'
+
+   If a logfile is given with the `logfile' command or `--logfile'
+option, this log line will be prepended with the current date and time
+and appended to the specified file. See *Note logfile::, *Note
+--logfile::.
+
+   If syslog logging is enabled with the `syslog' command or `--syslog'
+option, the log line is passed to the syslog service with the specified
+facility. See *Note syslog::, *Note --syslog::.
+
+
+File: msmtp.info,  Node: Bcc header,  Prev: Logging,  Up: Sendmail mode
+
+5.3 Bcc header
+==============
+
+msmtp transmits mails unaltered to the SMTP server, with one exception:
+the Bcc header(s) will be removed before the transmission. This
+behavior can be changed with the `keepbcc' command and `--keepbcc'
+option, see *Note keepbcc::/*Note --keepbcc::.
+
+
+File: msmtp.info,  Node: Server information mode,  Next: Remote Message Queue Starting mode,  Prev: Sendmail mode,  Up: Top
+
+6 Server information mode
+*************************
+
+In server information mode, msmtp prints as much information about the
+SMTP server as it can get and then exits.
+
+   The SMTP features that can be detected are:
+   * SIZE
+     The maximum message size that the SMTP server accepts.
+
+   * PIPELINING
+     Whether certain SMTP commands may be send in groups rather than
+     one by one.  This can speed up mail transmission if the recipient
+     list is long.  This feature is used automatically.
+
+   * STARTTLS
+     *Note Transport Layer Security::.
+
+   * AUTH
+     *Note Authentication::.
+
+   * DSN
+     *Note Delivery Status Notifications::.
+
+   * ETRN
+     *Note Remote Message Queue Starting mode::.
+
+   If TLS is activated for server information mode, the following
+information will be printed about the SMTP server's TLS certificate (if
+available):
+   * Owner information
+        * Common Name
+
+        * Organization
+
+        * Organizational unit
+
+        * Locality
+
+        * State or Province
+
+        * Country
+
+   * Issuer information
+        * Common Name
+
+        * Organization
+
+        * Organizational unit
+
+        * Locality
+
+        * State or Province
+
+        * Country
+
+   * General
+        * Activation time
+
+        * Expiration time
+
+        * SHA1 fingerprint
+
+        * MD5 fingerprint
+
+
+File: msmtp.info,  Node: Remote Message Queue Starting mode,  Next: Examples,  Prev: Server information mode,  Up: Top
+
+7 Remote Message Queue Starting mode
+************************************
+
+Remote Message Queue Starting (RMQS) is defined in RFC 1985.  It is a
+way for a client to request that a server start the processing of its
+mail queues for messages that are waiting at the server for the client
+machine.  If any messages are at the server for the client, then the
+server creates a new SMTP session and sends the messages at that time.
+
+   msmtp can only send the request (using the ETRN SMTP command); a
+mail server on the client side should then accept the connection of the
+remote SMTP server to receive the mail.
+
+   RMQS requests can be sent with the `--rmqs' option (see *Note
+--rmqs::).  Destinations defined in RFC 1985 are:
+   * HOST
+     Request the messages for the given host.
+
+   * @DOMAIN
+     Request the messages for the given domain.
+
+   * #QUEUE
+     Request the delivery of the messages in the given queue.
+
+
+File: msmtp.info,  Node: Examples,  Next: Development,  Prev: Remote Message Queue Starting mode,  Up: Top
+
+8 Examples
+**********
+
+* Menu:
+
+* A system wide configuration file::
+* A user configuration file::
+* Using msmtp with Mutt::
+* Using msmtp with mail::
+
+
+File: msmtp.info,  Node: A system wide configuration file,  Next: A user configuration file,  Up: Examples
+
+8.1 A system wide configuration file
+====================================
+
+     # A system wide configuration is optional.
+     # If it exists, it usually defines a default account.
+     # This allows msmtp to be used like /usr/sbin/sendmail.
+     account default
+
+     # The SMTP smarthost.
+     host mailhub.oursite.example
+
+     # Construct envelope-from addresses of the form "user@oursite.example".
+     #auto_from on
+     #maildomain oursite.example
+
+     # Use TLS.
+     #tls on
+     #tls_trust_file /etc/ssl/certs/ca.pem
+
+     # Syslog logging with facility LOG_MAIL instead of the default LOG_USER.
+     syslog LOG_MAIL
+
+
+File: msmtp.info,  Node: A user configuration file,  Next: Using msmtp with Mutt,  Prev: A system wide configuration file,  Up: Examples
+
+8.2 A user configuration file
+=============================
+
+     # Set default values for all following accounts.
+     defaults
+     tls on
+     tls_trust_file /etc/ssl/certs/ca-certificates.crt
+     logfile ~/.msmtp.log
+
+     # A freemail service
+     account freemail
+     host smtp.freemail.example
+     from joe_smith@freemail.example
+     auth on
+     user joe.smith
+     password secret
+
+     # A second mail address at the same freemail service
+     account freemail2 : freemail
+     from joey@freemail.example
+
+     # The SMTP server of the provider.
+     account provider
+     host mail.provider.example
+     from smithjoe@provider.example
+     auth on
+     user 123
+     password pwd
+
+     # Set a default account
+     account default : provider
+
+
+File: msmtp.info,  Node: Using msmtp with Mutt,  Next: Using msmtp with mail,  Prev: A user configuration file,  Up: Examples
+
+8.3 Using msmtp with Mutt
+=========================
+
+Create a configuration file for msmtp and add the following lines to
+your Mutt configuration file:
+     set sendmail="/path/to/msmtp"
+     set use_from=yes
+     set realname="Your Name"
+     set from=you@example.com
+     set envelope_from=yes
+
+   The `envelope_from=yes' option lets Mutt use the `-f' option of
+msmtp.  Therefore msmtp chooses the first account that matches the from
+address you@example.com. Alternatively, you can use the `-a' option:
+     set sendmail="/path/to/msmtp -a my_account"
+
+   Or set everything from the command line:
+     set sendmail="/path/to/msmtp --host=mailhub -f me@example.com --tls"
+   *Note Choosing an account::.
+
+   If you have multiple mail accounts in your msmtp configuration file
+and let Mutt use the `-f' option to choose one, you can easily switch
+accounts in Mutt with the following Mutt configuration lines:
+     macro generic "<esc>1" ":set from=you@example.com"
+     macro generic "<esc>2" ":set from=you@your-employer.example"
+     macro generic "<esc>3" ":set from=you@some-other-provider.example"
+   Now you can use <esc>1, <esc>2, and <esc>3 to switch accounts.
+
+   The following example uses a different approach: it maps the single
+key `<tab>' in Compose context for switching between the various
+account in a handy visual way. In the same Compose context, `=' is
+mapped in order to show the current msmtp account. This example was
+contributed by Thomas Baruchel.
+     # Define <tab> and = in order to switch or see the current msmtp account
+     # Don't forget to put the right path for msmtp binary
+     macro compose \Cx_ ":set sendmail"
+     macro compose \Cx| "\Cx_ = \"/usr/local/bin/msmtp"
+     macro compose \Cx& ":macro compose \\t \\Cx"
+     macro compose <tab> "\Cx0"
+     macro compose = "\Cx_\n"
+     # Put the account in the following lines (here three accounts)
+     # Don't forget to put the number of the account at the beginning
+     # of the line, and the number of the next account after the '&'
+     macro compose \Cx0 "\Cx|\"\n\Cx&1\n\Cx_\n" # default and switch to 1
+     macro compose \Cx1 "\Cx| -a example_account\"\n\Cx&2\n\Cx_\n" # switch to 2
+     macro compose \Cx2 "\Cx| -a gmail\"\n\Cx&0\n\Cx_\n" # switch to 0
+     # End of the accounts
+
+
+File: msmtp.info,  Node: Using msmtp with mail,  Prev: Using msmtp with Mutt,  Up: Examples
+
+8.4 Using msmtp with mail
+=========================
+
+Define a default account, and put the following into `~/.mailrc':
+     set sendmail="/path/to/msmtp"
+
+   You need to define a default account, because mail does not allow
+extra options to the msmtp command line.
+
+
+File: msmtp.info,  Node: Development,  Prev: Examples,  Up: Top
+
+9 Development
+*************
+
+The homepage of msmtp is `http://msmtp.sourceforge.net/'; the
+SourceForge project page is `http://sourceforge.net/projects/msmtp/'.
+
+   The mailing list `msmtp-users' can be accessed from the project page.
+
+   Please send any questions, suggestions, and bug reports either to
+the mailing list or to Martin Lambers (<marlam@marlam.de>, OpenPGP key:
+`http://www.marlam.de/key.txt').  If you send a bug report, please
+include the output of `msmtp --version'.
+
+
+
+Tag Table:
+Node: Top1095
+Node: Introduction2547
+Node: Configuration files4440
+Ref: defaults5969
+Ref: account6144
+Ref: host6520
+Ref: port6697
+Ref: timeout7008
+Ref: protocol7316
+Ref: domain7476
+Ref: auth7913
+Ref: user8315
+Ref: password8492
+Ref: ntlmdomain8852
+Ref: tls9155
+Ref: tls_trust_file9459
+Ref: tls_key_file9754
+Ref: tls_cert_file10082
+Ref: tls_certcheck10386
+Ref: tls_starttls10735
+Ref: tls_force_sslv311048
+Ref: auto_from11361
+Ref: from12073
+Ref: maildomain12225
+Ref: dsn_notify12433
+Ref: dsn_return13146
+Ref: keepbcc13660
+Ref: logfile13830
+Ref: syslog14052
+Node: Invocation14328
+Ref: --serverinfo15807
+Ref: --rmqs16083
+Ref: --auth17512
+Ref: --user17631
+Ref: --tls-starttls17779
+Ref: --tls-trust-file17887
+Ref: --tls-key-file17994
+Ref: --tls-cert-file18090
+Ref: --tls-certcheck18189
+Ref: --tls-force-sslv318316
+Ref: --auto-from18488
+Ref: --from18617
+Ref: --maildomain19017
+Ref: --dsn-notify19171
+Ref: --dsn-return19291
+Ref: --keepbcc19502
+Ref: --logfile19607
+Ref: --syslog19688
+Ref: Choosing an account20279
+Ref: Environment / Files21161
+Node: SMTP features22192
+Node: Transport Layer Security22473
+Node: Authentication25672
+Node: Delivery Status Notifications29671
+Node: Sendmail mode30943
+Node: Envelope-from address31237
+Node: Logging32327
+Node: Bcc header33967
+Node: Server information mode34324
+Node: Remote Message Queue Starting mode35768
+Node: Examples36807
+Node: A system wide configuration file37069
+Node: A user configuration file37809
+Node: Using msmtp with Mutt38707
+Node: Using msmtp with mail41115
+Node: Development41476
+
+End Tag Table

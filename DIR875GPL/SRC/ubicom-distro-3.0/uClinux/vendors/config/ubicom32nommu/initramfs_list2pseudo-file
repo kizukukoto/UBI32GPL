@@ -1,0 +1,6 @@
+while read type path mode uid gid bc major minor
+do case $type in 
+dir) echo $path d $mode $uid $gid;;
+nod) echo $path $bc $mode $uid $gid $major $minor;; 
+esac; done
+

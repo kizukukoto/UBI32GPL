@@ -1,0 +1,4 @@
+pty '/bin/pptp SERVER_IP --nolaunchpppd'
+name USERNAME
+file /etc/ppp/options.pptp
+ipparam tunnel

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Enable 802.1Q VLANs
+SWITCH_DIR=$(ls -1 /proc/switch | head -n 1)
+echo 1 > /proc/switch/$SWITCH_DIR/enable_vlan
+
+# Create 2 802.1Q vlans
+
+echo 1 > /proc/switch/$SWITCH_DIR/vlan/create
+echo 2 > /proc/switch/$SWITCH_DIR/vlan/create
+
+# Add member ports
+echo 4 8t > /proc/switch/$SWITCH_DIR/vlan/1/ports
+echo 0 1 2 3 8t > /proc/switch/$SWITCH_DIR/vlan/2/ports
+
+ifconfig eth0 up
+
+# Add the virtual interfaces
+vconfig add eth0 1
+vconfig add eth0 2

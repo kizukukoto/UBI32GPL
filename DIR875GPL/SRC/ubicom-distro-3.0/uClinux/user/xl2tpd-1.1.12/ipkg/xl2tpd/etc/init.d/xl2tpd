@@ -1,0 +1,209 @@
+#!/bin/sh
+# Copyright (C) 2006 OpenWrt.org
+
+. /etc/functions.sh
+
+BIN=xl2tpd
+DEFAULT=/etc/default/$BIN
+RUN_D=/var/run
+PID_F=$RUN_D/$BIN.pid
+
+usage() {
+	echo "Usage: xl2tpd {start | stop}"
+}
+
+add_users_from_group() {
+	user=$1
+	group=$2
+	sec_file=$3
+	config_get user_group $user group
+	if [ "$user_group" == "$group" ]; then
+		config_get username $user username
+		config_get passwd $user passwd
+		# Add the user if it is not already added.
+		grep "$username" $sec_file 2>/dev/null >/dev/null || {
+			echo "$username UbicomVPN $passwd *" >> $sec_file
+		}
+	fi
+}
+
+case "$1" in
+	start)
+		if [ -f $PID_F ]; then
+			echo "L2TP server is already running"
+			exit 0
+		fi
+
+		config_load /etc/config/vpn_profile
+		config_get enable l2tp_ipsec enable
+		if [ "$enable" == "0" ]; then
+			echo "L2TP profile not enabled."
+			exit 0
+		fi
+
+		# Read xl2tp options from OpenWrt config and write to /etc/xl2tpd/xl2tpd.conf file to be used by xl2tpd.
+		config_get remote_ip_range l2tp_ipsec remote_ip_range
+		config_get server_ip l2tp_ipsec server_ip
+
+		cat > /etc/$BIN/$BIN.conf <<EOF
+[global]
+port = 1701
+auth file = /etc/xl2tpd/ppp.secrets
+access control = no
+;rand source = dev
+debug avp = yes    
+debug network = yes
+debug packet = yes
+debug state = yes 
+debug tunnel = yes
+
+[lns default]
+exclusive = yes
+ip range = $remote_ip_range
+;lac = 10.0.1.2
+hidden bit = no
+local ip = $server_ip
+length bit = yes
+;refuse authentication = no
+;require chap = yes
+;require pap = yes
+;refuse chap = no
+;refuse pap = yes
+;require authentication = yes
+;unix authentication = no
+name = UbicomVPN
+ppp debug = yes
+pppoptfile = /etc/xl2tpd/ppp.options
+; call rws = 10
+; tunnel rws = 4
+; flow bit = yes
+; challenge = yes
+;
+
+[lac left]
+;lns = 10.0.1.2
+; lns = lns2.marko.net
+; redial = yes
+; redial timeout = 15
+; max redials = 5
+; hidden bit = yes
+; local ip = 192.168.1.1
+; remote ip = 192.168.1.2
+; length bit = no
+;refuse authentication = no
+;require chap = yes
+;require pap = yes
+;refuse chap = no
+;refuse pap = yes
+;require authentication = yes
+;name = VersaLink
+;ppp debug = yes
+;pppoptfile = /etc/xl2tpd/ppp.options
+; call rws = 10
+; tunnel rws = 4
+; flow bit = yes
+; challenge = yes
+;
+; [lac cisco]
+; lns = cisco.marko.net
+; require authentication = yes
+EOF
+
+		# Write username/passwords pairs to PPP secrets file for all the users in the selected group.
+		config_get user_group l2tp_ipsec user_group
+		config_get pap l2tp_ipsec pap
+		config_get chap l2tp_ipsec chap
+		config_get mschap l2tp_ipsec mschap
+		config_get mschapv2 l2tp_ipsec mschapv2
+
+		# PAP, CHAP, MSCHAP and MSCHAPv2 can all be enabled at the same time. So, we don`t use "elseif".
+		# pap, chap, mschap, mschapv2 variables should be either require-xxx or refuse-xxx.
+		config_load /etc/config/user_database
+		if [ "$pap" == "require-pap" ]; then
+			secrets_file=/etc/ppp/pap-secrets
+			config_foreach add_users_from_group user_database $user_group $secrets_file
+		fi
+
+		if [ "$chap" == "require-chap" ] || [ "$mschap" == "require-mschap" ] || [ "$mschapv2" == "require-mschap-v2" ]; then
+			secrets_file=/etc/ppp/chap-secrets
+			config_foreach add_users_from_group user_database $user_group $secrets_file
+		fi
+
+		# Set enabled authentication types at /etc/xl2tpd/ppp.options
+		cat > /etc/$BIN/ppp.options <<EOF
+lock         
+noauth    
+debug        
+dump         
+logfd 2      
+logfile /var/log/xl2tpd.log  
+noccp 
+novj 
+novjccomp 
+nopcomp 
+noaccomp
+proxyarp
+$pap
+$chap
+$mschap
+$mschapv2
+EOF
+
+		mkdir -p $RUN_D/$BIN
+		[ -f $DEFAULT ] && . $DEFAULT
+		$BIN $OPTIONS -D &
+
+		config_load network
+		config_get lan_ipaddr lan ipaddr
+		config_get lan_netmask lan netmask
+		lan_net=$lan_ipaddr/$lan_netmask
+
+		iptables        -A forwarding_rule  -i ppp+ -s $lan_net -d $lan_net -j ACCEPT
+		iptables        -A output_rule     -o ppp+ -s $lan_net -d $lan_net -j ACCEPT
+		iptables        -A input_rule      -i ppp+ -s $lan_net -d $lan_net -j ACCEPT
+
+		exit
+	;;
+	stop)
+		# Kill all pppd processes used by xl2tpd. There is a separate process and pppx interface
+		# for each remote connection. "pid" below gets all the PID`s of these processes and "kill $pid"
+		# can kill all of them without needing to use a while loop.
+		pid=`ps | grep "pppd" | grep passive | awk ' { print $1 } '`
+		if [ "$pid" != "" ]; then 
+			kill $pid
+		fi
+		sleep 1
+
+		# stop L2TP server
+		if [ -f $PID_F ]; then
+			kill $(cat $PID_F)
+			# Xl2tpd application removes the PID file itself, so no need to do it here.
+
+			# Clean up secret file(s) if PPTP VPN profile is not running.
+			config_load /etc/config/vpn_profile
+			config_get started pptp_vpn started
+			if [ "$started" == "0" ]; then
+				[ -f /etc/ppp/pap-secrets ] && rm /etc/ppp/pap-secrets
+				[ -f /etc/ppp/chap-secrets ] && rm /etc/ppp/chap-secrets
+			fi	
+		fi
+
+		config_load network
+		config_get lan_ipaddr lan ipaddr
+		config_get lan_netmask lan netmask
+		lan_net=$lan_ipaddr/$lan_netmask
+
+		iptables        -D forwarding_rule  -i ppp+ -s $lan_net -d $lan_net -j ACCEPT
+		iptables        -D output_rule     -o ppp+ -s $lan_net -d $lan_net -j ACCEPT
+		iptables        -D input_rule      -i ppp+ -s $lan_net -d $lan_net -j ACCEPT
+
+		exit
+	;;
+	*)
+		usage
+		exit 
+	;;
+esac	
+exit
+
+

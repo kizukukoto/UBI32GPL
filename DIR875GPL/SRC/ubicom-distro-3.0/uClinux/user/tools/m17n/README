@@ -1,0 +1,40 @@
+STEP:1
+	To get the .txt language file(such as STRINGS_ZH.txt) from Ubicom that you want to support.
+	Transfer DoS format to Linux format using this command:
+	
+	>>dos2unix {file_name} 
+	
+	Then replace all /" to "
+
+STEP:2
+	To the folder --> projects/{model_name}/tools/m17n/
+	Then type make to build m17n_tool.
+	You can use -h to understand how to use this tool.
+
+	EX:m17n_tool -l EN -c $(PROJECTS_PATH)/tools/m17n/STRINGS_ZH.txt -t $(FS_PATH)/www
+
+	it will create a .js file naming with lingual_XX.js (XX can be EN,TW,KO and JA. It follows by -l option.)        to path. (which follows by -t option)
+
+STEP:3
+	Modify $(PROJECTS_PATH)/Makefile. 
+	Add the file in STEP:2 and lingual_XX.js in STEP:3 to CVS server.
+	Commit them to CVS server.
+
+STEP:4
+	Enable M17N function in daemons folder with making menuconfig.
+	 
+STEP:5 	
+	You can skip STEP 1 to 3 when next time you want to build image with supporting multiple languages.
+	While making install, Matrix will build  m17n_tool in projects/{model_name}/tools/m17n/.
+	If you can not find it,please send email to Me or debug by yourself then commit to CVS server.
+
+	If it works normally, it will create different .js files and install them to the rootfs automatically.
+
+
+
+
+
+If you have any problem, please email to me.
+
+Email:jackey_chen@cameo.com.tw
+ 

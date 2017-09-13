@@ -1,0 +1,330 @@
+.EXPORT_ALL_VARIABLES:
+############################################################################
+#
+#  A Generic ubicom32 config.arch that can be included by other platforms
+#  to reduce the number of places that need to be edited when something
+#  common changes.  If you include this file you may provide:
+#
+#  CPUFLAGS            - cpu specific flags to pass to the compiler
+#  VENDOR_CFLAGS       - vendor specific flags to pass to the compiler
+#  DISABLE_XIP         - set this to 1 to disable XIP code
+#  DISABLE_SHARED_LIBS - set this to 1 to disable shared libraries
+#  DISABLE_MOVE_RODATA - set this to 1 to disable moving rodata to text
+#  LOPT                - library optimisation flags
+#  UOPT                - user optimisation flags
+#
+#  David McCullough <davidm@snapgear.com>
+#
+############################################################################
+#
+# Generic settings
+#
+
+ifdef CONFIG_DEFAULTS_LIBC_UCLIBC
+LIBCDIR = $(ROOTDIR)/uClibc
+endif
+
+ifndef CONSOLE_BAUD_RATE
+CONSOLE_BAUD_RATE = 9600
+endif
+
+ifeq ($(ROOTDIR)/modules,$(wildcard $(ROOTDIR)/modules))
+EXTRA_MODULE_DIRS = $(ROOTDIR)/modules
+endif
+
+VERSIONPKG := 1.0.0
+VERSIONSTR = $(CONFIG_VENDOR)/$(CONFIG_PRODUCT) Version $(VERSIONPKG)
+
+ifndef RELFILES
+RELFILES = boot/boot.bin,.sgb boot/boot.elf images/imagez.bin,.sgu images/image.elf
+endif
+
+ifndef NFIMAGE
+NFIMAGE=imagez.bin
+endif
+
+############################################################################
+#
+# The makefiles need to know how to do things in different contexts
+# To save some pain we put it all here
+#
+# First settings we always want for all builds
+#
+
+# ARCH = kernel,  TARGET_ARCH = uClibc
+
+MACHINE       = ubicom32
+ARCH          = ubicom32
+ENDIAN        = big
+
+ifdef BUILD_FDPIC
+CROSS_COMPILE = ubicom32-linux-uclibc-
+CONFIGURE_HOST= ubicom32-linux-uclibc
+else # flat
+CROSS_COMPILE = ubicom32-uclinux-
+CONFIGURE_HOST= ubicom32-uclinux
+BUILD_FLAT    = 1
+endif
+
+# always use the elf compiler
+KERNEL_CROSS_COMPILE ?= ubicom32-elf-
+KERNEL_CONFIGURE_HOST ?= ubicom32-elf
+CROSS         = $(CROSS_COMPILE)
+
+ifdef CONFIG_UBICOM32_V3
+CPUFLAGS := -march=ubicom32v3 -DIP5000 -DUBICOM32_ARCH_VERSION=3
+endif
+ifdef CONFIG_UBICOM32_V4
+CPUFLAGS := -march=ubicom32v4 -DIP7000 -DUBICOM32_ARCH_VERSION=4
+endif
+ifdef CONFIG_UBICOM32_V5
+CPUFLAGS := -march=ubicom32v5 -DIP8000 -DUBICOM32_ARCH_VERSION=5
+endif
+
+CONFIG_UCLINUX=y
+
+CC        = $(CROSS_COMPILE)gcc $(CPUFLAGS)
+AS        = $(CROSS_COMPILE)as
+CXX       = $(CROSS_COMPILE)g++ $(CPUFLAGS)
+AR        = $(CROSS_COMPILE)ar
+LD        = $(CROSS_COMPILE)ld
+OBJCOPY   = $(CROSS_COMPILE)objcopy
+OBJDUMP   = $(CROSS_COMPILE)objdump
+RANLIB    = $(CROSS_COMPILE)ranlib
+ifdef BUILD_FLAT
+ELF2FLT   = $(CROSS_COMPILE)elf2flt
+endif
+STRIPTOOL = $(CROSS_COMPILE)strip
+STRIP     = $(STRIPTOOL)
+
+UCLINUX_BUILD_SET = 0					# have we set a special config below
+
+# Pull in common definitions
+include $(ROOTDIR)/vendors/config/common/config.arch
+
+# by default disable shared libs and enable static
+LIB_ENABLE_SHARED:=--disable-shared
+LIB_ENABLE_STATIC:=--enable-static
+
+ifndef DISABLE_SHARED_LIBS
+  ifdef BUILD_FDPIC
+#	enable shared libs when FDPIC (still keeping static as an option if the application chooses)
+	LIB_ENABLE_SHARED:=--enable-shared
+	BUILD_SHARED = 1
+	BUILD_SHARED_FDPIC = 1
+  else
+    ifeq ($(CONFIG_BINFMT_SHARED_FLAT),y)
+# ubicom32 current does not support shared flat..
+#	BUILD_SHARED = 1
+#	BUILD_SHARED_FLAT = 1
+    endif
+  endif
+endif
+
+# These can be used by configure.
+# Either configure $(CONFIGURE_OPTS)
+# or     configure --host=$(TARGETARCH) --build=$(HOSTARCH) --target=$(TARGETARCH)
+#
+TARGETARCH    := $(CONFIGURE_HOST)
+HOSTARCH      := $(shell sh $(ROOTDIR)/tools/config.guess)
+CONFIGURE_OPTS := --host=$(TARGETARCH) --build=$(HOSTARCH) --target=$(TARGETARCH)
+
+############################################################################
+#
+# General purpose lib building rules,  uClibc.config uses these when
+# possible
+#
+
+PKG_CONFIG_PATH=$(ROOTDIR)/lib
+PKG_CONFIG_LIBDIR=$(ROOTDIR)/lib
+
+ifdef UCLINUX_BUILD_LIB
+  ifdef CONFIG_LIB_DEBUG
+	CFLAGS  :=  $(if $(LOPT),$(LOPT),-O1) -g
+  else
+	CFLAGS  :=  $(if $(LOPT),$(LOPT),-O2) -g -fomit-frame-pointer
+  endif
+	CFLAGS  += -pipe
+	CFLAGS  += -fno-common -fno-builtin -Wall #-Werror
+	CFLAGS  += $(VENDOR_CFLAGS) -DEMBED
+
+  ifdef BUILD_SHARED_FLAT
+	CFLAGS  += -mid-shared-library
+  else
+	ifndef DISABLE_XIP
+	  CFLAGS  +=
+	endif
+  endif
+
+	# don't want all the CFLAGS for uClibc/Config
+	ARCH_CFLAGS := $(CPUFLAGS) $(CFLAGS)
+
+	CFLAGS  += -Dlinux -D__linux__ -Dunix
+	CFLAGS  += -D__uClinux__
+	CFLAGS  += -I$(ROOTDIR)/include
+
+	LDFLAGS := -g
+  ifdef BUILD_FLAT
+	LDFLAGS = -Wl,-elf2flt -static
+#	enable linker relaxation, it slows the build but final binary is smaller and loads faster
+	LDFLAGS += -Wl,--relax
+  endif
+
+  ifdef LIBCDIR
+	CFLAGS  += -I$(LIBCDIR)/include
+	LDFLAGS += -L$(LIBCDIR)/lib
+    ifdef BUILD_SHARED
+	LDFLAGS += -Wl,-rpath-link,$(LIBCDIR)/lib
+    endif
+  endif
+	LDFLAGS += -L$(dir $(shell $(CC) $(CFLAGS) -print-libgcc-file-name))
+	LDFLAGS += -L$(ROOTDIR)/lib
+  ifdef BUILD_SHARED
+	LDFLAGS += -Wl,-rpath-link,$(ROOTDIR)/lib
+  endif
+
+
+  ifdef BUILD_FLAT
+    ifndef DISABLE_MOVE_RODATA
+	LDFLAGS += -Wl,-move-rodata
+    endif
+	endif
+
+  ifdef BUILD_SHARED_FLAT
+	LDFLAGS += -mid-shared-library -mshared-library-id=0 -Wl,-shared-lib-id,0
+  else
+	ifndef DISABLE_XIP
+	  LDFLAGS  +=
+	endif
+  endif
+
+	UCLINUX_BUILD_SET=1
+endif
+
+############################################################################
+#
+# Settings for building user apps
+#
+
+ifdef UCLINUX_BUILD_USER
+
+  ifdef BUILD_SHARED_FLAT
+	# We use a special shared libc
+	LIBC          = -Wl,-R,$(ROOTDIR)/lib/libc.gdb $(SLIBC)
+  endif
+  ifdef CONFIG_USER_DEBUG
+	CFLAGS  :=  $(if $(UOPT),$(UOPT),-O1) -g
+  else
+	CFLAGS  :=  $(if $(UOPT),$(UOPT),-Os) -g -fomit-frame-pointer
+  endif
+	#CFLAGS  += -pipe
+	CFLAGS  += -fno-common -fno-builtin -Wall #-Werror
+	#CFLAGS  += $(VENDOR_CFLAGS) -DEMBED
+
+  ifdef BUILD_SHARED_FLAT
+	CFLAGS  += -mid-shared-library -mshared-library-id=0
+  else
+	ifndef DISABLE_XIP
+	  #CFLAGS  +=
+	endif
+  endif
+
+	# don't want all the CFLAGS for uClibc/Config
+	ARCH_CFLAGS := $(CFLAGS)
+
+	CFLAGS  += -Dlinux -D__linux__ -Dunix
+	CFLAGS  += -D__uClinux__
+	CFLAGS  += -D__linux
+	CFLAGS  += -DEMBED
+	CFLAGS	+= -DNO_FORK
+	CFLAGS  += -I$(ROOTDIR)/include
+	CFLAGS  += -I$(ROOTDIR)/lib/zlib
+
+	CXXFLAGS = $(CFLAGS) -nostdinc++ -fno-exceptions -pthread
+	CXXSUP :=
+
+	LDFLAGS := -g
+  ifdef BUILD_FLAT
+	LDFLAGS = -Wl,-elf2flt -static
+#	enable linker relaxation, it slows the build but final binary is smaller and loads faster
+	LDFLAGS += -Wl,--relax
+  endif
+
+  ifdef LIBCDIR
+	CFLAGS  += -I$(LIBCDIR)/include
+	LDFLAGS += -L$(LIBCDIR)/lib
+    ifdef BUILD_SHARED
+	LDFLAGS += -Wl,-rpath-link,$(LIBCDIR)/lib
+    endif
+  endif
+
+	LDFLAGS += -L$(dir $(shell $(CC) $(CFLAGS) -print-libgcc-file-name))
+	LDFLAGS += -L$(ROOTDIR)/lib
+  ifdef BUILD_SHARED
+	LDFLAGS += -Wl,-rpath-link,$(ROOTDIR)/lib
+  endif
+
+  ifdef CONFIG_LIB_LIBSSL
+	CFLAGS  += -I$(ROOTDIR)/lib/libssl/include
+	LDFLAGS += -L$(ROOTDIR)/lib/libssl
+  endif
+
+  ifdef BUILD_SHARED_FLAT
+	LDFLAGS += -mid-shared-library -mshared-library-id=0 -Wl,-shared-lib-id,0
+  else
+	ifndef DISABLE_XIP
+	  LDFLAGS  +=
+	endif
+  endif
+
+  ifdef BUILD_FLAT
+    ifndef DISABLE_MOVE_RODATA
+	LDFLAGS += -Wl,-move-rodata
+    endif
+    ifndef FLTFLAGS
+	# set -z to compress all binflt files with gzip compression.
+	FLTFLAGS :=
+    endif
+	export FLTFLAGS
+  endif
+	# for anyone still using it
+	CONVERT = /bin/true
+
+	UCLINUX_BUILD_SET=1
+endif
+
+############################################################################
+#
+# fall through,  do other config options perhaps
+#
+
+ifeq ($(UCLINUX_BUILD_SET),1)
+	EXTRA_CFLAGS := $(CPUFLAGS)
+
+	CXXLIBS = $(LIBSTDCPP) $(CXXSUP)
+
+	LDLIBS = $(LIBBIND)
+endif
+
+############################################################################
+ifdef BUILD_SHARED
+	SHARED_LIBS_TO_INSTALL += libgcc_s
+  ifdef CONFIG_USER_IPERF_IPERF
+	SHARED_LIBS_TO_INSTALL += libstdc++
+  endif
+  ifdef CONFIG_DEFAULTS_LIBC_NONE
+# 	there is no uClibc being built, so we better copy the libs from
+# 	the toolchain
+	SHARED_LIBS_TO_INSTALL +=		\
+		ld-uClibc			\
+		libc				\
+		libcrypt			\
+		libdl				\
+		libm				\
+		libnsl				\
+		libpthread			\
+		libresolv			\
+		libthread_db			\
+		libutil
+  endif
+endif

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+. /etc/rgw_config
+
+# Create VLAN interfaces for LAN and WAN.
+/etc/init.d/startVLAN
+
+# Create bridge and add LAN and WAN ports
+brctl addbr $BRINTERFACE
+ifconfig $LANINTERFACE up
+brctl addif $BRINTERFACE $LANINTERFACE
+ifconfig $WANINTERFACE up
+brctl addif $BRINTERFACE $WANINTERFACE
+
+# other ethernet ports?
+cat /proc/net/dev | grep -q eth1
+if [ $? == 0 ]; then
+	ifconfig eth1 up
+	brctl addif $BRINTERFACE eth1
+fi
+
+echo "***Running DHCP client to get IP address for Port0 (br0) on bridge***"
+dhcpcd $BRINTERFACE &
+
+touch /tmp/bridge_started
