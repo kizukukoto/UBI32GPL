@@ -1,0 +1,173 @@
+# $Id: Makefile.linux,v 1.50 2010/03/08 17:13:49 nanard Exp $
+# MiniUPnP project
+# http://miniupnp.free.fr/ or http://miniupnp.tuxfamily.org/
+# Author : Thomas Bernard
+# for use with GNU Make
+#
+# To install use :
+# $ PREFIX=/dummyinstalldir make -f Makefile.linux install
+# or :
+# $ INSTALLPREFIX=/usr/local make -f Makefile.linux install
+# or :
+# $ make -f Makefile.linux install
+#
+# if your system hasn't iptables libiptc headers and binary correctly
+# installed, you need to get iptables sources from http://netfilter.org/
+# ./configure them and build them then miniupnpd will build using :
+# $ IPTABLESPATH=/path/to/iptables-1.4.1 make -f Makefile.linux
+#
+#CFLAGS = -Wall -O -D_GNU_SOURCE -g -DDEBUG
+#CFLAGS ?= -Wall -O0 -g -D_GNU_SOURCE -fno-strict-aliasing -Wstrict-prototypes 
+CFLAGS = -march=ubicom32v4 -O0 -g -fomit-frame-pointer -fno-common -fno-builtin -Wall -Dlinux -D__linux__ -Dunix -D__uClinux__ -D__linux -DEMBED -DNO_FORK
+IPTABLESPATH=${ROOTDIR}/user/iptables-new/iptables-1.4.8
+CC ?= gcc
+RM = rm -f
+INSTALL = install
+STRIP ?= strip
+CP = cp
+
+INSTALLPREFIX ?= $(PREFIX)/usr
+SBININSTALLDIR = $(INSTALLPREFIX)/sbin
+ETCINSTALLDIR = $(PREFIX)/etc/miniupnpd
+
+BASEOBJS = miniupnpd.o upnphttp.o upnpdescgen.o upnpsoap.o \
+           upnpreplyparse.o minixml.o \
+		   upnpredirect.o getifaddr.o daemonize.o upnpglobalvars.o \
+           options.o upnppermissions.o minissdp.o natpmp.o \
+           upnpevents.o addressManip.o upnpruletable.o
+
+LNXOBJS = linux/getifstats.o
+NETFILTEROBJS = netfilter/iptcrdr.o
+
+ALLOBJS = $(BASEOBJS) $(LNXOBJS) $(NETFILTEROBJS)
+
+LIBS = -liptc
+# the following is better, at least on gentoo with iptables 1.4.6
+# see http://miniupnp.tuxfamily.org/forum/viewtopic.php?p=1618
+#LIBS = -lip4tc
+
+ifdef IPTABLESPATH
+CFLAGS := $(CFLAGS) -I$(IPTABLESPATH)/include/ -I$(KERNEL_DIR)/include/
+LDFLAGS := $(LDFLAFGS) -L$(IPTABLESPATH)/libiptc/
+# get iptables version and set IPTABLES_143 macro if needed
+IPTABLESVERSION := $(shell grep "\#define VERSION" $(IPTABLESPATH)/config.h | tr -d \" |cut -d" " -f3 )
+IPTABLESVERSION1 := $(shell echo $(IPTABLESVERSION) | cut -d. -f1 )
+IPTABLESVERSION2 := $(shell echo $(IPTABLESVERSION) | cut -d. -f2 )
+IPTABLESVERSION3 := $(shell echo $(IPTABLESVERSION) | cut -d. -f3 )
+# test if iptables version >= 1.4.3
+TEST := $(shell [ \( \( $(IPTABLESVERSION1) -ge 1 \) -a \( $(IPTABLESVERSION2) -ge 4 \) \) -a \( $(IPTABLESVERSION3) -ge 3 \) ] && echo 1 )
+ifeq ($(TEST), 1)
+CFLAGS := $(CFLAGS) -DIPTABLES_143
+# the following sucks, but works
+#LIBS = $(IPTABLESPATH)/libiptc/.libs/libip4tc.o
+LIBS = $(IPTABLESPATH)/libiptc/.libs/libip6tc.a
+else
+LIBS = $(IPTABLESPATH)/libiptc/libiptc.a
+endif
+else
+# check for system-wide iptables files. Test if iptables version >= 1.4.3
+TEST := $(shell test -f /usr/include/iptables/internal.h && grep -q "\#define IPTABLES_VERSION" /usr/include/iptables/internal.h && echo 1)
+ifeq ($(TEST), 1)
+CFLAGS := $(CFLAGS) -DIPTABLES_143
+LIBS = /usr/lib/libiptc.a
+endif 
+endif
+LDFLAGS += -L$(ROOTDIR)/lib -L$(ROOTDIR)/uClibc/lib
+CFLAGS += -I$(ROOTDIR)/include -I$(ROOTDIR)/uClibc/include
+
+TESTUPNPDESCGENOBJS = testupnpdescgen.o upnpdescgen.o
+
+EXECUTABLES = miniupnpd testupnpdescgen testgetifstats \
+              testupnppermissions miniupnpdctl testgetifaddr
+
+.PHONY:	all clean install depend genuuid
+
+all:	$(EXECUTABLES)
+
+clean:
+	$(RM) $(ALLOBJS)
+	$(RM) $(EXECUTABLES)
+	$(RM) testupnpdescgen.o testgetifstats.o
+	$(RM) testupnppermissions.o testgetifaddr.o
+	$(RM) miniupnpdctl.o
+
+install:	miniupnpd genuuid
+	$(STRIP) miniupnpd
+	$(INSTALL) -d $(SBININSTALLDIR)
+	$(INSTALL) miniupnpd $(SBININSTALLDIR)
+	$(INSTALL) -d $(ETCINSTALLDIR)
+	$(INSTALL) netfilter/iptables_init.sh $(ETCINSTALLDIR)
+	$(INSTALL) netfilter/iptables_removeall.sh $(ETCINSTALLDIR)
+#	$(INSTALL) --mode=0644 -b miniupnpd.conf $(ETCINSTALLDIR)
+#	$(INSTALL) -d $(PREFIX)/etc/init.d
+#	$(INSTALL) linux/miniupnpd.init.d.script $(PREFIX)/etc/init.d/miniupnpd
+
+romfs:
+	$(ROMFSINST) miniupnpd /sbin/miniupnpd6
+#	$(ROMFSINST) -d miniupnpd.conf /var/etc/miniupnpd.conf
+
+# genuuid is using the uuidgen CLI tool which is part of libuuid
+# from the e2fsprogs
+genuuid:
+	sed -i -e "s/^uuid=[-0-9a-f]*/uuid=`(genuuid||uuidgen) 2>/dev/null`/" miniupnpd.conf
+
+miniupnpd:	$(BASEOBJS) $(LNXOBJS) $(NETFILTEROBJS) $(LIBS)
+
+testupnpdescgen:	$(TESTUPNPDESCGENOBJS)
+
+testgetifstats:	testgetifstats.o linux/getifstats.o
+
+testupnppermissions:	testupnppermissions.o upnppermissions.o addressManip.o
+
+testgetifaddr:	testgetifaddr.o getifaddr.o
+
+miniupnpdctl:	miniupnpdctl.o
+
+config.h:	genconfig.sh
+	./genconfig.sh
+
+depend:	config.h
+	makedepend -f$(MAKEFILE_LIST) -Y \
+	$(ALLOBJS:.o=.c) $(TESTUPNPDESCGENOBJS:.o=.c) \
+	testgetifstats.c 2>/dev/null
+
+# DO NOT DELETE
+
+miniupnpd.o: config.h upnpglobalvars.h upnppermissions.h miniupnpdtypes.h
+miniupnpd.o: upnphttp.h upnpdescgen.h miniupnpdpath.h getifaddr.h upnpsoap.h
+miniupnpd.o: options.h minissdp.h upnpredirect.h daemonize.h upnpevents.h
+miniupnpd.o: natpmp.h commonrdr.h
+upnphttp.o: config.h upnphttp.h upnpdescgen.h miniupnpdpath.h upnpsoap.h
+upnphttp.o: upnpevents.h
+upnpdescgen.o: config.h upnpdescgen.h miniupnpdpath.h upnpglobalvars.h
+upnpdescgen.o: upnppermissions.h miniupnpdtypes.h upnpdescstrings.h
+upnpsoap.o: config.h upnpglobalvars.h upnppermissions.h miniupnpdtypes.h
+upnpsoap.o: upnphttp.h upnpsoap.h upnpreplyparse.h upnpredirect.h getifaddr.h
+upnpsoap.o: getifstats.h
+upnpreplyparse.o: upnpreplyparse.h minixml.h
+minixml.o: minixml.h
+upnpredirect.o: config.h upnpredirect.h upnpglobalvars.h upnppermissions.h upnpruletable.h
+upnpredirect.o: miniupnpdtypes.h upnpevents.h netfilter/iptcrdr.h commonrdr.h
+getifaddr.o: getifaddr.h
+daemonize.o: daemonize.h config.h
+upnpglobalvars.o: config.h upnpglobalvars.h upnppermissions.h
+upnpglobalvars.o: miniupnpdtypes.h
+options.o: options.h config.h upnppermissions.h upnpglobalvars.h
+options.o: miniupnpdtypes.h
+upnppermissions.o: config.h upnppermissions.h
+minissdp.o: config.h upnpdescstrings.h miniupnpdpath.h upnphttp.h
+minissdp.o: upnpglobalvars.h upnppermissions.h miniupnpdtypes.h minissdp.h
+minissdp.o: codelength.h
+natpmp.o: config.h natpmp.h upnpglobalvars.h upnppermissions.h
+natpmp.o: miniupnpdtypes.h getifaddr.h upnpredirect.h commonrdr.h
+upnpevents.o: config.h upnpevents.h miniupnpdpath.h upnpglobalvars.h
+upnpevents.o: upnppermissions.h miniupnpdtypes.h upnpdescgen.h
+linux/getifstats.o: getifstats.h config.h
+netfilter/iptcrdr.o: netfilter/iptcrdr.h commonrdr.h config.h
+netfilter/iptcrdr.o: upnpglobalvars.h upnppermissions.h miniupnpdtypes.h
+testupnpdescgen.o: config.h upnpdescgen.h
+upnpdescgen.o: config.h upnpdescgen.h miniupnpdpath.h upnpglobalvars.h
+upnpdescgen.o: upnppermissions.h miniupnpdtypes.h upnpdescstrings.h
+testgetifstats.o: getifstats.h
+addressManip.o: addressManip.h
+upnpruletable.o: upnpruletable.h

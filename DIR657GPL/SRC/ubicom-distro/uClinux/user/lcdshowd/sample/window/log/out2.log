@@ -1,0 +1,305 @@
+==5959== Memcheck, a memory error detector for x86-linux.
+==5959== Copyright (C) 2002-2004, and GNU GPL'd, by Julian Seward et al.
+==5959== Using valgrind-2.2.0, a program supervision framework for x86-linux.
+==5959== Copyright (C) 2000-2004, and GNU GPL'd, by Julian Seward et al.
+==5959== For more details, rerun with: -v
+==5959== 
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBBDE08
+real free:1BBBD880
+real free:1BBBD2E8
+real free:1BBBCD58
+real free:1BBBC7C8
+real free:1BBBC238
+real free:1BBBBCB0
+real free:1BBBB740
+real free:1BBBB1A8
+real free:1BBBAC18
+real free:1BBBA688
+==5959== warning: Valgrind's pthread_attr_setinheritsched does nothing
+==5959==          your program may misbehave as a result
+==5959== warning: Valgrind's pthread_attr_setschedparam does nothing
+==5959==          (scheduling not changeable)
+==5959==          your program may misbehave as a result
+==5959== warning: Valgrind's pthread_attr_destroy does nothing
+==5959==          your program may misbehave as a result
+==5959== warning: Valgrind's pthread_getschedparam is incomplete
+==5959==          your program may misbehave as a result
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+relloc: 1792 = cap:64 * size:28
+==5959== Syscall param writev(vector[...]) contains uninitialised or unaddressable byte(s)
+==5959==    at 0x1BB2B3FD: writev (in /lib/tls/libc-2.3.3.so)
+==5959==    by 0x1BD2E29D: (within /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BD2E5BE: _X11TransWritev (in /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BD11F59: _XSend (in /usr/X11R6/lib/libX11.so.6.2)
+==5959==  Address 0x1BBB0AF4 is 28 bytes inside a block of size 16384 alloc'd
+==5959==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==5959==    by 0x1BD011FD: XOpenDisplay (in /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BCC31E3: InitLocal (x11.c:125)
+==5959==    by 0x1BCC35B3: system_initialize (x11.c:228)
+==5959== 
+==5959== Syscall param write(buf) contains uninitialised or unaddressable byte(s)
+==5959==    at 0x1BB2494B: write (in /lib/tls/libc-2.3.3.so)
+==5959==    by 0x1BD2E21D: (within /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BD2E55E: _X11TransWrite (in /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BD11863: (within /usr/X11R6/lib/libX11.so.6.2)
+==5959==  Address 0x1BBB0AFE is 38 bytes inside a block of size 16384 alloc'd
+==5959==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==5959==    by 0x1BD011FD: XOpenDisplay (in /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BCC31E3: InitLocal (x11.c:125)
+==5959==    by 0x1BCC35B3: system_initialize (x11.c:228)
+(*) X11/Display: Using XShm.
+DirectGetInterface 293: countinue leak free
+==5959== 
+==5959== Invalid read of size 1
+==5959==    at 0x1B9049B6: strcmp (mac_replace_strmem.c:249)
+==5959==    by 0x1B9F9354: DirectGetInterface (interface.c:242)
+==5959==    by 0x1B92E2EB: IDirectFB_CreateFont (idirectfb.c:1218)
+==5959==    by 0x1B90BB3D: cache_get_entry_from_file (in /share/pub/rootfs/lib/liblite.so.3.0.5)
+==5959==  Address 0x1BC387F8 is 0 bytes inside a block of size 84 free'd
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9FAAD3: direct_free (mem.c:273)
+==5959==    by 0x1B9F9639: DirectGetInterface (interface.c:294)
+==5959==    by 0x1B92E2EB: IDirectFB_CreateFont (idirectfb.c:1218)
+DirectGetInterface 293: countinue leak free
+(*) Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+DirectGetInterface 302: countinue leak
+==5959== 
+==5959== Invalid read of size 1
+==5959==    at 0x1B9049B6: strcmp (mac_replace_strmem.c:249)
+==5959==    by 0x1B9F9354: DirectGetInterface (interface.c:242)
+==5959==    by 0x1B9433E3: IDirectFBImageProvider_CreateFromBuffer (idirectfbimageprovider.c:149)
+==5959==    by 0x1B92E0B9: IDirectFB_CreateImageProvider (idirectfb.c:1130)
+==5959==  Address 0x1BC38DB0 is 0 bytes inside a block of size 82 free'd
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9FAAD3: direct_free (mem.c:273)
+==5959==    by 0x1B9F9639: DirectGetInterface (interface.c:294)
+==5959==    by 0x1B92E2EB: IDirectFB_CreateFont (idirectfb.c:1218)
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 293: countinue leak free
+(*) Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+DirectGetInterface 302: countinue leak
+==5959== 
+==5959== Conditional jump or move depends on uninitialised value(s)
+==5959==    at 0x1B9A7A69: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==5959==    by 0x1B9A9C8F: dfb_surface_buffer_write (surface_buffer.c:610)
+==5959==    by 0x1B9A6CA0: dfb_surface_write_buffer (surface.c:652)
+==5959==    by 0x1C1108F0: IDirectFBImageProvider_PNG_RenderTo (idirectfbimageprovider_png.c:361)
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==5959== warning: Valgrind's pthread_cond_destroy is incomplete
+==5959==          (it doesn't check if the cond is waited on)
+==5959==          your program may misbehave as a result
+==5959== warning: Valgrind's pthread_cond_destroy is incomplete
+==5959==          (it doesn't check if the cond is waited on)
+==5959==          your program may misbehave as a result
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==5959== warning: Valgrind's pthread_cond_destroy is incomplete
+==5959==          (it doesn't check if the cond is waited on)
+==5959==          your program may misbehave as a result
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==5959== 
+==5959== Conditional jump or move depends on uninitialised value(s)
+==5959==    at 0x1B9A7A69: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==5959==    by 0x1B9AAC77: dfb_surface_buffer_lock (surface_buffer.c:274)
+==5959==    by 0x1B9A6873: dfb_surface_lock_buffer (surface.c:572)
+==5959==    by 0x1B9BCF2D: load_default_cursor (windowstack.c:830)
+==5959== 
+==5959== Conditional jump or move depends on uninitialised value(s)
+==5959==    at 0x1B9A7A69: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==5959==    by 0x1B9AAC77: dfb_surface_buffer_lock (surface_buffer.c:274)
+==5959==    by 0x1B9A6873: dfb_surface_lock_buffer (surface.c:572)
+==5959==    by 0x1C088900: render_glyph (idirectfbfont_ft2.c:272)
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==5959== 
+==5959== pthread_mutex_destroy: mutex is still in use
+==5959==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==5959==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==5959==    by 0x1B948513: IDirectFBEventBuffer_Destruct (idirectfbinputbuffer.c:187)
+==5959==    by 0x1B9486DE: IDirectFBEventBuffer_Release (idirectfbinputbuffer.c:212)
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--5959-- WARNING: unhandled syscall: 224
+--5959-- Do not panic.  You may be able to fix this easily.
+--5959-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==5959== 
+==5959== pthread_mutex_destroy: mutex is still in use
+==5959==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==5959==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==5959==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==5959==    by 0x1B9943BF: context_destructor (layer_context.c:129)
+==5959== 
+==5959== pthread_mutex_destroy: mutex is still in use
+==5959==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==5959==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==5959==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==5959==    by 0x1B9E7BC4: fusion_object_pool_destroy (object.c:272)
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+==5959== 
+==5959== pthread_mutex_destroy: mutex is still in use
+==5959==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==5959==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==5959==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==5959==    by 0x1BCC394B: system_shutdown (x11.c:369)
+==5959== 
+==5959== pthread_mutex_destroy: mutex is still in use
+==5959==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==5959==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==5959==    by 0x1BD2D173: (within /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BD19039: XrmDestroyDatabase (in /usr/X11R6/lib/libX11.so.6.2)
+real free:00000000
+==5959== 
+==5959== Invalid read of size 4
+==5959==    at 0x1BADB9F3: strlen (in /lib/tls/libc-2.3.3.so)
+==5959==    by 0x1BAB0AE5: (within /lib/tls/libc-2.3.3.so)
+==5959==    by 0x1BAACA04: _IO_vfprintf (in /lib/tls/libc-2.3.3.so)
+==5959==    by 0x1BAB551E: _IO_fprintf (in /lib/tls/libc-2.3.3.so)
+==5959==  Address 0x1BC387F8 is 0 bytes inside a block of size 64 free'd
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9EABEF: fusion_dbg_shfree (shmalloc.c:585)
+==5959==    by 0x1B9A8055: dfb_surface_buffer_destroy (surface_buffer.c:140)
+==5959==    by 0x1B9A636A: surface_destructor (surface.c:80)
+DirectUnregisterInterface 127: free  leak foce?
+==5959== 
+==5959== Invalid free() / delete / delete[]
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9FAAD3: direct_free (mem.c:273)
+==5959==    by 0x1B9F9055: DirectUnregisterInterface (interface.c:129)
+==5959==    by 0x1BA40EEE: IDirectFBFont_Default_dtor (idirectfbfont_default.c:66)
+==5959==  Address 0x1BC387F8 is 0 bytes inside a block of size 64 free'd
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9EABEF: fusion_dbg_shfree (shmalloc.c:585)
+==5959==    by 0x1B9A8055: dfb_surface_buffer_destroy (surface_buffer.c:140)
+==5959==    by 0x1B9A636A: surface_destructor (surface.c:80)
+DirectUnregisterInterface 127: free  leak foce?
+==5959== 
+==5959== Invalid free() / delete / delete[]
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9FAAD3: direct_free (mem.c:273)
+==5959==    by 0x1B9F9055: DirectUnregisterInterface (interface.c:129)
+==5959==    by 0x1BCD616E: IDirectFBFont_DGIFF_dtor (idirectfbfont_dgiff.c:73)
+==5959==  Address 0x1BC38DB0 is 0 bytes inside a block of size 68 free'd
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9EABEF: fusion_dbg_shfree (shmalloc.c:585)
+==5959==    by 0x1B9B176C: dfb_surface_pool_deallocate (surface_pool.c:700)
+==5959==    by 0x1B9A7FF0: dfb_surface_buffer_destroy (surface_buffer.c:132)
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_ft2.so leak foce?
+DirectUnregisterInterface 127: free  leak foce?
+==5959== 
+==5959== Invalid free() / delete / delete[]
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9FAAD3: direct_free (mem.c:273)
+==5959==    by 0x1B9F9055: DirectUnregisterInterface (interface.c:129)
+==5959==    by 0x1C092E2E: IDirectFBImageProvider_DFIFF_dtor (idirectfbimageprovider_dfiff.c:74)
+==5959==  Address 0x1BC4B208 is not stack'd, malloc'd or (recently) free'd
+DirectUnregisterInterface 127: free  leak foce?
+==5959== 
+==5959== Invalid free() / delete / delete[]
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9FAAD3: direct_free (mem.c:273)
+==5959==    by 0x1B9F9055: DirectUnregisterInterface (interface.c:129)
+==5959==    by 0x1C09722E: IDirectFBImageProvider_GIF_dtor (idirectfbimageprovider_gif.c:65)
+==5959==  Address 0x1BC4B7F0 is not stack'd, malloc'd or (recently) free'd
+DirectUnregisterInterface 127: free  leak foce?
+==5959== 
+==5959== Invalid free() / delete / delete[]
+==5959==    at 0x1B905349: free (vg_replace_malloc.c:153)
+==5959==    by 0x1B9FAAD3: direct_free (mem.c:273)
+==5959==    by 0x1B9F9055: DirectUnregisterInterface (interface.c:129)
+==5959==    by 0x1C10A4FE: IDirectFBImageProvider_JPEG_dtor (idirectfbimageprovider_jpeg.c:73)
+==5959==  Address 0x1BC4C230 is not stack'd, malloc'd or (recently) free'd
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_png.so leak foce?
+==5959== 
+==5959== ERROR SUMMARY: 1230 errors from 18 contexts (suppressed: 163 from 1)
+==5959== malloc/free: in use at exit: 39470 bytes in 399 blocks.
+==5959== malloc/free: 2489 allocs, 2095 frees, 3335355 bytes allocated.
+==5959== For counts of detected errors, rerun with: -v
+==5959== searching for pointers to 399 not-freed blocks.
+==5959== checked 4957076 bytes.
+==5959== 
+==5959== 
+==5959== 8 bytes in 1 blocks are definitely lost in loss record 1 of 34
+==5959==    at 0x1B905892: realloc (vg_replace_malloc.c:197)
+==5959==    by 0x1BD526E0: (within /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BD52C73: (within /usr/X11R6/lib/libX11.so.6.2)
+==5959==    by 0x1BD54A40: (within /usr/X11R6/lib/libX11.so.6.2)
+==5959== 
+==5959== LEAK SUMMARY:
+==5959==    definitely lost: 8 bytes in 1 blocks.
+==5959==    possibly lost:   0 bytes in 0 blocks.
+==5959==    still reachable: 39262 bytes in 397 blocks.
+==5959==         suppressed: 200 bytes in 1 blocks.
+==5959== Reachable blocks (those to which a pointer was found) are not shown.
+==5959== To see them, rerun with: --show-reachable=yes

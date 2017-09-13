@@ -1,0 +1,8 @@
+DIR-130/330 cgi TODO
+
+main/ext/firmware.c:
+	1. I suggest model independent firmware.c instead of original DIR-130/330 firmware.c
+	   Ex: firmware.c.dir130
+	       firmware.c.dir665
+               firmware.c.dir865
+	       firmware.c -> firmware.c.dir130 (symbol link)

@@ -1,0 +1,7 @@
+TODO (from highest-priority down):
+* Implement an SNMP broadcasting function in place of file-based logging.
+* Possibly rewrite the URL-checking code in the same way the domain-checking
+  code was, so it doesn't entirely rely on regular expressions and subsequently
+  saves memory.
+* Build separate GUIs for popular operating systems (Mac OS X and Windows XP);
+  this will probably be done with wxWidgets under Xcode.

@@ -1,0 +1,29 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+if [ $# -ne 1 ] ; then
+echo "Usage: wish_state_get <xml_doc_name>"
+echo "   <xml_doc_name>: Name (and path) of XML document to dump."
+exit 1
+fi
+
+XML_DOC=$1
+
+#
+# Prep the XML doc
+#
+echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" > $XML_DOC
+echo "<?xml-stylesheet type=\"text/xsl\" href=\"wish_state_style.xsl\"?>" >> $XML_DOC
+echo "<wish_state>"  >> $XML_DOC
+
+#
+# Dump all cstat files to the XML doc
+#
+cat /dev/ubicom_wish >> $XML_DOC
+
+#
+# End the XML doc
+#
+echo "</wish_state>" >> $XML_DOC
+
+

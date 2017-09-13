@@ -1,0 +1,442 @@
+<root>
+	<!-- logout.htm -->
+	<HT01>
+		<help_hints>
+			<hint>After logging out, you need to re-log in.</hint>
+		</help_hints>
+		<more_href />
+	</HT01>
+	<!-- AP index.htm -->
+	<HT02>
+		<help_hints>
+			<hint>If you are new to networking and have never configured an access point before, click on Launch Setup Wizard and the access point will guide you through a few simple steps to get your network up and running.</hint>
+		</help_hints>
+		<more_href />
+	</HT02>
+	<!-- AP Wireless.htm -->
+	<HT03>
+		<help_hints>
+			<hint>Changing your Wireless Network Name is the first step in securing your wireless network. Change it to a familiar name that does not contain any personal information.</hint>
+			<hint>Enable Auto Channel Scan so that the Access Point can select the best possible channel for your wireless network to operate on.</hint>
+			<hint>Visibility Status is another way to secure your network. With invisible option enabled, no wireless clients will be able to see your wireless network when they perform scan to see what's available. In order for your wireless devices to connect to your AP, you will need to manually enter the Wireless Network Name on each device.</hint>
+			<hint>If you have enabled Wireless Security, make sure you write down the Key or Passphrase that you have configured. You will need to enter this information on any wireless device that you connect to your wireless network.</hint>
+		</help_hints>
+		<more_href />
+	</HT03>
+	<!-- AP Network_AP.htm -->
+	<HT04>
+		<help_hints>
+			<hint>&lt;strong&gt;Device Name:&lt;/strong&gt;&lt;br&gt;Device Name allows you to configure this device more easily when your network using TCP/IP protocol. You can enter the device name of the AP into your web browser to access the device configuration. Recommend to change the device name if there're more than one D-Link devices within the network.</hint>
+			<hint>&lt;strong&gt;LAN Settings:&lt;/strong&gt;&lt;br&gt;Also referred as private settings. LAN settings allow you to configure LAN interface of DAP-1350. LAN IP address is private to your internal network and is not visible to Internet. The factory default setting is Dynamic IP(DHCP).</hint>
+			<!--<hint>&lt;strong&gt;LAN Connection type:&lt;/strong&gt;&lt;br&gt;The factory default setting is Dynamic IP(DHCP) to allow the DHCP host to automatically assign the Access Point an IP address that conforms to the applied local area network. Enable "Static IP" which allows the IP address of the DAP-1350 to be manually configured in accordance to the applied local area network.</hint>-->
+			<!--<hint>&lt;strong&gt;IP Address:&lt;/strong&gt;&lt;br&gt;The default IP address is 192.168.0.50. It can be modified to conform to an existing local area network. Please note that the IP address of each device in the wireless local area network must be within the same IP address range and subnet mask. Take default DAP-1350 IP address as an example, each station associated to the AP must be configured with a unique IP address falling in the range of 192.168.0.*. "*" ranges from 1 to 254 but 50 in this case.</hint>-->
+			<!--<hint>&lt;strong&gt;Subnet Mask:&lt;/strong&gt;&lt;br&gt;A mask used to determine what subnet an IP address belongs to. The default subnet setting is 255.255.255.0.</hint>-->
+			<!--<hint>&lt;strong&gt;Gateway:&lt;/strong&gt;&lt;br&gt;Specify the gateway IP address of the local network.</hint>-->
+		</help_hints>
+		<more_href />
+	</HT04>
+	<!-- AP Mac_Addr_Filter_AP.htm -->
+	<HT05>
+		<help_hints>
+			<hint>Create a list of MAC address that you would either like to allow or deny access to your network.</hint>
+			<hint>Select a MAC address from the drop down menu, then click the arrow to add that MAC adddress to the list.</hint>
+			<hint>Click the &lt;strong&gt;Clear&lt;/strong&gt; button to remove the MAC address from the MAC Filtering list.</hint>
+		</help_hints>
+		<more_href />
+	</HT05>
+	<!-- AP Advanced_Wireless.htm -->
+	<!-- APC Advanced_Wireless.htm -->
+	<HT06>
+		<help_hints>
+			<hint>&lt;strong&gt;Advanced Wireless:&lt;/strong&gt;&lt;br&gt;It is recommended that you leave these options at their default values. Adjusting them could negatively impact the performance of your wireless network.&lt;br&gt;The options on this page should be changed by advanced users or if you are instructed to by one of our support personnel, as they can negatively affect the performance of your Access Point if configured improperly.</hint>
+			<hint>&lt;strong&gt;Transmit Power:&lt;/strong&gt;&lt;br&gt;You can lower the output power of the DAP-1350 by selecting lower percentage Transmit Power values from the drop down. Your choices are: 100%, 75%, 50%, and 25%.</hint>
+		</help_hints>
+		<more_href />
+	</HT06>
+	<!-- AP Protected_Setup.htm -->
+	<HT07>
+		<help_hints>
+			<hint>&lt;strong&gt;Enable&lt;/strong&gt; if other wireless devices you wish to include in the local network support Wi-Fi Protected Setup.</hint>
+			<hint>Click &lt;strong&gt;Add Wireless Device Wizard&lt;/strong&gt; to use Wi-Fi Protected Setup to add wireless devices to the wireless network.</hint>
+		</help_hints>
+		<more_href />
+	</HT07>
+	<!-- AP User_Limit.htm -->
+	<HT08>
+		<help_hints>
+			<hint>User Limit can set a limit upon the number of wireless clients. Using user limit, you can prevent scenarios where the DAP-1350 in your network shows performance degradation because it is handling heavy wireless traffic.</hint>
+		</help_hints>
+		<more_href />
+	</HT08>
+	<!-- AP Admin.htm -->
+	<HT09>
+		<help_hints>
+			<hint>&lt;strong&gt;Passwords:&lt;/strong&gt;&lt;br&gt;For security reasons, it is recommended that you change the Password for the Administrator accounts. Be sure to write down the Passwords to avoid having to reset the AP in the event that they are forgotten.</hint>
+		</help_hints>
+		<more_href />
+	</HT09>
+	<!-- AP Time.htm  -->
+	<HT10>
+		<help_hints>
+			<hint>&lt;strong&gt;System Time Settings:&lt;/strong&gt;&lt;br&gt;This section allows admins to configure, update, and maintain the correct time on the Access Point's internal system clock.</hint>
+		</help_hints>
+		<more_href />
+	</HT10>
+	<!-- AP System.htm -->
+	<HT11>
+		<help_hints>
+			<hint>&lt;strong&gt;Saving System Settings:&lt;/strong&gt;&lt;br&gt;Once your Access Point is configured the way you want it, you can save these settings to a configuration file that can later be loaded in the event that the AP's default settings are restored. To do this, click the &lt;strong&gt;Save&lt;/strong&gt; button next to where it says Save Settings to Local Hard Drive.</hint>
+		</help_hints>
+		<more_href />
+	</HT11>
+	<!-- AP Firmware.htm -->
+	<HT12>
+		<help_hints>
+			<hint>&lt;strong&gt;Firmware Updates:&lt;/strong&gt;&lt;br&gt;Firmware updates are released periodically to improve the functionality of your Access Point and also to add features. If you run into a problem with a specific feature of the Access Point, check our support site by clicking on the &lt;strong&gt;Click here to check for an upgrade on our support site&lt;/strong&gt; link and see if an updated firmware is available for your Access Point.</hint>
+		</help_hints>
+		<more_href />
+	</HT12>
+	<!-- AP Schedules.htm -->
+	<HT13>
+		<help_hints>
+			<hint>Schedules are used with a number of other features to define when those features are in effect.</hint>
+			<hint>Give each schedule a name that is meaningful to you. For example, a schedule for Monday through Friday from 3:00pm to 9:00pm, might be called "After School".</hint>
+			<hint>Click &lt;strong&gt;Save&lt;/strong&gt; to add a completed schedule to the list below.</hint>
+			<hint>Click the &lt;strong&gt;Edit&lt;/strong&gt; icon to change an existing schedule.</hint>
+			<hint>Click the &lt;strong&gt;Delete&lt;/strong&gt; icon to permanently delete a schedule.</hint>
+		</help_hints>
+		<more_href />
+	</HT13>
+	<!-- AP Device_Info.htm -->
+	<HT14>
+		<help_hints>
+			<hint>All of your LAN and Wireless connection details are displayed here.</hint>
+		</help_hints>
+		<more_href />
+	</HT14>
+	<!-- AP St_Wireless.htm -->
+	<HT15>
+		<help_hints>
+			<hint>&lt;strong&gt;Wireless&lt;/strong&gt;&lt;br&gt;Displays connected client station main parameters, such as Connect Time and station MAC address. In AP Client mode it displays the connected AP's MAC address and connected Time.</hint>
+		</help_hints>
+		<more_href />
+	</HT15>
+	<!-- AP Logs.htm -->
+	<HT16>
+		<help_hints>
+			<hint>Check the log frequently to detect unauthorized network usage.</hint>
+		</help_hints>
+		<more_href />
+	</HT16>
+	<!-- AP SysLog.htm -->
+	<HT17>
+		<help_hints>
+			<hint>A System Logger (syslog) is a server that collects in one place the logs from different sources. If the LAN includes a syslog server, you can use this option to send the router's logs to that server.</hint>
+		</help_hints>
+		<more_href />
+	</HT17>
+	<!-- AP Statistics.htm -->
+	<HT18>
+		<help_hints>
+			<hint>This is a summary of the number of packets that have passed between the Wireless and the LAN since the device was last initialized. </hint>
+		</help_hints>
+		<more_href />
+	</HT18>
+	<!-- AP Device_IPv6.htm -->
+	<HT19>
+		<help_hints>
+			<hint>All of your IPv6 LAN details are displayed here.</hint>
+		</help_hints>
+		<more_href />
+	</HT19>
+	<!-- AP Help -->
+	<HT20>
+		<help_hints>
+			<hint>Click on the links for more informations of each section in the GUI.</hint>
+		</help_hints>
+		<more_href />
+	</HT20>
+	<!-- APC Wireless.htm -->
+	<HT21>
+		<help_hints>
+			<hint>&lt;strong&gt;Wireless Network Name:&lt;/strong&gt;&lt;br&gt;Changing your Wireless Network Name is the first step in securing your wireless network. We recommend that you change it to a familiar name that does not contain any personal information.</hint>
+			<hint>&lt;strong&gt;Security Keys:&lt;/strong&gt;&lt;br&gt;If you have enabled Wireless Security, make sure you write down WEP Key or Passphrase that you have configured. You will need to enter this information on any wireless device that you connect to your wireless network.</hint>
+			<hint>&lt;strong&gt;Wi-Fi Protected Setup (Also called WCN 2.0 in Windows Vista):&lt;/strong&gt;&lt;br&gt;Wi-Fi Protected Setup provides a more intuitive way of setting up wireless security between the AP and the wireless client. Make sure the wireless card supports such feature or uses a certified Windows Vista driver in order to take advantage of this feature.</hint>
+		</help_hints>
+		<more_href />
+	</HT21>
+	<!-- RT -->
+	<!-- Internet.htm -->
+	<HT22>
+		<help_hints>
+			<hint>If you are new to networking and have never configured a router before, click on &lt;strong&gt;Internet Connection Setup Wizard&lt;/strong&gt; and the router will guide you through a few simple steps to get your network up and running.</hint>
+			<hint>If you consider yourself an advanced user and have configured a router before, click &lt;strong&gt;Manual Internet Connection Setup&lt;/strong&gt; to input all the settings manually.</hint>
+		</help_hints>
+		<more_href>support_setup.htm#Internet</more_href>
+	</HT22>
+	<!-- WAN_Dhcp.htm -->
+	<HT23>
+		<help_hints>
+			<hint>When configuring the router to access the Internet, be sure to choose the correct &lt;strong&gt;Internet Connection Type&lt;/strong&gt; from the drop down menu. If you are unsure of which option to choose, contact your &lt;strong&gt;Internet Service Provider (ISP)&lt;/strong&gt;.</hint>
+			<hint>If you are having trouble accessing the Internet through the router, double check any settings you have entered on this page and verify them with your ISP if needed.</hint>
+			<hint>For added security, it is recommended that you disable the WAN Ping Respond option. Ping is often used by malicious Internet users to locate active networks or PCs.</hint>
+			<hint>If you are having trouble receiving multicast streams from the Internet, make sure the Multicast Streams option is enabled.</hint>
+		</help_hints>
+		<more_href>support_setup.htm#WAN</more_href>
+	</HT23>
+	<!-- Virtual_Server.htm -->
+	<HT24>
+		<help_hints>
+			<hint>Check the &lt;strong&gt;Application Name&lt;/strong&gt; drop down menu for a list of predefined server types.  If you select one of the predefined server types, click the arrow button next to the drop down menu to fill out the corresponding field.</hint>
+			<hint>You can select a computer from the list of DHCP clients in the &lt;strong&gt;Computer Name&lt;/strong&gt; drop down menu, or you can manually enter the IP address of the computer at which you would like to open the specified port.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#Virtual_Server</more_href>
+	</HT24>
+	<!-- Special_Application.htm -->
+	<HT25>
+		<help_hints>
+			<hint>Use this feature if you are trying to execute one of the listed network applications and it is not communicating as expected.</hint>
+			<hint>Check the &lt;strong&gt;Application Name&lt;/strong&gt; drop down menu for a list of predefined applications.  If you select one of the predefined applications, click the arrow button next to the drop down menu to fill out the corresponding field.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#Special_Applications</more_href>
+	</HT25>
+	<!-- Web_Filter.htm -->
+	<HT26>
+		<help_hints>
+			<hint>Create a list of Web Sites to which you would like to deny or allow through the network.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#Web_Filter</more_href>
+	</HT26>
+	<!-- Firewall.htm -->
+	<HT27>
+		<help_hints>
+			<hint>ALGs provide special handling of the IP payload for some protocols and applications to make them work with network address translation (NAT).</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#Firewall</more_href>
+	</HT27>
+	<!-- DMZ.htm -->
+	<HT28>
+		<help_hints>
+			<hint>Enable the DMZ option only as a last resort.  If you are having trouble using an application from a computer behind the router, first try opening ports associated with the application in the &lt;a href="javascript:check_is_modified('Virtual_Server.htm')"&gt;Virtual Server&lt;/a&gt; sections.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#DMZ</more_href>
+	</HT28>
+	<!-- Advanced_Wireless.htm -->
+	<HT29>
+		<help_hints>
+			<hint>It is recommended that you leave these parameters at their default values. Adjusting them could limit the performance of your wireless network.</hint>
+			<hint>Enabling &lt;strong&gt;WMM&lt;/strong&gt; can help control latency and jitter when transmitting multimedia content over a wireless connection.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#Advanced_Wireless</more_href>
+	</HT29>
+	<!-- Protected_Setup.htm -->
+	<HT30>
+		<help_hints>
+			<hint>&lt;strong&gt;Enable&lt;/strong&gt; if other wireless devices you wish to include in the local network support Wi-Fi Protected Setup.</hint>
+			<hint>Only "Admin" account can change security settings.</hint>
+			<hint>Click &lt;strong&gt;Add Wireless Device Wizard&lt;/strong&gt; to use Wi-Fi Protected Setup to add wireless devices to the wireless network.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#Protected_Setup</more_href>
+	</HT30>
+	<!-- Advanced_Network.htm -->
+	<HT31>
+		<help_hints>
+			<hint>UPnP helps other UPnP LAN hosts interoperate with the router. Leave the UPnP option enabled as long as the LAN has other UPnP applications.</hint>
+			<hint>For added security, it is recommended that you disable the WAN Ping Respond option. Ping is often used by malicious Internet users to locate active networks or PCs.</hint>
+			<hint>The WAN speed is usually detected automatically. If you are having problems connecting to the WAN, try selecting the speed manually.</hint>
+			<hint>If you are having trouble receiving multicast streams from the Internet, make sure the Multicast Streams option is enabled.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#UPNP</more_href>
+	</HT31>
+	<!-- Guest_Zone.htm -->
+	<HT32>
+		<help_hints>
+			<hint>Use this section to configure the guest zone settings of your router. The guest zone provide a separate network zone for guest to access Internet.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#GuestZone</more_href>
+	</HT32>
+	<!-- Setup_Ipv6.htm -->
+	<HT33>
+		<help_hints>
+			<hint>If you are new to networking and have never configured a router before, click on &lt;strong&gt;IPv6 Internet Connection Setup Wizard&lt;/strong&gt; and the router will guide you through a few simple steps to get your network up and running.</hint>
+			<hint>If you consider yourself an advanced user and have configured a router before, click &lt;strong&gt;Manual IPv6 Internet Connection Setup&lt;/strong&gt; to input all the settings manually.</hint>
+		</help_hints>
+		<more_href>support_setup.htm#Internet</more_href>
+	</HT33>
+	<!-- IPv6 Inernet Connect-->
+	<HT34>
+		<help_hints>
+			<hint>
+				When configuring the router to access the IPv6 Internet, be sure to choose the correct IPv6 Connection Type from the drop down menu. If you are unsure of which option to choose, contact your Internet Service Provider (ISP).&lt;br&gt;&lt;br&gt;
+				If you are having trouble accessing the IPv6 Internet through the router, double check any settings you have entered on this page and verify them with your ISP if needed.
+			</hint>
+		</help_hints>
+		<more_href>support_setup.htm#IPv6</more_href>
+	</HT34>
+	<!-- Adv_ipv6_firewall.htm -->
+	<HT35>
+		<help_hints>
+			<hint>For each rule you can create a name and control the direction of traffic. You can also allow or deny a range of IP addresses, the protocol and a port range.</hint>
+			<hint>In order to apply a schedule to a Firewall rule, your must first define a schedule on the &lt;b&gt;Maintenance&gt;Schedules&lt;/b&gt; page.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#IPv6_Firewall</more_href>
+	</HT35>
+	<!-- Adv_ipv6_routing.htm -->
+	<HT36>
+		<help_hints>
+			<hint>Each route has a check box next to it, check this box if you want the route to be enabled.</hint>
+			<hint>The name field allows you to specify a name for identification of this route, e.g. 'Network 2'</hint>
+			<hint>The destination IP address is the address of the host or network you wish to reach.</hint>
+			<hint>The netmask field identifies the portion of the destination IP in use.</hint>
+			<hint>The gateway IP address is the IP address of the router, if any, used to reach the specified destination.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#IPv6_Routing</more_href>
+	</HT36>
+	<!-- Admin.htm -->
+	<HT37>
+		<help_hints>
+			<hint>For security reasons, it is recommended that you change the password for the Admin account. Be sure to write down the new passwords to avoid having to reset the router in case they are forgotten.</hint>
+			<hint>Enabling Remote Management, allows you or others to change the router configuration from a computer on the Internet.</hint>
+			<hint>Choose a port to open for remote management.</hint>
+		</help_hints>
+		<more_href>support_maintenance.htm#Admin</more_href>
+	</HT37>
+	<!-- Time.htm -->
+	<HT38>
+		<help_hints>
+			<hint>Good timekeeping is important for accurate logs and scheduled firewall rules.</hint>
+		</help_hints>
+		<more_href>support_maintenance.htm#Time</more_href>
+	</HT38>
+	<!-- Syslog.htm -->
+	<HT39>
+		<help_hints>
+			<hint>A System Logger (syslog) is a server that collects in one place the logs from different sources. If the LAN includes a syslog server, you can use this option to send the router's logs to that server.</hint>
+		</help_hints>
+		<more_href>support_maintenance.htm#SysLog</more_href>
+	</HT39>
+	<!-- System.htm -->
+	<HT40>
+		<help_hints>
+			<hint>Once your router is configured the way you want it, you can save the configuration settings to a configuration file.</hint>
+			<hint>You might need this file so that you can load your configuration later in the event that the router's default settings are restored.</hint>
+			<hint>To save the configuration, click the &lt;strong&gt;Save Configuration&lt;/strong&gt; button.</hint>
+		</help_hints>
+		<more_href>support_maintenance.htm#System</more_href>
+	</HT40>
+	<!-- Firmware.htm -->
+	<HT41>
+		<help_hints>
+			<hint>Firmware updates are released periodically to improve the functionality of your router and to add features. If you run into a problem with a specific feature of the router, check if updated firmware is available for your router.</hint>
+		</help_hints>
+		<more_href>support_maintenance.htm#Firmware</more_href>
+	</HT41>
+	<!-- Schedules.htm -->
+	<HT42>
+		<help_hints>
+			<hint>Schedules are used with a number of other features to define when those features are in effect.</hint>
+			<hint>Give each schedule a name that is meaningful to you. For example, a schedule for Monday through Friday from 3:00pm to 9:00pm, might be called "After School".</hint>
+			<hint>Click &lt;strong&gt;Save&lt;/strong&gt; to add a completed schedule to the list below.</hint>
+			<hint>Click the &lt;strong&gt;Edit&lt;/strong&gt; icon to change an existing schedule.</hint>
+			<hint>Click the &lt;strong&gt;Delete&lt;/strong&gt; icon to permanently delete a schedule.</hint>
+		</help_hints>
+		<more_href>support_maintenance.htm#Schedules</more_href>
+	</HT42>
+	<!-- Wizard_Wireless.htm -->
+	<HT43>
+		<help_hints>
+			<hint>If you are new to wireless networking and have never configured a wireless router before, click on &lt;strong&gt;Wireless Network Setup Wizard&lt;/strong&gt; and the router will guide you through a few simple steps to get your wireless network up and running.</hint>
+			<hint>If you consider yourself an advanced user and have configured a wireless router before, click &lt;strong&gt;Manual Wireless Network Setup&lt;/strong&gt; to input all the settings manually.</hint>
+		</help_hints>
+		<more_href>support_setup.htm#Wireless</more_href>
+	</HT43>
+	<!-- Network.htm -->
+	<HT44>
+		<help_hints>
+			<hint>If you already have a DHCP server on your network or are using static IP addresses on all the devices on your network, uncheck &lt;strong&gt;Enable DHCP Server&lt;/strong&gt; to disable this feature.</hint>
+			<hint>If you have devices on your network that should always have fixed IP addresses, add a &lt;strong&gt;DHCP Reservation&lt;/strong&gt; for each such device.</hint>
+		</help_hints>
+		<more_href>support_setup.htm#Network</more_href>
+	</HT44>
+	<!-- Usb.htm -->
+	<HT45>
+		<help_hints>
+			<hint>Device drivers and the D-Link USB Network Utility must be installed on each computer that will use the device.</hint>
+			<hint>If you have trouble accessing the Internet through the router. Double check the settings you entered on this page and verify with your Internet Service Provider (ISP) if needed.</hint>
+		</help_hints>
+		<more_href>support_setup.htm#USB</more_href>
+	</HT45>
+	<!-- Wireless.htm -->
+	<HT46>
+		<help_hints>
+			<hint>Changing your Wireless Network Name is the first step in securing your wireless network. Change it to a familiar name that does not contain any personal information.</hint>
+			<hint>Enable Auto Channel Scan so that the router can select the best possible channel for your wireless network to operate on.</hint>
+			<hint>Visibility Status is another way to secure your network. With invisible option enabled, no wireless clients will be able to see your wireless network when they perform scan to see what's available. In order for your wireless devices to connect to your AP, you will need to manually enter the Wireless Network Name on each device.</hint>
+			<hint>If you have enabled Wireless Security, make sure you write down the Key or Passphrase that you have configured. You will need to enter this information on any wireless device that you connect to your wireless network.</hint>
+		</help_hints>
+		<more_href>support_setup.htm#Wireless</more_href>
+	</HT46>
+	<!-- Device_Info.htm -->
+	<HT47>
+		<help_hints>
+			<hint>All of your WAN and LAN connection details are displayed here.</hint>
+		</help_hints>
+		<more_href>support_status.htm#Device_Info</more_href>
+	</HT47>
+	<!-- Logs.htm -->
+	<HT48>
+		<help_hints>
+			<hint>Check the log frequently to detect unauthorized network usage.</hint>
+		</help_hints>
+		<more_href>support_status.htm#Logs</more_href>
+	</HT48>
+	<!-- Statistics.htm -->
+	<HT49>
+		<help_hints>
+			<hint>This is a summary of the number of packets that have passed between the WAN and the LAN since the router was last initialized. </hint>
+		</help_hints>
+		<more_href>support_status.htm#Statistics</more_href>
+	</HT49>
+	<!-- Internet_Sessions.htm -->
+	<HT50>
+		<help_hints>
+			<hint>This is a list of all active conversations between WAN computers and LAN computers.</hint>
+		</help_hints>
+		<more_href>support_status.htm#Internet_Sessions</more_href>
+	</HT50>
+	<!-- St_Wireless.htm -->
+	<HT51>
+		<help_hints>
+			<hint>This is a list of all wireless clients that are currently connected to your wireless router.</hint>
+		</help_hints>
+		<more_href>support_status.htm#Wireless</more_href>
+	</HT51>
+	<!-- UPNP.htm -->
+	<HT52>
+		<help_hints>
+			<hint>UPnP helps other UPnP LAN hosts interoperate with the router. Leave the UPnP option enabled as long as the LAN has other UPnP applications.</hint>
+		</help_hints>
+		<more_href>support_advanced.htm#UPNP</more_href>
+	</HT52>
+	<!-- System_Check.htm -->
+	<HT53>
+		<help_hints>
+			<hint>"Ping" checks whether a computer on the Internet is running and responding.Enter either the IP address of the target computer or enter its fully qualified domain name.</hint>
+		</help_hints>
+		<more_href>support_maintenance.htm#System_Check</more_href>
+	</HT53>
+	<!-- Storage.htm-->
+	<HT54>
+		<help_hints>
+			<hint>The Storage page contains information about the USB storage drivers or SD cards currently plugged in to the device.</hint>
+		</help_hints>
+		<more_href>support_setup.htm#Storage</more_href>
+	</HT54>
+	<!-- Dynamic_DNS.htm -->
+	<HT55>
+		<help_hints>
+			<hint>To use this feature, you must first have a Dynamic DNS account from one of the providers in the drop down menu.</hint>
+		</help_hints>
+		<more_href>support_maintenance.htm#Dynamic_DNS</more_href>
+	</HT55>	
+</root>

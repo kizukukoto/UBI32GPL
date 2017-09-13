@@ -1,0 +1,25 @@
+Share Utilities
+
+1.nvram_get("wan_pppoe_main_session");
+	replace:
+		char *wan_pppoe_main_session_value;
+		INIT_NVRAM_VALUE(wan_pppoe_main_session_value);
+		cmd_nvram_get("wan_pppoe_main_session",wan_pppoe_main_session_value);
+		FREE_NVRAM_VALUE(wan_pppoe_main_session_value);
+ 
+
+2.nvram_safe_get("wan_pppoe_main_session");
+	replace:
+		char *wan_pppoe_main_session_value;
+		INIT_NVRAM_VALUE(wan_pppoe_main_session_value);
+		cmd_nvram_safe_get("wan_pppoe_main_session",wan_pppoe_main_session_value);
+		FREE_NVRAM_VALUE(wan_pppoe_main_session_value);
+ 
+
+3.nvram_set("sername"); 
+	replace:
+		cmd_nvram_set("sername"); 
+
+4.nvram_commit();
+	replace:
+		cmd_nvram_commit();

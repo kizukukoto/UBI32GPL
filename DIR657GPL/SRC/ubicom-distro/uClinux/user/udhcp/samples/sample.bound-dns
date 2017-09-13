@@ -1,0 +1,59 @@
+#!/bin/sh
+# Sample udhcpc renew script
+
+RESOLV_CONF="/etc/resolv.conf"
+UDHCPD_CONF="/var/etc/udhcpd.conf"
+ZIPB="0"
+
+[ -n "$broadcast" ] && BROADCAST="broadcast $broadcast"
+[ -n "$subnet" ] && NETMASK="netmask $subnet"
+
+# NickChou add 20090609
+# Maybe DHCP Server is in Zero Installation PPP Bridge(ZIPB) Mode
+# Subnet = 255.255.255.255, IP=InternetIP, Gateway=InternetIP or DHCPServer PrivateIP
+if [ "$subnet"  = "255.255.255.255" ]; then
+	ZIPB="1"
+fi
+
+ifconfig $interface $ip $BROADCAST $NETMASK
+virtual_if=`ifconfig | grep ppp0`
+
+if [ -z "$virtual_if"];then
+if [ -n "$router" ]
+then
+	echo "deleting routers"
+	while route del default gw 0.0.0.0 dev $interface > /dev/null 2>&1
+	do :
+	done
+
+	for i in $router
+	do
+		if [ "$ZIPB" = "1" ]; then
+			route add -host $i dev $interface
+		fi
+		route add default gw $i dev $interface
+	done
+fi
+fi
+
+echo -n > $RESOLV_CONF
+[ -n "$domain" ] && echo domain $domain >> $RESOLV_CONF
+for i in $dns
+do
+	echo adding dns $i
+	echo nameserver $i >> $RESOLV_CONF
+done
+
+# If DNS relay is not enabled, then LAN clients should use the DNS server addresses on the WAN side directly.
+# So, in this case, copy new DNS addresses learned from WAN side to DHCP server config file and restart DHCP server
+# so that when a LAN client renews its IP, DHCP server can provide it the updated DNS addresses.
+dns_relay=`nvram get dns_relay | awk '{print $3}'`
+if [ "$dns_relay" != "1" ] && [ -f $UDHCPD_CONF ]; then
+	dns_server1=`echo $dns | awk '{print $1}'`
+	dns_server2=`echo $dns | awk '{print $2}'`
+	dns_server3=`echo $dns | awk '{print $3}'`
+	sed -i '/^option dns/ c\option dns	'$dns_server1' '$dns_server2' '$dns_server3'' $UDHCPD_CONF
+	killall "udhcpd" > /dev/null 2>&1 &
+	sleep 1
+	udhcpd &
+fi

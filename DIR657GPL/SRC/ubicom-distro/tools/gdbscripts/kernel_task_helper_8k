@@ -1,0 +1,1207 @@
+#
+#  GDB scripts to assist analysis of Ubicom32 Linux system core file.
+#
+#  (C) Copyright 2009, Ubicom Inc.
+#
+# This file is part of the Ubicom32 Linux Kernel Port.
+#
+# The Ubicom32 Linux Kernel Port is free software: you can redistribute
+# it and/or modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation, either version 2 of the
+# License, or (at your option) any later version.
+#
+# The Ubicom32 Linux Kernel Port is distributed in the hope that it
+# will be useful, but WITHOUT ANY WARRANTY; without even the implied
+# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+# the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with the Ubicom32 Linux Kernel Port.  If not,
+# see <http://www.gnu.org/licenses/>.
+#
+#
+
+#
+## Some constants
+# If you change the kernel stack size you will need to update this..
+
+# constants (need to prefix oneday to avoid namespace issues)
+set $THREAD_SIZE = 0x4000
+set $THREAD_MASK = ($THREAD_SIZE - 1)
+set $RAM_START = 0xc0000000
+# 64 meg
+set $RAM_SIZE  = 0x04000000
+set $RAM_END   = $RAM_START + $RAM_SIZE
+
+# OCM
+set $OCM_SIZE  = 32. *  8. * 1024. 
+set $OCM_START = $RAM_START - $OCM_SIZE
+set $OCM_END   = $RAM_START
+
+#
+# kernel constants
+#
+set $PT_SIZE = (sizeof(struct pt_regs))
+
+#
+# Range checking
+#
+define __check_addr
+  set $addr_ok = 0.
+  if ($arg0 >= $OCM_START && $arg0 < $OCM_END)
+    set $addr_ok = 1.
+  end
+
+  if ($arg0 >= $RAM_START && $arg0 < $RAM_END)
+    set $addr_ok = 2.
+  end
+end
+
+define __check_range
+  set $range_ok = 0.
+  if ($arg0 >= $OCM_START && ($arg0 + $arg1) < $OCM_END)
+    set $range_ok = 1.
+  end
+
+  if ($arg0 >= $RAM_START && ($arg0 + $arg1) <= $RAM_END)
+    set $range_ok = 2.
+  end
+end
+
+define __check_addr_with_error
+  __check_addr $arg0
+  if ($addr_ok == 0)
+    printf "0x%x is out of range\n", $arg0
+  end
+end
+
+define __check_range_with_error
+  __check_range $arg0 $arg1
+  if ($range_ok == 0)
+    printf "0x%x-0x%x (len %d) is out of range\n", $arg0, $arg0+$arg1, $arg1
+  end
+end
+
+define __x_i_safe
+  __check_addr_with_error $arg0
+  if $addr_ok
+    x/i $arg0
+  end
+end
+
+# arg1 == a5
+# arg2 == a6
+# arg2 == a7
+# arg3 == pc
+#
+define  __check_frame_with_error
+
+#  printf "\t\t curent_frame a5=%x a6=%x a7=%x pc=%x\n", $a5, $a6, $sp, $pc
+#  printf "\t\t__check_frame a5=%x a6=%x a7=%x pc=%x\n", $arg0, $arg1, $arg2, $arg3
+
+  set $frame_ok = 0
+  __check_addr $arg0
+  if !$addr_ok
+    printf "a5=%x not valid\n", $arg0
+  else
+    __check_addr $arg1
+    if !$addr_ok
+      printf "a6=%x not valid\n", $arg1
+    else
+      __check_addr $arg2
+      if !$addr_ok
+	printf "sp=%x not valid\n", $arg2
+      else
+	__check_addr $arg3
+	if !$addr_ok
+	  printf "pc=%x not valid\n", $arg3
+	else
+	  set $frame_ok = 1
+	end
+      end
+    end
+  end
+end
+
+define __exeception
+  x 0
+end
+
+
+define get_pt_regs_from_kstack
+  set $pt_regs = (struct pt_regs*)((((long)$arg0) & ~$THREAD_MASK) + ($THREAD_SIZE - 8 - $PT_SIZE))
+  printf "$pt_regs is %x\n", $pt_regs
+end
+
+# prints some of the user regs, the first argument can be any part of the kernel stack.
+define print_user_regs 
+  printf "    Original D0\t0x%08x %12d\n", $arg0->original_dn_0, $arg0->original_dn_0
+  printf "         PC\t0x%08x %12d\t ", $arg0->pc, $arg0->pc
+  __x_i_safe $arg0->pc
+  
+  printf "         CSR\t0x%08x %12d\n", $arg0->csr, $arg0->csr
+  if 1 
+# $arg0->frame_type != -1
+    set $i = 0
+    while $i < 16
+      printf "         D%d\t0x%08x %12d ", $i, $arg0->dn[$i], $arg0->dn[$i]
+      set $i = $i + 1
+      printf "         D%d\t0x%08x %12d\n", $i, $arg0->dn[$i], $arg0->dn[$i]
+      set $i = $i + 1
+    end
+  else
+    set $i = 13
+    printf "         D%d\t0x%08x %12d ", $i, $arg0->dn[$i], $arg0->dn[$i]
+    set $i = $i + 1
+    printf "         D%d\t0x%08x %12d\n", $i, $arg0->dn[$i], $arg0->dn[$i]
+    set $i = $i + 1
+  end
+      
+  
+  set $i = 0
+  while $i < 8 
+    printf "         A%d\t0x%08x %12d ", $i, $arg0->an[$i], $arg0->an[$i]
+    set $i = $i + 1
+    printf "         A%d\t0x%08x %12d\n", $i, $arg0->an[$i], $arg0->an[$i]
+    set $i = $i + 1
+  end
+end
+
+define backtrace_task_stub 
+  printf "Back trace disabled\n"
+end
+
+define backtrace_task
+
+  set $old_thread = (($rosr >> 2) & 0x1F) + 1
+  if !$LINUX_THREAD
+    printf "ERROR: $LINUX_THREAD no set use set $LINUX_THREAD=N (thread 1==1)\n"
+    __linux_thread_not_set_exception
+  end
+    
+  if $old_thread != $LINUX_THREAD
+    thread $LINUX_THREAD
+    printf "Changing to thread %d\n", $LINUX_THREAD
+  end
+
+  # save the state of the core
+  set $_old_sp = $sp
+  set $_old_a5 = $a5
+  set $_old_a6 = $a6
+  set $_old_pc = $pc
+
+  __check_frame_with_error $a5 $a6 $sp $pc
+
+  # is the current task the active task.. if not we need to correct the context.
+  if ($current_task != per_cpu__runqueues->curr)  
+    printf "Current Task not Active, Changing context, pid %d\n", $current_task->pid
+    __check_frame_with_error $current_task->thread->a5 $current_task->thread->a6 $current_task->thread->sp $current_task->thread->a5
+    if $frame_ok
+      set $a5 = $current_task->thread->a5
+      set $a6 = $current_task->thread->a6
+      set $pc = $current_task->thread->a5
+      set $sp = $current_task->thread->sp
+    end
+  else
+    # check if we are in an irq and if we are print that bt first and change context to
+    # the task we interrupted
+    if per_cpu____irq_regs
+      printf "\t---- IRQ ----\n"
+      bt 
+      printf "Changing to task context, pid %d\n", $current_task->pid
+      __check_frame_with_error per_cpu____irq_regs->an[5] per_cpu____irq_regs->an[6] per_cpu____irq_regs->an[7] per_cpu____irq_regs->pc
+      if $frame_ok
+	set $a5 = per_cpu____irq_regs->an[5]
+	set $a6 = per_cpu____irq_regs->an[6]
+	set $pc = per_cpu____irq_regs->pc
+	set $sp = per_cpu____irq_regs->an[7]
+      end
+    end
+  end
+
+  if $current_task_pt_regs
+    # must be in the stopped in the kernel
+    printf "\t---- Kernel    PID %d --- \n", $current_task->pid
+    bt
+
+    # assume the first instruction after returning to users space is to pop a5 off the
+    # stack
+    # pop a5
+      
+    __check_range_with_error $current_task_pt_regs->an[7] 8
+    if ($range_ok) 
+      set $new_a5 = *(long*)$current_task_pt_regs->an[7]
+      set $new_sp = $current_task_pt_regs->an[7] + 4
+      set $new_pc = $current_task_pt_regs->an[5]
+      __check_frame_with_error $new_a5  $current_task_pt_regs->an[6] $new_sp $new_pc
+
+      set $a5 = $new_a5
+      set $a6 = $current_task_pt_regs->an[6] 
+      # and advanced sp
+      set $sp = $new_sp
+      # advanced pc
+      set $pc = $new_pc
+      
+      # do user space backtrace
+      printf "\t---- Userspace PID %d ----\n",  $current_task->pid
+      bt
+    end
+  else
+    # are we in kernel or userspace code
+    if $current_task_in_userspace
+      printf "\t---- Userspace PID %d----\n",  $current_task->pid
+    else 
+      printf "\t---- Kernel    PID %d --- \n", $current_task->pid
+    end
+    bt
+  end
+
+  # restore what we messed up
+  set $sp = $_old_sp
+  set $a5 = $_old_a5
+  set $a6 = $_old_a6
+  set $pc = $_old_pc
+  
+
+  if $old_thread != $LINUX_THREAD
+    thread $old_thread
+  end
+  printf "BACK TRACE CLEANUP OK\n"
+end
+document backtrace_task
+Prints the back trace for the current task.
+end
+
+define print_task_memory
+  set $vml = $arg0->mm->context.vmlist
+  printf "Allocated memory\n"
+  set $total_mem = 0
+  while $vml
+     set $vma = $vml->vma
+     set $mem_size = $vma->vm_end - $vma->vm_start
+     printf "Region start %p end %p size %8d : ", $vma->vm_start, $vma->vm_end, $mem_size
+	 if (($vma->vm_flags & 0xf) == 0x7)
+			printf "Stack - "
+	 end
+	 if (($vma->vm_flags & 0xf) == 0x3)
+        printf "Data  - "
+	 end
+	 if (($vma->vm_flags & 0xf) == 0xd) || (($vma->vm_flags & 0xf) == 0x5)
+       	printf "Code  - "
+	 end
+	 if $vma->vm_flags & 1
+		printf "r"
+	 end
+	 if $vma->vm_flags & 2
+		printf "w"
+	 end
+	 if $vma->vm_flags & 4
+		printf "x"
+	 end
+	 if $vma->vm_flags & 8
+		printf "s"
+	 end
+	 printf "\n"
+     set $total_mem = $total_mem + $mem_size
+     set $vml = $vml->next
+  end
+  printf "Total size %d\n\n", $total_mem
+end 
+
+set $ct_format_extra = 0
+
+#
+# print_task
+#
+define print_task
+  if $arg0
+    set $_mm = $arg0->mm
+    printf "Task %p - pid %3d '%s', state %d, prio %d, ppid %d\n", $arg0, $arg0->pid, (char*)$arg0->comm, $arg0->state, $arg0->prio, $arg0->parent->pid
+    
+    if $_mm
+      printf "  .. User Space MM=%p Code %p to %p Data %p to %p PGD=%p\n", $_mm, $_mm->start_code, $_mm->end_code, $_mm->start_data, $_mm->end_data, $_mm->pgd
+    end
+    if $ct_format_extra == 1
+      printf "  .. uid %d gid %d, thread info %p, pt_regs %p\n", $arg0->uid, $arg0->gid, $current_task_thread_info, $current_task_pt_regs
+
+      set $_irq = 0
+      set $_kernel_pc = 0
+      set $_userspace_pc = 0
+      
+      if ($current_task == per_cpu__runqueues->curr)  
+	# we are looking at the active task
+	if per_cpu____irq_regs
+	  printf "  .. ***** Active In IRQ *****\n"
+	  set $_irq = 1
+	  set $_kernel_pc = per_cpu____irq_regs->pc
+	end
+
+	if $_mm && $current_task_pt_regs
+	    set $_userspace_pc = $current_task_pt_regs->pc
+	end
+      else 
+	# probably stopped in schedule
+	if $_mm && $current_task_pt_regs
+	  set $_userspace_pc = $current_task_pt_regs->pc
+	end
+	
+	set $_kernel_pc = $current_task->thread.a5
+      end
+
+      if $_kernel_pc
+	printf "  .. Kernel    stopped at "
+	__x_i_safe $_kernel_pc
+      else 
+	if $_userspace_pc || !$_mm
+	  printf "  .. ***** Active In Kernel *****\n"
+	end
+      end
+
+      if $_userspace_pc
+	printf "  .. Userspace stopped at "
+	__x_i_safe $_userspace_pc
+	else 
+	  if $_mm
+	    printf "  .. ***** Active In Userspace *****\n"
+	  end
+      end
+      
+      printf "\n"
+
+    end
+  else
+    printf "No Task Specified"
+  end
+end
+
+#
+# determine linux task
+# 	attemps to determine which thread is running the linux mainline
+#
+define determine_linux_task
+    set $old_thread = (($rosr >> 2) & 0x1F) + 1
+    set $i = 1
+
+    set $real_current_task = per_cpu__runqueues->curr
+    
+    while $i <= 16
+      set $bit = 1 << ($i-1)
+      if  ($bit & $mt_en) 
+	# switch to thread look at the stack ptr see if it matches the current task
+	thread $i
+	if (($sp & ~$THREAD_MASK) == $real_current_task->stack) 
+	  printf "\n******* INFO: The Linux Thread has been determined to be %d (kstack) ****** \n", $i
+	  set $LINUX_THREAD = $i
+	  loop_break
+	end
+	# if the stack is in the same 4k page as real_current task
+	if ($real_current_task->mm && ($real_current_task->mm->start_stack & ~0x1fff) <= ($sp & ~0x1fff))
+	  printf "\n******* INFO: The Linux Thread has been determined to be %d (ustack) ****** \n", $i
+	  set $LINUX_THREAD = $i
+	  loop_break
+	end
+      end
+      set $i = $i + 1
+    end
+    thread $old_thread
+end
+
+#
+# virt_to_phys
+#
+define virt_to_phys
+  set $pgd = (int *)$current_task->mm->pgd
+  set $pgd_index = ($arg0 >> 26) &0x3f
+  set $pgd_data = $pgd[$pgd_index]
+
+  if ($pgd_data & 0x1)
+    set $pgd_data = $pgd_data & (~0x3fff)
+    set $pte_base = (int *)$pgd_data
+    set $pte_index = ($arg0 >> 14) & 0xfff
+    set $pte = $pte_base[$pte_index]
+    if ($pte & 1)
+      set $pte = $pte & (~0x3fff)
+      set $vtophys_res = $pte | ($arg0 & 0x3fff)
+      printf "vtop %p = %p\n", $arg0,  (unsigned int)$vtophys_res
+    else
+      set $vtophys_res = 0
+    end
+  else
+    set $vtophys_res = 0   
+  end
+end
+
+
+#
+# print_current_size
+#
+define print_current_size
+  if $arg0
+    printf "Task %p - pid %5d '%-16s', ppid %5d", $arg0, $arg0->pid, (char*)$arg0->comm, $arg0->parent->pid
+    set $_mm = $arg0->mm
+    if $_mm
+      printf "  .. Code size %8d, ", $_mm->end_code - $_mm->start_code
+      printf " Data size %8d\n", $_mm->end_data - $_mm->start_data
+    end
+  end
+end
+
+#
+# print_current_task
+#
+define print_current_task
+  printf "Current "
+  print_task $current_task
+end
+
+#
+# get_next_thread
+#
+define get_next_thread
+  set $_offset = (long)&(((struct task_struct *)0)->thread_group)
+  set $next_task = (struct task_struct *)(((long)$current_task->thread_group->next) - $_offset)
+end
+
+#
+# get_next_task
+#
+define get_next_task
+  set $_offset = (long)&(((struct task_struct *)0)->tasks)
+  set $next_task = (struct task_struct *)(((long)$current_task->tasks->next) - $_offset)
+end
+
+#
+# get_next_task
+#
+define next_sibling
+  set $_offset = (long)&(((struct task_struct *)0)->sibling)
+  if $current_sibling->sibling->next != $child_head
+    set $current_sibling = (struct task_struct *)(((long)$current_sibling->sibling->next) - $_offset)
+  else 
+    set $current_sibling = 0
+  end
+end
+
+#
+# first_sibling
+#
+define first_sibling
+  set $_offset = (long)&(((struct task_struct *)0)->sibling)
+  
+  set $child_head = 0
+  set $current_sibling = 0
+  if $current_task->children->next != $current_task->children->prev
+    set $current_sibling = (struct task_struct *)(((long)$current_task->children->next) - $_offset)
+    set $child_head = &$current_task->children
+  else
+    printf "$current_task does have any children\n"
+  end
+end
+
+#
+# update_current_task_locals
+#
+define update_current_task_locals
+  set $current_task_thread_info = (struct thread_info*)((long)$current_task->stack & ~$THREAD_MASK)
+
+  set $current_task_pt_regs = 0
+  set $current_task_in_userspace = 0
+  
+  if $current_task->mm
+    set $_pt_regs = (struct pt_regs*)((((long)$current_task->stack) & ~$THREAD_MASK) + ($THREAD_SIZE - 8 - $PT_SIZE))
+    if $_pt_regs->frame_type
+      set $current_task_pt_regs = $_pt_regs
+    else
+      # add userspace check to be exact
+      set $current_task_in_userspace = 1
+    end
+  end
+
+  get_next_task
+end
+
+#
+# first_task_quiet
+#
+define first_task_quiet
+  set $current_task = &init_task
+  set $first_task = $current_task
+  update_current_task_locals
+end
+
+#
+# first_task
+#
+define first_task
+  first_task_quiet
+  print_current_task
+  backtrace_task
+end
+document first_task
+Changes $current_task to the first task in the task list. Prints the task
+end
+
+
+
+#
+# get_current_from_sp
+#
+define get_current_from_sp
+  __check_addr $sp
+  if ($addr_ok)
+    set $current_task = ((struct thread_info*)((long)$sp & ~$THREAD_MASK))->task  
+    set $first_task = $current_task
+    update_current_task_locals
+    print_current_task
+  end
+end
+
+#
+# next_task_quiet
+#
+define next_task_quiet
+  get_next_task
+  set $current_task = $next_task
+  set $current_task_thread_info = (struct thread_info*)((long)$current_task->stack & ~$THREAD_MASK)
+  set $current_task_pt_regs = (struct pt_regs*)((((long)$current_task->stack) & ~$THREAD_MASK) + ($THREAD_SIZE - 8 - $PT_SIZE))
+
+  if $current_task == $first_task
+    set $current_task = 0
+  else
+    update_current_task_locals
+  end
+end
+
+#
+# next_task
+#
+define next_task
+  next_task_quiet
+  print_current_task
+  backtrace_task
+end
+document next_task
+Changes $current_task to the next task in the task list. Prints the task
+end
+
+#
+# list_tasks
+#
+define list_tasks
+  set $old_task = $current_task
+  first_task_quiet
+  while $current_task
+    print_task $current_task
+    next_task_quiet
+  end
+  set $current_task = $old_task
+end
+
+#
+# list_children_of_current_task
+#
+define list_children_of_current_task
+  set $old_task = $current_task
+  print_task $current_task
+  first_sibling
+  while $current_sibling
+    print_task $current_sibling
+    next_sibling
+  end
+end
+
+#
+# list_user_task_sizes
+#
+define list_user_task_sizes
+  set $old_task = $current_task
+  first_task_quiet
+  while $current_task
+    if $current_task->mm
+      print_current_size $current_task
+    end
+    next_task_quiet
+  end
+  set $current_task = $old_task
+end
+
+#
+# Memory core dumper
+#
+define coredump_task_memory
+  set $vml = $arg0->context.vmlist
+  set $mmap_mode = 0
+  if $vml == 0
+     set $vml = $arg0->mmap
+     set $mmap_mode = 1
+  end
+
+  printf"Dumping memory\n"
+  set $counter = 1
+  while $vml
+     set $counter = $counter + 1
+     if $counter == 50
+        printf ".\n"
+        set $counter = 1
+     else
+        printf "."
+     end
+     if $mmap_mode == 1
+        set $vma = $vml
+     else
+        set $vma = $vml->vma
+     end
+     set $mem_size = $vma->vm_end - $vma->vm_start
+     set $vm_start = $vma->vm_start
+     printf "Start loop\n"
+     while $mem_size
+       virt_to_phys $vm_start
+       printf "Virt addr %p phy addr %p\n", $vm_start, $vtophys_res
+       if $vtophys_res
+       	  user-coredump-add-virtual-mem $vm_start $vtophys_res 0x4000
+       end
+       set $mem_size = $mem_size - 0x4000
+       set $vm_start = $vm_start + 0x4000
+     end
+     if $mmap_mode == 1
+        set $vml = $vml->vm_next
+     else
+        set $vml = $vml->next
+     end
+  end
+  printf "\nDone dumping memory.\n\n"
+end 
+
+#
+# user_coredump
+#
+define user_coredump
+  set $my_old_task = $current_task
+  set_current_task_by_pid $arg0
+  set $common_mm = $current_task->mm
+  set $foo = sizeof(struct pt_regs)
+  virt_to_phys $current_task->mm->arg_start
+  set $arg_start = $vtophys_res 
+  virt_to_phys $current_task->mm->arg_end
+  set $arg_end = $vtophys_res 
+  create-user-coredump &$current_task->comm $arg_start $arg_end
+  first_task_quiet
+  while $current_task
+    if $current_task->mm == $common_mm
+      #print_current_task
+      #print_task_memory $current_task
+      printf "Task %p - pid %3d '%s' pt_regs %p\n", $current_task, $current_task->pid, (char*)$current_task->comm, $current_task_pt_regs
+      printf "loadmap %p\n", &$current_task->mm->context.exec_fdpic_loadmap
+      user-coredump-add-reg &$current_task->pid $current_task_pt_regs &$current_task->mm->context.exec_fdpic_loadmap $foo
+    end
+    next_task_quiet
+  end
+  set_current_task_by_pid $arg0
+  coredump_task_memory $common_mm
+  printf "Calling close user coredump."
+  close-user-coredump
+  printf "Back after closing coredump."
+  set $current_task = $my_old_task
+end
+
+#
+# list_user_brothers
+#
+define list_user_brothers
+  set $old_task = $current_task
+  set $common_mm = $current_task->mm
+  first_task_quiet
+  while $current_task
+    if $current_task->mm == $common_mm
+      #print_current_task
+      #print_task_memory $current_task
+      printf "Task %p - pid %3d '%s' pt_regs %p\n", $current_task, $current_task->pid, (char*)$current_task->comm, $current_task_pt_regs
+      printf "loadmap %p\n", &$current_task->mm->context.exec_fdpic_loadmap
+    end
+    next_task_quiet
+  end
+  set $current_task = $old_task
+end
+
+
+#
+# user_tasks
+#
+define user_tasks
+  set $old_task = $current_task
+  first_task_quiet
+  while $current_task
+    if $current_task->mm
+       if ($current_task == per_cpu__runqueues->curr)  
+           printf "\n***** Active Task *****\n\t Task %p - pid %3d '%s'\n\n", $current_task, $current_task->pid, (char*)$current_task->comm
+       else
+           printf "Task %p - pid %3d '%s'\n", $current_task, $current_task->pid, (char*)$current_task->comm
+       end
+    end
+    next_task_quiet
+  end
+  set $current_task = $old_task
+end
+
+#
+# list_user_tasks
+#
+define list_user_tasks
+  set $old_task = $current_task
+  first_task_quiet
+  while $current_task
+    if $current_task->mm
+      print_current_task
+      print_task_memory $current_task
+    end
+    next_task_quiet
+  end
+  set $current_task = $old_task
+end
+
+#
+# set_current_task_by_pid
+#
+define set_current_task_by_pid
+  set $old_task = $current_task
+  first_task_quiet
+  while $current_task
+    if $current_task->pid == $arg0
+      print_current_task
+      loop_break
+    end
+    next_task_quiet
+  end
+
+  if $current_task == 0
+    printf "\tPID %d Not Found\n", $arg0
+    set $current_task = $old_task
+  end
+
+end
+document set_current_task_by_pid
+set_current_task_by_pid <pid>
+Changes $current_task to pid. Prints the current task.
+end
+
+#
+# set_current_task_by_pid
+#
+define load_symbols_for_pid
+  set_current_task_by_pid $arg1
+  if $current_task 
+    if $current_task->mm
+      echo Load Symbols in $arg0 pid=$arg1
+      printf " at %p\n",  $current_task->mm->start_code
+      add-symbol-file $arg0 $current_task->mm->start_code -s .data $current_task->mm->start_data -s .bss $current_task->mm->end_data
+    else 
+      printf "Error: PID %p does not appear to be a userspace task", $arg0
+    end
+  end
+end
+
+document load_symbols_for_pid
+load_symbols_for_pid <elf file> <pid>
+
+Changes $current_task to pid. If found and if $current_task is a user
+space app loads <elf file> at the correct place.
+
+end
+
+#
+# short hand macros
+#
+define current_task
+
+  set $current_task = per_cpu__runqueues->curr
+  set $real_current_task = $curent_task
+  set $first_task = $current_task
+  update_current_task_locals
+  print_current_task
+  backtrace_task
+end
+
+define ct
+  current_task
+end
+
+define lut
+  list_user_tasks
+end
+
+define lt
+  list_tasks
+end
+
+determine_linux_task
+
+
+
+#
+# Core dump analysis functions
+#
+
+define vma_list
+	# find the vm_area_struct pointer from the "rb_next" structure
+	set $b = ((char *) $arg0) - 24
+	set $vml = ((struct vm_area_struct *) $b)
+	set $total_mem = 0
+	while $vml != 0x0
+		# Get size
+		set $mem_size = $vml->vm_end - $vml->vm_start
+		printf "Region start %p end %p size %8d : ", $vml->vm_start, $vml->vm_end, $mem_size
+		if (($vml->vm_flags & 0xf) == 0x7)
+			printf "Stack - "
+		end
+		if (($vml->vm_flags & 0xf) == 0x3)
+            printf "Data  - "
+		end
+		if (($vml->vm_flags & 0xf) == 0xd) || (($vml->vm_flags & 0xf) == 0x5)
+           	printf "Code  - "
+		end
+		if $vml->vm_flags & 1
+			printf "r"
+		end
+		if $vml->vm_flags & 2
+			printf "w"
+		end
+		if $vml->vm_flags & 4
+			printf "x"
+		end
+		if $vml->vm_flags & 8
+			printf "s"
+		end
+		# Not every block has vm_mm. Otherwise list function using memory
+		if $vml->vm_mm != 0
+			printf "	Used by code %p - %p\n", $vml->vm_mm->start_code, $vml->vm_mm->end_code
+		else
+			printf "\n"
+		end
+		set $total_mem = $total_mem + $mem_size
+		set $vml = $vml->vm_next
+	end
+	# It seems $vml->next is always null in this rb tree operation so Total size is commented out
+	#printf "Total size %d\n\n", $total_mem
+end 
+
+# Print all user space allocations thru vma_tree
+# It seems there are no dups in this list even if the block is used by many processes
+# This is somewhat of a hack since we have to traverse an rb tree without recursion
+#   or without a stack we can use
+define print_vma_tree
+	# Start with the global vma_tree
+	# Follow left pointer all the way then move up thru the right pointers
+	set $a=((struct rb_node *)nommu_vma_tree)
+	set $rb = $a->rb_left
+	set $sb = $rb
+	# Go thru all pointers left and right and parent to traverse the tree
+	while $rb != 0
+		# Print memory usage for this entry
+		vma_list $rb
+		# Go thru child pointers
+		# if we have left, go there. If not, go to right.
+		if $rb->rb_left || $rb->rb_right
+			if $rb->rb_left
+				set $rb = $rb->rb_left
+			else
+				set $rb = $rb->rb_right
+			end
+		else
+			# If no child, find sibling
+			# First entry is double used for parent (2 lsbs are 0) or color (30 msbs are 0)
+			# Find parent
+			set $tb = ((struct rb_node *) ($rb->rb_parent_color & ~3))
+			if $tb->rb_right == 0
+				set $rb = $tb
+				set $tb = ((struct rb_node *) ($rb->rb_parent_color & ~3))
+			end
+			# If we are at the rightmost leaf, go back all the way to find parent
+			while $tb->rb_right == $rb
+				set $rb = $tb
+				set $tb = ((struct rb_node *) ($rb->rb_parent_color & ~3))
+			end
+			# Get parent
+			set $sb = ((struct rb_node *) ($rb->rb_parent_color & ~3))
+			# If we have only one child, we must have been here. GO up one more.
+			while $sb->rb_left == 0 || $sb->rb_right == 0
+				set $sb = ((struct rb_node *) ($sb->rb_parent_color & ~3))
+			end
+			# Get sibling
+			set $rb = ((struct rb_node *) $sb->rb_right)
+		end
+	end
+end
+
+#
+# print_buddy
+#
+define print_buddy
+	#start with the global zone
+	set $b = contig_page_data->node_zones[1]
+	set $total = 0
+	printf "      	4K	8K	16K	32K	64K	128K	256K	512K	1M	2M	4M	8M	16M	32M\n"
+	printf "Normal	"
+	set $i = 0
+    # is there a way to get the number of buddy blocks?
+	while $i < 14
+		# print number of free blocks of size 4K * 2 ^ $i
+		printf "%2d	", $b->free_area[$i]->nr_free
+		if $b->free_area[$i]->nr_free != 0
+			# add to total
+			set $total = $total + $b->free_area[$i]->nr_free * (4 << $i)
+		end
+		set $i = $i + 1
+	end
+	printf "\n Total is %6dK\n", $total
+end
+
+define print_slab
+	#start with the global chain
+	set $q = cache_chain->next
+	printf "Name                                Objs  Page "
+	printf "                                       \n"
+	printf "                                    per   per  "
+	printf "            Batch                      \n"
+	printf "Name                 Actsum   Size  Slab  Slab  "
+	printf "     Limit count Shared      Total (KB)\n"
+    set $total_size = 0
+	while $q
+		# find the kmem_cache pointer from the "next" structure
+		set $x = (int *) $q
+		set $x = $x - 17
+		set $p = ((struct kmem_cache *) ($x))
+		# count active objs from full and partial slabs
+		if $p->name != 0
+			set $l = ((struct kmem_list3 *) $p->nodelists[0])
+			set $sl = ((struct slab *) $l->slabs_full)
+			set $ii = 0
+			set $ep = ((struct slab *) $sl->list.prev)
+			# loop thru every alloc in the slab 
+			while $sl != $ep
+				set $ii = $ii + $p->num
+				set $sl = ((struct slab *) $sl->list.next)
+			end
+			# ideally we should count active objs from full and partial slabs
+			# but partial slabs are difficult to traverse?
+			# so for now active objs are not accurate
+			#set $pl = ((struct slab *) $l->slabs_partial)
+			printf "%-20s %5d %9d ", $p->name, $ii, $p->buffer_size
+			printf "%4d %4d : ", $p->num, (1 << $p->gfporder)
+			printf "tune %4d %4d %4d : ", $p->limit, $p->batchcount, $p->shared
+			set $slab_size = ($ii / $p->num) * 4 * (1 << $p->gfporder)
+			printf "total %6dK", $slab_size
+			printf "\n"
+			set $total_size = $total_size + $slab_size
+			set $q = $q->next
+		else
+			set $q = 0
+		end
+	end
+	printf "                                                "
+	printf "                              %dK\n", $total_size
+end
+
+#
+# print_slab_debug
+#
+define print_slab_debug
+	#start with the global chain
+	set $q = cache_chain->next
+	printf "Name                                Objs  Page "
+	printf "                                                  \n"
+	printf "                                    per   per  "
+	printf "            Batch                    High         \n"
+	printf "Name                 Actsum   Size  Slab  Slab  "
+	printf "     Limit count Shared      Active mark   Allocs        Total (KB)\n"
+	while $q
+		# find the kmem_cache pointer from the "next" structure
+		set $x = (int *) $q
+		set $x = $x - 17
+		set $p = ((struct kmem_cache *) ($x))
+		# count active objs from full and partial slabs
+		set $l = ((struct kmem_list3 *) $p->nodelists[0])
+		set $sl = ((struct slab *) $l->slabs_full)
+		set $ii = 0
+		set $ep = ((struct slab *) $sl->list.prev)
+		# loop thru every alloc in the slab 
+		while $sl != $ep
+			set $ii = $ii + $p->num
+			set $sl = ((struct slab *) $sl->list.next)
+		end
+		# ideally we should count active objs from full and partial slabs
+		# but partial slabs are difficult to traverse?
+		# so for now active objs are not accurate
+		#set $pl = ((struct slab *) $l->slabs_partial)
+		printf "%-20s %4d %9d ", $p->name, $ii, $p->buffer_size
+		printf "%4d %4d : ", $p->num, (1 << $p->gfporder)
+		printf "tune %4d %4d %4d : ", $p->limit, $p->batchcount, $p->shared
+		#printf "slabdata %4d %4d %4d : ", 0, 0, 0
+		printf "stats %5d %6d %6d : ", $p->num_active, $p->high_mark, $p->num_allocations
+		printf "total %6dK\n", ($p->num_active / $p->num) * 4 * (1 << $p->gfporder)
+		set $q = $q->next
+	end
+end
+
+define print_callers
+	#start with the global chain
+    set $q = cache_chain->next
+	printf "\nThis requires SLAB DEBUG on\n\n"
+	printf "This takes a while. Please be patient.\n\n"
+    while $q
+		# find the kmem_cache pointer from the "next" structure
+        set $x = (int *) $q
+        set $x = $x - 17
+        set $p = ((struct kmem_cache *) ($x))
+		printf "----------------------------------------\n"
+		printf "%-20s %9d %4d %4d\n", $p->name, $p->buffer_size, $p->num, $p->num_active
+		set $l = ((struct kmem_list3 *) $p->nodelists[0])
+		# get info from slab (only full slabs are proecessed)
+		set $sl = ((struct slab *) $l->slabs_full)
+		# get the caller pointer
+		set $cp = ((unsigned int *) $sl->s_mem) + ($p->buffer_size/4) - 1 
+		set $old_cp_count = 0
+		set $old_cp = *$cp
+		set $ii = 0
+		# loop thru every alloc in the slab 
+		while $ii < $p->num_active
+			# count number of calls from same function (if only called sequentially)
+			if *$cp == $old_cp
+				set $old_cp_count = $old_cp_count + 1
+			else
+				printf "0x%08x calls %d times\n", *$cp, $old_cp_count
+				set $old_cp_count = 1
+				set $old_cp = *$cp
+			end
+			# Every alloc is "buffer_size" apart
+			set $cp += ($p->buffer_size/4)
+			set $ii = $ii + 1
+			if ($ii % $p->num) == 0 
+				# if current slab is exhausted, go to next one
+				set $tl = ((struct slab *) $sl->list.next)
+				set $cp = ((unsigned int *) $tl->s_mem) + ($p->buffer_size/4) - 1	
+			end
+		end
+		# print the last item
+		if $ii != 0
+			printf "0x%08x calls %d times\n", *$cp, $old_cp_count
+		end
+		# loop thru all slab entries in the chain
+		set $q = $q->next
+	end
+end
+
+#
+# End of core dump analysis code
+#
+
+#
+# cast list entry to struct module
+#
+define list2module
+  set $cur_list_addr= (int) $cur_list
+  set $cur_module=(struct module *)($cur_list_addr - 4)
+end
+
+#
+# display module
+#
+define print_module
+  printf "%24s\t\t\t%p\t%p\t%d\n", $cur_module->name, $cur_module->module_core, $cur_module->arch.ocm_inst, $cur_module->arch.ocm_inst_size 
+end
+
+#
+# get next module
+#
+define next_module
+  virt_to_phys (int) $cur_module->list.next
+  set $cur_list= $vtophys_res
+  list2module
+end
+
+#
+# get first module
+#
+define first_module
+  virt_to_phys (int) modules->next
+  set $cur_list= $vtophys_res
+  list2module
+end
+
+#
+# print_first_module
+#
+define print_first_module
+  first_module
+  print_module
+end
+
+define print_next_module
+  next_module
+  print_module
+end
+
+define module_addrs
+  first_module
+  while $cur_list != &modules
+    print_module
+    next_module
+  end
+end
+
+define module_load_internal
+  first_module
+  while $cur_list != &modules
+    echo add-module-file $arg0
+    printf "/%s.ko %p %p\n", $cur_module->name, $cur_module->module_core, $cur_module->arch.ocm_inst
+    next_module
+  end
+end
+
+define module_load
+  echo module_path is: $arg0
+  echo To load all module symbols, please copy and paste the following lines:
+  printf "\n\n"  
+
+  printf "set confirm off\n"
+  module_load_internal $arg0
+  printf "set confirm on\n\n"
+end
+
+
+
+define kernel_and_module_load
+  echo uClinux path is: $arg0\n
+  echo kernel image is: $arg0/linux-2.6.x/vmlinux\n
+  echo module path is: $arg0/$arg1\
+  echo \n\n
+
+  set confirm off
+  add-symbol-file $arg0/linux-2.6.x/vmlinux 0x40400000
+  set confirm on
+
+  echo kernel symbol has been loaded but modules will not, please copy and paste the following lines:
+  echo \n\n
+
+  printf "set confirm off\n"
+  module_load_internal $arg0/$arg1
+  printf "set confirm on\n\n"
+
+end
+
+define load_with_ext
+  add-symbol-file $arg0/$arg1 $arg2
+end
+
+# --- not ready, do not call this
+define module_load2
+  echo module_path is: $arg0
+  printf "\n\n"  
+
+  set confirm off
+  first_module
+  while $cur_list != &modules
+    load_with_ext $arg0 $cur_module->name.ko $cur_module->module_core 
+    next_module
+  end
+  set confirm on
+end

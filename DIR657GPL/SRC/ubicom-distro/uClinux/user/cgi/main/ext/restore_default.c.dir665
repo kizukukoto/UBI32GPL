@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <sys/types.h>
+
+#include <unistd.h>
+#include "libdb.h"
+#include "ssc.h"
+
+extern struct ssc_s *SSC_OBJS;
+void *do_restore_defaults(struct ssc_s *obj)
+{
+	system("nvram restore_default");
+        __do_reboot(obj);
+
+        return get_response_page();
+}
+
+/* XXX: porting from 130/330, keep pptp client terminate */
+static void terminate_ppp_before_reboot()
+{
+        system("killall ifmonitor");
+        system("killall l2tpd");
+        system("killall pppd");
+        system("killall pptp");
+        sleep(2);
+}
+
+/* XXX porting from 130/330,
+ * __do_reboot() and do_reboot() are the same behavior? */
+inline void __do_reboot(struct ssc_s *obj)
+{
+        pid_t pid;
+
+        terminate_ppp_before_reboot();
+
+        pid = fork();
+
+        if (pid == -1)
+                return; /*FIXME: should returned error page*/
+
+        if (pid == 0) {
+                close(0);
+                close(1);
+                close(2);
+                sleep(3);
+                system("/sbin/reboot");;
+                exit(0);
+        }
+}
+
+void *do_reboot(struct ssc_s *obj)
+{
+        pid_t pid;
+
+        pid = fork();
+
+        terminate_ppp_before_reboot();
+
+        if (pid == -1)
+                return NULL; /*FIXME: should returned error page*/
+
+        if (pid == 0) {
+                close(0);
+                close(1);
+                close(2);
+                sleep(2);
+                system("/sbin/reboot");;
+                exit(0);
+        }/*lse {
+                t = "count_down.asp";
+                setenv("html_response_return_page", "tools_firmw.asp", 1);
+                setenv("html_response_message", "The router is rebooting ", 1);
+                setenv("result_timer", "55", 1);
+        out:
+                return t;
+        }*/
+        return get_response_page();
+}

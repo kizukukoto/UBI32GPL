@@ -1,0 +1,29 @@
+object TProjectNode
+  Name = 'Archs'
+  Description = 
+    'A list of all available architectures, both simple and compound ' +
+    'architectures.'
+  FileName = 'C:\Ubicom\sdk.b76\scripts\Archs.lpj'
+  Lists = <
+    item
+      List.Strings = (
+)
+      ListName = 'LINUX'
+    end
+    item
+      List.Strings = (
+)
+      ListName = 'IP5k'
+    end
+    item
+      List.Strings = (
+)
+      ListName = 'IP3k'
+    end
+    item
+      List.Strings = (
+)
+      ListName = 'IP2k'
+    end>
+  Architecture = kAny
+end

@@ -1,0 +1,44 @@
+#!/bin/sh
+echo "##################### Post customer settings #####################"
+
+silex_start(){
+echo -n 10240 > /proc/sys/vm/min_free_kbytes
+#echo -n 500 > /proc/sys/vm/dirty_expire_centisecs
+#echo -n 100 > /proc/sys/vm/dirty_writeback_centisecs
+
+sleep 5
+
+echo "Initialize silex modules start"
+
+cp /etc/samba/smb.conf /etc/config/smb.conf
+sleep 1
+
+/etc/init.d/rc.hotplug start
+sleep 5
+
+/etc/init.d/rc.sxuptp start
+/etc/init.d/rc.usbstorage start
+}
+
+silex_stop(){
+/etc/init.d/rc.usbstorage stop
+/etc/init.d/rc.sxuptp stop
+/etc/init.d/rc.hotplug stop
+}
+
+silex_restart(){
+	silex_stop
+	sleep 1
+	silex_start
+}
+
+case "$1" in
+'start')
+	silex_start ;;
+'stop')
+	silex_stop ;;
+'restart')
+	silex_restart ;;
+*)
+	echo "usage $0 start|stop|restart"
+esac

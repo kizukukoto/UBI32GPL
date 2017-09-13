@@ -1,0 +1,57 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+#
+# (re)start rule set on the StreamEngine User Rules classifier
+#
+
+. /etc/rgw_config
+#. /etc/functions.sh
+
+#
+# qos_rule_get(rule_num)
+#	Read a qos rule from nvram config
+# 
+qos_rule_set()
+{
+	#
+	# NVRAM rules look like:
+	# qos_rule_00 = <en dis>/<name>/<prio>/<unused>/<unused>/<proto>/<local ip from>/<local ip to>/<local port from>/<local port to>/<remote ip from>/<remote ip to>/<remote port from>/<remote port to> 
+	#
+	RULE_NAME=qos_rule_$1
+	#config_get RULE_SPEC streamengine $RULE_NAME
+	RULE_SPEC=$(nvram get $RULE_NAME | cut -c15- -)
+	QOS_RULE_ENABLED=$(echo $RULE_SPEC | cut -d/ -f1 -)
+
+	echo QoS rule $RULE_NAME
+	echo Rule spec = $RULE_SPEC
+	echo QOS_RULE_ENABLED=$QOS_RULE_ENABLED
+
+	if [ $QOS_RULE_ENABLED -ne "1" ] ; then
+		echo Rule not enabled
+		return 0
+	fi
+
+	echo Setting rule
+	echo $RULE_SPEC > /sys/devices/system/streamengine_classifier_user_rules/streamengine_classifier_user_rules0/add_manual_rule
+}
+
+#
+# Clear all existing rules
+#
+echo 1 > /sys/devices/system/streamengine_classifier_user_rules/streamengine_classifier_user_rules0/clear_manual_rules
+
+#
+# Add rules into the table
+#
+qos_rule_set 00
+qos_rule_set 01
+qos_rule_set 02
+qos_rule_set 03
+qos_rule_set 04
+qos_rule_set 05
+qos_rule_set 06
+qos_rule_set 07
+qos_rule_set 08
+qos_rule_set 09
+

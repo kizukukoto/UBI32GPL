@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title>SharePort Web Access</title>	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+		<link rel="stylesheet" type="text/css" href="webfile_css/CSS.css" />		
+		<link rel="stylesheet" type="text/css" href="webfile_css/web_file_access.css" />		
+		<script type="text/javascript" src="webfile_js/webfile.js"></script>
+<!--	<link rel="stylesheet" type="text/css" href="fancybox/style.css" /> -->		
+		<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<script type="text/javascript" src="fancybox/jquery-1.4.3.min.js"></script>
+<!--	<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script> -->
+		<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+		<script type="text/javascript" src="fancybox/json2.js"></script>
+		<script language="JavaScript" src="js/object.js"></script>
+		<script language="JavaScript" src="js/xml.js"></script>
+		<script language="JavaScript" src="js/public.js"></script>
+		<script type="text/javascript">	
+			var media_info;
+			var storage_user = new HASH_TABLE();
+			
+			load_lang_obj();	// you have to load language object for displaying words in each html page and load html object for the redirect or return page
+												
+			function show_media_list(which_action){
+				var media_list = get_by_id("media_list");
+				var str;
+								
+				if (media_info.status == "ok" && media_info.error == null){
+								
+					str = "<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+											
+					for (var i = 0; i < media_info.count; i++){
+						var obj = media_info.files[i];
+						var file_name = obj.name;
+						var search_value = get_by_id("search_box").value;
+						
+						if (search_value.length > 0){
+							if (which_action){	// check the search box							
+								if(file_name.indexOf(search_value) != 0){
+									continue;
+								}
+							}
+						}
+					
+						str += "<tr onMouseOver=\"this.style.background='#D8D8D8'\" onMouseOut=\"this.style.background=''\">"
+							 + "<td class=\"text_3\">"
+							 + "<a href=\"" + obj.path + "\" target=\"_blank\">" + file_name + "</a>"
+							 + "</td></tr>";
+					}
+					
+					str += "</table>";
+					
+					media_list.innerHTML = str;
+				}							
+			}
+			
+			function get_settings_xml(http_req){
+				var my_txt = http_req.responseText;
+											
+				try {
+					media_info = JSON.parse(my_txt);
+				} catch(e) {
+					get_media_list('document');
+					return;
+				}				
+				
+				show_media_list(false);
+			}
+			
+			function get_media_list(which_media){		
+				var xml_request = new XMLRequest(get_settings_xml);
+				var para = "ListFile?id=" + storage_user.get("id") + "&tok=" + storage_user.get("tok")
+						 + "&volid=" + storage_user.get("volid") + "&path=&filter=" + which_media;
+								
+				xml_request.json_cgi(para);			
+			}
+			
+			function clear_search_box(){				
+				get_by_id("search_box").value = "";	
+				show_media_list(false);				
+			}	
+
+			function reset_search_box(){
+				get_by_id("search_box").value = "Search Documents...";	
+				show_media_list(false);	
+			}
+			
+			function get_login_info_result(http_req){
+				var my_xml = http_req.responseXML;
+				
+				if (check_user_info(my_xml.getElementsByTagName("redirect_page")[0])){
+				
+					storage_user.put("id", get_node_value(my_xml, "user_name"));
+					storage_user.put("tok", get_node_value(my_xml, "user_pwd"));
+					storage_user.put("volid", get_node_value(my_xml, "volid"));
+
+					get_media_list('document');										
+				}
+			}
+			
+			function get_login_info(){
+				var xml_request = new XMLRequest(get_login_info_result);
+				var para = "request=get_login_info";
+								
+				xml_request.exec_webfile_cgi(para);
+			}
+		</script>
+	</head>
+	<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="body" onLoad="get_login_info()">
+		<table width="960" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01">
+			<tr>
+				<td width="772" height="55"background="webfile_images/topbg.gif"><img src="webfile_images/index_01.png" alt="" width="220" height="55" align="absmiddle"></td>
+				<td width="188" height="55" valign="top"background="webfile_images/topbg.gif">
+					<table width="188" height="54" border="0" align="right" cellpadding="0" cellspacing="0" id="Table_">
+						<tr>							
+							<td align="right" valign="middle">
+								<a href="category_view.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('home','','webfile_images/btn_home_.png',1)"><img src="webfile_images/btn_home.png" name="home" width="25" height="25" border="0"></a>
+							</td>
+						</tr>
+						<tr>
+							<td align="right" valign="middle"><img src="webfile_images/topmenu_08.png" width="98" height="20"></td>
+						</tr>
+					</table>		 
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="left" valign="top">
+					<table width="960" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td>
+								<table width="960" border="0" cellspacing="0" cellpadding="0">
+									<tr BGCOLOR="#0">
+										<td width="105" height="42" align="left" valign="top" class="text_2">
+											<a href="category_view.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('back','','webfile_images/backBtn_.png',0)"><img src="webfile_images/backBtn.png" width="59" height="33" border="0" id="back" /></a>
+										</td>
+										<td width="750" class="text_2">Document</td>
+										<td width="105" class="text_2"></td>
+									</tr>
+								</table>
+								<table id="Table_2" width="960" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td width="188" height="55" valign="top"background="images/topbg.gif">
+											<table width="188" height="54" border="0" align="right" cellpadding="0" cellspacing="0" id="Table_">
+												<tr>
+													<td align="left" valign="top">
+														<table width="960" border="0" cellpadding="0" cellspacing="0">
+															<tr>
+																<td>
+																	<table width="960" border="0" cellspacing="0" cellpadding="0">								
+																	</table>
+																	<table id="Table_2" width="960" border="0" cellpadding="0" cellspacing="0">
+																		<tr>
+																			<td width="34"><img src="webfile_images/icon_search.png" width="34" height="48"></td>
+																			<td width="892" background="webfile_images/searchbg.png">
+																				<input type="text" class="search" id="search_box" name="search_box" value="Search Documents..." onFocus="clear_search_box()" onKeyUp="show_media_list(true)" size="125">
+																			</td>
+																			<td width="34"><img src="webfile_images/search_end.png" width="34" height="48" style="cursor: pointer" onClick="javascript:reset_search_box()"></td>
+																		</tr>
+																	</table>
+																	<table width="960" border="0" cellspacing="0" cellpadding="0">									
+																		<tr>
+																			<td>
+																				<div id="media_list"></div>
+																			</td>
+																		</tr>		       
+																	</table>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td height="35" align="center" background="webfile_images/bottombg.gif"><img src="webfile_images/index_06.gif" alt="" width="81" height="35" align="absmiddle" ></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>					
+		</table>
+	</body>
+</html>

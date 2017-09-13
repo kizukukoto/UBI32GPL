@@ -1,0 +1,12 @@
+prefix=
+exec_prefix=
+libdir=${pcfiledir}
+includedir=/home/simonsu/SVN/ubicom-distro_SDK_2.0/uClinux/lib/ffmpeg/ffmpeg-0.5.2
+
+Name: libswscale
+Description: FFmpeg image rescaling library
+Version: 0.7.1
+Requires: libavcodec = 52.20.1
+Conflicts:
+Libs: ${libdir}/libswscale.a 
+Cflags: -I${includedir}

@@ -1,0 +1,4 @@
+This is the README file for Mail-On-Schedule, a package which implements sending
+mail on schedule to provide log information.
+
+According to Mail-On-Schedule, we call this daemon "mailosd".

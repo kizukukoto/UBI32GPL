@@ -1,0 +1,11 @@
+Package: libiconv
+Version: 1.13.1-1
+Depends: 
+Provides: 
+Source: package/libiconv
+Section: libs
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 941826
+Description:  Character set conversion library

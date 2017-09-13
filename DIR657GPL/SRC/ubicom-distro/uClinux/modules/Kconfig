@@ -1,0 +1,159 @@
+#############################################################################
+
+#
+#	Kconfig - External module configuration
+#
+#	Put third party modules which are not supposed to exposed to pulbic
+#
+
+#############################################################################
+mainmenu "External Module Configuration"
+
+menuconfig MODULE_ATH_WLAN
+	bool "Atheros WLAN driver"
+	select MODULES
+	select WIRELESS_EXT
+	select CRYPTO
+	default n
+	help
+	  Include the Atheros WLAN driver as loadable module.
+
+if MODULE_ATH_WLAN
+source "ath_wlan/Kconfig"
+endif
+
+menuconfig MODULE_ATH_WLAN_9B21
+	bool "Atheros WLAN 9B21 driver"
+	select MODULES
+	select WIRELESS_EXT
+	select CRYPTO
+	default n
+	help
+	  Include the Atheros WLAN driver as loadable module.
+
+if MODULE_ATH_WLAN_9B21
+source "ath_wlan_9b21/Kconfig"
+endif
+
+menuconfig MODULE_ATH_SAG
+	bool "Atheros WLAN driver"
+	select MODULES
+	select WIRELESS_EXT
+	select CRYPTO
+	default n
+	help
+	  Include the Atheros WLAN driver as loadable module.
+
+if MODULE_ATH_SAG
+source "ath_sag/Kconfig"
+endif
+
+menuconfig MODULE_RALINK_WLAN
+	bool "Ralink WLAN driver"
+	select MODULES
+	select WIRELESS_EXT
+	select CRYPTO
+	default n
+	help
+	  Include the Ralink WLAN driver as loadable module.
+
+config RALINK_WLAN_RT3052_iNIC
+	bool "Enable RT3052 iNIC support"
+	default n
+	depends on MODULE_RALINK_WLAN
+	help
+	  This will enable support for Ralink RT3052 iNIC radio module.
+
+config RALINK_WLAN_RT3883_iNIC
+	bool "Enable RT3883 iNIC support"
+	default n
+	depends on MODULE_RALINK_WLAN
+	help
+	  This will enable support for Ralink RT3883 iNIC radio module.
+
+config MODULE_SILEX_USB
+	bool "Silex USB Device Server driver"
+	default n
+	help
+	  Include the Silex USB Device Server driver as loadable module.
+	  Note, CONFIG_USB_STORAGE in kernel must be disable or choosed as M
+
+config MODULE_KCODES
+	bool "Kcode USB driver"
+	default n
+	help
+	  Include the Kcode USB driver as loadable module.
+	  Note, CONFIG_USB_STORAGE in kernel must be disable or choosed as M
+
+config MODULE_IPHONE
+	bool "IPhone USB Module"
+	default n
+	help
+	  IPhone module support
+
+config MODULE_ATH_AR17
+	bool "Compile Atheros Driver"
+	default n
+	help
+	  This will enable support for AR17 Driver
+
+menuconfig MODULE_UBICOM_STREAMENGINE
+	bool "Ubicom Inc. Streamengine"
+	default n
+	help
+	  Include the Ubicom Inc. Streamengine technology as loadable modules and supporting scripts
+
+if MODULE_UBICOM_STREAMENGINE
+source "Ubicom_StreamEngine/Kconfig"
+endif
+
+menuconfig MODULE_UBICOM_STREAMENGINE2
+	bool "Ubicom Inc. Streamengine2"
+	default n
+	help
+	  Include the Ubicom Inc. Streamengine2 technology as loadable modules and supporting scripts
+
+if MODULE_UBICOM_STREAMENGINE2
+source "Ubicom_StreamEngine2/Kconfig"
+endif
+
+menuconfig MODULE_UBICOM_STREAMENGINE2_IP8K
+	bool "Ubicom Inc. Streamengine2_IP8K"
+	default n
+	help
+	  Include the Ubicom Inc. Streamengine2 technology as loadable modules and supporting scripts for IP8K
+
+if MODULE_UBICOM_STREAMENGINE2_IP8K
+source "Ubicom_StreamEngine2_ip8K/Kconfig"
+endif
+
+menuconfig MODULE_SYNOPSYS_OTG
+	bool "Synopsys USB OTG Linux driver"
+	default n
+	help
+	  Include the Synopsys DWC USB OTG driver as loadable module.
+
+if MODULE_SYNOPSYS_OTG
+source "synopsys-otg/Kconfig"
+endif
+
+menuconfig MODULE_UBICOM_WISH
+	bool "Ubicom Inc. WISH"
+	default n
+	help
+	  Include the Ubicom Inc. WISH technology as loadable modules and supporting scripts
+
+if MODULE_UBICOM_WISH
+source "Ubicom_WISH/Kconfig"
+endif
+
+menuconfig MODULE_UBICOM_WISH_IP8K
+	bool "Ubicom Inc. WISH_IP8K"
+	default n
+	help
+	  Include the Ubicom Inc. WISH technology as loadable modules and supporting scripts
+
+if MODULE_UBICOM_WISH_IP8K
+source "Ubicom_WISH_ip8K/Kconfig"
+endif
+

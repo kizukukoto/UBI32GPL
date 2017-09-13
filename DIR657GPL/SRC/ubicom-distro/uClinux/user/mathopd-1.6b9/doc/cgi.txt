@@ -1,0 +1,274 @@
+Mathopd and CGI
+
+How to adjust your configuration file to enable CGI
+--------------------------------
+
+There are two methods to enable Mathopd to run CGI scripts.
+The first is the "CGI specialty, the second is the "External"
+keyword.
+
+The 'old-fashioned' /cgi-bin method, where one directory is
+dedicated to CGI scripts, can be implemented the following way:-
+
+  Control {
+    Alias /cgi-bin
+    Location /var/www/cgi-bin
+    Specials {
+      CGI { * }
+    }
+  }
+
+A variation on this theme, where instead of a /cgi-bin directory
+we mark CGI scripts by the .cgi extension:-
+
+  Control {
+    Specials {
+       CGI { cgi }
+    }
+  }
+
+Usually, CGI scripts are really just interpreted lines of program text,
+like a PHP or Perl script. Mathopd has another mechanism to deal with
+these which is far more flexible than the above. It works like this:
+
+  Control {
+    External {
+      /usr/bin/perl { pl }
+    }
+  }
+
+If things are set up this way, any file with extension .pl will
+automatically be treated as a CGI script, and /usr/bin/perl will be
+launched to interpret it. A side effect of this is that the script in
+question does not have to be executable, so no messing about with
+chmod is necessary.
+
+Some interpreters, like awk, require a command-line argument before
+the script name, in which case you need to do some adjusting. See the
+section 'Invocation' and the example below for more details.
+
+CGI and security
+--------------------------------
+
+A malicious CGI script can do a lot of damage to the operation of a
+webserver. One way for a script to do this is to send a signal to
+the server process that stops or kills it. To avoid accidents like
+this, it is recommended that you start mathopd as root (user-id 0),
+and set it up like this:-
+
+  User www
+  StayRoot On
+  Control {
+    ScriptUser cgi
+  }
+
+This way, the server process runs with the (effective) user-id of
+'www', but CGI programs and External programs run with the user-id
+of 'cgi'.
+
+It is also possible to have several ScriptUsers, for instance, one
+for each virtual server. It is also possible to disallow CGI
+altogether by not specifying any ScriptUser.
+
+An example.
+
+  User www
+  StayRoot On
+  Virtual {
+    Host www.an.example
+    Control {
+      Alias /
+      Location /home/example/www
+      ScriptUser example
+    }
+  }
+  Virtual {
+    Host www.another.example
+    Control {
+      Alias /
+      Location /home/another/www
+      ScriptUser another
+    }
+  }
+  Virtual {
+    Host www.athird.example
+    Control {
+      Alias /
+      Location /home/athird/www
+    }
+  }
+
+In the above setup, scripts from www.an.example will run as user
+'example' and scripts from www.another.example will run as user
+'another'. No scripts can run from www.athird.example, because no
+ScriptUser is defined there.
+
+Invocation
+--------------------------------
+
+Normally, when a CGI program is invoked by Mathopd, its current
+directory will be the directory that contains the program itself.
+
+If CGI programs are invoked through the CGI specialty, the value of
+argv[0] inside the main() routine of the CGI will be the full pathname
+of the program.
+
+If CGI programs are invoked through the "External" mechanism, the
+name of the external program is split up at each space character,
+and the resulting fragments are stored in the beginning of the argv
+array. Then, the full pathname of the CGI script is appended.
+
+If the Request-URI contains a query, and the query does not contain
+the '=' character, the query is split up at each '+' character, any
+""%" HEX HEX" encoding in the fragments is decoded, and the query
+fragments are then passed as command-line arguments to the CGI
+program.
+
+If the Request-URI contains a query, and the query contains an '='
+character, no command-line arguments are passed to the CGI program.
+Instead, the program should use the QUERY_STRING environment variable
+to read the query. The query in QUERY_STRING is not hex-decoded.
+
+Environment Variables
+--------------------------------
+
+In addition to the variables defined by the CGI standard, Mathopd
+sets the following variables.
+
+  SCRIPT_FILENAME
+
+    this variable contains the physical pathname of the
+    script that Mathopd invoked;
+
+  REQUEST_URI
+
+    this variable contains the original Request-URI that
+    was sent by the client;
+
+  REMOTE_PORT
+
+    this variable contains the port number of the client's
+    end of the TCP connection to the web server;
+
+  SERVER_ADDR
+
+    this variable contains the IP address of the local end
+    of the TCP connection to the client.
+
+Note that variables that have a zero-length value are not passed
+in the environment. For example, if a CGI script is invoked from
+a Request-URI that did not contain a query, then there will be
+no QUERY_STRING variable (as opposed to a QUERY_STRING variable
+with an empty value.)
+
+Also note that, starting from version 1.5b10, Mathopd no longer
+sets the REMOTE_HOST variable. Doing so would imply DNS lookups.
+These are no longer done.
+
+NPH Scripts and Buffering
+--------------------------------
+
+Prior to version 1.5b5, each CGI script launched by Mathopd had
+the be an NPH script. That is, each script had a direct connection
+to the client. And each script had to send a HTTP response-line.
+From version 1.5b5 onwards, the situation is more or less the
+opposite. NPH scripts are no longer possible, in the sense that
+a CGI script is no longer directly connected to the client.
+All output from CGI scripts must pass through the server.
+Scripts that are written as NPH will continue to work though.
+
+Any data that a CGI script sends to its standard output will be
+sent to the client by Mathopd as soon as possible. So, if your
+CGI application sends out a lot of very tiny chunks of data,
+these chunks will be received by the client at about the same
+speed. The downside of that is that Mathopd becomes quite
+busy just copying data to and fro, and will steal precious CPU
+cycles from other programs (including the CGI script itself.)
+Therefore it is recommended that CGI scripts buffer their output.
+
+"Location:" headers
+--------------------------------
+
+The CGI specification states that if a CGI script outputs a
+location header that contains a virtual path, that is, a line
+like
+
+  Location: /thisisthis.html
+
+then the web server should restart the request as if the client
+requested /thisisthis.html (see [1]). This is also called an
+'internal redirect'. There are some problems with this approach:
+
+ - it leeds to endless loops if a CGI script outputs a Location:
+   header that (ultimately) points to itself; this will kill
+   performance;
+
+ - it does not work if the location that is referred to is
+   protected by access lists; a script cannot know in advance
+   whether this will be the case or not;
+
+ - the document that is referred to in the Location header cannot
+   know the location of the referer; therefore, that document
+   cannot contain relative hyperlinks.
+
+Therefore I have decided not to implement internal redirects. If
+a CGI script sets a "Location:" header, then the server will
+fabricate a '302 Moved' response, and will pass the value of
+"Location:" unmodified to the client, regardless of whether it
+is an absolute URI, a virtual path, or something else. Experience
+has shown that this is not a problem with most web browsers.
+
+References:
+
+[1] http://hoohoo.ncsa.uiuc.edu/cgi/
+
+Example
+--------------------------------
+
+Suppose the configuration reads as follows:-
+
+  Server {
+    Port 8037
+    Virtual {
+      Host localhost
+      Control {
+        Alias /
+        Location /tmp
+        External {
+          "/usr/bin/awk -f" { .awk }
+        }
+      }
+    }
+  }
+
+We place a file test.awk in /tmp that reads as follows:-
+
+  BEGIN {
+    print "Content-Type: text/plain"
+    print ""
+    print "ARGC=" ARGC
+    for (i = 1; i < ARGC; i++)
+      print "ARGV[" i "]=\"" ARGV[i] "\""
+    if ("QUERY_STRING" in ENVIRON)
+      print "QUERY_STRING=\"" ENVIRON["QUERY_STRING"] "\""
+    else
+      print "QUERY_STRING not set"
+    exit
+  }
+
+Output from http://localhost:8037/test.awk
+
+ARGC=1
+QUERY_STRING not set
+
+Output from http://localhost:8037/test.awk?A+%42
+
+ARGC=3
+ARGV[1]="A"
+ARGV[2]="B"
+QUERY_STRING="A+%42"
+
+Output from http://localhost:8037/test.awk?A=%42
+
+ARGC=1
+QUERY_STRING="A=%42"

@@ -1,0 +1,12 @@
+
+server.modules = (
+  "mod_access",
+  "mod_alias",
+)
+
+include "conf.d/auth.conf"
+
+##
+## plain old CGI (mod_cgi)
+##
+include "conf.d/cgi.conf"

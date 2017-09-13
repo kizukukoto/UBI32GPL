@@ -1,0 +1,1743 @@
+<?xml version="1.0"?>
+<root>
+	<!-- button -->
+	<BTN1>Log In</BTN1>
+	<BTN2>Reboot Now</BTN2>
+	<BTN3>Reboot Later</BTN3>
+	<BTN4>Internet Connection Setup Wizard</BTN4>
+	<BTN5>Manual Internet Connection Setup</BTN5>
+	<BTN6>Prev</BTN6>
+	<BTN7>Next</BTN7>
+	<BTN8>Cancel</BTN8>
+	<BTN9>Connect</BTN9>
+	<BTN10>Clone Your PC's MAC address</BTN10>
+	<BTN11>Save Settings</BTN11>
+	<BTN12>Don't Save Settings</BTN12>
+	<BTN13>Wireless Network Setup Wizard</BTN13>
+	<BTN14>Add Wireless Device With WPS</BTN14>
+	<BTN15>Manual Wireless Network Setup</BTN15>
+	<BTN16>Save</BTN16>
+	<BTN17>Clear</BTN17>
+	<BTN18>Add New Schedule</BTN18>
+	<BTN19>Try again</BTN19>
+	<BTN20>Wireless Status</BTN20>
+	<BTN21>Clear the list below...</BTN21>
+	<BTN22>Add</BTN22>
+	<BTN23>First Page</BTN23>
+	<BTN24>Last Page</BTN24>
+	<BTN25>Previous</BTN25>
+	<BTN26>Refresh</BTN26>
+	<BTN27>Email Now</BTN27>
+	<BTN28>Save Log</BTN28>
+	<BTN29>Refresh Statistics</BTN29>
+	<BTN30>Clear Statistics</BTN30>
+	<BTN31>Log Settings</BTN31>
+	<BTN32>Update</BTN32>
+	<BTN33>Copy Your Computer's Time Settings</BTN33>
+	<BTN34>Save Configuration</BTN34>
+	<BTN35>Restore Configuration from File</BTN35>
+	<BTN36>Restore Factory Defaults</BTN36>
+	<BTN37>Rescan</BTN37>
+	<BTN38>Check Now</BTN38>
+	<BTN39>Upload</BTN39>
+	<BTN40>Add Policy</BTN40>
+	<BTN41>OK</BTN41>
+	<BTN42>Reset to Unconfigured</BTN42>
+	<BTN43>Reset PIN to Default</BTN43>
+	<BTN44>Generate New PIN</BTN44>
+	<BTN45>Ping</BTN45>
+	<BTN46>Regenerate</BTN46>
+	<BTN47>Back</BTN47>
+	<BTN48>Connect Again</BTN48>
+	<BTN49>Launch Wireless Setup Wizard</BTN49>
+	<BTN50>clone</BTN50>
+	<BTN51>Exit</BTN51>
+	<BTN52>Retry</BTN52>
+	<BTN53>Site Survey</BTN53>
+	<BTN54>Upload Settings</BTN54>
+	<BTN55>Restore Device</BTN55>
+	<BTN56>Reboot</BTN56>
+	<BTN57>Finish</BTN57>
+	<BTN58>Scan</BTN58>
+	<BTN59>Apply Log Settings Now</BTN59>
+	<BTN60>Remove</BTN60>
+	<BTN61>End</BTN61>
+	<BTN62>Download</BTN62>
+	<BTN63>Guide me through the IPv6 settings</BTN63>
+	<BTN64>IPv6 Internet Connection Setup Wizard</BTN64>
+	<BTN65>Manual IPv6 Internet Connection Setup</BTN65>
+	<BTN66>Guide me through the Internet connection settings</BTN66>
+	<BTN67>Key in SSID</BTN67>
+	<BTN68>Wi-Fi HotSpot Search</BTN68>
+	<BTN69>Process WPS</BTN69>
+	<BTN70>Add New</BTN70>
+	<BTN71>Add/Edit</BTN71>
+	<BTN72>Delete</BTN72>
+	<BTN73>Append</BTN73>
+	<BTN74>Browse</BTN74>
+						<!-- Start:shared XML -->
+	<!-- AP top menu -->
+	<TMEN001>Setup</TMEN001>
+	<TMEN002>Advanced</TMEN002>
+	<TMEN003>Maintenance</TMEN003>
+	<TMEN004>Status</TMEN004>
+	<TMEN005>Help</TMEN005>
+
+	<!-- AP Setup / left menu -->
+	<LMEN001>Setup Wizard</LMEN001>
+	<LMEN002>Wireless Setup</LMEN002>
+	<LMEN003>Lan Setup</LMEN003>
+	<LMEN004>Logout</LMEN004>
+
+	<!-- AP Advanced / left menu -->
+	<LMEN005>MAC Address Filter</LMEN005>
+	<LMEN006>Advanced Wireless</LMEN006>
+	<LMEN007>User Limit</LMEN007>
+
+	<!-- AP Maintenance / left menu -->
+	<LMEN008>Time</LMEN008>
+	<LMEN009>System</LMEN009>
+	<LMEN010>Firmware</LMEN010>
+	<LMEN011>Schedules</LMEN011>
+	<LMEN012>System Check</LMEN012>
+
+	<!-- AP Status / left menu -->
+	<LMEN013>Device Info</LMEN013>
+	<LMEN014>Wireless</LMEN014>
+	<LMEN015>Logs</LMEN015>
+	<LMEN016>Statistics</LMEN016>
+
+	<!-- RT Setup / left menu -->
+	<LMEN017>Internet Settings</LMEN017>
+	<LMEN018>Wireless Settings</LMEN018>
+	<LMEN019>Network Settings</LMEN019>
+	<LMEN020>USB Settings</LMEN020>
+	<LMEN021>Ipv6</LMEN021>
+
+	<!-- Advance / left menu -->
+	<LMEN022>Virtual Server</LMEN022>
+	<LMEN023>Application Rules</LMEN023>
+	<LMEN024>Website Filter</LMEN024>
+	<LMEN025>Firewall Settings</LMEN025>
+	<LMEN026>Routing</LMEN026>
+	<LMEN027>Wi-Fi Protected Setup</LMEN027>
+	<LMEN028>Advanced Network</LMEN028>
+	<LMEN029>Guest Zone</LMEN029>
+	<LMEN030>Filter</LMEN030>
+	<LMEN031>DMZ</LMEN031>
+	<LMEN032>UPNP Settings</LMEN032>
+	<LMEN033>Ipv6 Routing</LMEN033>
+
+	<!-- Tools / left menu -->
+	<LMEN034>SysLog</LMEN034>
+	<LMEN039>Dynamic DNS</LMEN039>
+
+	<!-- STATUS / left menu -->
+	<LMEN035>Internet Sessions</LMEN035>
+
+	<!-- HELP / left menu -->
+	<LMEN036>Menu</LMEN036>
+	
+	<!-- HSP Setup / left menu -->
+	<LMEN037>Wi-Fi HotSpot Setup</LMEN037>
+
+	<!-- RT Setup / left menu -->
+	<LMEN038>Storage</LMEN038>
+
+	<!-- The last number tag is LMEN039 -->
+	
+	<!-- Month -->
+	<MON001>Jan</MON001>
+	<MON002>Feb</MON002>
+	<MON003>Mar</MON003>
+	<MON004>Apr</MON004>
+	<MON005>May</MON005>
+	<MON006>Jun</MON006>
+	<MON007>Jul</MON007>
+	<MON008>Aug</MON008>
+	<MON009>Sep</MON009>
+	<MON010>Oct</MON010>
+	<MON011>Nov</MON011>
+	<MON012>Dec</MON012>
+
+	<!-- Weekday -->
+	<WDAY001>Sun</WDAY001>
+	<WDAY002>Mon</WDAY002>
+	<WDAY003>Tue</WDAY003>
+	<WDAY004>Wed</WDAY004>
+	<WDAY005>Thu</WDAY005>
+	<WDAY006>Fri</WDAY006>
+	<WDAY007>Sat</WDAY007>
+
+	<!-- login.htm -->
+	<LNG001>Login</LNG001>
+	<LNG002>Log in to the Access Point</LNG002>
+	<LNG003>Log in to the Wireless Client</LNG003>
+	<LNG004>Log in to the router</LNG004>
+	<LNG005>User Name</LNG005>
+	<LNG006>Password</LNG006>
+	<LNG007>Firmware Version</LNG007>
+	<LNG008>Hardware Version</LNG008>
+	<LNG009>Product Page</LNG009>
+	<LNG010>Admin</LNG010>
+	<LNG011>User</LNG011>
+	<LNG012>Copyright &#000169; 2011 D-Link Corporation/D-Link Systems, Inc.</LNG012>
+	<LNG013>Enter the correct password above and&lt;br&gt;then type the characters you see in the&lt;br&gt;picture below.</LNG013>
+	<LNG014>Log in to the HotSpot</LNG014>
+
+	<!-- AP Reboot.htm -->
+	<LNG015>Rebooting</LNG015>
+	<LNG016>The device is rebooting...</LNG016>
+	<LNG017>Please &lt;font color="red"&gt;DO NOT POWER OFF&lt;/font&gt; the device.</LNG017>
+	<LNG018>And please wait for</LNG018>
+	<LNG019>seconds</LNG019>>
+
+	<!-- AP back.htm -->
+	<LNG020>Saving</LNG020>
+	<LNG021>Please wait</LNG021>
+
+	<!-- apc back.htm -->
+	<LNG022>The Wireless Client is connecting to a device.</LNG022>
+
+	<!-- Reboot -->
+	<LNG023>Reboot needed</LNG023>
+	<LNG024>Your changes have been saved. The router must be rebooted for the changes to take effect. You can reboot now, or you can continue to make other changes and reboot later.</LNG024>
+	<LNG025>If you changed the IP address of the router you will need to change the IP address in your browser before accessing the configuration Web site again.</LNG025>
+
+	<!-- Configuration -->
+	<LNG026>Configuration Warnings</LNG026>
+
+	<!-- Note -->
+	<LNG027>Note</LNG027>
+	<LNG028>Only Administrator has access to some of these functionalities.</LNG028>
+
+	<!-- Help Hints -->
+	<LNG029>Helpful Hints</LNG029>
+	<LNG030>More</LNG030>
+
+	<!-- AP Menu.htm -->
+	<LNG031>Help MENU</LNG031>
+
+	<!-- error-404.htm -->
+	<LNG032>Oops!</LNG032>
+	<LNG033>The page you requested is not avilable</LNG033>
+	<LNG034>Suggestions</LNG034>
+	<LNG035>Make sure your internet cable is securely connected to the internet port on your router, and your internet LED is blinking green or blue.</LNG035>
+	<LNG036>Check to make sure that the &lt;a href="."&gt;Internet Settings&lt;/a&gt; on your router are set correctly, such as your PPPoE username/password settings.</LNG036>
+	<LNG037>The DNS server may be down at the moment, please contact your ISP or try again later.</LNG037>
+
+	<!-- Model Name -->
+	<LNG038>DIR-653</LNG038>
+	
+	<!-- Web File Access login.htm -->
+	<LNG039>Web File Access Login</LNG039>
+	<LNG040>Log in to the web file access Server</LNG040>
+	
+						<!-- End:shared XML -->
+
+						<!-- Start:Wizard XML -->
+	<!-- AP Wizard_AP.htm -->
+	<WZ001>Select Configuration Method</WZ001>
+	<WZ002>Please select one of the following configuration methods.</WZ002>
+	<WZ003>Click &lt;b&gt;Next&lt;/b&gt; to continue.</WZ003>
+	<WZ004>WPS</WZ004>
+	<WZ005>Select this option if your wireless device supports WPS (Wi-Fi Protected Setup)</WZ005>
+	<WZ006>Select this option if you want to setup your network manually.</WZ006>
+	<WZ007>Welcome to the D-Link Wi-Fi Setup Wizard</WZ007>
+	<WZ008>Assign a network key</WZ008>
+	<WZ009>The WPA (Wi-Fi Protected Access) key must meet the following guidelines</WZ009>
+	<WZ010>Between 8 and 63 characters (A longer WPA key is more secure than a short one)</WZ010>
+	<WZ011>Network key</WZ011>
+	<WZ012>Please keep a note of the following settings for future reference.</WZ012>
+	<WZ013>D-Link AP Web Management</WZ013>
+	<WZ223>Give your Wi-Fi network a name.</WZ223>
+	<WZ224>Give your Wi-Fi network a password.</WZ224>
+	<WZ225>Select your operation mode</WZ225>
+	<WZ226>Please select wireless mode. Click Next to continue.</WZ226>
+	<WZ227>Access Point allows the device to act as the wireless transmitter for your router or become a seperate Access Point</WZ227>
+
+	<!-- AP Wizard_Add_Wireless_Device_Connect.htm -->
+	<WZ014>Virtual Push Button</WZ014>
+	<WZ015>Please press down the Push Button (physical or virtual) on the wireless device you are adding to your wireless network within</WZ015>
+	<WZ016>using pin number</WZ016>
+	<WZ017>Please start WPS on the wireless device you are adding to your wireless network within </WZ017>
+	<WZ018>You have succeed to add the wireless device to your wireless network.</WZ018>
+	<WZ019>You have failed to add the wireless device to your wireless network within the given timeframe, please click on the button below to do it again.</WZ019>
+
+	<!-- Wizard_WPS.htm -->
+	<WZ020>There are two ways to add wireless device to your wireless network</WZ020>
+	<WZ021>Invalid PIN!</WZ021>
+
+	<!-- APC Wizard_AP.htm -->
+	<WZ022>Connectto Wireless Device With WPS</WZ022>
+	<WZ023>There are two ways to connect to wireless device with WPS</WZ023>
+	<WZ024>Please enter the above PIN into your Access Point and enter your Access Point's SSID into the SSID field above and click the below 'Connect' button.</WZ024>
+	<WZ025>Set Wireless Network Name(SSID)</WZ025>
+	<WZ026>You can enter the Wireless Network Name of AP or use site survey to find the AP.</WZ026>
+	<WZ027>Select Wireless Security Mode</WZ027>
+	<WZ028>Please select the wireless security mode.</WZ028>
+	<WZ029>Set Your Wireless Security Password</WZ029>
+	<WZ030>Please enter the wireless security password to establish wireless connection.</WZ030>
+	<WZ031>Key Type</WZ031>
+	<WZ032>Key Size</WZ032>
+	<WZ033>Wireless Security Password</WZ033>
+	<WZ034>Set Your WPA Personal Passphrase</WZ034>
+	<WZ035>Please enter the WPA personal passphrase to establish wireless connection.</WZ035>
+	<WZ036>Set Your WPA2 Personal Passphrase</WZ036>
+	<WZ037>Please enter the WPA2 personal passphrase to establish wireless connection.</WZ037>
+	<WZ038>Set Your WPA2-Auto Personal Passphrase</WZ038>
+	<WZ039>Please enter the WPA2-Auto personal passphrase to establish wireless connection.</WZ039>
+	<WZ040>Personal Passphrase</WZ040>
+	<WZ041>8 to 63 characters</WZ041>
+	<WZ042>Connect To Wireless Device</WZ042>
+	<WZ043>The wireless setup wizard has completed.</WZ043>
+	<WZ044>The settings are saving and taking effect.</WZ044>
+
+	<!-- Wizard_WAN.htm -->
+	<WZ045>Welcome to the D-Link Internet Connection Setup Wizard</WZ045>
+	<WZ046>It appears that you have already successfully connected your new router to the Internet.</WZ046>
+	<WZ047>Click Next if you still want to secure the router with a password and set the time zone.</WZ047>
+	<WZ048>This wizard will guide you through a step-by-step process to configure your new D-Link router and connect to the Internet.</WZ048>
+	<WZ049>Step 1</WZ049>
+	<WZ050>Step 2</WZ050>
+	<WZ051>Step 3</WZ051>
+	<WZ052>Step 4</WZ052>
+	<WZ053>Set your Password</WZ053>
+	<WZ054>Select your Time Zone</WZ054>
+	<WZ055>Configure your Internet Connection</WZ055>
+	<WZ056>Save Settings and Connect</WZ056>
+	<WZ057>By default, your new D-Link Router does not have a password configured for administrator access to the Web-based configuration pages. To secure your new networking device, please set and verify a password below</WZ057>
+	<WZ058>Verify Password</WZ058>
+	<WZ059>Select the appropriate time zone for your location. This information is required to configure the time-based options for the router.</WZ059>
+	<WZ060>Time Zone</WZ060>
+	<WZ061>Your Internet Connection could not be detected, please select your Internet Service Provider (ISP) from the list below. If your ISP is not listed, select the "Not Listed or Don't Know" option to manually configure your connection.</WZ061>
+	<WZ062>Not Listed or Don't Know</WZ062>
+	<WZ063>If your Internet Service Provider was not listed or you don't know who it is, please select the Internet connection type below</WZ063>
+	<WZ064>DHCP Connection</WZ064>
+	<WZ065>Dynamic IP Address</WZ065>
+	<WZ066>Choose this if your Internet connection automatically provides you with an IP Address. Most Cable Modems use this type of connection.</WZ066>
+	<WZ067>Username / Password Connection</WZ067>
+	<WZ068>PPPoE</WZ068>
+	<WZ069>Choose this option if your Internet connection requires a username and password to get online. Most DSL modems use this type of connection.</WZ069>
+	<WZ070>PPTP</WZ070>
+	<WZ071>PPTP client</WZ071>
+	<WZ072>L2TP</WZ072>
+	<WZ073>L2TP client</WZ073>
+	<WZ074>Static IP Address Connection</WZ074>
+	<WZ075>Choose this option if your Internet Setup Provider provided you with IP Address information that has to be manually configured.</WZ075>
+	<WZ076>Usb3g</WZ076>
+	<WZ077>3G connection</WZ077>
+	<WZ078>Choose this option for 3G connection</WZ078>
+	<WZ079>To set up this connection, please make sure that you are connected to the D-Link Router with the PC that was originally connected to your broadband connection.  If you are, then click the Clone MAC button to copy your computer's MAC Address to the D-Link Router.</WZ079>
+	<WZ080>MAC Address</WZ080>
+	<WZ081>optional</WZ081>
+	<WZ082>Host Name</WZ082>
+	<WZ083>You may also need to provide a Host Name. If you do not have or know this information, please contact your ISP.</WZ083>
+	<WZ084>DNS Settings</WZ084>
+	<WZ085>Primary DNS Address</WZ085>
+	<WZ086>Secondary DNS Address</WZ086>
+	<WZ087>Set Static IP Address Connection</WZ087>
+	<WZ088>To set up this connection you will need to have a complete list of IP information provided by your Internet Service Provider. If you have a Static IP connection and do not have this information, please contact your ISP.</WZ088>
+	<WZ089>Set Username / Password Connection</WZ089>
+	<WZ090>To set up this connection you will need to have a Username and Password from your Internet Service Provider.</WZ090>
+	<WZ091>If you do not have this information, please contact your ISP.</WZ091>
+	<WZ092>Address Mode</WZ092>
+	<WZ093>Service Name</WZ093>
+	<WZ094>You may also need to provide a Service Name. If you do not have or know this information, please contact your ISP.</WZ094>
+	<WZ095>You also need PPTP IP address.</WZ095>
+	<WZ096>Gateway IP Address</WZ096>
+	<WZ097>Server IP Address</WZ097>
+	<WZ098>may be same as gateway</WZ098>
+	<WZ099>You also need L2TP IP address.</WZ099>
+	<WZ100>APN</WZ100>
+	<WZ101>Dial Number</WZ101>
+	<WZ102>Verify PIN</WZ102>
+	<WZ103>Auth Protocol</WZ103>
+	<WZ104>Auto (CHAP + PAP)</WZ104>
+	<WZ105>CHAP only</WZ105>
+	<WZ106>PAP only</WZ106>
+	<WZ107>Option</WZ107>
+	<WZ108>Keep-alive Interval</WZ108>
+	<WZ109>Keep-alive Server1</WZ109>
+	<WZ110>Keep-alive Server2</WZ110>
+	<WZ111>Setup Complete</WZ111>
+	<WZ112>The Internet Connection Setup Wizard has completed. Click the Connect button to save your settings and reboot the router.</WZ112>
+
+	<!-- Wizard_Wireless.htm -->
+	<WZ113>The following Web-based wizards are designed to assist you in your wireless network setup and wireless device connection.</WZ113>
+	<WZ114>This wizard is designed to assist you in your wireless network setup. It will guide you through step-by-step instructions on how to set up your wireless network and how to make it secure.</WZ114>
+	<WZ115>Some changes made using this Setup Wizard may require you to change some settings on your wireless client adapters so they can still connect to the D-Link Router.</WZ115>
+	<WZ116>Add Wireless Device WITH WPS (WI-FI PROTECTED SETUP) Wizard</WZ116>
+	<WZ117>This wizard is designed to assist you in connecting your wireless device to your wireless router. It will guide you through step-by-step instructions on how to get your wireless device connected. Click the button below to begin.</WZ117>
+	<WZ118>If your wireless network is already set up with Wi-Fi Protected Setup, manual configuration of the wireless network will destroy the existing wireless network. If you would like to configure the wireless settings of your new D-Link Systems Router manually, then click on the Manual Wireless Network Setup button below.</WZ118>
+
+	<!-- Wizard_WLAN.htm -->
+	<WZ119>Step 1: Welcome TO THE D-Link Wireless Security Setup Wizard</WZ119>
+	<WZ120>Give your network a name, using up to 32 characters.</WZ120>
+	<WZ121>To prevent outsiders from accessing your network, the router will automatically assign a security to your network.</WZ121>
+	<WZ122>Use this options if you prefer to create our own key.</WZ122>
+	<WZ123>All D-Link wireless adapters currently support WPA.</WZ123>
+	<WZ124>Automatically assign a network key (Recommended)</WZ124>
+	<WZ125>Manually assign a network key</WZ125>
+	<WZ126>Use WPA encryption instead of WEP (WPA is stronger than WEP and all D-Link wireless client adapters support WPA)</WZ126>
+	<WZ127>Step 2: Set your Wireless Security Password</WZ127>
+	<WZ128>You have selected your security level - you will need to set a wireless security password.</WZ128>
+	<WZ129>The WEP ( Wired Equivalent Privacy) key must meet one of following guidelines:</WZ129>
+	<WZ130>Exactly 5 or 13 characters</WZ130>
+	<WZ131>Exactly 10 or 26 characters using 0-9 and A-F</WZ131>
+	<WZ132>A longer WEP key is more secure than a short one</WZ132>
+	<WZ133>The WPA (Wi-Fi Protected Access) key must meet one of following guidelines:</WZ133>
+	<WZ134>You will need to enter the same password as keys in this step into your wireless clients in order to enable proper wireless communication.</WZ134>
+	<WZ135>Below is a detailed summary of your wireless security settings. Please print this page out, or write the information on a piece of paper, so you can configure the correct settings on your wireless client adapters.</WZ135>
+	<WZ136>Default WEP Key to Use</WZ136>
+
+	<!-- Wizard_Add_Wireless_Device.htm -->
+	<WZ137>Step 1: Select Configuration Method for your Wireless Network</WZ137>
+	<WZ138>Please select one of following configuration methods and click next to continue.</WZ138>
+	<WZ139>Select this option will display the current wireless settings for you to configure the wireless device manually</WZ139>
+	<WZ140>Step 2: Connect your Wireless Device</WZ140>
+	<WZ141>Key In Use</WZ141>
+	<WZ142>PIN</WZ142>
+	<WZ143>Personal Identification Number</WZ143>
+	<WZ144>please enter the PIN from your wireless device and click the below 'Connect' Button</WZ144>
+	<WZ145>PBC</WZ145>
+	<WZ146>Push Button Configuration</WZ146>
+	<WZ147>please press the push button on your wireless device and click the below 'Connect' Button within 120 seconds</WZ147>
+	<WZ148>Adding wireless device</WZ148>
+	<WZ149>In progress</WZ149>
+	<WZ150>Started</WZ150>
+	<WZ151>Session Time-Out</WZ151>
+	<WZ152>Succeeded</WZ152>
+	<WZ153>To add another device click on the Cancel button below or click on the Wireless Status button to check wireless status.</WZ153>
+	<WZ154>Failed</WZ154>
+	<WZ155>The PIN is invalid.</WZ155>
+
+	<!-- Wizard_Ipv6.htm -->
+	<WZ156>Welcome to the D-Link IPv6 Internet Connection Setup Wizard</WZ156>
+	<WZ157>This wizard will guide you through a step-by-step process to configure a new connection to the IPv6 Internet.</WZ157>
+	<WZ158>Step 1:Configure your IPv6 Internet Connection</WZ158>
+	<WZ159>Step 2:Save Settings and Connect</WZ159>
+	<WZ160>Router is detecting your IPv6 Internet connection type, please wait ...</WZ160>
+	<WZ161>Router is unable detect your IPv6 Internet connection type</WZ161>
+	<WZ162>Please select your IPv6 Internet Connection type</WZ162>
+	<WZ163>IPv6 over PPPoE</WZ163>
+	<WZ164>Choose this option if your IPv6 Internet connection requires a username and password to get online. Most DSL modems use this type of connection.</WZ164>
+	<WZ165>Static IPv6 address and Route</WZ165>
+	<WZ166>Choose this option if your Internet Service Provider (ISP) provided you with IPv6 address information that has to be manually configured.</WZ166>
+	<WZ167>Tunneling Connection (6rd)</WZ167>
+	<WZ168>Choose this option if your Internet Service Provider (ISP) provided you a IPv6 Internet connection by using 6rd automatic tunneling mechanism.</WZ168>
+	<WZ169>To set up this connection you will need to have a Username and Password from your IPv6 Internet Service Provider. If you do not have this information, please contact your ISP.</WZ169>
+	<WZ170>Set Static IPv6 Address Connection</WZ170>
+	<WZ171>To set up this connection you will need to have a complete list of IPv6 information provided by your IPv6 Internet Service Provider. If you have a Static IPv6 connection and do not have this information, please contact your ISP.</WZ171>
+	<WZ172>Set up 6rd Tunneling Connection</WZ172>
+	<WZ173>To set up this 6rd tunneling connection you will need to have the following information from your IPv6 Internet Service Provider. If you do not have this information, please contact your ISP.</WZ173>
+	<WZ174>IPv6 DNS Server</WZ174>
+	<WZ175>The IPv6 Internet Connection Setup Wizard has completed.Click the Connect button to save your settings and reboot the router.</WZ175>
+	
+	<!-- Wizard_Default.htm -->
+	<WZ176>Welcome to the D-Link Setup Wizard</WZ176>
+	<WZ177>Enable Advanced DNS Services</WZ177>
+	<WZ178>Step 3: Set Advanced DNS Services</WZ178>
+	<WZ179>Please select your Internet connection type below</WZ179>
+	<WZ180>Set Your Wireless Security</WZ180>
+	<WZ181>Step 5</WZ181>
+	<WZ182>and enabling CAPTCHA Graphical Authentication provides added security protection to prevent unauthorized online users and hacker software from accessing your network settings.</WZ182>
+	<WZ183>Advanced Domain Name System (DNS) services enhances your Internet Performance by getting you the information and web pages you are looking for faster and more reliably.In addition, it improves your overall Internet experience by correcting many common typo mistakes automatically, taking you where you intended to go and saving you valuable time.</WZ183>
+	<WZ184>Please plug one end of the included Ethernet cable that came with your router into the port labeled INTERNET on the back of the router. Plug the other end of this cable into the Ethernet port on your modem.</WZ184>
+	<WZ185>Router is detecting your Internet connection type, please wait ...</WZ185>
+	<WZ186>Router is unable detect your Internet connection type.</WZ186>
+	<WZ187>The Setup Wizard has completed. Click the Connect button to save your settings and restart the router.</WZ187>
+	<WZ188>D-Link Router Web Management</WZ188>				
+
+	<!-- Wizard_WAN.htm-WIFI HotSpot -->
+	<WZ189>Wi-Fi HotSpot</WZ189>
+	<WZ190>Choose this option for internet sharing</WZ190>
+	<WZ191>Scanning for available network...</WZ191>
+	<WZ192>ID</WZ192>
+	<WZ193>You can enter the Wireless Network Name of AP or Router.</WZ193>
+	<WZ194>Please enter the settings for the extender network</WZ194>
+	<WZ195>Use the same Network Name for the Extended Network</WZ195>
+	<WZ196>Use the same security and passphrase as those for the exiting network.</WZ196>
+	<WZ197>Security Options</WZ197>
+	<WZ198>Extended Wireless Network Name (ESSID)</WZ198>
+	<WZ199>PSK</WZ199>
+	<WZ200>Wi-Fi HotSpot Settings</WZ200>
+	<WZ201>Set Wi-Fi HotSpot</WZ201>
+	
+	<!-- RPT Wizard_AP.htm -->
+	<WZ202>Wi-Fi Connection Setup Wizard</WZ202>
+	<WZ203>This Wizard is designed to assist you in your Wi-Fi network setup. It will guide you through step-by-step instructions on how to set up your Wi-Fi network and how to make it secure.</WZ203>
+	<WZ204>Connecting To Wi-Fi Network With WPS</WZ204>
+	<WZ205>You have successfully connected to the Wi-Fi network.</WZ205>
+	<WZ206>Please take a note of the following summary of your Wi-Fi Security settings for future reference.</WZ206>
+	<WZ207>Wi-Fi Network Name</WZ207>
+	<WZ208>Wi-Fi Password</WZ208>
+	<WZ209>The Setup Wizard has completed. Click the Save button to save your settings and reboot the device.</WZ209>
+	<WZ210>Add Wi-Fi Device With WPS</WZ210>
+	<WZ211>You have failed to connect to the Wi-Fi network within the given timeframe, please click on the button below to do it again.</WZ211>
+	<WZ212>Select Wi-Fi Network</WZ212>
+	<WZ213>Scanning for available Wi-Fi network...</WZ213>
+	<WZ214>Enter Wi-Fi Password</WZ214>
+	<WZ215>Please enter Wi-Fi Password to establish wireless connection</WZ215>
+	<WZ222>Please press the Push Button (physical or virtual) on the AP or Router you are connecting to within</WZ222>
+
+    <!-- WHP Wizard_AP.htm -->
+	<WZ216>Use the same Wi-Fi Network Name for the Extended Network</WZ216>
+	<WZ217>Give your Extended Wi-Fi network a name.</WZ217>
+	<WZ218>Extended Wi-Fi Network Name (SSID)</WZ218>
+	<WZ219>Using up to 32 characters</WZ219>
+	<WZ220>Give your Extended Wi-Fi network a password.</WZ220>
+	<WZ221>Between 8 and 63 characters</WZ221>
+	
+	<!-- The last Wizard XML number is WZ224 -->
+	
+						<!-- End:Wizard XML -->
+
+	<!-- Setup : L0000 -->
+		<!-- Internet : L0000 -->
+		<!-- Wireless : L0100~L0200 -->
+		<!-- Network : L0300 -->
+		<!-- USB : L0400 -->
+		<!-- IPv6 : L0500 -->
+		<!-- Storage : L0600 -->
+
+	<!-- Advanced : L1000~L2000-->
+		<!-- Virtual Server : L1000 -->
+		<!-- Application Rules : L1100 -->
+		<!-- Mac Address Filter : L1200 -->
+		<!-- Website Filter : L1300 -->
+		<!-- Firewall Settings : L1400 -->
+		<!-- Advanced Wireless : L1500 -->
+		<!-- Wifi Protected Setup : L1600 -->
+		<!-- UPNP Settings : L1700 -->
+		<!-- Guest Zone : L1800 -->
+		<!-- DMZ : L1900 -->
+		<!-- IPV6 Routing : L2000 -->
+		<!-- IPV6 Firewall : L2100 -->
+
+	<!-- Maintenance : L3000 -->
+		<!-- Admin : L3000 -->
+		<!-- Time : L3100 -->
+		<!-- System : L3200 -->
+		<!-- Firmware : L3300 -->
+		<!-- Syslog : L3400 -->
+		<!-- Schedules : L3500 -->
+		<!-- System Check : L3600 -->
+		<!-- Dynamic DNS : L3700 -->
+
+	<!-- Status : L4000 -->
+		<!-- Device Info : L4000 -->
+		<!-- Wireless : L4100 -->
+		<!-- Logs : L4200 -->
+		<!-- Statistics : L4300 -->
+		<!-- Internet Sessions : L4400 -->
+		<!-- IPv6 : L4500 -->
+
+	<!-- AP index.htm -->
+	<L0001>Wireless Connection Setup Wizard</L0001>
+	<L0002>If you would like to utilize our easy to use web-based wizard to assist you in connecting your %m to the wireless network,click on the button below.</L0002>
+	<L0003>Some changes made using this Setup Wizard may require you to change some settings on your wireless client adapters so they can still connect to the D-Link Access Point.</L0003>
+	<L0004>Add Wireless Device With WPS (WIFI PROTECTED SETUP) Wizard</L0004>
+	<L0005>This wizard is designed to assist you in connecting your %m to wireless network using WPS. It will guide you through step-by-step instructions on how to get your wireless device connected. Click the button below to begin.</L0005>
+
+	<!-- APC index.htm -->
+	<L0006>Some changes made using this Setup Wizard must be the same with the settings of the D-Link Access Point which you want to connect.</L0006>
+
+	<!-- Internet.htm -->
+	<L0007>Internet Connection</L0007>
+	<L0008>There are two ways to set up your Internet connection: you can use the Web-based Internet Connection Setup Wizard, or you can manually configure the connection.</L0008>
+	<L0009>If you would like to utilize our easy to use Web-based Wizards to assist you in connecting your new D-Link Systems Router to the Internet, click on the button below.</L0009>
+	<L0010>Before launching these wizards, please make sure you have followed all steps outlined in the Quick Installation Guide included in the package.</L0010>
+	<L0011>Manual Internet Connection Options</L0011>
+	<L0012>If you would like to configure the Internet settings of your new D-Link Systems Router manually, then click on the button below.</L0012>
+
+	<!-- WAN_Dhcp.htm -->
+	<L0013>WAN</L0013>
+	<L0014>Use this section to configure your Internet Connection type. There are several connection types to choose from: Static IP, DHCP, PPPoE, PPTP, L2TP, and Usb3g. If you are unsure of your connection method, please contact your Internet Service Provider.</L0014>
+	<L0015>If using the PPPoE option, you will need to remove or disable any PPPoE client software on your computers.</L0015>
+	<L0016>Internet Connection Type</L0016>
+	<L0017>Choose the mode to be used by the router to connect to the Internet.</L0017>
+	<L0018>My Internet Connection is</L0018>
+	<L0019>Username</L0019>
+	<L0020>Use this Internet connection type if your Internet Service Provider (ISP) didn't provide you with IP Address information and/or a username and password.</L0020>
+	<L0021>Use Unicasting</L0021>
+	<L0022>compatibility for some DHCP Servers</L0022>
+	<L0023>Primary DNS Server</L0023>
+	<L0024>Secondary DNS Server</L0024>
+	<L0025>MTU</L0025>
+	<L0026>MTU default</L0026>
+	<L0027>bytes</L0027>
+
+	<!-- WAN_Static.htm -->
+	<L0028>Enter the static address information provided by your Internet Service Provider (ISP).</L0028>
+	<L0029>Default Gateway</L0029>
+
+	<!-- WAN_Pppoe.htm -->
+	<L0030>Enter the information provided by your Internet Service Provider (ISP).</L0030>
+	<L0031>Reconnect Mode</L0031>
+	<L0032>Always on</L0032>
+	<L0033>On demand</L0033>
+	<L0034>Manual</L0034>
+	<L0035>Maximum Idle Time</L0035>
+	<L0036>minutes</L0036>
+	<L0037>infinite</L0037>
+
+	<!-- AP Wireless.htm -->
+	<L0101>Wireless Connection</L0101>
+	<L0102>Wireless Network Settings</L0102>
+	<L0103>Use this section to configure the wireless settings for your D-Link Access Point. Please note that changes made on this section will also need to be duplicated to your wireless clients and PC.</L0103>
+	<L0104>To protect your privacy you can configure wireless security features. This device supports three wireless security modes including: WEP or WPA and WPA2.</L0104>
+	<L0105>Enable Wireless</L0105>
+	<L0106>Always</L0106>
+	<L0107>Never</L0107>
+	<L0108>Wireless Mode</L0108>
+	<L0109>Access Point</L0109>
+	<L0110>Wireless Network Name</L0110>
+	<L0111>SSID</L0111>
+	<L0112>Also called the SSID</L0112>
+	<L0113>Enable Auto Channel Scan</L0113>
+	<L0114>Wireless Channel</L0114>
+	<L0115>802.11 Mode</L0115>
+	<L0116>802.11b/g only</L0116>
+	<L0117>802.11n only</L0117>
+	<L0118>Mixed 802.11n, 802.11g</L0118>
+	<L0119>Mixed 802.11n, 802.11g and 802.11b</L0119>
+	<L0120>Channel Width</L0120>
+	<L0121>20 MHz</L0121>
+	<L0122>Auto 20/40 MHz</L0122>
+	<L0123>Transmission Rate</L0123>
+	<L0124>Enable Hidden Wireless</L0124>
+	<L0125>Also called Disable SSID Broadcast</L0125>
+	<L0126>Wireless Security Mode</L0126>
+	<L0127>To protect your privacy you can configure wireless security features. This device supports three wireless security modes, including WEP, WPA-Personal, and WPA-Enterprise. WEP is the original wireless encryption standard. WPA provides a higher level of security. WPA-Personal does not require an authentication server. The WPA-Enterprise option requires an external RADIUS server.</L0127>
+	<L0128>Security Mode</L0128>
+	<L0129>Disable Wireless Security (not recommended)</L0129>
+	<L0130>Enable WEP Wireless Security (basic)</L0130>
+	<L0131>Enable WPA Wireless Security (enhanced)</L0131>
+	<L0132>Enable WPA2 Wireless Security (enhanced)</L0132>
+	<L0133>Enable WPA2-Auto Wireless Security (enhanced)</L0133>
+	<L0134>WEP is the wireless encryption standard. To use it you must enter the same key(s) into the router and the wireless stations. For 64 bit keys you must enter 10 hex digits into each key box. For 128 bit keys you must enter 26 hex digits into each key box. A hex digit is either a number from 0 to 9 or a letter from A to F. For the most secure use of WEP set the authentication type to "Shared Key" when WEP is enabled.</L0134>
+	<L0135>You may also enter any text string into a WEP key box, in which case it will be converted into a hexadecimal key using the ASCII values of the characters. A maximum of 5 text characters can be entered for 64 bit keys, and a maximum of 13 characters for 128 bit keys.</L0135>
+	<L0136>Authentication</L0136>
+	<L0137>Open</L0137>
+	<L0138>Shared Key</L0138>
+	<L0139>WEP Key Length</L0139>
+	<L0140>64 bit</L0140>
+	<L0141>hex digits</L0141>
+	<L0142>128 bit</L0142>
+	<L0143>Key Format</L0143>
+	<L0144>HEX</L0144>
+	<L0145>ascii characters</L0145>
+	<L0146>WEP Key</L0146>
+	<L0147>Default WEP Key</L0147>
+	<L0148>Both</L0148>
+	<L0149>Auto</L0149>
+	<L0150>WPA</L0150>
+	<L0151>WPA requires stations to use high grade encryption and authentication.</L0151>
+	<L0152>WPA2</L0152>
+	<L0153>WPA2 requires stations to use high grade encryption and authentication.</L0153>
+	<L0154>WPA2-Auto</L0154>
+	<L0155>WPA2-Auto requires stations to use high grade encryption and authentication.</L0155>
+	<L0156>Cipher Type</L0156>
+	<L0157>TKIP</L0157>
+	<L0158>AES</L0158>
+	<L0159>TKIP and AES</L0159>
+	<L0160>PSK / EAP</L0160>
+	<L0161>Personal</L0161>
+	<L0162>Enterprise</L0162>
+	<L0163>Passphrase</L0163>
+	<L0164>Confirmed Passphrase</L0164>
+	<L0165>RADIUS Server</L0165>
+	<L0166>IP</L0166>
+	<L0167>Port</L0167>
+	<L0168>Shared Secret</L0168>
+	<L0169>WIFI Protected Setup (also called wcn 2.0 in windows vista)</L0169>
+	<L0170>Wi-Fi Protected Status</L0170>
+	<L0171>Not Configured</L0171>
+	<L0172>Configured</L0172>
+	<L0173>Disabled</L0173>
+	<L0174>Enabled</L0174>
+
+	<!-- APC Wireless.htm -->
+	<L0175>Wireless Client</L0175>
+	<L0176>Wireless Type</L0176>
+	<L0177>Infrastructure</L0177>
+	<L0178>Ad-Hoc</L0178>
+	<L0179>Wireless MAC Clone</L0179>
+	<L0180>MAC Source</L0180>
+
+	<!-- APC scan.htm -->
+	<L0181>Scanning available network...</L0181>
+	<L0182>BSSID</L0182>
+	<L0183>Type</L0183>
+	<L0184>Encrypt</L0184>
+	<L0185>Select</L0185>
+	<L0186>AP</L0186>
+	<L0187>WPA-AUTO</L0187>
+
+	<!-- RT Wireless.htm -->
+	<L0188>Use this section to configure the wireless settings for your D-Link Router. Please note that changes made on this section may also need to be duplicated on your Wireless Client.</L0188>
+	<L0189>Domain</L0189>
+	<L0190>Mbit/s</L0190>
+	<L0191>Visibility Status</L0191>
+	<L0192>Visible</L0192>
+	<L0193>Invisible</L0193>
+	<L0194>None</L0194>
+	<L0195>WEP</L0195>
+	<L0196>WPA-Personal</L0196>
+	<L0197>WPA-Enterprise</L0197>
+	<L0198>If you choose the WEP security option this device will &lt;strong&gt;ONLY&lt;/strong&gt; operate in &lt;strong&gt;Legacy Wireless mode (802.11B/G)&lt;/strong&gt;. This means you will &lt;strong&gt;NOT&lt;/strong&gt; get 11N performance due to the fact that WEP is not supported by the Draft 11N specification.</L0198>
+	<L0199>length applies to all keys</L0199>
+	<L0200>Use &lt;strong&gt;WPA or WPA2&lt;/strong&gt; mode to achieve a balance of strong security and best compatibility. This mode uses WPA for legacy clients while maintaining higher security with stations that are WPA2 capable. Also the strongest cipher that the client supports will be used. For best security, use &lt;strong&gt;WPA2 Only&lt;/strong&gt; mode. This mode uses AES(CCMP) cipher and legacy stations are not allowed access with WPA security. For maximum compatibility, use &lt;strong&gt;WPA Only&lt;/strong&gt;. This mode uses TKIP cipher. Some gaming and legacy devices work only in this mode.</L0200>
+	<L0201>To achieve better wireless performance use WPA2 Only security mode (or in other words AES cipher).</L0201>
+	<L0202>WPA Mode</L0202>
+	<L0203>Auto (WPA or WPA2)</L0203>
+	<L0204>WPA2 Only</L0204>
+	<L0205>WPA Only</L0205>
+	<L0206>Pre-Shared Key</L0206>
+	<L0207>Enter an 8 to 63 character alphanumeric pass-phrase. For good security it should be of ample length and should not be a commonly known phrase.</L0207>
+	<L0208>EAP (802.1x)</L0208>
+	<L0209>When WPA enterprise is enabled, the router uses EAP (802.1x) to authenticate clients via a remote RADIUS server. </L0209>
+	<L0210>RADIUS Server IP Address</L0210>
+	<L0211>RADIUS Server Port</L0211>
+	<L0212>RADIUS Server Shared Secret</L0212>
+	<L0213>Optional backup RADIUS server</L0213>
+	<L0214>Second RADIUS Server IP Address</L0214>
+	<L0215>Second RADIUS Server Port</L0215>
+	<L0216>Second RADIUS Server Shared Secret</L0216>
+	<L0225>Router</L0225>
+	
+	<!-- WHP WiFi_HotSpot.htm -->
+	<L0217>Wan Settings</L0217>
+	<L0218>This page is used to configure the parameters for Internet network which connects to the WAN port of your Access Point. Here you may change the access method to Static IP, DHCP, PPPoE or PPTP by click the item value of WAN Access type.</L0218>
+	<L0219>Attain DNS Automatically</L0219>
+	<L0220>Set DNS Manually</L0220>
+	
+	<!-- WHP Wireless.htm -->
+	<L0221>Extended SSID</L0221>
+	<L0222>Remain the same as SSID</L0222>
+	<L0223>Create Extended SSID</L0223>
+	
+	<!-- RTP Wireless.htm -->
+	<L0224>Repeater Mode</L0224>
+	<!-- The last Wireless tag number is L0225 -->
+
+	<!-- AP Network_AP.htm -->
+	<L0301>Use this section to configure the internal network settings of your AP.</L0301>
+	<L0302>Device Name allows you to configure this device more easily when your network using TCP/IP protocol. You can enter the device name of the AP into your web browser to access the instead of IP address for configuration. Recommend to change the device name if there're more than one D-Link devices within the subnet.</L0302>
+	<L0303>Lan Connection Type</L0303>
+	<L0304>Choose the mode to be used by the Access Point.</L0304>
+	<L0305>My LAN Connection is</L0305>
+	<L0306>Dynamic IP</L0306>
+	<L0307>DHCP</L0307>
+	<L0308>Static IP</L0308>
+	<L0309>Static IP Address</L0309>
+	<L0310>Enter the IPv4 Address Information.</L0310>
+	<L0311>Enter the static address Information.</L0311>
+	<L0312>IP Address</L0312>
+	<L0313>Subnet Mask</L0313>
+	<L0314>Gateway Address</L0314>
+	<L0315>Device Name</L0315>
+	<L0316>Device Name allows you to configure this device more easily. You can enter</L0316>
+	<L0317>into your web browser instead of IP address for configuration.</L0317>
+	<L0318>Default: http://dlinkap</L0318>
+	<L0319>Netbios Name</L0319>
+	<L0320>Lan IPv4 Connection Type</L0320>
+	<L0321>Choose the IPv4 mode to be used by the Access Point.</L0321>
+	<L0322>Lan IPv6 Connection Type</L0322>
+	<L0323>Choose the IPv6 mode to be used by the Access Point.</L0323>
+	<L0324>Autoconfiguration</L0324>
+	<L0325>LAN IPv6 Address Settings</L0325>
+	<L0326>Enter the IPv6 address information.</L0326>
+	<L0327>SLAAC</L0327>
+
+	<!-- Network.htm -->
+	<L0328>Use this section to configure the internal network settings of your router and also to configure the built-in DHCP Server to assign IP addresses to the computers on your network. The IP Address that is configured here is the IP Address that you use to access the Web-based management interface. If you change the IP Address here, you may need to adjust your PC's network settings to access the network again.</L0328>
+	<L0329>Router Settings</L0329>
+	<L0330>Use this section to configure the internal network settings of your router. The IP Address that is configured here is the IP Address that you use to access the Web-based management interface. If you change the IP Address here, you may need to adjust your PC's network settings to access the network again.</L0330>
+	<L0331>Router IP Address</L0331>
+	<L0332>Local Domain Name</L0332>
+	<L0333>Enable DNS Relay</L0333>
+	<L0334>DHCP Server Settings</L0334>
+	<L0335>Use this section to configure the built-in DHCP Server to assign IP addresses to the computers on your network.</L0335>
+	<L0336>Enable DHCP Server</L0336>
+	<L0337>DHCP IP Address Range</L0337>
+	<L0338>to</L0338>
+	<L0339>DHCP Lease Time</L0339>
+	<L0340>Add DHCP Reservation</L0340>
+	<L0341>DHCP Reservation</L0341>
+	<L0342>Enable</L0342>
+	<L0343>Disable</L0343>
+	<L0344>DHCP Reservations List</L0344>
+	<L0345>Number of Dynamic DHCP Clients:</L0345>
+	<L0346>Hardware Address</L0346>
+	<L0347>Assigned IP</L0347>
+	<L0348>Hostname</L0348>
+	<L0349>Expires</L0349>
+	<L0350>Revoke</L0350>
+	<L0351>Reserve</L0351>
+
+	<!-- USB.htm -->
+	<L0401>Use this section to configure your USB port. There are several configurations to choose from: Share Port, 3G USB Adapter.</L0401>
+	<L0402>If using the Network USB option, users will need to install the Network USB Utility into their computers to share the USB device through the router.</L0402>
+	<L0403>Choose the type of USB device to be plugged into the USB port.</L0403>
+	<L0404>My plug of USB type is</L0404>
+	<L0405>Share Port</L0405>
+	<L0406>3G USB Adapter</L0406>
+
+	<!-- Setup_Ipv6.htm -->
+	<L0501>IPv6 Internet Connection</L0501>
+	<L0502>There are two ways to set up your IPv6 Internet connection. You can use the Web-based IPv6 Internet Connection Setup Wizard, or you can manually configured the connection.</L0502>
+	<L0503>If you would like to utilize our easy to use Web-based Wizards to assist you in connecting your new D-link System Router to the IPv6 Internet, click on the button below.</L0503>
+	<L0504>If you would like to configure the IPv6 Internet settings of your new D-link Systems Router manually, then click on the button below.</L0504>
+
+	<!-- Ipv6_static.htm -->
+	<L0505>Use this section to configure your IPv6 Connection type. If you are unsure of your connection method, please contact your Internet Service Provider.</L0505>
+	<L0506>IPv6 Connection Type</L0506>
+	<L0507>Choose the mode to be used by the router to connect to the IPv6 Internet.</L0507>
+	<L0508>My IPv6 Connection is</L0508>
+	<L0509>Static IPv6</L0509>
+	<L0510>DHCPv6 (Stateful)</L0510>
+	<L0511>DHCPv6</L0511>
+	<L0512>SLAAC Autoconfiguration</L0512>
+	<L0513>IPv6 in IPv4 Tunnel</L0513>
+	<L0514>6to4</L0514>
+	<L0515>Link-local only</L0515>
+	<L0516>WAN IPv6 Address Settings</L0516>
+	<L0517>Enter the IPv6 address information provided by your Internet Service Provider (ISP). </L0517>
+	<L0518>IPv6 Address</L0518>
+	<L0519>Subnet Prefix Length</L0519>
+	<L0520>Use this section to configure the internal network setings of your router. If you change the LAN IPv6 Address here, you may need to adjust your PC's network settings to access the network again.</L0520>
+	<L0521>LAN IPv6 Address</L0521>
+	<L0522>LAN IPv6 Link-Local Address</L0522>
+	<L0523>Enable DHCP-PD</L0523>
+	<L0524>Address Autoconfiguration Settings</L0524>
+	<L0525>Use this section to setup IPv6 Autoconfiguration to assign IP addresses to the computers on your network.</L0525>
+	<L0526>You can also enable DHCP-PD to delegate prefixes for routers in your LAN.</L0526>
+	<L0527>Enable automatic IPv6 address assignment</L0527>
+	<L0528>Enable Automatic DHCP-PD in LAN</L0528>
+	<L0529>Autoconfiguration Type</L0529>
+	<L0530>SLAAC + RDNSS</L0530>
+	<L0531>SLAAC + Stateless DHCP</L0531>
+	<L0532>Stateful DHCPv6</L0532>
+	<L0533>Router Advertisement Lifetime</L0533>
+	<L0534>IPv6 Address Range(Start)</L0534>
+	<L0535>IPv6 Address Range(End)</L0535>
+	<L0536>IPv6 Address Lifetime</L0536>
+	<L0537>Use Link-Local Address</L0537>
+
+	<!-- Ipv6_link_local.htm -->
+	<L0538>Use this section to configure the internal network setings of your router. The LAN IPv6 Link-Local Address is the IPv6 Address that you use to access the Web-based management interface.</L0538>
+
+	<!-- Ipv6_autodetect.htm -->
+	<L0539>Auto Detection</L0539>
+
+	<!-- Ipv6_6rd.htm -->
+	<L0540>6rd</L0540>
+	<L0541>6rd Settings</L0541>
+	<L0542>6rd Configuration</L0542>
+	<L0543>6rd IPv6 Prefix</L0543>
+	<L0544>6rd DHCPv4 Option</L0544>
+	<L0545>Manual Configuration</L0545>
+	<L0546>IPv4 Address</L0546>
+	<L0547>Mask Length</L0547>
+	<L0548>Assigned IPv6 Prefix</L0548>
+	<L0549>6rd Border Relay IPv4 Address </L0549>
+	<L0550>Tunnel Link-Local Address</L0550>
+
+	<!-- Ipv6_dhcpv6.htm -->
+	<L0551>IPv6 DNS SETTINGS</L0551>
+	<L0552>Obtain DNS server address automatically or enter a specific DNS server address. </L0552>
+	<L0553>Obtain IPv6 DNS server address automatically</L0553>
+	<L0554>Use the following IPv6 DNS Servers</L0554>
+	<L0555>Primary IPv6 DNS Server</L0555>
+	<L0556>Secondary IPv6 DNS Server</L0556>
+
+	<!-- Ipv6_6in4.htm -->
+	<L0557>IPv6 in IPv4 Tunnel Settings</L0557>
+	<L0558>Enter the IPv6 in IPv4 Tunnel information provided by your Tunnel Broker.</L0558>
+	<L0559>Remote IPv4 Address</L0559>
+	<L0560>Remote IPv6 Address</L0560>
+	<L0561>Local IPv4 Address</L0561>
+	<L0562>Local IPv6 Address</L0562>
+
+	<!-- Ipv6_6to4.htm -->
+	<L0563>6to4 Settings</L0563>
+	<L0564>6to4 Address</L0564>
+	<L0565>6to4 Relay</L0565>
+
+	<!-- Ipv6_pppoe.htm -->
+	<L0566>Enter a specific DNS server address</L0566>
+	<L0567>PPPoE Session</L0567>
+	<L0568>Share with IPv4</L0568>
+	<L0569>Create a new session</L0569>
+	<L0570>Set Username and Password Connection (PPPoE)</L0570>
+
+	<!-- Storage.htm -->
+	<L0601>Web File Access allows you to use a web browser to remotely access files stored on an SD card or USB storage drive plugged into the router. To use this feature, check the &lt;b&gt;Enable Web File Access&lt;/b&gt; checkbox, then create user accounts to manage access to your storage devices or use the Guest account(guest/guest) to access the Guest Folder. After plugging in an SD card or USB storage drive, the new device will appear in the list with a link to it. You can then use this link to connect to the drive and log in with a user account.</L0601>
+	<L0602>HTTP Storage</L0602>
+	<L0603>Enable Web File Access</L0603>
+	<L0604>Enable HTTP Storage Remote Access</L0604>
+	<L0605>Remote Access Port</L0605>
+	<L0606>Enable HTTPS Storage Remote Access</L0606>
+	<L0607>Remote HTTPS Port</L0607>
+	<L0608>User Creation</L0608>
+	<L0609>User List</L0609>
+	<L0610>Modify</L0610>
+	<L0611>Access Path</L0611>
+	<L0612>Permission</L0612>
+	<L0613>Read Only</L0613>
+	<L0614>Read/Write</L0614>
+	<L0615>Number of Devices</L0615>
+	<L0616>Device</L0616>
+	<L0617>Total Space</L0617>
+	<L0618>Free Space</L0618>
+	<L0619>Http Storage Link</L0619>
+	<L0620>You can use this link to connect to the drive remotely after logging in with a user account.</L0620>
+	<L0621>Append New Folder</L0621>
+	<L0622>Device Link</L0622>
+	<L0623>Folder</L0623>
+	<L0624>Select Folder</L0624>
+	
+	<!-- Virtual_Server.htm -->
+	<L1001>The Virtual Server option allows you to define a single public port on your router for redirection to an internal LAN IP Address and Private LAN port if required. This feature is useful for hosting online services such as FTP or Web Servers.</L1001>
+	<L1002>Virtual Servers List</L1002>
+	<L1003>Traffic Type</L1003>
+	<L1004>Application Name</L1004>
+	<L1005>Public</L1005>
+	<L1006>Protocol</L1006>
+	<L1007>TCP</L1007>
+	<L1008>UDP</L1008>
+	<L1009>Other</L1009>
+	<L1010>Private</L1010>
+	<L1011>Allow All</L1011>
+	<L1012>Deny All</L1012>
+	<L1013>Remote Desktop</L1013>
+	<L1014>Wake-On-LAN</L1014>
+
+	<!-- Special_Application.htm -->
+	<L1101>This option is used to open single or multiple ports on your router when the router senses data sent to the Internet on a "trigger" port or port range. Special Applications rules apply to all computers on your internal network.</L1101>
+	<L1102>Application</L1102>
+	<L1103>Trigger</L1103>
+	<L1104>Firewall</L1104>
+	<L1105>Any</L1105>
+	<L1106>AIM Talk</L1106>
+	<L1107>BitTorrent</L1107>
+	<L1108>Calista IP phone</L1108>
+	<L1109>ICQ</L1109>
+	<L1110>PalTalk</L1110>
+
+	<!-- AP Mac_Addr_Filter_AP.htm -->
+	<L1201>The MAC (Media Access Controller) Address filter option is used to control network access based on the MAC Address of the network adapter. A MAC address is a unique ID assigned by the manufacturer of the network adapter. This feature can be configured to ALLOW or DENY network/Internet access.</L1201>
+	<L1202>Wireless Access Settings</L1202>
+	<L1203>Configure MAC Filtering below</L1203>
+	<L1204>Use the client's &lt;b&gt;MAC Address&lt;/b&gt; to authorize network access through the Router.</L1204>
+	<L1205>Turn MAC Filtering OFF</L1205>
+	<L1206>Turn MAC Filtering ON and ALLOW computers listed to access the network</L1206>
+	<L1207>Turn MAC Filtering ON and DENY computers listed to access the network</L1207>
+	<L1208>Wireless Client List</L1208>
+	<L1209>Computer Name</L1209>
+	<L1210>Mac Filter List</L1210>
+	<L1211>Edit</L1211>
+	<L1212>Del</L1212>
+
+	<!-- Web_Filter.htm -->
+	<L1301>The Website Filter option allows you to set up a list of Web sites you would like to allow or deny through your network. To use this feature, you must also select the "Apply Web Filter" checkbox in the Access Control section.</L1301>
+	<L1302>Website Filtering Rules</L1302>
+	<L1303>Configure Website Filter below</L1303>
+	<L1304>DENY computers access to ONLY these sites</L1304>
+	<L1305>ALLOW computers access to ONLY these sites</L1305>
+	<L1306>Website URL/Domain</L1306>
+
+	<!-- Firewall.htm -->
+	<L1401>The Firewall Settings allow you to set a single computer on your network outside of the router.</L1401>
+	<L1402>Enable SPI</L1402>
+	<L1403>NAT Endpoint Filtering</L1403>
+	<L1404>UDP Endpoint Filtering</L1404>
+	<L1405>TCP Endpoint Filtering</L1405>
+	<L1406>Endpoint Independent</L1406>
+	<L1407>Address Restricted</L1407>
+	<L1408>Port And Address Restricted</L1408>
+	<L1409>Anti-Spoof checking</L1409>
+	<L1410>Enable anti-spoof checking</L1410>
+
+	<!-- AP Advanced_Wireless.htm -->
+	<L1501>Advanced Wireless Settings</L1501>
+	<L1502>These options are for users that wish to change the behaviour of their 802.11n wireless radio from the standard setting. D-link does not recommend changing these settings from the factory default. Incorrect settings may impair the performance of your wireless radio. The default settings should provide the best wireless radio performance in most environments.</L1502>
+	<L1503>Transmit Power</L1503>
+	<L1504>High</L1504>
+	<L1505>Medium</L1505>
+	<L1506>Low</L1506>
+	<L1507>Beacon Period</L1507>
+	<L1508>RTS Threshold</L1508>
+	<L1509>Fragmentation Threshold</L1509>
+	<L1510>DTIM Interval</L1510>
+	<L1511>IGMP Snooping</L1511>
+	<L1512>WMM Enable</L1512>
+	<L1513>Short GI</L1513>
+	<L1514>WLAN Partition</L1514>
+
+	<!-- AP User_Limit.htm -->
+	<L1515>User Limit Settings</L1515>
+	<L1516>Please Apply the settings to limit how many wireless stations connecting to AP.</L1516>
+	<L1517>Enable User Limit</L1517>
+
+	<!-- Advanced_Wireless.htm -->
+	<L1518>If you are not familiar with these Advanced Wireless settings, please read the help section before attempting to modify these settings.</L1518>
+
+	<!-- Protected_Setup.htm -->
+	<L1601>Wi-Fi Protected Setup is used to easily add devices to a network using a PIN or button press. Devices must support Wi-Fi Protected Setup in order to be configured by this method.</L1601>
+	<L1602>If the PIN changes, the new PIN will be used in following Wi-Fi Protected Setup process. Clicking on "Don't Save Settings" button will not reset the PIN.</L1602>
+	<L1603>However, if the new PIN is not saved, it will get lost when the device reboots or loses power.</L1603>
+	<L1604>PIN Settings</L1604>
+	<L1605>Current PIN</L1605>
+	<L1606>Add Wireless Station</L1606>
+	<L1607>Lock Wireless Security Settings</L1607>
+
+	<!-- Advanced_Network.htm -->
+	<L1701>If you are not familiar with these Advanced Network settings, please read the help section before attempting to modify these settings.</L1701>
+	<L1702>UPnP</L1702>
+	<L1703>Universal Plug and Play (UPnP) supports peer-to-peer Plug and Play functionality for network devices.</L1703>
+	<L1704>Enable UPnP</L1704>
+
+	<!-- Guest_Zone.htm -->
+	<L1801>Use this section to configure the guest zone settings of your router. The guest zone provide a separate network zone for guest to access Internet.</L1801>
+	<L1802>Guest Zone Selection</L1802>
+	<L1803>Enable Guest Zone</L1803>
+	<L1804>Wireless Band</L1804>
+	<L1805>Enable Routing Between Zones</L1805>
+
+	<!-- DMZ.htm -->
+	<L1901>DMZ Settings</L1901>
+	<L1902>DMZ Host</L1902>
+	<L1903>The DMZ (Demilitarized Zone) option lets you set a single computer on your network outside of the router. If you have a computer that cannot run Internet applications successfully from behind the router, then you can place the computer into the DMZ for unrestricted Internet access.</L1903>
+	<L1904>Putting a computer in the DMZ may expose that computer to a variety of security risks. Use of this option is only recommended as a last resort.</L1904>
+	<L1905>Enable DMZ</L1905>
+	<L1906>DMZ IP Address</L1906>
+
+	<!-- Adv_ipv6_routing -->
+	<L2001>The Routing page allows you to specify custom routes that determine how data is moved around your network.</L2001>
+	<L2002>Route List</L2002>
+	<L2003>Destination IPv6</L2003>
+	<L2004>Prefix Length</L2004>
+	<L2005>Metric</L2005>
+	<L2006>Gateway</L2006>
+	<L2007>Destination IP</L2007>
+	<L2008>Netmask</L2008>
+
+	<!-- adv_ipv6_firewall.htm -->
+	<L2101>IPv6 Firewall</L2101>
+	<L2102>The Firewall settings section is an advance feature used to allow or deny traffic from passing through the device. It works in the same way as IP Filters with additional settings. You can create more detailed rules for the device.</L2102>
+	<L2103>IPv6 FIREWALL RULES</L2103>
+	<L2104>Remaining number of firewall rules that can be configured:</L2104>
+	<L2105>Source</L2105>
+	<L2106>Dest</L2106>
+	<L2107>Interface</L2107>
+	<L2108>Action</L2108>
+	<L2109>Allow</L2109>
+	<L2110>Deny</L2110>
+	<L2111>IP Address Range</L2111>
+	<L2112>Port Range</L2112>
+
+	<!-- AP Admin.htm -->
+	<L3001>Enter the new password in the &quot;New Password&quot; field and again in the next field to confirm. Click on &quot;Save Settings&quot; to execute the password change. The Password is case-sensitive, and can be made up of any keyboard characters. The new password must be between 0 and 15 characters in length.</L3001>
+	<L3002>New Password</L3002>
+
+	<!-- Admin.htm -->
+	<L3003>Administrator Settings</L3003>
+	<L3004>The 'admin' account can access the management interface. The admin has read/write access and can change passwords.</L3004>
+	<L3005>By default there is no password configured. It is highly recommended that you create a password to keep your router secure.</L3005>
+	<L3006>Admin Password</L3006>
+	<L3007>Please enter the same password into both boxes, for confirmation.</L3007>
+	<L3008>System Name</L3008>
+	<L3009>Gateway Name</L3009>
+	<L3010>Administration</L3010>
+	<L3011>Enable Graphical Authentication</L3011>
+	<L3012>Enable HTTPS Server</L3012>
+	<L3013>Enable Remote Management</L3013>
+	<L3014>Remote Admin Port</L3014>
+	<L3015>Use HTTPS</L3015>
+	<L3016>Remote Admin</L3016>
+
+	<!-- AP Time.htm  -->
+	<L3101>The Time Configuration option allows you to configure, update, and maintain the correct time on the internal system clock. From this section you can set the time zone that you are in and set the NTP (Network Time Protocol) Server. Daylight Saving can also be configured to automatically adjust the time when needed.</L3101>
+	<L3102>Time Configuration</L3102>
+	<L3103>Current Time</L3103>
+	<L3104>Current Router Time</L3104>
+	<L3105>Enable Daylight Saving</L3105>
+	<L3106>Daylight Saving Offset</L3106>
+	<L3107>Daylight Saving Dates</L3107>
+	<L3108>Month</L3108>
+	<L3109>Week</L3109>
+	<L3110>Date</L3110>
+	<L3111>Day of Week</L3111>
+	<L3112>DST start</L3112>
+	<L3113>DST End</L3113>
+	<L3114>Enable NTP Server</L3114>
+	<L3115>NTP Server Used</L3115>
+	<L3116>Select NTP Server</L3116>
+	<L3117>Date And Time</L3117>
+	<L3118>Year</L3118>
+	<L3119>Day</L3119>
+	<L3120>Hour</L3120>
+	<L3121>Minute</L3121>
+	<L3122>Second</L3122>
+	<L3123>Automatic Time Configuration</L3123>
+	<L3124>Set the Date and Time Manually</L3124>
+	<L3125>NTP Server</L3125>
+
+	<!-- AP System.htm -->
+	<L3201>Save and Restore</L3201>
+	<L3202>The current system settings can be saved as a file onto the local hard drive. You can upload any save settings file  that was created by the %m.</L3202>
+	<L3203>Save Settings To Local Hard Drive</L3203>
+	<L3204>Load Settings From Local Hard Drive</L3204>
+	<L3205>Restore To Factory Default Settings</L3205>
+	<L3206>Reboot The Device</L3206>
+	<L3207>Clear Language Pack</L3207>
+	<L3208>Remove Language Pack</L3208>
+	<L3209>Check Online Now for Latest Firmware and Language pack Version</L3209>
+	<L3210>This firmware is the latest version.</L3210>
+	<L3211>Check Latest Firmware and Language Pack Version</L3211>
+	<L3212>Latest Language Pack Version</L3212>
+	<L3213>Latest Language Pack Date</L3213>
+	<L3214>Available Language Pack Download Site</L3214>
+	<L3215>After downloading the latest firmware and language pack, please update the firmware first before the language pack</L3215>
+
+	<!-- System.htm -->
+	<L3216>System Settings</L3216>
+	<L3217>The System Settings section allows you to reboot the device, or restore the router to the factory default settings. Restoring the unit to the factory default settings will erase all settings, including any rules that you have created.</L3217>
+	<L3218>The current system settings can be saved as a file onto the local hard drive. The saved file or any other saved setting file created by device can be uploaded into the unit.</L3218>
+	<L3219>Restore all settings to the factory defaults.</L3219>
+
+	<!-- AP Firmware.htm -->
+	<L3301>There may be new firmware for your %m to improve functionality and performance.</L3301>
+	<L3302>Click here to check for an upgrade on our support site.</L3302>
+	<L3303>After you have download the new firmware file from our support site, click the Browse button below to find the firmware file on your local hard drive. Click the Upload button to update the firmware on the %m.</L3303>
+	<L3304>To upgrade the firmware, locate the upgrage file on the local hard drive with Browse button. Once you have found the file to be used, click the Upload button to start the firmware upgrade.</L3304>
+	<L3305>The language pack allows you to change the language of the user interface on the %m. We suggest that you upgrade your current language pack if you upgrade the firmware. This ensures that any changes in the firmware are display correctly.</L3305>
+	<L3306>To upgrade the language pack, locate the upgrade file on the local hard drive with Browse button. Once you have found the file to be used, click the Upload button to start the language pack upgrade.</L3306>
+	<L3307>Do not update firmware through wireless network!!</L3307>
+	<L3308>Firmware Information</L3308>
+	<L3309>Current Firmware Version</L3309>
+	<L3310>Current Firmware Date</L3310>
+	<L3311>Check Online Now for Latest Firmware Version</L3311>
+	<L3312>Check Latest Firmware Version</L3312>
+	<L3313>Latest Firmware Version</L3313>
+	<L3314>Latest Firmware Date</L3314>
+	<L3315>Available Download Site</L3315>
+	<L3316>Some firmware upgrades reset the configuration options to the factory defaults. Before performing an upgrade, be sure to save the current configuration from the &lt;a href="javascript:check_is_modified('System.htm')"&gt;Maintenance -&gt; System&lt;/a&gt; screen</L3316>
+	<L3317>To upgrade the firmware, your PC must have a wired connection to the access point. Enter the name of the firmware upgrade file, and click on the Upload button.</L3317>
+	<L3318>Firmware Upgrade</L3318>
+	<L3319>Now uploading. The upload may take up to 1 minute.</L3319>
+	<L3320>Language Package Information</L3320>
+	<L3321>Update language package will make changes language display on web page.  Before performing an upgrade, be sure to do it!</L3321>
+	<L3322>To upgrade the language package, your PC must have a wired connection to the access point. Enter the name of the language package upgrade file, and click on the Upload button.</L3322>
+	<L3323>AP's</L3323>
+	<L3324>AP Client's</L3324>
+	<L3325>router's</L3325>
+	<L3326>FIRMWARE and LANGUAGE PACK INFORMATION</L3326>
+	<L3327>Current Language Pack Version</L3327>
+	<L3328>No Language pack</L3328>
+	<L3329>Language Pack Upgrade</L3329>
+
+	<!-- AP Firmware_Upgrade.htm -->
+	<L3330>Upload Successed</L3330>
+	<L3331>The device will now be reprogrammed using the uploaded firmware file.</L3331>
+	<L3332>Please wait &lt;span id="show_second"&gt;150&lt;/span&gt; seconds for this process to complete, after which you may access these web pages again.</L3332>
+	<L3333>Pressing reload or back on your browser may cause this operation to fail.</L3333>
+
+	<!-- AP SysLog.htm -->
+	<L3401>The SysLog options allow you to send log information to a SysLog Server.</L3401>
+	<L3402>SysLog Settings</L3402>
+	<L3403>Enable Logging To Syslog Server</L3403>
+	<L3404>SysLog Server</L3404>
+	<L3405>Syslog Server IP Address</L3405>
+
+	<!-- AP Schedules.htm -->
+	<L3501>Schedule</L3501>
+	<L3502>The Schedule configuration option is used to manage schedule rules for wireless Lan control features.</L3502>
+	<L3503>The Schedule configuration option is used to manage schedule rules for various firewall and parental control features.</L3503>
+	<L3504>Add Schedule Rule</L3504>
+	<L3505>Day(s)</L3505>
+	<L3506>All Week</L3506>
+	<L3507>Select Day(s)</L3507>
+	<L3508>All Day - 24 hrs</L3508>
+	<L3509>Start Time</L3509>
+	<L3510>AM</L3510>
+	<L3511>PM</L3511>
+	<L3512>hour:minute, 12 hour time</L3512>
+	<L3513>End Time</L3513>
+	<L3514>Schedule Rules List</L3514>
+	<L3515>Name</L3515>
+	<L3516>Time Frame</L3516>
+	<L3517>Every Day</L3517>
+	<L3518>hour:minute</L3518>
+	<L3519>Time format</L3519>
+	<L3520>24-hour</L3520>
+	<L3521>12-hour</L3521>
+	<L3522>All Day</L3522>
+
+	<!-- System_Check.htm -->
+	<L3601>Ping Test</L3601>
+	<L3602>Ping Test sends "ping" packets to test a computer on the Internet.</L3602>
+	<L3603>Host Name or IP Address:</L3603>
+	<L3604>Ping Result</L3604>
+	<L3605>Enter a host name or IP address above and click 'Ping' </L3605>
+	<L3606>IPv6 Ping Test</L3606>
+	<L3607>Host Name or IPv6 Address:</L3607>
+	<L3608>Success</L3608>
+	<L3609>Fail</L3609>
+	<L3610>Unknown Host</L3610>
+	<L3611>Execute Ping Failed</L3611>
+
+	<!-- Dynamic_DNS.htm -->
+	<L3701>The DDNS feature allows you to host a server (Web, FTP, Game Server, etc...) using a domain name that you have purchased (www.whateveryournameis.com) with your dynamically assigned IP address. Most broadband Internet Service Providers assign dynamic (changing) IP addresses. Using a DDNS service provider, your friends can enter your host name to connect to your game server no matter what your IP address is.</L3701>
+	<L3702>Sign up for D-Link's Free DDNS service at</L3702>
+	<L3703>Enable Dynamic DNS</L3703>
+	<L3704>Server Address</L3704>
+	<L3705>Select Dynamic DNS Server</L3705>
+	<L3706>dlinkddns.com(Free)</L3706>
+	<L3707>dyndns.com(Custom)</L3707>
+	<L3708>dyndns.com(Free)</L3708>
+	<L3709>Username or Key</L3709>
+	<L3710>Password or Key</L3710>
+	<L3711>Verify Password or Key</L3711>
+	<L3712>Timeout</L3712>
+	<L3713>hours</L3713>
+
+	<!-- AP Device_Info.htm -->
+	<L4001>Device Information</L4001>
+	<L4002>All of your wireless and network connection details are displayed on this page. The firmware version is also displayed here.</L4002>
+	<L4003>General</L4003>
+	<L4004>LAN</L4004>
+	<L4005>Connection</L4005>
+	<L4006>Wireless LAN</L4006>
+	<L4007>Network Name</L4007>
+	<L4008>Channel</L4008>
+	<L4009>bits</L4009>
+	<L4010>Signal Strength</L4010>
+	<L4011>ISP Name</L4011>
+	<L4012>Band</L4012>
+
+	<!-- APC Device_info.htm -->
+	<L4013>Shared</L4013>
+
+	<!-- Device_Info.htm -->
+	<L4014>LAN Computers</L4014>
+	<L4015>If Any</L4015>
+	<L4016>MAC</L4016>
+	<L4017>N/A</L4017>
+	<L4018>Cable Status</L4018>
+	<L4019>Network Status</L4019>
+	<L4020>Connection Type</L4020>
+	<L4021>Connected</L4021>
+	<L4022>Connecting</L4022>
+	<L4023>Disconnected</L4023>
+	<L4024>Disconnecting</L4024>
+	<L4025>Connection Up Time</L4025>
+	<L4026>System Up Time</L4026>
+	<L4027>Authentication Security</L4027>
+	<L4028>DHCP Server</L4028>
+	<L4029>Wireless Radio</L4029>
+	<L4030>WPA/WPA2</L4030>
+	<L4031>DHCP Renew</L4031>
+	<L4032>DHCP Release</L4032>
+	<L4033>Disconnect</L4033>
+	<L4034>DHCP client</L4034>
+	<L4035>Fixed IP</L4035>
+	<L4036>Days</L4036>
+	<L4037>Active</L4037>
+	<L4038>SSID List</L4038>
+	<L4039>Guest</L4039>
+	<L4040>Yes</L4040>
+	<L4041>No</L4041>
+
+	<!-- WHP Device_Info.htm -->
+	<L4042>Extended Network Name</L4042>
+
+	<!-- AP St_Wireless.htm -->
+	<L4101>The Wireless Client table below displays Wireless clients connected to the AP (Access Point). In Wireless Client mode it displays the connected AP's MAC address and connected Time.</L4101>
+	<L4102>Number Of Wireless Clients</L4102>
+	<L4103>Connected Time</L4103>
+	<L4104>Use this option to view the wireless clients that are connected to your wireless router.</L4104>
+
+	<!-- St_Wireless.htm -->
+	<L4105>Mode</L4105>
+	<L4106>Rate</L4106>
+	<L4107>Mbps</L4107>
+	<L4108>Signal</L4108>
+	<L4109>802.11b</L4109>
+	<L4110>802.11g</L4110>
+	<L4111>802.11n (2.4GHz)</L4111>
+
+	<!-- AP Logs.htm -->
+	<L4201>Use this option to view the device logs. You can define what types of events you want to view and the event levels to view.</L4201>
+	<L4202>Log Options</L4202>
+	<L4203>Log Type</L4203>
+	<L4204>System Activity</L4204>
+	<L4205>Debug Information</L4205>
+	<L4206>Attacks</L4206>
+	<L4207>Dropped Packets</L4207>
+	<L4208>Notice</L4208>
+	<L4209>Log Details</L4209>
+	<L4210>Message</L4210>
+
+	<!-- Statistics.htm -->
+	<L4301>Traffic Statistics</L4301>
+	<L4302>Traffic Statistics display Receive and Transmit packets passing through your router.</L4302>
+	<L4303>LAN Statistics</L4303>
+	<L4304>WAN Statistics</L4304>
+	<L4305>Wireless Statistics</L4305>
+	<L4306>Sent</L4306>
+	<L4307>Received</L4307>
+	<L4308>TX Packets Dropped</L4308>
+	<L4309>RX Packets Dropped</L4309>
+	<L4310>Collisions</L4310>
+	<L4311>Errors</L4311>
+
+	<!-- Internet_Sessions.htm -->
+	<L4401>This page displays the full details of active internet sessions to your router.</L4401>
+	<L4402>Local</L4402>
+	<L4403>NAT</L4403>
+	<L4404>State</L4404>
+	<L4405>Dir</L4405>
+	<L4406>Time-Out</L4406>
+
+	<!-- AP Device_IPv6.htm -->
+	<L4501>All of your IPv6 network connection details are displayed on this page.</L4501>
+
+	<!-- Device_IPv6.htm -->
+	<L4502>WAN IPv6 Address</L4502>
+	<L4503>IPv6 Default Gateway</L4503>
+	<L4504>DHCP-PD</L4504>
+	<L4505>IPv6 Network assigned by DHCP-PD</L4505>
+	<L4506>IPv6 Network Information</L4506>
+	<L4507>All of your IPv6 Internet and network connection details are displayed on this page.</L4507>
+	<L4508>IPv6 Connetcion Information</L4508>
+	<L4509>LAN IPv6 Computers</L4509>
+
+	<!-- Help Information Text -->
+	<HP001>Wizard</HP001>
+	<HP002>The Wizard is a quick and useful utility to help setup the %m to easily connect to your Local Area Network (LAN) with only a few simple steps required. It will guide you step by step to configure a new password, SSID, channel, security setting for the %m. The Setup Wizard is a helpful guide for first time users to the %m.</HP002>
+	<HP003>The wireless section is used to configure the wireless settings for your D-Link Access Point. Note that changes made in this section may also need to be duplicated on wireless clients that you want to connect to your wireless network.</HP003>
+	<HP004>This option turns off and on the wireless connection feature of the Access Point. When you set this option, the following parameters are in effect.</HP004>
+	<HP005>If you select this option, the Access Point automatically finds the channel with least interference and uses that channel for wireless networking. If you disable this option, the Access Point uses the channel that you specify with the following &lt;span class='option'&gt;Wireless Channel&lt;/span&gt; option.</HP005>
+	<HP006>If all of the wireless devices you want to connect with this Access Point can connect in the same transmission mode, you can improve performance slightly by choosing the appropriate "Only" mode. If you have some devices that use a different transmission mode, choose the appropriate "Mixed" mode.</HP006>
+	<HP007>Both of these options select some variant of Wi-Fi Protected Access (WPA) -- security standards published by the Wi-Fi Alliance. The &lt;span class='option'&gt;WPA Mode&lt;/span&gt; further refines the variant that the Access Point should employ.</HP007>
+	<HP008>WPA is the older standard; select this option if the clients that will be used with the Access Point only support the older standard. WPA2 is the newer implementation of the stronger IEEE 802.11i security standard. With the "WPA2" option, the Access Point tries WPA2 first, but falls back to WPA if the client only supports WPA. With the "WPA2 Only" option, the Access Point associates only with clients that also support WPA2 security.</HP008>
+	<HP009>The encryption algorithm used to secure the data communication. TKIP (Temporal Key Integrity Protocol) provides per-packet key generation and is based on WEP. AES (Advanced Encryption Standard) is a very secure block based encryption. With the "TKIP and AES" option, the Access Point negotiates the cipher type with the client, and uses AES when available.</HP009>
+	<HP010>LAN Setup</HP010>
+	<HP011>These are the settings of the LAN (Local Area Network) interface for the device. These settings may be referred to as "private settings". You may change the LAN IP address if needed. The LAN IP address is private to your internal network and cannot be seen on the Internet. The default IP address is 192.168.0.50 with a subnet mask of 255.255.255.0.</HP011>
+	<HP012>Dynamic IP Address/Static IP Address</HP012>
+	<HP013>The %m can be configured to obtain an IP address automatically from another DHCP server in the local network. By default, the %m is pre-configured with a fixed IP of 192.168.0.50.</HP013>
+	<HP014>IP address of the %m, default is 192.168.0.50.</HP014>
+	<HP015>Subnet Mask of %m, default is 255.255.255.0.</HP015>
+
+	<!-- support_advanced.htm -->
+	<HP016>%m can be configured to deny or only allow wireless stations association by filtering MAC addresses. By selecting "Accept", %m can only be associated with MAC addresses listed in the Authorization table. By selecting "Reject", %m will only disassociate with MAC addresses listed.</HP016>
+	<HP017>Enter the MAC address of the device you would like to be affected on selected Access Control type.</HP017>
+	<HP018>Beacons are packets sent by an Access Point to synchronize a wireless network. Specify a Beacon interval value between 1 and 1000. The default value is set to 100 milliseconds.</HP018>
+	<HP019>RTS threshold</HP019>
+	<HP020>This value should remain at its default setting of 2346. If you encounter inconsistent data flow, only minor modifications to the value range between 1 and 2347 are recommended. The default value for RTS Threshold is set to 2346.</HP020>
+	<HP021>Fragmentation threshold</HP021>
+	<HP022>This value should remain at its default setting of 2346. If you experience a high packet error rate, you may slightly increase your "Fragmentation" value within the value range of 256 to 2346. Setting the Fragmentation value too low may result in poor performance.</HP022>
+	<HP023>DTIM interval</HP023>
+	<HP024>Enter a value between 1 and 255 for the Delivery Traffic Indication Message(DTIM). A DTIM is a countdown informing clients of the next window for listening to broadcast and multicast messages. When the Access Point has buffered broadcast or multicast messages for associated clients, it sends the next DTIM with a DTIM Interval value. AP clients hear the beacons and awaken to receive the broadcast and multicast messages. The default value for DTIM interval is set to 1.</HP024>
+	<HP025>Preamble Type</HP025>
+	<HP026>The Preamble Type defines the length of the CRC (Cyclic Redundancy Check) block for communication between the Access Point and roaming wireless adapters. Make sure to select the appropriate preamble type and click the Apply button. &lt;font color="red"&gt;Note&lt;/FONT&gt;: High network traffic areas should use the shorter preamble type. CRC is a common technique for detecting data transmission errors. </HP026>
+	<HP027>Antenna Transmit Power</HP027>
+	<HP028>The antenna transmit power ranges from 25% (weak) to 100% (strong). The greater antenna transmit power, the longer the range of wireless communications. Select the power based on the coverage you desire for your %m. For security reasons, certain implementations require that the antenna transmit power be adjusted to provide wireless coverage within a limited area.</HP028>
+	<HP029>Add User limit</HP029>
+	<HP030>User Limit can set a limit upon the number of wireless clients. Using user limit, you can prevent scenarios where the %m in your network shows performance degradation because it is handling heavy wireless traffic.</HP030>
+	<HP031>Check this option to enable User Limit function.</HP031>
+	<HP032>User limit</HP032>
+	<HP033>Enter the numbers of wireless clients you want to set for a limitation in accessing your network.</HP033>
+	<HP034>Internal Station Connection&lt;br&gt;The Internal Station Connection default value is "allow," which allows stations to inter-communicate by connecting to a target AP. By disabling this function, wireless stations cannot exchange data through the AP.</HP034>
+	<HP035>The product uses the IGMP protocol to support efficient multicasting -- transmission of identical content, such as multimedia, from a source to a number of recipients. This option must be enabled if any applications on the LAN participate in a multicast group. If you have a multimedia LAN application that is not receiving content as expected, try enabling this option.</HP035>
+	<HP036>A PIN is a unique number that can be used to add the Access Point to an existing network or to create a new network. The default PIN may be printed on the bottom of the Access Point. For extra security, a new PIN can be generated. You can restore the default PIN at any time. Only the Administrator ("admin" account) can change or reset the PIN.</HP036>
+	<HP037>Shows the current value of the Access Point's PIN.</HP037>
+	<HP038>Restore the default PIN of the Access Point.</HP038>
+	<HP039>Create a random number that is a valid PIN. This becomes the Access Point's PIN. You can then copy this PIN to the user interface of the registrar.</HP039>
+	<HP040>The wizard will either display the wireless network settings to guide you through manual configuration, prompt you to enter the PIN for the device, or ask you to press the configuration button on the device. If the device supports Wi-Fi Protected Setup and has a configuration button, you can add it to the network by pressing the configuration button on the device and then the on the Access Point within 60 seconds. The status LED on the Access Point will flash three times if the device has been successfully added to the network.</HP040>
+	<HP041>There are several ways to add a wireless device to your network. Access to the wireless network is controlled by a "registrar". A registrar only allows devices onto the wireless network if you have entered the PIN, or pressed a special Wi-Fi Protected Setup button on the device. The Access Point acts as a registrar for the network, although other devices may act as a registrar as well.</HP041>
+	<HP042>Specifies whether the entry will be enabled or disabled.</HP042>
+	<HP043>The IP address of packets that will take this route.</HP043>
+	<HP044>One bits in the mask specify which bits of the IP address must match.</HP044>
+	<HP045>Specifies the next hop to be taken if this route is used. A gateway of 0.0.0.0 implies there is no next hop, and the IP address matched is directly connected to the router on the interface specified: WAN.</HP045>
+	<HP046>The route metric is a value from 1 to 16 that indicates the cost of using this route. A value of 1 is the lowest cost, and 15 is the highest cost. A value of 16 indicates that the route is not reachable from this router. When trying to reach a particular destination, computers on your network will select the best route, ignoring unreachable routes.</HP046>
+	<HP047>Specifies the interface -- WAN -- that the IP packet must use to transit out of the router, when this route is used.</HP047>
+
+	<!-- support_maintenance.htm -->
+	<HP048>Device Administration</HP048>
+	<HP049>Enter a password in the Access Point Password field. Type the password again in the next field to confirm it. The Password is case-sensitive ("A" is a different character than "a",) and must be between 0 and 15 characters in length.</HP049>
+	<HP050>This section allows you to manage %m's configuration settings, reboot %m, and restore %m to the factory default settings. Restoring the unit to the factory default settings will erase all settings, including any rules that you've created.</HP050>
+	<HP051>This option allows you to save %m's configuration to a file on your computer. Be sure to save the configuration before performing a firmware upgrade.</HP051>
+	<HP052>Use this option to restore previously saved %m configuration settings.</HP052>
+	<HP053>This option restores all configuration settings back to the settings that were in effect at the time %m was shipped from the factory. Any settings that have not been saved will be lost. If you want to save your %m configuration settings, use the Save Settings option above.</HP053>
+	<HP054>This restarts %m. Useful for restarting when you are not near the device.</HP054>
+	<HP055>Firmware Update</HP055>
+	<HP056>You can upgrade the firmware of the device using this tool. Make sure that the firmware you want to use is saved on the local hard drive of the computer. Click on &lt;strong&gt;Browse&lt;/strong&gt; to search the local hard drive for the firmware to be used for the update. Upgrading the firmware will not change any of your system settings but it is recommended that you save your system settings before doing a firmware upgrade.</HP056>
+	<HP057>The Time Configuration option allows you to configure, update, and maintain the correct time on %m's internal system clock.  From this section you can set the time zone that you are in and set the Time Server. Daylight saving can also be configured to automatically adjust the time when needed.</HP057>
+	<HP058>Displays the time currently maintained by %m. If this is not correct, use the following options to configure the time correctly.</HP058>
+	<HP059>Select your local time zone from pull down menu.</HP059>
+	<HP060>Check this option if your location observes daylight saving time.</HP060>
+	<HP061>DST Start and DST End</HP061>
+	<HP062>Select the starting and ending times for the change to and from daylight saving time. For example, suppose for DST Start you select Month="Oct", Week="3rd", Day="Sun" and Time="2am". This is the same as saying: "Daylight saving starts on the third Sunday of October at 2:00 AM."</HP062>
+	<HP063>Select this option if you want to synchronize %m's clock to a Network Time Server over the Internet. If you are using schedules or logs, this is the best way to ensure that the schedules and logs are kept accurate.</HP063>
+	<HP064>Note that, even when NTP Server is enabled, you must still choose a time zone and set the daylight saving parameters.</HP064>
+	<HP065>Select a Network Time Server for synchronization. You can type in the address of a time server or select one from the list. If you have trouble using one server, select another.</HP065>
+	<HP066>If you do not have the NTP Server option in effect, you can either manually set the time for %m here, or you can click the &lt;span class='button_ref'&gt;Copy Your Computer's Time Settings&lt;/span&gt; button to copy the time from the computer you are using. (Make sure that computer's time is set correctly.)</HP066>
+	<HP067>If %m loses power for any reason, it cannot keep its clock running, and will not have the correct time when it is started again. To maintain correct time for schedules and logs, either you must enter the correct time after you restart %m, or you must enable the NTP Server option.</HP067>
+	<HP068> Schedules can be created for use with enforcing rules. For example, if you want to restrict web access to Mon-Fri from 3pm to 8pm, you could create a schedule selecting Mon, Tue, Wed, Thu, and Fri and enter a Start Time of 3pm and End Time of 8pm.</HP068>
+	<HP069>Add/Update Schedule Rule</HP069>
+	<HP070>In this section you can add entries to the Schedule Rules List below or edit existing entries.</HP070>
+	<HP071>Give the schedule a name that is meaningful to you, such as "Weekday rule".</HP071>
+	<HP072>Place a checkmark in the boxes for the desired days or select the All Week radio button to select all seven days of the week.</HP072>
+	<HP073>Select this option if you want this schedule in effect all day for the selected day(s).</HP073>
+	<HP074>If you don't use the All Day option, then you enter the time here. The start time is entered in two fields. The first box is for the hour and the second box is for the minute. Email events are normally triggered only by the start time.</HP074>
+	<HP075>The end time is entered in the same format as the start time. The hour in the first box and the minutes in the second box. The end time is used for most other rules, but is not normally used for email events.</HP075>
+	<HP076>Saves the new or edited Schedule Rule.</HP076>
+	<HP077>This section shows the currently defined Schedule Rules. A Schedule Rule can be changed by clicking the Edit icon, or deleted by clicking the Delete icon. When you click the Edit icon, the item is highlighted, and the "Edit Schedule Rule" section is activated for editing.</HP077>
+
+	<!-- support_status.htm -->
+	<HP078>This page displays the current information of the %m. The page will show the firmware currently loaded, wired and wireless settings applied on the unit.</HP078>
+	<HP079>LAN (Local Area Network)</HP079>
+	<HP080>This displays the MAC Address, the IP Address, Subnet Mask and Default Gateway of the Ethernet LAN interface and whether or not the AP's built-in DHCP server is Enabled or Disabled.</HP080>
+	<HP081>This displays the MAC Address, Wireless Network Name (SSID), Wireless Channel and Wireless Security Type of the Wireless LAN interface.</HP081>
+	<HP082>Log</HP082>
+	<HP083>The %m keeps a running log of events and activities occurring on it at all times. The log will display up to 200 recent logs. Newer log activities will overwrite the older logs. This is recommended as the logs are cleared every time the AP is rebooted.</HP083>
+	<HP084>Click this button to go to the first page of the log.</HP084>
+	<HP085>Click this button to go to the last page of the log.</HP085>
+	<HP086>Moves back one log page.</HP086>
+	<HP087>Moves forward one log page.</HP087>
+	<HP088>Clears the logs completely.</HP088>
+	<HP089>Displays data packet statistics of both transmitted frame and received frame for the %m network.</HP089>
+	<HP090>Click this button to update the counters.</HP090>
+	<HP091>Displays connected client station main parameters, such as Connect Time and station MAC address. In AP Client mode it displays the connected AP's MAC address and connected Time.</HP091>
+
+	<!-- APC support_setup.htm -->
+	<HP092>Allow you to change the wireless settings to connect to an existing wireless network or to customize your wireless network.</HP092>
+	<HP093>Also known as the SSID (Service Set Identifier), this is the name of your Wireless Local Area Network (WLAN). By default the SSID of the %m is "dlink". This can be easily changed to establish a new wireless network or to add the %m to an existing wireless network.</HP093>
+
+	<!-- Routet mode Help Page -->
+	<HP094>Support Menu</HP094>
+	<HP095>Setup Help</HP095>
+	<HP096>Advanced Help</HP096>
+	<HP097>Maintenance Help</HP097>
+	<HP098>Status Help</HP098>
+
+	<!-- Router support_setup.htm -->
+	<HP099>If you are new to networking and have never configured a router before, click on &lt;span class='button_ref'&gt;Internet Connection Setup Wizard&lt;/span&gt; and the router will guide you through a few simple steps to get your network up and running.</HP099>
+	<HP100>Manual Configure</HP100>
+	<HP101>If you consider yourself an advanced user and have configured a router before, click &lt;span class='button_ref'&gt; Manual Internet Connection Setup&lt;/span&gt; to input all the settings manually.</HP101>
+	<HP102>The WAN (Wide Area Network) section is where you configure your Internet Connection type.</HP102>
+	<HP103>There are several connection types to choose from: Static IP, DHCP, PPPoE, PPTP and L2TP. If you are unsure of your connection method, please contact your Internet Service Provider. Note: If using the PPPoE option, you will need to ensure that any PPPoE client software on your computers is removed or disabled.</HP103>
+	<HP104>Static WAN Mode</HP104>
+	<HP105>Used when your ISP provides you a set IP address that does not change. The IP information is manually entered in your IP configuration settings. You must enter the &lt;span class='option'&gt;IP address&lt;/span&gt;, &lt;span class='option'&gt;Subnet Mask&lt;/span&gt;, &lt;span class='option'&gt;Gateway&lt;/span&gt;, &lt;span class='option'&gt;Primary DNS Server&lt;/span&gt;, and &lt;span class='option'&gt;Secondary DNS Server&lt;/span&gt;. Your ISP provides you with all of this information.</HP105>
+	<HP106>DHCP WAN Mode</HP106>
+	<HP107>A method of connection where the ISP assigns your IP address when your router requests one from the ISP's server. Some ISP's require you to make some settings on your side before your router can connect to the Internet.</HP107>
+	<HP108>If you are connecting the router to a DSL modem or cable modem, and the modem uses DHCP to assign IP addresses in one of the private subnet ranges (for example, 192.168.0.0 - 192.168.255.255), it is likely that the modem is performing NAT and that connecting the router in DHCP WAN Mode will cause double NAT. Double NAT -- having two NAT devices in tandem -- can cause problems with some networking functions, such as DMZ, port forwarding, and VPN. In this case, it is preferable to use the modem's user interface to disable NAT on the modem, then connect the router using the WAN mode appropriate to the no-NAT state of the modem. For example, some DSL modems allow you to specify that PPPoE is implemented on the router. If you select that option on the modem, you would then select and configure the PPPoE WAN mode of the router.</HP108>
+	<HP109>Some ISP's may check your computer's Host Name. The Host Name identifies your system to the ISP's server. This way they know your computer is eligible to receive an IP address. In other words, they know that you are paying for their service.</HP109>
+	<HP110>This option is normally turned off, and should remain off as long as the WAN-side DHCP server correctly provides an IP address to the router. However, if the router cannot obtain an IP address from the DHCP server, the DHCP server may be one that works better with unicast responses. In this case, turn the unicasting option on, and observe whether the router can obtain an IP address.  In this mode, the router accepts unicast responses from the DHCP server instead of broadcast responses.</HP110>
+	<HP111>Select this option if your ISP requires you to use a PPPoE (Point to Point Protocol over Ethernet) connection. DSL providers typically use this option. This method of connection requires you to enter a &lt;span class='option'&gt;Username&lt;/span&gt; and &lt;span class='option'&gt;Password&lt;/span&gt; (provided by your Internet Service Provider) to gain access to the Internet. The supported authentication protocols are PAP and CHAP.</HP111>
+	<HP112>If the ISP's servers assign the router's IP addressing upon establishing a connection, select this option.</HP112>
+	<HP113>If your ISP has assigned a fixed IP address, select this option. The ISP provides the value for the &lt;span class='option'&gt;IP Address&lt;/span&gt;.</HP113>
+	<HP114>Some ISP's may require that you enter a Service Name. Only enter a Service Name if your ISP requires one.</HP114>
+	<HP115>Typically PPPoE connections are not always on. The D-Link router allows you to set the reconnection mode. The settings are</HP115>
+	<HP116>A connection to the Internet is always maintained.</HP116>
+	<HP117>A connection to the Internet is made as needed.</HP117>
+	<HP118>You have to open up the Web-based management interface and click the Connect button manually any time that you wish to connect to the Internet.</HP118>
+	<HP119>Time interval the machine can be idle before the  WAN link is disconnected. The Maximum Idle Time value is only used for the "On demand" and "Manual" reconnect modes.</HP119>
+	<HP120>PPTP (Point to Point Tunneling Protocol) uses a virtual private network to connect to your ISP. This method of connection is primarily used in Europe. This method of connection requires you to enter a &lt;span class='option'&gt;Username&lt;/span&gt; and &lt;span class='option'&gt;Password&lt;/span&gt; (provided by your Internet Service Provider) to gain access to the Internet. The supported authentication protocols are PAP and CHAP.</HP120>
+	<HP121>If your ISP has assigned a fixed IP address, select this option. The ISP provides the values for the following fields:&lt;span class='option'&gt;PPTP IP Address&lt;/span&gt;, &lt;span class='option'&gt;PPTP Subnet Mask&lt;/span&gt;, and &lt;span class='option'&gt;PPTP Gateway IP Address&lt;/span&gt;.</HP121>
+	<HP122>PPTP Server IP Address</HP122>
+	<HP123>The ISP provides this parameter, if necessary. The value may be the same as the Gateway IP Address.</HP123>
+	<HP124>Typically PPTP connections are not always on. The D-Link router allows you to set the reconnection mode. The settings are</HP124>
+	<HP125>L2TP (Layer Two Tunneling Protocol) uses a virtual private network to connect to your ISP.  This method of connection requires you to enter a &lt;span class='option'&gt;Username&lt;/span&gt; and &lt;span class='option'&gt;Password&lt;/span&gt; (provided by your Internet Service Provider) to gain access to the Internet. The supported authentication protocols are PAP and CHAP.</HP125>
+	<HP126>If your ISP has assigned a fixed IP address, select this option. The ISP provides the values for the following fields: &lt;span class='option'&gt;L2TP IP Address&lt;/span&gt;, &lt;span class='option'&gt;L2TP Subnet Mask&lt;/span&gt;, and &lt;span class='option'&gt;L2TP Gateway IP Address&lt;/span&gt;.</HP126>
+	<HP127>L2TP Server IP Address</HP127>
+	<HP128>Typically L2TP connections are not always on. The D-Link router allows you to set the reconnection mode. The settings are</HP128>
+	<HP129>The Usb3g Settings are used to connect to the Internet. Any information that needs to be entered on this page will be provided to you by your ISP. Please enter your Username Password, and Service Name if needed. If you are unsure of which option to select or what information to enter in the fields provided, please contact your ISP.</HP129>
+	<HP130>The following options apply to all WAN modes.</HP130>
+	<HP131>Enter the IP addresses of the DNS Servers. Leave the field for the secondary server empty if not used.</HP131>
+	<HP132>The Maximum Transmission Unit (MTU) is a parameter that determines the largest packet size (in bytes) that the router will send to the WAN. If LAN devices send larger packets, the router will break them into smaller packets. Ideally, you should set this to match the MTU of the connection to your ISP. Typical values are 1500 bytes for an Ethernet connection and 1492 bytes for a PPPoE connection. If the router's MTU is set too high, packets will be fragmented downstream. If the router's MTU is set too low, the router will fragment packets unnecessarily and in extreme cases may be unable to establish some connections. In either case, network performance can suffer.</HP132>
+	<HP133>Each networking device has it's own unique MAC address defined by the hardware manufacturer. Some ISP's may check your computer's MAC address. Some ISP's record the MAC address of the network adapter in the computer or router used to initially connect to their service. The ISP will then only grant Internet access to requests from a computer or router with this particular MAC address. This router has a different MAC address than the computer or router that initially connected to the ISP. if you need to change the MAC address of the router's WAN-side Ethernet interface, either type in an alternate MAC address (for example, the MAC address of the router initially connected to the ISP) or copy the MAC address of a PC.  To copy the MAC address of the computer that initially connected to the ISP, connect to the D-Link router using that computer and click the &lt;span class='button_ref'&gt; Clone Your PC's MAC Address&lt;/span&gt; button. The WAN interface will then use the MAC address of the network adapter in your computer.</HP133>
+	<HP134>The wireless section is used to configure the wireless settings for your D-Link router. Note that changes made in this section may also need to be duplicated on wireless clients that you want to connect to your wireless network.</HP134>
+	<HP135>To protect your privacy, use the wireless security mode to configure the wireless security features. This device supports three wireless security modes including: WEP, WPA-Personal, and WPA-Enterprise. WEP is the original wireless encryption standard. WPA provides a higher level of security. WPA-Personal does not require an authentication server. The WPA-Enterprise option does require a RADIUS authentication server.</HP135>
+	<HP136> This option turns off and on the wireless connection feature of the router. When you set this option, the following parameters are in effect.</HP136>
+	<HP137>Scheduling for Wireless Settings</HP137>
+	<HP138>When Wireless is enabled, the default selection for scheduling is "Always". Selections for other schedules will be available in the drop down menu after users define schedules in the "Schedule" page. This function gets disabled when wireless is disabled.</HP138>
+	<HP139>When you are browsing for available wireless networks, this is the name that will appear in the list (unless Visibility Status is set to Invisible, see below). This name is also referred to as the SSID. For security purposes, it is highly recommended to change from the pre-configured network name.</HP139>
+	<HP140>If you select this option, the router automatically finds the channel with least interference and uses that channel for wireless networking. If you disable this option, the router uses the channel that you specify with the following &lt;span class='option'&gt;Wireless Channel&lt;/span&gt; option.</HP140>
+	<HP141>A wireless network uses specific channels in the wireless spectrum to handle communication between clients. Some channels in your area may have interference from other electronic devices. Choose the clearest channel to help optimize the performance and coverage of your wireless network.</HP141>
+	<HP142>If all of the wireless devices you want to connect with this router can connect in the same transmission mode, you can improve performance slightly by choosing the appropriate "Only" mode. If you have some devices that use a different transmission mode, choose the appropriate "Mixed" mode.</HP142>
+	<HP143>The "Auto 20/40 MHz" option is usually best. The other options are available for special circumstances.</HP143>
+	<HP144>By default the fastest possible transmission rate will be selected. You have the option of selecting the speed if necessary.</HP144>
+	<HP145>Add/Edit SSID</HP145>
+	<HP146>The Invisible option allows you to hide your wireless network. When this option is set to Visible, your wireless network name is broadcast to anyone within the range of your signal. If you're not using encryption then they could connect to your network. When Invisible mode is enabled, you must enter the Wireless Network Name (SSID) on the client manually to connect to the network.</HP146>
+	<HP147>Unless one of these encryption modes is selected, wireless transmissions to and from your wireless network can be easily intercepted and interpreted by unauthorized users.</HP147>
+	<HP148>A method of encrypting data for wireless communication intended to provide the same level of privacy as a wired network. WEP is not as secure as WPA encryption. To gain access to a WEP network, you must know the key. The key is a string of characters that you create. When using WEP, you must determine the level of encryption. The type of encryption determines the key length. 128-bit encryption requires a longer key than 64-bit encryption. Keys are defined by entering in a string in HEX (hexadecimal - using characters 0-9, A-F) or ASCII (American Standard Code for Information Interchange - alphanumeric characters) format. ASCII format is provided so you can enter a string that is easier to remember. The ASCII string is converted to HEX for use over the network. Four keys can be defined so that you can change keys easily. A default key is selected for use on the network.</HP148>
+	<HP149>64-bit hexadecimal keys are exactly 10 characters in length. (12345678FA is a valid string of 10 characters for 64-bit encryption.)</HP149>
+	<HP150>128-bit hexadecimal keys are exactly 26 characters in length. (456FBCDF123400122225271730 is a valid string of 26 characters for 128-bit encryption.)</HP150>
+	<HP151>64-bit ASCII keys are up to 5 characters in length (DMODE is a valid string of 5 characters for 64-bit encryption.)</HP151>
+	<HP152> 128-bit ASCII keys are up to 13 characters in length (2002HALOSWIN1 is a valid string of 13 characters for 128-bit encryption.)</HP152>
+	<HP153>Note that, if you enter fewer characters in the WEP key than required, the remainder of the key is automatically padded with zeros.</HP153>
+	<HP154>WPA-Personal and WPA-Enterprise</HP154>
+	<HP155>Both of these options select some variant of Wi-Fi Protected Access (WPA) -- security standards published by the Wi-Fi Alliance. The &lt;span class='option'&gt;WPA Mode&lt;/span&gt; further refines the variant that the router should employ.</HP155>
+	<HP156>WPA is the older standard; select this option if the clients that will be used with the router only support the older standard. WPA2 is the newer implementation of the stronger IEEE 802.11i security standard. With the "WPA2" option, the router tries WPA2 first, but falls back to WPA if the client only supports WPA. With the "WPA2 Only" option, the router associates only with clients that also support WPA2 security.</HP156>
+	<HP157>The encryption algorithm used to secure the data communication. TKIP (Temporal Key Integrity Protocol) provides per-packet key generation and is based on WEP. AES (Advanced Encryption Standard) is a very secure block based encryption. With the "TKIP and AES" option, the router negotiates the cipher type with the client, and uses AES when available.</HP157>
+	<HP158>This option uses Wi-Fi Protected Access with a Pre-Shared Key (PSK).</HP158>
+	<HP159>The key is entered as a pass-phrase of up to 63 alphanumeric characters in ASCII (American Standard Code for Information Interchange) format at both ends of the wireless connection. It cannot be shorter than eight characters, although for proper security it needs to be of ample length and should not be a commonly known phrase. This phrase is used to generate session keys that are unique for each wireless client. </HP159>
+	<HP160>Wireless Networking technology enables ubiquitous communication</HP160>
+	<HP161>This option works with a RADIUS Server to authenticate wireless clients. Wireless clients should have established the necessary credentials before attempting to authenticate to the Server through this Gateway. Furthermore, it may be necessary to configure the RADIUS Server to allow this Gateway to authenticate users.</HP161>
+	<HP162> The IP address of the authentication server.</HP162>
+	<HP163>The port number used to connect to the authentication server.</HP163>
+	<HP164>A pass-phrase that must match with the authentication server. </HP164>
+	<HP165> This option enables configuration of an optional second RADIUS server. A second RADIUS server can be used as backup for the primary RADIUS server. The second RADIUS server is consulted only when the primary server is not available or not responding. The fields &lt;span class='option'&gt;Second RADIUS Server IP Address&lt;/span&gt;, &lt;span class='option'&gt;RADIUS Server Port&lt;/span&gt;, &lt;span class='option'&gt;Second RADIUS server Shared Secret&lt;/span&gt; provide the corresponding parameters for the second RADIUS Server. </HP165>
+	<HP166>These are the settings of the LAN (Local Area Network) interface for the router. The router's local network (LAN) settings are configured based on the IP Address and Subnet Mask assigned in this section. The IP address is also used to access this Web-based management interface. It is recommended that you use the default settings if you do not have an existing network.</HP166>
+	<HP167>The IP address of your router on the local area network. Your local area network settings are based on the address assigned here. For example, 192.168.0.1.</HP167>
+	<HP168>The subnet mask of your router on the local area network.</HP168>
+	<HP169>Device Name allows you to configure this device easily when your network using TCP/IP protocol. You can enter the device name of the router, instead of IP address, into your web browser to access for configuration. Recommend to change the device name if there's more than one D-Link devices within the subnet.</HP169>
+	<HP170>This entry is optional. Enter a domain name for the local network. The router's DHCP server will give this domain name to the computers on the wireless LAN. So, for example, if you enter &lt;code&gt;mynetwork.net&lt;/code&gt; here, and you have a wireless laptop with a name of &lt;code&gt;chris&lt;/code&gt;, that laptop will be known as &lt;code&gt;chris.mynetwork.net&lt;/code&gt;. Note, however, if the AP's settings specify "DHCP (Dynamic)" Address, and the router's DHCP server assigns a domain name to the AP, that domain name will override any name you enter here.</HP170>
+	<HP171>DNS Relay</HP171>
+	<HP172>When DNS Relay is enabled, the router plays the role of a DNS server. DNS requests sent to the router are forwarded to the ISP's DNS server. This provides a constant DNS address that LAN computers can use, even when the router obtains a different DNS server address from the ISP upon re-establishing the WAN connection. You should disable DNS relay if you implement a LAN-side DNS server as a virtual server.</HP172>
+	<HP173>The IP address of the this device on the local area network. Assign any unused IP address in the range of IP addresses available for the LAN. for example, 192.168.0.101.</HP173>
+	<HP174>The IP address of the router on the local area network.For example, 192.168.0.1.</HP174>
+	<HP175>DHCP stands for Dynamic Host Configuration Protocol. The DHCP section is where you configure the built-in DHCP Server to assign IP addresses to the computers and other devices on your local area network (LAN).</HP175>
+	<HP176>Once your D-Link router is properly configured and this option is enabled, the DHCP Server will manage the IP addresses and other network configuration information for computers and other devices connected to your Local Area Network.  There is no need for you to do this yourself.</HP176>
+	<HP177>The computers (and other devices) connected to your LAN also need to have their TCP/IP configuration set to "DHCP" or "Obtain an IP address automatically".</HP177>
+	<HP178>When you set &lt;span class='option'&gt;Enable DHCP Server&lt;/span&gt;, the following options are displayed.</HP178>
+	<HP179>These two IP values (&lt;i&gt;from&lt;/i&gt; and &lt;i&gt;to&lt;/i&gt;) define a range of IP addresses that the DHCP Server uses when assigning addresses to computers and devices on your Local Area Network. Any addresses that are outside of this range are not managed by the DHCP Server; these could, therefore, be used for manually configured devices or devices that cannot use DHCP to obtain network address details automatically.</HP179>
+	<HP180>It is possible for a computer or device that is manually configured to have an address that does reside within this range. In this case the address  should be reserved (see &lt;a href="#Static_DHCP"&gt;DHCP Reservation&lt;/a&gt; below), so that the DHCP Server knows that this specific address can only be used by a specific computer or device.</HP180>
+	<HP181>Your D-Link router, by default, has a static IP address of 192.168.0.1.  This means that addresses 192.168.0.2 to 192.168.0.254 can be made available for allocation by the DHCP Server.</HP181>
+	<HP182>Example</HP182>
+	<HP183>Your D-Link router uses 192.168.0.1 for the IP address. You've assigned a computer that you want to designate as a Web server with a static IP address of 192.168.0.3. You've assigned another computer that you want to designate as an FTP server with a static IP address of 192.168.0.4. Therefore the starting IP address for your DHCP IP  address range needs to be 192.168.0.5 or greater.</HP183>
+	<HP184>Suppose you configure the DHCP Server to manage addresses From 192.168.0.100 To 192.168.0.199. This means that 192.168.0.3 to 192.168.0.99 and 192.168.0.200 to 192.168.0.254 are NOT managed by the DHCP Server.  Computers or devices that use addresses from these ranges are to be manually configured. Suppose you have a web server computer that has a manually configured address of 192.168.0.100.  Because this falls within the "managed range" be sure to create a reservation for this address and match it to the relevant computer (see &lt;a href="#Static_DHCP"&gt;Static DHCP Client&lt;/a&gt; below).</HP184>
+	<HP185>The amount of time that a computer may have an IP address before it is required to renew the lease. The lease functions just as a lease on an apartment would. The initial lease designates the amount of time before the lease expires. If the tenant wishes to retain the address when the lease is expired then a new lease is established. If the lease expires and the address is no longer needed than another tenant may use the address.</HP185>
+	<HP186>Add/Edit DHCP Reservation</HP186>
+	<HP187>This option lets you reserve IP addresses, and assign the same IP address to the network device with the specified MAC address any time it requests an IP address. This is almost the same as when a device has a static IP address except that the device must still request an IP address from the D-Link router. The D-Link router will provide the device the same IP address every time. DHCP Reservations are helpful for server computers on the local network that are hosting applications such as Web and FTP. Servers on your network should either use a static IP address or use this option.</HP187>
+	<HP188>You can assign a name for each computer that is given a reserved IP address.This may help you keep track of which computers are assigned this way.</HP188>
+	<HP189>Game Server</HP189>
+	<HP190>The LAN address that you want to reserve.</HP190>
+	<HP191>To input the MAC address of your system, enter it in manually or connect to the D-Link router's Web-Management interface from the system and  click the &lt;span class='button_ref'&gt;Copy Your PC's MAC Address&lt;/span&gt; button.</HP191>
+	<HP192>A MAC address is usually located on a sticker on the bottom of a network device. The MAC address is comprised of twelve digits. Each pair of hexadecimal digits are usually separated by dashes or colons such as 00-0D-88-11-22-33 or 00:0D:88:11:22:33. If your network device is a computer and the network card is already located inside the computer, you can connect to the D-Link router from the computer and  click the &lt;span class='button_ref'&gt;Copy Your PC's MAC Address&lt;/span&gt; button to enter the MAC address.</HP192>
+	<HP193>As an alternative, you can locate a MAC address in a specific operating system by following the steps below</HP193>
+	<HP194>Windows 98</HP194>
+	<HP195>Windows Me</HP195>
+	<HP196>Go to the Start menu, select Run, type in winipcfg, and hit Enter. A popup window will be displayed. Select the appropriate adapter from the pull-down menu and you will see the Adapter Address. This is the MAC address of the device.</HP196>
+	<HP197>Windows 2000</HP197>
+	<HP198>Windows XP</HP198>
+	<HP199>Go to your Start menu, select Programs, select Accessories, and select Command Prompt. At the command prompt type &lt;code&gt;ipconfig /all&lt;/code&gt; and hit Enter. The physical address displayed for the adapter connecting to the router is the MAC address.</HP199>
+	<HP200>Mac OS X</HP200>
+	<HP201>Go to the Apple Menu, select System Preferences, select Network, and select the Ethernet Adapter connecting to the D-Link router. Select the Ethernet button and the Ethernet ID will be listed. This is the same as the MAC address.</HP201>
+	<HP202> This shows clients that you have specified to have reserved DHCP addresses. Click the Enable checkbox at the left to directly activate or de-activate the entry. An entry can be changed by clicking the Edit icon, or deleted by clicking the Delete icon. When you click the Edit icon, the item is highlighted, and the "Edit DHCP Reservation" section is activated for editing.</HP202>
+	<HP203>In this section you can see what LAN devices are currently leasing IP addresses.</HP203>
+	<HP204>The &lt;code&gt;Revoke&lt;/code&gt; option is available for the situation in which the lease table becomes full or nearly full, you need to recover space in the table for new entries, and you know that some of the currently allocated leases are no longer needed. Clicking &lt;code&gt;Revoke&lt;/code&gt; cancels the lease for a specific LAN device and frees an entry in the lease table. Do this only if the device no longer needs the leased IP address, because, for example, it has been removed from the network.</HP204>
+	<HP205>The &lt;code&gt;Reserve&lt;/code&gt; option converts this dynamic IP allocation into a DHCP Reservation and adds the corresponding entry to the DHCP Reservations List.</HP205>
+	<HP206>Shareport</HP206>
+	<HP207>Select to share a USB printer, scanner, or storage device connected to the USB port behind the router with multiple users within your network.</HP207>
+	<HP208>Support</HP208>
+	<HP209>Device drivers and the D-Link USB Network Utility must be installed on each computer that will use the device.</HP209>
+	<HP210>%m supports 3G USB adapters for WWAN setting option to connect to the Internet. Please select your ISP and the model of 3G card you are using from the ISP-Card dropdown menu, and enter your Username, Password, and Service Name if needed. If you are unsure of which option to select or what information to enter in the fields provided, please contact your ISP.</HP210>
+
+	<!-- Router support_advanced.htm -->
+	<HP211>The Virtual Server option gives Internet users access to services on your LAN. This feature is useful for hosting online services such as FTP, Web, or game servers. For each Virtual Server, you define a public port on your router for redirection to an internal LAN IP Address and LAN port.</HP211>
+	<HP212>You are hosting a Web Server on a PC that has LAN IP Address of 192.168.0.50 and your ISP is blocking Port 80. </HP212>
+	<HP213>Name the Virtual Server (for example: &lt;code&gt;Web Server&lt;/code&gt;)</HP213>
+	<HP214>Enter the IP Address of the machine on your LAN (for example: &lt;code&gt;192.168.0.50&lt;/code&gt;)</HP214>
+	<HP215>Enter the Private Port as [80] </HP215>
+	<HP216>Enter the Public Port as [8888]</HP216>
+	<HP217>Select the Protocol (for example &lt;code&gt;TCP&lt;/code&gt;).</HP217>
+	<HP218>Click &lt;span class="button_ref"&gt;Save&lt;/span&gt; to add the settings to the Virtual Servers List</HP218>
+	<HP219>Repeat these steps for each Virtual Server Rule you wish to add. After the list is complete, click &lt;span class="button_ref"&gt;Save Settings&lt;/span&gt; at the top of the page. </HP219>
+	<HP220>With this Virtual Server entry, all Internet traffic on Port 8888 will be redirected to your internal web server on port 80 at IP Address 192.168.0.50.</HP220>
+	<HP221>Virtual Server Parameters</HP221>
+	<HP222>Assign a meaningful name to the virtual server, for example &lt;code&gt;Web Server&lt;/code&gt;. Several well-known types of virtual server are available from the "Application Name" drop-down list. Selecting one of these entries fills some of the remaining parameters with standard values for that type of server.</HP222>
+	<HP223>The IP address of the system on your internal network that will provide the virtual service, for example &lt;code&gt;192.168.0.50&lt;/code&gt;. You can select a computer from the list of DHCP clients in the "Computer Name" drop-down menu, or you can manually enter the IP address of the server computer.</HP223>
+	<HP224>Select the protocol used by the service. The common choices -- UDP, TCP, and both UDP and TCP -- can be selected from the drop-down menu. To specify any other protocol, select "Other" from the list, then enter the corresponding protocol number (&lt;a href="http://www.iana.org/assignments/protocol-numbers" target="_blank"&gt; as assigned by the IANA&lt;/a&gt;) in the &lt;span class='option'&gt;Protocol&lt;/span&gt; box.</HP224>
+	<HP225>Private Port</HP225>
+	<HP226>The port that will be used on your internal network.</HP226>
+	<HP227>Public Port</HP227>
+	<HP228>The port that will be accessed from the Internet.</HP228>
+	<HP229>8 -- Virtual Servers List</HP229>
+	<HP230>Use the checkboxes at the left to activate or deactivate completed Virtual Server entries.</HP230>
+	<HP231>An application rule is used to open single or multiple ports on your router when the router senses data sent to the Internet on a "trigger" port or port range. An application rule applies to all computers on your internal network.</HP231>
+	<HP232>Parameters for an Application Rule</HP232>
+	<HP233>You need to configure your router to allow a software application running on any computer on your network to connect to a web-based server or another user on the Internet.</HP233>
+	<HP234>Enter a name for the Special Application Rule, for example &lt;code&gt;Game App&lt;/code&gt;, which will help you identify the rule in the future. Alternatively, you can select from the &lt;span class='option'&gt;Application&lt;/span&gt; list of common applications.</HP234>
+	<HP235>Instead of entering a name for the Special Application rule, you can select from this  list of common applications, and the remaining configuration values will be filled in accordingly.</HP235>
+	<HP236>Trigger Port</HP236>
+	<HP237>Enter the outgoing port range used by your application (for example &lt;code&gt;6500-6700&lt;/code&gt;).</HP237>
+	<HP238>Trigger Traffic Type</HP238>
+	<HP239>Select the outbound protocol used by your application (for example &lt;code&gt;Both&lt;/code&gt;).</HP239>
+	<HP240>Firewall Port</HP240>
+	<HP241>Enter the port range that you want to open up to Internet traffic (for example &lt;code&gt;6000-6200&lt;/code&gt;).</HP241>
+	<HP242>Firewall Traffic Type</HP242>
+	<HP243>Select the protocol used by the Internet traffic coming back into the router through the opened port range (for example &lt;code&gt;Both&lt;/code&gt;).</HP243>
+	<HP244> With the above example application rule enabled, the router will open up a range of ports from 6000-6200 for incoming traffic from the Internet, whenever any computer on the internal network opens up an application that sends data to the Internet using a port in the range of 6500-6700.</HP244>
+	<HP245>8 -- Application Rules</HP245>
+	<HP246>This section is where you define application rules. Enable or disable defined rules with the checkboxes at the left.</HP246>
+	<HP247>Network Filter</HP247>
+	<HP248>The MAC address filter section can be used to filter network access by machines based on the unique MAC addresses of their network adapter(s).  It is most useful to prevent unauthorized wireless devices from connecting to your network. A MAC address is a unique ID assigned by the manufacturer of the network adapter. </HP248>
+	<HP249>8 -- MAC Filtering Rules</HP249>
+	<HP250>Configure MAC Filtering</HP250>
+	<HP251>When "Disable"  is selected, MAC addresses are not used to control network access. When "Accept"  is selected, only computers with MAC addresses listed in the MAC Address List are granted network access. When "Reject"  is selected, any computer with a MAC address listed in the MAC Address List is refused access to the network.</HP251>
+	<HP252>Enter the MAC address of the desired. Computers that have obtained an IP address from the router's DHCP server will be in the DHCP Client List.  Select a device from the drop down menu, then click the arrow to add that device's MAC address to the list.</HP252>
+	<HP253>Filter wireless clients</HP253>
+	<HP254>Apply MAC Filtering to devices that connect to the network via Wi-Fi. This is the normal usage of MAC Filtering.</HP254>
+	<HP255>Click the &lt;span class='button_ref'&gt;Clear&lt;/span&gt; button to remove the MAC address from the MAC Filtering list.</HP255>
+	<HP256>Website Filter Parameters</HP256>
+	<HP257>Enter the URL (address) of the Web Site that you want to allow or deny; for example: &lt;code&gt;google.com&lt;/code&gt;. Do not enter the &lt;code&gt;http://&lt;/code&gt; preceding the URL. Enter the most inclusive domain; for example, select allow and enter &lt;code&gt;dlink.com&lt;/code&gt; and access will be permitted to both &lt;code&gt;www.dlink.com&lt;/code&gt; and &lt;code&gt;support.dlink.com&lt;/code&gt;.</HP257>
+	<HP258>Many web sites construct pages with images and content from other web sites. For example, to access &lt;code&gt;my.yahoo.com&lt;/code&gt;, you would need to select allow and type &lt;code&gt;yahoo.com&lt;/code&gt;, &lt;code&gt;yimg.com&lt;/code&gt;, and &lt;code&gt;doubleclick.net&lt;/code&gt;.</HP258>
+	<HP259>8 -- Website Filtering Rules</HP259>
+	<HP260>The section lists the current denied or allowed web sites.</HP260>
+	<HP261>The router provides a tight firewall by virtue of the way NAT works. Unless you configure the router to the contrary, the NAT does not respond to unsolicited incoming requests on any port, thereby making your LAN invisible to Internet cyberattackers. However, some network applications cannot run with a tight firewall. Those applications need to selectively open ports in the firewall to function correctly. The options on this page control several ways of opening the firewall to address the needs of specific types of applications. See also &lt;a href="Virtual_Server.htm"&gt; Advanced - Virtual Server&lt;/a&gt;, &lt;a href="Special_Applications.htm"&gt; Advanced - Application Rules&lt;/a&gt;, and &lt;a href="UPNP.htm"&gt;UPNP Settings&lt;/a&gt; for related options.</HP261>
+	<HP262>SPI ("stateful packet inspection" also known as "dynamic packet filtering") helps to prevent cyberattacks by tracking more state per session. It validates that the traffic passing through that session conforms to the protocol. When the protocol is TCP, SPI checks that packet sequence numbers are within the valid range for the session, discarding those packets that do not have valid sequence numbers.</HP262>
+	<HP263>Whether SPI is enabled or not, the router always tracks TCP connection states and ensures that each TCP packet's flags are valid for the current state.</HP263>
+	<HP264>The NAT Endpoint Filtering options control how the router's NAT manages incoming connection requests to ports that are already being used.</HP264>
+	<HP265>Once a LAN-side application has created a connection through a specific port, the NAT will forward any incoming connection requests with the same port to the LAN-side application regardless of their origin. This is the least restrictive option, giving the best connectivity and allowing some applications (P2P applications in particular) to behave almost as if they are directly connected to the Internet.</HP265>
+	<HP266>The NAT forwards incoming connection requests to a LAN-side host only when they come from the same IP address with which a connection was established. This allows the remote application to send data back through a port different from the one used when the outgoing session was created.</HP266>
+	<HP267>The NAT does not forward any incoming connection requests with the same port address as an already establish connection.</HP267>
+	<HP268>Note that some of these options can interact with other port restrictions. Endpoint Independent Filtering takes priority over inbound filters or schedules, so it is possible for an incoming session request related to an outgoing session to enter through a port in spite of an active inbound filter on that port. However, packets will be rejected as expected when sent to blocked ports (whether blocked by schedule or by inbound filter) for which there are no active sessions. Port and Address Restricted Filtering ensures that inbound filters and schedules work precisely, but prevents some level of connectivity, and therefore might require the use of virtual servers to open the ports needed by the application. Address Restricted Filtering gives a compromise position, which avoids problems when communicating with certain other types of NAT router (symmetric NATs in particular) but leaves inbound filters and scheduled access working as expected.</HP268>
+	<HP269>Controls endpoint filtering for packets of the UDP protocol.</HP269>
+	<HP270>Controls endpoint filtering for packets of the TCP protocol.</HP270>
+	<HP271>Formerly, the terms "Full Cone", "Restricted Cone", "Port Restricted Cone" and "Symmetric" were used to refer to different variations of NATs. These terms are purposely not used here, because they do not fully describe the behavior of this router's NAT. While not a perfect mapping, the following loose correspondences between the "cone" classification and the "endpoint filtering" modes can be drawn: if this router is configured for endpoint independent filtering, it implements full cone behavior; address restricted filtering implements restricted cone behavior; and port and address restricted filtering implements port restricted cone behavior.</HP271>
+	<HP272>This mechanism protects against activity from spoofed or forged IP addresses, mainly by blocking packets appearing on interfaces and in directions which are logically not possible.</HP272>
+	<HP273>Normally the wireless transmitter operates at 100% power. In some circumstances, however, there might be a need to isolate specific frequencies to a smaller area. By reducing the power of the radio, you can prevent transmissions from reaching beyond your corporate/home office or designated wireless area. </HP273>
+	<HP274>Enabling WLAN Partition prevents associated wireless clients from communicating with each other.</HP274>
+	<HP275>Enabling WMM can help control latency and jitter when transmitting multimedia content over a wireless connection.</HP275>
+	<HP276>Using a short (400ns) guard interval can increase throughput. However, it can also increase error rate in some installations, due to increased sensitivity to radio-frequency reflections. Select the option that works best for your installation.</HP276>
+	<HP277>Enable the Wi-Fi Protected Setup feature.</HP277>
+	<HP278>A PIN is a unique number that can be used to add the router to an existing network or to create a new network. The default PIN may be printed on the bottom of the router. For extra security, a new PIN can be generated. You can restore the default PIN at any time. Only the Administrator ("admin" account) can change or reset the PIN.</HP278>
+	<HP279>Shows the current value of the router's PIN.</HP279>
+	<HP280>Restore the default PIN of the router.</HP280>
+	<HP281>Create a random number that is a valid PIN. This becomes the router's PIN. You can then copy this PIN to the user interface of the registrar.</HP281>
+	<HP282>This Wizard helps you add wireless devices to the wireless network.</HP282>
+	<HP283>The wizard will either display the wireless network settings to guide you through manual configuration, prompt you to enter the PIN for the device, or ask you to press the configuration button on the device. If the device supports Wi-Fi Protected Setup and has a configuration button, you can add it to the network by pressing the configuration button on the device and then the on the router within 60 seconds. The status LED on the router will flash three times if the device has been successfully added to the network.</HP283>
+	<HP284>There are several ways to add a wireless device to your network. Access to the wireless network is controlled by a "registrar". A registrar only allows devices onto the wireless network if you have entered the PIN, or pressed a special Wi-Fi Protected Setup button on the device. The router acts as a registrar for the network, although other devices may act as a registrar as well.</HP284>
+	<HP285></HP285>
+	<HP286>Start the wizard.</HP286>
+	<HP287></HP287>
+	<HP288>UPnP is short for Universal Plug and Play, which is a networking architecture that provides compatibility among networking equipment, software, and peripherals. This router has optional UPnP capability, and can work with other UPnP devices and software.</HP288>
+	<HP289>If you need to use the UPnP functionality, you can enable it here.</HP289>
+	<HP290>The selection helps you to define the Guest Zone scale.</HP290>
+	<HP291>Specifies whether the Guest Zone will be enabled or disabled.</HP291>
+	<HP292>Provide a name for Guest Zone wireless network.</HP292>
+	<HP293>Use this section to enable routing between Host Zone and Guest Zone, Guest clients can not access Host clients' data without enable the function.</HP293>
+	<HP294>Specify the LAN IP address of the LAN computer that you want to have unrestricted Internet communication. If this computer obtains its address Automatically using DHCP, then you may want to make a static reservation on the &lt;a href="Network.htm"&gt;Setup - Network Settings&lt;/a&gt; page so that the IP address of the DMZ computer does not change.</HP294>
+
+	<!-- Router support_maintenance.htm -->
+	<HP295>The Admin option is used to set a password for access to the Web-based management. By default there is no password configured. It is highly recommended that you create a password to keep your new router secure.</HP295>
+	<HP296>Enter a password for the user "admin", who will have full access to the Web-based management interface.</HP296>
+	<HP297>Enabling Remote Management allows you to manage the router from anywhere on the Internet. Disabling Remote Management allows you to manage the router only from computers on your LAN.</HP297>
+	<HP298>The port that you will use to address the management interface from the Internet. For example, if you specify port 1080 here, then, to access the router from the Internet, you would use a URL of the form: &lt;code&gt;http://my.domain.com:1080/&lt;/code&gt;.</HP298>
+	<HP299>The Time Configuration option allows you to configure, update, and maintain the correct time on the router's internal system clock.  From this section you can set the time zone that you are in and set the Time Server. Daylight saving can also be configured to automatically adjust the time when needed.</HP299>
+	<HP300>Displays the time currently maintained by the router. If this is not correct, use the following options to configure the time correctly.</HP300>
+	<HP301>Select this option if you want to synchronize the router's clock to a Network Time Server over the Internet. If you are using schedules or logs, this is the best way to ensure that the schedules and logs are kept accurate.</HP301>
+	<HP302>If you do not have the NTP Server option in effect, you can either manually set the time for your router here, or you can click the &lt;span class='button_ref'&gt;Copy Your Computer's Time Settings&lt;/span&gt; button to copy the time from the computer you are using. (Make sure that computer's time is set correctly.)</HP302>
+	<HP303>If the router loses power for any reason, it cannot keep its clock running, and will not have the correct time when it is started again. To maintain correct time for schedules and logs, either you must enter the correct time after you restart the router, or you must enable the NTP Server option.</HP303>
+	<HP304></HP304>
+	<HP305>This section allows you to archive your log files to a Syslog Server.</HP305>
+	<HP306>Enable this option if you have a syslog server currently running on the LAN and wish to send log messages to it.</HP306>
+	<HP307>Enter the LAN IP address of the Syslog Server.</HP307>
+	<HP308>This section allows you to manage the router's configuration settings, reboot the router, and restore the router to the factory default settings. Restoring the unit to the factory default settings will erase all settings, including any rules that you've created.</HP308>
+	<HP309>This option allows you to save the router's configuration to a file on your computer. Be sure to save the configuration before performing a firmware upgrade.</HP309>
+	<HP310>Use this option to restore previously saved router configuration settings.</HP310>
+	<HP311>This option restores all configuration settings back to the settings that were in effect at the time the router was shipped from the factory. Any settings that have not been saved will be lost. If you want to save your router configuration settings, use the Save Settings option above.</HP311>
+	<HP312>This restarts the router. Useful for restarting when you are not near the device.</HP312>
+	<HP313>The Firmware Upgrade section can be used to update to the latest firmware code to improve functionality and performance.</HP313>
+	<HP314>To upgrade the firmware, follow these steps</HP314>
+	<HP315>Click the &lt;span class='button_ref'&gt;Browse&lt;/span&gt; button to locate the D-Link upgrade file on your computer. </HP315>
+	<HP316>Once you have found the file to be used, click the &lt;span class='button_ref'&gt;Upload&lt;/span&gt; button below to start the firmware upgrade process. This can take a minute or more.</HP316>
+	<HP317>Wait for the router to reboot. This can take another minute or more.</HP317>
+	<HP318>Confirm updated firmware revision on status page.</HP318>
+	<HP319>Here are displayed the version numbers of the firmware currently installed in your router and the most recent upgrade that is available.</HP319>
+	<HP320>Firmware upgrade cannot be performed from a wireless device. To perform an upgrade, ensure that you are using a PC that is connected to the router by wire.</HP320>
+	<HP321>Some firmware upgrades reset the configuration options to the factory defaults. Before performing an upgrade, be sure to save the current configuration from the &lt;a href="System.htm"&gt;Tools - System&lt;/a&gt; screen.</HP321>
+	<HP322>Once you have a firmware update on your computer, use this option to browse for the file and then upload the information into the router.</HP322>
+
+	<!-- Router support_status.htm -->
+	<HP323>All of your Internet and network connection details are displayed on the Device Info page. The firmware version is also displayed here. </HP323>
+	<HP324>Some browsers have limitations that make it impossible to update the WAN status display when the status changes. Some browsers require that you refresh the display to obtain updated status. Some browsers report an error condition when trying to obtain WAN status.</HP324>
+	<HP325>Depending on the type of WAN connection, you can take one of the following sets of actions</HP325>
+	<HP326>Clicking the &lt;span class='button_ref'&gt;DHCP Release&lt;/span&gt; button unassigns the router's IP address. The router will not respond to IP messages from the WAN side until you click the &lt;span class='button_ref'&gt;DHCP Renew&lt;/span&gt; button or power-up the router again.</HP326>
+	<HP327>Clicking the &lt;span class='button_ref'&gt;DHCP Renew&lt;/span&gt; button causes the router to request a new IP address from the ISP's server. </HP327>
+	<HP328>PPPoE, PPTP, L2TP Connection</HP328>
+	<HP329>Depending on whether the WAN connection is currently established, you can click either the &lt;span class='button_ref'&gt;Connect&lt;/span&gt; to attempt to establish the WAN connection or the &lt;span class='button_ref'&gt;Disconnect&lt;/span&gt; to break the WAN connection.</HP329>
+	<HP330>Static IP mode is always on, so no action buttons are available.</HP330>
+	<HP331>This area of the screen reflects configuration settings from the &lt;a href="Wireless.htm"&gt; Setup - Wireless Settings &lt;/a&gt; page and the &lt;a href="Protected_Setup.htm"&gt; Advanced - Wi-Fi Protected Setup &lt;/a&gt; page. The &lt;span class="option"&gt;MAC Address&lt;/span&gt; is the factory-assigned identifier of the wireless card.</HP331>
+	<HP332>This area of the screen continually updates to show all DHCP enabled computers and devices connected to the LAN side of your router. The detection "range" is limited to the address range as configured in DHCP Server.  Computers that have an address outside of this range will not show. If the DHCP Client (i.e. a computer configured to "Automatically obtain an address") supplies a Host Name then that will also be shown. Any computer or device that has a static IP address that lies within the detection "range" may show, however its host name will not.</HP332>
+	<HP333>The wireless section allows you to view the wireless clients that are connected to your wireless router.</HP333>
+	<HP334>The Ethernet ID (MAC address) of the wireless client.</HP334>
+	<HP335>The LAN-side IP address of the client.</HP335>
+	<HP336>The transmission standard being used by the client. Values are 11a, 11b, 11g, or 11n for 802.11a, 802.11b, 802.11g, or 802.11n respectively.</HP336>
+	<HP337>The actual transmission rate of the client in megabits per second.</HP337>
+	<HP338>This is a relative measure of signal quality. The value is expressed as a percentage of theoretical best quality. Signal quality can be reduced by distance, by interference from other radio-frequency sources (such as cordless telephones or neighboring wireless networks), and by obstacles between the router and the wireless device.</HP338>
+	<HP339>The router automatically logs (records) events of possible interest in its internal memory. If there is not enough internal memory for all events, logs of older events are deleted, but logs of the latest events are retained. The Logs option allows you to view the router logs. You can define what types of events you want to view and the level of events to view. This router also has internal Syslog Server support so you can send the log files to a computer on your network that is running a Syslog utility.</HP339>
+	<HP340>What to View</HP340>
+	<HP341>Select the type of events that you want to view.</HP341>
+	<HP342>Click this button after changing Log Options to make them effective and permanent.</HP342>
+	<HP343>Clicking this button refreshes the display of log entries. There may be new events since the last time you accessed the log.</HP343>
+	<HP344>Clicking this button erases all log entries.</HP344>
+	<HP345>Select this option to save the router log to a file on your computer.</HP345>
+	<HP346>The Statistics page displays all of the LAN, WAN, and Wireless packet transmit and receive statistics.</HP346>
+	<HP347>The number of packets sent from the router.</HP347>
+	<HP348>The number of packets received by the router.</HP348>
+	<HP349>The number of packets that were dropped while being sent, due to errors, collisions, or router resource limitations.</HP349>
+	<HP350>The number of packets that were dropped while being received, due to errors, collisions, or router resource limitations.</HP350>
+	<HP351>The number of packets that were dropped due to Ethernet collisions (two or more devices attempting to use an Ethernet circuit at the same time).</HP351>
+	<HP352>The number of transmission failures that cause loss of a packet. A noisy radio-frequency environment can cause a high error rate on the wireless LAN.</HP352>
+	<HP353>The Internet Sessions page displays full details of active Internet sessions through your router. An Internet session is a conversation between a program or application on a LAN-side computer and a program or application on a WAN-side computer.</HP353>
+	<HP354>The IP address and, where appropriate, port number of the local application.</HP354>
+	<HP355>The port number of the LAN-side application as viewed by the WAN-side application.</HP355>
+	<HP356>Internet</HP356>
+	<HP357> The IP address and, where appropriate, port number of the application on the Internet.</HP357>
+	<HP358>The communications protocol used for the conversation.</HP358>
+	<HP359>State for sessions that use the TCP protocol.</HP359>
+	<HP360> The direction of initiation of the conversation</HP360>
+	<HP361>Out</HP361>
+	<HP362>Initiated from LAN to WAN.</HP362>
+	<HP363>In</HP363>
+	<HP364>Initiated from WAN to LAN.</HP364>
+	<HP365>Priority</HP365>
+	<HP366>The preference given to outbound packets of this conversation by the QoS Engine logic. Smaller numbers represent higher priority.</HP366>
+	<HP367>Time Out</HP367>
+	<HP368>The number of seconds of idle time until the router considers the session terminated. The initial value of Time Out depends on the type and state of the connection.</HP368>
+	<HP369>300 seconds</HP369>
+	<HP370>UDP connections.</HP370>
+	<HP371>240 seconds</HP371>
+	<HP372>Reset or closed TCP connections. The connection does not close instantly so that lingering packets can pass or the connection can be re-established.</HP372>
+	<HP373>7800 seconds</HP373>
+	<HP374>Established or closing TCP connections.</HP374>
+
+	<!-- ipv6 -->
+	<HP383>DHCPv6 Mode</HP383>
+	<HP384>The amount of time that a computer may have an IPv6 address before it is required to renew the lease.</HP384>
+	<HP385>It is possible for a computer or device that is manually configured to have an IPv6 address that does reside within this range.</HP385>
+	<HP386>Once your D-Link router is properly configured and this option is enabled, the router will manage the IPv6 addresses and other network configuration information for computers and other devices connected to your Local Area Network. There is no need for you to do this yourself.</HP386>
+	<HP387>IPv6 Address Range (DHCPv6)</HP387>
+	<HP388>The computers (and other devices) connected to your LAN also need to have their TCP/IP configuration set to "DHCPv6" or "Obtain an IPv6 address automatically".</HP388>
+	<HP389>The IPv6 (Internet Protocol version 6) section is where you configure your IPv6 Connection type.</HP389>
+	<HP390>There are several connection types to choose from: Link-local, Static IPv6, DHCPv6, Stateless Autoconfiguration, PPPoE, IPv6 in IPv4 Tunnel and 6to4. If you are unsure of your connection method, please contact your IPv6 Internet Service Provider. Note: If using the PPPoE option, you will need to ensure that any PPPoE client software on your computers has been removed or disabled.</HP390>
+	<HP391>Link-local Mode</HP391>
+	<HP392>The Link-local address is used by nodes and routers when communicating with neighboring nodes on the same link.</HP392>
+	<HP393>This mode enables IPv6-capable devices to communicate with each other on the LAN side.</HP393>
+	<HP394>Static IPv6 Mode</HP394>
+	<HP395>This mode is used when your ISP provides you with a set IPv6 addresses that does not change. The IPv6 information is manually entered in your IPv6 configuration settings. You must enter the IPv6 address, Subnet Prefix Length, Default Gateway, Primary DNS Server, and Secondary DNS Server. Your ISP provides you with all this information.</HP395>
+	<HP396>Select this option if your ISP requires you to use a PPPoE (Point to Point Protocol over Ethernet) connection to IPv6 Internet. DSL providers typically use this option. This method of connection requires you to enter a &lt;span class="option"&gt;Username&lt;/span&gt; and &lt;span class="option"&gt;Password&lt;/span&gt; (provided by your Internet Service Provider) to gain access to the IPv6 Internet. The supported authentication protocols are PAP and CHAP.</HP396>
+	<HP397>This is a method of connection where the ISP assigns your IPv6 address when your router requests one from the ISP's server. Some ISP's require you to make some settings on your side before your router can connect to the IPv6 Internet.</HP397>
+	<HP398>Select this option if the ISP's servers assign the router's WAN IPv6 address upon establishing a connection.</HP398>
+	<HP399>If your ISP has assigned a fixed IPv6 address, select this option. The ISP provides the value for the &lt;span class="option"&gt;IPv6 Address&lt;/span&gt;.</HP399>
+	<HP400>IPv6 in IPv4 Tunnel Mode</HP400>
+	<HP401>IPv6 in IPv4 tunneling encapsulate of IPv6 packets in IPv4 packets so that IPv6 packets can be sent over an IPv4 infrastructure.</HP401>
+	<HP402>6to4 Mode</HP402>
+	<HP403>6to4 is an IPv6 address assignment and automatic tunneling technology that used to provide unicast IPv6 connectivity between IPv6 sites and hosts across the IPv4 Internet.</HP403>
+	<HP404>Primary DNS Server, Secondary DNS Server: Enter the IPv6 addresses of the DNS Servers. Leave the field for the secondary server empty if not used.</HP404>
+	<HP405>These are the settings of the LAN (Local Area Network) IPv6 interface for the router. The router's LAN IPv6 Address configuration is based on the IPv6 Address and Subnet assigned by your ISP. (A subnet with prefix /64 is supported in LAN.)</HP405>
+	<HP406>LAN Address Autoconfiguration Settings</HP406>
+	<HP407>Use this section to set up IPv6 Autoconfiguration to assign an IPv6 address to the computers on your local network. A Stateless and a Stateful Autoconfiguration method are provided.</HP407>
+	<HP408>Enable Autoconfiguration</HP408>
+	<HP409>These two values (from and to) define a range of IPv6 addresses that the DHCPv6 Server uses when assigning addresses to computers and devices on your Local Area Network. Any addresses that are outside this range are not managed by the DHCPv6 Server. However, these could be used for manually configuring devices or devices that cannot use DHCPv6 to automatically obtain network address details.</HP409>
+	<HP410>When you select Stateful (DHCPv6), the following options are displayed.</HP410>
+
+</root>

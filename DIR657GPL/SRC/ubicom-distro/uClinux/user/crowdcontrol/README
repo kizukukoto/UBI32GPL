@@ -1,0 +1,182 @@
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----
+
+       Crowd Control -- A superefficient low-memory HTTP filtering proxy.
+
+Table of Contents
+
+1.   Compiling Crowd Control
+     a.   Under Linux
+     b.   Under SunOS
+     c.   Under Windows
+     d.   Under Mac OS X, FreeBSD, and other generic UNIX clones
+
+2.   Program Usage
+     a.   Command line options
+     b.   Using inetd (Linux/UNIX)
+
+3.   Access Control List Syntax
+     a.   Domain lists
+     b.   URL lists
+     c.   Expression lists
+     
+4.   Contacting Me
+
+5.   Credits
+
+6.   License
+
+|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----|----
+
+1.   Compiling Crowd Control
+
+     a.   Under Linux     
+          Run "make linux" at the command line.
+          
+     b.   Under SunOS     
+          Run "make sunos" at the command line.
+          
+     c.   Under Windows     
+          You can compile Crowd Control in Visual Studio .NET by creating a new
+          blank command-line project and importing the source file. Under MinGW
+          or Cygwin simply run "make unix".
+          
+     d.   Under Mac OS X, FreeBSD, and other generic UNIX clones     
+          Run "make unix" at the command line. Under Mac OS X 10.4.2 or later,
+          you can run "make linux" if you do not wish for TCP_BUFFER_SIZE to be
+          modified (this isn't really recommended).
+
+2.   Program Usage
+
+     a.   Command line options     
+          -p <port>
+          --port <port>
+          (default: 32800)          
+          Have the proxy listen on port <port>.
+          
+          -a <ip>
+          --bind <ip>
+          (default: 127.0.0.1)          
+          Bind to the Internet address <ip>. This can be a single IP (when the
+          -s or --subnet options are not specified), or an entire subnet (when
+          the subnet is specified). If neither -a nor -s are used, the proxy
+          will only listen on the local socket (the most secure way to use it).
+          
+          -s <subnet>
+          --subnet <subnet>
+          (default: 255.255.255.255)          
+          Specify the subnet (see notes above). It's recommended you give this
+          a different value if you want more than one computer to use the
+          proxy.
+          
+          --http-only
+          --http-with-ssl
+          --http-tunnel (default)          
+          Specify what kinds of HTTP requests to permit. When using
+          --http-only, only HTTP requests will be permitted. All HTTP CONNECT
+          requests will be denied. When using --http-with-ssl, HTTP CONNECT
+          requests will be permitted, but only to port 443 (https). When using
+          --http-tunnel, all HTTP requests will be honored, no matter what port
+          is used (even port 80).
+          
+          --implicitly-deny
+          --implicitly-permit (default)          
+          Specifiy the behavior of the access control module. When using
+          --implicitly-deny, only URLs matching the whitelist will be
+          permitted; no blacklist will be built. When using
+          --implicitly-permit (the default), URLs matching the whitelist will
+          be permitted, and URLs matching the blacklist will be denied. Any
+          URLs not matching either list will be permitted.
+          
+          --permit-domains <file>
+          --permit-urls <file>
+          --permit-expressions <file>          
+          Specify a file with a list of domains, URLs, or expressions to
+          permit. The files must consist of one entry per line, with no spaces
+          in any line whatsoever. Blank lines and comments (lines beginning
+          with "#") are ignored. A line cannot contain a space (as URLs do not
+          contain spaces); a space is considered to be the end of an entry!
+          
+          --deny-domains <file>
+          --deny-urls <file>
+          --deny-expressions <file>          
+          Specify a file with a list of domains, URLs, or expressions to deny.
+          See notes above.
+
+          --test <URL>
+          Test the filter using <URL>. You must leave off the "http://".
+          
+     b.   Using inetd (Linux/UNIX)
+     
+          Add this line in /etc/inetd.conf:          
+          webcache stream tcp nowait nobody <path>/crowdcontrol crowdcontrol \
+          (insert options here)
+
+3.   Access Control List Syntax
+
+     a.   Domain lists
+
+          There are two types of domain entries. The first is the SquidGuard-
+          like domain entry, where a domain may match exactly or may match the
+          end of a domain.
+
+          EXAMPLE: badsite.example.org
+
+          This example will match "badsite.example.org" as well as any sub-
+          domains behind it (such as "sub.badsite.example.org"), but not the
+          parent domain ("example.org") or any other subdomain.
+
+          The other type of domain entry only matches certain subdomains, no
+          matter what the parent domain is. These entries are specified by a
+          leading dot (".").
+
+          EXAMPLE: badsite.
+
+          This example will match "badsite.example.org", as well as any other
+          domain that begins with "badsite" (such as "badsite.org").
+
+     b.   URL lists
+
+          A URL entry is meant to specify both a parent domain and a portion of
+          the URL.
+
+          EXAMPLE: example.org/badsite/
+
+          This example will match a URL with a domain matching "example.org" as
+          well as a URL that begins with "/badsite/". Entries are compared with
+          the regular-expression engine and each entry uses significantly more
+          memory than a domain entry (up to half a kilobyte), so be careful.
+
+     c.   Expression lists
+
+          An expression entry is a regular expression, matched against the URL.
+          These can match a portion of the domain, URL, or both; since there is
+          a possibility of matching a folder name to a domain, it is highly
+          recommended that each line begin with a slash ("/") or some other
+          character that can never match a domain name. Entries are compared
+          with the regular-expression engine directly, so a bad expression can
+          prevent the program from running. Be absolutely sure each entry is
+          valid.
+
+4.   Contacting Me
+
+     Visit the sourceforge.net project page for Crowd Control to contact me
+     about any kinds of suggestions or bug reports.
+
+5.   Credits
+
+     Special thanks to Christopher Devine for the elhttp project, and to the
+     SquidGuard team as well as the Squid developers for saving so many people
+     time and money with what they do for practically free.
+
+6.   License
+
+     This software and its derivatives are licensed under the GNU General
+     Public License, version 2. This software may not be included in any non-
+     GPL application (such as a similar project) or environment (an integral
+     portion of an operating system or firmware) without the author's explicit
+     permission.
+
+Others.
+	If using --implicitly-deny. it supported --permit-domains only. such as
+	crowdcontrol --implicitly-deny --permit-domains domains-files
+

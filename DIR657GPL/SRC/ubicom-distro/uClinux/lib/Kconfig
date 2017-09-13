@@ -1,0 +1,787 @@
+#############################################################################
+
+#
+#	Kconfig - library configuration
+#
+
+#############################################################################
+
+menu "Library Configuration"
+
+comment "Force build (normally built when required)"
+
+config LIB_GNUTLS
+	bool "Build GnuTLS"
+	select LIB_GCRYPT
+	default n
+
+config LIB_GCRYPT
+	bool "Build libgcrypt"
+	select LIB_GPGERROR
+	default n
+
+config LIB_GPGERROR
+	bool "Build libgpg-error"
+	default n
+
+config LIB_SSH2
+	bool "Build libssh2"
+	select LIB_GCRYPT
+	default n
+
+config LIB_TAGLIB
+	bool "Build TagLib"
+	default n
+
+config LIB_BITVECTOR
+	bool "Build bit vector"
+	default n
+	help
+	  BitVector support.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LITE
+	bool "Build LiTE GUI"
+	select LIB_DIRECTFB
+	default n
+config LIB_FLEX
+	bool "Build flex"
+	default n
+
+config LIB_FAAD2
+	bool "Build faad2"
+	default y
+
+config LIB_LIBALSA
+	bool "Build alsa-lib"
+	default n
+
+config LIB_LIBID3TAG
+	bool "Build libid3tag"
+	select LIB_ZLIB
+	default n
+
+config LIB_MAD
+	bool "Build LibMAD mp3 decoder"
+	default n
+
+config LIB_BFD
+	bool "Build libbfd"
+	default n
+
+config LIB_LIBIBERTY
+	bool "Build libiberty"
+	default n
+
+config LIB_POPT
+	bool "Build libpopt"
+	default n
+
+config LIB_POPT-1.10.4
+	bool "Build libpopt-1.10.4"
+	default n
+
+config LIB_LIBSSL
+	bool "Build libSSL"
+	default n
+	help
+	  SSL library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBGMP
+	bool "Build libGMP"
+	default n
+	help
+	  GMP Library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBG
+	bool "Build libG"
+	default n
+
+config LIB_LIBLDAP
+	bool "Build libldap"
+	default n
+	help
+	  OpenLDAP Library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBLZMA
+	bool "Build liblzma"
+	default n
+
+config LIB_LIBLZO
+	bool "Build liblzo"
+	default n
+
+config LIB_LIBNET
+	bool "Build libnet"
+	default n
+	help
+	  Archaic version of libnet required for snort inline operation.
+	  See: http://www.packetfactory.net/libnet/
+	  Only enable this if you want to force the library to be built.  The
+	  Config will make sure this library is built if it is needed.
+
+config LIB_LIBNETOLD
+	bool "Build really old libnet"
+	default n
+
+config LIB_LIBPAM
+	bool "Build libPAM"
+	default n
+
+config USER_PAM_LDAP
+	bool "PAM LDAP"
+	depends on LIB_LIBPAM
+	select LIB_LIBLDAP
+	help
+	  PAM should support LDAP authentication.
+
+config USER_PAM_RADIUS
+	bool "PAM RADIUS"
+	depends on LIB_LIBPAM
+	help
+	  PAM should support RADIUS authentication.
+
+config USER_PAM_SMB
+	bool "PAM SMB"
+	depends on LIB_LIBPAM
+	help
+	  PAM should support SMB authentication.
+
+config USER_PAM_TACACS
+	bool "PAM TACACS+"
+	depends on LIB_LIBPAM
+	help
+	  PAM should support TACACS authentication.
+
+config LIB_LIBPCAP
+	bool "Build libPCAP"
+	default n
+
+config LIB_LIBPCRE_OLD
+	bool "Build libPCRE"
+	default n
+	help
+	  Perl Compatible Regular Expressions library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBPCRE-7.7
+	bool "Build libPCRE-7.7"
+	default n
+	help
+	  Perl Compatible Regular Expressions library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBPCRE
+	bool "Build libPCRE-7.8"
+	default n
+	help
+	  Perl Compatible Regular Expressions library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_ZLIB
+	bool "Build libZ"
+	default n
+	help
+	  Data compression library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBBZ2
+	bool "Build libBZIP2"
+	default n
+	help
+	  Data compression library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBATM
+	bool "Build libATM"
+	default n
+	help
+	  ATM support library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBPNG
+	bool "Build libpng"
+	select LIB_ZLIB
+	default n
+
+config LIB_LIBJPEG
+	bool "Build libjpeg"
+	default n
+
+config LIB_GIFLIB
+	bool "Build giflib"
+	default n
+
+config LIB_LIBUPNP
+	bool "Build libupnp"
+	default n
+	help
+	  UPnP support library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBSYSFS
+	bool "Build libsysfs"
+	default n
+
+config LIB_NCURSES
+	bool "Build ncurses"
+	default n
+	help
+	  CRT screen handling library.
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_TERMCAP
+	bool "Build termcap"
+	default n
+
+config LIB_LIBEFENCE
+	bool "Build libefence"
+	default n
+
+config LIB_STLPORT
+	bool "Build STLport"
+	default n
+	help
+	  A replacement to libstdc++.  It is smaller than the gcc version.
+
+config LIB_STLPORT_SHARED
+	bool "Build STLport as shared"
+	depends on LIB_STLPORT
+	help
+	  Build a shared library version of libstdc++.
+
+config LIB_EXPAT
+	bool "Build expat"
+	default n
+	help
+	  Force libexpat to be built.
+
+config LIB_DBUS
+	bool "Build dbus"
+	select LIB_EXPAT
+	default n
+	help
+	  Force dbus to be built.
+
+config LIB_DMALLOC
+	bool "Build libdmalloc"
+	default n
+	help
+	  Debug malloc library which helps memory-leak tracking, fence-post write detection, file/line 
+	  number reporting, and general logging of statistics.
+
+config LIB_ADNS
+	bool "Build adns"
+	default n
+	help
+	  An asyncrhonous resolver with more features than the uClibc resolver.
+
+config LIB_ARES
+	bool "Build libares"
+	default n
+	help
+	  An asynchronous resolver with more features than the uClibc resolver.
+
+config LIB_LIBIDN
+	bool "Build libidn"
+	default n
+	help
+	  GNU libidn the internationalised domain name resolver.
+
+config LIB_LIBNL
+	bool "Build libnl"
+	default n
+
+config LIB_LIBNL_COMPONENTS
+	bool "Select libnl components"
+	depends on LIB_LIBNL
+	default n
+
+config LIB_LIBNL_RTNL
+	bool "Include libnl rtnl support"
+	depends on LIB_LIBNL_COMPONENTS
+	default n
+
+config LIB_LIBNL_ROUTE_ADDR
+	bool "Include libnl addr support"
+	depends on LIB_LIBNL_RTNL
+	default n
+
+config LIB_LIBNL_ROUTE_LINK
+	bool "Include libnl link support"
+	depends on LIB_LIBNL_RTNL
+	default n
+
+config LIB_LIBNL_ROUTE_NEIGH
+	bool "Include libnl neigh support"
+	depends on LIB_LIBNL_RTNL
+	default n
+
+config LIB_LIBNL_ROUTE_ROUTE
+	bool "Include libnl route support"
+	depends on LIB_LIBNL_RTNL
+	default n
+
+config LIB_LIBNL_ROUTE_RULE
+	bool "Include libnl rule support"
+	depends on LIB_LIBNL_RTNL
+	default n
+
+config LIB_LIBNL_ROUTE_TC
+	bool "Include libnl tc support"
+	depends on LIB_LIBNL_RTNL
+	default n
+
+config LIB_LIBNL_GENERIC
+	bool "Include libnl generic support"
+	depends on LIB_LIBNL_COMPONENTS
+	default n
+
+config LIB_LIBNL_FIB
+	bool "Include libnl fib support"
+	depends on LIB_LIBNL_COMPONENTS
+	default n
+
+config LIB_LIBNL_NETFILTER
+	bool "Include libnl netfilter support"
+	depends on LIB_LIBNL_COMPONENTS
+	default n
+
+config LIB_LIBNL_NETFILTER_CT
+	bool "Include libnl netfilter conntrack support"
+	depends on LIB_LIBNL_NETFILTER
+	default n
+
+config LIB_LIBNL_NETFILTER_LOG
+	bool "Include libnl netfilter log support"
+	depends on LIB_LIBNL_NETFILTER
+	default n
+
+config LIB_LIBNL_NETFILTER_QUEUE
+	bool "Include libnl netfilter queue support"
+	depends on LIB_LIBNL_NETFILTER
+	default n
+
+config LIB_NFNETLINK
+	bool "Build libnfnetlink"
+	default n
+
+config LIB_NETFILTER_CONNTRACK
+	bool "Build libnetfilter_conntrack"
+	select LIB_NFNETLINK
+	default n
+
+config LIB_NETFILTER_LOG
+	bool "Build libnetfilter_log"
+	select LIB_NFNETLINK
+	default n
+
+config LIB_OSIP2
+	bool "Build libosip2"
+	default n
+
+config LIB_LIBCURL
+	bool "Build curl"
+	select LIB_ZLIB
+	default n
+	help
+	  The curl library for resolving URLs.
+
+config LIB_LIBCRASHLOG
+	bool "Build libcrashlog"
+	default n
+	help
+	  This provides an enhanced crash output.
+
+config LIB_LIBCRYPT_OLD
+	bool "Build libcrypt_old"
+	default n
+
+config LIB_PWLIB
+	bool 'Build pwlib'
+	select LIB_STLPORT
+	help
+	  Portable Windows libaray.
+	  Only enable this if you want to force the library to be built.  The
+	  Config will make sure this library is built if it is needed.
+
+config LIB_LIBOPENH323
+	bool 'Build libopenh323'
+	select LIB_PWLIB
+	select LIB_STLPORT
+	help
+	  Open H.323 (VoIP) library.
+	  Only enable this if you want to force the library to be built.  The
+	  Config will make sure this library is built if it is needed.
+
+config LIB_LIBJUDY
+	bool 'Build libjudy'
+	default n
+	help
+	  Judy array library.
+	  Only enable this if you want to force the library to be built.  The
+	  Config will make sure this library is built if it is needed.
+
+ config LIB_LIBJUDY_TESTS
+ 	bool 'Build libjudy tests'
+	depends on LIB_LIBJUDY
+	default n
+	help
+	  Builds the libjudy tests.  These are installed in /bin and
+	  the required file StringCompare.c in /etc.  To manually
+	  execute the tests look at the tests/Checkit script.
+
+config LIB_CLASSPATH
+	bool 'Build classpath'
+	default n
+	help
+	  Clean room standard Java libraries
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBFFI
+	bool 'Build libffi'
+	default n
+	help
+	  Foreign Function Interface library
+	  Only enable this if you want to force the library to be built.
+	  The Config will make sure this library is built if it is needed.
+
+config LIB_LIBSDL
+	bool 'Build libsdl'
+	select LIB_LIBALSA
+	select LIB_LIBICONV
+	default n
+	help
+	  This is the Simple DirectMedia Layer, a general API that provides low
+	  level access to audio, keyboard, mouse, joystick, 3D hardware via OpenGL,
+	  and 2D framebuffer across multiple platforms.
+
+config LIB_LIBTINYSDGL
+	bool 'Build TinySDGL'
+	select LIB_LIBSDL
+	default n
+	help
+	  TinySDGL is intended to be a very small implementation of a subset of
+	  OpenGL* for embedded systems or games.
+
+config LIB_FFMPEG
+	bool 'Build ffmpeg'
+	select LIB_FAAD2
+	default n
+
+config LIB_SDL_GFX
+	bool "Build SDL_gfx"
+	select LIB_LIBSDL
+	default n
+
+config LIB_SDL_IMAGE
+	bool "Build SDL_image"
+	select LIB_LIBSDL
+	select LIB_LIBJPEG
+	select LIB_LIBPNG
+	select LIB_FREETYPE
+	default n
+
+config LIB_SDL_TTF
+	bool "Build SDL_ttf"
+	select LIB_LIBSDL
+	select LIB_FREETYPE
+	default n
+
+config LIB_SDL_MIXER
+	bool "Build SDL_mixer"
+	select LIB_LIBSDL
+	default n
+
+config LIB_SDL_SOUND
+	bool "Build SDL_sound"
+	select LIB_LIBSDL
+	default n
+
+config LIB_DIRECTFB
+	bool "Build DirectFB"
+	select LIB_LIBJPEG
+	select LIB_LIBPNG
+	select LIB_FREETYPE
+	select LIB_ZLIB
+	select LIB_TSLIB
+	default n
+
+config LIB_FREETYPE
+	bool "Build freetype"
+	select LIB_ZLIB
+	default n
+
+config LIB_LIBICONV
+	bool "Build libiconv"
+	select LIB_ZLIB
+	default n
+	help
+	  Libiconv is for you if your application needs to support
+	  multiple character encodings.  libiconv requires that Wide
+	  Char support be enabled in your C library. For uClibc this
+	  means you should select UCLIBC_HAS_WCHAR.
+
+config LIB_PIXMAN
+	bool "Build pixman"
+	default n
+
+config LIB_LIBEXIF
+	bool "Build libexif"
+	default n
+
+config LIB_SQLITE3
+	bool "Build sqlite3"
+	default n
+
+config LIB_FUSE
+	bool "Build FUSE"
+	select LIB_LIBICONV
+	default n
+
+config LIB_LIBXML2
+	bool "Build libxml2"
+	select LIB_LIBICONV
+	default n
+
+config LIB_GETTEXT
+	bool "Build gettext"
+	select LIB_LIBICONV
+	default n
+
+config LIB_FONTCONFIG
+	bool "Build fontconfig"
+	select LIB_LIBXML2
+	select LIB_FREETYPE
+	default n
+
+config LIB_GLIB
+	bool "Build glib"
+	select LIB_GETTEXT
+	default n
+
+config LIB_LIBSOUP
+	bool "Build libsoup"
+	select LIB_LIBXML2
+	select LIB_GLIB
+	default n
+
+config LIB_LIBOIL
+	bool "Build liboil"
+	select LIB_GLIB
+	default n
+
+config LIB_ATK
+	bool "Build atk"
+	select LIB_GLIB
+	default n
+
+config LIB_CAIRO
+	bool "Build cairo"
+	select LIB_FONTCONFIG
+	select LIB_PIXMAN
+	select LIB_DIRECTFB
+	default n
+
+config LIB_PANGO
+	bool "Build pango"
+	select LIB_GLIB
+	select LIB_CAIRO
+	default n
+
+config LIB_GTK
+	bool "Build GTK+"
+	select LIB_FONTCONFIG
+	select LIB_ATK
+	select LIB_PANGO
+	default n
+
+config LIB_GSTREAMER
+	bool "Build gstreamer"
+	select LIB_GLIB
+	select LIB_LIBXML2
+	default n
+
+config LIB_LIBGEE
+	bool "Build LIBGEE"
+	select LIB_GLIB
+	default n
+
+config LIB_UUID
+	bool "Build UUID"
+	default n
+
+config LIB_DBUS_GLIB
+	bool "Build DBUS-GLIB"
+	select LIB_GLIB
+	select LIB_DBUS
+	select LIB_EXPAT
+	default n
+
+config LIB_GSSDP
+	bool "Build GSSDP"
+	select LIB_GLIB
+	select LIB_LIBSOUP
+	default n
+
+config LIB_GUPNP
+	bool "Build GUPNP"
+	select LIB_GSSDP
+	select LIB_UUID
+	default n
+
+config LIB_LIBFM
+	bool "Build FM tuner libraries"
+	default n
+
+config LIB_GUPNP_AV
+	bool "Build GUPNP-AV"
+	select LIB_GUPNP
+	default n
+
+config LIB_FLAC
+	bool "Build FLAC"
+	default n
+	help
+	  FLAC stands for Free Lossless Audio Codec, an audio format similar to
+	  MP3, but lossless, meaning that audio is compressed in FLAC without
+	  any loss in quality.
+
+config LIB_GST-PLUGINS-BASE
+	bool "Build gst-plugins-base"
+	select LIB_GSTREAMER
+	select LIB_LIBOIL
+	default n
+
+config LIB_TSLIB
+	bool "Build tslib"
+	select LIB_TSLIB
+	default n
+	help
+		Tslib is an abstraction layer for touchscreen panel events, as 
+		well as a filter stack for the manipulation of those events. 
+		It was created by Russell King, of arm.linux.org.uk. 
+		Examples of implemented filters include jitter smoothing 
+		and the calibration transform. 
+
+		Tslib is generally used on embedded devices to provide a 
+		common user space interface to touchscreen functionality. 
+		It is supported by Kdrive (aka TinyX) and OPIE as well 
+		as being used on a number of commercial Linux devices 
+		including the Nokia 770.
+
+menu "Shoutcast Api"
+
+config LIB_LIBSHOUTCAST
+	bool "Build Shoutcast api support"
+	select LIB_UBIDBG
+	select LIB_LIBXML2
+	select LIB_LIBCURL
+	help
+	  Shoutcast web service code
+
+config LIBSHOUTCAST_PREBUILD
+	bool "Use Prebuild Binaries"
+
+endmenu
+
+menu "Pandora Api"
+
+config LIB_LIBPANDORA
+	bool "Build Pandora api support"
+	select LIB_UBIDBG
+	select LIB_LIBXML2
+	select LIB_LIBCURL
+	select LIB_LIBSSL
+	help
+	  Pandora music service library
+
+config LIBPANDORA_PREBUILD
+	bool "Use Prebuild Binaries"	  
+	  
+endmenu
+
+menu "Reciva Api"
+
+config LIB_LIBRECIVA
+	bool "Build Reciva api support"
+	select LIB_UBIDBG
+	select LIB_LIBXML2
+	select LIB_LIBCURL
+	select LIB_LIBCRYPTO
+	help
+	  Reciva music service library
+
+config LIBRECIVA_PREBUILD
+	bool "Use Prebuild Binaries"
+
+endmenu
+
+config LIBIPOD_DOCK
+       bool "Build IPod Dock Library"
+       help 
+          IPod Dock library which talks to ipod daemon.
+
+config LIB_VLC
+	bool "Build VLC"
+	select LIB_FAAD2
+	select LIB_MAD
+	select LIB_LIBALSA
+	select LIB_LIBICONV
+	select LIB_LIBSYSFS
+	help
+	  Popular video/audio player
+
+config LIB_UBIDBG
+	bool "Build Ubicom Debug lib"
+	help
+	  Ubicom's debug printing code
+
+config LIB_OGG
+	bool "Build libogg"
+	help
+	   For minidlna
+
+config LIB_VORBIS
+	bool "Build libvorbis"
+	help
+	  For minidlna
+
+comment "Library Configuration"
+
+config LIB_UC_LIBC_TIMEZONE
+	bool "Support time zones"
+	help
+	  Enable this if you want simpleinit to set the time zone environment
+	  variables on system startup.  This option also forces uC-libc to
+	  support time zone information.  Without this, UTC will be the assumed
+	  time zone when using uC-libc.
+
+config LIB_UC_LIBC_TZ_FROM_FILE
+	bool "Always load from file"
+	depends on LIB_UC_LIBC_TIMEZONE
+	help
+	  Enable this if you want uC-libc to always read the TZ file for its
+	  itme zone information instead of relying on the environment variable
+	  set up by init during system boot.  This means that changes to the
+	  time zone take effect immediately instead of requiring a reboot.
+
+endmenu
+
+#############################################################################

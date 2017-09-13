@@ -1,0 +1,501 @@
+==10991== Memcheck, a memory error detector for x86-linux.
+==10991== Copyright (C) 2002-2004, and GNU GPL'd, by Julian Seward et al.
+==10991== Using valgrind-2.2.0, a program supervision framework for x86-linux.
+==10991== Copyright (C) 2000-2004, and GNU GPL'd, by Julian Seward et al.
+==10991== For more details, rerun with: -v
+==10991== 
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:1BBBDE08
+real free:1BBBD880
+real free:1BBBD2E8
+real free:1BBBCD58
+real free:1BBBC7C8
+real free:1BBBC238
+real free:1BBBBCB0
+real free:1BBBB740
+real free:1BBBB1A8
+real free:1BBBAC18
+real free:1BBBA688
+==10991== warning: Valgrind's pthread_attr_setinheritsched does nothing
+==10991==          your program may misbehave as a result
+==10991== warning: Valgrind's pthread_attr_setschedparam does nothing
+==10991==          (scheduling not changeable)
+==10991==          your program may misbehave as a result
+==10991== warning: Valgrind's pthread_attr_destroy does nothing
+==10991==          your program may misbehave as a result
+==10991== warning: Valgrind's pthread_getschedparam is incomplete
+==10991==          your program may misbehave as a result
+(*) Direct/Thread: Started 'X11 Input' (-1) [INPUT OTHER/OTHER 0/0] <1048576>...
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+(*) DirectFB/Input: X11 Input 0.1 (directfb.org)
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+relloc: 1792 = cap:64 * size:28
+==10991== Syscall param writev(vector[...]) contains uninitialised or unaddressable byte(s)
+==10991==    at 0x1BB2B3FD: writev (in /lib/tls/libc-2.3.3.so)
+==10991==    by 0x1BD2E29D: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD2E5BE: _X11TransWritev (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD11F59: _XSend (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==  Address 0x1BBB0AF4 is 28 bytes inside a block of size 16384 alloc'd
+==10991==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==10991==    by 0x1BD011FD: XOpenDisplay (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BCC31E3: InitLocal (x11.c:125)
+==10991==    by 0x1BCC35B3: system_initialize (x11.c:228)
+==10991== 
+==10991== Syscall param write(buf) contains uninitialised or unaddressable byte(s)
+==10991==    at 0x1BB2494B: write (in /lib/tls/libc-2.3.3.so)
+==10991==    by 0x1BD2E21D: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD2E55E: _X11TransWrite (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD11863: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==  Address 0x1BBB0AFE is 38 bytes inside a block of size 16384 alloc'd
+==10991==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==10991==    by 0x1BD011FD: XOpenDisplay (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BCC31E3: InitLocal (x11.c:125)
+==10991==    by 0x1BCC35B3: system_initialize (x11.c:228)
+(*) X11/Display: Using XShm.
+IDirectFB_CreateFont:1218
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+(*) Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+DirectGetInterface 306: countinue leak
+IDirectFB_CreateFont:1220
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+(*) Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+DirectGetInterface 306: countinue leak
+==10991== 
+==10991== Conditional jump or move depends on uninitialised value(s)
+==10991==    at 0x1B9A7AA9: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==10991==    by 0x1B9A9CCF: dfb_surface_buffer_write (surface_buffer.c:610)
+==10991==    by 0x1B9A6CE0: dfb_surface_write_buffer (surface.c:652)
+==10991==    by 0x1C1108F0: IDirectFBImageProvider_PNG_RenderTo (idirectfbimageprovider_png.c:361)
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==10991== warning: Valgrind's pthread_cond_destroy is incomplete
+==10991==          (it doesn't check if the cond is waited on)
+==10991==          your program may misbehave as a result
+==10991== warning: Valgrind's pthread_cond_destroy is incomplete
+==10991==          (it doesn't check if the cond is waited on)
+==10991==          your program may misbehave as a result
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==10991== warning: Valgrind's pthread_cond_destroy is incomplete
+==10991==          (it doesn't check if the cond is waited on)
+==10991==          your program may misbehave as a result
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==10991== 
+==10991== Conditional jump or move depends on uninitialised value(s)
+==10991==    at 0x1B9A7AA9: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==10991==    by 0x1B9AACB7: dfb_surface_buffer_lock (surface_buffer.c:274)
+==10991==    by 0x1B9A68B3: dfb_surface_lock_buffer (surface.c:572)
+==10991==    by 0x1B9BCF6D: load_default_cursor (windowstack.c:830)
+==10991== 
+==10991== Conditional jump or move depends on uninitialised value(s)
+==10991==    at 0x1B9A7AA9: dfb_surface_buffer_lock_init (surface_buffer.h:140)
+==10991==    by 0x1B9AACB7: dfb_surface_buffer_lock (surface_buffer.c:274)
+==10991==    by 0x1B9A68B3: dfb_surface_lock_buffer (surface.c:572)
+==10991==    by 0x1C088900: render_glyph (idirectfbfont_ft2.c:272)
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==10991== 
+==10991== pthread_mutex_destroy: mutex is still in use
+==10991==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==10991==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==10991==    by 0x1B948553: IDirectFBEventBuffer_Destruct (idirectfbinputbuffer.c:187)
+==10991==    by 0x1B94871E: IDirectFBEventBuffer_Release (idirectfbinputbuffer.c:212)
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+--10991-- WARNING: unhandled syscall: 224
+--10991-- Do not panic.  You may be able to fix this easily.
+--10991-- Read the file README_MISSING_SYSCALL_OR_IOCTL.
+==10991== 
+==10991== pthread_mutex_destroy: mutex is still in use
+==10991==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==10991==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==10991==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==10991==    by 0x1B9943FF: context_destructor (layer_context.c:129)
+==10991== 
+==10991== pthread_mutex_destroy: mutex is still in use
+==10991==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==10991==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==10991==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==10991==    by 0x1B9E7BC4: fusion_object_pool_destroy (object.c:272)
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+==10991== 
+==10991== pthread_mutex_destroy: mutex is still in use
+==10991==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==10991==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==10991==    by 0x1B9E6D87: fusion_skirmish_destroy (lock.c:648)
+==10991==    by 0x1BCC394B: system_shutdown (x11.c:369)
+==10991== 
+==10991== pthread_mutex_destroy: mutex is still in use
+==10991==    at 0x1BA10B04: pthread_error (vg_libpthread.c:380)
+==10991==    by 0x1BA12E92: pthread_mutex_destroy (vg_libpthread.c:1369)
+==10991==    by 0x1BD2D173: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD19039: XrmDestroyDatabase (in /usr/X11R6/lib/libX11.so.6.2)
+real free:00000000
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_default.so leak foce?
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_dgiff.so leak foce?
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_ft2.so leak foce?
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_dfiff.so leak foce?
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_gif.so leak foce?
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_jpeg.so leak foce?
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_png.so leak foce?
+==10991== 
+==10991== ERROR SUMMARY: 35 errors from 10 contexts (suppressed: 163 from 1)
+==10991== malloc/free: in use at exit: 45793 bytes in 430 blocks.
+==10991== malloc/free: 3005 allocs, 2575 frees, 9785427 bytes allocated.
+==10991== For counts of detected errors, rerun with: -v
+==10991== searching for pointers to 430 not-freed blocks.
+==10991== checked 4963540 bytes.
+==10991== 
+==10991== 
+==10991== 8 bytes in 1 blocks are definitely lost in loss record 1 of 35
+==10991==    at 0x1B905892: realloc (vg_replace_malloc.c:197)
+==10991==    by 0x1BD526E0: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD52C73: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD54A40: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 8 bytes in 2 blocks are still reachable in loss record 2 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD53261: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD54A40: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD55593: _XlcCreateLC (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 16 bytes in 1 blocks are still reachable in loss record 3 of 35
+==10991==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==10991==    by 0x1BA4C47C: (within /lib/libdl-2.3.3.so)
+==10991==    by 0x1BA4C066: dlsym (in /lib/libdl-2.3.3.so)
+==10991==    by 0x1BA15621: sigaction (vg_libpthread.c:2269)
+==10991== 
+==10991== 
+==10991== 24 bytes in 3 blocks are still reachable in loss record 4 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B8E8420: decompose_rpath (dl-load.c:566)
+==10991==    by 0x1B8EA531: _dl_map_object (dl-load.c:604)
+==10991==    by 0x1B8EE921: openaux (dl-deps.c:63)
+==10991== 
+==10991== 
+==10991== 24 bytes in 1 blocks are still reachable in loss record 5 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD2D9F7: XInitThreads (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BCC31BE: ???
+==10991==    by 0x1BCC35B3: ???
+==10991== 
+==10991== 
+==10991== 24 bytes in 1 blocks are still reachable in loss record 6 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD2D9DF: XInitThreads (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BCC31BE: ???
+==10991==    by 0x1BCC35B3: ???
+==10991== 
+==10991== 
+==10991== 29 bytes in 3 blocks are still reachable in loss record 7 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD4D5D4: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD556D4: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 32 bytes in 1 blocks are still reachable in loss record 8 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BB63817: (within /lib/tls/libc-2.3.3.so)
+==10991==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==10991==    by 0x1BB63A6F: _dl_open (in /lib/tls/libc-2.3.3.so)
+==10991== 
+==10991== 
+==10991== 32 bytes in 1 blocks are still reachable in loss record 9 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BCEC2F7: _XrmInternalStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BCEC6F1: XrmPermStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD132FF: XrmInitialize (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 48 bytes in 1 blocks are still reachable in loss record 10 of 35
+==10991==    at 0x1B905892: realloc (vg_replace_malloc.c:197)
+==10991==    by 0x1BD14227: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD155AB: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD15863: XrmGetStringDatabase (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 96 bytes in 2 blocks are still reachable in loss record 11 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD526A8: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD52C73: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD54A40: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 147 bytes in 12 blocks are still reachable in loss record 12 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B9FAE08: direct_strdup (mem.c:318)
+==10991==    by 0x1B94A9E6: config_allocate (conf.c:404)
+==10991==    by 0x1B94E554: dfb_config_init (conf.c:1638)
+==10991== 
+==10991== 
+==10991== 176 bytes in 6 blocks are still reachable in loss record 13 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B8EDDE4: _dl_map_object_deps (dl-deps.c:456)
+==10991==    by 0x1BB62F33: (within /lib/tls/libc-2.3.3.so)
+==10991==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==10991== 
+==10991== 
+==10991== 189 bytes in 7 blocks are still reachable in loss record 14 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B8EA5D5: _dl_map_object (dl-load.c:155)
+==10991==    by 0x1B8EE921: openaux (dl-deps.c:63)
+==10991==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==10991== 
+==10991== 
+==10991== 320 bytes in 1 blocks are still reachable in loss record 16 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD5C0D7: _XlcDynamicLoad (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD2BC18: _XOpenLC (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD2BF0D: _XrmInitParseInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 352 bytes in 27 blocks are still reachable in loss record 17 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BADB73F: strdup (in /lib/tls/libc-2.3.3.so)
+==10991==    by 0x1B9F98D0: fill_interface_desc (interface.c:410)
+==10991==    by 0x1B9F9954: direct_dbg_interface_add (interface.c:435)
+==10991== 
+==10991== 
+==10991== 384 bytes in 48 blocks are still reachable in loss record 18 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD4E681: _XlcAddCharSet (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4D56A: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 615 bytes in 47 blocks are still reachable in loss record 19 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD4E85E: _XlcCreateDefaultCharSet (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4D553: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 641 bytes in 7 blocks are definitely lost in loss record 20 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B9FAE08: direct_strdup (mem.c:318)
+==10991==    by 0x1B9F9466: DirectGetInterface (interface.c:272)
+==10991==    by 0x1B92E32B: IDirectFB_CreateFont (idirectfb.c:1219)
+==10991== 
+==10991== 
+==10991== 668 bytes in 9 blocks are still reachable in loss record 21 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B8EDEBF: _dl_map_object_deps (dl-deps.c:488)
+==10991==    by 0x1BB62F33: (within /lib/tls/libc-2.3.3.so)
+==10991==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==10991== 
+==10991== 
+==10991== 690 bytes in 8 blocks are still reachable in loss record 22 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B8EA2BA: _dl_map_object (dl-load.c:155)
+==10991==    by 0x1BB62EE3: (within /lib/tls/libc-2.3.3.so)
+==10991==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==10991== 
+==10991== 
+==10991== 704 bytes in 22 blocks are still reachable in loss record 23 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD4EA06: _XlcSetConverter (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4E516: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD556D4: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 879 bytes in 15 blocks are still reachable in loss record 24 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B8EC2E4: _dl_new_object (dl-object.c:113)
+==10991==    by 0x1B8E88D1: _dl_map_object_from_fd (dl-load.c:871)
+==10991==    by 0x1B8EA0A6: _dl_map_object (dl-load.c:1956)
+==10991== 
+==10991== 
+==10991== 990 bytes in 48 blocks are still reachable in loss record 25 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD4E7EE: _XlcCreateDefaultCharSet (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4D553: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 1168 bytes in 15 blocks are still reachable in loss record 26 of 35
+==10991==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==10991==    by 0x1B8EFFE5: _dl_check_map_versions (dl-version.c:298)
+==10991==    by 0x1BB62F7D: (within /lib/tls/libc-2.3.3.so)
+==10991==    by 0x1B8EEE65: _dl_catch_error (dl-error.c:161)
+==10991== 
+==10991== 
+==10991== 1520 bytes in 1 blocks are still reachable in loss record 27 of 35
+==10991==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==10991==    by 0x1B94A8D6: config_allocate (conf.c:365)
+==10991==    by 0x1B94E554: dfb_config_init (conf.c:1638)
+==10991==    by 0x1B92C95F: DirectFBInit (directfb.c:117)
+==10991== 
+==10991== 
+==10991== 1565 bytes in 48 blocks are still reachable in loss record 28 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD4D3AC: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD556D4: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 1812 bytes in 2 blocks are still reachable in loss record 29 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1B905817: realloc (vg_replace_malloc.c:189)
+==10991==    by 0x1B9F97ED: allocate_interface_desc (interface.c:391)
+==10991==    by 0x1B9F9925: direct_dbg_interface_add (interface.c:433)
+==10991== 
+==10991== 
+==10991== 2048 bytes in 1 blocks are still reachable in loss record 30 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD504BA: _XlcCreateLocaleDataBase (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD5585A: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD54A23: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 2048 bytes in 1 blocks are still reachable in loss record 31 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BCEC34B: _XrmInternalStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BCEC6F1: XrmPermStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD132FF: XrmInitialize (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 2304 bytes in 48 blocks are still reachable in loss record 32 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BD4E79F: _XlcCreateDefaultCharSet (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4D553: _XlcAddCT (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BD4E4A3: _XlcInitCTInfo (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 8176 bytes in 1 blocks are still reachable in loss record 33 of 35
+==10991==    at 0x1B904E28: malloc (vg_replace_malloc.c:131)
+==10991==    by 0x1BCEC06B: (within /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BCEC317: _XrmInternalStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==10991==    by 0x1BCEC6F1: XrmPermStringToQuark (in /usr/X11R6/lib/libX11.so.6.2)
+==10991== 
+==10991== 
+==10991== 8424 bytes in 23 blocks are still reachable in loss record 34 of 35
+==10991==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==10991==    by 0x1B9FA8FC: direct_calloc (mem.c:179)
+==10991==    by 0x1B930768: IDirectFB_CreateSurface (idirectfb.c:830)
+==10991==    by 0x1B90C7BA: lite_util_load_image (in /share/pub/rootfs/lib/liblite.so.3.0.5)
+==10991== 
+==10991== 
+==10991== 9432 bytes in 15 blocks are still reachable in loss record 35 of 35
+==10991==    at 0x1B9057A5: calloc (vg_replace_malloc.c:176)
+==10991==    by 0x1B8EC0DE: _dl_new_object (dl-object.c:43)
+==10991==    by 0x1B8E88D1: _dl_map_object_from_fd (dl-load.c:871)
+==10991==    by 0x1B8EA0A6: _dl_map_object (dl-load.c:1956)
+==10991== 
+==10991== LEAK SUMMARY:
+==10991==    definitely lost: 649 bytes in 8 blocks.
+==10991==    possibly lost:   0 bytes in 0 blocks.
+==10991==    still reachable: 44944 bytes in 421 blocks.
+==10991==         suppressed: 200 bytes in 1 blocks.

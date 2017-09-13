@@ -1,0 +1,107 @@
+BEGIN{}
+
+function descript() {
+	string = ""
+	for (i = 7; i <= NF; i++)
+		string = string " " $i
+	return string
+}
+
+# According D-Link request, Replace Possible authentication failure ... 
+# to Incorrect pre-shared key ...
+function descript_XXXXXX(Cur, str) {
+	string = ""
+	for (i = 7; i < Cur; i++)
+		string = string " " $i
+	string = string " " str
+	return string
+}
+
+# thttpd login log messages
+$6 ~ /httpd/ { print $1,$2,$3,$4,$5,"HTTP:", descript(); next}
+
+# pppd error messages
+$6 ~ /pppd/ &&  (($5 ~ /err/) || ($5 ~ /warn/) || ($5 ~ /notice/)) {
+	flag = 0;
+	for(i=0;i<=NF;i++){
+		if($i ~ /etc/ || $i ~ /tmp/){
+			flag = 1;
+			break;
+		}
+	}
+	
+	if( flag !=1 )
+		print $1,$2,$3,$4,$5,"PPP:", descript(); 
+	next;
+}
+
+
+# iptables DROP log messages
+$6 ~ /kernel/ && $7 ~ /^DROP/ {
+
+	if ( !($8 ~ /=$/) ){ 
+		if ( $8 ~ /br0/ )
+			$8 = "IN=LAN";
+		else
+			$8 = "IN=WAN";
+	}
+
+	if ( !($9 ~ /=$/) ){ 
+		if ( $9 ~ /br0/ )
+			$9 = "OUT=LAN";
+		else
+			$9 = "OUT=WAN";
+	}
+
+	 print $1,$2,$3,$4,$5,"Firewall:", descript();
+	 next;
+}
+
+#IPSec
+$5 ~ /warn/ && $6 ~ /pluto/ && $16 ~ /Possible/ && $17 ~/authentication/ && $18 ~ /failure/{
+	print $1,$2,$3,$4,$5,"IPSec:", descript_XXXXXX(16, "Incorrect pre-shared key (Invalid next payload value)"); 
+	next;
+}
+
+#IPSec message
+$6 ~ /pluto/ && $5 ~ /warn/ {
+	flag = 0;
+	for(i=0;i<=NF;i++){
+		if($i ~ /etc/ || $i ~ /tmp/){
+			flag = 1;
+			break;
+		}
+	}
+	
+	if( flag !=1 )
+		print $1,$2,$3,$4,$5,"IPSec:", descript(); 
+	next;
+}
+
+# IPSec daemon log
+$6 ~ /^pluto/ && $7 ~ /^\"/ {
+	if ($0 ~ /CRL not found/)
+		next;
+	print $1,$2,$3,$4,$5,"IPSec:", descript();
+	next;
+}
+
+# DHCP daemon log
+$6 ~ /^udhcpd/ { 
+	flag = 0;
+	for(i=0;i<=NF;i++){
+		if($i ~ /etc/ || $i ~ /tmp/){
+			flag = 1;
+			break;
+		}
+	}
+	
+	if( flag !=1 )
+		print $1,$2,$3,$4,$5,"DHCP_Server:", descript(); 
+	next;
+}
+
+# DDNS daemon log
+$6 ~ /^INADYN/ && $7 ~ /:INADYN/ { $7 = ""; print $1,$2,$3,$4,$5,"DDNS:", descript(); next}
+
+END{}

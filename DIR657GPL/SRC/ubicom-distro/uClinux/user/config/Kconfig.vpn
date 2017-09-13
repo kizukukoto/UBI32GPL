@@ -1,0 +1,89 @@
+menu "optional packages"
+
+
+config USER_GMP
+	bool "GMP library"
+	default n
+	help
+	GMP library which is a large number operation algorithm.
+
+config USER_OPENSWAN
+	bool "openswan-2.6.16"
+	default n
+	help
+	IPSec implementation
+
+config USER_LIBPCAP
+	bool "libpcap"
+	default n
+	help
+	libpcap which is a library for sniffer utility,
+	used by snort, tcpdump, and pppd <= 2.4.X support by filter function.
+
+config USER_PCRE
+	bool "pcre"
+	default n
+	help
+	A library for regular express.
+
+config USER_SNORT
+	bool "snort-2.8.2.2"
+	default n
+	help
+	IDS utility. depend on PCRE, LIBPCAP
+
+config USER_OPENLDAP
+	bool "openldap-2.4.11"
+	default n
+	help
+	LDAP server/client implementation.
+
+config USER_OPENSSL_0_9_8_H
+	bool "openssl-0.9.8h"
+	default n
+	help
+	openssl library
+
+config USER_OPENVPN
+	bool "openvpn-2.1_rc9"
+	default n
+	help
+
+config USER_CGI
+	bool "SSI/SSC base CGI"
+	default n
+	help
+	SSI(Server Side Includes) base CGI
+
+config USER_SSI_WWW
+	bool "DIR-730 WWW"
+	default n
+	help
+	DIR-730 SSI base pages
+
+config USER_PPTPD
+	bool "PPTPD-1.3.4"
+	default n
+	help
+	PPTPD server
+
+config USER_ORAY
+	bool "ORAY"
+	default n
+	help
+	DDNS for China
+
+config USER_FREERADIUS
+	bool "FREERADIUS-Client-1.1.6"
+	default n
+	help
+	Free Radius Client
+
+config USER_CROWDCONTROL
+	bool "CROWDCONTROL"
+	default n
+	help
+	url filter utility
+
+endmenu
+

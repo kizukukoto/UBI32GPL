@@ -1,0 +1,322 @@
+Project Name: DIR-657
+HW version: A1
+Region code: EU
+WLAN Domain: 0x30/ETSI
+Channel List 2.4G: 1, 2, 3, 4, 5, 6, 7, 8 ,9, 10, 11, 12, 13
+Firmware Query URL: http://wrpd.dlink.com.tw/router/firmware/query.asp?model=DIR-657_Ax_Default
+Flash size: 8MB
+DRAM size: 64MB 
+Algorithm: New Algorithm
+Reference Mac: Wan Mac.
+
+=====================================================================================
+Firmware Version: 1.01b15
+Firmware Date: 18, Jan, 2012
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x583482AC  
+SVN Revision: 2171
+IPv6 Version: 1.17R
+Problem Resolved:
+1.Add Disable WPS-PIN Method
+Base on v1.01b13
+
+Firmware Version: 1.01b14
+Firmware Date: 12, Jan, 2012
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x5839DDA0  
+SVN Revision: 2046
+IPv6 Version: 1.17R
+Problem Resolved:
+1.Add Disable WPS-PIN Method
+Base on v1.01b13
+
+Firmware Version: 1.01b13
+Firmware Date: 08, Dec, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x5837D8F1 
+SVN Revision: 2046
+IPv6 Version: 1.17R
+Problem Resolved:
+1.Fix upload language pack GUI display error
+
+Firmware Version: 1.01b12
+Firmware Date: 06, Dec, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x5830AEB0 
+SVN Revision: 2036
+Problem Resolved:
+1.Offical version base on v1.01b11Beta
+2.Setup wizard selects time zone based on PC time zone automatically
+
+Firmware Version: 1.01b11Beta
+Firmware Date: 02, Dec, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x58223E79 
+SVN Revision: 2030
+Problem Resolved:
+1.add HNAP for QRS Mobile.
+
+Firmware Version: 1.01b11
+Firmware Date: 23, Nov, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x581C96E5 
+SVN Revision: 2015
+Problem Resolved:
+1.Click WPS button not work.
+
+Firmware Date: 22, Nov, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x580DE998 
+SVN Revision: 2013
+Problem Resolved:
+1. fix QRS v5.05b05 issue : can't finish.
+
+   Test with QRS v5.05b21.
+
+2. fix DUT reboot during BT test.
+
+
+Firmware Version: 1.01b09
+Firmware Date: 18, Nov, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x581E4CE7 
+SVN Revision: 2006
+Problem Resolved:
+1. fix QRS v5.05b05 issue : can't finish
+
+Firmware Version: 1.01b08
+Firmware Date: 16, Nov, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x58205075 
+SVN Revision: 1998
+Problem Resolved:
+1. fix QRS v5.05b05 cannt pass the username step.
+2. fix log function of website filter.
+
+Firmware Version: 1.01b07
+Firmware Date: 28, Oct, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57EC3332
+SVN Revision: 1971
+Problem Resolved:
+1. Setup wizard(v1.05) remove mac clone for DHCP mode.
+2. Setup wizard(v1.05) redirect to http://www.dlink.com in last step.
+3. fix bug : Show wrong channel width when support HT20/40 Coexistence at /STATUS/DEVICE INFO page.
+4. update ipv6 to v1.17R
+
+Firmware Version: 1.01b06
+Firmware Date: 13, Oct, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57F6C675
+SVN Revision: 1946
+Problem Resolved:
+1. Update setup wizard to spec v1.05.
+
+Firmware Version: 1.01b05
+Firmware Date: 05, Oct, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57D8C047
+SVN Revision: 1930
+Problem Resolved:
+1. fix bug : Enable Email log On Log Full, DUT will send log mail when log full, then sometime sending mail with only "SMTP client success snding mail" message.
+
+Firmware Version: 1.01b04Beta
+Firmware Date: 29, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57D9487F
+SVN Revision: 1895
+Problem Resolved:
+1. fix bug : Enable Email log On Log Full, DUT will send log mail when log full, then continue sending mail with only "SMTP client success snding mail" message every minutes.
+2. Add feature HT20/40 Coexistence.
+
+Firmware Version: 1.01b04
+Firmware Date: 22, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57ED179B
+SVN Revision: 1880
+Problem Resolved:
+1. fix bug : after running bt a while, the ping lost is very large.
+2. fix bug : IPv6 status page doesn't work when connecting over IPv6.
+3. fix bug :  In status page, click ¡§Disconnect¡¨ button first then click ¡§Connect button¡¨ in GUI, 
+    some browser seem like CAN NOT get update information.
+
+Firmware Version: 1.01b03Beta
+Firmware Date: 14, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0018, Date: Fri, 09, Sep, 2011
+CheckSum: 0x57E61EB6
+SVN Revision: 1853
+Problem Resolved:
+1. rename v1.01b03 to v1.01b03Beta.
+
+Firmware Version: 1.01b03
+Firmware Date: 09, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0018, Date: Fri, 09, Sep, 2011
+CheckSum: 0x57ED0698
+SVN Revision: 1852
+Problem Resolved:
+1. fix bt issue.
+2. fix bug : application rule can not be set.
+
+Firmware Version: 1.01b02Beta06
+Firmware Date: 7, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x573CC4BE
+SVN Revision: 1843
+Problem Resolved:
+1. Fix DIR657 crash when insert MP3 with Chinese ID3 tag
+
+Firmware Version: 1.01b02Beta05
+Firmware Date: 30, Aug, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x57B3116F
+SVN Revision: 1828
+Problem Resolved:
+1. Fix D-Track- HQ20110729000010 DynDNS connection problem
+2. Fix application rules
+3. Fix mail send when log is full
+
+Firmware Version: 1.01b02Beta04
+Firmware Date: 22, Aug, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x572FAA01
+SVN Revision: 1810
+Problem Resolved:
+1. Fix pop up unnecessary wipnp wizard UI when login DIR657 after doing first WPS PBC
+
+Firmware Version: 1.01b02Beta03
+Firmware Date: 19, Aug, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x5796C2C4
+SVN Revision: 1807
+Problem Resolved:
+1. Fix parantal control webUI
+
+Firmware Version: 1.01b02Beta02
+Firmware Date: 18, Aug, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x57ADC775
+SVN Revision: 1795
+Problem Resolved:
+1. Modify webUI to meet Reboot Later spec.
+2. Fix miniupnpd can't open port 80.
+3. Apply dosfsck checking for mounting SD card r/w or r/o.
+
+Firmware Version: 1.01b02Beta
+Firmware Date: 24, May, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x57FA66B4
+SVN Revision: 1456
+Problem Resolved:
+1. Test OPENDNS
+
+Firmware Version: 1.00b07
+Firmware Date: 21, Apr, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x5825ED37
+SVN Revision: 1351
+
+Problem Resolved:
+1. fix wep key issue for main and guestzone wlan.
+2. sd card read-only
+
+Firmware Version: 1.00b06
+Firmware Date: 20, Apr, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x5816573C
+SVN Revision: 1346
+
+Problem Resolved:
+1. fix bug: can't connect WEP 128
+
+Firmware Version: 1.00b05
+Firmware Date: 19, Apr, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0017, Date: Mon, 18, Apr, 2011
+CheckSum: 0x58202518
+SVN Revision: 1334
+
+Problem Resolved:
+1. fix bug : ssdp packets will be blocked.
+2. fix bug : wireless wep key of main and guestzone wireless can not be set.
+3. change fw upgrade time to 240 seconds.
+4. sd card read-only
+
+Firmware Version: 1.00b04
+Firmware Date: 30, Mar, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0015, Date: Tue, 29, Mar, 2011
+CheckSum: 0x5805FEEE 
+SVN Revision: 1238
+
+Problem Resolved:
+1. sd device can't access from pc after put file to sd card used shareport.
+2. qos: qos rule and manual uplink speed not work.
+3. XML-->fail
+
+Firmware Version: 1.00b03
+Firmware Date: 25, Mar, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0014, Date: Wed, 16, Mar, 2011
+CheckSum: 0x57FD7978 
+SVN Revision: 1060
+
+Problem Resolved:
+1. WAN interface have DNS address catch. (need througt rtwizard)
+2. rtwizard: dns address can't set auto to get at pptp/l2tp type because pop DNS servers must be configured.
+3. device info: wireless radio status show enable when wireless schedule select never to set.
+4. oray ddns not work.
+5. https remote management not work.
+6. can't play media from DLNA.
+7. sd device can't access from pc after put file to sd card used shareport.
+8. power led have purple light. 
+9. wireless setup page have error at IE6.
+10. qos: measured uplink speed not accurate
+11. qos: qos rule and manual uplink speed not work.
+12. ipv6 setup wizard web page have error.
+13. XML-->fail  (can't duplicate)
+14. HANP-->fail
+15. wireless setup page have error at IE7 when select 11N only to set.
+
+Firmware Version: 1.00b02
+Firmware Date: 15, Mar, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0013, Date: Fri, 11, Mar, 2011
+CheckSum: 0x572CB2B4 
+SVN Revision: 1033
+
+Problem Resolved:
+1. fix WPS IOT issue with DWA-140B and DWA-160A.
+
+1. New model firmware use Ubicom new SDK 2.0.
+Firmware Version: 1.00b01
+Firmware Date: 14, Mar, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0013, Date: Fri, 11, Mar, 2011
+CheckSum: 0x57865FD5 
+SVN Revision: 1022
+
+1. New model firmware use Ubicom new SDK 2.0.

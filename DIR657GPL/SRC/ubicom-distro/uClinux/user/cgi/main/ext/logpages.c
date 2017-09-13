@@ -1,0 +1,148 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <libdb.h>
+#include <unistd.h>
+
+#include "update_log_table.h"
+#include "debug.h"
+#include "nvram.h"
+#include "libdb.h"
+#include "log.h"
+#include "querys.h"
+
+#ifndef LINUX_NVRAM
+char *do_log_first_page_cgi(){}
+char *do_log_last_page_cgi(){}
+char *do_log_next_page_cgi(){}
+char *do_log_previous_page_cgi(){}
+char *do_log_clear_page_cgi(){}
+void *do_save_log_cgi(){}
+char *do_send_log_email_cgi(){}
+#else
+#include "sutil.h"
+#include "shvar.h"
+
+char *do_log_first_page_cgi()
+{
+	
+	nvram_set("log_current_page","1");
+	setenv("html_response_return_page", "st_log.asp", 1);
+	setenv("html_response_page", "st_log.asp", 1);
+	return getenv("html_response_page");
+}
+
+
+char *do_log_last_page_cgi()
+{
+	char cmd[3];
+	int total_page;
+	total_page = atoi(nvram_safe_get("log_total_page") != NULL ? nvram_safe_get("log_total_page") : "0");
+	sprintf(cmd,"%d",total_page);
+	nvram_set("log_current_page",cmd);
+	setenv("html_response_return_page", "st_log.asp", 1);
+        setenv("html_response_page", "st_log.asp", 1);
+        return getenv("html_response_page");
+	
+}
+
+char *do_log_next_page_cgi()
+{
+	int cur_page,total_page;
+	char cmd[3];
+	cur_page = atoi(nvram_safe_get("log_current_page") != NULL ? nvram_safe_get("log_current_page") : "0" );
+	total_page = atoi(nvram_safe_get("log_total_page") != NULL ? nvram_safe_get("log_total_page") : "0");
+	cur_page += 1;
+        if(cur_page >total_page)
+		cur_page=total_page;
+	sprintf(cmd,"%d",cur_page);
+	nvram_set("log_current_page",cmd);
+	setenv("html_response_return_page", "st_log.asp", 1);
+        setenv("html_response_page", "st_log.asp", 1);
+        return getenv("html_response_page");
+}
+
+char *do_log_previous_page_cgi()
+{
+	 int cur_page= atoi(nvram_safe_get("log_current_page") != NULL ? nvram_safe_get("log_current_page") : "0");
+	 char cmd[3]; 
+	 if(cur_page == 1)
+                cur_page = 1;
+         else
+                cur_page -= 1;
+	sprintf(cmd,"%d",cur_page);
+	nvram_set("log_current_page",cmd);
+
+	
+	setenv("html_response_return_page", "st_log.asp", 1);
+	setenv("html_response_page", "st_log.asp", 1);
+        return getenv("html_response_page");
+}
+
+
+char *do_log_clear_page_cgi()
+{
+
+	int cur_page,total_page;
+	char cmd[3]={0};
+        cur_page = -1;
+        init_file(LOG_FILE_HTTP);
+
+        system("logread -c &");
+        cur_page = 1;
+        total_page = 1;
+        unlink("/var/log/message_die_bak");
+        SYSLOG(LOG_INFO, "Log cleared by Administrator");
+
+	sprintf(cmd,"%d",total_page);
+	sprintf(cmd,"%d",cur_page);
+	nvram_set("log_current_page",cmd);
+	nvram_set("log_total_page",cmd);
+	nvram_commit();
+
+	setenv("html_response_return_page", "st_log.asp", 1);
+        setenv("html_response_page", "st_log.asp", 1);
+        return getenv("html_response_page");
+}
+
+
+
+
+
+void *do_save_log_cgi()
+{
+	char string_buf[256],tmp_buf[1024];
+        int i, total_logs;
+
+        total_logs = update_log_table(atoi( nvram_safe_get("log_system_activity")),\
+                        atoi( nvram_safe_get("log_debug_information")),\
+                        atoi( nvram_safe_get("log_attacks")),\
+                        atoi( nvram_safe_get("log_dropped_packets")),\
+                        atoi( nvram_safe_get("log_notice")));
+
+        /* save log file */
+        query_vars("model_name", string_buf, sizeof(string_buf));
+        fputs("Content-Type: application/download\r\n", stdout);
+        sprintf(tmp_buf, "Content-Disposition: attachment ;"
+                         "filename=%s_log.txt\n\n", string_buf);
+        fputs(tmp_buf, stdout);
+
+        for(i = 0; i < total_logs; i++) {
+                sprintf(tmp_buf, "%s\t %s\t %s\n", log_dynamic_table[i].time, log_dynamic_table[i].type, log_dynamic_table[i].message);
+                printf("%s", tmp_buf);
+                memset(tmp_buf, 0, 1024);
+        }
+}
+
+char *do_send_log_email_cgi()
+{
+
+        system("killall -SIGUSR1 mailosd &");
+
+        setenv("html_response_return_page", "st_log.asp", 1);
+	setenv("html_response_message", "Send log message Success", 1);
+        setenv("html_response_page", "st_log.asp", 1);
+        return getenv("html_response_page");
+
+}
+#endif //LINUX_NVRAM

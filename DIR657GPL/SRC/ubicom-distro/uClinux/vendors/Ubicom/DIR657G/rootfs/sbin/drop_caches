@@ -1,0 +1,19 @@
+#!/bin/sh
+usage () {
+	echo usage: drop_caches [initial-wait [repeat-wait]]
+	exit 1
+}
+
+drop3 () {
+	# echo do_drop
+	echo 3 > /proc/sys/vm/drop_caches
+}
+
+again=0
+first=0
+case $# in
+2) sleep $1; while drop3; do sleep $2; done;;
+1) sleep $1; drop3;;
+0) drop3;;
+*) usage
+esac

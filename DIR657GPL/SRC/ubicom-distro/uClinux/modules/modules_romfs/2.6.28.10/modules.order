@@ -1,0 +1,17 @@
+kernel/drivers/scsi/scsi_wait_scan.ko
+kernel/drivers/usb/storage/usb-storage.ko
+kernel/drivers/usb/serial/usbserial.ko
+kernel/drivers/usb/serial/option.ko
+kernel/drivers/mmc/card/mmc_block.ko
+kernel/net/netfilter/nf_conntrack_ftp.ko
+kernel/net/netfilter/nf_conntrack_h323.ko
+kernel/net/netfilter/nf_conntrack_irc.ko
+kernel/net/netfilter/nf_conntrack_sip.ko
+kernel/net/netfilter/nf_conntrack_tftp.ko
+kernel/net/netfilter/nf_conntrack_rtsp.ko
+kernel/net/ipv4/netfilter/nf_nat_ftp.ko
+kernel/net/ipv4/netfilter/nf_nat_h323.ko
+kernel/net/ipv4/netfilter/nf_nat_irc.ko
+kernel/net/ipv4/netfilter/nf_nat_sip.ko
+kernel/net/ipv4/netfilter/nf_nat_tftp.ko
+kernel/net/ipv4/netfilter/nf_nat_rtsp.ko

@@ -1,0 +1,71 @@
+#!/bin/sh
+LIBPATH=/lib/modules/silex
+DEV_ALLOW=/etc/silex/sxuptp_devices.allow
+DEV_DENY=/etc/silex/sxuptp_devices.deny
+PROC_ALLOW=/proc/sxuptp/devices.allow
+PROC_DENY=/proc/sxuptp/devices.deny
+JCPD_PATH=/usr/sbin
+
+CONF_PATH=/var/etc/nvram.conf
+
+NETIF=br0
+
+sxuptp_start() {
+	echo "Start JCPD 19541"
+	${JCPD_PATH}/jcpd -i ${NETIF}
+
+	sleep 1
+
+	echo -n "Starting sxuptpd: "
+	insmod sxuptp.ko
+	insmod sxuptp_devfilter.ko
+
+	echo "initializing USB device filter"
+	cat ${DEV_ALLOW} > ${PROC_ALLOW}
+	cat ${DEV_DENY} > ${PROC_DENY}
+
+	insmod sxuptp_idfilter.ko
+	insmod sxuptp_driver.ko
+
+	insmod jcp.ko
+	insmod jcp_cmd.ko
+
+	echo -n ${NETIF} > /sys/module/sxuptp/parameters/netif
+
+	NAME=`grep lan_device_name $CONF_PATH | cut -b 17-`
+	PRDCT=`grep model_name $CONF_PATH | cut -b 12-`
+
+	echo -n ${NAME}  > /sys/module/jcp_cmd/parameters/hostname
+	echo -n ${PRDCT} > /sys/module/jcp_cmd/parameters/product
+}
+
+sxuptp_stop() {
+	killall jcpd
+
+	rmmod jcp_cmd
+	rmmod jcp
+
+	rmmod sxuptp_driver
+	rmmod sxuptp_devfilter
+	rmmod sxuptp
+}
+
+sxuptp_restart() {
+	sxuptp_stop
+	sxuptp_start
+}
+
+# Main #
+cd "${LIBPATH}"
+
+case "$1" in
+'start')
+	sxuptp_start ;;
+'stop')
+	sxuptp_stop ;;
+'restart')
+	sxuptp_restart ;;
+*)
+	echo "usage $0 start|stop|restart"
+esac
+

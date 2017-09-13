@@ -1,0 +1,207 @@
+
+#they are 3 layers in software design, zone, interface(II), protocols
+Zone	---> II	------>	proto
+	<--- II		    +---->	dhcp
+			    +---->	static
+			    +---->	pppoe
+
+The standard args is @alias @interface, they can passby either argv[1], argv[2]
+or environment "if_alias", "interface" , respectively.
+
+zone:	zone.c
+ii:	ii.c
+proto:	proto.c, pppoe.c dhcpc.c, static.c
+
+
+proto.c: mainly control and abstract layer of protocols, providing 
+	Zone, and II layer to call protocols independence layer of
+	pppoe, dhcpc, static.
+#function call relation 
+zone.c ----> ii.c ---(II pass info by struct info_if)---\ 
+	  						|
+	(pass by @alias @device, @proto)		|
+ 							|
+	dhcpc.c	 <----+--- (by @proto_alias, @dev) proto<-----/
+	static.c <----|
+	pppoe.c	 <----+  	
+
+o Normally, II is entry point for user.
+# In protocol layer.(proto.c)
+	We providing APIs to II, those API usually need 3 args:
+	 @alias, @dev, @proto.
+	But proto.c also providing APIs to sublayer (dhcp, static, pppoe)
+
+
+# The manipulation of interfaces sample.
+# the main zone manipulates updown information from environment.
+Those operations including "attach" "detach".
+
+# We define standard ENVs of all interfaces
+# Z_PROTO: one of "static", "dhcpc", "pppoe", "pptp", "l2tp" ...
+# Z_DEVICE: "eth%d" or "ppp%d"
+# Z_PHY_DEVICE: "eth%d" "br%d" or real device name
+# Z_LOCALIP: ip
+# Z_LOCALMASK:
+# Z_REMOTEIP:
+# Z_REMOTEMASK:
+# Z_DNS:
+# Z_HOSTNAME:
+# Z_ROUTE:
+# Z_PID:
+# /* For DHCP */
+# Z_HOSTNAME:	
+# Z_ROUTE:
+# Z_DOMAIN
+# example:
+	to start a intercae "ii start alias_of_ii"
+	then it will search key who matched with "if_alase%d"
+	call an proto depend on "if_proto%d"
+
+	after interface up(ex: dhdpc), protocol layer will call
+	"net zone attach" to attach a interface into zone.
+
+#TODO: dhcpc, and PPPoE seems need a way to add "zone alias", "if_alias" for identify
+# For II start, stop, we need specified @alias to stop/start.
+
+# For II ip-up/ip-down we need @dev, and @protocol to identify @alias.
+	o II up/down will pass to proto_up/down. and zone up/down
+	o protocol up/down will store info to nvram(such as PID)
+
+copy from doc of udhcpc
+The pramaters for enviromental variables are as follows:
+
+	$HOME		- The set $HOME env or "/"
+	$PATH		- the set $PATH env or "/bin:/usr/bin:/sbin:/usr/sbin"
+	$1		- What action the script should perform
+	interface	- The interface this was obtained on
+	ip		- The obtained IP
+	siaddr		- The bootp next server option
+	sname		- The bootp server name option
+	boot_file	- The bootp boot file option
+	subnet		- The assigend subnet mask
+	timezone	- Offset in seconds from UTC
+	router		- A list of routers
+	timesvr		- A list of time servers
+	namesvr		- A list of IEN 116 name servers
+	dns		- A list of DNS server
+	logsvr		- A list of MIT-LCS UDP log servers
+	cookiesvr	- A list of RFC 865 cookie servers
+	lprsvr		- A list of LPR servers
+	hostname	- The assigned hostname
+	bootsize	- The length in 512 octect blocks of the bootfile
+	domain		- The domain name of the network
+	swapsvr		- The IP address of the client's swap server
+	rootpath	- The path name of the client's root disk
+	ipttl		- The TTL to use for this network
+	mtu		- The MTU to use for this network
+	broadcast	- The broadcast address for this network
+	ntpsrv		- A list of NTP servers
+	wins		- A list of WINS servers
+	lease		- The lease time, in seconds
+	dhcptype	- DHCP message type (safely ignored)
+	serverid	- The IP of the server
+	message		- Reason for a DHCPNAK
+	tftp		- The TFTP server name
+	bootfile	- The bootfile name
+
+# A sample captured pass from bound action (udhcpc).
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_DEVICE], [eth1])
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_DUMMPY_DEVICE], [eth1])
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_LOCALIP], [172.21.33.99])
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_LOCALMASK], [255.255.240.0])
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_HOSTNAME], [(null)])
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_DNS], [172.21.1.1 172.21.1.2 172.16.1.9])
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_DOMAIN], [cameo.com.tw])
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_ROUTE], [172.21.32.254])
+Jul 11 13:28:16 DIR-730 user.info cmds[1276]: setenv([Z_PID], [1268])
+
+
+# A sample captured pass from deconf action (udhcpc).
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_DEVICE], [eth1])
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_DUMMPY_DEVICE], [eth1])
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_LOCALIP], [(null)])
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_LOCALMASK], [(null)])
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_HOSTNAME], [(null)])
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_DNS], [(null)])
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_DOMAIN], [(null)])
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_ROUTE], [(null)])
+Jul 11 13:32:49 DIR-730 user.info cmds[1287]: setenv([Z_PID], [1268])
+
+
+##############################################################
+# PPPoE sample.
+##############################################################
+#if-up
+ppp0 eth0 0 172.16.1.254 10.0.0.1, 5
+DEVICE='eth0'
+DNS1='192.168.1.1'
+DNS2='192.168.1.3'
+IFNAME='ppp0'
+IFS=' 	
+'
+IPLOCAL='172.16.1.254'
+IPREMOTE='10.0.0.1'
+LOGDEVICE='ppp0'
+ORIG_UID='0'
+PATH='/sbin:/usr/sbin:/bin:/usr/bin'
+PEERNAME='vincent'
+PPID='936'
+PPPD_PID='936'
+PPPLOGNAME='(unknown)'
+PS1='# '
+PS2='> '
+PS4='+ '
+PWD='/'
+USEPEERDNS='1'
+
+
+#if-down
+5 ppp0 eth0 0 172.16.1.254 10.0.0.1
+BYTES_RCVD='0'
+BYTES_SENT='0'
+CONNECT_TIME='282'
+DEVICE='eth0'
+DNS1='192.168.1.1'
+DNS2='192.168.1.3'
+IFNAME='ppp0'
+IFS=' 	
+'
+IPLOCAL='172.16.1.254'
+IPREMOTE='10.0.0.1'
+LOGDEVICE=''
+ORIG_UID='0'
+PATH='/sbin:/usr/sbin:/bin:/usr/bin'
+PEERNAME='vincent'
+PPID='936'
+PPPD_PID='936'
+PPPLOGNAME='(unknown)'
+PS1='# '
+PS2='> '
+PS4='+ '
+PWD='/'
+REALDEVICE='ppp0'
+
+#####################################
+Test eth1:2 udhcpc.
+
+USEPEERDNS='1'
+PATH='/bin:/sbin:/usr/bin:/usr/sbin:/usr/bin/X11:/usr/local/bin'
+PPID='1060'
+PS1='# '
+PS2='> '
+PS4='+ '
+PWD='/'
+dhcpc_pid='0'
+dhcptype='5'
+dns='172.21.1.1 172.21.1.2 172.16.1.9'
+domain='cameo.com.tw'
+interface='eth1:2'
+ip='172.21.34.3'
+lease='691200'
+mask='20'
+ntpsrv='172.21.1.1'
+router='172.21.32.254'
+serverid='172.21.1.10'
+subnet='255.255.240.0'
+# udhcpc -i eth1:2 -s /etc/udhcpc/sample.script -R	
+o iptables -i only support physical device, ex eth1:2 MUST use eth1.

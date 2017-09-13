@@ -1,0 +1,9 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+BRINTERFACE=$(nvram get lan_bridge | cut -c14- -)
+echo Starting WISH on $BRINTERFACE
+
+insmod /lib/modules/nf_ubicom_wish.ko 2> /dev/null
+
+exit 0

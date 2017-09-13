@@ -1,0 +1,5 @@
+#!/bin/sh
+# use filename instead of /dev/null to log, but dont log to flash or ram
+# pref. log to nfs mount
+echo "$*" >> /dev/null
+exit 0

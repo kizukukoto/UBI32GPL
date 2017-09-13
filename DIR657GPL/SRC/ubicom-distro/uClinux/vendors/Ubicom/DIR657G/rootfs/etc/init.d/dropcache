@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=490
+STOP=10
+
+start() {
+	/etc/dropcache.sh &
+}
+
+stop() {
+	killall dropcache.sh
+}
+

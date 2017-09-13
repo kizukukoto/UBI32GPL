@@ -1,0 +1,16 @@
+﻿Language Pack Release Note
+Project Name: DIR-657
+HW version: A1
+Region/OEM code: TW
+======================================================================================
+Language-Version: ver1.01TWb01
+Language: Taiwan
+Language-Checksum: 0x00C57DA5
+Language-svn:1989
+
+1. please base on FW v1.01b07 or later.
+--------------------------------------------------------------------------------------
+Language-Version: ver1.00TWb03
+Language: Taiwan
+Language-Checksum: 0x0041DA93
+svn:1472

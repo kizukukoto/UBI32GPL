@@ -1,0 +1,8 @@
+if MTD
+
+config LINUX_NVRAM
+	tristate "linux_nvram"
+	help
+		linux nvram device driver support
+
+endif # MTD

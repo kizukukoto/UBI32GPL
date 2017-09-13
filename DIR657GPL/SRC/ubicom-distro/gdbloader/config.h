@@ -1,0 +1,1 @@
+#define SYSTEM_FREQ 270000000

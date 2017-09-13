@@ -1,0 +1,20 @@
+v0.4 beta:
+	* Fixed the "unescape_url" function.
+	* Reduced the maximum size of domains (from 256 to 128 bytes).
+	* Reduced the maximum size of URLs (from 8192 to 4096 bytes).
+	* Optimized the included Access Control Lists a bit.
+
+v0.3 alpha:
+	* Added a command-line option to regulate simultaneous connections.
+	* Added some code to change the TCP window size. This was necessary
+	  since the program was incredibly slow under Mac OS X.
+	* The "1x1 GIF" feature now works.
+
+v0.2 alpha:
+	* Fixed a whole slew of bugs that kept the program from running.
+	* Overhauled the filter code to separate domains and full URLs.
+	* Proxy now sends 1x1 transparent GIF when images are blocked.
+	* Added some harmless code to eliminate warnings on Linux compilers.
+
+v0.1 alpha:
+	* Initial release.

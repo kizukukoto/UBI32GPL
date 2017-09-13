@@ -1,0 +1,20 @@
+CFLAGS += -I$(TOP)/sutil -I$(TOP)/libplatform -DLINUX_NVRAM -I$(TOP)/artblock -DMVL -DIPv6_SUPPORT
+LDFLAGS += -L$(TOP)/sutil -lsutil -lproject -lipv6 -L$(TOP)/libplatform -lvct -L$(TOP)/artblock -lartblock
+
+REPLACE = \
+	@test -h $(1) || ( \
+		mv $(1) $(1).old; \
+		ln -s `basename $(2)` $(1); \
+	)
+RECOVER = \
+	@test -h $(1) && ( \
+		rm -rf $(1); \
+		mv $(2) $(1); \
+	)
+
+indep:
+	ln -sf asp.DIR665 main/asp
+	$(call REPLACE, lib/libupdatelog.c, lib/libupdatelog.c.dir665)
+
+uindep:
+	$(call RECOVER, lib/libupdatelog.c, lib/libupdatelog.c.old)

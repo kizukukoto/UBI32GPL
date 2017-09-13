@@ -1,0 +1,9 @@
+﻿Language Pack Release Note
+Project Name: DIR-657
+HW version: A1
+Region/OEM code: FR
+======================================================================================
+Language-Version: ver1.00FRb03
+Language: French
+Language-Checksum: 0x00444E84
+svn:1472

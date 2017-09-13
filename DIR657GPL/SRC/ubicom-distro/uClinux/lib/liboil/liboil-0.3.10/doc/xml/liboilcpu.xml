@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+>
+<refentry id="liboil-liboilcpu">
+<refmeta>
+<refentrytitle role="top_of_page">CPU</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBOIL Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>CPU</refname>
+<refpurpose>Check the capabilities of the current CPU</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+
+
+
+unsigned <link linkend="int">int</link> <link linkend="oil-cpu-get-flags">oil_cpu_get_flags</link>              (void);
+<link linkend="void">void</link>        <link linkend="oil-cpu-fault-check-enable">oil_cpu_fault_check_enable</link>      (void);
+<link linkend="void">void</link>        <link linkend="oil-cpu-fault-check-disable">oil_cpu_fault_check_disable</link>     (void);
+<link linkend="int">int</link>         <link linkend="oil-cpu-fault-check-try">oil_cpu_fault_check_try</link>         (<link linkend="void">void</link> (*func) (void *),
+                                             <link linkend="void">void</link> *priv);
+<link linkend="double">double</link>      <link linkend="oil-cpu-get-ticks-per-second">oil_cpu_get_ticks_per_second</link>    (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 role="details">
+<title role="details.title">Details</title>
+<refsect2>
+<title><anchor id="oil-cpu-get-flags" role="function"/>oil_cpu_get_flags ()</title>
+<indexterm><primary>oil_cpu_get_flags</primary></indexterm><programlisting>unsigned <link linkend="int">int</link> oil_cpu_get_flags              (void);</programlisting>
+<para>
+Returns a bitmask containing the available CPU features.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the CPU features.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="oil-cpu-fault-check-enable" role="function"/>oil_cpu_fault_check_enable ()</title>
+<indexterm><primary>oil_cpu_fault_check_enable</primary></indexterm><programlisting><link linkend="void">void</link>        oil_cpu_fault_check_enable      (void);</programlisting>
+<para>
+Enables fault checking mode.  This function may be called multiple times.
+Each call to this function must be paired with a corresponding call
+to <link linkend="oil-cpu-fault-check-disable"><function>oil_cpu_fault_check_disable()</function></link>.
+</para>
+<para>
+This function sets a signal handler for SIGILL.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="oil-cpu-fault-check-disable" role="function"/>oil_cpu_fault_check_disable ()</title>
+<indexterm><primary>oil_cpu_fault_check_disable</primary></indexterm><programlisting><link linkend="void">void</link>        oil_cpu_fault_check_disable     (void);</programlisting>
+<para>
+Disables fault checking mode.  See <link linkend="oil-cpu-fault-check-enable"><function>oil_cpu_fault_check_enable()</function></link>
+for details.</para>
+<para>
+
+</para></refsect2>
+<refsect2>
+<title><anchor id="oil-cpu-fault-check-try" role="function"/>oil_cpu_fault_check_try ()</title>
+<indexterm><primary>oil_cpu_fault_check_try</primary></indexterm><programlisting><link linkend="int">int</link>         oil_cpu_fault_check_try         (<link linkend="void">void</link> (*func) (void *),
+                                             <link linkend="void">void</link> *priv);</programlisting>
+<para>
+Calls to this
+function must be preceded by a call to <link linkend="oil-cpu-fault-check-enable"><function>oil_cpu_fault_check_enable()</function></link>
+to enable fault checking mode.  This function sets up recovery
+information and then calls the function <parameter>func</parameter> with the parameter
+<parameter>priv</parameter>.  If <parameter>func</parameter> or any other functions it calls attempt to execute
+an illegal instruction, the exception will be caught and recovered from.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> the function to attempt
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>priv</parameter>&nbsp;:</term>
+<listitem><simpara> a value to pass to the function
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 1 if the function was executed sucessfully, 0 if the
+function attempted to execute an illegal instruction.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2>
+<title><anchor id="oil-cpu-get-ticks-per-second" role="function"/>oil_cpu_get_ticks_per_second ()</title>
+<indexterm><primary>oil_cpu_get_ticks_per_second</primary></indexterm><programlisting><link linkend="double">double</link>      oil_cpu_get_ticks_per_second    (void);</programlisting>
+<para>
+Returns the estimated number of ticks per second.  This feature
+is currently unimplemented.
+</para>
+<para>
+This function may take several milliseconds or more to execute
+in order to calculate a good estimate of the number of ticks (as
+measured by the profiling functions) per second.  Note that the
+number of ticks per second is often dependent on the CPU frequency,
+which can change dynamically.  Thus the value returned by this
+function may be incorrect as soon as it is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a double
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

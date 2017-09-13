@@ -1,0 +1,7 @@
+#!/bin/sh
+openssl x509 -issuer -in $1 -noout |\
+	sed -n 's/^issuer= \//Issuer$/p' |tr -s '/' ','
+openssl x509 -subject -in $1 -noout |\
+	sed -n 's/^subject= \//Subject$/p' |tr -s '/' ','
+openssl x509 -dates -in $1 -noout |\
+	awk -F '=' '{printf $2 " "}' |awk '{print "Validity$",$1,$2,$3,$4 "-" $6,$7,$8,$9}'

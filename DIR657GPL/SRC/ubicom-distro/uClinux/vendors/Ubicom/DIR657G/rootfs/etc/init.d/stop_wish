@@ -1,0 +1,21 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+BRINTERFACE=$(nvram get lan_bridge | cut -c14- -)
+
+#
+# Stop WISH
+#
+echo Stopping WISH on $BRINTERFACE
+echo 1 > /sys/devices/system/ubicom_wish/ubicom_wish0/wish_terminate
+
+#
+# Wait for the module to stop
+#
+until [  ! -e /sys/devices/system/ubicom_wish/ubicom_wish0/wish_terminate ]; do
+	sleep 1
+	echo -n .
+done
+
+rmmod nf_ubicom_wish 2> /dev/null
+

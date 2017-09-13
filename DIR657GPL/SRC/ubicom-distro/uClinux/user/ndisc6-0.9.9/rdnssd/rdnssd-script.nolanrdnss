@@ -1,0 +1,14 @@
+#!/bin/sh
+cat /var/etc/resolv.conf /var/etc/resolv_ipv6.conf > /var/etc/resolv_dual.conf
+ipv6_autoconfig=$(nvram get ipv6_autoconfig)
+
+if [ "$ipv6_autoconfig" = "ipv6_autoconfig = 1" ] || [ "$ipv6_autoconfig" = "1" ]; then
+
+# restart radvd
+	cli ipv6 radvd stop
+	cli ipv6 radvd start
+
+# restart dhcp6s
+	cli ipv6 dhcp6d stop
+	cli ipv6 dhcp6d start
+fi

@@ -1,0 +1,363 @@
+
+# **********************************************
+# BOARD_x configs are used only internally
+# **********************************************
+
+choice
+	prompt "Board"
+	help
+	  Select your board.
+
+config BOARD_IP7140EvalWANonSWRev12
+	bool "IP7140Eval_WANonSW_Rev12.brd"
+	help
+	  'IP7140 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2'.
+
+config BOARD_IP7150EvalWANonSWRev12
+	bool "IP7150Eval_WANonSW_Rev12.brd"
+	help
+	  'IP7150 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2'.
+
+config BOARD_IP7160DIR657BoardI
+	bool "IP7160DIR657Board_I.brd"
+	help
+	  'IP7160 Router Evaluation Board.'.
+
+config BOARD_IP7160DIR855BoardF
+	bool "IP7160DIR855Board_F.brd"
+	help
+	  'IP7160 Router Evaluation Board.'.
+
+config BOARD_IP7160Eval
+	bool "IP7160Eval.brd"
+	help
+	  'IP7160 Router Evaluation Board, 8007-0111, Rev 1.1'.
+
+config BOARD_IP7160EvalRev12
+	bool "IP7160Eval_Rev12.brd"
+	help
+	  'IP7160 Router Evaluation Board, 8007-0112, Rev 1.2'.
+
+config BOARD_IP7160EvalWANonSW16MB
+	bool "IP7160Eval_WANonSW_16MB.brd"
+	help
+	      'IP7160 Router Evaluation Board WAN-on-Switch 16MB version, 8007-' +    '0111, Rev 1.1'.
+
+config BOARD_IP7160EvalWANonSW
+	bool "IP7160Eval_WANonSW.brd"
+	help
+	  'IP7160 Router Evaluation Board WAN-on-Switch, 8007-0111, Rev 1.1'.
+
+config BOARD_IP7160EvalWANonSWRev1216MB
+	bool "IP7160Eval_WANonSW_Rev12_16MB.brd"
+	help
+	  'IP7160 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2 16MB'.
+
+config BOARD_IP7160EvalWANonSWRev12
+	bool "IP7160Eval_WANonSW_Rev12.brd"
+	help
+	  'IP7160 Router Evaluation Board WAN-on-Switch, 8007-0112, Rev 1.2'.
+
+config BOARD_IP7160EvalWANonSWRev12lcd
+	bool "IP7160Eval_WANonSW_Rev12_lcd.brd"
+	help
+	      'IP7160 Router Evaluation Board WAN-on-Switch.
+		
+		Supports Boards' +    ':
+			8007-0112, Rev 1.2, IP7160 RGW EVAL
+		
+		With the following ad' +    'apter board:
+			8007-1410, Rev 1.0, IP7K RGW LCD
+		
+		With the foll' +    'owing display board:
+			8007-0920, Rev 2.0, IP7K LCD Adapter
+			80' +    '07-0921, Rev 2.1, IP7K LCD Adapter'.
+
+config BOARD_IP7500AVEth
+	bool "IP7500AVEth.brd"
+	help
+	      'IP7500 Audio Video Board w/ IP7500 CPU Module Board w/ Ethernet(' +    'YESPHY)
+		
+		Supports the following board:
+			8007-0810  Rev 1.0 + ' +    'CPU 8007-0510A Rev1.0
+		
+		The CPU Module board DIP SW2 should be ' +    'set as follows:
+			SW2.1	MPCI   ON  (MiniPCI enabled)
+			SW2.2	TTY' +    '_D  ON  (PA6)
+			SW2.3  TTY_CK ON  (PA7)
+		
+		NOTE: SDIO 1A/1B, ADC' +    ' are disabled in this configuration.'.
+
+config BOARD_IP7500IAPADV7393
+	bool "IP7500IAP_ADV7393.brd"
+	help
+	      'IP7500 Internet Audio Player with ADV7393
+		
+		The output resoluti' +    'on is 720x480 SMPTE 293M
+		
+		Supports the following board:
+			8007' +    '-1110  Rev 1.0
+			8007-1111  Rev 1.1
+			8007-1112  Rev 1.2
+		
+		With' +    ' the following daughter card:
+			8000-0310  Rev 1.0
+		
+		Switch 4 s' +    'hould be set to:
+		1 -> OFF
+		2 -> OFF'.
+
+config BOARD_IP7500IAP
+	bool "IP7500IAP.brd"
+	help
+	      'IP7500 Internet Audio Player
+		
+		Supports the following board:
+			 +    '8007-1110  Rev 1.0
+			8007-1111  Rev 1.1
+		
+		Switch 4 should be se' +    't to:
+		1 -> OFF
+		2 -> OFF'.
+
+config BOARD_IP7500IAPI2SSPDIFTFT1N5046E
+	bool "IP7500IAP_I2S_SPDIF+TFT1N5046E.brd"
+	help
+	      'IP7500 Internet Audio Player with TFT1N5046E LCD Display
+		
+		Supp' +    'orts the following board:
+			8007-1110  Rev 1.0
+			8007-1111  Rev ' +    '1.1
+			8007-1112  Rev 1.2
+		
+		with on board TFT1N5046E LCD display' +    '.
+		
+		Switch 4 should be set to:
+		1 -> OFF
+		2 -> ON'.
+
+config BOARD_IP7500IAPSD
+	bool "IP7500IAP_SD.brd"
+	help
+	      'IP7500 Internet Audio Player
+		
+		Supports the following board:
+			 +    '8007-1110  Rev 1.0
+			8007-1111  Rev 1.1
+		
+		NOTES:
+			MiniPCI disa' +    'bled
+			SD over PortB is enabled
+		
+		To Enable SD PortB on Rev 1.0' +    '/1.1 boards;
+		Switch 4 should be set to:
+		1 -> OFF
+		2 -> ON'.
+
+config BOARD_IP7500IAPSPDIFTFT1N5046E
+	bool "IP7500IAP_SPDIF+TFT1N5046E.brd"
+	help
+	      'IP7500 Internet Audio Player with TFT1N5046E LCD Display
+		
+		Supp' +    'orts the following board:
+			8007-1110  Rev 1.0
+			8007-1111  Rev ' +    '1.1
+			8007-1112  Rev 1.2
+		
+		with on board TFT1N5046E LCD display' +    '.
+		
+		Switch 4 should be set to:
+		1 -> OFF
+		2 -> ON'.
+
+config BOARD_IP7500IAPTFT1N5046E
+	bool "IP7500IAP+TFT1N5046E.brd"
+	help
+	      'IP7500 Internet Audio Player with TFT1N5046E LCD Display
+		
+		Supp' +    'orts the following board:
+			8007-1110  Rev 1.0
+			8007-1111  Rev ' +    '1.1
+			8007-1112  Rev 1.2
+		
+		with on board TFT1N5046E LCD display' +    '.
+		
+		Switch 4 should be set to:
+		1 -> OFF
+		2 -> ON'.
+
+config BOARD_IP7500Media
+	bool "IP7500Media.brd"
+	help
+	      'IP7500 Media Board w/ IP7500 CPU Module Board
+		
+		Supports the fo' +    'llowing board:
+			8007-0610  Rev 1.0 + CPU 8007-0510  Rev1.0
+		
+		T' +    'he CPU Module board DIP SW2 should be set as follows:
+			SW2.1	MP' +    'CI   ON  (MiniPCI enabled)
+			SW2.2	TTY_D  OFF (PF12)
+			SW2.3  TT' +    'Y_CK OFF (PF15)
+		
+		Only SDIO slots 1A/1B are enabled in this con' +    'figuration.'.
+
+config BOARD_IP7500MediaEth
+	bool "IP7500MediaEth.brd"
+	help
+	  'IP7500 Media w/ Ethernet **UNSUPPORTED CONFIGURATION**.
+		
+		 +    'IP7500 Media Board w/ IP7500 CPU Module Board w/ Ethernet(YESPHY' +    ')
+		
+		Supports the following board:
+			8007-0610  Rev 1.0 + CPU 80' +    '07-0510A Rev1.0
+		
+		The CPU Module board DIP SW2 should be set as' +    ' follows:
+			SW2.1	MPCI   ON  (MiniPCI enabled)
+			SW2.2	TTY_D  ON' +    '  (PA6)
+			SW2.3  TTY_CK ON  (PA7)
+		
+		NOTE 1: SDIO 1A/1B, ADC, an' +    'd SPDIF are disabled in this configuration.
+		NOTE 2: The LCD VGH' +    ' enable line conflicts with the Ethernet PHY'#39's reset line.  In o' +    'rder to keep the Ethernet PHY up, you must not change the state ' +    'of the VGH line once the system is booted.'.
+
+config BOARD_IP7500Module
+	bool "IP7500Module.brd"
+	help
+	      'IP7500 CPU Module Board
+		
+		Supports the following board:
+			8007-' +    '0510  Rev 1.0
+			8007-0511  Rev 1.1
+		
+		The DIP SW2 should be set ' +    'as follows:
+			SW2.1	MPCI   ON (MiniPCI enabled)
+			SW2.2	TTY_D  O' +    'N (PA6)
+			SW2.3  TTY_CK ON (PA7)'.
+
+config BOARD_IP7500TAP
+	bool "IP7500TAP.brd"
+	help
+	      'IP7500 Total Audio Player
+		
+		Supports the following board:
+			800' +    '7-2010  Rev 1.0'.
+
+config BOARD_IP7500TVIU800
+	bool "IP7500TVIU800.brd"
+	help
+	      'TechVision TVIU800 DLNA + IAP board'.
+
+config BOARD_IP7500WSPKR
+	bool "IP7500WSPKR.brd"
+	help
+	      'IP7500 Wireless Speaker
+		
+		Supports the following boards:
+			8007' +    '-1210  Rev 1.0
+			8007-1210  Rev 1.1'.
+
+config BOARD_IP7500WSPKRCHARLCD
+	bool "IP7500WSPKR+CHARLCD.brd"
+	help
+	      'IP7500 Wireless Speaker with Character Display
+		
+		Supports the f' +    'ollowing boards:
+			8007-1210  Rev 1.0
+			8007-1210  Rev 1.1
+		
+		Wi' +    'th display adapter:
+			8007-1910  Rev 1.0'.
+
+config BOARD_IP7500WSPKRSPDIF
+	bool "IP7500WSPKR_SPDIF.brd"
+	help
+	      'IP7500 Wireless Speaker with SPDIF
+		
+		Supports the following boards:
+			8007' +    '-1210  Rev 1.0
+			8007-1210  Rev 1.1'.
+
+config BOARD_IP7500WSPKRSPDIFCHARLCD
+	bool "IP7500WSPKR_SPDIF+CHARLCD.brd"
+	help
+	      'IP7500 Wireless Speaker with SPDIF and Character Display
+		
+		Supports the f' +    'ollowing boards:
+			8007-1210  Rev 1.0
+			8007-1210  Rev 1.1
+		
+		Wi' +    'th display adapter:
+			8007-1910  Rev 1.0'.
+
+config BOARD_IP8000Bringup
+	bool "IP8000Bringup.brd"
+	help
+	  'IP8000 Bringup board Rev0.0'.
+
+config BOARD_IP8100DIR857
+	bool "IP8100_DIR857.brd"
+	help
+	      'IP8100 RGW Board
+		
+		Supports the following boards:
+			8008-0110 R' +    'ev 1.0	IP8K RGW Board'.
+
+config BOARD_IP8100RGW
+	bool "IP8100RGW.brd"
+	help
+	      'IP8100 RGW Board
+		
+		Supports the following boards:
+			8008-0110 R' +    'ev 1.0	IP8K RGW Board'.
+
+config BOARD_IP8100RGWRev11
+	bool "IP8100RGW_Rev1_1.brd"
+	help
+	      'IP8100 RGW Board
+		
+		Supports the following boards:
+			8008-0111 R' +    'ev 1.1	IP8K RGW Board'.
+
+config BOARD_IP8500TAP
+	bool "IP8500TAP.brd"
+	help
+	      'IP8500 TAP Board
+		
+		Supports the following boards:
+			8008-0210	R' +    'ev 1.0'.
+
+endchoice
+
+config BOARD_NAME
+	string
+	default "IP7140Eval_WANonSW_Rev12.brd" if BOARD_IP7140EvalWANonSWRev12
+	default "IP7150Eval_WANonSW_Rev12.brd" if BOARD_IP7150EvalWANonSWRev12
+	default "IP7160DIR657Board_I.brd" if BOARD_IP7160DIR657BoardI
+	default "IP7160DIR855Board_F.brd" if BOARD_IP7160DIR855BoardF
+	default "IP7160Eval.brd" if BOARD_IP7160Eval
+	default "IP7160Eval_Rev12.brd" if BOARD_IP7160EvalRev12
+	default "IP7160Eval_WANonSW_16MB.brd" if BOARD_IP7160EvalWANonSW16MB
+	default "IP7160Eval_WANonSW.brd" if BOARD_IP7160EvalWANonSW
+	default "IP7160Eval_WANonSW_Rev12_16MB.brd" if BOARD_IP7160EvalWANonSWRev1216MB
+	default "IP7160Eval_WANonSW_Rev12.brd" if BOARD_IP7160EvalWANonSWRev12
+	default "IP7160Eval_WANonSW_Rev12_lcd.brd" if BOARD_IP7160EvalWANonSWRev12lcd
+	default "IP7500AVEth.brd" if BOARD_IP7500AVEth
+	default "IP7500IAP_ADV7393.brd" if BOARD_IP7500IAPADV7393
+	default "IP7500IAP.brd" if BOARD_IP7500IAP
+	default "IP7500IAP_I2S_SPDIF+TFT1N5046E.brd" if BOARD_IP7500IAPI2SSPDIFTFT1N5046E
+	default "IP7500IAP_SD.brd" if BOARD_IP7500IAPSD
+	default "IP7500IAP_SPDIF+TFT1N5046E.brd" if BOARD_IP7500IAPSPDIFTFT1N5046E
+	default "IP7500IAP+TFT1N5046E.brd" if BOARD_IP7500IAPTFT1N5046E
+	default "IP7500Media.brd" if BOARD_IP7500Media
+	default "IP7500MediaEth.brd" if BOARD_IP7500MediaEth
+	default "IP7500Module.brd" if BOARD_IP7500Module
+	default "IP7500TAP.brd" if BOARD_IP7500TAP
+	default "IP7500TVIU800.brd" if BOARD_IP7500TVIU800
+	default "IP7500WSPKR.brd" if BOARD_IP7500WSPKR
+	default "IP7500WSPKR+CHARLCD.brd" if BOARD_IP7500WSPKRCHARLCD
+	default "IP7500WSPKR_SPDIF.brd" if BOARD_IP7500WSPKRSPDIF
+	default "IP7500WSPKR_SPDIF+CHARLCD.brd" if BOARD_IP7500WSPKRSPDIFCHARLCD
+	default "IP8000Bringup.brd" if BOARD_IP8000Bringup
+	default "IP8100_DIR857.brd" if BOARD_IP8100DIR857
+	default "IP8100RGW.brd" if BOARD_IP8100RGW
+	default "IP8100RGW_Rev1_1.brd" if BOARD_IP8100RGWRev11
+	default "IP8500TAP.brd" if BOARD_IP8500TAP

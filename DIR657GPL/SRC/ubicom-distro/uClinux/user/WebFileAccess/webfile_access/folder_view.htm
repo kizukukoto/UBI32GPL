@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+	<title>SharePort Web Access</title>	
+	<link rel="stylesheet" type="text/css" href="webfile_css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="webfile_css/web_file_access.css" />
+	<script type="text/javascript" src="webfile_js/webfile.js"></script>
+<!--	<link rel="stylesheet" type="text/css" href="fancybox/style.css" /> -->
+	<link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+	<script type="text/javascript" src="fancybox/jquery-1.4.3.min.js"></script>
+<!--	<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script> -->
+	<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+	<script type="text/javascript" src="fancybox/json2.js"></script>
+	<script language="JavaScript" src="js/object.js"></script>
+	<script language="JavaScript" src="js/xml.js"></script>
+	<script language="JavaScript" src="js/public.js"></script>
+	<script type="text/javascript">
+		var current_path;
+		var current_volid;
+		var storage_user = new HASH_TABLE();		
+		
+		//load_lang_obj();	// you have to load language object for displaying words in each html page and load html object for the redirect or return page
+		
+		var images = {
+						"file" 	:	"webfile_images/file.png",
+						"3gp" 	:	"webfile_images/film.png",
+						"avi"	:	"webfile_images/film.png",
+						"mov"	:	"webfile_images/film.png",
+						"mp4"	:	"webfile_images/film.png",
+						"mpg"	:	"webfile_images/film.png",
+						"mpeg"	:	"webfile_images/film.png",
+						"wmv"	:	"webfile_images/film.png",
+						"m4p"	:	"webfile_images/music.png",
+						"mp3"	:	"webfile_images/music.png",
+						"ogg"	:	"webfile_images/music.png",
+						"wav"	:	"webfile_images/music.png",
+						"asp"	:	"webfile_images/code.png",
+						"aspx"	:	"webfile_images/code.png",
+						"c"		:	"webfile_images/code.png",
+						"h"		:	"webfile_images/code.png",
+						"cgi"	:	"webfile_images/code.png",
+						"cpp"	:	"webfile_images/code.png",
+						"vb"	:	"webfile_images/code.png",
+						"xml"	:	"webfile_images/code.png",
+						"css"	:	"webfile_images/css.png",
+						"bat"	:	"webfile_images/application.png",
+						"com"	:	"webfile_images/application.png",
+						"exe"	:	"webfile_images/application.png",
+						"bmp"	:	"webfile_images/picture.png",
+						"gif"	:	"webfile_images/picture.png",
+						"jpg"	:	"webfile_images/picture.png",
+						"jpeg"	:	"webfile_images/picture.png",
+						"png"	:	"webfile_images/picture.png",
+						"pcx"	:	"webfile_images/picture.png",
+						"tif"	:	"webfile_images/picture.png",
+						"tiff"	:	"webfile_images/picture.png",
+						"doc"	:	"webfile_images/doc.png",
+						"docx"	:	"webfile_images/doc.png",
+						"ppt"	:	"webfile_images/ppt.png",
+						"pptx"	:	"webfile_images/ppt.png",
+						"xls"	:	"webfile_images/xls.png",
+						"xlsx"	:	"webfile_images/xls.png",
+						"htm"	:	"webfile_images/html.png",
+						"html"	:	"webfile_images/html.png",
+						"php"	:	"webfile_images/php.png",
+						"jar"	:	"webfile_images/java.png",
+						"js"	:	"webfile_images/script.png",
+						"pl"	:	"webfile_images/script.png",
+						"py"	:	"webfile_images/script.png",
+						"rb"	:	"webfile_images/ruby.png",
+						"rbx"	:	"webfile_images/ruby.png",
+						"ruby"	:	"webfile_images/ruby.png",
+						"rhtml"	:	"webfile_images/ruby.png",
+						"rpm"	:	"webfile_images/linux.png",
+						"pdf"	:	"webfile_images/pdf.png",
+						"psd"	:	"webfile_images/psd.png",
+						"sql"	:	"webfile_images/db.png",
+						"swf"	:	"webfile_images/flash.png",
+						"log"	:	"webfile_images/txt.png",
+						"txt"	:	"webfile_images/txt.png",
+						"zip"	:	"webfile_images/zip.png",
+						"rar"	:	"webfile_images/zip.png",
+						"7z"	:	"webfile_images/zip.png",
+						"gz"	:	"webfile_images/zip.png",
+						"bz2"	:	"webfile_images/zip.png"
+						};
+		
+		$(document).ready(function() {
+						
+			$("a[id=button1]").fancybox({
+				'showCloseButton'	: false,
+				'hideOnOverlayClick' : false,
+				'overlayShow'		: true
+			});
+														
+			$(".uploadtab>thead").css("background-color", "#808080");
+			$(".uploadtab>tfoot").css("background-color", "#808080");
+		});
+		
+		function close_fancybox(){
+			$.fancybox.close();
+		}
+		
+		function create_folder_result(http_req){
+			var my_txt = http_req.responseText;			
+			var result_info;
+			
+			try {
+				result_info = JSON.parse(my_txt);
+			} catch(e) {				
+				return;
+			}
+			
+			close_fancybox();
+			
+			if (result_info.status == "ok" && result_info.error == null){	
+				get_sub_folder(current_path, current_volid);
+			}
+		}
+		
+		function create_folder(){						
+			var xml_request = new XMLRequest(create_folder_result);
+			var folder_name = get_by_id("folder_name").value;			
+			var para = "AddDir?id=" + storage_user.get("id") + "&tok=" + storage_user.get("tok") 
+					 + "&volid=" + current_volid + "&path=" + current_path;
+			
+			
+			para += "&dirname=" + encode_char(folder_name);						
+			xml_request.json_cgi(para);			
+		}
+		
+		function show_folder_content(which_info){			
+			var rtable = get_by_id("rtable");			
+					
+			if (rtable.rows.length > 1){
+				for (var i = rtable.rows.length - 1; i > 0; i--){
+					rtable.deleteRow(i);
+				}
+			}
+					
+			for (var i = 0; i < which_info.count; i++){			
+				var obj = which_info.files[i];
+				var file_name = obj.name;				
+				var file_path = obj.path;					
+				var dev_name = file_path.split("%2F");	// to get the usb name
+				var row;
+				
+				if (file_name == ""){
+					continue;
+				}
+				
+				row = rtable.insertRow(i+1);
+				
+				for (var j = 0; j < 5; j++){
+					var insert_cell = row.insertCell(j); // create a cell
+										
+					var cell_html;
+					
+					if (obj.type == 1){
+						cell_html = "<img src=\"webfile_images/directory.png\" /><a href=\"#\" onClick=\"click_folder('" 
+								  + file_path + "', '" + dev_name[1] + "')\">" + file_name + "</a>";
+					}else{
+						var img = (images[obj.desp] == undefined) ? images['file'] : images[obj.desp];
+						
+						cell_html = "<img src=\"" + img + "\" />"
+								  + "<a href=\"" + file_path + "\" target=\"_blank\">" + file_name + "</a>";				
+					}
+					
+					switch(j){
+						case 0:	// Name
+							insert_cell.id = "rname";							
+							insert_cell.innerHTML = cell_html;
+							break;
+						case 1: // Size
+							insert_cell.id = "rsize";
+							insert_cell.innerHTML = obj.size;
+							break;
+						case 2: // File Type
+							insert_cell.id = "rtype";
+							insert_cell.innerHTML = obj.desp.toUpperCase();
+							break;
+						case 3: // Modified Time
+							insert_cell.id = "rMTime";
+							insert_cell.innerHTML = obj.mtime;
+							break;
+					}
+				}
+			}									
+		}
+		
+		function get_sub_tree(which_info){
+			var my_tree = "<ul class=\"jqueryFileTree\">";
+									
+			for (var i = 0; i < which_info.count; i++){
+				var obj = which_info.files[i];
+				var dev_name = obj.path.split("%2F");	// to get the usb name
+				
+				if (obj.name == ".." || obj.type != 1){	// when it's not a folder
+					continue;
+				}
+									
+				my_tree += "<li id=\"" + obj.path + "\" class=\"tocollapse\">"
+						+  "<a href=\"#\" onClick=\"click_folder('" + obj.path + "', '" + dev_name[1] + "')\">"
+						+ obj.name + "</a>"
+						+ "<span id=\"" + obj.path + "-sub\"></span>";
+			}				
+			   
+			my_tree += "</ul>";
+						
+			return my_tree;
+		}
+		
+		function show_sub_folder(http_req){
+			var my_txt = http_req.responseText;
+			var parent_node = get_by_id(current_path);
+			var current_node = get_by_id(current_path + "-sub");
+			var file_info;
+			
+			try {
+				file_info = JSON.parse(my_txt);
+			} catch(e) {				
+				return;
+			}
+						
+			parent_node.className = "toexpanded";
+			
+			if (file_info.status == "ok" && file_info.error == null){
+				current_node.innerHTML = get_sub_tree(file_info);
+				show_folder_content(file_info);
+			}
+		}
+		
+		function get_sub_folder(which_path, which_volid){		
+			var xml_request = new XMLRequest(show_sub_folder);
+			var para = "ListFile?id=" + storage_user.get("id") + "&tok=" + storage_user.get("tok") 
+					 + "&volid=" + which_volid + "&path=" + which_path;
+			
+			current_path = which_path;
+			current_volid = which_volid;
+			
+			xml_request.json_cgi(para);
+		}
+		
+		function click_folder(path, volid){		
+			var obj = get_by_id(path);
+			
+			close_fancybox();
+					
+			if (obj != undefined){				
+				if (obj.className == "toexpanded"){				
+					obj.className = "tocollapse";
+					get_by_id(path + "-sub").innerHTML = "";					
+				}
+				
+				get_sub_folder(path, volid);
+			}			
+		}
+						 				
+		function check_upload_file(){			
+			var form1 = get_by_id("form1");
+			var upload_name = get_by_id("upload_file").value;
+			var file_name;
+			
+			if (window.ActiveXObject){	// code for IE
+				file_name = upload_name.substring(upload_name.lastIndexOf("\\") + 1);
+			}else{
+				file_name = upload_name;
+			}
+						
+			//form1.action = "/homecloud/api/UploadFile?" + Math.random();
+			form1.action = "webfile_cgi.cgi?" + Math.random();
+			
+			get_by_id("id").value = storage_user.get("id");
+			get_by_id("tok").value = storage_user.get("tok");
+			get_by_id("volid").value = storage_user.get("volid");
+			get_by_id("path").value = current_path + "%2F";	// remember to remove %2F in next firmware
+			get_by_id("filename").value = file_name;
+						
+			form1.submit();			
+		}
+		
+		function get_root_info(which_info){
+			var my_tree = "<ul class=\"jqueryFileTree\">";
+					
+			if (which_info.status == "ok" && which_info.error == null){	
+				if (which_info.rootnode.length > 0){
+					
+					for (var i = 0; i < which_info.rootnode.length; i++){
+						var obj = which_info.rootnode[i];
+						var dev_name = obj.volname.split("%2F");	// to split usb_dev and usb name
+						
+						if (obj.volname == ".."){
+							continue;
+						}
+											
+						my_tree += "<li id=\"" + obj.volname + "\" class=\"tocollapse\">"																	
+								+  "<a href=\"#\" onClick=\"click_folder('" + obj.volname + "', '" + dev_name[1] + "')\">"
+								+ dev_name[1] + "</a>"
+								+ "<span id=\"" + obj.volname + "-sub\"></span>";
+						
+					}					
+				}
+			}else if (which_info.status == "fail" && which_info.error == 5002){
+				my_tree += '<li class="warning">None USB Storage Insert.</li>';
+			}
+								
+			my_tree += "</ul>";
+									
+			return my_tree;
+		}
+		
+		function show_menu_tree(which_info){
+			var root_tree = get_by_id("root_tree");
+			
+			root_tree.innerHTML = get_root_info(which_info);
+		}
+				
+		function get_settings_xml(http_req){
+			var my_txt = http_req.responseText;
+			var root_info;
+			
+			try {				
+				root_info = JSON.parse(my_txt);
+			} catch(e) {
+				load_webfile_settings();
+				return;
+			}
+								
+			show_menu_tree(root_info);			
+		}
+		
+		function load_webfile_settings(){
+			var xml_request = new XMLRequest(get_settings_xml);
+			var para = "ListRoot?id=" + storage_user.get("id") + "&tok=" + storage_user.get("tok");
+				
+			xml_request.json_cgi(para);
+		}
+		
+		function get_login_info_result(http_req){
+			var my_xml = http_req.responseXML;
+			
+			if (check_user_info(my_xml.getElementsByTagName("redirect_page")[0])){
+			
+				storage_user.put("id", get_node_value(my_xml, "user_name"));
+				storage_user.put("tok", get_node_value(my_xml, "user_pwd"));
+				storage_user.put("volid", get_node_value(my_xml, "volid"));
+
+				load_webfile_settings();								
+			}
+		}
+		
+		function get_login_info(){
+			var xml_request = new XMLRequest(get_login_info_result);
+			var para = "request=get_login_info";
+							
+			xml_request.exec_webfile_cgi(para);
+		}
+		
+		function refresh_current_path(){
+			close_fancybox();
+			
+			get_sub_folder(current_path, current_volid);
+		}
+	</script>	
+	</head>
+	<body onLoad="get_login_info()">		
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td colspan="2" valign="top" class="header_box">
+					<h1 class="header">D-Link Web File Access Server</h1>					
+				</td>
+				<td valign="bottom" align="right">
+					<a href="category_view.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('MENU','','webfile_images/btn_menu2_.png',1)"><img src="webfile_images/btn_menu2.png" name="MENU" width="25" height="25" border="0"></a>
+				</td>	
+			</tr>
+			<tr>
+				<td valign="top" class="left"></td>
+				<td valign="top" colspan="2" class="right">&nbsp;
+					<a id="button1" href="#inline1"><button>New Folder</button></a>					
+					&nbsp;&nbsp;
+					<a id="button1" href="#inline2"><button>Upload</button></a>					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div>
+						<ul class="jqueryFileTree">
+							<li class="toexpanded">My Access Device Hard Drive
+								<span id="root_tree"></span>
+							</li>
+						</ul>
+					</div>
+				</td>
+				<td colspan="2">
+					<table id="rtable" cellspacing="0">     
+						<tr>
+							<td id="rname">Name</td>
+							<td id="rsize">Size</td>
+							<td id="rtype">File Type</td>
+							<td id="rMTime">Modified Time</td>
+						</tr>								
+					</table>					
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">	
+						
+					<div style="display:none;">
+						<div id="inline1" style="width:400px;height:120px;overflow:auto;">
+							<table width="100%" height="100%" class="uploadtab">
+								<thead><tr><th align="left">Create Folder</th></tr></thead>
+								<tr>
+									<td>
+										<p>Please enter a folder name:<br /><input type="text" id="folder_name" name="folder_name" size="32"></p>
+									</td>
+								</tr>
+								<tfoot align="right">
+								<tr>
+									<td>
+										<input type="button" id="ok1" name="ok1" value="OK" onClick="create_folder()">&nbsp; 
+										<input type="button" id="cancel1" onClick="close_fancybox()" value="Cancel">
+									</td>
+								</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>	
+				
+					<div style="display: none;">
+						<div id="inline2" style="width:400px;height:120px;overflow:auto;">
+							<form id="form1" name="form1" method="post" enctype="multipart/form-data" target="upload_frame">
+								<input type="hidden" id="id" name="id">
+								<input type="hidden" id="tok" name="tok">
+								<input type="hidden" id="volid" name="volid">
+								<input type="hidden" id="path" name="path">
+								<input type="hidden" id="filename" name="filename">
+								<input type="hidden" id="upload_source" name="upload_source" value="gui">
+								<table width="100%" height="100%" class="uploadtab">
+									<thead><tr><th align="left">Upload File</th></tr></thead>
+									<tr>
+										<td>
+											<p>Please select a file:<br /><input type="file" id="upload_file" name="upload_file"></p>
+										</td>
+									</tr>
+									<tfoot align="right">
+									<tr>
+										<td>
+											<input type="button" id="ok2" name="ok2" value="OK" onClick="check_upload_file()"> &nbsp; 
+											<input type="button" id="cancel2" name="cancel2" onClick="close_fancybox()" value="Cancel">
+										</td>
+									</tr>
+									</tfoot>							
+								</table>
+							</form>							
+						</div>
+					</div>		
+					<iframe name="upload_frame" width="0%" height="0%"></iframe>				
+				</td>
+			</tr>
+		</table>		
+	</body>
+</html>

@@ -1,0 +1,230 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+#
+# (re)start WISH
+#
+cd /etc/init.d
+
+BRINTERFACE=$(nvram get lan_bridge | cut -c14- -)
+IPTABLES_RESTORE_FILE=/tmp/wish_rules
+
+#
+# Some QoS constants
+#
+WISH_QOS_Q_BE_LO=0
+WISH_QOS_Q_BK_LO=1
+WISH_QOS_Q_BK_HI=2
+WISH_QOS_Q_BE_HI=3
+WISH_QOS_Q_VI_LO=4
+WISH_QOS_Q_VI_HI=5
+WISH_QOS_Q_VO_LO=6
+WISH_QOS_Q_VO_HI=7
+
+#
+# qos_rule_get(rule_num)
+#	Set up the given qos rule
+# 
+MANUAL_QOS_RULES_EXIST=0
+qos_rule_set()
+{
+	RULE_SPEC=$1
+	QOS_RULE_ENABLED=$(echo $RULE_SPEC | cut -d/ -f1 -)
+	QOS_RULE_NAME=$(echo $RULE_SPEC | cut -d/ -f2 -)
+	QOS_RULE_PRIORITY=$(echo $RULE_SPEC | cut -d/ -f3 -)
+	QOS_RULE_PROTOCOL=$(echo $RULE_SPEC | cut -d/ -f6 -)
+	QOS_RULE_H1_IP_FROM=$(echo $RULE_SPEC | cut -d/ -f7 -)
+	QOS_RULE_H1_IP_TO=$(echo $RULE_SPEC | cut -d/ -f8 -)
+	QOS_RULE_H1_PORT_FROM=$(echo $RULE_SPEC | cut -d/ -f9 -)
+	QOS_RULE_H1_PORT_TO=$(echo $RULE_SPEC | cut -d/ -f10 -)
+	QOS_RULE_H2_IP_FROM=$(echo $RULE_SPEC | cut -d/ -f11 -)
+	QOS_RULE_H2_IP_TO=$(echo $RULE_SPEC | cut -d/ -f12 -)
+	QOS_RULE_H2_PORT_FROM=$(echo $RULE_SPEC | cut -d/ -f13 -)
+	QOS_RULE_H2_PORT_TO=$(echo $RULE_SPEC | cut -d/ -f14 -)
+
+	if [ $QOS_RULE_ENABLED -ne "1" ] ; then
+		return 0
+	fi
+
+	echo Setting WISH QoS rule $QOS_RULE_NAME
+
+	#
+	# Some manual qos rules exist
+	#
+	MANUAL_QOS_RULES_EXIST=1
+
+	#
+	# Transform the priority into a priority mark that will match a priority filter rule
+	#
+	QOS_RULE_PRIORITY=6528$QOS_RULE_PRIORITY
+	echo Priority mark = $QOS_RULE_PRIORITY
+
+	#
+	# If the protocol number is 257 this is "Both" in which case a tcp and udp protocol rule needs to be added
+	#
+	if [ $QOS_RULE_PROTOCOL -eq "257" ] ; then
+		QOS_RULE_SPEC="-A wish_manual_rules_table -p udp --sport $QOS_RULE_H1_PORT_FROM:$QOS_RULE_H1_PORT_TO --dport $QOS_RULE_H2_PORT_FROM:$QOS_RULE_H2_PORT_TO -m iprange --src-range $QOS_RULE_H1_IP_FROM-$QOS_RULE_H1_IP_TO --dst-range $QOS_RULE_H2_IP_FROM-$QOS_RULE_H2_IP_TO -j MARK --set-mark $QOS_RULE_PRIORITY"
+		echo BOTH SPEC UDP: $QOS_RULE_SPEC
+		echo "$QOS_RULE_SPEC" >> $IPTABLES_RESTORE_FILE
+
+		QOS_RULE_SPEC="-A wish_manual_rules_table -p tcp --sport $QOS_RULE_H1_PORT_FROM:$QOS_RULE_H1_PORT_TO --dport $QOS_RULE_H2_PORT_FROM:$QOS_RULE_H2_PORT_TO -m iprange --src-range $QOS_RULE_H1_IP_FROM-$QOS_RULE_H1_IP_TO --dst-range $QOS_RULE_H2_IP_FROM-$QOS_RULE_H2_IP_TO -j MARK --set-mark $QOS_RULE_PRIORITY"
+		echo BOTH SPEC TCP: $QOS_RULE_SPEC
+		echo "$QOS_RULE_SPEC" >> $IPTABLES_RESTORE_FILE
+		return 0
+	fi
+
+	#
+	# Fixed protocol number.
+	# Is this this UDP and therefore requires a port spec?
+	#
+	if [ $QOS_RULE_PROTOCOL -eq "17" ] ; then
+		QOS_RULE_SPEC="-A wish_manual_rules_table -p udp --sport $QOS_RULE_H1_PORT_FROM:$QOS_RULE_H1_PORT_TO --dport $QOS_RULE_H2_PORT_FROM:$QOS_RULE_H2_PORT_TO -m iprange --src-range $QOS_RULE_H1_IP_FROM-$QOS_RULE_H1_IP_TO --dst-range $QOS_RULE_H2_IP_FROM-$QOS_RULE_H2_IP_TO -j MARK --set-mark $QOS_RULE_PRIORITY"
+		echo $QOS_RULE_SPEC
+		echo "$QOS_RULE_SPEC" >> $IPTABLES_RESTORE_FILE
+		return 0
+	fi
+
+	#
+	# tcp?
+	#
+	if [ $QOS_RULE_PROTOCOL -eq "6" ] ; then
+		QOS_RULE_SPEC="-A wish_manual_rules_table -p tcp --sport $QOS_RULE_H1_PORT_FROM:$QOS_RULE_H1_PORT_TO --dport $QOS_RULE_H2_PORT_FROM:$QOS_RULE_H2_PORT_TO -m iprange --src-range $QOS_RULE_H1_IP_FROM-$QOS_RULE_H1_IP_TO --dst-range $QOS_RULE_H2_IP_FROM-$QOS_RULE_H2_IP_TO -j MARK --set-mark $QOS_RULE_PRIORITY"
+		echo $QOS_RULE_SPEC
+		echo "$QOS_RULE_SPEC" >> $IPTABLES_RESTORE_FILE
+		return 0
+	fi
+
+	#
+	# Non-port based protocols now.
+	# Any protocol?
+	#
+	if [ $QOS_RULE_PROTOCOL -eq "256" ] ; then
+		QOS_RULE_SPEC="-A wish_manual_rules_table -m iprange --src-range $QOS_RULE_H1_IP_FROM-$QOS_RULE_H1_IP_TO --dst-range $QOS_RULE_H2_IP_FROM-$QOS_RULE_H2_IP_TO -j MARK --set-mark $QOS_RULE_PRIORITY"
+		echo $QOS_RULE_SPEC
+		echo "$QOS_RULE_SPEC" >> $IPTABLES_RESTORE_FILE
+		return 0
+	fi
+
+	#
+	# protocol code
+	#
+	QOS_RULE_SPEC="-A wish_manual_rules_table -p $QOS_RULE_PROTOCOL -m iprange --src-range $QOS_RULE_H1_IP_FROM-$QOS_RULE_H1_IP_TO --dst-range $QOS_RULE_H2_IP_FROM-$QOS_RULE_H2_IP_TO -j MARK --set-mark $QOS_RULE_PRIORITY"
+	echo $QOS_RULE_SPEC
+	echo "$QOS_RULE_SPEC" >> $IPTABLES_RESTORE_FILE
+	return 0
+}
+
+
+#
+# main()
+#	Entry point
+# Is WISH currently running?  If so then stop it.
+#
+./wish_stop
+
+#
+# Start WISH if required
+#
+WISH_ENABLED=$(nvram get wish_engine_enabled | cut -c23- -)
+if [ $WISH_ENABLED -ne 1 ] ; then
+	echo WISH disabled
+	exit 1
+fi
+
+./start_wish
+
+#
+# Do we need to enable dynamic classification?
+#
+#AUTO_CLASSIFICATION_ENABLED=$(nvram get wish_auto_enabled | cut -c21- -)
+#if [ $AUTO_CLASSIFICATION_ENABLED -eq 1 ] ; then
+#	echo 1 > /sys/devices/system/ubicom_wish/ubicom_wish0/auto_classifier
+#else
+#	echo 0 > /sys/devices/system/ubicom_wish/ubicom_wish0/auto_classifier
+#fi
+
+#
+# Do we need to enable http classification?
+#
+HTTP_CLASSIFICATION_ENABLED=$(nvram get wish_http_enabled | cut -c21- -)
+if [ $HTTP_CLASSIFICATION_ENABLED -eq 1 ] ; then
+	echo 1 > /sys/devices/system/ubicom_wish/ubicom_wish0/http_classifier
+else
+	echo 0 > /sys/devices/system/ubicom_wish/ubicom_wish0/http_classifier
+fi
+
+#
+# Set up manual QoS rules
+# Create a table into which we add our rules that direct packets to certain priorities.
+# NOTE: We use the mangle table because we will be using MARK destination
+#
+echo "*mangle" > $IPTABLES_RESTORE_FILE
+echo ":wish_manual_rules_table - [0:0]" >> $IPTABLES_RESTORE_FILE
+
+#
+# Add rules into the table
+# NVRAM rules look like:
+# wish_rule_00 = <en dis>/<name>/<prio>/<unused>/<unused>/<proto>/<local ip from>/<local ip to>/<local port from>/<local port to>/<remote ip from>/<remote ip to>/<remote port from>/<remote port to> 
+#
+qos_rule_set "$(nvram get wish_rule_00 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_01 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_02 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_03 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_04 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_05 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_06 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_07 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_08 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_09 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_10 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_11 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_12 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_13 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_14 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_15 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_16 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_17 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_18 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_19 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_20 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_21 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_22 | cut -c16- -)"
+qos_rule_set "$(nvram get wish_rule_23 | cut -c16- -)"
+
+#
+# Do we need to enable media classification?
+#
+MEDIA_CLASSIFICATION_ENABLED=$(nvram get wish_media_enabled | cut -c22- -)
+if [ $MEDIA_CLASSIFICATION_ENABLED -eq 1 ] ; then
+	#
+	# Windows Media Centre connections are those that are UDP or TCP and have a h1 or h2 port of 5555 OR 3390.  This means we need to set up the following rules:
+	# "1/media_1/$WISH_QOS_Q_VI_LO/0/0/257/0.0.0.0/255.255.255.255/5555/5555/0.0.0.0/255.255.255.255/0/65535" == tcp/udp, h1 port is 5555 or;
+	# "1/media_2/$WISH_QOS_Q_VI_LO/0/0/257/0.0.0.0/255.255.255.255/3390/3390/0.0.0.0/255.255.255.255/0/65535" == tcp/udp, h1 port is 3390 or;
+	# "1/media_3/$WISH_QOS_Q_VI_LO/0/0/257/0.0.0.0/255.255.255.255/0/65535/0.0.0.0/255.255.255.255/5555/5555" == tcp/udp, h2 port is 5555 or;
+	# "1/media_4/$WISH_QOS_Q_VI_LO/0/0/257/0.0.0.0/255.255.255.255/0/65535/0.0.0.0/255.255.255.255/3390/3390" == tcp/udp, h2 port is 3390
+	#
+	qos_rule_set "1/media_1/$WISH_QOS_Q_VI_LO/0/0/257/0.0.0.0/255.255.255.255/5555/5555/0.0.0.0/255.255.255.255/0/65535"
+	qos_rule_set "1/media_2/$WISH_QOS_Q_VI_LO/0/0/257/0.0.0.0/255.255.255.255/3390/3390/0.0.0.0/255.255.255.255/0/65535"
+	qos_rule_set "1/media_3/$WISH_QOS_Q_VI_LO/0/0/257/0.0.0.0/255.255.255.255/0/65535/0.0.0.0/255.255.255.255/5555/5555"
+	qos_rule_set "1/media_4/$WISH_QOS_Q_VI_LO/0/0/257/0.0.0.0/255.255.255.255/0/65535/0.0.0.0/255.255.255.255/3390/3390"
+fi
+
+#
+# Add the rules into netfilter if there are some manual rules.
+#
+if [ $MANUAL_QOS_RULES_EXIST -eq 1 ] ; then
+	#
+	# Ensure that forwarding over the bridge gets directed to our manual rules table
+	#
+	echo "-A FORWARD -i $BRINTERFACE -o $BRINTERFACE -j wish_manual_rules_table" >> $IPTABLES_RESTORE_FILE
+	echo "COMMIT" >> $IPTABLES_RESTORE_FILE
+	iptables-restore --noflush $IPTABLES_RESTORE_FILE
+
+	#
+	# display rules
+	#
+	iptables-save
+fi
+
+exit 0
+

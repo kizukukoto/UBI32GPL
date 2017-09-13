@@ -1,0 +1,14 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+insmod /lib/modules/`uname -r`/ubicom_streamengine_tracker.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_tracker_tcp.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_tracker_udp.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_tracker_datagram.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_db.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_classifier_default.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_classifier_user_rules.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_classifier_bittorrent.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_classifier_http.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_classifier_http_content.ko
+insmod /lib/modules/`uname -r`/ubicom_streamengine_classifier.ko

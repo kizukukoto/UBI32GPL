@@ -1,0 +1,356 @@
+
+/*
+ * Define servies the order of services
+ * */
+#define LAN_SERVICES						\
+	"httpd,httpd_LAN,@if_dev,@Z_LOCALIP "			\
+	"dhcpd,LAN_dhcpd,@if_dev,@Z_LOCALIP,@Z_LOCALMASK "	\
+	"upnp,@if_dev,@Z_LOCALIP route,@if_dev,@if_route "	\
+	"webfilter,@if_dev,@Z_LOCALIP,@Z_LOCALMASK wps"
+
+#define DMZ_SERVICES						\
+	"dhcpd,DMZ_dhcpd,@if_dev,@Z_LOCALIP,@Z_LOCALMASK "	\
+	"route,@if_dev,@if_route"
+/* STATIC DHCP PPPOE */
+#define PROTO_SINGLE_SERVICES					\
+	"ntp igmp ddns https,https_REMOTE,@if_dev,@Z_LOCALIP "	\
+	"route,@if_dev,@if_route policy_route "			\
+	"xl2tpd pptpd ipsec qos ips,@if_dev"	\
+/* PPTP/L2TP, RU_PPTP/RU_PPPOE */
+#define PROTO_DUAL0_SERVICES					\
+	"https,https_REMOTE,@if_dev,@Z_LOCALIP "		\
+	"netdevice,WAN_slave"
+
+#define PROTO_DUAL1_SERVICES	PROTO_SINGLE_SERVICES
+
+static struct items wan_static[] = {
+	{ "static_mac2", ""},
+	{ "static_addr2", NULL},
+	{ "static_netmask2", NULL},
+	{ "static_gateway2", NULL},
+	{ "static_primary_dns2", ""},
+	{ "static_secondary_dns2", ""},
+	{ "static_mtu2", "1500"},
+	{ "static_iplist2", "smtp@192.168.3.2,dns@192.168.3.3"},
+	/* GUI MUST not update zone_XXX and if_XXX */
+	{ "zone_if_proto2", "static"},
+	{ "zone_if_list2", "WAN_primary"},
+	{ "if_dev2", "eth1"},
+	{ "if_proto2", "static"},
+	{ "if_proto_alias2", "WAN_static"},
+	{ "if_mode2", "nat"},
+	{ "if_services2", PROTO_SINGLE_SERVICES},
+	{ "vdev_2", "WAN:WAN_primary"},
+	{ NULL, NULL}
+};
+
+static struct items wan_dhcp[] = {
+	{ "dhcpc_hostname2", ""},
+	{ "dhcpc_mac2", ""},
+	{ "dhcpc_primary_dns2", ""},
+	{ "dhcpc_secondary_dns2", ""},
+	{ "dhcpc_mtu2", "1500"},
+	/* GUI MUST not update zone_XXX and if_XXX */
+	{ "zone_if_proto2", "dhcpc"},
+	{ "zone_if_list2", "WAN_primary"},
+	{ "if_dev2", "eth1"},
+	{ "if_proto2", "dhcp"},
+	{ "if_proto_alias2", "WAN_dhcp"},
+	{ "if_services2", PROTO_SINGLE_SERVICES},
+	{ "vdev_2", "WAN:WAN_primary"},
+	{ NULL, NULL}
+};
+
+static struct items wan_wizard[] = {
+	{ "admin_password", NULL},
+	{ "sel_time_zone", "-128"},
+	
+	{ "dhcpc_mac2", ""},
+	{ "dhcpc_hostname2", ""},
+	
+	{ "static_addr2", NULL},
+	{ "static_netmask2", NULL},
+	{ "static_gateway2", NULL},
+	{ "static_primary_dns2", ""},
+	{ "static_secondary_dns2", ""},
+	
+	{ "pppoe_mode2", NULL},
+	{ "pppoe_user2", NULL},
+	{ "pppoe_pass2", NULL},
+	{ "pppoe_servicename2", ""},
+	{ "pppoe_addr2", NULL},
+	
+	{ "pptp_mode2", NULL},
+	{ "pptp_addr2", NULL},
+	{ "pptp_netmask2", NULL},
+	{ "pptp_gateway2", NULL},
+	{ "pptp_serverip2", NULL},
+	{ "pptp_user2", NULL},
+	{ "pptp_pass2", NULL},
+
+	{ "l2tp_mode2", NULL},
+	{ "l2tp_addr2", NULL},
+	{ "l2tp_netmask2", NULL},
+	{ "l2tp_gateway2", NULL},
+	{ "l2tp_serverip2", NULL},
+	{ "l2tp_user2", NULL},
+	{ "l2tp_pass2", NULL},
+
+	{ NULL, NULL}
+};
+
+static struct items wan_poe[] = {
+	//{ "pppoe_hostname2", "wan_pppoe"},
+	{ "pppoe_mode2", NULL},
+	{ "pppoe_user2", NULL},
+	{ "pppoe_pass2", NULL},
+	{ "pppoe_servicename2", ""},
+	{ "pppoe_addr2", NULL},
+	//{ "pppoe_netmask2", NULL},
+	{ "pppoe_primary_dns2", ""},
+	{ "pppoe_secondary_dns2", ""},
+	{ "pppoe_idle2", NULL},
+	{ "pppoe_mtu2", NULL},
+	{ "pppoe_dial2", NULL},
+	{ "pppoe_mac2", ""},
+	//{ "pppoe_unit2", NULL},
+	//{ "pppoe_mru2", NULL},
+	//{ "wan0_ipaddr", "0.0.0.0"},
+
+	/* GUI MUST not update zone_XXX and if_XXX */
+	{ "zone_if_proto2", "pppoe"},
+	{ "zone_if_list2", "WAN_primary"},
+	{ "if_proto2", "pppoe"},
+	{ "if_proto_alias2", "WAN_pppoe"},
+	{ "if_dev2", "ppp2"},		/* auto add */
+	{ "if_services2", PROTO_SINGLE_SERVICES},
+	{ "vdev_2", "WAN:WAN_primary"},
+	
+	{ NULL, NULL}
+};
+
+static struct items wan_pptp[] = {
+	{ "static_addr2", NULL},
+	{ "static_netmask2", NULL},
+	{ "static_gateway2", NULL},
+	{ "static_primary_dns2", NULL},
+	//{ "pptp_hostname2", "wan_pptp"},
+	{ "pptp_mode2", NULL},
+	{ "pptp_addr2", NULL},
+	{ "pptp_netmask2", NULL},
+	{ "pptp_gateway2", NULL},
+	{ "pptp_dns2", NULL},
+	{ "pptp_serverip2", NULL},
+	{ "pptp_user2", NULL},
+	{ "pptp_pass2", NULL},
+	{ "pptp_mppe2", NULL},
+	{ "pptp_idle2", NULL},
+	{ "pptp_mtu2", NULL},
+	{ "pptp_dial2", NULL},
+	//{ "pptp_unit2", NULL},
+	//{ "pptp_mru2", NULL},
+	//{ "pptp_remote2", NULL},
+
+	/* GUI MUST not update zone_XXX and if_XXX */
+	{ "zone_if_proto2", "pptp"},
+	{ "zone_if_list2", "WAN_primary WAN_slave"},
+	{ "if_dev2", "eth1"},
+	{ "if_dev3", "ppp3"},
+	{ "if_proto2", "dhcpc"},
+	{ "if_proto3", "pptp"},
+	{ "if_proto_alias2", "WAN_dhcpc"},
+	{ "if_proto_alias3", "WAN_pptp"},
+	{ "if_services2", PROTO_DUAL0_SERVICES},
+	{ "if_services3", PROTO_DUAL1_SERVICES},
+	{ "vdev_2", "WAN:WAN_primary,WAN_slave"},
+	{ NULL, NULL}
+};
+
+static struct items wan_l2tp[] = {
+	{ "static_addr2", NULL},
+	{ "static_netmask2", NULL},
+	{ "static_gateway2", NULL},
+	{ "static_primary_dns2", NULL},
+	//{ "l2tp_hostname2", "wan_l2tp"},
+	{ "l2tp_mode2", NULL},
+	{ "l2tp_addr2", NULL},
+	{ "l2tp_netmask2", NULL},
+	{ "l2tp_gateway2", NULL},
+	{ "l2tp_dns2", NULL},
+	{ "l2tp_serverip2", NULL},
+	{ "l2tp_user2", NULL},
+	{ "l2tp_pass2", NULL},
+	{ "l2tp_mppe2", NULL},
+	{ "l2tp_idle2", NULL},
+	{ "l2tp_mtu2", NULL},
+	{ "l2tp_dial2", NULL},
+	//{ "l2tp_unit2", NULL},
+	//{ "l2tp_mru2", NULL},
+	//{ "l2tp_remote2", NULL},
+
+	/* GUI MUST not update zone_XXX and if_XXX */
+	{ "zone_if_proto2", "l2tp"},
+	{ "zone_if_list2", "WAN_primary WAN_slave"},
+	{ "if_dev2", "eth1"},		/* auto add */
+	{ "if_dev3", "ppp3"},
+	{ "if_proto2", "dhcpc"},
+	{ "if_proto3", "l2tp"},
+	{ "if_proto_alias2", "WAN_dhcpc"},
+	{ "if_proto_alias3", "WAN_l2tp"},
+	{ "if_services2", PROTO_DUAL0_SERVICES},
+	{ "if_services3", PROTO_DUAL1_SERVICES},
+	{ "vdev_2", "WAN:WAN_primary,WAN_slave"},
+	{ NULL, NULL}
+};
+
+static struct items wan_rupoe[] = {
+	{ "dhcpc_primary_dns2", ""},
+	{ "dhcpc_secondary_dns2", ""},
+	{ "static_addr2", NULL},
+	{ "static_netmask2", NULL},
+	{ "static_primary_dns2", ""},
+	{ "static_secondary_dns2", ""},
+	//{ "mac_clone_addr", ""},
+	{ "pppoe_mode3", NULL},
+	{ "pppoe_user3", NULL},
+	{ "pppoe_pass3", NULL},
+	{ "pppoe_servicename3", "wan_pppoe_ru"},
+	{ "pppoe_addr3", NULL},
+	{ "pppoe_primary_dns3", ""},
+	{ "pppoe_secondary_dns3", ""},
+	{ "pppoe_idle3", NULL},
+	{ "pppoe_mtu3", NULL},
+	{ "pppoe_dial3", NULL},
+	
+	/* GUI MUST not update zone_XXX and if_XXX */
+	{ "zone_if_proto2", "ruppoe"},
+	{ "zone_if_list2", "WAN_primary WAN_salve"},
+	{ "if_proto_alias2", "WAN_dhcpc"},
+	{ "if_proto_alias3", "WAN_pppoe_ru"},
+	{ "if_dev2", "eth1"},
+	{ "if_dev3", "ppp3"},		
+	{ "if_proto2", "dhcpc"},
+	{ "if_proto3", "pppoe"},
+	{ "if_services2", PROTO_DUAL0_SERVICES},
+	{ "if_services3", PROTO_DUAL1_SERVICES},
+	{ "vdev_2", "WAN:WAN_primary,WAN_slave"},
+	{ NULL, NULL}
+};
+
+static struct items wan_rupptp[] = {
+	{ "dhcpc_mac2", ""},
+	{ "dhcpc_primary_dns2", ""},
+	{ "dhcpc_secondary_dns2", ""},
+	{ "static_addr2", NULL},
+	{ "static_netmask2", NULL},
+	{ "static_gateway2", NULL},
+	{ "static_primary_dns2", ""},
+	{ "static_secondary_dns2", ""},
+
+	{ "pptp_mode3", NULL},
+	{ "pptp_addr3", NULL},
+	{ "pptp_netmask3", NULL},
+	{ "pptp_gateway3", NULL},
+	{ "pptp_dns3", ""},
+	{ "pptp_serverip3", NULL},
+	{ "pptp_user3", NULL},
+	{ "pptp_pass3", NULL},
+	{ "pptp_mppe3", NULL},
+	{ "pptp_idle3", NULL},
+	{ "pptp_mtu3", NULL},
+	{ "pptp_dial3", NULL},
+	
+	/* GUI MUST not update zone_XXX and if_XXX */
+	{ "zone_if_proto2", "rupptp"},
+	{ "zone_if_list2", "WAN_primary WAN_slave"},
+	{ "if_proto_alias2", "WAN_dhcpc"},
+	{ "if_proto_alias3", "WAN_pptp_ru"},
+	{ "if_proto3", "pptp"},
+	{ "if_proto2", "dhcpc"},
+	{ "if_dev2", "eth1"},
+	{ "if_dev3", "ppp3"},		/* auto add */
+	{ "if_services2", PROTO_DUAL0_SERVICES},
+	{ "if_services3", PROTO_DUAL1_SERVICES},
+	{ "vdev_2", "WAN:WAN_primary,WAN_slave"},
+	{ NULL, NULL}
+};
+
+static struct items_range wan_multipoe[] = {
+	{ "zone_if_proto2", -1, -1, "pppoe"},
+	{ "zone_if_list2", -1, -1, "WAN_primary;WAN_slave"},
+	//{ "mac_clone_addr", ""},
+	{ "if_proto2", -1, -1, "pppoe"},
+	{ "if_proto_alias2", -1, -1, "multi_pppoe_primary;multi_pppoe_secondary"},
+	//{ "pppoe_hostname4", -1, -1, "multi_pppoe_primary"},
+	{ "pppoe_mac4", -1, -1, ""},
+	{ "pppoe_mode4", -1, -1, NULL},
+	{ "pppoe_user4", -1, -1, NULL},
+	{ "pppoe_pass4", -1, -1, NULL},
+	{ "pppoe_servicename4", -1, -1, "multi_pppoe_primary"},
+	{ "pppoe_addr4", -1, -1, NULL},
+	//{ "pppoe_netmask4", -1, -1, NULL},
+	{ "pppoe_primary_dns4", -1, -1, ""},
+	{ "pppoe_secondary_dns4", -1, -1, ""},
+	{ "pppoe_idle4", -1, -1, NULL},
+	{ "pppoe_mtu4", -1, -1, NULL},
+	{ "pppoe_dial4", -1, -1, NULL},
+	{ "pppoe_unnum_enable4", -1, -1, "0"},
+	{ "pppoe_unnum_ip4", -1, -1, ""},
+	{ "pppoe_unnum_netmask4", -1, -1, ""},
+
+	//{ "pppoe_hostname5", -1, -1, "multi_pppoe_primary"},
+	{ "pppoe_mac5", -1, -1, ""},
+	{ "pppoe_mode5", -1, -1, NULL},
+	{ "pppoe_user5", -1, -1, NULL},
+	{ "pppoe_pass5", -1, -1, NULL},
+	{ "pppoe_servicename5", -1, -1, "multi_pppoe_secondary"},
+	{ "pppoe_addr5", -1, -1, NULL},
+	//{ "pppoe_netmask5", -1, -1, NULL},
+	{ "pppoe_primary_dns5", -1, -1, ""},
+	{ "pppoe_secondary_dns5", -1, -1, ""},
+	{ "pppoe_idle5", -1, -1, NULL},
+	{ "pppoe_mtu5", -1, -1, NULL},
+	{ "pppoe_dial5", -1, -1, NULL},
+	{ "pppoe_ntt5", -1, -1, NULL},
+	{ "pppoe_policy_type5", -1, -1, NULL},
+
+	{ "if_dev2", -1, -1, "ppp4"},		/* auto add */
+	{ "if_services2", -1, -1, ""},
+	{ "mpoe_policy_dest", 1, 10, ""},	/* Enable;Name;DestIP or Domain*/
+	{ "mpoe_policy_proto", 1, 10, ""},	/* Enable;NAme;StartPort-EndPort;Proto(any,tcp,udp)*/
+	{ "vdev_2", "WAN:WAN_primary,WAN_slave"},
+	{ NULL, -1, -1, NULL}
+};
+
+static struct items wan_usb3g[] = {
+	{ "usb3g_alias2", "WAN_usb3g"},
+        { "usb3g_hostname2", "WAN_l2tp"},
+        { "usb3g_addr2", ""},
+        { "usb3g_netmask2", ""},
+        { "usb3g_gateway2", ""},
+        { "usb3g_dns2", ""},
+        { "usb3g_mtu2", "1492"},
+        { "usb3g_mru2", "1496"},
+        /* USB3G PRPTO PPPXXX */
+        { "usb3g_user2", ""},
+        { "usb3g_pass2", ""},
+        { "usb3g_unit2", "0"},
+        { "usb3g_dial2", "1"},        /* "0" manual, "1" always, "2" demand, "3" */
+        { "usb3g_mode2", "1"},        /* "1" dynamic, "0" static*/
+        { "usb3g_mac2", ""},
+        { "usb3g_idle", "5"},
+        { "usb3g_mppe2", "nomppe"},   /* require-mppe|nomppe */
+        /* USB3G EXTRA PARAMS */
+        { "usb3g_country2", ""},
+        { "usb3g_isp2", ""},
+        { "usb3g_dial_num2", ""},
+        { "usb3g_apn_name2", ""},
+	{ "usb3g_auth", "XXX"},
+	{ "zone_if_proto2", "3G"},
+	{ "if_dev2", "ppp2"},
+	{ "if_proto2", "usb3g"},
+	{ "if_proto_alias2", "WAN_usb3g"},
+	{ "if_services2", PROTO_SINGLE_SERVICES},
+	{ "vdev_2", "WAN:WAN_primary"},
+	{ NULL, NULL}
+};

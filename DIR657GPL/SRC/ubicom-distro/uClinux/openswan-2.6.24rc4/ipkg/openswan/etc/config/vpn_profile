@@ -1,0 +1,197 @@
+#
+# IPSec VPN profile common options
+#
+config vpn_profile ipsec_common
+	option enable_natt		"yes"
+	option pluto_virt_priv_opts	"%v4:192.168.0.0/16,%v4:10.0.0.0/8,%v4:172.16.0.0/12"
+	option remote_user_enabled	"0"
+
+#
+# IPSec VPN profile
+#
+config vpn_profile ipsec_remote_psk
+	option profile_type		"ipsec"
+	option enable			"0"
+	option started			"0"
+
+	option tunnel_name		"remote-user-psk"
+	option tunnel_type		"remote-user"
+	option local_id			""
+	option local_ip			""
+	option local_net		""
+	option local_src		""
+	option remote_id		""
+	option remote_ip		"%any"
+	option remote_net		""
+	option remote_src		""
+	option remote_ike_port		"500"
+	option auth_type                "psk"
+	option psk			'"boo"'
+	option local_cert		""
+	option local_private_key	""
+	option local_key_passwd		'""'
+	option ike_enc_alg		""
+	option ike_auth_alg		""
+	option ike_dh_group		""
+	option esp_enc_alg		""
+	option esp_auth_alg		""
+	option esp_pfs_group		""
+	option dpd_enable		"yes"
+	option dpd_delay		"30"
+	option dpd_timeout		"120"
+	option dpd_action		"clear"
+	option xauth_enable		"0"
+	option xauth_group		"1"
+
+config vpn_profile ipsec_remote_cert
+	option profile_type		"ipsec"
+	option enable			"0"
+	option started			"0"
+
+	option tunnel_name		"remote-user-cert"
+	option tunnel_type		"remote-user"
+	option local_id			""
+	option local_ip			""
+	option local_net		""
+	option local_src		""
+	option remote_id		""
+	option remote_ip		"%any"
+	option remote_net		""
+	option remote_src		""
+	option remote_ike_port		"500"
+	option auth_type                "rsasig"
+	option psk			""
+	option local_cert		"/etc/ipsec.d/certs/serverCert.pem"
+	option local_private_key	"/etc/ipsec.d/private/server.key"
+	option local_key_passwd		'"server"'
+	option ike_enc_alg		""
+	option ike_auth_alg		""
+	option ike_dh_group		""
+	option esp_enc_alg		""
+	option esp_auth_alg		""
+	option esp_pfs_group		""
+	option dpd_enable		"yes"
+	option dpd_delay		"30"
+	option dpd_timeout		"120"
+	option dpd_action		"clear"
+	option xauth_enable		"0"
+	option xauth_group		"1"
+
+config vpn_profile ipsec_site_to_site_psk
+	option profile_type		"ipsec"
+	option enable			"0"
+	option started			"0"
+
+	option tunnel_name		"site-to-site-psk"
+	option tunnel_type		"site-to-site"
+	option local_id			""
+	option local_ip			""
+	option local_net		""
+	option local_src		""
+	option remote_id		""
+	option remote_ip		""
+	option remote_net		""
+	option remote_src		""
+	option remote_ike_port		"500"
+	option auth_type                "psk"
+	option psk			'"boo"'
+	option local_cert		""
+	option local_private_key	""
+	option local_key_passwd		'""'
+	option remote_cert		""
+	option ike_enc_alg		""
+	option ike_auth_alg		""
+	option ike_dh_group		""
+	option esp_enc_alg		""
+	option esp_auth_alg		""
+	option esp_pfs_group		""
+	option dpd_enable		"yes"
+	option dpd_delay		"30"
+	option dpd_timeout		"120"
+	option dpd_action		"clear"
+
+config vpn_profile ipsec_site_to_site_cert
+	option profile_type		"ipsec"
+	option enable			"0"
+	option started			"0"
+
+	option tunnel_name		"site-to-site-cert"
+	option tunnel_type		"site-to-site"
+	option local_id			""
+	option local_ip			""
+	option local_net		""
+	option local_src		""
+	option remote_id		""
+	option remote_ip		""
+	option remote_net		""
+	option remote_src		""
+	option remote_ike_port		"500"
+	option auth_type                "rsasig"
+	option psk			'""'
+	option local_cert		"/etc/ipsec.d/certs/serverCert.pem"
+	option local_private_key	"/etc/ipsec.d/private/server.key"
+	option local_key_passwd		'"server"'
+	option remote_cert		"/etc/ipsec.d/certs/serverCert.pem"
+	option ike_enc_alg		""
+	option ike_auth_alg		""
+	option ike_dh_group		""
+	option esp_enc_alg		""
+	option esp_auth_alg		""
+	option esp_pfs_group		""
+	option dpd_enable		"yes"
+	option dpd_delay		"30"
+	option dpd_timeout		"120"
+	option dpd_action		"clear"
+
+#
+# L2TP/IPSec VPN profile
+#
+config vpn_profile l2tp_ipsec
+	option profile_type		"l2tp_ipsec"
+	option enable			"0"
+	option started			"0"
+
+	option remote_ip_range		"192.168.0.202-192.168.0.210"
+	option server_ip		"192.168.0.200"
+	option pap			"require-pap"
+	option chap			"require-chap"
+	option mschap			"require-mschap"
+	option mschapv2			"require-mschap-v2"
+	option user_group		"1"
+
+	option tunnel_name		"l2tp-remote-user-psk"
+	option tunnel_type		"remote-user"
+	option local_id			""
+	option local_ip			""
+	option local_net		""
+	option local_src		""
+	option remote_ip		"%any"
+	option remote_ike_port		"500"
+	option auth_type                "psk"
+	option psk			'"boo"'
+	option local_cert		""
+	option local_private_key	""
+	option local_key_passwd		'""'
+	option dpd_enable		"yes"
+	option dpd_delay		"30"
+	option dpd_timeout		"120"
+	option dpd_action		"clear"
+
+#
+# PPTP VPN profile
+#
+config vpn_profile pptp_vpn
+	option profile_type		"pptp_vpn"
+	option enable			"0"
+	option started			"0"
+
+	option remote_ip_range		"192.168.0.234-238,192.168.0.245"
+	option server_ip		"192.168.0.222"
+	option pap			"refuse-pap"
+	option chap			"refuse-chap"
+	option mschap			"require-mschap"
+	option mschapv2			"require-mschap-v2"
+	option mppe			"mppe required,no40,no56,stateless"
+	option user_group		"1"
+
+	

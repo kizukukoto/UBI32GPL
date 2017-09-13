@@ -1,0 +1,223 @@
+object TProjectNode
+  Name = 'Project'
+  Description = 'The repository of configuration options for a Ubicom32 project.'
+  FileName = 'C:\Ubicom\sdk\scripts\TemplateUBICOM32.lpj'
+  Lists = <
+    item
+      List.Strings = (
+        '0'
+        '1'
+        '2'
+        '3'
+        '4'
+        '5'
+        '6'
+        '7'
+        '8'
+        '9'
+        '10'
+        '11'
+        '12'
+        '13'
+        '14'
+        '15'
+        '16'
+        '17'
+        '18'
+        '19'
+        '20'
+        '21'
+        '22'
+        '23'
+        '24'
+        '25'
+        '26'
+        '27'
+        '28'
+        '29'
+        '30'
+        '31')
+      ListName = 'ALL_PINS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        'RA'
+        'RB'
+        'RC'
+        'RD'
+        'RE'
+        'RF'
+        'RG'
+        'RH'
+        'RI'
+        'RJ'
+        'RLATCH')
+      ListName = 'INPUT_PORTS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        'RA'
+        'RB'
+        'RC'
+        'RD'
+        'RE'
+        'RF'
+        'RG'
+        'RH'
+        'RI'
+        'RJ'
+        'RLATCH')
+      ListName = 'OUTPUT_PORTS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        'RA')
+      ListName = 'INTERRUPT_PORTS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        'RA'
+        'RB'
+        'RC'
+        'RD'
+        'RE'
+        'RF'
+        'RG'
+        'RH'
+        'RI'
+        'RJ'
+        'RLATCH')
+      ListName = 'ALL_PORTS'
+    end
+    item
+      List.Strings = (
+        'NULL'
+        '4'
+        '5'
+        '6')
+      ListName = 'INTERRUPT_PINS'
+    end
+    item
+      List.Strings = (
+        'ExactSpacing'
+        'MinMIPSMinSpacing'
+        'MinMIPSMaxSpacing'
+        'MaxMIPSMinSpacing'
+        'MaxMIPSMaxSpacing'
+        'AvailableMIPS')
+      ListName = 'HRT_ALLOC_METHOD_LIST'
+    end
+    item
+      List.Strings = (
+        'Disabled (0)'
+        'Error (1)'
+        'Warn (2)'
+        'Info (3)'
+        'Trace (4)')
+      ListName = 'DEBUG_MACRO_LIST'
+    end>
+  object TSectionNode
+    Name = 'Global Settings'
+    Description = 'Settings that affect the entire project.'
+    DefineName = 'SECTION_GLOBAL_SETTINGS'
+    object TYesNoNode
+      Name = 'Enable Global Debug'
+      Description = 'Enable/Disable global runtime debug features.'
+      PackageDependencies.Strings = (
+        'IPDEBUG')
+      DefineName = 'DEBUG'
+      ConfigType = kAllPublicFiles
+      object TYesNoNode
+        Name = 'Enable all Assertions'
+        Description = 'Enable all assertions, regardless of all other debug settings.'
+        DefineName = 'DEBUG_ASSERT_ALL'
+        ConfigType = kAllPublicFiles
+      end
+    end
+    object TExpressionNode
+      Name = 'Project Name'
+      Description =
+        'Name of the project. This name will be used to name files, so it' +
+        ' must be a valid filename and must not contain spaces.'
+      DefineName = 'PROJECT_NAME'
+      ConfigType = kAllPublicFiles
+      Value = 'Project'
+    end
+    object TSectionNode
+      Name = 'Internal Settings'
+      Description = 'Settings used internally by the configuration tool.'
+      DefineName = 'SECTION_INTERNAL'
+      object TExpressionNode
+        Name = 'Build Directory Path'
+        DefineName = 'BUILD_DIR'
+        ConfigType = kMakeFile
+        Value = '$(PROJECT_DIR)/build'
+      end
+      object TStringNode
+        Name = 'Original File Name'
+        Description = 'This is used to keep the settings up to date.'
+        DefineName = 'PKG_FILE_NAME'
+        Value = 'TemplateUBICOM32.lpj'
+      end
+    end
+    object TDirectoryNode
+      Name = 'SDK directory'
+      Description = 'The directory that the SDK is installed in.'
+      DefineName = 'SDK_DIR'
+      ConfigType = kMakeFile
+      Value = '/cygdrive/c/ubicom/sdk'
+    end
+    object TStringNode
+      Name = 'Compiler Flags'
+      Description =
+        'Flags that should be passed to the compiler every time it is inv' +
+        'oked.'#13#10#13#10'After changing the compiler flags you should perform a ' +
+        #39'make clean'#39' to ensure that all files are recompiled with the ne' +
+        'w flags.'
+      DefineName = 'GLOBAL_CFLAGS'
+      ConfigType = kMakeFile
+      Value = '-Os -g'
+    end
+    object TExpressionNode
+      Name = 'Architecture Directory'
+      Description =
+        'Directory containing architecture specific files. If the archite' +
+        'cture is '#39'IP3K'#39' then the Architecture directory should be '#39'ip3k'#39 +
+        '.'
+      DefineName = 'ARCH_DIR'
+      ConfigType = kMakeFile
+      Value = 'ip3k'
+    end
+    object TExpressionNode
+      Name = 'Architecture'
+      Description =
+        'The CPU architecture the project should be compiled for. This di' +
+        'rective controls which header files are included. It does not de' +
+        'termine which tool-chain is used. You must specify the tools in ' +
+        'the Tools Section.'
+      DefineName = 'ARCH'
+      ConfigType = kAllPublicFiles
+      Value = 'IP3K'
+    end
+    object TExpressionNode
+      Name = 'Number of CPU threads'
+      Description =
+        'The number of hardware threads supported by the CPU architecture'
+      DefineName = 'ARCH_NUM_THREADS'
+      ConfigType = kNone
+      Value = '8'
+    end
+    object TExpressionNode
+      Name = 'Size of CPU HRT table'
+      Description =
+        'The maximum number of slots in the CPU thread schedule (HRT) table'
+      DefineName = 'ARCH_HRT_TABLE_SIZE'
+      ConfigType = kNone
+      Value = '64'
+    end
+  end
+end

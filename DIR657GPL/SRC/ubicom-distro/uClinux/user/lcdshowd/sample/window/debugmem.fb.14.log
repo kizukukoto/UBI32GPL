@@ -1,0 +1,558 @@
+(*) Direct/Test: Application starting...
+loop 14 times
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:0804B020
+real free:08052630
+real free:080521F8
+(*) Direct/Thread: Started 'PS/2 Input' (16719) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:080519B8
+real free:08051598
+real free:08051178
+real free:08050D60
+real free:08050928
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:080500E8
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+relloc: 1792 = cap:64 * size:28
+IDirectFB_CreateFont:1218
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBFont IDirectFBFont
+(*) Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+Direct/Interface: Loaded 'FT2' implementation of 'IDirectFBFont'.
+DirectGetInterface 306: countinue leak
+IDirectFB_CreateFont:1220
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+DirectGetInterface 293: countinue leak free
+DirectGetInterface 296: countinue leak no free IDirectFBImageProvider IDirectFBImageProvider
+(*) Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+Direct/Interface: Loaded 'PNG' implementation of 'IDirectFBImageProvider'.
+DirectGetInterface 306: countinue leak
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:08051DD8
+real free:08050508
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:08064F60
+real free:08064B40
+real free:08064708
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:0804C288
+real free:08054928
+real free:08054908
+real free:08053278
+real free:0804C580
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:0804C640
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:080642E8
+real free:0804C660
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:08064F60
+real free:08064B40
+real free:08064708
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:0804C288
+real free:08054928
+real free:08054908
+real free:08053278
+real free:0804C580
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:0804C640
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:080642E8
+real free:0804C660
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:080643A8
+real free:08063F88
+real free:08054838
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08053FF8
+real free:08053BD8
+real free:0804D258
+real free:0804D110
+real free:0804B120
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:0804D568
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:08054418
+real free:08053328
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:080547F0
+real free:080543D0
+real free:08053F98
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08053350
+real free:080531B8
+real free:08052D98
+real free:0804C2D0
+real free:0804B190
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:08051D38
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:08053B78
+real free:08051D58
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:08077A28
+real free:08077890
+real free:08077458
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08053320
+real free:08053188
+real free:08052D68
+real free:080596F0
+real free:0804B188
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:08050CE0
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:08077038
+real free:08050D00
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:080770C0
+real free:080533D8
+real free:08053230
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:080529F0
+real free:080525D0
+real free:08058980
+real free:080596F0
+real free:0804B188
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:08050CE0
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:08052E10
+real free:08050D00
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:08053198
+real free:08052D78
+real free:08052940
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08058870
+real free:0805DB40
+real free:0805D9A8
+real free:080596F0
+real free:0805CFF8
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:0804D3E8
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:08058C90
+real free:08059688
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:0805A188
+real free:08059D68
+real free:0805DB78
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:0805D468
+real free:0804D150
+real free:08056008
+real free:080661A0
+real free:08055EA0
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:0804D3E8
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:0805D888
+real free:08059688
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:0805DAC0
+real free:0805D6A0
+real free:0805D268
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08056000
+real free:0806D3A0
+real free:080662A0
+real free:0806D058
+real free:08076760
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:08071C40
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:0804CF10
+real free:08051010
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:0805D550
+real free:0804D1B0
+real free:0806D790
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08066288
+real free:080660F0
+real free:08056008
+real free:0806D058
+real free:0804B078
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:0804CA80
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:0806D5F8
+real free:0804AC68
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:0804D258
+real free:0804D0C0
+real free:0806D6B0
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08066398
+real free:08066010
+real free:08055FC0
+real free:0806D058
+real free:0804AF98
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:0804C660
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:0806D518
+real free:080596B8
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:0804D258
+real free:0804D0C0
+real free:0806D6B0
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08066398
+real free:08066010
+real free:08055FC0
+real free:0806D058
+real free:0804AF98
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:0804C660
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:0806D518
+real free:080596B8
+
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~| DirectFB 1.4.2 |~~~~~~~~~~~~~~~~~~~~~~~~~~
+        (c) 2001-2009  The world wide DirectFB Open Source Community
+        (c) 2000-2004  Convergence (integrated media) GmbH
+      ----------------------------------------------------------------
+
+(*) DirectFB/Core: Single Application Core. (2009-12-03 07:17) [ DEBUG ]
+real free:00000000
+(*) Direct/Thread: Started 'VT Switcher' (-1) [CRITICAL OTHER/OTHER 0/0] <8388608>...
+(*) Direct/Thread: Started 'VT Flusher' (-1) [DEFAULT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/FBDev: Found 'VESA VGA' (ID 0) with frame buffer at 0xd0000000, 1875k (MMIO 0x00000000, 0k)
+real free:0804D288
+real free:0806D7C8
+real free:0806D708
+(*) Direct/Thread: Started 'PS/2 Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: IMPS/2 Mouse 1.0 (directfb.org)
+real free:08066250
+real free:08055F40
+real free:0804B208
+real free:0806D058
+real free:0804AD88
+(*) Direct/Thread: Started 'Keyboard Input' (-1) [INPUT OTHER/OTHER 0/0] <8388608>...
+(*) DirectFB/Input: Keyboard 0.9 (directfb.org)
+real free:08050D00
+(*) DirectFB/Genefx: MMX detected and enabled
+(*) DirectFB/Graphics: MMX Software Rasterizer 0.6 (directfb.org)
+(*) DirectFB/Core/WM: Default 0.3 (directfb.org)
+IDirectFB_CreateFont:1218
+IDirectFB_CreateFont:1220
+close lite
+ (!!!)  *** WARNING [still objects in 'Surface Pool'] *** [object.c:241 in fusion_object_pool_destroy()]
+real free:08055FF0
+real free:0805CF48
+(!) Direct/Mem: Not freeing unknown 0x804a558 (log) from [log.c:139 in direct_log_destroy()] - corrupt/incomplete list?
+Local memory allocations remaining (59): 
+    112 bytes at 0x804aba8 allocated in direct_thread_set_name (thread.c: 369)
+     12 bytes at 0x804b228 allocated in direct_thread_set_name (thread.c: 386)
+     44 bytes at 0x804b250 allocated in direct_modules_explore_directory (modules.c: 232)
+     22 bytes at 0x804c2e8 allocated in direct_modules_explore_directory (modules.c: 240)
+      7 bytes at 0x804c680 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x804c690 allocated in direct_modules_explore_directory (modules.c: 232)
+     21 bytes at 0x804c6c0 allocated in direct_modules_explore_directory (modules.c: 240)
+      6 bytes at 0x804cab8 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x804cac8 allocated in direct_modules_explore_directory (modules.c: 232)
+     19 bytes at 0x804caf8 allocated in direct_modules_explore_directory (modules.c: 240)
+      4 bytes at 0x804d598 allocated in direct_modules_register (modules.c: 134)
+     44 bytes at 0x8051030 allocated in direct_modules_explore_directory (modules.c: 232)
+     25 bytes at 0x8051060 allocated in direct_modules_explore_directory (modules.c: 240)
+      8 bytes at 0x8051080 allocated in direct_modules_register (modules.c: 134)
+    372 bytes at 0x8053408 allocated in gAcquire (generic.c: 6927)
+     40 bytes at 0x8054d68 allocated in DirectRegisterInterface (interface.c: 88)
+     84 bytes at 0x8054d98 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x80551e0 allocated in DirectRegisterInterface (interface.c: 88)
+     82 bytes at 0x8055210 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x8055988 allocated in DirectRegisterInterface (interface.c: 88)
+     80 bytes at 0x80559b8 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x805df68 allocated in DirectRegisterInterface (interface.c: 88)
+    100 bytes at 0x805df98 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x805e410 allocated in DirectRegisterInterface (interface.c: 88)
+     98 bytes at 0x805e440 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x805ebd8 allocated in DirectRegisterInterface (interface.c: 88)
+     99 bytes at 0x805ec08 allocated in DirectGetInterface (interface.c: 272)
+     40 bytes at 0x805f3d0 allocated in DirectRegisterInterface (interface.c: 88)
+     98 bytes at 0x805f400 allocated in DirectGetInterface (interface.c: 272)
+    372 bytes at 0x805d068 allocated in gAcquire (generic.c: 6927)
+    252 bytes at 0x8063b38 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8076798 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8059708 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x806db10 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8050168 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x806d7e8 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8058d68 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x806bd90 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8076618 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8077a50 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x80764e8 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8057f40 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x80757a0 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80758c8 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x805a260 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80659b0 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x805ca90 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80717d0 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x80544c8 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80752c0 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8079a58 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8079b58 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8070548 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8070670 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x806ffb0 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x80700c8 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+    252 bytes at 0x8063978 allocated in IDirectFB_CreateSurface (idirectfb.c: 830)
+    672 bytes at 0x8077cf8 allocated in IDirectFBSurface_Construct (idirectfbsurface.c: 2607)
+   4321 bytes at 0x8077fa0 allocated in main (main.c: 98)
+type any key to close lite
+type any key to exit
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_default.so leak foce?
+(-) [Main Thread     139.635] (16702) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x8054d68 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_dgiff.so leak foce?
+(-) [Main Thread     139.635] (16702) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x80551e0 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBFont/libidirectfbfont_ft2.so leak foce?
+(-) [Main Thread     139.635] (16702) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x8055988 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_dfiff.so leak foce?
+(-) [Main Thread     139.635] (16702) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x805df68 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_gif.so leak foce?
+(-) [Main Thread     139.635] (16702) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x805e410 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_jpeg.so leak foce?
+(-) [Main Thread     139.635] (16702) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x805ebd8 'impl'
+DirectUnregisterInterface 127: free /pub/rootfs/lib/directfb-1.4-0/interfaces/IDirectFBImageProvider/libidirectfbimageprovider_png.so leak foce?
+(-) [Main Thread     139.636] (16702) Direct/Mem:           -    40 bytes [interface.c:133 in DirectUnregisterInterface()] -> 0x805f3d0 'impl'

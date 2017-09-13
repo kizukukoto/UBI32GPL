@@ -1,0 +1,48 @@
+object TPackageNode
+  Name = '??pkgname?? - Unnamed Package'
+  Description = 'Enter the description here.'
+  DefineName = 'UNNAMED_PACKAGE_NODE'
+  object TYesNoNode
+    Name = 'Runtime Debugging'
+    Description = 
+      'Generates code for run-time debugging checks and messages. For t' +
+      'his option to be effective, the Enable Global Debug option in Gl' +
+      'obal Settings must also be enabled. '
+    DefineName = 'UNNAMED_PACKAGE_NODE_DEBUG'
+    ConfigType = kPrivateHeaderFile
+    object TListNode
+      Name = 'Compiled Debug Messages'
+      Description = 
+	'Debug messages at this severity or higher will be compiled in. T' +
+        'his setting affects both static and dynamic modes (regardless of' +
+        ' Enable Dynamic Debug).'
+      DefineName = 'DEBUG_PKG_LVL_MESSAGES'
+      ConfigType = kPrivateHeaderFile
+      Value = 'Info (3)'
+      ListName = 'DEBUG_MACRO_LIST'
+    end
+    object TYesNoNode
+      Name = 'Enable Dynamic Debug'
+      Description = 
+        'Enable runtime debug level control for this package. If this is ' +
+        'not enabled, all debug messages selected with Compiled Debug Mes' +
+        'sages are always printed.'
+      DefineName = 'DEBUG_PKG_DYNAMIC'
+      Value = 'True'
+      ConfigType = kPrivateHeaderFile
+      object TListNode
+        Name = 'Initial Dynamic Debug Threshold'
+        Description = 
+	  'This value is used at runtime to determine what debug messages a' +
+          're printed. The value assigned here is the initial threshold; th' +
+	  'e value can be changed at run time by the debugger or possibly b' +
+	  'y the project's user interface.'
+        DefineName = 'DEBUG_DYN_INIT_THRESHOLD'
+        ConfigType = kPrivateHeaderFile
+        Value = 'Warn (2)'
+	ListName = 'DEBUG_MACRO_LIST'
+      end
+    end
+  end
+end
+

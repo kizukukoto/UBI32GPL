@@ -1,0 +1,17 @@
+Date: 2009-01-08
+Feature:
+	1. -S parameter used if schedule config file prepared.
+	   if -S unsed, crowdcontrol will always deny or allow.
+	   ex: crowdcontrol -a 192.168.0.1 -s 255.255.255.0 -p 3128 --deny-domains /tmp/url_domain -S /tmp/url_schedule
+
+	   Example of /tmp/url_schedule:
+
+	   -----------------------------------
+	   url_domain_filter_schedule_0=0
+	   url_domain_filter_schedule_1=1
+	   schedule_rule0=sch1/1111111/61/62
+	   schedule_rule1=sch2/1111111/62/63
+	   -----------------------------------
+
+	   Mention above, url_domain_filter_schedule_X means each URL schedule key, and schedule_ruleX means
+	   each system schedule key.

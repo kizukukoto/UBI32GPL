@@ -1,0 +1,8 @@
+Config
+*.o
+*.a
+*.so
+
+# compiler generated files
+tc/filter.c
+tc/qdisc.c

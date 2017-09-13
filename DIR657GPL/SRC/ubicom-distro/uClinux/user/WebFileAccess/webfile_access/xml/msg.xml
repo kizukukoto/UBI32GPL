@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<root>
+	<MSG001>Please enter the graphical authentication code.</MSG001>
+	<MSG002>The %s field cannot be blank.</MSG002>
+ 	<MSG003>The %s field entered is invalid.</MSG003>
+ 	<MSG004>The %s must be 8 ~ 63 ASCII characters.</MSG004>
+ 	<MSG005>The length of Key %s must be %s or %s characters.</MSG005>
+ 	<MSG006>Key %s is invalid. The legal characters are 0~9, A~F, or a~f.</MSG006>
+ 	<MSG007>The security mode doesn't support WEP when 802.11 Mode is 802.11n only.</MSG007>
+ 	<MSG008>When the Security Mode select WPA-Enterprise, we have to disable the WPS.%s Do you want to continue?</MSG008>
+ 	<MSG009>The %s cannot be zero or blank.</MSG009>
+	<MSG010>The 1st octet of %s can not be 127, 224 ~ 239.</MSG010>
+	<MSG011>The %s octet of %s entered is invalid.</MSG011>
+	<MSG012>The %s octet of %s must be between %s ~ %s.</MSG012>
+	<MSG013>The %s octet of %s must be</MSG013>
+	<MSG014>The %s must be a number.</MSG014>
+	<MSG015>The %s value range is %s ~ %s.</MSG015>
+ 	<MSG016>The %s value must be an even number only.</MSG016>
+ 	<MSG017>The %s and the %s are not in the same subnet.</MSG017>
+ 	<MSG018>The first character of %s cannot be number.</MSG018>
+ 	<MSG019>The first character of %s cannot be space, dot(.), or hyphen(-).</MSG019>
+ 	<MSG020>The last character of %s cannot be space, dot(.), or hyphen(-).</MSG020>
+ 	<MSG021>The format of %s entered is invalid.</MSG021>
+ 	<MSG022>The legal characters for %s are letters, numbers, space, dot(.), and hyphen(-).</MSG022>
+ 	<MSG023>%s cannot be all numbers.</MSG023>
+ 	<MSG024>The %s is already used.</MSG024>
+ 	<MSG025>Are you sure you want to delete %s?</MSG025>
+ 	<MSG026>PLC is currently busy right now. Please wait for a while.</MSG026>
+ 	<MSG027>The network name of '%s' may not be changed to the current network name. Do you want to continue?</MSG027>
+ 	<MSG028>There is unsaved data on this page. Do you want to abandon it?%s If not, press Cancel and then click Save Settings.%s If so, press Ok.</MSG028>
+	<MSG029>Nothing has changed. Save anyway?</MSG029>
+	<MSG030>The legal characters for a MAC Address are 0~9, A~F, or a~f.</MSG030>
+	<MSG031>The MAC Filters will be disabled. Do you want to continue?</MSG031>
+	<MSG032>The maximum number of %s rule cannot be greater than %s.</MSG032>
+	<MSG033>Please add a Mac Address to the Mac Filter List first.</MSG033>
+	<MSG034>Are you sure you want to reset the device to Unconfigured?%sThis will cause all wireless settings to be lost.</MSG034>
+	<MSG035>To hidden SSID will be disabled the WPS, Are you sure?</MSG035>
+	<MSG036>The %s does not match the %s.</MSG036>
+	<MSG037>Please select a saved configuration file to upload</MSG037>
+	<MSG038>Load settings from a saved configuration file?</MSG038>
+	<MSG039>Do you really want to reset the current settings to default?</MSG039>
+	<MSG040>Do you really want to restart your device?</MSG040>
+	<MSG041>Please select a Firmware file to upgrade the device to</MSG041>
+	<MSG042>Note: Some firmware upgrades reset the %s configuration options to the factory defaults.%sBefore performing an upgrade, be sure to save the current configuration from the Maintenance -&gt; System screen.%sDo you still want to upgrade?</MSG042>
+	<MSG043>Do you really want to reprogram the device using the firmware file "%s"?</MSG043>
+	<MSG044>Please select a Language file to upgrade the device to</MSG044>
+	<MSG045>Do you really want to reprogram the device using the language package "%s"?</MSG045>
+	<MSG046>Clear the language pack?</MSG046>
+ 	<MSG047>%s is in use by %s.</MSG047>
+ 	<MSG048>Schedule '%s' can't be renamed because it is used.</MSG048>
+ 	<MSG049>The schedule name can not be 'Always' or 'Never'.</MSG049>
+ 	<MSG050>No day is selected.</MSG050>
+ 	<MSG051>End time can't early than Start time.</MSG051>
+ 	<MSG052>The length of the Client PIN Number must be 8 characters.</MSG052>
+	<MSG053>The legal characters for a Client PIN Number are 0~9.</MSG053>
+ 	<MSG054>The IP Address for %s '%s' cannot be as same as the Device IP address.</MSG054>
+	<MSG055>The IP Address for %s '%s' and the Device IP Address are not in the same subnet.</MSG055>
+	<MSG056>Using WEP Encryption will be disabled the WPS, Are you sure?</MSG056>
+	<MSG057>The Cipher Type doesn't support TKIP when 802.11 Mode is 802.11n only.</MSG057>
+	<MSG058>The WPS cannot be enabled when the Authentication is Shared Key</MSG058>
+	<MSG059>You must enter a host name or IP address.</MSG059>
+	<MSG060>The %s is an invalid address.</MSG060>
+	<MSG061>Please select a Dynamic DNS Server.</MSG061>
+	<MSG062>The %s can not be zero.</MSG062>
+	<MSG063>The Host Name cannot be as same as the Device Name on the Setup/Network Settings page</MSG063>
+	<MSG064>The Device Name cannot be as same as the Host Name on the Setup/Internet page</MSG064>
+	<MSG065>Schedule '%s' can't be deleted or renamed because it is used.</MSG065>
+	<MSG066>%s cannot be empty!</MSG066>
+	<MSG067>The Verify Password does not match the new User password.</MSG067>
+	<MSG068>%s is already existing in the %s List.</MSG068>
+	<MSG069>The Public Port(%s) is conflicted with another %s.</MSG069>
+	<MSG070>Public Port of '%s'[%s:%s] conflicts with another Application Rule.</MSG070>
+	<MSG071>Public Port of '%s'[%s:%s] conflicts with Remote Management.</MSG071>
+	<MSG072>The %s is illegal address.</MSG072>
+	<MSG073>%s is in wrong format.</MSG073>
+	<MSG074>%s is in incorrect order.</MSG074>
+	<MSG075>A %s password must be specified.</MSG075>
+	<MSG076>Do you want to abandon all changes you made to this wizard?</MSG076>
+	<MSG077>The Primary DNS address can not be empty.</MSG077>
+	<MSG078>Firewall Ports of '%s'[%s:%s]-&gt;[%s:%s] conflicts with '%s'[%s:%s]-&gt;[%s:%s]</MSG078>
+	<MSG079>Firewall Ports of '%s'[%s:%s] conflicts with another Virtual Server rule.</MSG079>
+	<MSG080>Firewall Ports of '%s'[%s:%s] conflicts with Remote Management.</MSG080>
+	<MSG081>Name can not be empty string.</MSG081>
+	<MSG082>Reserved IP address %s is conflicted with Router IP address.</MSG082>
+	<MSG083>Reserved IP address %s should be within the configured DHCP IP address range.</MSG083>
+	<MSG084>Reserved Computer Name '%s' is already used.</MSG084>
+	<MSG085>Reserved IP Address '%s' is already used.</MSG085>
+	<MSG086>Reserved MAC Address '%s' is already used.</MSG086>
+	<MSG087>Do you want to enable the DHCP Reservation entry for IP Address %s</MSG087>
+	<MSG088>Do you want to disable the DHCP Reservation entry for IP Address %s</MSG088>
+	<MSG089>'%s' and '%s' are same Machine.</MSG089>
+	<MSG090>DHCP Server Start IP Address is conflicted with Router IP address.</MSG090>
+	<MSG091>DHCP Server End IP Address is conflicted with Router IP address.</MSG091>
+	<MSG092>Router IP Address should not be within the configured DHCP IP address range.</MSG092>
+	<MSG093>Please enter another DHCP Lease Time value.</MSG093>
+	<MSG094>%s cannot be the same as %s %s of the router</MSG094>
+	<MSG095>The Verify Password does not match the new Admin password.</MSG095>
+	<MSG096>Remote Admin Port(%s) conflicts with another %s rule.</MSG096>
+	<MSG097>Max transmission rate should be between 8 kbps and 100 Mbps,inclusive.</MSG097>
+	<MSG098>Please enter one machine.</MSG098>
+	<MSG099>Please select a filter.</MSG099>
+	<MSG100>Are you sure you want to enable/disable %s</MSG100>
+	<MSG101>Public Port of '%s'[%s:%s] conflicts with another Port Forwarding.</MSG101>
+	<MSG102>The TCP Port(%s) is conflicted with another %s.</MSG102>
+	<MSG103>The UDP Port(%s) is conflicted with another %s.</MSG103>
+	<MSG104>The Port of '%s'[%s:%s] conflicts with another Virtual Server.</MSG104>
+	<MSG105>The Port of '%s'[%s:%s] conflicts with another Application Rule.</MSG105>
+	<MSG106>The Port of '%s'[%s:%s] conflicts with Remote Management.</MSG106>
+	<MSG107>Enable at least one Source IP Range for %s.</MSG107>
+	<MSG108>Inbound Filter '%s' can't be deleted or renamed because it is used.</MSG108>
+	<MSG109>The Ending IP Address must be greater than the Starting IP Address.</MSG109>
+	<MSG110>Destination IP Address of '%s' and '%s' are the same.</MSG110>
+	<MSG111>You must abandon all your changes in order to define a new schedule.%sPress 'Ok' to abandon these changes and display the Schedule page.%sOtherwise press 'Cancel'.</MSG111>
+	<MSG112>Destination Port Start should not be greater than Destination Port End for Port Filter.</MSG112>
+	<MSG113>Please select a Comupter Name first.</MSG113>
+	<MSG114>Email address is not configured.</MSG114>
+	<MSG115>To Email Address : %s</MSG115>
+	<MSG116>Please enter a TCP port number or a UDP port number.</MSG116>
+	<MSG117>The WPS cannot be enabled when the Wireless is disabled.</MSG117>
+	<MSG118>the ssid length should not greater than 32</MSG118>
+	<MSG119>The Inbound Filter name can not be 'Allow All' or 'Deny All'.</MSG119>
+	<MSG120>The Client PIN Number you enterd is incorrect</MSG120>
+    <MSG121>"Reserved IP address for this Computer Name ("%s") is already set"</MSG121>
+	<MSG122>The list should NOT be empty when website filter mode select "ALLOW computers access to ONLY these sites".</MSG122>
+	<MSG123>The Confirmed Passphrase does not match the Passphrase.</MSG123>
+	<MSG124>Please choose one site to connect to.</MSG124>
+	<MSG125>Using WPA/TKIP Encryption will be disabled the WPS, Are you sure?</MSG125>
+	<MSG126>Please configure your WWAN settings. If you are unsure of the settings, please contact your Internet Service Provider (ISP).</MSG126>
+	<MSG127>The Internet Connection Type you selected is for 3G Internet connection. The USB settings will be changed from Shareport to 3G USB Adapter.</MSG127>
+	<MSG128>The Internet Connection Type you selected is not for 3G Internet connection. The USB settings will be changed from 3G USB Adapter to Shareport.</MSG128>
+	<MSG129>DHCP Server start IP address is conflicted with Router IP address.</MSG129>
+	<MSG130>DHCP Server end IP address is conflicted with Router IP address.</MSG130>
+	<MSG131>Do you want to bookmark "D-Link AP Web Management"?</MSG131>
+	<MSG132>Please open a new web browser to continue.</MSG132>
+ 	<MSG133>The legal characters for %s are letters, numbers, dot(.) and hyphen(-).</MSG133>
+ 	<MSG134>The selected WEP Key field cannot be blank.</MSG134>
+ 	<MSG135>The length of Key %s must be %s characters.</MSG135>
+	<MSG136>The RADIUS Server %s Shared Secret cannot be blank.</MSG136>
+	<MSG137>Key %s is invalid. The legal characters must be ASCII characters.</MSG137>
+	<MSG138>Dynamic DNS service is not enabled.</MSG138>
+	<MSG139>No update action. There is no WAN IP address.</MSG139>
+	<MSG140>Do you want to bookmark "D-Link Router Web Management"?</MSG140>
+	<MSG141>Please press CTRL+D to bookmark this page.</MSG141>
+	<MSG142>Open mode configuration is not secure.</MSG142>
+
+	<!-- ipv6 -->
+	<IPV6_MSG001>The %s can't allow enter multicast IP ( FFxx:0:0:0:0:0:0:2 or ffxx:0:0:0:0:0:0:2).</IPV6_MSG001>
+	<IPV6_MSG002>The 1st address of %s must be a hexadecimal.</IPV6_MSG002>
+	<IPV6_MSG003>The 2nd address of %s must be a hexadecimal.</IPV6_MSG003>
+	<IPV6_MSG004>The 3rd address of %s must be a hexadecimal.</IPV6_MSG004>
+	<IPV6_MSG005>The 4th address of %s must be a hexadecimal.</IPV6_MSG005>
+	<IPV6_MSG006>The 5th address of %s must be a hexadecimal.</IPV6_MSG006>
+	<IPV6_MSG007>The 6th address of %s must be a hexadecimal.</IPV6_MSG007>
+	<IPV6_MSG008>The 7th address of %s must be a hexadecimal.</IPV6_MSG008>
+	<IPV6_MSG009>The 8th address of %s must be a hexadecimal.</IPV6_MSG009>
+	<IPV6_MSG010>The %s allows double-colon only once.</IPV6_MSG010>
+	<IPV6_MSG011>The suffix of %s must be a hexadecimal.</IPV6_MSG011>
+	<IPV6_MSG012>The suffix of %s is not an invalid address.</IPV6_MSG012>
+	<IPV6_MSG013>The suffix of IPv6 Address Range(Start) more than the suffix of IPv6 Address Range(End).</IPV6_MSG013>
+	<IPV6_MSG014>LAN IPv6 Address should not be within the configured IPv6 Address Range.</IPV6_MSG014>
+	<IPV6_MSG015>The Subnet Prefix Length field cannot be blank.</IPV6_MSG015>
+	<IPV6_MSG016>Invalid Subnet Prefix Length.</IPV6_MSG016>
+	<IPV6_MSG017>The Subnet Prefix Length value range is %s ~ %s.</IPV6_MSG017>
+	<IPV6_MSG018>The subnet of %s must be a hexadecimal.</IPV6_MSG018>
+	<IPV6_MSG019>The subnet of %s is not an invalid address.</IPV6_MSG019>
+	<IPV6_MSG020>IPv6 PPPoE is share with IPv4 PPPoE. Please change IPv4 WAN protocol to PPPoE at first!</IPV6_MSG020>
+	<IPV6_MSG021>The length of 6rd IPv6 Prefix should be between 1 ~ 63.</IPV6_MSG021>
+	<IPV6_MSG022>Please change IPv4 wan protocol to DHCP mode first.</IPV6_MSG022>
+	<IPV6_MSG023>The length of Mask Length should be between %s ~ 32.</IPV6_MSG023>
+	<IPV6_MSG024>The range of B4 IPv4 address is from 192.0.0.2 to 192.0.0.7</IPV6_MSG024>
+	<IPV6_MSG025>The interface of Source cannot be as same as the interface of Destination.</IPV6_MSG025>
+	<IPV6_MSG026>The rule are already existing in the ipv6 firewall rule list.</IPV6_MSG026>
+	<IPV6_MSG027>Dest Port Start should not be greater than Dest Port End for Port Range.</IPV6_MSG027>
+	<IPV6_MSG028>IPv6 wan protocol is 6rd with DHCPv4 mode, please change it first.</IPV6_MSG028>
+	<IPV6_MSG029>IPv6 PPPoE is shared with IPv4 PPPoE. Please change IPv6 wan protocol first.</IPV6_MSG029>
+
+	<CMSG001>ERROR: The user name is error.</CMSG001>
+	<CMSG002>ERROR: The password is error.</CMSG002>
+	<CMSG003>Invalid user name or password, please try again.</CMSG003>
+	<CMSG004>Unable to login the device.</CMSG004>
+   	<CMSG005>Unable to start WPS PBC. Please try again.</CMSG005>
+   	<CMSG006>Unable to start WPS PIN. Please try again.</CMSG006>
+  	<CMSG007>Unable to upload file.</CMSG007>
+  	<CMSG008>Unable to upload configuration file due to system error.</CMSG008>
+  	<CMSG009>The chosen file is not a configuration file.</CMSG009>
+  	<CMSG010>The version of configuration file is not compatible.</CMSG010>
+  	<CMSG011>Unable to upgrade firmware due to system error.</CMSG011>
+  	<CMSG012>The chosen file is not a firmware file.</CMSG012>
+   	<CMSG013>The version of setting file is not compatible.</CMSG013>
+   	<CMSG014>Unable to upload language package due to system error.</CMSG014>
+  	<CMSG015>The chosen file is not a language package.</CMSG015>
+  	<CMSG016>The version of language package is not compatible.</CMSG016>
+   	<CMSG017>Ping %s successfully.</CMSG017>
+   	<CMSG018>Ping %s failed.</CMSG018>
+   	<CMSG019>%s is an unknown host.</CMSG019>
+   	<CMSG020>Unable to execute the ping request.</CMSG020>
+   	<CMSG021>Unable to update the Wizard Settings.</CMSG021>
+   	<CMSG022>The settings are saving and taking effect.</CMSG022>
+   	<CMSG023>Unable to save the data.</CMSG023>
+   	<CMSG024>Please enter the correct graphical authentication code.</CMSG024>
+   	<CMSG025>Unable to add or update a member.</CMSG025>
+</root>

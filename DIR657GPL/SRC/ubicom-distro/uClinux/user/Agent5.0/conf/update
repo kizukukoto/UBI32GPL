@@ -1,0 +1,4 @@
+#!/bin/sh
+tftp -r tr -l /sbin/tr -g 192.168.5.195
+tftp -r tr.xml -l /home/tr/conf/tr.xml -g 192.168.5.195
+cp /home/tr/conf/tr.xml /home/tr/conf/tr.xml.bak

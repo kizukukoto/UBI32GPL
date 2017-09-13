@@ -1,0 +1,11 @@
+<root>	
+	<special_ap>8</special_ap>
+	<virtual_server>8</virtual_server>	
+	<mac_addr_filter>8</mac_addr_filter>				
+	<website_filter>8</website_filter>	
+	<schedule>8</schedule>
+	<reserved_dhcp>8</reserved_dhcp>
+	<ipv6_routing>10</ipv6_routing>
+	<ipv6_firewall>20</ipv6_firewall>
+	<storage>10</storage>
+</root>

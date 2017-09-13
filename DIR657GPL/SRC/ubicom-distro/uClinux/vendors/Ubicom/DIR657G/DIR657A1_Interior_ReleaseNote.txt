@@ -1,0 +1,247 @@
+DIR-657A1(Linux version) Firmware Release Note
+
+svn co svn://172.21.49.143/UBICOM/IP8K/branch/ubicom-distro_SDK_2.0
+svn co svn://172.21.49.143/UBICOM/IP8K/trunk/ubicom-distro_SDK_2.0/uClinux
+
+Firmware Version: 1.01b15
+Firmware Date: 18, Jan, 2012
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x583482AC 
+SVN: 2046
+a. IPv6 : 1.17R_20111019
+b. branch to the latest(2170)
+c. uClinux base on v1.01b13(2046)
+d. Patch pure.c cmobasicapi.c nvram.default
+e. svn up -r 2170  wireless.asp setup_wizard.asp do_wps.asp wizard_wlan2.asp setup_wizard_tmp.asp adv_wps_setting.asp 
+e. svn up -r 2170 \uClinux\user\rc\wlan\Atheros\wlan.c
+
+Firmware Version: 1.01b14
+Firmware Date: 12, Jan, 2012
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x5839DDA0 
+SVN: 2046
+a. IPv6 : 1.17R_20111019
+b. branch to the latest(2139)
+c. uClinux base on v1.01b13(2046)
+d. user/httpd/pure.c patch pure.c_diff_r2046.txt
+e. svn up -r 2158 wireless.asp setup_wizard.asp do_wps.asp wizard_wlan2.asp setup_wizard_tmp.asp adv_wps_setting.asp 
+
+Firmware Version: 1.01b13
+Firmware Date: 08, Dec, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x5837D8F1 
+SVN: 2046
+IPv6 : 1.17R_20111019
+
+
+Firmware Version: 1.01b12
+Firmware Date: 06, Dec, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x5830AEB0 
+SVN: 2036
+IPv6 : 1.17R_20111019
+
+
+Firmware Version: 1.01b11beta
+Firmware Date: 02, Dec, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x58223E79 
+SVN: 2030
+IPv6 : 1.17R_20111019
+
+
+Firmware Version: 1.01b11
+Firmware Date: 23, Nov, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x581C96E5 
+SVN: 2015
+IPv6 : 1.17R_20111019
+
+
+Firmware Version: 1.01b10
+Firmware Date: 22, Nov, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x580DE998 
+SVN: 2013
+IPv6 : 1.17R_20111019
+
+
+Firmware Version: 1.01b09
+Firmware Date: 18, Nov, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x581E4CE7 
+SVN: 2006
+IPv6 : 1.17R_20111019
+
+Firmware Version: 1.01b08
+Firmware Date: 16, Nov, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x58205075
+SVN: 1998
+IPv6 : 1.17R_20111019
+
+Firmware Version: 1.01b07
+Firmware Date: 28, Oct, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57EC3332
+SVN: 1971
+
+Firmware Version: 1.01b06
+Firmware Date: 13, Oct, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57F6C675
+SVN: 1946
+
+Firmware Version: 1.01b05
+Firmware Date: 05, Oct, 2011
+Hardware: A1
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57D8C047
+SVN: 1930
+
+---------------------------------------------------------------------------------
+svn -r 805
+svn up -r 1698 vendors/sxuptp; \
+svn up -r 1809 vendors/ath_wlan_v730407; \
+svn up -r 1401 vendors/Ubicom_StreamEngine2; \
+svn up -r 947  linux-2.6.x/arch/ubicom32/AR8316/athrs16_phy.c; \
+svn up -r 1013 linux-2.6.x/arch/ubicom32/mach-common/AR8316/athrs16_phy.c; \
+svn up -r 959  linux-2.6.x/kernel/sysctl.c; \
+svn up -r 976  linux-2.6.x/fs/open.c; \
+svn up -r 1185 linux-2.6.x/fs/namei.c; \
+svn up -r 976  linux-2.6.x/include/asm-generic/fcntl.h; \
+svn up -r 1309 linux-2.6.x/net/ipv4/igmp.c; \
+svn up -r 1334 linux-2.6.x/drivers/net/ubi32_eth.c; \
+svn up -r 1525 linux-2.6.x/net/ipv4/tcp_ipv4.c; \
+svn up -r 1534 linux-2.6.x/include/linux/netfilter/nf_conntrack_rtsp.h; \
+svn up -r 1534 linux-2.6.x/include/linux/netfilter/netfilter_helpers.h; \
+svn up -r 1534 linux-2.6.x/include/linux/netfilter/netfilter_mime.h; \
+svn up -r 1534 linux-2.6.x/net/netfilter/Makefile; \
+svn up -r 1534 linux-2.6.x/net/netfilter/Kconfig; \
+svn up -r 1534 linux-2.6.x/net/netfilter/nf_conntrack_rtsp.c; \
+svn up -r 1534 linux-2.6.x/net/ipv4/netfilter/Kconfig; \
+svn up -r 1534 linux-2.6.x/net/ipv4/netfilter/Makefile; \
+svn up -r 1534 linux-2.6.x/net/ipv4/netfilter/nf_nat_rtsp.c; \
+svn up -r 1846 linux-2.6.x/net/ipv4/netfilter/ipt_PORTTRIGGER.c; \
+svn up -r 1846 linux-2.6.x/net/netfilter/nf_conntrack_core.c; \
+svn up -r 1167 u-boot/httpd/fsdata.c; \
+svn up -r 1559 Makefile; \
+svn up uClinux;
+
+
+Firmware: v1.01 Build: 04Beta
+Hardware: A1
+Date: 29, Sep 2011
+Firmware Version: ver1.01b04Beta
+Firmware Date:Thu, 29, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57D9487F
+SVN: svn805+sxuptp(r1698)+ath_wlan_v730407(r1809)+ath_sag(r1281)+Ubicom_StreamEngine2(r1401)
+        linux-2.6.x/arch/ubicom32/AR8316/athrs16_phy.c(r947)+linux-2.6.x/arch/ubicom32/mach-common/AR8316/athrs16_phy.c(r1013)+
+        linux-2.6.x/kernel/sysctl.c(r959)+linux-2.6.x/fs/open.c(r976)+linux-2.6.x/fs/namei.c(r1185)+
+        linux-2.6.x/include/asm-generic/fcntl.h(r976)
+        +linux-2.6.x/net/ipv4/igmp.c(r1309)+linux-2.6.x/drivers/net/ubi32_eth.c(r1334)
+        +linux-2.6.x/net/ipv4/tcp_ipv4.c(r1525)
+        +linux-2.6.x/include/linux/netfilter/nf_conntrack_rtsp.h(r1534)+linux-2.6.x/include/linux/netfilter/netfilter_helpers.h(r1534)
+        +linux-2.6.x/include/linux/netfilter/netfilter_mime.h(r1534)
+        +linux-2.6.x/net/netfilter/Makefile(r1534)+linux-2.6.x/net/netfilter/Kconfig(r1534)+linux-2.6.x/net/netfilter/nf_conntrack_rtsp.c(r1534)
+        +linux-2.6.x/net/ipv4/netfilter/Kconfig(1534)+linux-2.6.x/net/ipv4/netfilter/Makefile(r1534)+linux-2.6.x/net/ipv4/netfilter/nf_nat_rtsp.c(r1534)
+        +linux-2.6.x/net/ipv4/netfilter/ipt_PORTTRIGGER.c(r1846)+linux-2.6.x/net/netfilter/nf_conntrack_core.c(r1870)
+        +linux-2.6.x/include/net/netfilter/nf_conntrack.h(r1870)+linux-2.6.x/net/netfilter/nf_conntrack_netlink.c(r1870)
+        +u-boot/httpd/fsdata.c(r1167)
+        +Makefile(r1559)
+        uClinux svn1895
+
+Firmware: v1.01 Build: 04
+Hardware: A1
+Date: 22, Sep 2011
+Firmware Version: ver1.01b04
+Firmware Date:Thu, 22, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0019, Date: Thu, 22, Sep, 2011
+CheckSum: 0x57ED179B
+SVN: svn805+sxuptp(r1698)+ath_wlan_v730407(r1809)+ath_sag(r1281)+Ubicom_StreamEngine2(r1401)
+        linux-2.6.x/arch/ubicom32/AR8316/athrs16_phy.c(r947)+linux-2.6.x/arch/ubicom32/mach-common/AR8316/athrs16_phy.c(r1013)+
+        linux-2.6.x/kernel/sysctl.c(r959)+linux-2.6.x/fs/open.c(r976)+linux-2.6.x/fs/namei.c(r1185)+
+        linux-2.6.x/include/asm-generic/fcntl.h(r976)
+        +linux-2.6.x/net/ipv4/igmp.c(r1309)+linux-2.6.x/drivers/net/ubi32_eth.c(r1334)
+        +linux-2.6.x/net/ipv4/tcp_ipv4.c(r1525)
+        +linux-2.6.x/include/linux/netfilter/nf_conntrack_rtsp.h(r1534)+linux-2.6.x/include/linux/netfilter/netfilter_helpers.h(r1534)
+        +linux-2.6.x/include/linux/netfilter/netfilter_mime.h(r1534)
+        +linux-2.6.x/net/netfilter/Makefile(r1534)+linux-2.6.x/net/netfilter/Kconfig(r1534)+linux-2.6.x/net/netfilter/nf_conntrack_rtsp.c(r1534)
+        +linux-2.6.x/net/ipv4/netfilter/Kconfig(1534)+linux-2.6.x/net/ipv4/netfilter/Makefile(r1534)+linux-2.6.x/net/ipv4/netfilter/nf_nat_rtsp.c(r1534)
+        +linux-2.6.x/net/ipv4/netfilter/ipt_PORTTRIGGER.c(r1846)+linux-2.6.x/net/netfilter/nf_conntrack_core.c(r1870)
+        +linux-2.6.x/include/net/netfilter/nf_conntrack.h(r1870)+linux-2.6.x/net/netfilter/nf_conntrack_netlink.c(r1870)
+        +u-boot/httpd/fsdata.c(r1167)
+        +Makefile(r1559)
+        uClinux svn1880
+
+Firmware: v1.01 Build: 03Beta
+Hardware: A1
+Date: 14, Sep 2011
+Firmware Version: ver1.01b03Beta
+Firmware Date:Wed, 14, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0018, Date: Fri, 09, Sep, 2011
+CheckSum: 0x57E61EB6
+SVN: svn805+sxuptp(r1698)+ath_wlan_v730407(r1809)+ath_sag(r1281)+Ubicom_StreamEngine2(r1401)
+        linux-2.6.x/arch/ubicom32/AR8316/athrs16_phy.c(r947)+linux-2.6.x/arch/ubicom32/mach-common/AR8316/athrs16_phy.c(r1013)+
+        linux-2.6.x/kernel/sysctl.c(r959)+linux-2.6.x/fs/open.c(r976)+linux-2.6.x/fs/namei.c(r1185)+
+        linux-2.6.x/include/asm-generic/fcntl.h(r976)
+        +linux-2.6.x/net/ipv4/igmp.c(r1309)+linux-2.6.x/drivers/net/ubi32_eth.c(r1334)
+        +linux-2.6.x/net/ipv4/tcp_ipv4.c(r1525)
+        +linux-2.6.x/include/linux/netfilter/nf_conntrack_rtsp.h(r1534)+linux-2.6.x/include/linux/netfilter/netfilter_helpers.h(r1534)
+        +linux-2.6.x/include/linux/netfilter/netfilter_mime.h(r1534)
+        +linux-2.6.x/net/netfilter/Makefile(r1534)+linux-2.6.x/net/netfilter/Kconfig(r1534)+linux-2.6.x/net/netfilter/nf_conntrack_rtsp.c(r1534)
+        +linux-2.6.x/net/ipv4/netfilter/Kconfig(1534)+linux-2.6.x/net/ipv4/netfilter/Makefile(r1534)+linux-2.6.x/net/ipv4/netfilter/nf_nat_rtsp.c(r1534)
+        +linux-2.6.x/net/ipv4/netfilter/ipt_PORTTRIGGER.c(r1846)+linux-2.6.x/net/netfilter/nf_conntrack_core.c(r1846)
+        +u-boot/httpd/fsdata.c(r1167)
+        +Makefile(r1559)
+        uClinux svn1853
+
+Firmware: v1.01 Build: 03
+Hardware: A1
+Date: 09, Sep 2011
+Firmware Version: ver1.01b03
+Firmware Date:Fri, 09, Sep, 2011
+KERNEL: 2.6.28
+SDK: 2.0, Build: 0018, Date: Fri, 09, Sep, 2011
+CheckSum: 0x57ED0698
+SVN: svn805+sxuptp(r1698)+ath_wlan_v730407(r1809)+ath_sag(r1281)+Ubicom_StreamEngine2(r1401)
+        linux-2.6.x/arch/ubicom32/AR8316/athrs16_phy.c(r947)+linux-2.6.x/arch/ubicom32/mach-common/AR8316/athrs16_phy.c(r1013)+
+        linux-2.6.x/kernel/sysctl.c(r959)+linux-2.6.x/fs/open.c(r976)+linux-2.6.x/fs/namei.c(r1185)+
+        linux-2.6.x/include/asm-generic/fcntl.h(r976)
+        +linux-2.6.x/net/ipv4/igmp.c(r1309)+linux-2.6.x/drivers/net/ubi32_eth.c(r1334)
+        +linux-2.6.x/net/ipv4/tcp_ipv4.c(r1525)
+        +linux-2.6.x/include/linux/netfilter/nf_conntrack_rtsp.h(r1534)+linux-2.6.x/include/linux/netfilter/netfilter_helpers.h(r1534)
+        +linux-2.6.x/include/linux/netfilter/netfilter_mime.h(r1534)
+        +linux-2.6.x/net/netfilter/Makefile(r1534)+linux-2.6.x/net/netfilter/Kconfig(r1534)+linux-2.6.x/net/netfilter/nf_conntrack_rtsp.c(r1534)
+        +linux-2.6.x/net/ipv4/netfilter/Kconfig(1534)+linux-2.6.x/net/ipv4/netfilter/Makefile(r1534)+linux-2.6.x/net/ipv4/netfilter/nf_nat_rtsp.c(r1534)
+        +linux-2.6.x/net/ipv4/netfilter/ipt_PORTTRIGGER.c(r1846)+linux-2.6.x/net/netfilter/nf_conntrack_core.c(r1846)
+        +u-boot/httpd/fsdata.c(r1167)
+        +Makefile(r1559)
+        uClinux svn1852

@@ -1,0 +1,21 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+. /etc/rgw_config
+
+#
+# Stop StreamEngine
+#
+echo Stopping StreamEngine Scheduler on $WANINTERFACE
+tc qdisc del dev $WANINTERFACE root
+tc qdisc show dev $WANINTERFACE
+
+#
+# Wait for the module to stop
+#
+until [  ! -e /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_start_estimation ]; do
+	sleep 1
+	echo -n .
+done
+
+rmmod sch_ubicom_streamengine 2> /dev/null

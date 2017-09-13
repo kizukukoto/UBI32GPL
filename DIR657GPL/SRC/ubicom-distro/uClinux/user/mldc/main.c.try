@@ -1,0 +1,742 @@
+
+
+#include "mld.h"
+
+
+
+struct ifrx  aifr[MAX_IF_NUM];
+struct mldgroupx *pgmg;
+       int  ifcnt;
+       int  sock0, sock1;
+       char  recvbuf[1600];
+
+int opensock(void);
+int loop(void);
+int ismld(struct sockaddr_ll *psa, char *data, int dlen);
+int test(struct sockaddr_ll* psa, char *data, int dlen);
+
+//#include <linux/mroute6.h>
+
+#define dprintf printf
+
+#define MRT6_BASE	200
+#define MRT6_INIT	(MRT6_BASE)	/* Activate the kernel mroute code 	*/
+#define MRT6_DONE	(MRT6_BASE+1)	/* Shutdown the kernel mroute		*/
+#define MRT6_ADD_MIF	(MRT6_BASE+2)	/* Add a virtual interface		*/
+#define MRT6_DEL_MIF	(MRT6_BASE+3)	/* Delete a virtual interface		*/
+#define MRT6_ADD_MFC	(MRT6_BASE+4)	/* Add a multicast forwarding entry	*/
+#define MRT6_DEL_MFC	(MRT6_BASE+5)	/* Delete a multicast forwarding entry	*/
+#define MRT6_VERSION	(MRT6_BASE+6)	/* Get the kernel multicast version	*/
+#define MRT6_ASSERT	(MRT6_BASE+7)	/* Activate PIM assert mode		*/
+#define MRT6_PIM	(MRT6_BASE+8)	/* enable PIM code	*/
+
+
+#define MIFF_REGISTER	0x1	/* register vif	*/
+
+typedef unsigned short mifi_t;
+
+struct mif6ctl {
+	mifi_t	mif6c_mifi;		/* Index of MIF */
+	unsigned char mif6c_flags;	/* MIFF_ flags */
+	unsigned char vifc_threshold;	/* ttl limit */
+	u_short	 mif6c_pifi;		/* the index of the physical IF */
+	unsigned int vifc_rate_limit;	/* Rate limiter values (NI) */
+};
+
+
+#ifndef IF_SETSIZE
+#define IF_SETSIZE	256
+#endif
+
+typedef	__u32		if_mask;
+#define NIFBITS (sizeof(if_mask) * 8)        /* bits per mask */
+
+#if !defined(__KERNEL__) && !defined(DIV_ROUND_UP)
+#define	DIV_ROUND_UP(x,y)	(((x) + ((y) - 1)) / (y))
+#endif
+
+typedef struct if_set {
+	if_mask ifs_bits[DIV_ROUND_UP(IF_SETSIZE, NIFBITS)];
+} if_set;
+
+struct mf6cctl
+{
+	struct sockaddr_in6 mf6cc_origin;		/* Origin of mcast	*/
+	struct sockaddr_in6 mf6cc_mcastgrp;		/* Group in question	*/
+	mifi_t	mf6cc_parent;			/* Where it arrived	*/
+	struct if_set mf6cc_ifset;		/* Where it is going */
+};
+
+
+#define IF_SET(n, p)    ((p)->ifs_bits[(n)/NIFBITS] |= (1 << ((n) % NIFBITS)))
+#include <arpa/inet.h>
+
+#if 1
+struct ipv6_mreq_kern {
+	/* IPv6 multicast address of group */
+	struct in6_addr ipv6mr_multiaddr;
+
+	/* local IPv6 address of interface */
+	int		ipv6mr_ifindex;
+};
+#endif
+
+int mrouter_s6;
+
+
+static void DEBUG_PRINTHEX(char *s,int len)
+{
+	int i;
+	char *c;
+	c = s;
+	for(i=0;i<len;i++) {
+		if( (i != 0) && ((i % 16)== 0 )) 
+			dprintf("\n");
+			
+		dprintf("%02x ",*c++);
+	}
+	dprintf("\n");
+}
+
+
+
+struct mld2_grec {
+	__u8		grec_type;
+	__u8		grec_auxwords;
+	__be16		grec_nsrcs;
+	struct in6_addr	grec_mca;
+	struct in6_addr	grec_src[0];
+};
+
+struct mld2_report {
+	__u8	type;
+	__u8	resv1;
+	__sum16	csum;
+	__be16	resv2;
+	__be16	ngrec;
+	struct mld2_grec grec[0];
+};
+
+#define ICMPV6_MGM_REPORT       	131
+#define ICMPV6_MGM_REDUCTION    	132
+
+
+void add_join_leave(int join,int s,int interface,char *ip)
+{
+	long ret;
+	int i;
+	long cmd;
+	struct ipv6_mreq_kern mreq;
+	mreq.ipv6mr_ifindex = interface;
+
+	for(i=0;i<16;i++) 
+		mreq.ipv6mr_multiaddr.in6_u.u6_addr8[i] = ip[i];
+
+	if( join)
+		cmd = IPV6_ADD_MEMBERSHIP;
+	else
+		cmd = IPV6_DROP_MEMBERSHIP;
+		
+	ret = setsockopt(s, IPPROTO_IPV6, cmd,
+           (void *)&mreq, sizeof(mreq));
+
+	dprintf("ret=%d\n",ret);
+	
+}
+
+
+void Send_MLD_V2_Query(void)
+{
+	long ret;
+
+	struct mld2_report *report;
+
+	char query[24];	
+
+	struct sockaddr_in6 dest_addr; //set up dest address info
+
+	memset(&dest_addr,0,sizeof(dest_addr));
+	dest_addr.sin6_family = AF_INET6;
+	inet_pton (AF_INET6,"ff02::1",  &dest_addr.sin6_addr);
+
+
+	memset(query,0,24);
+
+	report = (struct mld2_report *) query;
+	
+	report->type = 130;
+
+  ret = sendto(mrouter_s6, &query, 
+               sizeof(query) , 0,
+               (struct sockaddr *)&dest_addr, sizeof(dest_addr));
+
+	dprintf("ret=%d\n",ret);
+
+	
+}
+
+void my_alarm_handler(int a)
+{
+	Send_MLD_V2_Query();
+	alarm(10);
+	        
+}
+
+    int phy_br0;
+            
+    int phy_eth;
+
+
+void Init_MLD_Query(void)
+{
+   signal( SIGALRM, my_alarm_handler );
+   alarm(1);	
+}
+
+
+void Do_MLD(void)
+{
+
+
+for(;;) {
+	
+	int status;
+	
+	char str[INET_ADDRSTRLEN];
+	struct mld2_report	*report;
+	struct sockaddr_in6	dst;
+	
+	struct iovec iov;
+	struct msghdr msg = {
+		.msg_name = &dst,
+		.msg_namelen = sizeof(dst),
+		.msg_iov = &iov,
+		.msg_iovlen = 1,
+	};
+	static char buf[16384];
+	iov.iov_base = buf;
+//		struct nlmsghdr *h;
+
+		iov.iov_len = sizeof(buf);
+		
+		status = recvmsg(mrouter_s6, &msg, 0);
+	
+		dprintf("%d\n",status);
+		
+		if( status <= 0) 
+			continue;
+
+		inet_ntop(AF_INET6, &(dst.sin6_addr), str, INET6_ADDRSTRLEN);
+
+//dprintf("6\n");	
+	
+//		dprintf("[%s]%d\n",str,len);
+//		DEBUG_PRINTHEX(recvbuf,len);
+		
+		report = (struct mld2_report *) buf;
+
+//#define ICMPV6_MGM_REPORT       	131
+//#define ICMPV6_MGM_REDUCTION    	132
+
+		if( report->type == ICMPV6_MGM_REPORT ||
+			  report->type == ICMPV6_MGM_REDUCTION ) { 		
+			char *group;
+
+			dprintf("[%s]%d\n",str,status);
+
+			dprintf("report:%d ",report->type);
+			group = (char *) report->grec;
+DEBUG_PRINTHEX(group,16);
+			if( report->type == ICMPV6_MGM_REPORT ) {
+				//join
+//				add_join_leave(1,mrouter_s6,phy_br0,group);
+				add_join_leave(1,mrouter_s6,phy_eth,group);
+			}
+			else {
+				// leave
+//				add_join_leave(0,mrouter_s6,phy_br0,group);
+				add_join_leave(0,mrouter_s6,phy_eth,group);
+			}
+			
+		
+		}
+
+	
+	//sleep(1);
+}
+	
+}
+
+
+void mrt_6(void)
+{
+	
+mrouter_s6 = socket(AF_INET6, SOCK_RAW, IPPROTO_ICMPV6);
+
+/* IPv6 */
+int v = 1;        /* 1 to enable, or 0 to disable */
+setsockopt(mrouter_s6, IPPROTO_IPV6, MRT6_INIT, (void *)&v, sizeof(v));
+
+
+	  int Sock;
+            struct ifreq IfReq;
+            
+long ret;            
+
+    if ( (Sock = socket( AF_INET, SOCK_DGRAM, 0 )) < 0 ) {
+     //   log_msg( LOG_ERR, errno, "RAW socket open" );
+    }
+
+		memset(&IfReq,0,sizeof(IfReq));
+            memcpy( IfReq.ifr_name, "br0", 3 );
+
+
+            // Get the physical index of the Interface
+            if (ioctl(Sock, SIOCGIFINDEX, &IfReq ) < 0) {
+            //    log_msg(LOG_ERR, errno, "ioctl SIOCGIFINDEX for %s", IfReq.ifr_name);
+              }
+
+	dprintf("%d\n",IfReq.ifr_ifindex);
+
+phy_br0 = IfReq.ifr_ifindex;
+
+
+		memset(&IfReq,0,sizeof(IfReq));
+            memcpy( IfReq.ifr_name, "eth0.1", 6 );
+
+
+            // Get the physical index of the Interface
+            if (ioctl(Sock, SIOCGIFINDEX, &IfReq ) < 0) {
+            //    log_msg(LOG_ERR, errno, "ioctl SIOCGIFINDEX for %s", IfReq.ifr_name);
+              }
+
+	dprintf("%d\n",IfReq.ifr_ifindex);
+phy_eth = IfReq.ifr_ifindex;
+
+close(Sock);
+
+mifi_t mifi = 1;
+setsockopt(mrouter_s6, IPPROTO_IPV6, MRT6_DEL_MIF, (void *)&mifi,
+           sizeof(mifi));
+mifi = 3;
+setsockopt(mrouter_s6, IPPROTO_IPV6, MRT6_DEL_MIF, (void *)&mifi,
+           sizeof(mifi));
+
+
+struct mif6ctl mc;
+memset(&mc, 0, sizeof(mc));
+/* Assign all mif6ctl fields as appropriate */
+mc.mif6c_mifi = 1; //mif_index;
+mc.mif6c_flags = 0; //MIFF_REGISTER; //mif_flags;
+mc.mif6c_pifi = phy_br0; //pif_index;
+ret = setsockopt(mrouter_s6, IPPROTO_IPV6, MRT6_ADD_MIF, (void *)&mc,
+           sizeof(mc));
+	dprintf("ret=%d\n",ret);
+
+
+memset(&mc, 0, sizeof(mc));
+/* Assign all mif6ctl fields as appropriate */
+mc.mif6c_mifi = 3; //mif_index;
+mc.mif6c_flags = 0; //MIFF_REGISTER; //mif_flags;
+mc.mif6c_pifi = phy_eth; //pif_index;
+ret = setsockopt(mrouter_s6, IPPROTO_IPV6, MRT6_ADD_MIF, (void *)&mc,
+           sizeof(mc));
+
+	dprintf("ret=%d\n",ret);
+
+#if 0
+{
+	struct sockaddr_in6 source_addr;
+	struct sockaddr_in6 group_addr;
+
+//	inet_pton(AF_INET6, "fe80::216:17ff:fe52:c6a", &(source_addr.sin6_addr));
+	inet_pton(AF_INET6, "2607:fa48:10:102:ad91:75cc:2a59:2247", &(source_addr.sin6_addr));
+	inet_pton(AF_INET6, "2607:fa48:10:102:810e:91d9:40ca:fc62", &(source_addr.sin6_addr));
+	inet_pton(AF_INET6, "2607:fa48:10:102:810e:91d8:40ca:fc62", &(source_addr.sin6_addr));
+	inet_pton(AF_INET6, "2607:fa48:10:102:6871:5db3:d920:c446", &(source_addr.sin6_addr));
+//	inet_pton(AF_INET6, "2607:fa48:10:102:ad91:75cc:2a59:1111", &(source_addr.sin6_addr));
+	inet_pton(AF_INET6, "ff3e::123", &(group_addr.sin6_addr));
+
+
+	
+	int i;
+	int maxvifs = 255;
+struct mf6cctl mc;
+
+//struct mf6cctl mc;
+     memset(&mc, 0, sizeof(mc));
+     memcpy(&mc.mf6cc_origin, &source_addr, sizeof(mc.mf6cc_origin));
+     memcpy(&mc.mf6cc_mcastgrp, &group_addr, sizeof(mc.mf6cc_mcastgrp));
+     ret = setsockopt(mrouter_s6, IPPROTO_IPV6, MRT6_DEL_MFC,
+                (void *)&mc, sizeof(mc));
+
+	dprintf("ret=%d\n",ret);
+
+
+
+#if 1
+memset(&mc, 0, sizeof(mc));
+memcpy(&mc.mf6cc_origin, &source_addr, sizeof(mc.mf6cc_origin));
+memcpy(&mc.mf6cc_mcastgrp, &group_addr, sizeof(mc.mf6cc_mcastgrp));
+mc.mf6cc_parent = 3; //iif_index;
+     for (i = 0; i < maxvifs; i++)
+//         if (oifs_ttl[i] > 0)
+             IF_SET(i, &mc.mf6cc_ifset);
+ret = setsockopt(mrouter_s6, IPPROTO_IPV6, MRT6_ADD_MFC,
+           (void *)&mc, sizeof(mc));
+	dprintf("ret=%d\n",ret);
+#endif	
+	
+}
+#endif	
+
+
+	system("echo 1 > /proc/sys/net/ipv6/conf/all/mc_forwarding");
+
+// try
+//close(mrouter_s6);
+
+#if 0
+  /* If necessary, filter all ICMPv6 messages */
+          struct icmp6_filter filter;
+          ICMP6_FILTER_SETBLOCKALL(&filter);
+          setsockopt(mrouter_s6, IPPROTO_ICMPV6, ICMP6_FILTER, (void *)&filter,
+                     sizeof(filter));
+#endif
+
+
+
+
+
+
+
+#if 0
+for(;;) {
+	
+	//struct sockaddr  sa;
+	struct sockaddr_in6 sa;
+	
+	int len;
+	char str[INET_ADDRSTRLEN];
+	struct mld2_report	*report;
+	
+	socklen_t  salen=sizeof(sa);
+//dprintf("4\n");	
+
+	int     ls, ism=0;
+
+
+int MRouterFD;
+    int     MaxFD, Rt, secs;
+    fd_set  ReadFDS;
+    int     dummy = 0;
+    struct  timeval  tv; 
+    // The timeout is a pointer in order to set it to NULL if nessecary.
+    struct  timeval  *timeout = &tv;
+
+    timeout->tv_usec = 0;
+    timeout->tv_sec = 0; //secs;
+
+timeout = NULL;
+MRouterFD = mrouter_s6;
+        // Prepare for select.
+        MaxFD = MRouterFD;
+
+        FD_ZERO( &ReadFDS );
+        FD_SET( MRouterFD, &ReadFDS );
+
+        // wait for input
+        Rt = select( MaxFD +1, &ReadFDS, NULL, NULL, timeout );
+
+        // log and ignore failures
+        if( Rt < 0 ) {
+           // log_msg( LOG_WARNING, errno, "select() failure" );
+           dprintf( "select() failure" );
+           
+            continue;
+        }
+        else if( Rt > 0 ) {
+
+            // Read IGMP request, and handle it...
+            if( FD_ISSET( MRouterFD, &ReadFDS ) ) {
+            }
+            else {
+            	continue;
+            }
+
+				}
+				else {			
+						continue;
+				}
+
+#if 0
+	fd_set  fdr, fdw;
+	ls = mrouter_s6;
+
+	FD_ZERO(&fdr);
+	FD_ZERO(&fdw);
+	FD_SET(mrouter_s6, &fdr);
+//	FD_SET(sock1, &fdr);
+
+//	while (1) {
+//		Smldqry(aifr[0].ifidx, 0, 0); // test mld query
+		if (0>=select(ls+1, &fdr, NULL, NULL, NULL)) {
+			continue;
+		}
+
+		if (FD_ISSET(mrouter_s6, &fdr)) {
+		}
+		else {
+			continue;
+		}
+#endif
+
+
+//		len = recvfrom(mrouter_s6, recvbuf, sizeof(recvbuf), 0, (struct sockaddr*)&sa, (socklen_t*)&salen);
+		len = recv(mrouter_s6, recvbuf, sizeof(recvbuf), 0);
+//sleep(1);
+//continue;		
+//dprintf("5\n");	
+		
+		inet_ntop(AF_INET6, &(sa.sin6_addr), str, INET6_ADDRSTRLEN);
+
+//dprintf("6\n");	
+	
+//		dprintf("[%s]%d\n",str,len);
+//		DEBUG_PRINTHEX(recvbuf,len);
+		
+		report = (struct mld2_report *) recvbuf;
+
+//#define ICMPV6_MGM_REPORT       	131
+//#define ICMPV6_MGM_REDUCTION    	132
+
+		if( report->type == ICMPV6_MGM_REPORT ||
+			  report->type == ICMPV6_MGM_REDUCTION ) { 		
+			char *group;
+
+			dprintf("[%s]%d\n",str,len);
+
+			dprintf("report:%d ",report->type);
+			group = (char *) report->grec;
+DEBUG_PRINTHEX(group,16);
+			if( report->type == ICMPV6_MGM_REPORT ) {
+				//join
+//				add_join_leave(1,mrouter_s6,phy_br0,group);
+				add_join_leave(1,mrouter_s6,phy_eth,group);
+			}
+			else {
+				// leave
+//				add_join_leave(0,mrouter_s6,phy_br0,group);
+				add_join_leave(0,mrouter_s6,phy_eth,group);
+			}
+			
+		
+		}
+		
+}
+#else
+
+
+Init_MLD_Query();
+
+Do_MLD();
+
+#endif
+
+}
+
+
+
+
+int main1(int argc, char **argv) {
+
+//int i;
+	mrt_6();
+
+dprintf("--1\n");
+	for(;;) {
+		sleep(1);
+	}	
+dprintf("--2\n");
+
+
+	return 0;
+}
+
+
+int main2(int argc, char **argv) {
+	int ret=0;
+
+	printf("Enter mldc, ==== argc=%d, argv[0]=%s, argv[1]=%s, argv[2]=%s  ====\n", argc, argv[0], argv[1], argv[2]);
+	if (3!=argc) {
+		printf("usage: mldc [lan-if] [wan-if] &\n");
+		return -1;
+	}
+
+	memset((void*)aifr, 0, sizeof(aifr));
+	ifinit(argv[1], argv[2]);
+
+	ret = opensock();
+	if (-1==ret) {
+		return -1;
+	}
+
+	loop();
+
+	return 0;
+}
+
+int main(int argc, char **argv) {
+	
+	if( argc > 1) {
+		if( strcmp(argv[1],"-z")==0) {
+			main1(argc,argv);
+			return 0;
+		}
+	}
+
+	main2(argc,argv);
+
+	return 0;	
+}
+
+
+int opensock(void) {
+	int  ret=0, val=256*1024;
+
+	sock0 = socket(PF_PACKET, SOCK_DGRAM, htons(ETH_P_IPV6));
+	if (-1==sock0) {
+		return -1;
+	}
+
+	ret = setsockopt(sock0, SOL_SOCKET, SO_RCVBUF, &val, sizeof(val));
+	if (0!=ret) {
+		close(sock0);
+		return -1;
+	}
+
+	sock1 = socket(PF_PACKET, SOCK_DGRAM, htons(ETH_P_IPV6));
+	if (-1==sock1) {
+		close(sock0);
+		return -1;
+	}
+
+	return 0;
+}
+
+
+int loop() {
+	int     len=0, ls, ism=0;
+	fd_set  fdr, fdw;
+	struct sockaddr_ll  sa;
+	socklen_t  salen=sizeof(sa);
+
+//	ls = (sock0>sock1)?sock0:sock1;
+	ls = sock0;
+	memset(recvbuf, 0, sizeof(recvbuf));
+
+	FD_ZERO(&fdr);
+	FD_ZERO(&fdw);
+	FD_SET(sock0, &fdr);
+//	FD_SET(sock1, &fdr);
+
+	while (1) {
+//		Smldqry(aifr[0].ifidx, 0, 0); // test mld query
+		if (0>=select(ls+1, &fdr, NULL, NULL, NULL)) {
+			continue;
+		}
+
+		if (FD_ISSET(sock0, &fdr)) {
+			struct ip6_hdr *ph6;
+
+			memset(&sa, 0, sizeof(sa));
+			len = recvfrom(sock0, recvbuf, sizeof(recvbuf), 0, (struct sockaddr*)&sa, (socklen_t*)&salen);
+			if (0>=len) {
+				continue;
+			}
+
+			ph6 = (struct ip6_hdr*)recvbuf;
+
+			// useless pkt (ucast, NS.NA.RS.RA.Redirect, ...)
+			if (  (htons(ETH_P_IPV6)!=sa.sll_protocol)
+			   || (PACKET_OUTGOING==sa.sll_pkttype) ) {
+				continue;
+			}
+
+			if (!IN6_IS_ADDR_MULTICAST(&(ph6->ip6_dst))) {
+				continue;
+			}
+
+			if (  IN6_IS_ADDR_UNSPECIFIED(&(ph6->ip6_src))
+			   || IN6_IS_ADDR_MULTICAST(&(ph6->ip6_src)) ) {
+				continue;
+			}
+
+			if (IN6_IS_ADDR_LINKLOCAL(&(ph6->ip6_src))) {
+				//check ismld here
+				ism = ismld(&sa, recvbuf, len);
+				continue;
+			}
+
+			if (3>=(ph6->ip6_dst.s6_addr[1]&0xf)) {
+				continue;
+			}
+
+			if (0==(ph6->ip6_hlim)--) {
+				continue;
+			}
+
+			if (0<gpcnt)
+				test(&sa, recvbuf, len);
+
+		}
+	}
+	close(sock0);
+	close(sock1);
+	return 0;
+}
+
+
+int test( struct sockaddr_ll *psa,
+                 char        *data,
+                 int          dlen)
+{
+	int ret=0, oldifidx=psa->sll_ifindex;
+	struct ip6_hdr *ph6=(struct ip6_hdr*)data;
+	struct mldgroupx *p=0;
+	int sd=0;
+
+	if (1!=findgp((struct in6_addr*)&(ph6->ip6_dst), 0, &p)) {
+		return -1;
+	}
+
+	if (!(p->ifx->isquerier)) {
+		return -1;
+	}
+
+	if (-1==chk_hbhopt(data, dlen)) {
+		return -1;
+	}
+
+	if (-1==(sd=socket(PF_PACKET, SOCK_DGRAM, htons(ETH_P_IPV6)))) {
+		return -1;
+	}
+
+	*((uint16_t*)&(psa->sll_addr[0])) = 0x3333;
+	memcpy(psa->sll_addr+2, ph6->ip6_dst.s6_addr+12, 4);
+
+	psa->sll_ifindex = p->ifx->ifidx;
+
+	if (0>=(ret=sendto(sd, (const void*)data, dlen, 0, (const struct sockaddr*)psa, (socklen_t)sizeof(struct sockaddr_ll)))) {
+		if (EMSGSIZE==errno) {
+			int mtu=0;
+			if (-1!=(mtu=getmtu(p->ifx->name)))
+				sendd2big(data, dlen, mtu); //send too big
+		}
+		close(sd);
+		return -1;
+	}
+
+	close(sd);
+	return 0;
+}

@@ -1,0 +1,22 @@
+
+include makefile.soc.linux.xscale.mak
+
+
+all: devlib client 
+#	$(CC) $(LDFLAGS) $(BIN_LDFLAGS) -o $@ $(wildcard client/$(OUTPUT_DIR)/*.o)
+
+devlib: 
+	$(MAKE) -C ./devlib -f makefile.soc.linux.xscale dirs
+	$(MAKE) -C ./devlib -f makefile.soc.linux.xscale
+
+client:
+	$(MAKE) -C ./client -f makefile.soc.linux.xscale dirs
+	$(MAKE) -C ./client -f makefile.soc.linux.xscale  
+
+clean:
+	$(MAKE) -C ./devlib -f makefile.soc.linux.xscale clean
+	$(MAKE) -C ./client -f makefile.soc.linux.xscale clean
+
+.PHONY: all createini devlib client clean 
+
+

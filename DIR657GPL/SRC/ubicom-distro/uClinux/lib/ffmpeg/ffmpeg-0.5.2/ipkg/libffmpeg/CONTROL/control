@@ -1,0 +1,11 @@
+Package: libffmpeg
+Version: 0.5.2-4
+Depends: libpthread, zlib
+Provides: 
+Source: package/ffmpeg
+Section: libs
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ubicom32
+Installed-Size: 505948
+Description:  FFmpeg libraries

@@ -1,0 +1,56 @@
+Note & Install & Build
+===============
+Note:
+  1. DIR657A1_GPL101.tar.gz include toolchain source code. 
+
+Environment: 
+	1. HostOS: Fedora Core 8 full installation.
+Install:
+	1. Building the image.
+		(1). Copy the DIR657A1_GPL101.tar.gz into /home/trunk directory
+		     use following commands.
+			~#tar -zxvf DIR657A1_GPL101.tar.gz
+		(2). You will get "ubicom-distro" directory.
+			~#cd /home/trunk/ubicom-distro	
+			~#make distclean
+		(3)~#make menuconfig
+  x x --- ******** General settings **********                                                                                                         x x
+  x x     Distro (uClinux)  --->                                                                                                                       x x
+  x x     Root file system (initramfs)  --->                                                                                                           x x
+  x x [*] Run distro menuconfig                                                                                                                        x x
+  x x --- ******** Upgrade Identity settings **********                                                                                                x x
+  x x (Unknown - BOARD) Application Identity String (up to 31 chars)                                                                                   x x
+  x x --- ******** Bootloader settings **********                                                                                                      x x
+  x x     Board (IP7160DIR657Board_I.brd)  --->                                                                                                        x x
+  x x     LPJ (ultra7k.lpj)  --->                                                                                                                      x x
+  x x [*] Use pre-build ultra binaries                                                                                                                 x x
+  x x [ ] Enable Profiler                                                                                                                              x x
+  x x [*] Enable U-Boot                                                                                                                                x x
+  x x ---                                                                                                                                              x x
+  x x     Reset to defaults                                                                                                                            x x
+  x x     Load an Alternate Configuration File                                                                                                         x x
+  x x     Save Configuration to an Alternate File    
+          --please select <Exit>.
+          
+          Do you wish to save your new Ubicom Distro configrartion?
+          --please slect the <Yes>.
+
+       b.uClinux Distribution Configuration:
+            Vendor/Product Selection ----> 
+         ---Selection the Vendor you wish to target
+            Vendor(Ubicom)-->Ubicom
+         ---Selection the Product yor wish to target
+            products(DIR657G)-->DIR657G
+         
+         --->please select <Exit>.
+         
+         Do you wish to save your new kernel configrartion?
+          --please slect the <Yes>.
+         
+         than if it shows "Process anyway? (N/y/?)", please key the 'enter'.
+         
+		(4)~#make
+		(5). After make successfully, you will get the image file "DIR-657_upgrade.bin"
+		     in "ubicom-distro/bin"
+	2. Update the new firmware by web interface provided by device.
+	3. You got your specific image now.

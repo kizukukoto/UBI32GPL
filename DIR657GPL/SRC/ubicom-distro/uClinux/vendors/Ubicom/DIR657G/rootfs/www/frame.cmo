@@ -1,0 +1,5 @@
+var CMOm17n_lang="<% CmoGetCfg("lingual","none"); %>";
+var CMOmodel_name="<% CmoGetCfg("model_number","none"); %>";
+var CMOhw_version="<% CmoGetStatus("hw_version"); %>";
+var CMOversion="<% CmoGetStatus("version"); %>";
+var CMOwlan0_mode="<% CmoGetCfg("wlan0_mode","none");%>";

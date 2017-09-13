@@ -1,0 +1,678 @@
+object TBoardNode
+  Name = 'IP7160DIR657IBoard'
+  Description = 'IP7160 Router Evaluation Board.'
+  PackageDependencies.Strings = (
+    'IPETHERNETTIO'
+    'IPPCITIO'
+    'IPRESETOUTPUT'
+    'IPUSBTIO')
+  DefineName = 'Board'
+  FileName = 
+    'Z:\home\twu\Desktop\Project\ubicom-distro\ultra\boards\IP7160DIR' +
+    '657Board_I.brd'
+  object TStringNode
+    Name = 'Board file name'
+    Description = 'Name of the board description file.'
+    DefineName = 'BRD_FILE_NAME'
+    ConfigType = kNone
+    Value = 'IP7160DIR657Board_I.brd'
+  end
+  object TExpressionNode
+    Name = 'Board Name'
+    Description = 'Board name'
+    DefineName = 'BRD_BOARD_NAME'
+    ConfigType = kNone
+    OverrideDefine = 'AP_BOARD_NAME'
+    Value = 'IP7160_DIR657_I_Board'
+  end
+  object TStringNode
+    Name = 'Board Revision'
+    Description = 'Board revision'
+    DefineName = 'BRD_BOARD_REVISION'
+    ConfigType = kNone
+    OverrideDefine = 'AP_BOARD_REVISION'
+    Value = '1.2'
+  end
+  object TExpressionNode
+    Name = 'Reserved sectors in flash for the bootloader'
+    OverrideDefine = 'APP_BOOTLOADER_RESERVED_SPACE_IN_SECTORS'
+    ConfigType = kNone
+    Value = '1'
+  end
+  object TStringNode
+    Name = 'Board override of Linux kernel command line'
+    Description = 'Linux Kernel command line override'
+    DefineName = 'BRD_BOOTARGS'
+    ConfigType = kNone
+    OverrideDefine = 'APP_BOOTARGS'
+    Value = 
+    'mtdparts=ubicom32_boot_flash:256k(bootloader)ro,13824k(upgrade),1536k(jffs2),256k(fw_env),256k(language_pack),256k(artblock)'
+  end  
+  object TSectionNode
+    Name = 'Project'
+    Description = 'General project-wide options'
+    object TStringNode
+      Name = 'Original File Name'
+      Description = 'This is used to keep the settings up to date.'
+      DefineName = 'BRD_PKG_FILE_NAME'
+      ConfigType = kNone
+      OverrideDefine = 'PKG_FILE_NAME'
+      Value = 'TemplateUBICOM32.lpj'
+    end
+    object TExpressionNode
+      Name = 'Architecture directory'
+      Description =
+        'Directory containing architecture specific files. If the archite' +
+        'cture is '#39'IP3K'#39' then the Architecture directory should be '#39'ip3k'#39 +
+        '.'
+      DefineName = 'BRD_ARCH_DIR'
+      ConfigType = kNone
+      OverrideDefine = 'ARCH_DIR'
+      Value = 'ip3k'
+    end
+    object TExpressionNode
+      Name = 'Architecture'
+      Description =
+        'The CPU architecture the project should be compiled for. This di' +
+        'rective indirectly controls which Template*.lpj file should be u' +
+        'sed as the foundation for a project.'
+      DefineName = 'BRD_ARCH'
+      ConfigType = kNone
+      Value = 'IP3K'
+    end
+    object TExpressionNode
+      Name = 'Number of CPU threads'
+      Description = 'The number of hardware threads supported by the CPU architecture'
+      DefineName = 'BRD_ARCH_NUM_THREADS'
+      ConfigType = kNone
+      OverrideDefine = 'ARCH_NUM_THREADS'
+      Value = '12'
+    end
+    object TExpressionNode
+      Name = 'Size of CPU HRT table'
+      Description =
+        'The maximum number of slots in the CPU thread schedule (HRT) tab' +
+        'le'
+      DefineName = 'BRD_ARCH_HRT_TABLE_SIZE'
+      ConfigType = kNone
+      OverrideDefine = 'ARCH_HRT_TABLE_SIZE'
+      Value = '64'
+    end
+  end
+  object TSectionNode
+    Name = 'LEDs'
+    Description = 'LEDs.'
+    object TExpressionNode
+      Name = 'LED D1 port'
+      Description = 'Green LED marked D1'
+      DefineName = 'BRD_D1_PORT'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_WLAN_LED_PORT'
+      Value = 'RD'
+    end
+    object TExpressionNode
+      Name = 'LED D1 pin'
+      Description = 'Green LED marked D1'
+      DefineName = 'BRD_D1_PIN'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_WLAN_LED_PIN'
+      Value = '0'
+    end
+    object TYesNoNode
+      Name = 'LED D1 active Low'
+      Description = 'Check this box to set active low'
+      DefineName = 'BRD_D1_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_WLAN_LED_REVERSE'
+      Value = True
+    end
+    object TExpressionNode
+      Name = 'LED D2 port'
+      Description = 'Green LED marked D2'
+      DefineName = 'BRD_D2_PORT'
+      ConfigType = kNone
+      OverrideDefine = 'WIRELESS_RADIO_2_CFG_WLAN_LED_PORT'
+      Value = 'RD'
+    end
+    object TExpressionNode
+      Name = 'LED D2 pin'
+      Description = 'Green LED marked D2'
+      DefineName = 'BRD_D2_PIN'
+      ConfigType = kNone
+      OverrideDefine = 'WIRELESS_RADIO_2_CFG_WLAN_LED_PIN'
+      Value = '1'
+    end
+    object TYesNoNode
+      Name = 'LED D2 active Low'
+      Description = 'Check this box to set active low'
+      DefineName = 'BRD_D2_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'WIRELESS_RADIO_2_CFG_WLAN_LED_REVERSE'
+      Value = True
+    end
+    object TExpressionNode
+      Name = 'LED D3 port'
+      Description = 'Green LED marked D3'
+      DefineName = 'BRD_D3_PORT'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_STATUS_LED_PORT'
+      Value = 'RD'
+    end
+    object TExpressionNode
+      Name = 'LED D3 pin'
+      Description = 'Green LED marked D3'
+      DefineName = 'BRD_D3_PIN'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_STATUS_LED_PIN'
+      Value = '2'
+    end
+    object TYesNoNode
+      Name = 'LED D3 active Low'
+      Description = 'Check this box to set active low'
+      DefineName = 'BRD_D3_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_STATUS_LED_REVERSE'
+      Value = True
+    end
+    object TExpressionNode
+      Name = 'LED D4 port'
+      Description = 'Green LED marked D4'
+      DefineName = 'BRD_D4_PORT'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_PRINTER_LED_PORT'
+      Value = 'RD'
+    end
+    object TExpressionNode
+      Name = 'LED D4 pin'
+      Description = 'Green LED marked D4'
+      DefineName = 'BRD_D4_PIN'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_PRINTER_LED_PIN'
+      Value = '2'
+    end
+    object TYesNoNode
+      Name = 'LED D4 active Low'
+      Description = 'Check this box to set active low'
+      DefineName = 'BRD_D4_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_PRINTER_LED_REVERSE'
+      Value = True
+    end
+    object TExpressionNode
+      Name = 'LED D5 port'
+      Description = 'Green LED marked D5'
+      DefineName = 'BRD_D5_PORT'
+      ConfigType = kNone
+      OverrideDefine = 'WIFISC_PBC_LED_PORT'
+      Value = 'RD'
+    end
+    object TExpressionNode
+      Name = 'LED D5 pin'
+      Description = 'Green LED marked D5'
+      DefineName = 'BRD_D5_PIN'
+      ConfigType = kNone
+      OverrideDefine = 'WIFISC_PBC_LED_PIN'
+      Value = '4'
+    end
+    object TYesNoNode
+      Name = 'LED D5 active Low'
+      Description = 'Check this box to set active low'
+      DefineName = 'BRD_D5_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'WIFISC_PBC_LED_ACTIVE_LOW'
+      Value = True
+    end
+    object TExpressionNode
+      Name = 'LED D5_2 port'
+      Description = 'Green LED marked D5_2'
+      DefineName = 'BRD_D5_2_PORT'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_WCN_LED_PORT'
+      Value = 'RD'
+    end
+    object TExpressionNode
+      Name = 'LED D5_2 pin'
+      Description = 'Green LED marked D5_2'
+      DefineName = 'BRD_D5_2_PIN'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_WCN_LED_PIN'
+      Value = '4'
+    end
+    object TYesNoNode
+      Name = 'LED D5_2 active Low'
+      Description = 'Check this box to set active low'
+      DefineName = 'BRD_D5_2_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'CFG_WCN_LED_REVERSE'
+      Value = True
+    end
+  end
+  object TSectionNode
+    Name = 'Buttons'
+    Description = 'Buttons'
+    object TExpressionNode
+      Name = 'Switch 1 port'
+      Description = 'Port for SW1.'
+      DefineName = 'BRD_SWITCH1_PORT'
+      ConfigType = kNone
+      OverrideDefine = 'FACTORY_DEFAULT_BUTTON_PORT'
+      Value = 'RD'
+    end
+    object TExpressionNode
+      Name = 'Switch 1 pin'
+      Description = 'Pin for SW1.'
+      DefineName = 'BRD_SWITCH1_PIN'
+      ConfigType = kNone
+      OverrideDefine = 'FACTORY_DEFAULT_BUTTON_PIN'
+      Value = '7'
+    end
+    object TYesNoNode
+      Name = 'Switch 1 active Low'
+      Description = 'Check this box to set active low'
+      DefineName = 'BRD_SWITCH1_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'FACTORY_DEFAULT_BUTTON_ACTIVE_LOW'
+      Value = True
+    end
+    object TExpressionNode
+      Name = 'Switch 2 port'
+      Description = 'Port for SW2.'
+      DefineName = 'BRD_SWITCH2_PORT'
+      ConfigType = kNone
+      OverrideDefine = 'WIFISC_PBC_PORT'
+      Value = 'RD'
+    end
+    object TExpressionNode
+      Name = 'Switch 2 pin'
+      Description = 'Pin for SW2.'
+      DefineName = 'BRD_SWITCH2_PIN'
+      ConfigType = kNone
+      OverrideDefine = 'WIFISC_PBC_PIN'
+      Value = '6'
+    end
+    object TYesNoNode
+      Name = 'Switch 2 active Low'
+      Description = 'Check this box to set active low'
+      DefineName = 'BRD_SWITCH2_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'WIFISC_PBC_ACTIVE_LOW'
+      Value = True
+    end
+  end
+  object TSectionNode
+    Name = 'ipHAL'
+    Description = 'Board overrides for ipHAL options.'
+    object TListNode
+      Name = 'Architecture Extension'
+      Description = 'Select the chip revision to support.'
+      DefineName = 'BRD_ARCH_EXT'
+      ConfigType = kNone
+      OverrideDefine = 'ARCH_EXT'
+      Value = 'IP7000_REV2'
+      ListName = 'ARCH_EXT_LIST'
+    end
+    object TExpressionNode
+      Name = 'System clock frequency'
+      Description = 'Core clock frequency in Hz.'
+      DefineName = 'BRD_SYSTEM_FREQ'
+      ConfigType = kNone
+      OverrideDefine = 'SYSTEM_FREQ'
+      Value = '550000000'
+    end
+    object TExpressionNode
+      Name = 'IO PLL frequency'
+      Description = 'IO PLL frequency in Hz.'
+      DefineName = 'BRD_IO_PLL_FREQ'
+      ConfigType = kNone
+      OverrideDefine = 'IO_PLL_FREQ'
+      Value = '500000000'
+    end
+    object TExpressionNode
+      Name = 'DDR DLL frequency'
+      Description = 'DDR master DLL frequency in Hz.'
+      DefineName = 'BRD_DDR_PLL_FREQ'
+      ConfigType = kNone
+      OverrideDefine = 'DDR_PLL_FREQ'
+      Value = '226000000'
+    end
+  end
+  object TSectionNode
+    Name = 'ipEthernet'
+    Description = 'Ethernet Interfaces.'
+    object TYesNoNode
+      Name = 'MII Management I/F'
+      Description =
+        'Check here to enable MII management I/F. If enabled, the link st' +
+        'atus will be determined by accessing PHY registers through MII m' +
+        'anagement I/F. If disabled, the MII driver will be forced into h' +
+        'alf duplex mode for 10Base-T and full duplex mode for 100Base-T.' +
+        ' The SerDes driver is not affexted by this option and will alway' +
+        's be 10Base-T half duplex.'
+      DefineName = 'BRD_IPETHERNET_MII_MGMT_ENABLE'
+      ConfigType = kNone
+      OverrideDefine = 'IPETHERNET_MII_MGMT_ENABLE'
+      Value = True
+      object TListNode
+        Name = 'MDIO port'
+        Description = 'I/O port selection for MDIO.'
+        DefineName = 'BRD_IPETHERNET_MII_MDIO_PORT'
+        ConfigType = kNone
+        OverrideDefine = 'IPETHERNET_MII_MDIO_PORT'
+        Value = 'RE'
+        ListName = 'ALL_PORTS'
+      end
+      object TListNode
+        Name = 'MDIO pin'
+        Description = 'I/O pin selection for MDIO.'
+        DefineName = 'BRD_IPETHERNET_MII_MDIO_PIN'
+        ConfigType = kNone
+        OverrideDefine = 'IPETHERNET_MII_MDIO_PIN'
+        Value = '1'
+        ListName = 'ALL_PINS'
+      end
+      object TListNode
+        Name = 'MDC port'
+        Description = 'I/O port selection for MDC.'
+        DefineName = 'BRD_IPETHERNET_MII_MDC_PORT'
+        ConfigType = kNone
+        OverrideDefine = 'IPETHERNET_MII_MDC_PORT'
+        Value = 'RE'
+        ListName = 'ALL_PORTS'
+      end
+      object TListNode
+        Name = 'MDC pin'
+        Description = 'I/O pin selection for MDC.'
+        DefineName = 'BRD_IPETHERNET_MII_MDC_PIN'
+        ConfigType = kNone
+        OverrideDefine = 'IPETHERNET_MII_MDC_PIN'
+        Value = '2'
+        ListName = 'ALL_PINS'
+      end
+      object TListNode
+        Name = 'Clock cycle time'
+        Description = 
+          'Set MII management clock cycle time in ns. (default to be 40ns ~' +
+          ' 25MHz) Refer to PHY datasheet for proper value.'
+        DefineName = 'BRD_IPETHERNET_MII_DUTY_CYCLE_ns'
+        ConfigType = kNone
+        OverrideDefine = 'IPETHERNET_MII_DUTY_CYCLE_ns'
+        Value = '100'
+      end
+    end
+    object TSectionNode
+      Name = 'Ethernet instance - eth_wan_'
+      object TYesNoNode
+        Name = 'N/A'
+        Description = 'The WAN port resides in the same switch with LAN.'
+        DefineName = 'BRD_eth_wan_IPETHERNET_INSTANCE_ENABLED'
+        ConfigType = kNone
+        OverrideDefine = 'eth_wan_IPETHERNET_INSTANCE_ENABLED'
+      end
+    end
+    object TSectionNode
+      Name = 'Ethernet instance - eth_lan_'
+      object TRadioNode
+        Name = 'Use MII'
+        Description = 'Select MII.'
+        DefineName = 'BRD_eth_lan_USE_MII_FOR_ETHERNET'
+        ConfigType = kNone
+        OverrideDefine = 'eth_lan_USE_MII_FOR_ETHERNET'
+        Value = True
+        object TRadioNode
+          Name = 'Use port RI'
+          Description = 'Use port RI to support this ipEthernet instance.'
+          DefineName = 'BRD_eth_lan_USE_MII_RI_FOR_ETHERNET'
+          ConfigType = kNone
+          OverrideDefine = 'eth_lan_USE_MII_RI_FOR_ETHERNET'
+          Value = True
+          object TRadioNode
+            Name = 'Select GMII'
+            Description = 'Use GMII mode.'
+            DefineName = 'BRD_eth_lan_GMII_RI_USE_GMII'
+            ConfigType = kNone
+            OverrideDefine = 'eth_lan_GMII_RI_USE_GMII'
+            Value = True
+          end
+        end
+        object TSectionNode
+          Name = 'Link mode options'
+          Description =
+            'This section provide options fro MII to determine the current li' +
+            'nk mode.'
+          object TRadioNode
+            Name = 'Forced full duplex'
+            Description = 'Click this box to force full duplex mode for MII operation.'
+            DefineName = 'BRD_eth_lan__ETH_FORCED_FULL_DUPLEX'
+            ConfigType = kNone
+            OverrideDefine = 'eth_lan__ETH_FORCED_FULL_DUPLEX'
+            Value = True
+          end
+        end
+        object TSectionNode
+          Name = 'HRT settings'
+          Description =
+            'Settings controlling the generation of the HRT table entries for' +
+            ' this driver.'#13#10#13#10'These settings should not be changed in a proje' +
+            'ct file.'
+          object TExpressionNode
+            Name = 'HRT MIPS'
+            Description = 'Number of HRT MIPS required by the driver.'
+            DefineName = 'BRD_eth_lan_IPETHERNET_MII_HRT_MIPS'
+            ConfigType = kNone
+            OverrideDefine = 'eth_lan_IPETHERNET_MII_HRT_MIPS'
+            Value = '75'
+          end
+        end
+      end
+      object TYesNoNode
+        Name = 'LED Configuration'
+        Description = 'Configure LED indicator here.'
+        DefineName = 'BRD_eth_lan__IPETHERNET_LEDS'
+        ConfigType = kNone
+        OverrideDefine = 'eth_lan__IPETHERNET_LEDS'
+      end
+    end
+  end
+  object TSectionNode
+    Name = 'ipStorage'
+    Description = 'Board overrides for ipStorage options.'
+    object TYesNoNode
+      Name = 'External Flash'
+      Description = 'External Flash'
+      DefineName = 'BRD_USE_EXTFLASH'
+      ConfigType = kNone
+      OverrideDefine = 'USE_EXTFLASH'
+      Value = True
+      object TExpressionNode
+        Name = 'Min total size (k)'
+        Description =
+          'Min total size.'#13#10#13#10'Flash chip will be run time detected and supp' +
+          'orted as long as its total size is equal to or less than this nu' +
+          'mber.'
+        DefineName = 'BRD_EXTFLASH_MIN_TOTAL_SIZE_KB'
+        ConfigType = kNone
+        OverrideDefine = 'EXTFLASH_MIN_TOTAL_SIZE_KB'
+        Value = '16384'
+      end
+      object TExpressionNode
+        Name = 'Max page size (k)'
+        Description =
+          'Max page size.'#13#10#13#10'Flash chip will be run time detected and suppo' +
+          'rted as long as its page size is equal to or less than this numb' +
+          'er.'#13#10#13#10'If the flash page size is less than this number, the flas' +
+          'h driver will emulate this given flash page size in software.'#13#10
+        DefineName = 'BRD_EXTFLASH_MAX_PAGE_SIZE_KB'
+        ConfigType = kNone
+        OverrideDefine = 'EXTFLASH_MAX_PAGE_SIZE_KB'
+        Value = '256'
+      end
+      object TExpressionNode
+        Name = 'Max access time (ns)'
+        Description = 'Read cycle access time, in nanoseconds.'
+        DefineName = 'BRD_EXTFLASH_MAX_ACCESS_TIME'
+        ConfigType = kNone
+        OverrideDefine = 'EXTFLASH_MAX_ACCESS_TIME'
+        Value = '20'
+      end
+    end
+    object TYesNoNode
+      Name = 'External SDRAM'
+      Description = 'Use External SDRAM.'
+      DefineName = 'BRD_USE_EXTMEM'
+      ConfigType = kNone
+      OverrideDefine = 'USE_EXTMEM'
+      Value = True
+      object TRadioNode
+        Name = 'DDR Familly'
+        Description = 'DDR Memory'
+        DefineName = 'BRD_DDRDRAM'
+        ConfigType = kNone
+        OverrideDefine = 'DDRDRAM'
+        Value = True
+        object TListNode
+          Name = 'Part Number'
+          Description = 'Select DDR Chip'
+          DefineName = 'BRD_DDR_PART'
+          ConfigType = kNone
+          OverrideDefine = 'DDR_PART'
+          Value = 'MICRON_MT47H64M16'
+        end
+      end
+    end
+  end
+  object TPackageNode
+    Name = 'ipSDTIO - SD/SDIO host driver'
+    DefineName = 'BRD_IPSDTIO'
+    OverrideDefine = 'IPSDTIO'
+    object TYesNoNode
+      Name = 'Port F'
+      DefineName = 'BRD_portf_IPSDTIO_INSTANCE_ENABLED'
+      ConfigType = kNone
+      OverrideDefine = 'portf_IPSDTIO_INSTANCE_ENABLED'
+      Value = True
+      object TListNode
+        Name = 'SD Port'
+        DefineName = 'BRD_portf_SDTIO_PORT'
+        ConfigType = kNone
+        OverrideDefine = 'portf_SDTIO_PORT'
+        Value = 'RF'
+      end
+    end
+  end
+  object TSectionNode
+    Name = 'ipPCI'
+    Description = 'PCI interface'
+    object TExpressionNode
+      Name = 'HRT Type'
+      DefineName = 'BRD_IPPCI_HRT_TYPE'
+      ConfigType = kNone
+      OverrideDefine = 'IPPCI_HRT_TYPE'
+      Value = 'ExactSpacing'
+    end
+    object TExpressionNode
+      Name = 'Minimum HRT Slot Spacing'
+      DefineName = 'BRD_IPPCI_HRT_SPACING'
+      ConfigType = kNone
+      OverrideDefine = 'IPPCI_HRT_SPACING'
+      Value = '4'
+    end
+  end
+  object TSectionNode
+    Name = 'ipDebug'
+    Description = 'Board overrides for ipDebug'
+    object TRadioNode
+      Name = 'Turbo 2 wire (IO based)'
+      Description = 'Enter the description here.'
+      DefineName = 'BRD_USE_TURBO2WIRE_FOR_DEBUG'
+      ConfigType = kNone
+      OverrideDefine = 'USE_TURBO2WIRE_FOR_DEBUG'
+      Value = True
+      object TListNode
+        Name = 'Clock Port'
+        Description = 'The port to be used for the Clock pin.'
+        DefineName = 'BRD_DEBUG_TURBO2WIRE_CLK_PORT'
+        ConfigType = kNone
+        OverrideDefine = 'DEBUG_TURBO2WIRE_CLK_PORT'
+        Value = 'RA'
+        ListName = 'OUTPUT_PORTS'
+      end
+      object TListNode
+        Name = 'Clock Pin'
+        Description = 'The clock pin number (within the associated port).'
+        DefineName = 'BRD_DEBUG_TURBO2WIRE_CLK_PIN'
+        ConfigType = kNone
+        OverrideDefine = 'DEBUG_TURBO2WIRE_CLK_PIN'
+        Value = '7'
+        ListName = 'ALL_PINS'
+      end
+      object TListNode
+        Name = 'Data Port'
+        Description = 'The port to be used for the Data pin.'
+        DefineName = 'BRD_DEBUG_TURBO2WIRE_TXD_PORT'
+        ConfigType = kNone
+        OverrideDefine = 'DEBUG_TURBO2WIRE_TXD_PORT'
+        Value = 'RA'
+        ListName = 'OUTPUT_PORTS'
+      end
+      object TListNode
+        Name = 'Data Pin'
+        Description = 'The transmit pin number (within the associated port).'
+        DefineName = 'BRD_DEBUG_TURBO2WIRE_TXD_PIN'
+        ConfigType = kNone
+        OverrideDefine = 'DEBUG_TURBO2WIRE_TXD_PIN'
+        Value = '6'
+        ListName = 'ALL_PINS'
+      end
+    end
+  end
+  object TSectionNode
+    Name = 'ipResetOutput'
+    Description = 'Reset output driver'
+    object TYesNoNode
+      Name = 'Reset Output - Active Low'
+      Description =
+        'Use this section to enable active low system reset ourput throug' +
+        'h I/O pins. If enabled, this signal will be driven low then rele' +
+        'ase to high upon reset.'#13#10#13#10'There is also an active high reset ou' +
+        'tput option. Never enable both reset outputs on the same pin.'
+      DefineName = 'BRD_RESET_OUTPUT_ACTIVE_LOW'
+      ConfigType = kNone
+      OverrideDefine = 'RESET_OUTPUT_ACTIVE_LOW'
+      Value = True
+      object TListNode
+        Name = 'Reset Port'
+        Description = 'The port to be used for the reset pin.'
+        DefineName = 'BRD_RESET_OUTPUT_ACTIVE_LOW_PORT'
+        ConfigType = kNone
+        OverrideDefine = 'RESET_OUTPUT_ACTIVE_LOW_PORT'
+        Value = 'RE'
+        ListName = 'OUTPUT_PORTS'
+      end
+      object TListNode
+        Name = 'Reset Pin'
+        Description = 'The reset pin number.'
+        DefineName = 'BRD_RESET_OUTPUT_ACTIVE_LOW_PIN'
+        ConfigType = kNone
+        OverrideDefine = 'RESET_OUTPUT_ACTIVE_LOW_PIN'
+        Value = '7'
+        ListName = 'ALL_PINS'
+      end
+      object TExpressionNode
+        Name = 'Reset Pulse Duration(ms)'
+        Description = 'The active low time in ms of reset signal.'
+        DefineName = 'BRD_RESET_OUTPUT_LOW_TIME'
+        ConfigType = kNone
+        OverrideDefine = 'RESET_OUTPUT_LOW_TIME'
+        Value = '20'
+      end
+      object TExpressionNode
+        Name = 'Reset Hold Time(ms)'
+        Description = 'The minimum reset release time in ms.'
+        DefineName = 'BRD_RESET_OUTPUT_RELEASE_HIGH_TIME'
+        ConfigType = kNone
+        OverrideDefine = 'RESET_OUTPUT_RELEASE_HIGH_TIME'
+        Value = '20'
+      end
+    end
+  end
+end

@@ -1,0 +1,4 @@
+[autorun]
+OPEN=WiPnP.exe
+ICON=\SMRTNTKY\fcw.ico
+ACTION=WiPnP Setup

@@ -1,0 +1,20 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+. /etc/rgw_config
+
+#
+# Default to 256 qos queues unless a different amount is given
+#
+if [ $# -ne 1 ] ; then
+	Q_COUNT=256
+else
+	Q_COUNT=$1
+fi
+
+echo Starting StreamEngine Scheduler on $WANINTERFACE with $Q_COUNT queues
+
+insmod /lib/modules/`uname -r`/sch_ubicom_streamengine.ko 2> /dev/null
+tc qdisc add dev $WANINTERFACE handle 1:0 root streamengine bands $Q_COUNT
+tc qdisc show dev $WANINTERFACE
+

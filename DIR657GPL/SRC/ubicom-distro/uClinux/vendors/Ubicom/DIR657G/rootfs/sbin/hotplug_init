@@ -1,0 +1,40 @@
+#!/bin/sh
+
+DIR="/etc/hotplug.d"
+PID_FILE="/var/run/minidlna.pid"
+for I in "${DIR}/$1/"*.hotplug "${DIR}/"default/*.hotplug ; do
+	if [ -f $I ] ; then
+		test -x $I && $I $1 ;
+	fi
+done
+
+do_application()
+{
+	GET_LAN_MAC=`nvram get lan_mac | cut -d " " -f 3`
+	wcnd -m $GET_LAN_MAC
+
+	GET_MEDIASERVER_ENABLE=`nvram get media_server_enable | cut -d " " -f 3`
+	if [ "$GET_MEDIASERVER_ENABLE" == "1" ]; then
+		# Drop caches to make sure we have enough space.
+		echo 3 > /proc/sys/vm/drop_caches
+		rm /var/run/hotplug_init
+		minidlna -R -d -P /var/run/minidlna.pid -f /etc/minidlna.conf
+	fi
+}
+
+if [ "$SUBSYSTEM" = "block" ] && [ "$ACTION" = "add" ]; then
+	if [ ! -e "/var/run/hotplug_init" ]; then 
+		touch /var/run/hotplug_init
+		killall minidlna
+		rm -rf $PIF_FILE
+		sleep 5
+		do_application
+	fi
+fi
+
+if [ "$SUBSYSTEM" = "block" ] && [ "$ACTION" = "remove" ]; then
+	killall minidlna
+	rm -rf $PIF_FILE
+fi
+
+exit 1

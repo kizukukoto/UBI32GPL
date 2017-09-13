@@ -1,0 +1,7 @@
+The README file is for D-Link Router Firmware Version Query and Download Spec v1.03.doc, 
+
+According to Firmware Version Query and Download, we call this daemon "fwqd".
+
+
+EX. http:// wrpd.dlink.com.tw/router/firmware/query.asp?model=DIR-655_Ax_Default
+	http:// wrpd.dlink.com.tw/router/firmware/query.asp?model=DIR-655_Ax_EU

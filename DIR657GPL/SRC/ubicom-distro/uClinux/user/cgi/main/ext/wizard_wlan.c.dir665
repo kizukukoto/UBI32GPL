@@ -1,0 +1,32 @@
+#include <stdlib.h>
+#include "ssc.h"
+#include "public.h"
+#include "rcctrl.h"
+#include "querys.h"
+
+void *do_wireless_wizard(struct ssc_s *obj)
+{
+
+	nvram_set("wlan0_radio_mode", get_env_value("wlan0_radio_mode"));
+	nvram_set("wlan0_security", get_env_value("wlan0_security"));
+	nvram_set("wlan0_ssid", get_env_value("wlan0_ssid"));
+	nvram_set("wlan0_wep_default_key", get_env_value("wlan0_wep_default_key"));
+	nvram_set("wlan0_wep_display", get_env_value("wlan0_wep_display"));
+	nvram_set("wlan0_wep128_key_1", get_env_value("wlan0_wep128_key_1"));
+	nvram_set("wlan0_wep64_key_1", get_env_value("wlan0_wep64_key_1"));
+	nvram_set("wlan0_psk_pass_phrase", get_env_value("wlan0_psk_pass_phrase"));
+	nvram_set("wlan0_psk_cipher_type", get_env_value("wlan0_psk_cipher_type"));
+	nvram_set("wlan1_security", get_env_value("wlan1_security"));
+	nvram_set("wlan1_ssid", get_env_value("wlan1_ssid"));
+	nvram_set("wlan1_wep_default_key", get_env_value("wlan1_wep_default_key"));
+	nvram_set("wlan1_wep_display", get_env_value("wlan1_wep_display"));
+	nvram_set("wlan1_wep128_key_1", get_env_value("wlan1_wep128_key_1"));
+	nvram_set("wlan1_wep64_key_1", get_env_value("wlan1_wep64_key_1"));
+	nvram_set("wlan1_psk_pass_phrase", get_env_value("wlan1_psk_pass_phrase"));
+	nvram_set("wlan1_psk_cipher_type", get_env_value("wlan1_psk_cipher_type"));
+	nvram_commit();
+	//rc_term();
+	rc_restart();
+	return get_response_page();
+}
+

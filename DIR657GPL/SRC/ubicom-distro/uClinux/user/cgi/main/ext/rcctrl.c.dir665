@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <signal.h>
+
+
+/*
+ * copy(override) from sutils library
+ * */
+#ifndef RC_PID
+#define RC_PID			"/var/run/rc.pid"
+#endif
+
+static int read_pid(char *file)
+{
+	FILE *pidfile;
+	char pid[20];
+	pidfile = fopen(file, "r");
+	if(pidfile) {
+		fgets(pid,20, pidfile);
+		fclose(pidfile);
+	} else
+		return -1;
+	return atoi(pid);
+}
+
+int rc_restart()
+{
+	return kill(read_pid(RC_PID), SIGHUP);
+}
+
+int rc_term()
+{
+	return kill(read_pid(RC_PID), SIGTERM);
+}

@@ -1,0 +1,16 @@
+REPLACE = \
+	@test -h $(1) || ( \
+		mv $(1) $(1).old; \
+		ln -s `basename $(2)` $(1); \
+	)
+RECOVER = \
+	@test -h $(1) && ( \
+		rm -rf $(1); \
+		mv $(2) $(1); \
+	)
+
+indep:
+	$(call REPLACE, cgi_tool_main.c, cgi_tool_main.c.DHP1565)
+
+uindep:
+	$(call RECOVER, cgi_tool_main.c, cgi_tool_main.c.old)

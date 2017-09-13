@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <net/if_arp.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include "cmds.h"
+#include "nvram.h"
+#include "shutils.h"
+#include "nvram_ext.h"
+//inbound_list_1=1;0;*,0.0.0.0-255.255.255.255,0.0.0.0-255.255.255.255
+//inbound_list_2=2;0;*,0.0.0.0-255.255.255.255,0.0.0.0-255.255.255.255,0.0.0.0-255.255.255.255
+//inbound_list_3="name;0;*,1.1.1.1-2.2.2.2,3.0.0.0-3.0.0.4,192.168.0.0-192.168.0.255"
+#define INBOUND_FILTER_PREFIX	"inbound_list_"
+#define INBOUND_FILTER_MAX	10
+
+int __inbound_updown(int up, const char *dev, char *raw, int index)
+{
+	int rev = -1;
+	char *action, *ip_range;
+	
+	strsep(&raw, ";");
+	if (strlen(raw) == 0) goto fmt_err;
+	
+	action = strsep(&raw, ";");
+	if (strlen(raw) == 0) goto fmt_err;
+
+	
+	strsep(&raw, ",");	/* ignore device */
+
+	while (raw != NULL && (ip_range = strsep(&raw, ",")) != NULL) {
+		debug("inbound filter: %s:%s", action, ip_range);
+		eval("iptables", "-t", "nat", up ? "-I" : "-D", "PREROUTING",
+			"-m", "iprange", "--src-range", ip_range, "-j",
+			"DROP");
+	}
+out:
+	return rev;
+fmt_err:
+	rd(rev, "format error\n");
+	return rev;
+}
+	
+int inbound_updown(int up, const char *dev)
+{
+	char buf[512], *p;
+	int i;
+
+	for (i = INBOUND_FILTER_MAX; i >= 0; i--) {
+		p = nvram_safe_get_i(INBOUND_FILTER_PREFIX, i, g1);
+		if (strlen(p) <= 21) /* N;1;*,0.0.0.0-1.1.1.1 */
+			continue;
+
+		p = strlen(p) > sizeof(buf) ? strdup(p) : strcpy(buf, p);
+		__inbound_updown(up, dev, p, i);
+		if (p != buf)
+			free(p);
+	}
+	return 0;
+}
+
+int inbound_start_main(int argc, char *argv[])
+{
+	/* FIXME: clear all of old rules for ALWAYS high priority in interfaces */
+	inbound_updown(0, NULL);
+	inbound_updown(1, NULL);
+}
+
+int inbound_stop_main(int argc, char *argv[])
+{	
+	/* FIXME: wan stop will clear them */
+	//inbound_updown(0, NULL);
+}
+
+int inbound_filter_main(int argc, char *argv[])
+{
+	struct subcmd cmds[] = {
+		{ "start", inbound_start_main},	//@dev
+		{ "stop", inbound_stop_main},		//@dev
+		{ NULL, NULL}
+	};
+	return lookup_subcmd_then_callout(argc, argv, cmds);
+}

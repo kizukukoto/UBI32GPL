@@ -1,0 +1,5 @@
+CFLAGS += -DDIRX30
+
+indep:
+	ln -sf asp.DIRX30 main/asp
+uindep:

@@ -1,0 +1,109 @@
+
+//"25-110>192.168.0.101:25-110,tcp,on,PortForward,02"
+//"25-110>192.168.0.101:25-110,tcp,on,PortForward,02"
+//	"enable,device,DIP1,proto,port>device,DIP2,proto,port,name,schedule"
+//	"1,WAN,192.168.0.1,tcp,22:66,77:99:200>LAN,192.168.0.2,11:22-44,Ex_virtual,always"
+//	
+static struct items_range adv_portforward[] = {
+	{ "forward_port", 0, 99, NULL, IRFG_NV_OFFSET, "_base"},
+	{ NULL, -1, -1, NULL}
+};
+
+static struct items_range adv_firewall[] = {
+	{ "firewall_rule", 0, 299, NULL, IRFG_NV_OFFSET, "_fwbase"},
+	{ "firewall_max_num", -1, -1, "300"},
+	{ "firewall_every_page_num", -1, -1, "25"},
+	{ NULL, -1, -1, NULL}
+};
+static struct items_range adv_appl[] = {
+	{ "app_port", 0, 24, NULL},
+	{ NULL, -1, -1, NULL}
+};
+static struct items_range adv_filters_mac[] = {
+	{ "filter_macmode", -1, -1, NULL},
+	{ "mac_filter", 0, 99,NULL, IRFG_NV_OFFSET, "_macbase"},
+	{ NULL, -1, -1, NULL}
+};
+static struct items static_route[] = {
+	{ "static_route", ""},
+	{ "if_route0", ""},
+	{ "if_route1", ""},
+	{ "if_route2", ""},
+	{ "russia_route", ""},
+	{ NULL, NULL}
+};
+
+static struct items_range policy_route[] = {
+	{ "policy_rule", 0, 24, NULL},
+	{ NULL, -1, -1, NULL}
+};
+
+static struct items_range url_domain_filter[] = {
+	{ "url_domain_filter_type", -1, -1, "0"},
+	{ "url_domain_filter_", 0, 50, NULL},
+	{ "url_domain_filter_schedule_", 0, 50, NULL},
+	{ NULL, -1, -1, NULL}
+};
+
+static struct items dynamic_route[] = {
+	{"rip_enable", NULL},	
+	{"rip_tx_version", NULL},
+	{"rip_rx_version", NULL},
+	{"ospf_enable", NULL},	
+	{"ospf_if_area0", NULL},
+	{"ospf_if_area1", NULL},
+	{"ospf_if_area2", NULL},
+	{"ospf_if_cost0", NULL},	
+	{"ospf_if_cost1", NULL},	
+	{"ospf_if_cost2", NULL},	
+	{"ospf_if_priority0", NULL},
+	{"ospf_if_priority1", NULL},
+	{"ospf_if_priority2", NULL},
+	{ NULL, NULL}
+};
+static struct items_range qos_rule[] = {
+	/* Qos Engine Setup*/
+	{ "is_enable_qos", -1, -1, "1"},
+	{ "qos_auto_classif", -1, -1, "1"},
+	{ "qos_dynamic_frag", -1, -1, "1"},
+	/* Qos Weight Setting */
+	{ "qos_weight_rule", -1, -1, NULL},
+	/* Qos Rule Setting */
+	{ "qos_rule", 1, 10, "0"},
+	{ NULL, -1, -1, NULL}
+};
+static struct items adv_network[] = {
+	{ "if_icmp2", "1"},
+	{ "if_icmp3", "1"},
+	{ "upnp_enable", "1"},
+	{ "wan_port_speed", "0"},
+	{ "ips_enable", "1"},
+	{ "dos_enable", "1"},
+	{ "tcp_syn_flooding", "800"},
+	{ "udp_flooding", "500"},
+	{ "icmp_flooding", "10"},
+	{ "block_land_attack", "1"},
+	{ "block_ping_death", "1"},
+	{ "block_all_fragments", "1"},
+	{ "block_teardrop_attack", "1"},
+	{ "block_smurf_attack", "1"},
+	{ "icmp_filter_enable", "0"},
+	{ "icmp_setting", ""}, /*echo_reply, echo_request, unreachable, time_exceeded, redirection, source_quenching, parameter_problem*/
+	{ NULL, NULL}
+};
+static struct items_range user_group_edit[] = {
+	{ "auth_group", 1, 8, NULL},
+	{ "enable_ext_server", -1, -1, "0"},
+	{ "ext_server_mode", -1, -1, "0"},
+	{ "radius", 0, 1, NULL},
+	{ "enable_wpa_ent", -1, -1, "0"},
+	{ "radio_RADIUS", -1, -1, "0"},
+	{ "ldap", -1, -1, NULL},
+	{ "ad", -1, -1, NULL},
+	{ NULL, -1, -1, NULL}
+};
+
+static struct items_range inbound_filter[] = {
+	{ "inbound_list_", 0, 10, NULL,},
+	{ NULL, -1, -1, NULL}
+};

@@ -1,0 +1,1209 @@
+History:
+
+0.  date:2011/02/09
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: DDNS sometime can not update successfully.
+3.  Modified files:
+    a. uClinux/user/noip2/noip2.c
+
+0.  date:2011/02/08
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. remark OPENDNS, pthread_create error for DNSMASQ2, only for IP8K
+3.  Modified files:
+    a. uClinux/vendor/Ubicom/DIR857NA/config.vendor
+
+0.  date:2011/02/01
+1.  who: Jerry Chen
+2.  Modified for what:
+    a. Fixed QRS crash issue.
+3.  Modified files:
+    a. uClinux/user/httpd/pure.c
+
+0. date:2011/01/27
+1. who: Yufa Huang
+2. Modified for what:
+   a. Update Makefile to reduce re-compile time.
+3. Modified files:
+   a. uClinux/lib/ffmpeg/Makefile
+      uClinux/lib/FLAC/Makefile
+      uClinux/lib/gettext/Makefile
+      uClinux/lib/libexif/Makefile
+      uClinux/lib/libiconv/Makefile
+      uClinux/lib/libid3tag/Makefile
+      uClinux/lib/libogg/Makefile
+      uClinux/lib/libvorbis/Makefile
+      uClinux/lib/sqlite3/Makefile
+
+0. date:2011/01/26
+1. who: Yufa Huang
+2. Modified for what:
+   a. Update Makefile to run configure for first compile only.
+   b. Remove codes for old version.
+3. Modified files:
+   a. uClinux/lib/ffmpeg/Makefile
+      uClinux/lib/ffmpeg/Makefile_no_configure
+      uClinux/lib/FLAC/Makefile
+      uClinux/lib/FLAC/Makefile_no_configure
+      uClinux/lib/gettext/Makefile
+      uClinux/lib/gettext/Makefile_no_configure
+      uClinux/lib/libexif/Makefile
+      uClinux/lib/libexif/Makefile_no_configure
+      uClinux/lib/libiconv/Makefile
+      uClinux/lib/libiconv/Makefile_no_configure
+      uClinux/lib/libid3tag/Makefile
+      uClinux/lib/libid3tag/Makefile_no_configure
+      uClinux/lib/libogg/Makefile
+      uClinux/lib/libogg/Makefile_no_configure
+      uClinux/lib/libvorbis/Makefile
+      uClinux/lib/libvorbis/Makefile_no_configure
+      uClinux/lib/sqlite3/Makefile
+      uClinux/lib/sqlite3/Makefile_no_configure
+   b. uClinux/lib/ffmpeg/ffmpeg-0.5/*.*
+      uClinux/lib/gettext/gettext-0.14.6/*.*
+      uClinux/lib/libexif/libexif-0.6.17/*.*
+      uClinux/lib/libiconv/libiconv-1.12/*.*
+      uClinux/lib/sqlite3/sqlite-3.6.8/*.*
+      uClinux/lib/sqlite3/sqlite-3.6.13/*.*
+      uClinux/lib/DirectFB/DirectFB-1.2.7/*.*
+
+0. date:2011/01/24
+1. who: Yufa Huang
+2. Modified for what:
+   a. Disable WLAN led for DIR-657 and DIR-857.
+3. Modified files:
+   a. uClinux/vendors/Ubicom/DIR657NA/bsp.h
+      uClinux/vendors/Ubicom/DIR657NA/rootfs/etc/init.d/create_gpio
+      uClinux/vendors/Ubicom/DIR857NA/bsp.h
+      uClinux/vendors/Ubicom/DIR857NA/rootfs/etc/init.d/create_gpio
+      uClinux/user/rc/user/gpio.c
+
+0. date:2011/01/21
+1. who: Yufa Huang
+2. Modified for what:
+   a. Add new wireless driver AR938X for DIR-827 and DIR-857.
+3. Modified files:
+   a. uClinux/vendors/Ubicom/DIR857NA/config.arch
+      uClinux/vendors/Ubicom/DIR857NA/config.modules
+      uClinux/modules/Kconfig
+      uClinux/modules/Makefile
+      uClinux/user/rc/wlan/Atheros/wlan.c
+      /vendors/ath_sag/apps/art/modules/dk_flash.c
+      /vendors/ath_sag/Makefile
+
+0. date:2011/01/19
+1. who: Yufa Huang
+2. Modified for what:
+   a. Prevent WAN packets go through to LAN. The script is provided by Atheros.
+   b. Enable HTTPS.
+   c. Update config.vendor (disable DLNA and MIIICASA) 
+3. Modified files:
+   a. linux-2.6.x/arch/ubicom32/mach-common/AR8327/athrs17_phy.c
+   b. uClinux/user/config/Kconfig
+   c. uClinux/vendors/Ubicom/DIR857NA/config.vendor
+      uClinux/vendors/Ubicom/DIR857NA/config.linux-2.6.x
+
+0. date:2011/01/10
+1. who: Simon Su
+2. Modified for what:
+   a. Add MP for SD card and change kernel config mmc_block to kernel module
+   b. Add kernel config "Inotify" for minidlna
+   c. Update ffmpeg Makefile
+3. Modified files:
+   a. vendors/sxuptp/romfs/etc/init.d/rc.usbstorage
+      vendors/Ubicom/DIR657NA/config.linux-2.6.x
+      uClinux/user/httpd/core.c
+   b. vendors/Ubicom/DIR657NA/config.linux-2.6.x
+   c. uClinux/lib/ffmpeg/Makefile
+
+0.  date:2011/01/10
+1.  who: Jerry Chen
+2.  Modified for what:
+    a. Modify WPS LED issue
+3.  Modified files:
+    a. vendors/ath_wlan_v730407/apps/wpa2/hostapd/wps_opt_upnp.c
+       uClinux/user/gpio/gpio.c
+       uClinux/vendors/Ubicom/DIR657NA/config.arch
+       uClinux/vendors/Ubicom/DIR657NA/bsp.h
+
+0. date:2011/01/06
+1. who: Simon Su
+2. Modified for what:
+   a. Add & update minidlna & libraries
+3. Modified files:
+   a. uClinux/lib/ffmpeg/*
+      uClinux/lib/FLAC/*
+      uClinux/lib/gettext/*
+      uClinux/lib/libexif/*
+      uClinux/lib/libiconv/*
+      uClinux/lib/libid3tag/*
+      uClinux/lib/libjpeg/*
+      uClinux/lib/libogg/*
+      uClinux/lib/libvorbis/*
+      uClinux/lib/sqlite3/*
+      uClinux/lib/zlib/*
+      uClinux/lib/Makefile
+      uClinux/lib/Kconfig
+      uClinux/user/minidlna/*
+      uClinux/user/Makefile
+      uClinux/user/Kconfig
+      uClinux/user/e2fsprogs/*
+      uClinux/vendor/config.vendor
+      uClinux/vendor/Ubicom/DIR657NA/rootfs/lib/*
+      uClinux/vendor/Ubicom/DIR657NA/rootfs/sbin/minidlna
+
+0.  date:2011/01/03
+1.  who: Jerry Chen
+2.  Modified for what:
+    a. Modify wps button issue for MP use
+3.  Modified files:
+    a. uClinux/user/wpsbtnd/wpsbtnd.c
+    
+0.  date:2010/12/31
+1.  who: Jerry Chen
+2.  Modified for what:
+    a. Support HNAP Macclone
+3.  Modified files:
+    a. uClinux/user/httpd/pure.c
+       uClinux/user/httpd/pure_xml.c
+
+0.  date:2010/12/29
+1.  who: Jerry Chen
+2.  Modified for what:
+    a. Add Define SPECIAL_ONEINTERNET_LED
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/config.arch
+       uClinux/vendors/Ubicom/DIR857NA/config.arch
+
+0.  date:2010/12/28
+1.  who: Simon Su
+2.  Modified for what:
+    a. Fix bring up silex when WAN enable without QoS
+    b. Add USB detect for MP
+    c. Ultra7k.lpj revert to previous config (SD card malfunction)
+    d. "change mmc_block to kernel modules, open inotify kernel function
+
+3.  Modified files:
+    a. uClinux/user/rc/app.c
+       uClinux/user/rc/wantimer.c
+       vendors/Ubicom_StreamEngine2/init.d/se_unload
+    b. vendors/sxuptp/sxuptp/sxuptp_driver.c
+    c. ultra/projects/bootexec/config/ultra7k.lpj
+    d. uClinux/vendors/Ubicom/DIR657NA/config.linux-2.6.x
+
+0.  date:2010/12/28
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Update GPIO value to GPIO define for DIR-857.
+    b. update flash address define for DIR-857.
+    c. Move project DIR857 to DIR857NA and update default config files.
+3.  Modified files:
+    a. u-boot/lib_ubicom32/board.c
+    b. u-boot/httpd/httpd.c
+    c. uClinux/vendors/DIR857NA/*.*
+
+0.  date:2010/12/27
+1.  who: Simon Su
+2.  Modified for what:
+    a. Fix USB Storage Web access page
+3.  Modified files:
+    a. uClinux/user/httpd/httpd.c
+
+0.  date:2010/12/27
+1.  who: Jerry Chen
+2.  Modified for what:
+    a. Add reboot_type in GUI.
+    b. update configuration_version from 0.00 to 0.01, because add nvram item(wlan0_vap1_eap_mac_auth).
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_wlan_perform.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/etc/nvram.default
+       uClinux/vendors/Ubicom/DIR657NA/version.c
+
+0.  date:2010/12/24
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Wireless 'MAC address authentication' field is always blank.
+3.  Modified files:
+    a. uClinux/vendor/Ubicom/DIR657NA/rootfs/www/guest_zone.asp
+       uClinux/vendor/Ubicom/DIR657NA/rootfs/www/wireless.asp
+
+0.  date:2010/12/23
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Guest zone schedule not work at guest zone.
+    b. Fixed: Change Media server name need manual reboot.
+3.  Modified files:
+    a. uClinux/vendor/Ubicom/DIR657NA/rootfs/www/tools_schedules.asp
+    b. uClinux/vendor/Ubicom/DIR657NA/rootfs/www/media_server.asp
+
+0.  date:2010/12/22
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Ubicom remark the alert (ethernet driver) temporailly.
+    b. Add wan port 5555 for miiicasa.
+    c. Fixed: DUT can save setting when web GUI time out.
+3.  Modified files:
+    a. linux-2.6.x/drivers/net/ubi32_eth.c
+    b. uClinux/user/rc/firewall.c
+    c. uClinux/user/httpd/core.c
+
+0.  date:2010/12/21
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: User does not need login DUT and can open version.txt.
+    b. Fixed: Guest zone 'MAC address authentication' field is always blank.
+3.  Modified files:
+    a. uClinux/user/httpd/httpd.c
+    b. uClinux/user/rc/wlan/Atheros/wlan.c
+       uClinux/user/httpd/cmobasicapi.c
+       uClinux/vendor/Ubicom/DIR657NA/rootfs/etc/nvram.default
+
+0.  date:2010/12/14
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Update default settings.
+    b. Add DIR-657 board info.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/config.user
+       uClinux/vendors/Ubicom/DIR657NA/config.ubicom
+       uClinux/vendors/Ubicom/DIR657NA/config.vendor
+       uClinux/vendors/Ubicom/DIR657NA/config.modules
+       uClinux/vendors/Ubicom/DIR657NA/config.linux-2.6.x
+    b. uClinux/linux-2.6.x/arch/ubicom32/mach-ip7k/Makefile
+       uClinux/linux-2.6.x/arch/ubicom32/mach-ip7k/Kconfig
+
+0.  date:2010/12/13
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: WPS button failed
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/initramfs_list
+
+0.  date:2010/12/10
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: DCS-2120(DCS-5220) IOT issue
+3.  Modified files:
+    a. uClinux/user/rc/wlan/Atheros/wlan.c
+
+0.  date:2010/12/06
+1.  who: Simon Su
+2.  Modified for what:
+    a. start minidlna & wcnd when mount USB successful
+    b. modify silex start & stop scripts
+    c. fix error when save setting without change values
+3.  Modified files:
+    a. vendors/sxuptp/romfs/sbin/hotplug_init
+    b. vendors/sxuptp/romfs/etc/init.d/post_customer.sh
+       uClinux/user/rc/app.c
+       uClinux/vendors/Ubicom/DIR657NA/config.arch
+    c. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/media_server.asp
+
+0.  date:2010/12/06
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Update web pages.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/usb_storage.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/media_server.asp
+
+0.  date:2010/12/03
+1.  who: Simon Su
+2.  Modified for what:
+    a. Fix function name redefine
+    b. Change Mode hotplug_init to executable
+3.  Modified files:
+    a. uClinux/user/nvram/nvram.c
+       uClinux/user/nvram/nvram.h
+    b. vendors/sxuptp/romfs/sbin/hotplug_init
+
+0.  date:2010/12/03
+1.  who: Jerry Chen
+2.  Modified for what:
+    a. USB type is always rum SharePort in start_wcnd.
+    b. Remove USB SETTINGS in UI.
+    c. Replace to new silex source code
+Modified files:
+    a. uClinux/user/rc/app.c
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_poe.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_reboot_need.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/lan.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/media_server.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_men.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wireless.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_dhcp.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_l2tp.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wizard_wireless.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_static.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/index.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_pptp.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_internet.asp
+    c. uClinux/vendors/Ubicom/DIR657NA/config.vendor
+       uClinux/user/busybox/networking/ftpd.c
+
+0.  date:2010/12/02
+1.  who: Simon Su
+2.  Modified for what:
+    a. Replace Silex source code to add samba, usb-storage
+       & ntfs filesystem functions.
+    b. Modify minidlna config media_dir=/mnt/shared/
+3.  Modified files:
+    a. vendors/sxuptp/*
+    b. uClinux/user/rc/app.c
+
+0.  date:2010/12/02
+1.  who: Jerry Chen
+2.  Modified for what:
+    a. Replace hotplug_init to Add samba.
+    b. Modify wcn easyconnect issue.
+Modified files:
+    a. ubicom-distro/vendors/sxuptp/romfs/sbin/hotplug_init
+       ubicom-distro/vendors/sxuptp/romfs/etc/rc.d/rc.hotplug
+    b. uClinux/user/nvram/nvram.c   
+       uClinux/user/nvram/nvram.h
+
+0.  date:2010/11/26
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Increase nvram size to 1536.
+    b. Start DLNA at rc. (disable miniupnp when DLNA enable)
+    c. Enable Hotplug for kernel.
+    d. Sync with CAMEO SDK v1.0.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/config.vendor
+    b. uClinux/user/rc/app.c
+       uClinux/user/httpd/cmobasicapi.c
+    c. uClinux/vendors/Ubicom/DIR657NA/config.linux-2.6.x
+    d. uClinux/user/busybox/networking/httpd_ext.c
+       uClinux/user/cgi/*.*
+       uClinux/user/cmds/*.*
+       uClinux/user/gpio/gpio.c
+       uClinux/user/ndisc6-0.9.9/rdnssd/icmp.c
+       uClinux/user/ndisc6-0.9.9/rdnssd/rdnssd.h
+       uClinux/user/ndisc6-0.9.9/rdnssd/rdnssd.c
+       uClinux/user/openswan/pluto_updown
+       uClinux/user/pppd/pppd/ipcp.c
+       uClinux/user/pppd/pppd/ipv6cp.c
+       uClinux/user/rc/ppp.c
+       uClinux/user/rc/wantimer.c
+       uClinux/user/sutil/project.c
+       uClinux/user/sutil/shvar.h
+       uClinux/user/wide-dhcpv6/*.*
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_filters_url.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/lang_en.js
+
+0.  date:2010/11/22
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Update GPIO settings.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/bsp.h
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/etc/init.d/create_gpio
+
+0.  date:2010/11/19
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Sync with CAMEO SDK v1.0.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6rd.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_adv.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_portforward.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/tools_syslog.asp
+
+0.  date:2010/11/18
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Add Media server page.
+    b. Sync with CAMEO SDK v1.0.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/media_server.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/lang_en.js
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/index.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wizard_wireless.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/lan.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/usb_setting.asp
+       uClinux/user/httpd/cmobasicapi.c
+    b. uClinux/user/busybox/networking/udhcp/dhcprelay.c
+       uClinux/user/busybox/networking/udhcp/dhcprelay_hook.c
+       uClinux/user/busybox/networking/udhcp/Kbuild
+       uClinux/user/cgi/*.*
+       uClinux/user/cmds/*.*
+       uClinux/user/httpd/chklst_version.c
+       uClinux/user/httpd/cmobasicapi.c
+       uClinux/user/httpd/lp.c
+       uClinux/user/openswan/pluto_updown
+       uClinux/user/rc/app.c
+       uClinux/user/udhcp/dhcpc.c
+       uClinux/user/Kconfig
+       uClinux/user/Makefile
+
+0.  date:2010/11/17
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Do not display "IP change .... " at countdown page.
+    b. Add: ALG functions.
+    c. Remark define 'CONFIG_SWITCH_BCM539X' for uboot.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/lan.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_dmz.asp
+    c. u-boot/include/configs/IP7160_DIR657_I_Board.h
+
+0.  date:2010/11/16
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. New: Add default settings for media_server.asp.
+    b. Fixed: StreamEngine2 init failed.
+3.  Modified files:
+    a. uClinux/vendor/Ubicom/DIR657NA/rootfs/etc/nvram.default
+    b. vendors/Ubicom_StreamEngine2/init.d/se_do_rate_estimation
+       uClinux/user/rc/qos.c
+
+0.  date:2010/11/15
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. New: Add DIR-657 for u-boot.
+    b. Fixed: u-boot upgrade failed for DIR-657.
+    c. Fixed: DIR-657 HARDWARE ID.
+    d. Fixed: Upgrade failed.
+    e. Fixed: Update project default settings. (Upgrade time 200 seconds)
+    f. Update default board file to DIR657.
+3.  Modified files:
+    a. u-boot/Makefile
+       u-boot/MAKEALL
+       u-boot/include/configs/IP7160_DIR657_I_Board.h
+       u-boot/board/ubicom/IP7160_DIR657_I_Board/*.*
+    b. u-boot/httpd/cgi.c
+    c. uClinux/vendors/Ubicom/DIR657NA/bsp.h
+       uClinux/vendors/Ubicom/DIR657NA/createbin.sh
+    d. uClinux/vendors/Ubicom/DIR657NA/project.h
+       uClinux/user/sutil/shvar.h
+    e. uClinux/vendors/Ubicom/DIR657NA/config.linux-2.6.x
+       uClinux/vendors/Ubicom/DIR657NA/config.vendor
+       uClinux/vendors/Ubicom/DIR657NA/config.ubicom
+    f. scripts/config/defconfig
+
+0.  date:2010/11/12
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. New: Simple smac program.
+    b. Fixed: GPIO does not work.
+    c. Fixed: The reset button failed for u-boot.
+    d. Fixed: Read mac address error for u-boot.
+3.  Modified files:
+    a. uClinux/user/httpd/smac.c
+       uClinux/user/httpd/Makefile
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/etc/init.d/create_gpio
+    c. u-boot/lib_ubicom32/board.c
+    d. u-boot/httpd/httpd.c
+
+0.  date:2010/11/11
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: The login timeout failed. (It can access web page when keyin webpage name (ex. lan.asp))
+3.  Modified files:
+    a. uClinux/user/httpd/httpd.c
+       uClinux/user/httpd/core.c
+
+0.  date:2010/11/04
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Update to Ubicom SDK 2.1.
+    b. Fixed: Admin/User password issue.
+       1) Login Web by admin from PCA.
+       2) Login Web by admin/user from PCB.
+       3) PCA change the DUT admin/user password.
+       4) PCA will re-display login page.
+       5) BUT PCB still can browser all setting pages, SHOULD be re-display login page.
+3.  Modified files:
+    a. gdbloader/ip5000.h
+       openwrt/*.*
+       scripts/config/defconfig
+       toolchain.bz2
+       tools/*.*
+       uClibc/libc/inet/getaddrinfo.c
+       uClibc/libc/inet/ifaddrs.c
+       uClibc/libc/string/ubicom32/memcpy.c
+       uClibc/libc/string/ubicom32/memset.c
+       ultra/boards/IP7160Eval_WANonSW_16MB.brd (new)
+       ultra/boards/IP7160Eval_WANonSW_Rev12_16MB.brd (new)
+       ultra/boards/IP7160DIR855Board_F.brd
+       ultra/boards/IP7500IAP.brd
+       ultra/boards/IP8100RGW.brd
+       ultra/boards/IP8100RGW_Rev1_1.brd
+       ultra/boards/IP8500TAP.brd
+       ultra/pkg/ipGDB/src/gdb_ip5000.c
+       ultra/pkg/ipHAL/include/ip3k/ip5000.h
+       ultra/pkg/ipHAL/include/ipHAL.h
+       ultra/pkg/ipHAL/src/pll_ddr_init_mars.S
+       ultra/pkg/ipHAL/src/start.S
+       ultra/pkg/ipPCIE/src/pcie.c
+       ultra/pkg/ipProfile/include/profilenode.h
+       ultra/pkg/ipProfile/include/profilesample.h
+       ultra/pkg/ipProfile/src/profile.c
+       ultra/pkg/ipUSBTIO/src/usb_tio_hrt.c
+       ultra/pkg/ipVideoInTIO/include/ipVideoInTIO.h
+       ultra/pkg/ipVideoInTIO/pkginfo/ipVideoInTIO.pkg
+       ultra/pkg/ipVideoInTIO/src/videointio.c
+       ultra/pkg/ipVideoInTIO/src/videointio_hrt.S
+       ultra/projects/bootexec/app/main.c
+       ultra/projects/bootexec/config/ultra7k_zwave.lpj (new)
+       ultra/projects/mainexec/config/ultra7k_zwave.lpj (new)
+       vendors/ath_sag/*.*
+       vendors/Ubicom_StreamEngine2/*.*
+       vendors/Ubicom_WISH/Makefile.openwrt (new)
+       vendors/synopsys-otg/driver/dwc_otg_cil.c
+       vendors/synopsys-otg/driver/dwc_otg_cil_intr.c
+       vendors/synopsys-otg/driver/dwc_otg_driver.c
+       vendors/synopsys-otg/driver/dwc_otg_hcd.c
+       vendors/synopsys-otg/driver/dwc_otg_hcd.h
+       vendors/synopsys-otg/driver/dwc_otg_hcd_intr.c
+       vendors/synopsys-otg/driver/dwc_otg_hcd_linux.c
+       vendors/synopsys-otg/driver/dwc_otg_hcd_queue.c
+       vendors/synopsys-otg/driver/Makefile
+       vendors/synopsys-otg/dwc_common_port/dwc_common_linux.c
+       vendors/synopsys-otg/dwc_common_port/dwc_ubicom.c
+       vendors/synopsys-otg/dwc_perf/*.* (new)
+       vendors/synopsys-otg/Makefile
+       vendors/ath_wlan/Kconfig
+       vendors/ath_wlan/Makefile
+       vendors/ath_wlan_v730407/Kconfig
+       vendors/ath_wlan_v730407/Makefile
+       linux-2.6.x/arch/ubicom32/crypto/aes_ubicom32.c
+       linux-2.6.x/arch/ubicom32/crypto/crypto_ubicom32.h
+       linux-2.6.x/arch/ubicom32/crypto/Makefile
+       linux-2.6.x/arch/ubicom32/crypto/md5_ubicom32.c
+       linux-2.6.x/arch/ubicom32/crypto/sha1_ubicom32.c
+       linux-2.6.x/arch/ubicom32/crypto/sha2_ubicom32.c (new)
+       linux-2.6.x/arch/ubicom32/include/asm/dma-mapping.h
+       linux-2.6.x/arch/ubicom32/include/asm/io.h
+       linux-2.6.x/arch/ubicom32/include/asm/pci.h
+       linux-2.6.x/arch/ubicom32/include/asm/pgtable.h
+       linux-2.6.x/arch/ubicom32/include/asm/preempt.h
+       linux-2.6.x/arch/ubicom32/include/asm/profilesample.h (new)
+       linux-2.6.x/arch/ubicom32/include/asm/profpkt.h (new)
+       linux-2.6.x/arch/ubicom32/include/asm/stopwatch.h (new)
+       linux-2.6.x/arch/ubicom32/include/asm/thread_info.h
+       linux-2.6.x/arch/ubicom32/include/asm/ubicom32.h
+       linux-2.6.x/arch/ubicom32/kernel/entry_v34.S
+       linux-2.6.x/arch/ubicom32/kernel/entry_v5.S
+       linux-2.6.x/arch/ubicom32/kernel/irq.c
+       linux-2.6.x/arch/ubicom32/kernel/Makefile
+       linux-2.6.x/arch/ubicom32/kernel/pic.c
+       linux-2.6.x/arch/ubicom32/kernel/signal.c
+       linux-2.6.x/arch/ubicom32/kernel/stopwatch.c (new)
+       linux-2.6.x/arch/ubicom32/kernel/switch_to.S
+       linux-2.6.x/arch/ubicom32/mach-common/Makefile
+       linux-2.6.x/arch/ubicom32/mach-common/pci.c
+       linux-2.6.x/arch/ubicom32/mach-common/pcie.c
+       linux-2.6.x/arch/ubicom32/mach-common/pcie.h
+       linux-2.6.x/arch/ubicom32/mach-common/pcie_io.c
+       linux-2.6.x/arch/ubicom32/mach-common/pcie_msi.c
+       linux-2.6.x/arch/ubicom32/mach-common/pcie_phy.c
+       linux-2.6.x/arch/ubicom32/mach-common/pci_measurement.c
+       linux-2.6.x/arch/ubicom32/mach-common/pci_measurement.h
+       linux-2.6.x/arch/ubicom32/mach-common/profile.c
+       linux-2.6.x/arch/ubicom32/mach-common/profilenode.h
+       linux-2.6.x/arch/ubicom32/mach-common/profile_vma.c
+       linux-2.6.x/arch/ubicom32/mach-common/usb_dwc.c
+       linux-2.6.x/arch/ubicom32/mach-common/usb_tio.c
+       linux-2.6.x/arch/ubicom32/mach-ip7k/board-ip7500iap.c
+       linux-2.6.x/arch/ubicom32/mach-ip8k/board-ip8000bringup.c
+       linux-2.6.x/arch/ubicom32/mach-ip8k/board-ip8100rgw.c
+       linux-2.6.x/arch/ubicom32/mach-ip8k/Kconfig
+       linux-2.6.x/arch/ubicom32/mm/elf-fdpic.c
+       linux-2.6.x/arch/ubicom32/Kconfig
+       linux-2.6.x/arch/ubicom32/Kconfig.debug
+       linux-2.6.x/drivers/crypto/Kconfig
+       linux-2.6.x/drivers/net/ubicom32/synopGMAC_Dev.c
+       linux-2.6.x/drivers/net/ubicom32/synopGMAC_Dev.h
+       linux-2.6.x/drivers/net/ubi32_eth.c
+       linux-2.6.x/drivers/serial/ubi32_serdes.c
+       linux-2.6.x/drivers/usb/musb/musb_core.c
+       linux-2.6.x/drivers/video/backlight/ubicom32bl.c
+       linux-2.6.x/drivers/video/ubicom32fb.c
+       linux-2.6.x/fs/squashfs/cache.c
+       linux-2.6.x/kernel/softirq.c
+       linux-2.6.x/sound/ubicom32/ubi32-generic.c
+       Makefile
+       Config.in
+    b. uClinux/user/httpd/httpd.c
+       uClinux/user/httpd/cmobasicapi.c
+
+0.  date:2010/10/29
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: The Network Filter failed when wirless client IP is static.
+    b. Support Configuration Version Contorl.
+    c. Fixed: Website filter rules: Only the first tenth entries on both columns work.
+    d. Sync CAMEO SDK.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_filter_mac.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/config.arch
+       uClinux/vendors/Ubicom/DIR657NA/version.c
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/etc/nvram.default
+       uClinux/user/rc/rc.c
+       uClinux/user/nvram/nvram.c
+       uClinux/user/httpd/chklst_version.c
+       uClinux/user/httpd/core.c
+       uClinux/user/httpd/httpd_util.c
+       uClinux/user/httpd/cmoapi.h
+       uClinux/user/httpd/httpd_util.h
+    c. uClinux/vendors/Ubicom/DIR657NA/config.vendor
+    d. uClinux/user/rc/firewall.c
+       uClinux/user/busybox/networking/udhcp/common.h
+       uClinux/user/busybox/networking/udhcp/dhcprelay.c
+       uClinux/user/busybox/networking/udhcp/dhcprelay_hook.c
+       uClinux/user/cmds/ipv6/dhcp6d.c
+       uClinux/user/cmds/ipv6/rdnssd.c
+       uClinux/user/cmds/lib/libipv6.c
+       uClinux/user/cmds/services/dhcprelay.c
+       uClinux/user/cmds/sys/dhcprelay_info.c
+       uClinux/user/cmds/sys/info.c
+       uClinux/user/cmds/sys/init.c
+       uClinux/user/cmds/sys/Makefile
+       uClinux/user/cmds/sys/nvram_param.c
+       uClinux/user/cmds/sys/sys_cmds.c
+       uClinux/user/openswan/pluto_updown
+
+0.  date:2010/10/28
+1.  who: Yufa Huang
+2.  Modified for what:
+	a. Fixed: IP 0.0.0.0 is displayed in Status-> LAN Computer.
+	b. Fixed: Set web page's default countdown_time to 70 seconds.
+3.  Modified files:
+	a. uClinux/user/iplookup/arpping.c
+	b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/back_long.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/restore_succeeded.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/ustatus.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/reboot.asp
+
+0.  date:2010/10/28
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Guset Zone security issue.
+    b. Fixed: set same time to delete, edit and add schedule for TOOLS\SCHEDULES.
+    c. Add new back page (long countdown time) for rc restart.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/guest_zone.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/tools_schedules.asp
+    c. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/back_long.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_routing.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_firewall.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wizard_wlan2.asp
+
+0.  date:2010/10/27
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: It will always popup message box when click "schedule" button for TOOLS/EMAIL SETTINGS.
+    b. Fixed: The schedule shouldn't be disabled after schedule be modified at E-mail Settings.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/tools_email.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/etc/nvram.default
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/tools_schedules.asp
+
+0.  date:2010/10/22
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Sync Cameo SDK.
+3.  Modified files:
+    a. uClinux/user/cmds/sys/nvram_param.c
+       uClinux/user/cmds/sys/init.c
+       uClinux/user/cgi/misc/lang.c
+       uClinux/user/openswan/pluto_updown
+
+0.  date:2010/10/21
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Sync Cameo SDK.
+3.  Modified files:
+    a. uClinux/user/cmds/services/dhcprelay.c
+       uClinux/user/cmds/services/services_cmds.c
+       uClinux/user/cmds/services/Makefile
+       uClinux/user/cmds/security/vpn/vpn.c
+       uClinux/user/cmds/security/vpn/ipsec.c
+       uClinux/user/cmds/security/vpn/ipsec_whack.h
+       uClinux/user/cmds/security/vpn/ddns_append_fqdn.c
+       uClinux/user/cmds/security/vpn/ddns_append_fqdn.h
+       uClinux/user/cmds/security/vpn/Makefile
+       uClinux/user/cgi/include/lang.h
+       uClinux/user/cgi/main/public.c
+       uClinux/user/cgi/main/asp.DIR665/advances.h
+       uClinux/user/cgi/main/asp.DIRX30/advances.h
+       uClinux/user/cgi/misc/checksum.c
+       uClinux/user/cgi/misc/lang.c
+       uClinux/user/busybox/networking/udhcp/dhcprelay.c
+       uClinux/user/busybox/networking/udhcp/Kbuild
+       uClinux/user/busybox/networking/udhcp/dhcprelay_hook.c
+       uClinux/user/busybox/networking/udhcp/common.h
+       uClinux/user/rc/app.c
+       uClinux/user/rc/rc.c
+       uClinux/user/openswan/pluto_updown
+
+0.  date:2010/10/20
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Sync Cameo SDK.
+3.  Modified files:
+    a. uClinux/uesr/cgi/include/hnapwan.h
+       uClinux/user/cgi/lib/Makefile
+       uClinux/user/cgi/main/asp.DIR665/advances.h
+       uClinux/user/cgi/main/asp.DIR665/lan_dmz.h
+       uClinux/user/cgi/main/asp.DIR665/vpn.h
+       uClinux/user/cgi/main/asp.DIR665/wan.h
+       uClinux/user/cgi/main/core/ssi.c
+       uClinux/user/cgi/misc/hnap/hnap_system.c
+       uClinux/user/cgi/misc/ajax.c
+       uClinux/user/cgi/misc/Makefile
+       uClinux/user/cgi/Makefile
+       uClinux/user/cgi/Makefile.DIR665
+       uClinux/user/cmds/ipv6/6rd.c
+       uClinux/user/cmds/ipv6/ipv6_set.c
+       uClinux/user/cmds/ipv6/pppoe.c
+       uClinux/user/gpio/gpio.c
+       uClinux/user/rc/app.c
+       uClinux/user/rc/wan.c
+       uClinux/user/rc/wantimer.c
+       uClinux/user/sutil/shvar.h
+       uClinux/user/sutil/sutil.c
+       uClinux/user/sutil/sutil.h
+       uClinux/user/timer/timer.c
+       uClinux/user/udhcp/dhcpc.c
+       uClinux/user/udhcp/dhcpd.h
+       uClinux/user/udhcp/options.c
+       uClinux/linux-2.6.x/net/ipv6/addrconf.c
+
+0.  date:2010/10/18
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: website filter 'allow' URL/Domain can not given empty.
+    b. Fixed: Support Menu issue.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_filters_url.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_men.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_internet.asp
+
+0.  date:2010/10/13
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Follow the chklst spec, removed the(2.4GHZ) in wireless domian.  
+3.  Modified files:
+    a. uClinux/user/httpd/chklst_version.c
+
+0.  date:2010/10/08
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Follow the Language pack spec v1.12 for chklst.txt
+3.  Modified files:
+    a. uClinux/user/httpd/lp.c
+       uClinux/user/httpd/chklst_version.c
+       uClinux/vendors/Ubicom/DIR657NA/config.arch
+
+0.  date:2010/10/07
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: The Network filter check mac issue.
+    b. Fixed: Enable automatic IPv6 address assignment click checkbox not auto fresh item.
+    c. Fixed: Guestzone frame issue. (empty describes)
+    d. Sync Cameo SDK.
+    e. Fixed: 6in4 tunnel have error page.    
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_filter_mac.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_autoconfig.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_pppoe.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6rd.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6to4.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6in4.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_static.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_link_local.asp
+    c. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_adv.asp
+    d. uClinux/user/cmds/ipv6/6to4.c
+       uClinux/user/cmds/ipv6/firewall.c
+       uClinux/user/cmds/security/vpn/ipsec.c
+       uClinux/user/cmds/security/vpn/ipsec_whack.h
+       uClinux/user/cmds/security/vpn/vpn.c
+       uClinux/user/cgi/*.*
+       uClinux/user/rc/wan.c
+       uClinux/user/rc/wantimer.c
+       uClinux/user/openswan/Makefile
+       uClinux/user/iptables-new/iptables-1.4.8/extensions/libxt_*.*
+    e. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6in4.asp
+
+0.  date:2010/10/06
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Device name error on Reboot page.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/reboot.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/st_routing.asp
+
+0.  date:2010/10/05
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Check wireless host and guest schedule time.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/tools_schedules.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/guest_zone.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wireless.asp
+
+0.  date:2010/09/30
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: All static route rules are setting will over buffer size.
+3.  Modified files:
+    a. uClinux/user/httpd/widget.h
+
+0.  date:2010/09/28
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Advanced Help link some items lost in Support Menu.
+    b. Fixed: UI wording modification in ipv6 spec1.13
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_men.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_adv.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_adv.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6rd.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_static.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_l2tp.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_pptp.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/leng_en.js
+
+0.  date:2010/09/27
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. sync with cameo SDK 1.0
+3.  Modified files:
+    a. linux-2.6.x/net/ipv4/netfilter/Kconfig
+       linux-2.6.x/net/ipv4/netfilter/Makefile
+       linux-2.6.x/net/ipv4/netfilter/nf_conntrack_ops.c
+       uClinux/user/busybox/networking/Config.in
+       uClinux/user/busybox/networking/httpd.c
+       uClinux/user/busybox/networking/Kconfig
+       uClinux/user/cgi/*.*
+       uClinux/user/config/Kconfig
+       uClinux/user/xl2tpd-1.1.12/*.*
+       uClinux/user/Kconfig
+       uClinux/user/Makefile
+
+0.  date:2010/09/24
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. sync with cameo SDK 1.0
+3.  Modified files:
+    a. uClinux/user/cmds/include/ipv6.h
+       uClinux/user/cmds/ipv6/6in4.c
+       uClinux/user/cmds/ipv6/6rd.c
+       uClinux/user/cmds/ipv6/6to4.c
+       uClinux/user/cmds/ipv6/autoconfig.c
+       uClinux/user/cmds/ipv6/dhcp6c.c
+       uClinux/user/cmds/ipv6/dhcp6d.c
+       uClinux/user/cmds/ipv6/firewall.c
+       uClinux/user/cmds/ipv6/ipv6_set.c
+       uClinux/user/cmds/ipv6/pppoe.c
+       uClinux/user/cmds/ipv6/radvd.c
+       uClinux/user/cmds/ipv6/rdnssd.c
+       uClinux/user/cmds/ipv6/route.c
+       uClinux/user/cmds/lib/libipv6.c
+       uClinux/user/cmds/security/vpn/sslvpn.c
+       uClinux/user/cmds/security/services/https.c
+       uClinux/user/cmds/sys/flash_write.c
+       uClinux/user/cmds/sys/nvram_param.c
+       uClinux/user/cmds/utility/Makefile
+       uClinux/user/cmds/utility/utility_cmds.c
+       uClinux/user/cmds/utility/utility_openvpn.c
+       uClinux/user/cmds/utility/utility_vpn_mtime.c
+       uClinux/user/crowdcontrol/crowdcontrol.c
+       uClinux/user/crowdcontrol/Makefile
+       uClinux/user/httpd/pure.c
+       uClinux/user/ndisc6-0.9.9/rdnssd/icmp.c
+       uClinux/user/ndisc6-0.9.9/rdnssd/rdnssd-script
+       uClinux/user/openswan/pluto_updown
+       uClinux/user/pppd/pppd/ipv6cp.c
+       uClinux/user/rc/wlan/Atheros/wlan.c
+       uClinux/user/rc/app.c
+       uClinux/user/rc/firewall.c
+       uClinux/user/rc/rc.c
+       uClinux/user/rc/wan.c
+       uClinux/user/rc/wantimer.c
+       uClinux/user/sutil/project.c
+       uClinux/user/sutil/scmd_nvram.c
+       uClinux/user/timer/timer.c
+       uClinux/user/udhcp/serverpacket.c
+       uClinux/user/wide-dhcpv6/prefixconf.c
+
+0.  date:2010/09/24
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Support IPv6 Spec 1.12R
+    b. Fixed: IPv6 in Status Help Page.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/etc/nvram.default
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/Inbound_Filter.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_access_add.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_access_add1.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_access_add2.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_access_add3.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_access_add4.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_access_add5.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_access_add6.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_access_control.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_appl.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_dmz.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_filters_mac.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_filters_url.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6in4.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6rd.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_6to4.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_autoconfig.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_firewall.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_pppoe.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_routing.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_stateless.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_ipv6_static.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_link_local.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_network.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_qos.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_routing.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_virtual.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_wish.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_wlan_perform.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_wps_setting.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/lingual_EN.js
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/st_ipv6.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_dhcp.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_l2tp.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_pptp.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/wan_static.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_portforward.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/guest_zone.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/lang_en.js
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_status.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_men.asp
+       uClinux/vendors/Ubicom/DIR657NA/rootfs/www/st_ipv6.asp
+
+0.  date:2010/09/21
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Wireless Led does not blink when guest connected.
+    b. Fixed: Wireless Led will turn off when guest is out of schedule.
+    c. Fixed: Wrong RTS Threshold default value in advanced wireless.
+    d. Fixed: Second RADIUS server does not work.
+    e. Fixed: Routing page can't save setting without typing any rule name.
+3.  Modified files:
+    a. uClinux/user/gpio/gpio.c
+    b. uClinux/user/timer/timer.c
+    c. uClinux/vendors/Ubicom/DIR657NA/rootfs/etc/nvram.default
+    d. vendors/ath_wlan/apps/wpa2/hostapd/radius_client.c
+    e. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_routing.asp
+
+0.  date:2010/09/20
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Fixed: Guestzone frame issue in Help page.
+    b. Fixed: Firmware upgrade Notification options but there is no this function in Help page.
+    c. Fixed: USB settings link lose in Setup Help.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_adv.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_tools.asp
+    c. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/support_internet.asp
+
+0.  date:2010/09/16
+1.  who: Yufa Huang
+2.  Modified for what:
+    a.Fixed can not support special character password and security for HNAP.
+    b. Fixed bug: Let HNAP tool can not set and get any RT's setting when the password is different between tool and RT.
+3.  Modified files:
+    a. uClinux/user/httpd/pure.c
+    b. uClinux/user/httpd/httpd.c
+
+0.  date:2010/09/15
+1.  who: yufa huang
+2.  Modified for what:
+    a.Fix: Schedule time range warning message error at /TOOLS/SCHEDULES page.
+    b.Fix: widget bugs
+      1) firmware_version_date error (system_info)
+      2) firmware_update_info_url has no http:// (system_info)
+      3) dhcpd_leased_entry_x, x should be 1bit(0) not 2bit(00). (dhcp_server/routing_table)
+      4) static_routing only have 24 rules but GUI have 32 rules (static_route)
+      5) Interface string error(WAN[0-9]|LAN[0-9]) (routing_table)
+      6) last_ip_registered value is null (ddns)
+    c.sync with old SVN code.
+    d.Fix: DUT reboot occur Time reset (NTP disable).
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/tools_schedules.asp.asp
+    b. uClinux/user/httpd/widget.c
+       uClinux/user/noip2/noip2.c
+    c. uClinux/user/httpd/*.*
+    d. uClinux/user/httpd/cmobasicapi.c
+
+0.  date:2010/09/13
+1.  who: yufa huang
+2.  Modified for what:
+    a.Fix: Do not open new page when click "www.dlinkddns.com" at /TOOLS/DYNAMIC DNS page.
+    b.Fix: Firewall settings cannot save when DMZ default settings not changed.
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/tools_ddns.asp
+    b. uClinux/vendors/Ubicom/DIR657NA/rootfs/www/adv_dmz.asp
+
+0.  date:2010/09/03
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Sync by Ubicom SDK 2.0.
+3.  Modified files:
+    a. uClinux/modules/synopsys-otg
+       uClinux/modules/Kconfig
+       uClinux/modules/Makefile
+       uClinux/vendors/Ubicom/DIR655IP8K/config.*
+
+0.  date:2010/09/01
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Support old u-boot.
+3.  Modified files:
+    a. ultra/boards/IP7160DIR855Board_F.brd
+       ultra/projects/mainexec/app/main.c
+       linux-2.6.x/arch/ubicom32/mach-common/flash.c
+       linux-2.6.x/drivers/mtd/devices/ubi32-fc.c
+
+0.  date:2010/08/31
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Create new project folder for DIR-657
+    b. Delete toolchain foler (because its size is very large, over 2G bytes),
+       so zip to bz2 file. Please tar -jxvf toolchain.bz2 when you first time checkout code.
+    c. sync with Ubicom SDK 2.0
+3.  Modified files:
+    a. uClinux/vendors/Ubicom/DIR657
+    b. delete toolchain folder and add toolchain.bz2
+    c. uClinux/vendors/config/ubicom32nommu/config.arch
+       uClinux/include/Makefile
+       uClinux/ubicom32/profiler_helper/Makefile
+       uClibc/Makefile.in
+
+0.  date:2010/08/30
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Sync with cameo svn codes.
+3.  Modified files:
+    a. linux-2.6.x/drivers/mtd/linux_nvram
+       linux-2.6.x/drivers/mtd/Kconfig
+       linux-2.6.x/drivers/mtd/drivers/mtd/mtdpart.c
+       linux-2.6.x/drivers/mtd/drivers/net/ubi32_eth.c
+       linux-2.6.x/drivers/net/usb/usbnet.c
+       linux-2.6.x/drivers/net/ubi32-eth.h
+       linux-2.6.x/drivers/net/pppoe.c
+       linux-2.6.x/drivers/usb/core/hub.c
+       linux-2.6.x/drivers/usb/storage/initializers.c
+       linux-2.6.x/drivers/usb/storage/initializers.h
+       linux-2.6.x/drivers/usb/storage/unusual_devs.h
+       linux-2.6.x/drivers/usb/storage/usb.c
+       linux-2.6.x/drivers/usb/musb/musb_host.c
+       linux-2.6.x/drivers/usb/musb/musb_host.c
+       linux-2.6.x/mm/slab.c
+       linux-2.6.x/include/net/netfilter/nf_nat.h
+       linux-2.6.x/include/net/netfilter/nf_nat_core.h
+       linux-2.6.x/include/net/netns/ipv4.h
+       linux-2.6.x/include/linux/netfilter/nf_conntrack_common.h
+       linux-2.6.x/lib/ratelimit.c
+       linux-2.6.x/net/netfilter/nf_conntrack_core.c
+       linux-2.6.x/lib/net/ipv4/ipmr.c
+       linux-2.6.x/lib/net/ipv4/netfilter/Kconfig
+       linux-2.6.x/lib/net/ipv4/netfilter/iptable_security.c
+       linux-2.6.x/lib/net/ipv4/netfilter/nf_defrag_ipv4.c
+       linux-2.6.x/lib/net/ipv4/netfilter/nf_nat_standalone.c
+       linux-2.6.x/lib/net/ipv4/netfilter/nf_conntrack_l3proto_ipv4.c
+       linux-2.6.x/lib/net/ipv4/netfilter/Makefile
+       linux-2.6.x/lib/net/ipv4/netfilter/nf_nat_rule.c
+       linux-2.6.x/lib/net/ipv4/netfilter/ipt_LOG.c
+       linux-2.6.x/lib/net/ipv4/netfilter/ipt_NATTYPE.c
+       linux-2.6.x/lib/net/ipv4/netfilter/ip_tables.c
+       linux-2.6.x/lib/net/ipv4/netfilter/iptable_mangle.c
+       linux-2.6.x/lib/net/ipv4/netfilter/nf_nat_core.c
+       linux-2.6.x/lib/net/ipv4/netfilter/iptable_filter.c
+       linux-2.6.x/lib/net/ipv4/netfilter/iptable_raw.c
+       linux-2.6.x/lib/net/ipv4/netfilter/ipt_SNATP2P.c
+       linux-2.6.x/lib/net/ipv4/route.c
+       linux-2.6.x/lib/net/ipv4/igmp.c
+       linux-2.6.x/lib/net/ipv4/ip_forward.c
+       linux-2.6.x/lib/net/bridge/Kconfig
+       linux-2.6.x/lib/net/bridge/br.c
+       linux-2.6.x/lib/net/bridge/br_stp_if.c
+       linux-2.6.x/lib/net/bridge/br_netfilter.c
+       vendors/Ubicom_StreamEngine/*.*
+
+0.  date:2010/08/27
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Sync with Ubicom SDK 2.0.
+    d. add new modules for Ubicom SDK 2.0
+    e. fix mtd error.
+    f. sync with cameo svn codes.
+3.  Modified files:
+    a. vendors/ath_wlan/Kconfig
+       vendors/ath_wlan/Makefile
+       vendors/ath_wlan/Makefile.apps
+       vendors/ath_wlan/Makefile.caps
+       vendors/ath_wlan_v730407/Kconfig
+       vendors/ath_wlan_v730407/Makefile
+       vendors/ath_wlan_v730407/Makefile.apps
+       vendors/ath_wlan_v730407/Makefile.caps
+    d. vendors/rt3070/*.*
+       vendors/synopsys-otg/*.*
+    e. u-boot/include/configs/IP7160_DIR855_F_Board.h
+       ultra/boards/IP7160DIR855Board_F.brd
+       linux-2.6.x/arch/ubicom32/mach-ip7k/board-ip7160855MrgwAtheros.c
+    f. linux-2.6.x/net/ipv4/netfilter/nf_conntrack_l3proto_ipv4.c
+
+0.  date:2010/08/26
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Add HARDWARE_ID.
+    b. Delay for switch init.
+    c. Sync with Ubicom SDK 2.0.
+    d. add new modules for Ubicom SDK 2.0
+    e. fix mtd error.
+    f. sync with cameo svn codes.
+3.  Modified files:
+    a. Makefile.loader
+    b. u-boot/lib_ubicom3/board.c
+    c. vendors/Ubicom_StreamEngine/*.*
+    d. vendors/rt3070/*.*
+       vendors/synopsys-otg/*.*
+    e. u-boot/include/configs/IP7160_DIR855_F_Board.h
+       ultra/boards/IP7160DIR855Board_F.brd
+       linux-2.6.x/arch/ubicom32/mach-ip7k/board-ip7160855MrgwAtheros.c
+    f. linux-2.6.x/net/ipv4/netfilter/nf_conntrack_l3proto_ipv4.c
+
+0.  date:2010/08/25
+1.  who: Yufa Huang
+2.  Modified for what:
+    a. Add MTD block define.
+    b. New add.
+    c. Sync with CAMEO svn codes.
+    d. Patch for IPv6
+3.  Modified files:
+    a. ultra/boards/IP7160DIR855Board_F.brd
+    b. u-boot/board/ubicom/IP7160_DIR865_Board/*.*
+       u-boot/board/ubicom/IP7160_HOMEMONITOR_BOARD/*.*
+       u-boot/drivers/net/AR8316/*.*
+       u-boot/httpd/*.*
+       u-boot/include/configs/IP7160_DIR865_F_Board.h
+       u-boot/include/configs/IP7160_HOMEMONITOR_Board.h
+       toolchain/lib/gcc/ubicom32-linux-uclibc/4.4.1/march-ubicom32v4/crtbegin.o
+       toolchain/lib/gcc/ubicom32-linux-uclibc/4.4.1/march-ubicom32v4/crtbeginS.o
+       toolchain/lib/gcc/ubicom32-linux-uclibc/4.4.1/march-ubicom32v4/crtend.o
+       toolchain/lib/gcc/ubicom32-linux-uclibc/4.4.1/march-ubicom32v4/crtendS.o
+    c. u-boot/common/main.c
+       u-boot/drivers/net/ubicom32/ubi32_eth.c
+       u-boot/drivers/net/ubicom32/ubi32_eth.h
+       u-boot/include/configs/IP7160_DIR855_F_Board.h
+       u-boot/include/common.h
+       u-boot/lib_ubicom32/board.c
+       u-boot/MAKEALL
+       u-boot/Makefile
+    d. linux-2.6.x/include/linux/if_tunnel.h
+       linux-2.6.x/include/net/ipip.h
+       linux-2.6.x/net/ipv6/addrconf.c
+       linux-2.6.x/net/ipv6/ndisc.c
+       linux-2.6.x/net/ipv6/sit.c
+       linux-2.6.x/net/ipv6/Kconfig

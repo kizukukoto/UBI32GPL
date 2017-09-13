@@ -1,0 +1,20 @@
+ï»¿# Copyright © 2002-2008 Ubicom Inc. <www.ubicom.com>.  All rights reserved.
+#
+# This file contains confidential information of Ubicom, Inc. and your use of
+# this file is subject to the Ubicom Software License Agreement distributed with
+# this file. If you are uncertain whether you are an authorized user or to report
+# any unauthorized use, please contact Ubicom, Inc. at +1-408-739-2200.
+# Unauthorized reproduction or distribution of this file is subject to civil and
+# criminal penalties.
+#
+# $RCSfile: STRINGS_EN.txt,v $
+# $Date: 2009/12/21 02:34:39 $
+# $Revision: 1.1.1.1 $
+
+#############################################################################
+# Example Partial English translation
+
+#From: KR96,Basic Help
+KR96,Setup Help
+#From: LT27,Basic
+LT27,Setup

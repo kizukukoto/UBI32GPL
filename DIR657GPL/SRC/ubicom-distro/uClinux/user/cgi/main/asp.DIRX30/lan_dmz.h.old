@@ -1,0 +1,28 @@
+
+static struct items_range lan[] = {
+	{ "static_addr0", -1, -1, "192.168.0.1"},
+	{ "static_netmask0", -1, -1, "255.255.255.0"},
+	{ "static_hostname0",-1, -1, "DIR-730"},	//{ "lan_domain", ""},
+	{ "dhcpd_dns_relay0", -1, -1, "1"},
+	{ "dhcpd_enable0", -1, -1, "1"},
+	{ "dhcpd_start0", -1, -1, "192.168.0.100"},
+	{ "dhcpd_end0", -1, -1, "192.168.0.150"},
+	{ "dhcpd_lease0", -1, -1, "86400"},
+	{ "dhcpd_reserve_", 0, 49, ""},
+	{ "if_services0", -1, -1, LAN_SERVICES},
+	{ NULL, -1, -1, NULL}
+};
+
+static struct items_range dmz[] = {
+	{ "static_addr1", -1, -1, "192.168.0.1"},
+	{ "static_netmask1", -1, -1, "255.255.255.0"},
+	{ "static_hostname1", -1, -1, "DIR-730"}, //{ "dmz_domain", ""},
+	{ "dhcpd_dns_relay1", -1, -1, "1"},
+	{ "dhcpd_enable1", -1, -1, "1"},
+	{ "dhcpd_start1", -1, -1, "192.168.0.100"},
+	{ "dhcpd_end1", -1, -1, "192.168.0.150"},
+	{ "dhcpd_lease1", -1, -1, "86400"},
+	{ "dhcpd_reserve_", 50, 99, ""},
+	{ "if_services1", -1, -1, DMZ_SERVICES},
+	{ NULL, NULL}
+};

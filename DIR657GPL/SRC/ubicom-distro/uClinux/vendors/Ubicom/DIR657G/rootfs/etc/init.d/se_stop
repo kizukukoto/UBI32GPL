@@ -1,0 +1,30 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+#
+# (re)start StreamEngine
+#
+
+. /etc/rgw_config
+#. /etc/functions.sh
+
+#config_load /etc/config/network
+
+#
+# Is StreamEngine currently running?  If so then stop it.
+#
+if [ -e /sys/devices/system/ubicom_streamengine/ubicom_streamengine0 ] ; then
+	echo Stopping StreamEngine
+	/etc/init.d/se_unload
+fi
+if [ -e /sys/devices/system/streamengine_classifier/streamengine_classifier0 ] ; then
+	echo Stopping StreamEngine QoS subsystem
+	/etc/init.d/se_modules_unload
+fi
+
+SESTAT=`ps | grep "sestatd" | grep -v grep`
+if [ "$SESTAT" != "" ]; then
+        killall sestatd
+fi
+exit 0
+

@@ -1,0 +1,173 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+#
+# (re)start StreamEngine
+#
+
+. /etc/rgw_config
+#. /etc/functions.sh
+
+#config_load /etc/config/network
+
+#
+# Is StreamEngine currently running?  If so then stop it.
+#
+if [ -e /sys/devices/system/ubicom_streamengine/ubicom_streamengine0 ] ; then
+	echo Stopping StreamEngine
+	/etc/init.d/se_unload
+fi
+if [ -e /sys/devices/system/streamengine_classifier/streamengine_classifier0 ] ; then
+	echo Stopping StreamEngine QoS subsystem
+	/etc/init.d/se_modules_unload
+fi
+
+#
+# Start StreamEngine if required
+#
+#config_get STREAMENGINE_ENABLED streamengine traffic_shaping
+STREAMENGINE_ENABLED=$(nvram get traffic_shaping | cut -c19- -)
+if [ $STREAMENGINE_ENABLED -ne 1 ] ; then
+	echo StreamEngine disabled
+	exit 1
+fi
+
+/etc/init.d/se_load 256
+
+#
+# Link type detection (for now we always do auto detect)
+#
+LINK_CMD=$(nvram get qos_connection_type | cut -c23- -)
+echo Link command = $LINK_CMD
+
+rm -rf /var/tmp/ubicom_streamengine_calculated_rate.tmp
+
+rm -rf /var/tmp/ubicom_streamengine_calculated_rate.tmp
+#
+# Manual or automatic speed?
+#
+#config_get PERFORM_RATE_ESTIMATION streamengine auto_uplink
+PERFORM_RATE_ESTIMATION=$(nvram get auto_uplink | cut -c15- -)
+if [ $PERFORM_RATE_ESTIMATION -eq 0 ] ; then
+	#
+	# Manual speed
+	#
+	#config_get SPEED_CMD streamengine qos_uplink
+	SPEED_CMD=$(nvram get qos_uplink | cut -c14- -)
+	SPEED_CMD=`expr \( $SPEED_CMD \* 1000 \)`
+
+	echo Manual speed = $SPEED_CMD
+	/etc/init.d/se_do_rate_estimation $SPEED_CMD $LINK_CMD
+else
+	#
+	# Auto speed
+	#
+	echo Auto speed
+	/etc/init.d/se_do_rate_estimation 0 $LINK_CMD
+fi
+
+killall -SIGUSR1 timer
+
+#
+# If something went wrong with the rating then we stop streamengine
+#
+if [ $? -ne "0" ] ; then
+	echo Rate estimation failed - streamengine will not start
+	/etc/init.d/se_unload
+	exit 1
+fi
+
+#
+# If the detected speed is > 2000000 (2mbps) then we disable streamengine - we assume there is enough upstream bandwidth so as not to need a shaper
+#
+TX_RATE_BPS=$(cat /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_calculated_rate)
+if [ $TX_RATE_BPS -gt 2000000 -a $PERFORM_RATE_ESTIMATION -ne 0 ] ; then
+	cp -rf /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_calculated_rate /var/tmp/ubicom_streamengine_calculated_rate.tmp
+	echo Streamengine shaper disabled: WAN speed greater than 2048Kbps detected
+	/etc/init.d/se_unload
+	exit 0
+fi
+
+#
+# Do we need to see if we should set up default classification, fragmentation or manual rules?
+# NOTE: qos_enable is the global switch for the qos classification subsystem
+#
+#config_get CLASSIFICATION_ENABLED streamengine qos_enable
+CLASSIFICATION_ENABLED=$(nvram get qos_enable | cut -c14- -)
+if [ $CLASSIFICATION_ENABLED -ne 1 ] ; then
+	echo No StreamEngine classification required.
+	/etc/init.d/se_shaper_set 0 auto
+	exit 0
+fi
+
+#
+# Enable shaper with optional dynamic fragmentation
+#
+#config_get DYN_FRAG_ENABLED streamengine qos_dyn_fragmentation
+DYN_FRAG_ENABLED=$(nvram get qos_dyn_fragmentation | cut -c25- -)
+/etc/init.d/se_shaper_set $DYN_FRAG_ENABLED auto
+
+#
+# Enable the QoS classifier subsystem
+#
+/etc/init.d/se_modules_load
+
+#
+# Set WAN interface, default eth0.1
+#
+SE_SYSFS_WAN_IF=/sys/devices/system/streamengine_classifier/streamengine_classifier0/streamengine_classifier_if_name
+if [ -e ${SE_SYSFS_WANIF} ]; then
+	echo "Set WAN Interface to ${WAN_MODE_INTERFACE}"
+	echo -n ${WAN_MODE_INTERFACE} > ${SE_SYSFS_WAN_IF}
+else
+	echo "NO WAN Interface exists."
+	exit 1
+fi
+
+#
+# Enable or disable auto classification
+#
+#config_get AUTO_CLASSIFICATION_ENABLED streamengine auto_classification
+AUTO_CLASSIFICATION_ENABLED=$(nvram get auto_classification | cut -c23- -)
+echo $AUTO_CLASSIFICATION_ENABLED > /sys/devices/system/streamengine_classifier_default/streamengine_classifier_default0/enabled
+
+#
+# Enable or disable bit torrent classification
+#
+#config_get BITTORRENT_CLASSIFICATION_ENABLED streamengine bittorrent_classification
+BITTORRENT_CLASSIFICATION_ENABLED=$(nvram get bittorent_classification | cut -c28- -)
+echo $BITTORRENT_CLASSIFICATION_ENABLED > /sys/devices/system/streamengine_classifier_bittorrent/streamengine_classifier_bittorrent0/enabled
+
+#
+# Enable or disable manual user rules
+#
+#config_get USER_RULES_CLASSIFICATION_ENABLED streamengine user_rules_classification
+USER_RULES_CLASSIFICATION_ENABLED=$(nvram get user_rules_classification | cut -c29- -)
+echo $USER_RULES_CLASSIFICATION_ENABLED > /sys/devices/system/streamengine_classifier_user_rules/streamengine_classifier_user_rules0/enabled
+if [ $USER_RULES_CLASSIFICATION_ENABLED -eq 1 ] ; then
+	#
+	# Load rules
+	#
+	/etc/init.d/se_manual_rules_set
+fi
+
+#
+# Enable or disable http content rules
+#
+#config_get HTTP_CONTENT_CLASSIFICATION_ENABLED streamengine http_content_classification
+HTTP_CONTENT_CLASSIFICATION_ENABLED=$(nvram get http_content_classification | cut -c31- -)
+echo $HTTP_CONTENT_CLASSIFICATION_ENABLED > /sys/devices/system/streamengine_classifier_http_content/streamengine_classifier_http_content0/enabled
+if [ $HTTP_CONTENT_CLASSIFICATION_ENABLED -eq 1 ] ; then
+	#
+	# Load rules
+	#
+	/etc/init.d/se_http_content_rules_set
+fi
+
+SESTAT=`ps | grep "sestatd" | grep -v grep`
+if [ "$SESTAT" != "" ]; then
+	killall sestatd
+fi
+
+sestatd 50001 &
+

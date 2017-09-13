@@ -1,0 +1,31 @@
+
+ifeq ($(CC),cc)
+
+CC=ubicom32-linux-uclibc-gcc -march=ubicom32v4 -Os
+CFLAGS +=                     -g -fomit-frame-pointer -fno-common -fno-builtin -Wall  -Dlinux -D__linux__ -Dunix -D__uClinux__ -D__linux -DEMBED -DNO_FORK -I/home/ubicom/ubicom/ubicom-distro/uClinux/include -I/home/ubicom/ubicom/ubicom-distro/uClinux/lib/zlib -I/home/ubicom/ubicom/ubicom-distro/uClinux/uClibc/include -I/home/ubicom/ubicom/ubicom-distro/uClinux/lib/libssl/include -DAR9100 -DCONFIG_VLAN_ROUTER -DATHEROS_11N_DRIVER -DPCI_MODULE -DADVANCE_SPI -DEXVERSION_NNA -DUBICOM_MP_SPEED -DCONFIG_LP -DCONFIG_LP_FW_VER_REGION -DSPECIAL_ONEINTERNET_LED  -DUBICOM_JFFS2 -DNVRAM_CONF_VER_CTL -DIPV6_DSLITE  -DSET_GET_FROM_ARTBLOCK -DCONFIG_NVRAM_SIZE=1536 -DNAT_ENABLE -DPORT_FORWARD_BOTH -DINBOUND_FILTER -DACCESS_CONTROL -DDLINK_ROUTER_LED_DEFINE -DUDHCPD_NETBIOS -DUDHCPD_ALWAYS_BROADCAST -DUDHCPD_REVOKE -DUDHCPC_UNICAST -DUDHCPC_STATIC_ROUTE -DUDHCPC_CLASSLESS_STATIC_ROUTE -DUDHCPC_RFC_CLASSLESS_STATIC_ROUTE -DCONFIG_USER_IP_LOOKUP -DCONFIG_USER_NMBD -DDLINK_FW_QUERY -DUPNP_ATH_MINIUPNPD_RC -DCONFIG_USER_WCN -DUPNP_ATH_MINIUPNPD_1_3 -DCONFIG_USER_SHOW_CHECKSUM -DWPS_WPATALK -DCONFIG_USER_WL_ATH -DCONFIG_USER_WIRELESS_SCHEDULE -DCONFIG_USER_WL_ATH_GUEST_ZONE -DCONFIG_UBICOM_SWITCH_AR8316 -DDIR652EU
+
+
+#CFLAGS += -DCONFIG_USER_OPENAGENT
+endif
+
+
+
+OBJS :=  gp.o if.o main.o misc.o timer.o timeh.o mld.o 
+
+all: mldc
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+		
+
+clean:
+	rm -f *.o *~ mldc .*.depend
+
+
+romfs: mldc
+	install -d $(ROMFSDIR)/sbin
+	install mldc $(ROMFSDIR)/sbin
+	$(STRIP) $(ROMFSDIR)/sbin/mldc
+
+mldc: $(OBJS)
+	$(CC) -o $@ $^ $(LDFLAGS)

@@ -1,0 +1,232 @@
+#include <stdio.h>
+#include <net/if.h>
+#include <linux/sockios.h>
+#include <netinet/in.h>
+#include <sys/ioctl.h>
+#include <string.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <time.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include "ssi.h"
+
+#include "libdb.h"
+#include "querys.h"
+#define DEBUG(fmt, a...) do { }while(0)
+#define WL_CLIENT_MAX 256
+static char WL_MAC[WL_CLIENT_MAX][24];
+
+int init_wireless_clients_mac()
+{
+	FILE *fp;
+	char line[128], *token;
+	int i = 0 ,rev = -1;
+
+	if (!(fp = popen("/usr/sbin/wl authe_sta_list 2>/dev/null", "r"))) {
+		perror("popen /usr/sbin/wl authe_sta_list");
+		goto err_exit;
+	}
+	DEBUG("Init wireless MAC\n");
+	while (fgets(line, sizeof(line), fp)) {
+
+		token = strtok(line, " \t\n");
+		if (!token)
+			goto err_exit;
+		if (!(token = strtok(NULL, " "))){
+			goto err_exit;
+		}
+		strcpy(WL_MAC[i], token);
+		WL_MAC[i][strlen(WL_MAC[i])-1] = '\0';
+		DEBUG("WL_MAC:[%s]\n", WL_MAC[i]);
+		if (i++ >= WL_CLIENT_MAX -1)
+			break;
+	}
+	pclose(fp);
+	return i - 1;
+err_exit:
+	return rev;
+}
+
+int is_wireless_client(const char *mac)
+{
+	int i;
+	
+	DEBUG("mac [%s] in wireless ?\n", mac);
+	
+	for (i = 0; WL_MAC[i][0] != '\0' && i < WL_CLIENT_MAX; i++) {
+		DEBUG("%d: [%s] == [%s] ?\n", i, mac, WL_MAC[i]);
+		if (strcasecmp(mac, WL_MAC[i]) == 0)
+			return 1;
+	}
+	return 0;
+}
+
+
+/* Simple version of _eval() (no timeout and wait for child termination) */
+#define eval(cmd, args...) ({ \
+	char *argv[] = { cmd, ## args, NULL }; \
+	_eval(argv, ">/dev/console", 0, NULL); \
+})
+
+/* 
+ * Concatenates NULL-terminated list of arguments into a single
+ * commmand and executes it
+ * @param	argv	argument list
+ * @param	path	NULL, ">output", or ">>output"
+ * @param	timeout	seconds to wait before timing out or 0 for no timeout
+ * @param	ppid	NULL to wait for child termination or pointer to pid
+ * @return	return value of executed command or errno
+ */
+int
+_eval(char *const argv[], char *path, int timeout, int *ppid)
+{
+	pid_t pid;
+	int fd;
+	int flags;
+	int sig;
+
+	switch (pid = fork()) {
+	case -1:	/* error */
+		perror("fork");
+		return errno;
+	case 0:		/* child */
+		/* Reset signal handlers set for parent process */
+		for (sig = 0; sig < (_NSIG-1); sig++)
+			signal(sig, SIG_DFL);
+
+		/* Clean up */
+		ioctl(0, TIOCNOTTY, 0);
+		close(0);
+		setsid();
+
+		/* Redirect stdout to <path> */
+		if (path) {
+			flags = O_WRONLY | O_CREAT;
+			if (!strncmp(path, ">>", 2)) {
+				/* append to <path> */
+				flags |= O_APPEND;
+				path += 2;
+			} else if (!strncmp(path, ">", 1)) {
+				/* overwrite <path> */
+				flags |= O_TRUNC;
+				path += 1;
+			}
+			if ((fd = open(path, flags, 0644)) < 0)
+				perror(path);
+			else {
+				dup2(fd, 1);
+				close(fd);
+			}
+		}
+
+		/* execute command */
+		dprintf("%s\n", argv[0]);
+		setenv("PATH", "/sbin:/bin:/usr/sbin:/usr/bin", 1);
+		//alarm(timeout);
+		execvp(argv[0], argv);
+		perror(argv[0]);
+		exit(errno);
+	default:	/* parent */
+		return pid;
+	}
+}
+
+struct data {
+	pid_t pid;
+	char string[256];
+};
+
+int dynamicdhcp_main(int argc, char *argv[])
+{
+	char line[512], hostname[128], temp[128], dev[16];
+       	char *token, *expired_time, *mac, *ip;
+	time_t exp_time;
+	FILE *fp;
+	int wireless = 1, ret = -1;
+	int status;
+	int i = 0, j = 0;
+       	struct data all_pid[100];
+
+	ret = system("/usr/bin/dumpleases -f /tmp/udhcpd.leases -c > /tmp/dnsmasq.lease");
+	if (ret < 0 || ret ==127){
+		fprintf(stdout, "");	
+		return errno;
+	}
+	
+	if (!(fp = fopen("/tmp/dnsmasq.lease", "r"))) {
+		fprintf(stdout, "");	
+		return errno;
+	}
+	if (argc > 1) {
+	       	if (strcmp(argv[1], "lan") == 0) {
+			//arp_query();
+			wireless = 0;
+			init_wireless_clients_mac();
+		} else {
+			fprintf(stderr, "Usage: %s [lan] to display lan of wire\n", argv[0]);
+			goto out;
+		}
+	}
+	while (fgets(line, sizeof(line), fp)) {
+
+		token = strtok(line, " \t\n");
+		expired_time = token;
+		exp_time = atoi(expired_time);
+		strcpy(temp,asctime(localtime(&exp_time)));
+		temp[strlen(temp)-1] = '\0';
+		if (!token)
+			break;
+		if (!(token = strtok(NULL, " "))){
+			continue;
+		}
+		mac = token;
+		if (wireless == 0 && (is_wireless_client(mac) == 1))
+			continue;
+		if (!token)
+			break;
+		if (!(token = strtok(NULL, " "))){
+			continue;
+		}
+		ip = token;	
+		if (!token)
+			break;
+		if (!(token = strtok(NULL, " "))){
+			continue;
+		}
+		if (strcmp(token, "") ==0)
+			strcpy(hostname, "Unknow-host");
+		else if (strcmp(token, "*") != 0)
+				strcpy(hostname, token);
+		else
+			strcpy(hostname, ip);
+		if (!token)
+			break;
+		if (!(token = strtok(NULL, " "))){
+			continue;
+		}
+		token[strlen(token)-1] = '\0';
+
+		sprintf(all_pid[i].string, "%s/%s/%s/%s/%s,", hostname, ip,
+			       	mac, temp, token);	
+		if (query_record("lan_ifname", dev, sizeof(dev)) != 0)
+			goto out;
+		all_pid[i].pid = eval("arping", "-f", "-q", "-w", "1", "-c",
+			       	"1","-i", dev, ip);
+		i++;
+	}
+
+	while(j < i) {
+		if(waitpid(all_pid[j].pid, &status, 0) == -1) {
+			j++;
+			continue;
+		}
+		if (WIFEXITED(status) && WEXITSTATUS(status) == 0) {
+			fprintf(stdout, "%s", all_pid[j].string);	
+		}
+		j++;
+	}
+out:
+	fclose(fp);
+	return 0;
+}

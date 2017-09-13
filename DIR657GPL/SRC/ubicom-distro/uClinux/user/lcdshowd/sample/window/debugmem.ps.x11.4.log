@@ -1,0 +1,2 @@
+peter    19603  0.0  0.8 14200 4056 pts/2    S+   04:00   0:00 ./dir865 --dfb:debugmem
+peter    22073  0.0  0.1  1772  612 pts/3    S+   04:02   0:00 grep dir865

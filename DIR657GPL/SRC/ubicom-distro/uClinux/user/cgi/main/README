@@ -1,0 +1,37 @@
+
+This README describes how to program this cgi to your project.
+
+o Directory architecture
+
+
+Directory arch are 'core', 'asp', 'ext', 'lib'
+	core: The core arch of ssi cgi. and _SHOULDE_NOT_  be modified as possible.
+	asp: Definition of nvram for each UI pages.
+	ext: _MAY_ by prject or module, or customize features...
+	lib: shared, independent library
+
+o Rules & style.
+	lib: in this directory, you can share any independent functions,
+		they _MUST_ be protable code and can _NOT_ depentent
+		on nvram.
+	ext: some external function or features. as, x509, syslog,
+		firmware upgrade, get/set config...
+
+o do your best.
+	In our purpose, We hope this code is flexible, useable, extensible.
+	so, you should to review your code in each time after you finish
+	your new feature or bugfix.
+	in comment, the key word 'XXX' used to meaning 'NOTE: here are some
+	issues or how is your algorithm trough ...', the key word 'FIXME' is
+	'some work-around code here' we need to fix ASAP. or 'TODO' is used
+	to 'There are some better algorithm here, but not be implemet yet'.
+
+#########################
+# TODO
+#########################
+update_record
+
+o for NOMMU (20100528)
+	1. fork in core/wl_cgi.c not fix but, IP7K use atheros, DIR655 use mvall chip, DIR330 use boardcom...
+		how to merge 2.4 only, dual band concurrent/swith...
+

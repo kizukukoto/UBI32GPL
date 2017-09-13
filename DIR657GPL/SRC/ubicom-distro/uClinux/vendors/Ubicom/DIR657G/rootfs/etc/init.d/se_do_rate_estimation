@@ -1,0 +1,123 @@
+#!/bin/sh
+# Copyright (C) 2010 Ubicom, Inc.
+
+. /etc/rgw_config
+
+if [ $# -ne 2 ] ; then
+echo "Usage: start_rating <speed_cmd> <frame_relay_cmd>"
+echo "   <speed_cmd>: Known speed in bps or 0 for Auto-Detect"
+echo "   <frame_relay_cmd>: 0 for No frame relay, 1 for Have frame relay, 2 for Auto-Detect"
+exit 1
+fi
+
+# Using the WANCONNECTIONTYPE identify the protocol overhead
+case $WANCONNECTIONTYPE in
+	static )
+		#
+		# Ethernet IFG, Ethernet preamble, Ethernet header and Ethernet CRC.
+		#
+		WAN_PROTOCOL_OVERHEAD=`expr 96 + 64 + 112 + 32`
+		;;
+	dhcp )
+		#
+		# Ethernet IFG, Ethernet preamble, Ethernet header and Ethernet CRC.
+		#
+		WAN_PROTOCOL_OVERHEAD=`expr 96 + 64 + 112 + 32`
+		;;
+	pppoe )
+		#
+		# There are many different types of framing overhead that we may need to account
+		# for here so sadly we have to pick a worst-case in the absence of any better
+		# information.  The worst case is PPPoEoA with Ethernet header including SNAP/LLC,
+		# PPPoE header, Ethernet CRC and AAL5 framing
+		#
+		WAN_PROTOCOL_OVERHEAD=`expr 160 + 64 + 32 + 64`
+		;;
+	pptp )
+		#
+		# Ethernet IFG, Ethernet preamble, Ethernet header, PPP header IP header,
+		# and Ethernet CRC.
+		#
+		WAN_PROTOCOL_OVERHEAD=`expr 96 + 64 + 112 + 160 + 64 + 32`
+		;;
+	l2tp )
+		#
+		# Ethernet IFG, Ethernet preamble, Ethernet header, PPP header IP header,
+		# and Ethernet CRC.
+		#
+		WAN_PROTOCOL_OVERHEAD=`expr 96 + 64 + 112 + 160 + 64 + 32`
+		;;
+	* )
+		echo Unknown WAN connection type $WANCONNECTIONTYPE
+		exit 1
+esac
+
+if [ $1 = "0" ] ; then
+	#
+	# Automatic speed
+	#
+	SPEED_CMD=1
+	SPEED=0
+else
+	#
+	# Manual speed
+	#
+	SPEED_CMD=0
+	SPEED=$1
+fi
+
+FRAME_RELAY_CMD=$2
+
+echo Starting Rate Estimation and Line Type Detection on $WANINTERFACE, Interface type $WANCONNECTIONTYPE, Protocol overhead $WAN_PROTOCOL_OVERHEAD, Speed command $SPEED_CMD, Frame relay command $FRAME_RELAY_CMD
+
+#
+# Configure the rate estimation engine
+#
+echo $SPEED > /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_calculated_rate
+echo $WAN_PROTOCOL_OVERHEAD > /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_protocol_overhead
+echo $SPEED_CMD > /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_speed_cmd
+echo $FRAME_RELAY_CMD > /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_fr_cmd
+
+echo 1 > /var/tmp/qos_estimation.tmp
+
+#
+# Stop packets routing so that the rate estimation is affected as little as possible
+#
+iptables -t filter -I FORWARD 1 --out-interface $WAN_MODE_INTERFACE -j DROP
+#iptables -t filter -I FORWARD 1 --out-interface $WANINTERFACE -j DROP
+
+#
+# Begin estimation
+#
+echo 1 > /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_start_estimation
+
+#
+# Wait until the analysis is completed
+#
+RUNNING=$(cat /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_start_estimation)
+until [  $RUNNING -lt 1 ]; do
+	sleep 2
+	echo -n .
+	RUNNING=$(cat /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_start_estimation)
+done
+echo .
+
+#
+# Restore the routing of packets
+#
+iptables -t filter -D FORWARD --out-interface $WAN_MODE_INTERFACE -j DROP
+iptables -t filter -D FORWARD --out-interface $WANINTERFACE -j DROP
+
+rm -rf /var/tmp/qos_estimation.tmp
+
+#
+# Extract the results
+#
+RATE=$(cat /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_calculated_rate)
+FRAME_RELAY=$(cat /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_frame_relay)
+PROTOCOL_OVERHEAD=$(cat /sys/devices/system/ubicom_streamengine/ubicom_streamengine0/ubicom_streamengine_protocol_overhead)
+
+echo DONE Result=$RUNNING Rate=$RATE Protocol Overhead=$PROTOCOL_OVERHEAD Frame Relay=$FRAME_RELAY
+if [ $RUNNING -lt 0 ] ; then
+	exit 1
+fi

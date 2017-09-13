@@ -1,0 +1,30 @@
+#!/bin/sh
+
+ipsec auto --status|\
+awk -F'[: "]' '
+$9 == "algorithm" && $10 == "newest" {
+	if ($8 == "IKE")
+		print "connection:", $3
+	print "\t",$8,$12,$13
+}
+/; newest IPSEC/{
+	if ($7 ~ /_I/) {
+		rule = "Inititor"
+		tout = $15
+	} else {
+		rule = "Responder"
+		tout = $13
+	}
+	print "\t", rule, "IPSEC SA Timout:", tout
+}
+/; newest ISAKMP/{
+	if ($7 ~ /_I/) {
+		rule = "Inititor"
+		tout = $13
+	} else {
+		rule = "Responder"
+		tout = $15
+	}
+	print "\t", rule, "ISAKMP SA Timout:", tout
+}
+'

@@ -1,0 +1,62 @@
+
+static struct items_range vpn_ipsec[] = {
+	{ "vpn_nat_traversal", -1, -1, NULL },
+	{ "vpn_conn", 1, 100, NULL },
+	{ "vpn_extra", 1, 100, NULL },
+	{ WL_CHANGED, -1, -1, "0"},	/* always reset to "0" */
+	{ NULL, -1, -1, NULL}
+};
+
+static struct items_range vpn_pptp[] = {
+	{ "l2tpd_overipsec_enable", -1, -1, ""},
+	{ "pptpd_enable", -1, -1,""},
+	{ "pptpd_servername", -1, -1, ""},
+	{ "pptpd_local_ip", -1, -1, ""},
+	{ "pptpd_remote_ip", -1, -1, ""},
+	{ "pptpd_auth_proto", -1, -1, ""},
+	{ "pptpd_encryption", -1, -1, ""},
+	{ "pptpd_auth_source", -1, -1, ""},
+	{ "pptpd_authmethod", -1, -1, "DB"},
+	{ "l2tpd_enable", -1, -1, ""},
+	{ "l2tpd_servername", -1, -1, ""},
+	{ "l2tpd_local_ip", -1, -1, ""},
+	{ "l2tpd_remote_ip", -1, -1, ""},
+	{ "l2tpd_auth_proto", -1, -1, ""},
+	{ "l2tpd_auth_source", -1, -1, ""},
+	{ "l2tpd_authmethod", -1, -1, "LDAP"},
+	{ "auth_pptpd_l2tpd", -1, -1, ""},
+	{ "edit_vpn", -1, -1, ""},
+	{ "edit_type", -1, -1, ""},
+	{ "pptpd_conn_", 1, 25, ""},
+	{ "l2tpd_conn_", 1, 25, ""},
+	{ "vpn_conn26", -1, -1, ""},
+	{ "vpn_extra26", -1, -1, ""},
+	/* for phase_1 130 1.5 version */
+	{ "username1", -1, -1, ""},
+	{ "passwd1", -1, -1, ""},
+	{ "username2", -1, -1, ""},
+	{ "passwd2", -1, -1, ""},
+	{ "username3", -1, -1, ""},
+	{ "passwd3", -1, -1, ""},
+	{ NULL, NULL}
+};
+static struct items vpn_ssl[] = {
+	{ "httpd_authmethod", "DB"},
+	{ "https_pem", ""},
+	{ "sslvpn1", ""},
+	{ "sslvpn2", ""},
+	{ "sslvpn3", ""},
+	{ "sslvpn4", ""},
+	{ "sslvpn5", ""},
+	{ "sslvpn6", ""},
+	{ NULL, NULL},
+};
+static struct items wizard_vpn[] = {
+	{ "vpn_type", "" },
+	{ "vpn_ipsec", "" },
+	{ "vpn_pptp", "" },
+	{ "vpn_l2tp", "" },
+	{ "vpn_ssl", "" },
+	{ "vpn_ssl_ca", "" },
+	{ NULL, NULL }
+};

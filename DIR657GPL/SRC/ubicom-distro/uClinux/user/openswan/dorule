@@ -1,0 +1,76 @@
+#! /bin/sh
+
+#
+# Spin off from orig _updown, please refer to _updown.orig for more
+#
+
+        st=0
+        it2=
+        iprule="from $PLUTO_MY_CLIENT"
+        iprule2="to $PLUTO_PEER_CLIENT table $IPROUTETABLE $IPRULEARGS"
+        case "$PLUTO_PEER_CLIENT" in
+        "0.0.0.0/0")
+                # opportunistic encryption work around
+                st=0
+                ;;
+        *)
+                if [ -z "$PLUTO_MY_SOURCEIP" ]
+                then
+                    if [ "$PLUTO_ME" = "${PLUTO_MY_CLIENT%/*}" ]
+                    then
+                        it="ip rule $1 iif lo $iprule2"
+                    else
+                        it="ip rule $1 $iprule $iprule2"
+                    fi
+                else
+                    if [ "${PLUTO_MY_SOURCEIP%/*}" = "${PLUTO_MY_CLIENT%/*}" ]
+                    then
+                        it="ip rule $1 iif lo $iprule2"
+                    else
+                        it="ip rule $1 $iprule $iprule2"
+                        it2="ip rule $1 iif lo $iprule2"
+                    fi
+                fi
+                oops="`eval $it 2>&1`"
+                st=$?
+                if test " $oops" = " " -a " $st" != " 0"
+                then
+                    oops="silent error, exit status $st"
+                fi
+                case "$oops" in
+                'RTNETLINK answers: No such process'*)
+                        # This is what ip rule gives
+                        # for "could not find such a rule"
+                        oops=
+                        st=0
+                        ;;
+                esac
+                if test " $oops" != " " -o " $st" != " 0"
+                then
+                    echo "$0: dorule \`$it' failed ($oops)" >&2
+                fi
+                if test "$st" = "0" -a -n "$it2"
+                then
+                    oops="`eval $it2 2>&1`"
+                    st=$?
+                    if test " $oops" = " " -a " $st" != " 0"
+                    then
+                        oops="silent error, exit status $st"
+                    fi
+                    case "$oops" in
+                    'RTNETLINK answers: No such process'*)
+                            # This is what ip rule gives
+                            # for "could not find such a rule"
+                            oops=
+                            st=0
+                            ;;
+                    esac
+                    if test " $oops" != " " -o " $st" != " 0"
+                    then
+                        echo "$0: dorule \`$it2' failed ($oops)" >&2
+                    fi
+                fi
+                ;;
+            esac
+        return $st
+

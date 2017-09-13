@@ -1,0 +1,77 @@
+ZONE00=Keep Current Time Zone=NULL
+ZONE01=(GMT-12:00) International Date Line West=UCT-12
+ZONE02=(GMT-11:00) Midway Island, Samoa=UCT11
+ZONE03=(GMT-10:00) Hawaii=UCT10
+ZONE04=(GMT-09:00) Alaska=NAST9NADT
+ZONE05=(GMT-08:00) Pacific Time (US &amp; Canada); Tijuana=PST8PDT
+ZONE06=(GMT-07:00) Arizona=MST7
+ZONE07=(GMT-07:00) Chihuahua, La Paz, Mazatlan=MST7
+ZONE08=(GMT-07:00) Mountain Time (US &amp; Canada)=MST7MDT
+ZONE09=(GMT-06:00) Central America=CST6CDT
+ZONE10=(GMT-06:00) Central Time (US &amp; Canada)=CST6CDT
+ZONE11=(GMT-06:00) Guadalajara, Mexico City, Monterrey=CST6CDT
+ZONE12=(GMT-06:00) Saskatchewan=CST6CDT
+ZONE13=(GMT-05:00) Bogota, Lima, Quito=UCT5
+ZONE14=(GMT-05:00) Eastern Time (US &amp; Canada)=EST5EDT
+ZONE15=(GMT-05:00) Indiana (East)=EST5
+ZONE16=(GMT-04:00) Atlantic Time (Canada)=AST4ADT
+ZONE17=(GMT-04:00) Caracas, La Paz=UCT4
+ZONE18=(GMT-04:00) Santiago=CST4CDT
+ZONE19=(GMT-03:00) Newfoundland=NST3:30NDT
+ZONE20=(GMT-03:00) Brasilia=EBST3EBDT
+ZONE21=(GMT-03:00) Buenos Aires, Georgetown=SAT3
+ZONE22=(GMT-03:00) Greenland=EUT1EUTDST
+ZONE23=(GMT-02:00) Mid-Atlantic=EUT1EUTDST
+ZONE24=(GMT-01:00) Azores=EUT1EUTDST
+ZONE25=(GMT-01:00) Cape Verde Is.=PWT0PST
+ZONE26=(GMT) Casablanca, Monrovia=UCT
+ZONE27=(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London=GMT0BST
+ZONE28=(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna=MET-1METDST
+ZONE29=(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague=MET-1METDST
+ZONE30=(GMT+01:00) Brussels, Copenhagen, Madrid, Paris=MET-1METDST
+ZONE31=(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb=MET-1METDST
+ZONE32=(GMT+01:00) West Central Africa=UCT-1
+ZONE33=(GMT+02:00) Athens, Beirut, Istanbul, Minsk=EET-2EETDST
+ZONE34=(GMT+02:00) Bucharest=EET-2EETDST
+ZONE35=(GMT+02:00) Cairo=EST-2EDT
+ZONE36=(GMT+02:00) Harare, Pretoria=UCT-2
+ZONE37=(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius=EET-2EETDST
+ZONE38=(GMT+02:00) Jerusalem=IST-2IDT
+ZONE39=(GMT+03:00) Baghdad=IST-3IDT
+ZONE40=(GMT+03:00) Kuwait, Riyadh=UCT-3
+ZONE41=(GMT+03:00) Moscow, St. Petersburg, Volgograd=MST-3MDT
+ZONE42=(GMT+03:00) Nairobi=UCT-3
+ZONE43=(GMT+03:00) Tehran=UCT-3:30
+ZONE44=(GMT+04:00) Abu Dhabi, Muscat=UAEST-4
+ZONE45=(GMT+04:00) Baku, Tbilisi, Yerevan=UCT-3
+ZONE46=(GMT+04:00) Kabul=UCT-4:30
+ZONE47=(GMT+05:00) Ekaterinburg=RFT-5RFTDST
+ZONE48=(GMT+05:00) Islamabad, Karachi, Tashkent=UCT-5
+ZONE49=(GMT+05:00) Chennai, Kolkata, Mumbai, New Delhi=UCT-5:30
+ZONE50=(GMT+05:00) Kathmandu=UCT-5:45
+ZONE51=(GMT+06:00) Almaty, Novosibirsk=RFT-6RFTDST
+ZONE52=(GMT+06:00) Astana, Dhaka=EUT-6EUTDST
+ZONE53=(GMT+06:00) Sri Jayawardenepura=UCT-5:30
+ZONE54=(GMT+06:00) Rangoon=UCT-6:30
+ZONE55=(GMT+07:00) Bangkok, Hanoi, Jakarta=UCT-7
+ZONE56=(GMT+07:00) Krasnoyarsk=RFT-7RFTDST
+ZONE57=(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi=UCT-8
+ZONE58=(GMT+08:00) Irkutsk, Ulaan Bataar=RFT-8RFTDST
+ZONE59=(GMT+08:00) Kuala Lumpur, Singapore=MST-8
+ZONE60=(GMT+08:00) Perth=TST-10TDT
+ZONE61=(GMT+08:00) Taipei=CST-8
+ZONE62=(GMT+09:00) Osaka, Sapporo, Tokyo=JST
+ZONE63=(GMT+09:00) Seoul=KST
+ZONE64=(GMT+09:00) Yakutsk=RFT-9RFTDST
+ZONE65=(GMT+09:00) Adelaide=CST-9:30CDT
+ZONE66=(GMT+09:00) Darwin=UCT-9:30
+ZONE67=(GMT+10:00) Brisbane=UCT-10
+ZONE68=(GMT+10:00) Canberra, Melbourne, Sydney=UCT-10
+ZONE69=(GMT+10:00) Guam, Port Moresby=UCT-10
+ZONE70=(GMT+10:00) Hobart=TST-10TDT
+ZONE71=(GMT+10:00) Vladivostok=RFT-10RFTDST
+ZONE72=(GMT+11:00) Magadan, Solomon Ls., New Caledonia=UCT-11
+ZONE73=(GMT+12:00) Auckland, Wellington=NZST-12NZDT
+ZONE74=(GMT+12:00) Fiji, Kamchatka, Marshall ls.=RFT-12RFTDST
+ZONE75=(GMT+13:00) Nuku'alofa=UCT-13
+
